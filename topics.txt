@@ -1,0 +1,14 @@
+
+shell, files, directories
+editors
+scripting
+gnuplot
+latex 101
+git / github
+C++
+testing
+debugging
+parallel computing with MPI and OpenMP
+CI
+DOIs and publishing
+basic python
