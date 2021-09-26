@@ -1,14 +1,29 @@
+* bash
 
-shell, files, directories
-editors
-scripting
-gnuplot
-latex 101
-git / github
-C++
-testing
-debugging
-parallel computing with MPI and OpenMP
-CI
-DOIs and publishing
-basic python
+  files, directories
+  editors
+  scripting, looping
+
+* git
+
+  * homework: fork my git repo, add a file, and do a PR
+
+* C++
+
+* make
+
+* plotting
+
+  gnuplot
+
+* latex
+
+* CI
+
+* debugging / profiling
+
+* OpenMP/MPI
+
+* GPU
+
+* DOIs and publishing
