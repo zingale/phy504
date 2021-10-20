@@ -8,6 +8,8 @@
   editors
   scripting, looping
 
+* editors and IDEs
+
 * git
 
   * homework: fork my git repo, add a file, and do a PR
