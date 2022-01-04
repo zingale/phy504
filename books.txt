@@ -1,0 +1,12 @@
+Think C++
+
+  * Free: https://www.greenteapress.com/thinkcpp/
+  * Doesn't cover recent C++
+
+Discovering Modern C++
+
+  * Nice text, cheap
+  * C++11/14
+  * Too concise?
+  * classes introduced early
+
