@@ -24,6 +24,8 @@
 
 * latex
 
+* HTML + CSS + web hosting
+
 * CI
 
 * debugging / profiling
