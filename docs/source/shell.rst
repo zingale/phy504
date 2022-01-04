@@ -1,6 +1,6 @@
-************************
+*************************
 BASH and the Command Line
-************************
+*************************
 
 The "shell" is your interface to the operator system.  To access the
 shell, we need to open a terminal on the computer.
