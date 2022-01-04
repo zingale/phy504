@@ -21,12 +21,10 @@ import os
 import re
 import sys
 import sphinx_rtd_theme
-import breathe
 import shlex
 import subprocess
 
 sys.path.insert(0, os.path.abspath('../../'))
-sys.path.append(os.path.dirname(breathe.__file__))
 
 
 
@@ -47,7 +45,6 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'numpydoc',
               'sphinx.ext.githubpages',
-              'breathe',
               'IPython.sphinxext.ipython_console_highlighting']
 
 # bibtex
