@@ -8,3 +8,4 @@ IPython>=3
 nbconvert
 pandoc
 jupyter
+sphinx-copybutton

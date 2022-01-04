@@ -45,6 +45,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'numpydoc',
               'sphinx.ext.githubpages',
+              'sphinx_copybutton',
               'IPython.sphinxext.ipython_console_highlighting']
 
 # bibtex
