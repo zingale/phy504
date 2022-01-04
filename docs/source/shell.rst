@@ -9,18 +9,18 @@ Which shell?
 ============
 
 There are a wide variety of shells that are used today.  The default
-on many systems is [BASH](https://www.gnu.org/software/bash/).  Others
-that you might commonly encounter are [zsh](https://www.zsh.org/) and
-[fish](https://fishshell.com/).
+on many systems is `BASH <https://www.gnu.org/software/bash/>`_.  Others
+that you might commonly encounter are `zsh <https://www.zsh.org/>`_ and
+`fish <https://fishshell.com/>`_.
 
 We'll focus on BASH, and most of what we learn here will apply
 directly to the other shells.
 
 Some online shell documentation:
 
-* The [Software Carpentry Unix Shell](https://swcarpentry.github.io/shell-novice/) lesson
+* The `Software Carpentry Unix Shell <https://swcarpentry.github.io/shell-novice/>`_ lesson
 
-* The official [Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html)
+* The official `Bash Reference Manual <https://www.gnu.org/software/bash/manual/html_node/index.html>`_
 
 Setting up
 ==========
