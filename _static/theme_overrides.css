@@ -18,19 +18,19 @@ div#example-notebook div.highlight-default div.highlight {
     background-color: inherit;
 }
 
-/* override table width restrictions */
-@media screen and (min-width: 767px) {
+/* /\* override table width restrictions *\/ */
+/* @media screen and (min-width: 767px) { */
 
-   .wy-table-responsive table td {
-      /* !important prevents the common CSS stylesheets from overriding
-         this as on RTD they are loaded after this stylesheet */
-      white-space: normal !important;
-   }
+/*    .wy-table-responsive table td { */
+/*       /\* !important prevents the common CSS stylesheets from overriding */
+/*          this as on RTD they are loaded after this stylesheet *\/ */
+/*       white-space: normal !important; */
+/*    } */
 
-   .wy-table-responsive {
-      overflow: visible !important;
-   }
-}
+/*    .wy-table-responsive { */
+/*       overflow: visible !important; */
+/*    } */
+/* } */
 
 .wy-side-nav-search>div.branch{
     font-weight:normal;
