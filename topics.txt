@@ -4,8 +4,27 @@
 
 * bash
 
-  files, directories
-  editors
+  paths, home, ls, navitating files, directories
+  cat, head, tail
+
+  editors quick intro
+
+  copying, moving files, deleting
+  making directories
+  wildcards
+
+  man, apropos
+
+  redirection + pipes
+
+  permissions
+
+  links
+
+  ssh
+
+  environment variables
+
   scripting, looping
 
 * editors and IDEs
