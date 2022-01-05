@@ -22,6 +22,8 @@ Some online shell documentation:
 
 * The official `Bash Reference Manual <https://www.gnu.org/software/bash/manual/html_node/index.html>`_
 
+A basic "cheat sheet" is available here: `Unix/Linux Command Reference <https://upload.wikimedia.org/wikipedia/commons/7/79/Unix_command_cheatsheet.pdf>`_.
+
 Setting up
 ==========
 
