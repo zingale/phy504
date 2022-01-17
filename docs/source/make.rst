@@ -22,6 +22,17 @@ Here's a basic makefile that controls the building:
    :language: make
    :linenos:
 
+There are a few different types of lines, but the most important are the rules that are of the form::
+
+    target:   dependencies ...
+              commands
+              ...
+
+.. note::
+
+   make uses a tab character to indent the commands, not spaces.
+
+
 We build the project by doing::
 
    make

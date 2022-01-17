@@ -24,6 +24,23 @@ Some online shell documentation:
 
 A basic "cheat sheet" is available here: `Unix/Linux Command Reference <https://upload.wikimedia.org/wikipedia/commons/7/79/Unix_command_cheatsheet.pdf>`_.
 
+Filesystem terminology
+======================
+
+We'll use the following terms throughout here:
+
+* directory
+
+* file
+
+* home directory : your default directory.  When you first open a shell on your computer,
+  this is where you are.
+
+* filesystem
+
+
+
+
 Setting up
 ==========
 
@@ -34,9 +51,45 @@ need
 
 .. code:: bash
 
-   curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip
+   curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip
    unzip shell-lesson-data.zip
 
 This data set comes from the Software Carpentry project.
 
+This creates a directory on the filesystem named ``shell-lesson-data/``.  To begin, we want to
+"change directory" into that directory, using the ``cd`` command::
 
+  cd shell-lesson-data
+
+
+Navigating
+==========
+
+It's always good to know where you are.  ``pwd`` is the "print working
+directory" command -- it simply tells you your location::
+
+   pwd
+
+If we want to see the contents of the current directory, we use the ``ls`` command::
+
+   ls
+
+you should see something like::
+
+   creatures  molecules           notes.txt    pizza.cfg  writing
+   data       north-pacific-gyre  numbers.txt  solar.pdf
+
+We want to learn the set of commands to move throughout the directory
+hierarchy.  ``cd``, as learned above is the "change directory"
+command.  There are a few special directories that always exist the help us navigate:
+
+* ``.`` : the current directory
+
+* ``..`` : one directory above us
+
+* ``~`` : our home directory
+
+
+.. admonition:: try it...
+
+   change directory into
