@@ -52,6 +52,12 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: Elements of Software Engineering
+
+   make
+
+.. toctree::
+   :maxdepth: 1
    :caption: More Advanced C++
 
    advanced-cxx
