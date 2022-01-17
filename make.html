@@ -134,6 +134,16 @@ main driver in <code class="docutils literal notranslate"><span class="pre">main
 <span class="linenos">19</span>	g++ -o main main.o compute.o print_result.o
 </pre></div>
 </div>
+<p>There are a few different types of lines, but the most important are the rules that are of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">target</span><span class="p">:</span>   <span class="n">dependencies</span> <span class="o">...</span>
+          <span class="n">commands</span>
+          <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>make uses a tab character to indent the commands, not spaces.</p>
+</div>
 <p>We build the project by doing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
