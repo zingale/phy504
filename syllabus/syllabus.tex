@@ -1,0 +1,229 @@
+\documentclass[10pt]{article}
+
+\usepackage[tagged]{accessibility}
+
+%\usepackage[cm]{fullpage}
+\usepackage[lmargin=0.65in,rmargin=0.65in,
+            tmargin=0.5in,bmargin=0.75in]{geometry}
+
+
+\usepackage[parfill]{parskip}
+
+\usepackage{hyperref}
+
+\usepackage{palatino}
+
+% URLs (special font for monospace)
+
+\usepackage[defaultsans]{cantarell} % helvet} %
+\usepackage[T1]{fontenc}
+
+
+
+\newenvironment{itemsquish}
+  { \begin{itemize}
+    % set spacing between items
+    \addtolength{\itemsep}{-0.25\baselineskip}
+    % set spacing between lines
+    \addtolength{\baselineskip}{-0.25\baselineskip} }
+  { \end{itemize} }
+
+
+\usepackage{colortbl}
+
+% multicolumn row coloring: http://www.latex-community.org/viewtopic.php?f=5&t=2565
+\newcommand{\SetRowColor}[1]{\noalign{\gdef\RowColorName{#1}}\rowcolor{\RowColorName}}
+\newcommand{\mymulticolumn}[3]{\multicolumn{#1}{>{\columncolor{\RowColorName}}#2}{#3}}
+\definecolor{myGray}{rgb}{0.95,0.95,0.95}
+
+\hypersetup{
+  pdftitle={PHY 504: Computational Methods in Physics and Astrophysics I (Spring 2022)},
+  pdflang={en-US}
+}
+
+
+
+\begin{document}
+
+\begin{center}
+{\LARGE \sffamily \bfseries PHY 504: Computational Methods in Physics and Astrophysics I} \\[1mm]
+{\bfseries Spring 2022} \\
+MWF 9:15 am to 10:10am, in Math S235S\\
+{\em  Instructor:} Michael Zingale, ESS 452, michael.zingale@stonybrook.edu \\
+{\em Web:}\/ \url{https://zingale.github.io/phy504/}
+\end{center}
+
+
+
+\subsection*{Course Objectives}
+
+\noindent An introduction to procedural and object-oriented
+programming in a high-level language such as C++ or modern Fortran
+with examples and assignments consisting of rudimentary algorithms for
+problems in physics and astronomy. Students will use the UNIX/Linux
+operating system to write programs and manage data, and the course
+will include an introduction to parallel computing and good
+programming practices such as version control and verification. The
+course will prepare students for courses in algorithms and methods
+that assume a knowledge of programming.
+
+\subsection*{Course Format}
+
+The best way to learn programming is to do it yourself.  The class
+meetings will consist of live programming, with students following
+along with the instructor.  Some prompts for the day's discussion will
+be uploaded to the course website and then updated after class to
+cover the details from the day.  Class discussion will take place via
+slack in-between meetings.
+
+\subsection*{Office Hours}
+
+\noindent TBA
+
+
+\subsection*{Grading}
+
+\begin{itemsquish}
+\item Homework: 80\%
+\item Final Project: 20\%
+\end{itemsquish}
+
+
+\subsection*{Texts}
+
+\noindent There is 1 required text:
+
+\begin{itemize}
+\item {\em Introduction to Programming with C++ for Engineers} by Cyganek (IEEE Press)
+\end{itemize}
+
+This will be supplemented with online resources.
+
+
+\subsection*{ Preliminary List of Topics}
+
+\begin{itemize}
+
+\item Unix shell and Bash
+
+\item Editors
+
+\item Version control and git
+
+\item C++ datatypes
+
+\item C++ functions and classes
+
+\item Advanced C++
+
+\item Make
+
+\item Plotting
+
+\item HTML + CSS + web hosting
+
+\item Continuous integration
+
+\item Debugging
+
+\item Profiling
+
+\item Parallel programming
+
+\end{itemize}
+
+
+\subsection*{Exams}
+
+\noindent There are no exams in this class.
+
+\subsection*{Final Project}
+
+\noindent All students will do a final project which counts for 20\%
+of your grade.  We will discuss these at the midpoint in class.  Some
+example projects will be given, and may consist of writing a moderately
+complex C++ program.
+
+\subsection*{Homework Policy}
+
+\noindent It is understood that students will discuss the homework
+assignments with one-another, however, when writing your solutions,
+you must do your own work.  Copying will not be tolerated.
+
+
+
+\subsection*{Student Accessibility Support Center Statement}
+
+If you have a physical, psychological, medical, or learning disability
+that may impact your course work, please contact the Student
+Accessibility Support Center, Stony Brook Union Suite 107, (631)
+632-6748, or at sasc@stonybrook.edu. They will determine with you what
+accommodations are necessary and appropriate. All information and
+documentation is confidential.
+
+Students who require assistance during emergency evacuation are
+encouraged to discuss their needs with their professors and the
+Student Accessibility Support Center. For procedures and information
+go to the following website:
+{\small \url{https://ehs.stonybrook.edu//programs/fire-safety/emergency-evacuation/evacuation-guide-disabilities}}
+and search Fire Safety and Evacuation and Disabilities.
+
+\subsection*{Academic Integrity}
+
+Each student must pursue his or her academic goals honestly
+and be personally accountable for all submitted work. Representing
+another person's work as your own is always wrong. Faculty are
+required to report any suspected instances of academic dishonesty to
+the Academic Judiciary. Faculty in the Health Sciences Center (School
+of Health Technology \& Management, Nursing, Social Welfare, Dental
+Medicine) and School of Medicine are required to follow their
+school-specific procedures. For more comprehensive information on
+academic integrity, including categories of academic dishonesty,
+please refer to the academic judiciary website at
+\url{http://www.stonybrook.edu/commcms/academic\_integrity/}
+
+\subsection*{Critical Incident Management}
+
+Stony Brook University expects students to respect the rights,
+privileges, and property of other people. Faculty are required to
+report to the Office of Student Conduct and Community Standards any
+disruptive behavior that interrupts their ability to teach,
+compromises the safety of the learning environment, or inhibits
+students' ability to learn. Faculty in the HSC Schools and the School
+of Medicine are required to follow their school-specific
+procedures. Further information about most academic matters can be
+found in the Undergraduate Bulletin, the Undergraduate Class Schedule,
+and the Faculty-Employee Handbook.
+
+Until/unless the latest COVID guidance is explicitly amended by SBU,
+during Spring 2022 ``disruptive behavior'' will include refusal to wear
+a mask during classes.  For the latest COVID guidance, please refer to:
+\url{https://www.stonybrook.edu/commcms/strongertogether/latest.php}.
+
+
+\subsection*{Electronic Communication}
+
+Email to your University email account is an important way
+of communicating with you for this course.  For most students the
+email address is `{\tt firstname.lastname@stonybrook.edu}'.
+%, and the account can be accessed here.
+{\em It is your responsibility to read your email received at this
+  account.}  For instructions about how to verify your University
+email address see this: \\
+{\footnotesize \url{http://it.stonybrook.edu/help/kb/checking-or-changing-your-mail-forwarding-address-in-the-epo}}\\
+If you choose to forward your University email to another account, we
+are not responsible for undeliverable messages.
+
+\subsection*{Religious Observances}
+
+See the policy statement regarding religious holidays at\hfill\\
+{\footnotesize \url{http://www.stonybrook.edu/commcms/provost/faculty/handbook/employment/religious_holidays_policy.php}} \\
+%
+Students are expected to notify the course professors by email of
+their intention to take time out for religious observance.  This
+should be done as soon as possible but definitely before the end of
+the `add/drop' period.  At that time they can discuss with the
+instructor(s) how they will be able to make up the work covered.
+
+
+\end{document}
