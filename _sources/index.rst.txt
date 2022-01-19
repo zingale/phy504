@@ -49,7 +49,8 @@ Spring 2022
    :caption: Introduction to C++
 
    intro-cxx
-
+   tools
+ 
 .. toctree::
    :maxdepth: 1
    :caption: Elements of Software Engineering
