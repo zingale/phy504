@@ -2,6 +2,11 @@
 BASH and the Command Line
 *************************
 
+.. admonition:: reading
+
+   We will loosely follow the Software Carpentry lesson on `The Unix Shell <https://swcarpentry.github.io/shell-novice/>`_
+
+
 The "shell" is your interface to the operator system.  To access the
 shell, we need to open a terminal on the computer.
 
