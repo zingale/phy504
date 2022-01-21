@@ -110,14 +110,17 @@
 <p>Just to make sure we have the necessary tools for this course, we’ll
 do a quick <a class="reference external" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">“Hello, World!”</a> program.</p>
 <p>This will use a few concepts that we will explore in depth shortly.</p>
-<p>To write the code for our program, we need an editor.  We’ll start
-with the simple <code class="docutils literal notranslate"><span class="pre">nano</span></code> editor here, but we’ll explore others in a
+<p>To write the code for our program, we need an editor.  We’ll use
+the simple <code class="docutils literal notranslate"><span class="pre">nano</span></code> editor here, but we’ll explore others in a
 bit.</p>
-<p>Open nano on the command line simply by typing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span>
-</pre></div>
-</div>
-<p>You should have a window that looks something like this:</p>
+<p>We start at the Unix command line, indicated by the <code class="docutils literal notranslate"><span class="pre">$</span></code> prompt.</p>
+<p>Open nano on the command line simply by typing <code class="docutils literal notranslate"><span class="pre">nano</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">nano</span>
+</pre></div></div><p>You should have a window that looks something like this:</p>
 <a class="reference internal image-reference" href="_images/nano.png"><img alt="the nano editor" class="align-center" src="_images/nano.png" style="width: 90%;" /></a>
 <p>Now we can simply type our C++ code in the window.  Enter the following:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -135,14 +138,10 @@ bit.</p>
 compile it into instructions the computer understands.  The C++
 compiler we will be using is called <code class="docutils literal notranslate"><span class="pre">g++</span></code> and we compile this simple
 program as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span> <span class="n">hello</span><span class="o">.</span><span class="n">cpp</span>
-</pre></div>
-</div>
-<p>Then we can run our program as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">hello</span>
-</pre></div>
-</div>
-<section id="next-steps">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">g++ -o hello hello.cpp</span>
+</pre></div></div><p>Then we can run our program as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./hello</span>
+</pre></div></div><section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p>There is quite a lot going on here that we need to understand before we dive more deeply into C++:</p>
 <ul class="simple">

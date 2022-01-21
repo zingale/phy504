@@ -114,7 +114,15 @@
 <p class="admonition-title">reading</p>
 <p>We will loosely follow the Software Carpentry lesson on <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
 </div>
-<p>The “shell” is your interface to the operator system.  To access the
+<p>The “shell” is your interface to the operator system.  It implements a <em>REPL</em> interface:
+Read, Execute, Print, Loop.  This means it:</p>
+<ul class="simple">
+<li><p>Reads the input (commands) you type</p></li>
+<li><p>Executes the command</p></li>
+<li><p>Prints the result of the command</p></li>
+<li><p>Loops back to the start, waiting to read a new command</p></li>
+</ul>
+<p>To access the
 shell, we need to open a terminal on the computer.</p>
 <section id="which-shell">
 <h2>Which shell?<a class="headerlink" href="#which-shell" title="Permalink to this headline">¶</a></h2>
@@ -148,29 +156,25 @@ this is where you are.</p></li>
 with a collection of files and directories.  Type the following
 commands (we’ll explain their meaning later) to get the files we
 need</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip
-unzip shell-lesson-data.zip
-</pre></div>
-</div>
-<p>This data set comes from the Software Carpentry project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip</span>
+<span class="prompt1">unzip shell-lesson-data.zip</span>
+</pre></div></div><p>This data set comes from the Software Carpentry project.</p>
 <p>This creates a directory on the filesystem named <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/</span></code>.  To begin, we want to
 “change directory” into that directory, using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">shell</span><span class="o">-</span><span class="n">lesson</span><span class="o">-</span><span class="n">data</span>
-</pre></div>
-</div>
-</section>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> shell-lesson-data</span>
+</pre></div></div></section>
 <section id="navigating">
 <h2>Navigating<a class="headerlink" href="#navigating" title="Permalink to this headline">¶</a></h2>
 <p>It’s always good to know where you are.  <code class="docutils literal notranslate"><span class="pre">pwd</span></code> is the “print working
 directory” command – it simply tells you your location:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
-</pre></div>
-</div>
-<p>If we want to see the contents of the current directory, we use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
-</pre></div>
-</div>
-<p>you should see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">pwd</span></span>
+</pre></div></div><p>If we want to see the contents of the current directory, we use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls</span>
+</pre></div></div><p>you should see something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">creatures</span>  <span class="n">molecules</span>           <span class="n">notes</span><span class="o">.</span><span class="n">txt</span>    <span class="n">pizza</span><span class="o">.</span><span class="n">cfg</span>  <span class="n">writing</span>
 <span class="n">data</span>       <span class="n">north</span><span class="o">-</span><span class="n">pacific</span><span class="o">-</span><span class="n">gyre</span>  <span class="n">numbers</span><span class="o">.</span><span class="n">txt</span>  <span class="n">solar</span><span class="o">.</span><span class="n">pdf</span>
 </pre></div>
@@ -185,7 +189,16 @@ command.  There are a few special directories that always exist the help us navi
 </ul>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
-<p>change directory into</p>
+<p>From your home directory, create a directory / file structure that looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project
+├── code
+├── data
+│   ├── experiment-01.txt
+│   ├── experiment-02.txt
+│   └── experiment-03.txt
+└── results
+</pre></div>
+</div>
 </div>
 </section>
 </section>

@@ -8,11 +8,16 @@ do a quick `"Hello, World!"
 
 This will use a few concepts that we will explore in depth shortly.
 
-To write the code for our program, we need an editor.  We'll start
-with the simple ``nano`` editor here, but we'll explore others in a
+To write the code for our program, we need an editor.  We'll use
+the simple ``nano`` editor here, but we'll explore others in a
 bit.
 
-Open nano on the command line simply by typing::
+We start at the Unix command line, indicated by the ``$`` prompt.
+
+Open nano on the command line simply by typing ``nano``:
+
+
+.. prompt:: bash
 
    nano
 
@@ -43,11 +48,15 @@ Now we can exit via ``^X``.
 We just created the source code for our first program.  We now need to
 compile it into instructions the computer understands.  The C++
 compiler we will be using is called ``g++`` and we compile this simple
-program as::
+program as:
+
+.. prompt:: bash
 
    g++ -o hello hello.cpp
 
-Then we can run our program as::
+Then we can run our program as:
+
+.. prompt:: bash
 
    ./hello
 
