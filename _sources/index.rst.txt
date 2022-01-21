@@ -20,10 +20,12 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Course logistics
+   :caption: Intro & Logistics
 
    getting_started
    topics
+   computing
+   hello_world
 
 .. toctree::
    :maxdepth: 1

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>C++ Datatypes &mdash; PHY 504 0.1 documentation</title>
+  <title>Hello, World &mdash; PHY 504 0.1 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Helpful C++ Tools" href="tools.html" />
-    <link rel="prev" title="Version Control" href="git.html" /> 
+    <link rel="next" title="Why Use the Command Line?" href="why_command_line.html" />
+    <link rel="prev" title="Computation" href="computing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,11 +45,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hello, World</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
 <ul>
@@ -65,11 +68,8 @@
 <li class="toctree-l1"><a class="reference internal" href="git.html">Version Control</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ Datatypes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello world</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro-cxx.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
@@ -95,9 +95,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>C++ Datatypes</li>
+      <li>Hello, World</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/intro-cxx.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/hello_world.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -105,21 +105,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="c-datatypes">
-<h1>C++ Datatypes<a class="headerlink" href="#c-datatypes" title="Permalink to this headline">¶</a></h1>
-<section id="hello-world">
-<h2>Hello world<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+  <section id="hello-world">
+<h1>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h1>
+<p>Just to make sure we have the necessary tools for this course, we’ll
+do a quick <a class="reference external" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">“Hello, World!”</a> program.</p>
+<p>This will use a few concepts that we will explore in depth shortly.</p>
+<p>To write the code for our program, we need an editor.  We’ll start
+with the simple <code class="docutils literal notranslate"><span class="pre">nano</span></code> editor here, but we’ll explore others in a
+bit.</p>
+<p>Open nano on the command line simply by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span>
+</pre></div>
+</div>
+<p>You should have a window that looks something like this:</p>
+<a class="reference internal image-reference" href="_images/nano.png"><img alt="the nano editor" class="align-center" src="_images/nano.png" style="width: 90%;" /></a>
+<p>Now we can simply type our C++ code in the window.  Enter the following:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;hello world&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>Now save it by doing <code class="docutils literal notranslate"><span class="pre">^O</span></code>, where <code class="docutils literal notranslate"><span class="pre">^</span></code> here means you hold down the <em>control</em> key on the keyword.</p>
+<p>It will ask for a name, so we’ll use <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>.</p>
+<p>Now we can exit via <code class="docutils literal notranslate"><span class="pre">^X</span></code>.</p>
+<p>We just created the source code for our first program.  We now need to
+compile it into instructions the computer understands.  The C++
+compiler we will be using is called <code class="docutils literal notranslate"><span class="pre">g++</span></code> and we compile this simple
+program as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span> <span class="n">hello</span><span class="o">.</span><span class="n">cpp</span>
+</pre></div>
+</div>
+<p>Then we can run our program as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">hello</span>
+</pre></div>
+</div>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>There is quite a lot going on here that we need to understand before we dive more deeply into C++:</p>
+<ul class="simple">
+<li><p>We started out with a simple <code class="docutils literal notranslate"><span class="pre">$</span></code> <em>prompt</em> in our terminal.  What else can we do there?</p></li>
+<li><p>How does Unix manage files (like <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>) and how can we copy, modify, move, etc. them?</p></li>
+<li><p>What is that compiler command doing? what does the <code class="docutils literal notranslate"><span class="pre">-o</span></code> mean?</p></li>
+<li><p>What is the meaning of the <code class="docutils literal notranslate"><span class="pre">./</span></code> that we put in front of <code class="docutils literal notranslate"><span class="pre">hello</span></code>?</p></li>
+</ul>
+<p>We’ll start by learning more about Unix, the Unix filesystem, and how to work with the command line.</p>
+<p>After that’ we’ll move onto programming.</p>
 </section>
 </section>
 
@@ -127,8 +160,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="git.html" class="btn btn-neutral float-left" title="Version Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tools.html" class="btn btn-neutral float-right" title="Helpful C++ Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="computing.html" class="btn btn-neutral float-left" title="Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="why_command_line.html" class="btn btn-neutral float-right" title="Why Use the Command Line?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
