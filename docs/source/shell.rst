@@ -7,7 +7,16 @@ BASH and the Command Line
    We will loosely follow the Software Carpentry lesson on `The Unix Shell <https://swcarpentry.github.io/shell-novice/>`_
 
 
-The "shell" is your interface to the operator system.  To access the
+The "shell" is your interface to the operator system.  It implements a *REPL* interface:
+Read, Execute, Print, Loop.  This means it:
+
+* Reads the input (commands) you type
+* Executes the command
+* Prints the result of the command
+* Loops back to the start, waiting to read a new command
+
+
+To access the
 shell, we need to open a terminal on the computer.
 
 Which shell?
@@ -54,7 +63,7 @@ with a collection of files and directories.  Type the following
 commands (we'll explain their meaning later) to get the files we
 need
 
-.. code:: bash
+.. prompt:: bash
 
    curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip
    unzip shell-lesson-data.zip
@@ -62,7 +71,9 @@ need
 This data set comes from the Software Carpentry project.
 
 This creates a directory on the filesystem named ``shell-lesson-data/``.  To begin, we want to
-"change directory" into that directory, using the ``cd`` command::
+"change directory" into that directory, using the ``cd`` command:
+
+.. prompt:: bash
 
   cd shell-lesson-data
 
@@ -71,11 +82,15 @@ Navigating
 ==========
 
 It's always good to know where you are.  ``pwd`` is the "print working
-directory" command -- it simply tells you your location::
+directory" command -- it simply tells you your location:
+
+.. prompt:: bash
 
    pwd
 
-If we want to see the contents of the current directory, we use the ``ls`` command::
+If we want to see the contents of the current directory, we use the ``ls`` command:
+
+.. prompt:: bash
 
    ls
 
@@ -97,4 +112,13 @@ command.  There are a few special directories that always exist the help us navi
 
 .. admonition:: try it...
 
-   change directory into
+   From your home directory, create a directory / file structure that looks like::
+
+      project
+      ├── code
+      ├── data
+      │   ├── experiment-01.txt
+      │   ├── experiment-02.txt
+      │   └── experiment-03.txt
+      └── results
+

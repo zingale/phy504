@@ -9,3 +9,4 @@ nbconvert
 pandoc
 jupyter
 sphinx-copybutton
+sphinx-prompt
