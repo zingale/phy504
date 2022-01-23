@@ -33,6 +33,7 @@ Spring 2022
 
    why_command_line
    shell
+   shell-2
 
 .. toctree::
    :maxdepth: 1
