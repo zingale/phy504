@@ -34,6 +34,7 @@ Spring 2022
    why_command_line
    shell
    shell-2
+   shell-3
 
 .. toctree::
    :maxdepth: 1
@@ -46,6 +47,12 @@ Spring 2022
    :caption: Git and Version Control
 
    git
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Shell Scripting
+
+   shell-scripts
 
 .. toctree::
    :maxdepth: 1
