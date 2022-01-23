@@ -52,6 +52,13 @@ Other options include the `Windows Subsystem for Linux
 You will want to make sure you install the ``g++`` compiler (something
 later than version 7), ``git``, and ``bash``.
 
+These instructions on `Using C++ and WSL in VS Code <https://code.visualstudio.com/docs/cpp/config-wsl>_ offer a nice solution.
+
+.. note::
+
+   I only use Linux, so I cannot help you debug any Windows issues.  If you find something
+   that works for you, please feel free to share it with the code.
+
 Using the MathLab remotely
 ==========================
 
@@ -76,6 +83,8 @@ If you are connecting to one of these via ssh on the command line, then you woul
 
 where you replace ``<netid>`` with your NetID.
 
+You can connect similarly with PuTTY.
+
 
 MySBFiles
 =========
@@ -86,3 +95,4 @@ is therefore suggested that you do your work in your home directory
 and then move anything you wish to keep to your ``~/MySBFiles/`` drive
 before logging off.
 
+S

@@ -1,5 +1,5 @@
 *************************
-BASH and the Command Line
+Navigating the Filesystem
 *************************
 
 .. admonition:: reading
@@ -7,7 +7,10 @@ BASH and the Command Line
    We will loosely follow the Software Carpentry lesson on `The Unix Shell <https://swcarpentry.github.io/shell-novice/>`_
 
 
-The "shell" is your interface to the operator system.  It implements a *REPL* interface:
+The shell
+=========
+
+The "*shell* is your interface to the operator system.  It implements a *REPL* interface:
 Read, Execute, Print, Loop.  This means it:
 
 * Reads the input (commands) you type
@@ -15,9 +18,12 @@ Read, Execute, Print, Loop.  This means it:
 * Prints the result of the command
 * Loops back to the start, waiting to read a new command
 
+The power of the shell is that we can easily combine different tools
+together to create powerful commands to manipulate files on the
+computer.
 
-To access the
-shell, we need to open a terminal on the computer.
+To access the shell, we need to open a terminal on the computer.
+
 
 Which shell?
 ============
@@ -37,22 +43,6 @@ Some online shell documentation:
 * The official `Bash Reference Manual <https://www.gnu.org/software/bash/manual/html_node/index.html>`_
 
 A basic "cheat sheet" is available here: `Unix/Linux Command Reference <https://upload.wikimedia.org/wikipedia/commons/7/79/Unix_command_cheatsheet.pdf>`_.
-
-Filesystem terminology
-======================
-
-We'll use the following terms throughout here:
-
-* directory
-
-* file
-
-* home directory : your default directory.  When you first open a shell on your computer,
-  this is where you are.
-
-* filesystem
-
-
 
 
 Setting up
@@ -78,30 +68,45 @@ This creates a directory on the filesystem named ``shell-lesson-data/``.  To beg
   cd shell-lesson-data
 
 
-Navigating
-==========
+First walkthrough
+=================
 
-It's always good to know where you are.  ``pwd`` is the "print working
-directory" command -- it simply tells you your location:
+Let's walkthrough the `Navigating Files and Directories
+<https://swcarpentry.github.io/shell-novice/02-filedir/index.html>`_
+lesson together.  You are also encouraged to work through it on your
+own outside of class.
 
-.. prompt:: bash
 
-   pwd
+Filesystem terminology
+======================
 
-If we want to see the contents of the current directory, we use the ``ls`` command:
+We'll use the following terms throughout here:
 
-.. prompt:: bash
+* directory
 
-   ls
+* file
 
-you should see something like::
+* home directory : your default directory.  When you first open a shell on your computer,
+  this is where you are.
 
-   creatures  molecules           notes.txt    pizza.cfg  writing
-   data       north-pacific-gyre  numbers.txt  solar.pdf
+* filesystem
 
-We want to learn the set of commands to move throughout the directory
-hierarchy.  ``cd``, as learned above is the "change directory"
-command.  There are a few special directories that always exist the help us navigate:
+
+
+
+Summary
+=======
+
+We learned the following commands:
+
+* ``pwd`` : print working directory (where you currently are in the file system)
+
+* ``ls`` : list the contents of a directory
+
+* ``cd`` : change directory
+
+
+There are a few special directories that always exist the help us navigate:
 
 * ``.`` : the current directory
 
@@ -109,6 +114,21 @@ command.  There are a few special directories that always exist the help us navi
 
 * ``~`` : our home directory
 
+The ``/`` character has 2 roles:
+
+* The ``/`` directory is the *root* of the filesystem
+
+* A path uses ``/`` to separate directory names
+
+.. note::
+
+   The Unix shell uses tab-completion to make it easier to type.
+   Start typing a path (or command) and then press the *Tab* key and
+   it will either complete it (if there is a unique file / command) or
+   display the possible completions.
+
+Exercises
+=========
 
 .. admonition:: try it...
 
