@@ -79,7 +79,7 @@ author = 'Michael Zingale'
 # built documents.
 #
 # The short X.Y version.
-version = "0.1"
+version = "Spring 2022"
 # The full version, including alpha/beta/rc tags.
 release = version
 
