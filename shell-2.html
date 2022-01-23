@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Topics &mdash; PHY 504 0.1 documentation</title>
+  <title>Create Files and Directories &mdash; PHY 504 0.1 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Computation" href="computing.html" />
-    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+    <link rel="next" title="Editors" href="editors.html" />
+    <link rel="prev" title="Navigating the Filesystem" href="shell.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,17 +45,21 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create Files and Directories</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Editors</span></p>
 <ul>
@@ -93,9 +97,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Topics</li>
+      <li>Create Files and Directories</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/topics.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/shell-2.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -103,25 +107,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="topics">
-<h1>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h1>
-<p>Our goal is to cover:</p>
+  <section id="create-files-and-directories">
+<h1>Create Files and Directories<a class="headerlink" href="#create-files-and-directories" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/03-create/index.html">Working with Files
+and Directories</a>
+lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
+</div>
+<p>Let’s work through that lesson together…</p>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We learned the following commands:</p>
 <ul class="simple">
-<li><p>Unix and the Unix shell</p></li>
-<li><p>Editors</p></li>
-<li><p>Version control with git</p></li>
-<li><p>C++ programming</p></li>
-<li><p>Elements of parallel programming</p></li>
-<li><p>Software engineering concepts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> : make a directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span></code> : a basic text editor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">touch</span></code> : update a file’s timestamp (and create an empty file if it does not exist)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mv</span></code> : move a file or directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span></code> : copy a file or directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rm</span></code> : remove a file (and/or directory if done recursively)</p></li>
 </ul>
+<p>We also learned about wildcards:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> matches multiple (or 0) characters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> matches a single character</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>From your home directory, create a directory / file structure that looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project
+├── code
+├── data
+│   ├── experiment-01.txt
+│   ├── experiment-02.txt
+│   └── experiment-03.txt
+└── results
+</pre></div>
+</div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="computing.html" class="btn btn-neutral float-right" title="Computation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="shell.html" class="btn btn-neutral float-left" title="Navigating the Filesystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="editors.html" class="btn btn-neutral float-right" title="Editors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
