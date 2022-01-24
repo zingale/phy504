@@ -136,18 +136,7 @@ The ``/`` character has 2 roles:
    it will either complete it (if there is a unique file / command) or
    display the possible completions.
 
-Exercises
-=========
+.. note::
 
-.. admonition:: try it...
-
-   From your home directory, create a directory / file structure that looks like::
-
-      project
-      ├── code
-      ├── data
-      │   ├── experiment-01.txt
-      │   ├── experiment-02.txt
-      │   └── experiment-03.txt
-      └── results
+   You can navigate through your history of commands using the up and down arrows.
 

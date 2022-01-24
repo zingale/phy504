@@ -86,7 +86,7 @@ C++ is:
 * used extensively in physics (in particular in high-energy physics
   and increasingly in high-performance computing)
 
-* versitile
+* versatile
 
 * widely used outside of academic research environments -- this means
   that you can take your C++ skills to industry jobs if desired
