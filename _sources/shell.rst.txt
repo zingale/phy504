@@ -10,7 +10,7 @@ Navigating the Filesystem
 The shell
 =========
 
-The "*shell* is your interface to the operator system.  It implements a *REPL* interface:
+The *shell* is your interface to the operator system.  It implements a *REPL* interface:
 Read, Execute, Print, Loop.  This means it:
 
 * Reads the input (commands) you type
@@ -23,6 +23,14 @@ together to create powerful commands to manipulate files on the
 computer.
 
 To access the shell, we need to open a terminal on the computer.
+
+Here's a quick demonstration: the ``echo`` command simply prints anything following
+it to the terminal:
+
+.. prompt:: bash
+
+   echo Hello, World
+
 
 
 Which shell?

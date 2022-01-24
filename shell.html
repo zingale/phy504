@@ -125,7 +125,7 @@
 </div>
 <section id="the-shell">
 <h2>The shell<a class="headerlink" href="#the-shell" title="Permalink to this headline">¶</a></h2>
-<p>The “<em>shell</em> is your interface to the operator system.  It implements a <em>REPL</em> interface:
+<p>The <em>shell</em> is your interface to the operator system.  It implements a <em>REPL</em> interface:
 Read, Execute, Print, Loop.  This means it:</p>
 <ul class="simple">
 <li><p>Reads the input (commands) you type</p></li>
@@ -137,7 +137,14 @@ Read, Execute, Print, Loop.  This means it:</p>
 together to create powerful commands to manipulate files on the
 computer.</p>
 <p>To access the shell, we need to open a terminal on the computer.</p>
-</section>
+<p>Here’s a quick demonstration: the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command simply prints anything following
+it to the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1"><span class="nb">echo</span> Hello, World</span>
+</pre></div></div></section>
 <section id="which-shell">
 <h2>Which shell?<a class="headerlink" href="#which-shell" title="Permalink to this headline">¶</a></h2>
 <p>There are a wide variety of shells that are used today.  The default
@@ -159,11 +166,7 @@ directly to the other shells.</p>
 with a collection of files and directories.  Type the following
 commands (we’ll explain their meaning later) to get the files we
 need</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip</span>
 <span class="prompt1">unzip shell-lesson-data.zip</span>
 </pre></div></div><p>This data set comes from the Software Carpentry project.</p>
 <p>This creates a directory on the filesystem named <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/</span></code>.  To begin, we want to
