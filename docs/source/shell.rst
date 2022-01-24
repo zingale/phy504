@@ -90,14 +90,15 @@ Filesystem terminology
 
 We'll use the following terms throughout here:
 
-* directory
+* ``file system`` : the collection (and organization) of all of the files stored on your computer
 
-* file
+* ``file`` : a single unit containing a collection of data
 
-* home directory : your default directory.  When you first open a shell on your computer,
+* ``directory`` :  (also known as a folder) a collection of files and directories
+
+* ``home directory`` : your default directory.  When you first open a shell on your computer,
   this is where you are.
 
-* filesystem
 
 
 
