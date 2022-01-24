@@ -95,4 +95,3 @@ is therefore suggested that you do your work in your home directory
 and then move anything you wish to keep to your ``~/MySBFiles/`` drive
 before logging off.
 
-S
