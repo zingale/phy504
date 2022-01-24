@@ -10,7 +10,7 @@ Navigating the Filesystem
 The shell
 =========
 
-The "*shell* is your interface to the operator system.  It implements a *REPL* interface:
+The *shell* is your interface to the operator system.  It implements a *REPL* interface:
 Read, Execute, Print, Loop.  This means it:
 
 * Reads the input (commands) you type
