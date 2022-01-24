@@ -52,7 +52,7 @@ Other options include the `Windows Subsystem for Linux
 You will want to make sure you install the ``g++`` compiler (something
 later than version 7), ``git``, and ``bash``.
 
-These instructions on `Using C++ and WSL in VS Code <https://code.visualstudio.com/docs/cpp/config-wsl>_ offer a nice solution.
+These instructions on `Using C++ and WSL in VS Code <https://code.visualstudio.com/docs/cpp/config-wsl>`_ offer a nice solution.
 
 .. note::
 
