@@ -24,6 +24,14 @@ computer.
 
 To access the shell, we need to open a terminal on the computer.
 
+Here's a quick demonstration: the ``echo`` command simply prints anything following
+it to the terminal:
+
+.. prompt:: bash
+
+   echo Hello, World
+
+
 
 Which shell?
 ============
