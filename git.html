@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version Control &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>git &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Writing Loops" href="shell-scripts.html" />
-    <link rel="prev" title="Editors" href="editors.html" /> 
+    <link rel="next" title="github" href="github.html" />
+    <link rel="prev" title="Version Control" href="version_control.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -64,15 +64,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Version Control</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#why-use-version-control">Why use version control?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#centralized-vs-distributed-version-control">Centralized vs. distributed version control</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#centralized-version-control">Centralized version control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#distributed-version-control">Distributed version control</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
 <ul>
@@ -106,7 +100,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Version Control</li>
+      <li>git</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/git.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,102 +110,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="version-control">
-<h1>Version Control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
-<section id="why-use-version-control">
-<h2>Why use version control?<a class="headerlink" href="#why-use-version-control" title="Permalink to this headline">¶</a></h2>
-<p>When we develop code, we are going to be making lots of changes over time.  And you will
-find yourself in the following situations:</p>
-<ul class="simple">
-<li><p><em>You swear that the code worked perfectly 6 months ago</em> but today it doesn’t and
-you can’t figure out what changed.</p></li>
-<li><p><em>The code looks different than you remembered and you don’t know why it changed</em>.</p></li>
-<li><p><em>Your research group is all working on the same code</em> and you need to sync up with
-everyone’s changes and make sure that no one breaks the code.</p></li>
-</ul>
-<p>This is what version control does for us.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Version control systems keep track of the history of changes to
-source code and allow multiple developers to all work on the same code
-base.</p>
-</div>
-<p>In particular:</p>
-<ul class="simple">
-<li><p>Logs tell you what changes have been made to each file over time.</p></li>
-<li><p>You can request the source as it was at any time in the past.</p></li>
-<li><p>Multiple developers can all work on the same source code and share and synchronize changes.</p>
-<ul>
-<li><p>Changes by different developers to the same file are merged.</p></li>
-<li><p>If two developers changed the same part of a file, version control
-provides mechanisms to resolve conflicts.</p></li>
-</ul>
-</li>
-<li><p>You can make a branch and work on new features without breaking the
-current working code, and when you are ready, merge those changes
-into the main version.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Even for a single developer, version control is a great asset.</p>
-<p>Common task: you notice your code is giving different answers than you’ve
-seen in the past.</p>
-<p>With version control, you can checkout an old copy when you know it
-was working, and ask for the difference with the current code.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Version control is not just for source code.  You can use it for
-writing papers in LaTeX, course notes, etc.</p>
-</div>
-</section>
-<section id="centralized-vs-distributed-version-control">
-<h2>Centralized vs. distributed version control<a class="headerlink" href="#centralized-vs-distributed-version-control" title="Permalink to this headline">¶</a></h2>
-<p>Broadly speaking, there are two different types of version control:
-centralized and distributed.</p>
-<section id="centralized-version-control">
-<h3>Centralized version control<a class="headerlink" href="#centralized-version-control" title="Permalink to this headline">¶</a></h3>
-<p>Examples: CVS, subversion</p>
-<ul class="simple">
-<li><p>A server holds the master copy of the source, stores the history, changes</p></li>
-<li><p>Each user communicates with the server:</p>
-<ul>
-<li><p>“checkout” source</p></li>
-<li><p>“commit” changes back to the source</p></li>
-<li><p>request the log (history) of a file from the server</p></li>
-<li><p>“diff” your local version with the version on the server</p></li>
-</ul>
-</li>
-</ul>
-<p>This is the older style of version control, and not widely used for new projects.</p>
-</section>
-<section id="distributed-version-control">
-<h3>Distributed version control<a class="headerlink" href="#distributed-version-control" title="Permalink to this headline">¶</a></h3>
-<p>Examples: git, mercurial</p>
-<ul class="simple">
-<li><p>Everyone has a full-fledged repository</p></li>
-<li><p>Commits, history, diff, logs, etc. are all local operations</p></li>
-<li><p>You can clone another person’s repo and they can pull your changes
-back to their version</p></li>
-<li><p>Each copy is a backup of the whole history of the project</p></li>
-<li><p>Easy to “fork” – just clone and go.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Any version control system is better than no version control.</p>
-<p>Git is the most popular right now, so we’ll focus on that.</p>
-</div>
-<img alt="_images/distributed_version_control.png" class="align-center" src="_images/distributed_version_control.png" />
-</section>
-</section>
+  <section id="git">
+<h1>git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+<p>We’ll do a walkthrough on git.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="editors.html" class="btn btn-neutral float-left" title="Editors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell-scripts.html" class="btn btn-neutral float-right" title="Writing Loops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="version_control.html" class="btn btn-neutral float-left" title="Version Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="github.html" class="btn btn-neutral float-right" title="github" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

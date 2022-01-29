@@ -46,7 +46,9 @@ Spring 2022
    :maxdepth: 1
    :caption: Git and Version Control
 
+   version_control
    git
+   github
 
 .. toctree::
    :maxdepth: 1

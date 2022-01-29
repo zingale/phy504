@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirection and Pipes &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>github &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Editors" href="editors.html" />
-    <link rel="prev" title="Create Files and Directories" href="shell-2.html" /> 
+    <link rel="next" title="Writing Loops" href="shell-scripts.html" />
+    <link rel="prev" title="git" href="git.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,24 +52,21 @@
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Redirection and Pipes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Editors</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="editors.html">Editors</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">github</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
 <ul>
@@ -103,9 +100,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Redirection and Pipes</li>
+      <li>github</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/shell-3.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/github.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -113,40 +110,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="redirection-and-pipes">
-<h1>Redirection and Pipes<a class="headerlink" href="#redirection-and-pipes" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/04-pipefilter/index.html">Pipes and Filters</a>
-lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
-</div>
-<p>Let’s work through that lesson together…</p>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>We learned the following commands:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">wc</span></code> : count the number of lines, words, and characters in a file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cat</span></code> : print the contents of a file to the terminal</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">less</span></code> : a <em>pager</em> that outputs the contents of a file one screen-full at a time</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sort</span></code> : sort the input data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">head</span></code> : output the first 10 (or specified number of) lines of a file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tail</span></code> : output the last 10 (or specified number of) lines of a file</p></li>
-</ul>
-<p>We also learned:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> redirect the output to a file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> append the output to a file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code> pass the output of one command to the input of the next</p></li>
-</ul>
-</section>
+  <section id="github">
+<h1>github<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+<p>Now let’s see how to interact with a git repository hosted on github.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="shell-2.html" class="btn btn-neutral float-left" title="Create Files and Directories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="editors.html" class="btn btn-neutral float-right" title="Editors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="git.html" class="btn btn-neutral float-left" title="git" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shell-scripts.html" class="btn btn-neutral float-right" title="Writing Loops" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
