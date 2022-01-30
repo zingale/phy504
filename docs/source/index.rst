@@ -59,6 +59,12 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: Tools
+
+   random-tools
+
+.. toctree::
+   :maxdepth: 1
    :caption: Introduction to C++
 
    intro-cxx
