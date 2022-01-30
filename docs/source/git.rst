@@ -284,7 +284,49 @@ project.
 
 #. Going back in time...
 
+   Let's look at our project history so far:
 
+   .. prompt:: bash
+
+      git log
+
+   We see something like this (again, your hashes will be different)
+
+   .. code::
+
+      commit 834db7fafeff3d95a314a3f3772c9443a59e2e41 (HEAD -> main)
+      Author: Michael Zingale <michael.zingake@stonybrook.edu>
+      Date:   Sun Jan 30 16:00:24 2022 -0500
+
+          add a .gitignore
+
+      commit 974e7cee6045d1cd95d4d11f4af28d19cb37cb4c
+      Author: Michael Zingale <michael.zingake@stonybrook.edu>
+      Date:   Sun Jan 30 15:55:35 2022 -0500
+
+          my first shell script
+
+      commit 78b6925752e8388dddb3d65b6355bfeeb87b87a7
+      Author: Michael Zingale <michael.zingake@stonybrook.edu>
+      Date:   Sun Jan 30 14:23:09 2022 -0500
+
+          make some modifications
+
+      commit 2001a0e996110926a576dcb5fc13fc8022864d0b
+      Author: Michael Zingale <michael.zingake@stonybrook.edu>
+      Date:   Sun Jan 30 13:11:24 2022 -0500
+
+          my first change
+
+   Let's go back to the start of the project -- we want to go to just after the first
+   commit
+
+   .. prompt:: bash
+
+      git checkout 2001a0e996110926a576dcb5fc13fc8022864d0b
+
+   Now if you do ``ls``, you'll see just the ``README`` file, and it will appear
+   with just the first edit.
 
 
 Summary
