@@ -112,15 +112,175 @@ project.
 
 #. Now let's modify the file
 
+   Open the file with nano and add a second line of text:
 
-#. Let's add another file
+   .. prompt:: bash
 
-   We'll write our first script
+      nano README
+
+   Here's my file:
+
+   .. prompt:: bash
+
+      cat README
+
+   .. code::
+
+     this is the start of my awesome new project
+     this is now under version control!
+
+   What does git think about our changes?
+
+   .. prompt:: bash
+
+      git status
+
+   you should see something like:
+
+   .. code::
+
+      On branch main
+      Changes not staged for commit:
+        (use "git add <file>..." to update what will be committed)
+        (use "git checkout -- <file>..." to discard changes in working directory)
+
+              modified:   README
+
+      no changes added to commit (use "git add" and/or "git commit -a")
+
+   This is telling you that you have local changes but you haven't yet told git to care about them.
+
+   Let's ``add`` the changes:
+
+   .. prompt:: bash
+
+      git add README
 
 
-   What is ``add`` really doing?
+   and now ``git status`` will show something like:
 
-#. Ignoring things
+   .. code::
+
+      On branch main
+      Changes to be committed:
+        (use "git reset HEAD <file>..." to unstage)
+
+              modified:   README
+
+
+   .. note::
+
+      **What is add really doing?**
+
+      Git has a concept call the *staging area*.  When we ``add`` a
+      file, git puts the changes into the staging area.  We can add
+      multiple changes via separate ``git add`` invocations, and git
+      will accumulate these in the staging area.
+
+      Once we do ``git commit``, git will record the all of the
+      changes that are staged into a "commit".
+
+   To have git track these changes, we can now just do:
+
+   .. prompt:: bash
+
+      git commit
+
+   Notice that we didn't specify the file here -- all the changes that
+   were staged were part of that commit.
+
+   If we now do ``git log``, we'll see that there is a second commit
+   in our project, and it has a different unique hash:
+
+   .. code::
+
+      commit 78b6925752e8388dddb3d65b6355bfeeb87b87a7 (HEAD -> main)
+      Author: Michael Zingale <michael.zingake@stonybrook.edu>
+      Date:   Sun Jan 30 14:23:09 2022 -0500
+
+          make some modifications
+
+      commit 2001a0e996110926a576dcb5fc13fc8022864d0b
+      Author: Michael Zingale <michael.zingake@stonybrook.edu>
+      Date:   Sun Jan 30 13:11:24 2022 -0500
+
+          my first change
+
+
+#. Let's create and add another file.
+
+   We'll write our first shell script.  Open a new file in nano:
+
+   .. prompt:: bash
+
+      nano myscript
+
+   and copy-paste the following content into it:
+
+   .. code:: bash
+
+      ls -l > script.out
+
+   be sure to end with a new line.
+
+   Now, this script is not that fancy and it needs to be run as:
+
+   .. prompt:: bash
+
+      bash ./myscript
+
+   when you do this, you should see the output ``script.out`` created.
+
+   Now let's tell git that we want it to track this:
+
+   .. prompt:: bash
+
+      git add myscript
+      git commit
+
+   Be sure to add a useful message.
+
+#. Ignoring things.
+
+   Let's look at the status of our project:
+
+   .. prompt:: bash
+
+      git status
+
+   You'll see something like:
+
+   .. code::
+
+      On branch main
+      Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+
+              script.out
+
+      nothing added to commit but untracked files present (use "git add" to track)
+
+   It is telling us that it is not keeping track of ``script.out``.
+   But we don't want it to -- that is the output from running out
+   script, and generally we don't keep the output of our codes in
+   version control.
+
+   So we'd like to tell git to ignore that file.  The way to do this is to
+   create a ``.gitignore`` file:
+
+   .. prompt:: bash
+
+      nano .gitignore
+
+   and add the following:
+
+   .. code::
+
+      *.out
+
+   now if you do ``git status``, that file will not appear, but ``.gitignore`` does!  So
+   add ``.gitignore`` to git by doing ``git add`` followed by ``git commit``.
+
 
 #. Going back in time...
 

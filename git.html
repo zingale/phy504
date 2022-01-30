@@ -76,6 +76,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Writing Loops</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro-cxx.html">C++ Datatypes</a></li>
@@ -194,12 +198,112 @@ the change with <code class="docutils literal notranslate"><span class="pre">^O<
 letters are <code class="docutils literal notranslate"><span class="pre">commit</span></code> on the first line will be different.  We’ll call
 the string the <code class="docutils literal notranslate"><span class="pre">hash</span></code>.  More on that later…</p>
 </li>
-<li><p>Now let’s modify the file</p></li>
-<li><p>Let’s add another file</p>
-<p>We’ll write our first script</p>
-<p>What is <code class="docutils literal notranslate"><span class="pre">add</span></code> really doing?</p>
+<li><p>Now let’s modify the file</p>
+<p>Open the file with nano and add a second line of text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano README</span>
+</pre></div></div><p>Here’s my file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat README</span>
+</pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>this is the start of my awesome new project
+this is now under version control!
+</pre></div>
+</div>
+<p>What does git think about our changes?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
+</pre></div></div><p>you should see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">update</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">discard</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">working</span> <span class="n">directory</span><span class="p">)</span>
+
+        <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span>
+
+<span class="n">no</span> <span class="n">changes</span> <span class="n">added</span> <span class="n">to</span> <span class="n">commit</span> <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add&quot;</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="s2">&quot;git commit -a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is telling you that you have local changes but you haven’t yet told git to care about them.</p>
+<p>Let’s <code class="docutils literal notranslate"><span class="pre">add</span></code> the changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add README</span>
+</pre></div></div><p>and now <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will show something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+
+        <span class="n">modified</span><span class="p">:</span>   <span class="n">README</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>What is add really doing?</strong></p>
+<p>Git has a concept call the <em>staging area</em>.  When we <code class="docutils literal notranslate"><span class="pre">add</span></code> a
+file, git puts the changes into the staging area.  We can add
+multiple changes via separate <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> invocations, and git
+will accumulate these in the staging area.</p>
+<p>Once we do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>, git will record the all of the
+changes that are staged into a “commit”.</p>
+</div>
+<p>To have git track these changes, we can now just do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git commit</span>
+</pre></div></div><p>Notice that we didn’t specify the file here – all the changes that
+were staged were part of that commit.</p>
+<p>If we now do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, we’ll see that there is a second commit
+in our project, and it has a different unique hash:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="mi">78</span><span class="n">b6925752e8388dddb3d65b6355bfeeb87b87a7</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">14</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">09</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">make</span> <span class="n">some</span> <span class="n">modifications</span>
+
+<span class="n">commit</span> <span class="mi">2001</span><span class="n">a0e996110926a576dcb5fc13fc8022864d0b</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">13</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">my</span> <span class="n">first</span> <span class="n">change</span>
+</pre></div>
+</div>
 </li>
-<li><p>Ignoring things</p></li>
+<li><p>Let’s create and add another file.</p>
+<p>We’ll write our first shell script.  Open a new file in nano:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano myscript</span>
+</pre></div></div><p>and copy-paste the following content into it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -l &gt; script.out
+</pre></div>
+</div>
+<p>be sure to end with a new line.</p>
+<p>Now, this script is not that fancy and it needs to be run as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">bash ./myscript</span>
+</pre></div></div><p>when you do this, you should see the output <code class="docutils literal notranslate"><span class="pre">script.out</span></code> created.</p>
+<p>Now let’s tell git that we want it to track this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add myscript</span>
+<span class="prompt1">git commit</span>
+</pre></div></div><p>Be sure to add a useful message.</p>
+</li>
+<li><p>Ignoring things.</p>
+<p>Let’s look at the status of our project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
+</pre></div></div><p>You’ll see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">Untracked</span> <span class="n">files</span><span class="p">:</span>
+  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
+
+        <span class="n">script</span><span class="o">.</span><span class="n">out</span>
+
+<span class="n">nothing</span> <span class="n">added</span> <span class="n">to</span> <span class="n">commit</span> <span class="n">but</span> <span class="n">untracked</span> <span class="n">files</span> <span class="n">present</span> <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add&quot;</span> <span class="n">to</span> <span class="n">track</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is telling us that it is not keeping track of <code class="docutils literal notranslate"><span class="pre">script.out</span></code>.
+But we don’t want it to – that is the output from running out
+script, and generally we don’t keep the output of our codes in
+version control.</p>
+<p>So we’d like to tell git to ignore that file.  The way to do this is to
+create a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano .gitignore</span>
+</pre></div></div><p>and add the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>now if you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, that file will not appear, but <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> does!  So
+add <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> to git by doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> followed by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>.</p>
+</li>
 <li><p>Going back in time…</p></li>
 </ol>
 <section id="summary">
