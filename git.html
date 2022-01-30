@@ -62,7 +62,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">A Git Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">A Git Walkthrough</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Editors</span></p>
@@ -120,6 +123,96 @@
 Git</a> and it
 is highly suggested that you work through that on your own.</p>
 </div>
+<p>There are a few ways in which we can use git.  We’ll start by assuming
+that we are the only developer on a project and learn the basics and
+then we’ll see how to share what we’ve done locally and remotely using
+GitHub.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should create a <a class="reference external" href="https://github.com">GitHub account</a>.  Pick a
+username that is professional and meaningful.</p>
+</div>
+<p>Our goal here is to create a project (we’ll call the directory
+<code class="docutils literal notranslate"><span class="pre">project/</span></code>) and have git keep track of the files and changes to our
+project.</p>
+<ol class="arabic">
+<li><p>First create a project directory with some basic content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">mkdir project</span>
+<span class="prompt1"><span class="nb">cd</span> project</span>
+<span class="prompt1"><span class="nb">echo</span> <span class="s2">&quot;this is the start of my awesome new project&quot;</span> &gt; README</span>
+</pre></div></div></li>
+<li><p>Now let’s tell git that we want to track this directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git init</span>
+</pre></div></div><p>If you do <code class="docutils literal notranslate"><span class="pre">ls</span></code> it will look like nothing has changed, but this
+command created a <code class="docutils literal notranslate"><span class="pre">.git/</span></code> sub-directory in our project, which you
+can see by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls -a</span>
+</pre></div></div></li>
+<li><p>The version of git on the MathLab computers is old, and it will
+create a default <em>branch</em> named <code class="docutils literal notranslate"><span class="pre">master</span></code>.  This has been
+deprecated and the community is moving to the name <code class="docutils literal notranslate"><span class="pre">main</span></code> for the
+default, so we’ll change this now:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b main</span>
+</pre></div></div><p>We’ll talk about branches in a bit.  Just note that with a recent
+version of git, this command would be unnecessary.</p>
+</li>
+<li><p>At this point, we haven’t told git about any of our files.  To tell git
+to track the file <code class="docutils literal notranslate"><span class="pre">README</span></code> we do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add README</span>
+<span class="prompt1">git commit README</span>
+</pre></div></div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you <code class="docutils literal notranslate"><span class="pre">commit</span></code>, and editor window will pop up asking you to
+make a commit message.  This is where you describe the change so
+“future you” or someone else can understand why the change was
+made.</p>
+</div>
+<p>We set our default editor to nano, so type in your message, save
+the change with <code class="docutils literal notranslate"><span class="pre">^O</span></code>, and then exit with <code class="docutils literal notranslate"><span class="pre">^X</span></code>.</p>
+<p>We can now ask git the state of our project with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
+</pre></div></div><p>You should see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
+<span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">tree</span> <span class="n">clean</span>
+</pre></div>
+</div>
+<p>We can also see our log message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git log</span>
+</pre></div></div><p>The output will look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="mi">2001</span><span class="n">a0e996110926a576dcb5fc13fc8022864d0b</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span>
+<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
+<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">13</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
+
+    <span class="n">my</span> <span class="n">first</span> <span class="n">change</span>
+</pre></div>
+</div>
+<p>But should show your name, and the long string of numbers of
+letters are <code class="docutils literal notranslate"><span class="pre">commit</span></code> on the first line will be different.  We’ll call
+the string the <code class="docutils literal notranslate"><span class="pre">hash</span></code>.  More on that later…</p>
+</li>
+<li><p>Now let’s modify the file</p></li>
+<li><p>Let’s add another file</p>
+<p>We’ll write our first script</p>
+<p>What is <code class="docutils literal notranslate"><span class="pre">add</span></code> really doing?</p>
+</li>
+<li><p>Ignoring things</p></li>
+<li><p>Going back in time…</p></li>
+</ol>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We learned:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code></p></li>
+</ul>
+</section>
 </section>
 
 
