@@ -38,17 +38,18 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Editors
-
-   editors
-
-.. toctree::
-   :maxdepth: 1
    :caption: Git and Version Control
 
    version_control
+   shell-setup
    git
    github
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Editors
+
+   editors
 
 .. toctree::
    :maxdepth: 1
