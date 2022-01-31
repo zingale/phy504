@@ -63,7 +63,8 @@ Centralized vs. distributed version control
 ===========================================
 
 Broadly speaking, there are two different types of version control:
-centralized and distributed.
+centralized and distributed.  We'll call the collection of code under
+version control the *repository*.
 
 Centralized version control
 ---------------------------
@@ -104,8 +105,35 @@ Examples: git, mercurial
 
    Git is the most popular right now, so we'll focus on that.
 
+Consider the figure below:
+
 .. image:: distributed_version_control.png
    :align: center
 
+We see:
+
+#. You in the upper left box interacting with your local computer.
+   You can add changes to your repo and query the log, etc. all just
+   using your own machine.
+
+#. Your colleague in the upper right.  They can also interact with
+   their own computer, using their own version of the repo.
+
+   Now, imagine that they make a change that you want.  You can *pull*
+   their version of the code into your repo, getting all of their
+   changes.
+
+#. Suppose you both want to efficiently share work as a group.  So you
+   setup a group server and you can both synchronize your repo with
+   that server by doing *pull* and *push*.
+
+   This server provides a mechanism for everyone in the group to stay
+   in sync.
+
+#. Imagine now that you have an external collaborator who doesn't have
+   access to your server.  You can let them *pull* from your copy of
+   the repo, without giving them permission to push changes back.
+
+   They can then interact with their copy locally.
 
 
