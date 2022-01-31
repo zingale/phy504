@@ -43,6 +43,7 @@ Spring 2022
    version_control
    shell-setup
    git
+   git-branches
    github
 
 .. toctree::
