@@ -63,7 +63,8 @@ Centralized vs. distributed version control
 ===========================================
 
 Broadly speaking, there are two different types of version control:
-centralized and distributed.
+centralized and distributed.  We'll call the collection of code under
+version control the *repository*.
 
 Centralized version control
 ---------------------------
