@@ -7,6 +7,14 @@ changes.  Here we walk through an example of branches.
 
 To get more practice, we'll start a new project and initialize it.
 
+.. figure:: https://imgs.xkcd.com/comics/git.png
+   :width: 90%
+   :align: center
+   :alt: xkcd comic on git
+
+   from XKCD
+
+
 #. Let's repeat the setup we did before...
 
    .. prompt:: bash
