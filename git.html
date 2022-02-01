@@ -262,85 +262,9 @@ in our project, and it has a different unique hash:</p>
 </pre></div>
 </div>
 </li>
-<li><p>Let’s create and add another file.</p>
-<p>We’ll write our first shell script.  Open a new file in nano:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano myscript</span>
-</pre></div></div><p>and copy-paste the following content into it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -l &gt; script.out
-</pre></div>
-</div>
-<p>be sure to end with a new line.</p>
-<p>Now, this script is not that fancy and it needs to be run as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">bash ./myscript</span>
-</pre></div></div><p>when you do this, you should see the output <code class="docutils literal notranslate"><span class="pre">script.out</span></code> created.</p>
-<p>Now let’s tell git that we want it to track this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add myscript</span>
-<span class="prompt1">git commit</span>
-</pre></div></div><p>Be sure to add a useful message.</p>
-</li>
-<li><p>Ignoring things.</p>
-<p>Let’s look at the status of our project:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
-</pre></div></div><p>You’ll see something like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
-<span class="n">Untracked</span> <span class="n">files</span><span class="p">:</span>
-  <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> <span class="n">to</span> <span class="n">include</span> <span class="ow">in</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
-
-        <span class="n">script</span><span class="o">.</span><span class="n">out</span>
-
-<span class="n">nothing</span> <span class="n">added</span> <span class="n">to</span> <span class="n">commit</span> <span class="n">but</span> <span class="n">untracked</span> <span class="n">files</span> <span class="n">present</span> <span class="p">(</span><span class="n">use</span> <span class="s2">&quot;git add&quot;</span> <span class="n">to</span> <span class="n">track</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>It is telling us that it is not keeping track of <code class="docutils literal notranslate"><span class="pre">script.out</span></code>.
-But we don’t want it to – that is the output from running out
-script, and generally we don’t keep the output of our codes in
-version control.</p>
-<p>So we’d like to tell git to ignore that file.  The way to do this is to
-create a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano .gitignore</span>
-</pre></div></div><p>and add the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*.</span><span class="n">out</span>
-</pre></div>
-</div>
-<p>now if you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, that file will not appear, but <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> does!  So
-add <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> to git by doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> followed by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>.</p>
-</li>
-<li><p>Going back in time…</p>
-<p>Let’s look at our project history so far:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git log</span>
-</pre></div></div><p>We see something like this (again, your hashes will be different)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="mi">834</span><span class="n">db7fafeff3d95a314a3f3772c9443a59e2e41</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span>
-<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
-<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">16</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
-
-    <span class="n">add</span> <span class="n">a</span> <span class="o">.</span><span class="n">gitignore</span>
-
-<span class="n">commit</span> <span class="mf">974e7</span><span class="n">cee6045d1cd95d4d11f4af28d19cb37cb4c</span>
-<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
-<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">15</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">35</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
-
-    <span class="n">my</span> <span class="n">first</span> <span class="n">shell</span> <span class="n">script</span>
-
-<span class="n">commit</span> <span class="mi">78</span><span class="n">b6925752e8388dddb3d65b6355bfeeb87b87a7</span>
-<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
-<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">14</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">09</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
-
-    <span class="n">make</span> <span class="n">some</span> <span class="n">modifications</span>
-
-<span class="n">commit</span> <span class="mi">2001</span><span class="n">a0e996110926a576dcb5fc13fc8022864d0b</span>
-<span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
-<span class="n">Date</span><span class="p">:</span>   <span class="n">Sun</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">13</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
-
-    <span class="n">my</span> <span class="n">first</span> <span class="n">change</span>
-</pre></div>
-</div>
-<p>Let’s go back to the start of the project – we want to go to just after the first
-commit</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout 2001a0e996110926a576dcb5fc13fc8022864d0b</span>
-</pre></div></div><p>Now if you do <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you’ll see just the <code class="docutils literal notranslate"><span class="pre">README</span></code> file, and it will appear
-with just the first edit.</p>
-</li>
 </ol>
+<p>This repo now captures the state of our project.  Next we’ll see how to use branches to
+help our development process.</p>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>We learned:</p>

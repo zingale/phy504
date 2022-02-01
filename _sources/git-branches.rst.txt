@@ -7,46 +7,125 @@ changes.  Here we walk through an example of branches.
 
 To get more practice, we'll start a new project and initialize it.
 
-Let's repeat the setup we did before...
-
-.. prompt:: bash
-
-   mkdir project2
-   cd project2
-   echo "a second git project" > README
-   git init
-
-Now let's look at the command we did last time to name our branch
-``main`` instead of ``master``:
-
-.. prompt:: bash
-
-   git checkout -b main
-
-This is a new (sub-)command, ``checkout``.
-
-
-.. note::
-
-   You can get help on git commands via manpages using a hyphen
-   between ``git`` and the command name, e.g.:
+#. Let's repeat the setup we did before...
 
    .. prompt:: bash
 
-      man git-checkout
+      mkdir project2
+      cd project2
+      echo "a second git project" > README
+      git init
 
-The ``checkout`` command is used to switch branches or to restore
-files.  The command we did above, ``git checkout -b main`` created a
-new branch called ``main`` and switched us to it.
+   Now let's look at the command we did last time to name our branch
+   ``main`` instead of ``master``:
 
-Now let's add our ``README`` to git and commit:
+   .. prompt:: bash
 
-.. prompt:: bash
+      git checkout -b main
 
-   git add README
-   git commit
+   This is a new (sub-)command, ``checkout``.
 
-(Remember to enter a log and save...)
+
+   .. note::
+
+      You can get help on git commands via manpages using a hyphen
+      between ``git`` and the command name, e.g.:
+
+      .. prompt:: bash
+
+         man git-checkout
+
+   The ``checkout`` command is used to switch branches or to restore
+   files.  The command we did above, ``git checkout -b main`` created a
+   new branch called ``main`` and switched us to it.
+
+#. Now let's add our ``README`` to git and commit:
+
+   .. prompt:: bash
+
+      git add README
+      git commit
+
+   (Remember to enter a log and save...)
+
+#. Let's create and add another file.
+
+   We'll write our first shell script.  Open a new file in nano:
+
+   .. prompt:: bash
+
+      nano myscript
+
+   and copy-paste the following content into it:
+
+   .. code:: bash
+
+      ls -l > script.out
+
+   be sure to end with a new line.
+
+   Now, this script is not that fancy and it needs to be run as:
+
+   .. prompt:: bash
+
+      bash ./myscript
+
+   when you do this, you should see the output ``script.out`` created.
+
+   Now let's tell git that we want it to track this:
+
+   .. prompt:: bash
+
+      git add myscript
+      git commit
+
+   Be sure to add a useful message.
+
+
+#. Ignoring things.
+
+   Let's look at the status of our project:
+
+   .. prompt:: bash
+
+      git status
+
+   You'll see something like:
+
+   .. code::
+
+      On branch main
+      Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+
+              script.out
+
+      nothing added to commit but untracked files present (use "git add" to track)
+
+   It is telling us that it is not keeping track of ``script.out``.
+   But we don't want it to -- that is the output from running out
+   script, and generally we don't keep the output of our codes in
+   version control.
+
+   So we'd like to tell git to ignore that file.  The way to do this is to
+   create a ``.gitignore`` file:
+
+   .. prompt:: bash
+
+      nano .gitignore
+
+   and add the following:
+
+   .. code::
+
+      *.out
+
+   now if you do ``git status``, that file will not appear, but ``.gitignore`` does!
+
+   Be sure to add ``.gitignore`` to git by doing ``git add`` followed
+   by ``git commit``.
+
+
 
 A Feature Branch
 ================
@@ -88,13 +167,25 @@ we see:
 
 .. code::
 
-   commit ad95254da553cd2eb163205604c08e868165b1e3 (HEAD -> feature, main)
+   commit 69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a (HEAD -> feature, main)
    Author: Michael Zingale <michael.zingale@stonybrook.edu>
-   Date:   Mon Jan 31 13:32:43 2022 -0500
+   Date:   Tue Feb 1 10:21:19 2022 -0500
 
-       start of my new project
+       add an ignore file
 
-Notice that the commit line shows that both ``feature`` and ``main``
+   commit 9b0ae624393bd28f26f37d633d9692be3c2929f0
+   Author: Michael Zingale <michael.zingale@stonybrook.edu>
+   Date:   Tue Feb 1 10:18:53 2022 -0500
+
+       add my first script
+
+   commit 9625926dd4bc26e04d37988ffceaa7eba64a76da
+   Author: Michael Zingale <michael.zingale@stonybrook.edu>
+   Date:   Tue Feb 1 10:18:02 2022 -0500
+
+       start of our new project
+
+Notice that the most recent commit line shows that both ``feature`` and ``main``
 are at the same hash, and it also calls that commit ``HEAD``.
 ``HEAD`` is the most recent change on the branch.
 
@@ -125,22 +216,88 @@ Now look at the log:
 
 .. code::
 
-   commit 2b35469b403d25d601703a3e8c986c62f7822e3e (HEAD -> feature)
    Author: Michael Zingale <michael.zingale@stonybrook.edu>
-   Date:   Mon Jan 31 13:54:34 2022 -0500
+   Date:   Tue Feb 1 10:23:51 2022 -0500
 
-       our first program
+       add hello world
 
-   commit ad95254da553cd2eb163205604c08e868165b1e3 (main)
+   commit 69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a (main)
    Author: Michael Zingale <michael.zingale@stonybrook.edu>
-   Date:   Mon Jan 31 13:32:43 2022 -0500
+   Date:   Tue Feb 1 10:21:19 2022 -0500
 
-       start of my new project
+       add an ignore file
+
+   commit 9b0ae624393bd28f26f37d633d9692be3c2929f0
+   Author: Michael Zingale <michael.zingale@stonybrook.edu>
+   Date:   Tue Feb 1 10:18:53 2022 -0500
+
+       add my first script
+
+   commit 9625926dd4bc26e04d37988ffceaa7eba64a76da
+   Author: Michael Zingale <michael.zingale@stonybrook.edu>
+   Date:   Tue Feb 1 10:18:02 2022 -0500
+
+       start of our new project
+
 
 Now it is clear that ``main`` is still on the last commit but
 ``feature`` is on the latest (``HEAD``) commit.
 
 
+Recall that we can compile our ``hello.cpp`` via:
+
+.. prompt:: bash
+
+   g++ -o hello hello.cpp
+
+.. admonition:: try it...
+
+   We don't want the executable ``hello`` to be under git control, so
+   add it to your ``.gitignore`` and commit that change.
+
+
+Switching Branches
+------------------
+
+Let's go back to ``main``.  The ``checkout`` command does this for us:
+
+.. prompt:: bash
+
+   git checkout main
+
+Now notice that if you do ``ls``, you don't see ``hello.cpp``!  That
+file is in your ``feature`` branch, and under git control, and git
+knows it is not on ``main`` so when you switch to main, it does not
+appear.
+
+Let's add an ``authors.txt`` file to our project, just containing your name.
+
+.. admonition:: try it...
+
+   create an ``authors.txt`` and add it to git control.
+
+Note that this is on ``main``.  If you switch to ``feature`` you won't see it:
+
+.. prompt:: bash
+
+   git checkout feature
+
+.. note::
+
+   Just like we can use ``cd -`` to switch to the previous directory we were on,
+   we can use
+
+   .. prompt:: bash
+
+      git checkout -
+
+   to switch back to the previous branch we were on -- in this case, ``main``
+
+Switch back to ``main``.
+
+
+Visualizing Branches
+--------------------
 
 
 We can visualize the *graph* of changes:
@@ -148,4 +305,144 @@ We can visualize the *graph* of changes:
 .. prompt:: bash
 
    git log --graph --all --oneline
+
+
+When we do this, we'll see something like this:
+
+.. code::
+
+   * c8904ec (HEAD -> main) add authors
+   | * bb38a3d (feature) don't track executable
+   | * 22e1d58 add hello world
+   |/  
+   * 69eb3bf add an ignore file
+   * 9b0ae62 add my first script
+   * 9625926 start of our new project
+
+Looking from the bottom to the top, we see when ``feature`` diverged
+from ``main``, and we see what the latest commit is on each branch.
+
+Diff
+----
+
+Let's look at the differences between our branches.  Since we're on
+``main``, we can ask git what the difference between our current code
+and the code in ``feature`` is via:
+
+.. prompt:: bash
+
+   git diff feature
+
+
+As you use git more and more, you'll see that ``diff`` is very handy.
+
+
+Merging
+-------
+
+Now we're happy with the changes we made on ``feature`` and we want to
+incorporate them into ``main`` -- this is called *merging*, we
+accomplish this by doing
+
+.. prompt:: bash
+
+   git merge feature
+
+This is a special type of commit, and your editor will pop up with a
+merge commit already entered.  Just save this, and it will be logged.
+
+If you look at the graph of changes, you'll see something like:
+
+.. code::
+
+   *   42596ac (HEAD -> main) Merge branch 'feature' into main
+   |\  
+   | * bb38a3d (feature) don't track executable
+   | * 22e1d58 add hello world
+   * | c8904ec add authors
+   |/  
+   * 69eb3bf add an ignore file
+   * 9b0ae62 add my first script
+   * 9625926 start of our new project
+
+This is showing the ``feature`` branched off of ``main`` but
+eventually was merged back in.  If you do ``ls``, you'll see that
+``hello.cpp`` is now in ``main``, and if you look at the
+``.gitignore``, you'll see that it has the changes that we done on
+both branches.
+
+Going back in time...
+=====================
+
+If we look at our project history so far:
+
+   .. prompt:: bash
+
+      git log
+
+We see something like this (again, your hashes will be different)
+
+   .. code::
+
+      commit 42596acdd432e1dbdc4f8abd668dffa30c707473 (HEAD -> main)
+      Merge: c8904ec bb38a3d
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:54:51 2022 -0500
+
+          Merge branch 'feature' into main
+
+      commit c8904ec0bd8ac1bc3449ec79ade971ee9902c14e
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:31:03 2022 -0500
+
+          add authors
+
+      commit bb38a3d1f3f4f2971ced93a1f203c52c276f37a5 (feature)
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:27:09 2022 -0500
+
+          don't track executable
+
+      commit 22e1d58cee38021da961516b24dde689d3b8a66e
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:23:51 2022 -0500
+
+          add hello world
+
+      commit 69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:21:19 2022 -0500
+
+          add an ignore file
+
+      commit 9b0ae624393bd28f26f37d633d9692be3c2929f0
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:18:53 2022 -0500
+
+          add my first script
+
+      commit 9625926dd4bc26e04d37988ffceaa7eba64a76da
+      Author: Michael Zingale <michael.zingale@stonybrook.edu>
+      Date:   Tue Feb 1 10:18:02 2022 -0500
+
+          start of our new project
+
+Imagine that our current code is not working, but we remember that it
+was before we did our branching and added the ``hello.cpp``.  Looking
+at the log or the graph shows that that change came in with the commit
+``22e1d58cee38021da961516b24dde689d3b8a66e``.  We can checkout the
+state of the code before that commit by using the hash from the
+previous commit:
+
+   .. prompt:: bash
+
+      git checkout 69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a
+
+Note that you don't need to type out the entire hash -- you only need the starting bits,
+as long as it is unique.
+
+This command puts you in a detached branch, but you could make it a named branch by using
+``git checkout -b name``.
+
+
 
