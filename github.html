@@ -64,7 +64,11 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">github</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">github</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bare-repository">Bare Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-first-example-of-collaboration">A First Example of Collaboration</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Editors</span></p>
 <ul>
@@ -118,7 +122,48 @@
              
   <section id="github">
 <h1>github<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
-<p>Now let’s see how to interact with a git repository hosted on github.</p>
+<section id="bare-repository">
+<h2>Bare Repository<a class="headerlink" href="#bare-repository" title="Permalink to this headline">¶</a></h2>
+<p>So far, we’ve just been using our git repo for ourselves.</p>
+<p>Let’s look back at the figure illustrating ways we can share with distributed version control:</p>
+<img alt="_images/distributed_version_control.png" class="align-center" src="_images/distributed_version_control.png" />
+<p>When multiple developers are working on the same code together, it is
+convenient to have a central repository that everyone can communicate
+with.</p>
+<p>We use a special <code class="docutils literal notranslate"><span class="pre">bare</span></code> repository for this purpose.  A bare repo
+has all of the metadata for the project, but we don’t work directly in
+it.  This way we avoid the risk of having unsaved changed in the repo
+that other people are using to synchronize with.</p>
+<p>Let’s create a bare repo from our <code class="docutils literal notranslate"><span class="pre">project2</span></code> project.  From your home directory
+(assuming that project2 is <code class="docutils literal notranslate"><span class="pre">~/project2/</span></code>, we do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git clone --bare project2</span>
+</pre></div></div><p>Now we see a new directory <code class="docutils literal notranslate"><span class="pre">project2.git</span></code>.</p>
+</section>
+<section id="a-first-example-of-collaboration">
+<h2>A First Example of Collaboration<a class="headerlink" href="#a-first-example-of-collaboration" title="Permalink to this headline">¶</a></h2>
+<p>Let’s pretend we are a different user.  Let’s make a directory for our pretend user and clone our project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~</span>
+<span class="prompt1">mkdir newuser</span>
+<span class="prompt1"><span class="nb">cd</span> newuser</span>
+<span class="prompt1">git clone ~/project2.git</span>
+</pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">clone</span></code> command make a new git repo for our user called <code class="docutils literal notranslate"><span class="pre">project2/</span></code></p>
+<p>If we do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> in it, we’ll see the whole history we had from
+our earlier work.</p>
+<p>Now, this repo knows where it was cloned from, through a concept
+called <em>remotes</em>.  A remote is a repo (usually a bare repo) that we
+communicate with the share our changes (a <em>push</em>) of get changes from
+other users (a <em>pull</em>).  We can see our remote by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote -v</span>
+</pre></div></div><p>We’ll see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
