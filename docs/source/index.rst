@@ -44,6 +44,7 @@ Spring 2022
    shell-setup
    git
    git-branches
+   git-remotes
    github
 
 .. toctree::
