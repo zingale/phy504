@@ -26,12 +26,21 @@ can see the contents -- that's what we want.
 Finally, check the box to add a ``README`` file -- this means that our repository will
 not be empty initially.
 
-
 .. image:: github-create.png
    :align: center
 
+Our project is now found at: *https://github.com/username/reponame/*,
+where *username* is your Github username and *reponame* is the name of
+the repository you just created.
+
+
 SSH interlude
 =============
+
+Github works best is we communicate via `secure shell
+<https://en.wikipedia.org/wiki/Secure_Shell>`_ or *SSH*.  This is the
+same protocol we used for connecting to the portal MathLab machines.
+
 
 
 
@@ -42,6 +51,10 @@ Working remotely
    :align: center
 
 
+``README`` is special
+---------------------
+
+
 
 Pull requests
 =============
@@ -50,6 +63,9 @@ Pull requests
 
 Our class notes github
 ======================
+
+Let's take a tour of our class notes on github: https://github.com/zingale/phy504
+
 
 
 
