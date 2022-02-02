@@ -28,10 +28,14 @@ Pull requests
 
 
 
+Our class notes github
+======================
 
 
 
+Foreshadowing
+=============
 
+github actions
 
-
-
+github pages
