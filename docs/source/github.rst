@@ -41,6 +41,11 @@ Github works best is we communicate via `secure shell
 <https://en.wikipedia.org/wiki/Secure_Shell>`_ or *SSH*.  This is the
 same protocol we used for connecting to the portal MathLab machines.
 
+Now we can git clone this repo
+
+Also look and see how the remote is setup
+
+
 
 
 
@@ -58,6 +63,13 @@ Working remotely
 
 Pull requests
 =============
+
+Github allows you to give permissions to users to contribute to a
+repository (read, write, or admin access).  But the best type of workflow
+is one where users don't push directly to the git repo.  Instead it is based
+around pulls.
+
+How do we contribute to a project that we don't own?
 
 
 
