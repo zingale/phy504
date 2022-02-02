@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>github &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Git Remotes &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -64,9 +64,10 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">github</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git Remotes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#bare-repository">Bare Repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#a-first-example-of-collaboration">A First Example of Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github">github</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +111,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>github</li>
+      <li>Git Remotes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/github.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,8 +121,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="github">
-<h1>github<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+  <section id="git-remotes">
+<h1>Git Remotes<a class="headerlink" href="#git-remotes" title="Permalink to this headline">¶</a></h1>
 <section id="bare-repository">
 <h2>Bare Repository<a class="headerlink" href="#bare-repository" title="Permalink to this headline">¶</a></h2>
 <p>So far, we’ve just been using our git repo for ourselves.</p>
@@ -163,6 +164,33 @@ other users (a <em>pull</em>).  We can see our remote by doing:</p>
 <span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Now’s let’s make a change</p>
+<p>Now we can share our changes with our remote – the bare repo by doing a <em>push</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt2:before {
+  content: " ";
+}
+</style><span class="prompt2">git push</span>
+</pre></div></div><p>This pushes our changes back to the bare repo.  Now go back to our original repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span></span>
+<span class="prompt1"><span class="nb">cd</span> project2</span>
+</pre></div></div><p>We need to add a remote to this original repo (if you do <code class="docutils literal notranslate"><span class="pre">git</span>
+<span class="pre">remote</span></code> it will show nothing).  We’ll add a remote called <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add origin ~/project2.git</span>
+</pre></div></div><p>Now, we can communicate with the bare repo and get the changes that
+the other user made by doing a <em>pull</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull origin main</span>
+</pre></div></div><p>To make our life easier, we can tell git what remote branch to track:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git branch --set-upstream-to<span class="o">=</span>origin/main main</span>
+</pre></div></div><p>then we can do just</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull</span>
+</pre></div></div></section>
+<section id="github">
+<h2>github<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+<p>Github provides a web-based way to interact with git repositories.  At
+its heart it hosts a bare repo that we can push-pull to/from, but it
+also provides features to make it easier for users to request their
+changes be incorporated.</p>
 </section>
 </section>
 

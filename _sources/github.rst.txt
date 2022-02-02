@@ -1,6 +1,6 @@
-******
-github
-******
+***********
+Git Remotes
+***********
 
 Bare Repository
 ===============
@@ -64,6 +64,63 @@ We'll see something like:
 
    origin	/home/campus.stonybrook.edu/mzingale/project2.git (fetch)
    origin	/home/campus.stonybrook.edu/mzingale/project2.git (push)
+
+
+Now's let's make a change
+
+
+.. admonotion:: try it...
+
+   add the new user's name to ``authors.txt`` and commit the change.
+
+Now we can share our changes with our remote -- the bare repo by doing a *push*.
+
+.. prompt::
+
+   git push
+
+This pushes our changes back to the bare repo.  Now go back to our original repo:
+
+.. prompt:: bash
+
+   cd
+   cd project2
+
+We need to add a remote to this original repo (if you do ``git
+remote`` it will show nothing).  We'll add a remote called ``origin``.
+
+.. prompt:: bash
+
+   git remote add origin ~/project2.git
+
+Now, we can communicate with the bare repo and get the changes that
+the other user made by doing a *pull*:
+
+.. prompt:: bash
+
+   git pull origin main
+
+To make our life easier, we can tell git what remote branch to track:
+
+.. prompt:: bash
+
+   git branch --set-upstream-to=origin/main main
+
+then we can do just
+
+.. prompt:: bash
+
+   git pull
+
+github
+======
+
+Github provides a web-based way to interact with git repositories.  At
+its heart it hosts a bare repo that we can push-pull to/from, but it
+also provides features to make it easier for users to request their
+changes be incorporated.
+
+
 
 
 
