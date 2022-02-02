@@ -11,7 +11,24 @@ changes be incorporated.
 Creating a repository on github
 ===============================
 
+Let's start by creating a new git repository using github's web interface.  Start
+on your github home page and click on the "+" icon and select "New repository":
 
+.. image:: github-new.png
+   :align: center
+
+Now we give the repository a name.  Let's use our initials, followed
+by ``_class_repo``, so for me, it will be ``mz_class_repo``.  
+
+By default the repo will be public, which means anyone on the internet
+can see the contents -- that's what we want.
+
+Finally, check the box to add a ``README`` file -- this means that our repository will
+not be empty initially.
+
+
+.. image:: github-create.png
+   :align: center
 
 SSH interlude
 =============
@@ -20,6 +37,9 @@ SSH interlude
 
 Working remotely
 ================
+
+.. image:: github-clone.png
+   :align: center
 
 
 

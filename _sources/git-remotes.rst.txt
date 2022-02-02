@@ -69,7 +69,7 @@ We'll see something like:
 Now's let's make a change
 
 
-.. admonotion:: try it...
+.. admonition:: try it...
 
    add the new user's name to ``authors.txt`` and commit the change.
 
