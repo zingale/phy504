@@ -264,12 +264,21 @@ Now we can do all *pull-request*.  Select "pull requests"
 .. image:: github-pr.png
    :align: center
 
+Then click on the "New pull request" button, and you'll see something like:
 
+.. image:: github-pr2.png
 
+This is showing that you are asking to merge the changes in your fork into the
+class ``test-repo`` repository.
 
-   
+Click on *create pull request*, type in a comment about what this does, and then click
+on the *create pull request* button again.
 
+Now it is out of your hands.
 
+The owner of the class repo (me) will get a notification that you want
+to incorporate your changes into the class repo, and I can merge them
+via the github web tools.
 
 
 
@@ -279,12 +288,10 @@ Our class notes github
 
 Let's take a tour of our class notes on github: https://github.com/zingale/phy504
 
+There are a lot of other features that github provides that we will explore later in the semester, including:
+
+* github actions : automating some workflows (like testing) on our code
+
+* github pages : building and hosting web pages for our project
 
 
-
-Foreshadowing
-=============
-
-github actions
-
-github pages
