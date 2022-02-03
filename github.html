@@ -256,6 +256,28 @@ repository (read, write, or admin access).  But the best type of workflow
 is one where users don’t push directly to the git repo.  Instead it is based
 around pulls.</p>
 <p>How do we contribute to a project that we don’t own?</p>
+<p>Here’s a github <em>organization</em> for our class: <a class="reference external" href="https://github.com/phy504-sbu">https://github.com/phy504-sbu</a></p>
+<p>and here’s a simple repo in this organization: <a class="reference external" href="https://github.com/phy504-sbu/test-repo">https://github.com/phy504-sbu/test-repo</a></p>
+<p>An organization is meant to be used by a collection of developers who
+can all have different access permissions.  It provides tools for
+managing who can do different things to the repos under its control.</p>
+<p>Let’s clone this repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:phy504-sbu/test-repo.git</span>
+<span class="prompt1"><span class="nb">cd</span> test-repo</span>
+</pre></div></div><p>Now, let’s each try to add a file of the form <em>username.txt</em> containing
+your full name.  Ex:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">echo</span> Michael Zingale &gt; zingale.txt</span>
+<span class="prompt1">git add zingale.txt</span>
+<span class="prompt1">git commit</span>
+</pre></div></div><p>Now try to push it to the repo we clone:</p>
+<p>what happened?</p>
+<p>The issue is that you don’t have <em>write</em> permission to that repo,
+since I own it.  So you are denied access.</p>
+<p>This is okay.  The workflow that github emphasizes is one based around
+<em>pulls</em> not <em>pushes</em>, so let’s see how we do that.</p>
+<p>First, we need to <em>fork</em> the repo – this creates a clone under our
+control that we can do with as we please</p>
+<img alt="git-fork.png" class="align-center" src="git-fork.png" />
 </section>
 <section id="our-class-notes-github">
 <h2>Our class notes github<a class="headerlink" href="#our-class-notes-github" title="Permalink to this headline">¶</a></h2>
