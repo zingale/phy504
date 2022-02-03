@@ -41,19 +41,126 @@ Github works best is we communicate via `secure shell
 <https://en.wikipedia.org/wiki/Secure_Shell>`_ or *SSH*.  This is the
 same protocol we used for connecting to the portal MathLab machines.
 
-Now we can git clone this repo
+There is some nice documentation describing key pairs in the Software
+Carpentry `Create an SSH key pair
+<https://swcarpentry.github.io/git-novice/07-github/index.html#3-ssh-background-and-setup>`_
+section.
 
-Also look and see how the remote is setup
+Here's how we will set things up:
 
+#. A the bash prompt generate a new key pair:
 
+   .. prompt:: bash
 
+      ssh-keygen -t ed25519
+
+   The ``-t`` option picks a secure encryption method.
+
+   It will ask you for a passpharse -- just hit "Enter" to keep it
+   empty (if other people had access to your account, the you would
+   want to pick a passphrase).
+
+   If you do
+
+   .. prompt:: bash
+
+      ls -l ~/.ssh
+
+   you'll see 2 files: ``id_ed25519`` and ``id_ed25519.pub`` this is
+   the private and public key for encryption.
+
+   .. note::
+
+      Never share your private key (``id_ed25519``) with anyone.
+
+      Our public key (``id_ed25519.pub``) is meant to be public, and
+      we can give it to places we want to communicate with, like github
+
+#. Go to you Github profile SSH keys settings: https://github.com/settings/keys
+
+   Click on the *New SSH key* button and:
+
+   * give a *title* which is descriptive of the machine you are using, like
+     ``MathLab``
+
+   * copy and paste the contents of ``id_ed25519.pub`` into the *key*
+     text box.  You can see the contents by doing:
+
+     .. prompt:: bash
+
+        cat ~/.ssh/id_ed25519.pub
+
+   * Click on ``Add SSH key``
+
+#. Test things out:
+
+   .. prompt:: bash
+
+      ssh -T git@github.com
+
+   It will ask you if we want to save the *fingerprint* -- say "yes", and then
+   it should report:
+
+   .. code::
+
+      Hi zingale! You've successfully authenticated, but GitHub does
+      not provide shell access.
+
+That means everything is working.
+
+.. note::
+
+   Since your home directory is not shared across the MathLab machines, you
+   will need to do this each time you sit down on a different machine.
+
+   Also, in case our directory gets purged (which hasn't happened yet...)
+   we would need to regenerate a key and update github.
+
+   We'll deal with that as it arises.  I will also explore whether it is
+   wise to link these from our shared MySBFiles drive.
 
 
 Working remotely
 ================
 
+
+Now we can git clone this repo.  From the github project page, click on the
+*code* button.
+
 .. image:: github-clone.png
    :align: center
+
+Copy the string in the text box there and then on your command line clone
+the repo as:
+
+.. prompt:: bash
+
+   git clone git@github.com:zingale/mz_class_repo.git
+
+(replacing my repo and username with your own).
+
+Now we can go into our repo and look around.  Notice that there is a
+``.git/`` directory.  Also look at the remotes:
+
+.. prompt:: bash
+
+   git remote -v
+
+.. code::
+
+   origin	git@github.com:zingale/mz_class_repo.git (fetch)
+   origin	git@github.com:zingale/mz_class_repo.git (push)
+
+This is just like the example or remotes we did previously, except now
+github is acting as our remote.
+
+This means that we call push to github and pull from there.
+
+As a single user, this will allow you to develop from any computer
+and keep the code base in sync across all of them.
+
+If the project has multiple developers, this can be where all of the
+developers sync up their projects.
 
 
 ``README`` is special

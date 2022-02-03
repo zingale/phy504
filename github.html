@@ -154,12 +154,88 @@ the repository you just created.</p>
 <h2>SSH interlude<a class="headerlink" href="#ssh-interlude" title="Permalink to this headline">¶</a></h2>
 <p>Github works best is we communicate via <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_Shell">secure shell</a> or <em>SSH</em>.  This is the
 same protocol we used for connecting to the portal MathLab machines.</p>
-<p>Now we can git clone this repo</p>
-<p>Also look and see how the remote is setup</p>
+<p>There is some nice documentation describing key pairs in the Software
+Carpentry <a class="reference external" href="https://swcarpentry.github.io/git-novice/07-github/index.html#3-ssh-background-and-setup">Create an SSH key pair</a>
+section.</p>
+<p>Here’s how we will set things up:</p>
+<ol class="arabic">
+<li><p>A the bash prompt generate a new key pair:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">ssh-keygen -t ed25519</span>
+</pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">-t</span></code> option picks a secure encryption method.</p>
+<p>It will ask you for a passpharse – just hit “Enter” to keep it
+empty (if other people had access to your account, the you would
+want to pick a passphrase).</p>
+<p>If you do</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls -l ~/.ssh</span>
+</pre></div></div><p>you’ll see 2 files: <code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code> and <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> this is
+the private and public key for encryption.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Never share your private key (<code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code>) with anyone.</p>
+<p>Our public key (<code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code>) is meant to be public, and
+we can give it to places we want to communicate with, like github</p>
+</div>
+</li>
+<li><p>Go to you Github profile SSH keys settings: <a class="reference external" href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>
+<p>Click on the <em>New SSH key</em> button and:</p>
+<ul>
+<li><p>give a <em>title</em> which is descriptive of the machine you are using, like
+<code class="docutils literal notranslate"><span class="pre">MathLab</span></code></p></li>
+<li><p>copy and paste the contents of <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> into the <em>key</em>
+text box.  You can see the contents by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat ~/.ssh/id_ed25519.pub</span>
+</pre></div></div></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code></p></li>
+</ul>
+</li>
+<li><p>Test things out:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ssh -T git@github.com</span>
+</pre></div></div><p>It will ask you if we want to save the <em>fingerprint</em> – say “yes”, and then
+it should report:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hi zingale! You&#39;ve successfully authenticated, but GitHub does
+not provide shell access.
+</pre></div>
+</div>
+</li>
+</ol>
+<p>That means everything is working.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since your home directory is not shared across the MathLab machines, you
+will need to do this each time you sit down on a different machine.</p>
+<p>Also, in case our directory gets purged (which hasn’t happened yet…)
+we would need to regenerate a key and update github.</p>
+<p>We’ll deal with that as it arises.  I will also explore whether it is
+wise to link these from our shared MySBFiles drive.</p>
+</div>
 </section>
 <section id="working-remotely">
 <h2>Working remotely<a class="headerlink" href="#working-remotely" title="Permalink to this headline">¶</a></h2>
+<p>Now we can git clone this repo.  From the github project page, click on the
+<em>code</em> button.</p>
 <img alt="_images/github-clone.png" class="align-center" src="_images/github-clone.png" />
+<p>Copy the string in the text box there and then on your command line clone
+the repo as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:zingale/mz_class_repo.git</span>
+</pre></div></div><p>(replacing my repo and username with your own).</p>
+<p>Now we can go into our repo and look around.  Notice that there is a
+<code class="docutils literal notranslate"><span class="pre">.git/</span></code> directory.  Also look at the remotes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote -v</span>
+</pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>       <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zingale</span><span class="o">/</span><span class="n">mz_class_repo</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">origin</span>       <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zingale</span><span class="o">/</span><span class="n">mz_class_repo</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is just like the example or remotes we did previously, except now
+github is acting as our remote.</p>
+<p>This means that we call push to github and pull from there.</p>
+<p>As a single user, this will allow you to develop from any computer
+and keep the code base in sync across all of them.</p>
+<p>If the project has multiple developers, this can be where all of the
+developers sync up their projects.</p>
 <section id="readme-is-special">
 <h3><code class="docutils literal notranslate"><span class="pre">README</span></code> is special<a class="headerlink" href="#readme-is-special" title="Permalink to this headline">¶</a></h3>
 </section>
