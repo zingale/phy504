@@ -270,14 +270,28 @@ your full name.  Ex:</p>
 <span class="prompt1">git add zingale.txt</span>
 <span class="prompt1">git commit</span>
 </pre></div></div><p>Now try to push it to the repo we clone:</p>
-<p>what happened?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push</span>
+</pre></div></div><p>what happened?</p>
 <p>The issue is that you don’t have <em>write</em> permission to that repo,
 since I own it.  So you are denied access.</p>
 <p>This is okay.  The workflow that github emphasizes is one based around
 <em>pulls</em> not <em>pushes</em>, so let’s see how we do that.</p>
 <p>First, we need to <em>fork</em> the repo – this creates a clone under our
-control that we can do with as we please</p>
-<img alt="git-fork.png" class="align-center" src="git-fork.png" />
+control that we can do with as we please.  Click on the “fork” button.</p>
+<img alt="_images/github-fork.png" class="align-center" src="_images/github-fork.png" />
+<p>It may ask you where you want the fork to life – you want it to live
+under your profile / username.</p>
+<p>This will bring you to a new github page, displaying the fork, with a
+URL that should look something like: <a class="reference external" href="https://github.com/zingale/test-repo">https://github.com/zingale/test-repo</a></p>
+<p>Now click on the <em>code</em> button and copy the SSH location.</p>
+<p>We want to add this fork as a new remote:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add myfork git@github.com:zingale/test-repo.git</span>
+</pre></div></div><p>(again, make sure you replace that with the link to your repo).</p>
+<p>Now you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push myfork</span>
+</pre></div></div><p>If you reload your github page, you should see your change there.</p>
+<p>Now we can do all <em>pull-request</em>.  Select “pull requests”</p>
+<img alt="_images/github-pr.png" class="align-center" src="_images/github-pr.png" />
 </section>
 <section id="our-class-notes-github">
 <h2>Our class notes github<a class="headerlink" href="#our-class-notes-github" title="Permalink to this headline">¶</a></h2>

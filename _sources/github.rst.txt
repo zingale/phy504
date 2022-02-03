@@ -219,6 +219,8 @@ Now try to push it to the repo we clone:
 
 .. prompt:: bash
 
+   git push
+
 what happened?
 
 The issue is that you don't have *write* permission to that repo,
@@ -228,10 +230,44 @@ This is okay.  The workflow that github emphasizes is one based around
 *pulls* not *pushes*, so let's see how we do that.
 
 First, we need to *fork* the repo -- this creates a clone under our
-control that we can do with as we please
+control that we can do with as we please.  Click on the "fork" button.
 
-.. image:: git-fork.png
+.. image:: github-fork.png
    :align: center
+
+It may ask you where you want the fork to life -- you want it to live
+under your profile / username.
+
+This will bring you to a new github page, displaying the fork, with a
+URL that should look something like: https://github.com/zingale/test-repo
+
+Now click on the *code* button and copy the SSH location.
+
+We want to add this fork as a new remote:
+
+.. prompt:: bash
+
+   git remote add myfork git@github.com:zingale/test-repo.git
+
+(again, make sure you replace that with the link to your repo).
+
+Now you can do:
+
+.. prompt:: bash
+
+   git push myfork
+
+If you reload your github page, you should see your change there.
+
+Now we can do all *pull-request*.  Select "pull requests"
+
+.. image:: github-pr.png
+   :align: center
+
+
+
+
+   
 
 
 
