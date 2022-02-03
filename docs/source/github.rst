@@ -191,6 +191,51 @@ around pulls.
 
 How do we contribute to a project that we don't own?
 
+Here's a github *organization* for our class: https://github.com/phy504-sbu
+
+and here's a simple repo in this organization: https://github.com/phy504-sbu/test-repo
+
+An organization is meant to be used by a collection of developers who
+can all have different access permissions.  It provides tools for
+managing who can do different things to the repos under its control.
+
+Let's clone this repo:
+
+.. prompt:: bash
+
+   git clone git@github.com:phy504-sbu/test-repo.git
+   cd test-repo
+
+Now, let's each try to add a file of the form *username.txt* containing
+your full name.  Ex:
+
+.. prompt:: bash
+
+   echo Michael Zingale > zingale.txt
+   git add zingale.txt
+   git commit
+
+Now try to push it to the repo we clone:
+
+.. prompt:: bash
+
+what happened?
+
+The issue is that you don't have *write* permission to that repo,
+since I own it.  So you are denied access.
+
+This is okay.  The workflow that github emphasizes is one based around
+*pulls* not *pushes*, so let's see how we do that.
+
+First, we need to *fork* the repo -- this creates a clone under our
+control that we can do with as we please
+
+.. image:: git-fork.png
+   :align: center
+
+
+
+
 
 
 Our class notes github
