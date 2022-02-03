@@ -281,6 +281,13 @@ to incorporate your changes into the class repo, and I can merge them
 via the github web tools.
 
 
+The overall workflow that we did: fork, push to our fork, issue a PR, looks like:
+
+.. image:: github-workflow.png
+   :align: center
+   :width: 80%
+
+
 
 
 Our class notes github
