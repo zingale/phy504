@@ -163,8 +163,21 @@ If the project has multiple developers, this can be where all of the
 developers sync up their projects.
 
 
-``README`` is special
----------------------
+``README.md`` is special
+------------------------
+
+The web interface that github provides to our repo has a number of features.
+
+First, the ``README.md`` file is always displayed on the main project
+page.  This is where you can put descriptions of what your project is,
+how people can contribute, even share the status of testing and
+documentation builds (we'll talk about those later in class).
+
+This file is in github-flavored `Markdown format <https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax>`_ (that's what the
+``.md`` extension signifies).  Markdown allows you to do basic formatting.
+
+Here's an example of what you can do in a ``README.md`` from one of my
+projects: https://github.com/pynucastro/pynucastro
 
 
 
