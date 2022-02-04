@@ -84,6 +84,12 @@ Spring 2022
 
    advanced-cxx
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Homework
+
+   homework/homework1
+
 
 
 
