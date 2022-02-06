@@ -49,20 +49,18 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Editors
-
-   editors
-
-.. toctree::
-   :maxdepth: 1
    :caption: Shell Scripting
 
+   shell-looping
    shell-scripts
+   finding
+   permissions
 
 .. toctree::
    :maxdepth: 1
    :caption: Tools
 
+   editors
    random-tools
 
 .. toctree::
