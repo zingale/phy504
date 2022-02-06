@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PHY 504: Computational Methods in Physics and Astrophysics I &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Find and Grep &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,7 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting Started" href="getting_started.html" /> 
+    <link rel="next" title="File Permissions" href="permissions.html" />
+    <link rel="prev" title="Shell Scripts" href="shell-scripts.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -30,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="#" class="icon icon-home"> PHY 504
+            <a href="index.html" class="icon icon-home"> PHY 504
           </a>
               <div class="version">
                 Spring 2022
@@ -67,10 +68,10 @@
 <li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Find and Grep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="permissions.html">File Permissions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
@@ -102,17 +103,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">PHY 504</a>
+          <a href="index.html">PHY 504</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>PHY 504: Computational Methods in Physics and Astrophysics I</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Find and Grep</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/finding.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -120,99 +121,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="phy-504-computational-methods-in-physics-and-astrophysics-i">
-<h1>PHY 504: Computational Methods in Physics and Astrophysics I<a class="headerlink" href="#phy-504-computational-methods-in-physics-and-astrophysics-i" title="Permalink to this headline">¶</a></h1>
-<section id="spring-2022">
-<h2>Spring 2022<a class="headerlink" href="#spring-2022" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>An introduction to procedural and object-oriented programming in a
-high-level language such as C++ or modern Fortran with examples and
-assignments consisting of rudimentary algorithms for problems in
-physics and astronomy. Students will use the UNIX/Linux operating
-system to write programs and manage data, and the course will include
-an introduction to parallel computing and good programming practices
-such as version control and verification. The course will prepare
-students for courses in algorithms and methods that assume a knowledge
-of programming.</p>
-</div></blockquote>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
-</ul>
+  <section id="find-and-grep">
+<h1>Find and Grep<a class="headerlink" href="#find-and-grep" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/07-find/index.html">Finding Things</a>
+lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">File Permissions</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Tools</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="editors.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro-cxx.html">C++ Datatypes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">More Advanced C++</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="advanced-cxx.html">C++ Classes</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Homework</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="homework/homework1.html">Homework 1</a></li>
-</ul>
-</div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="shell-scripts.html" class="btn btn-neutral float-left" title="Shell Scripts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="permissions.html" class="btn btn-neutral float-right" title="File Permissions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
