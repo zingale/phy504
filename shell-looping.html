@@ -183,7 +183,7 @@ span.prompt1:before {
 <li><p>first execute any commands inside the openning ` and closing `</p></li>
 <li><p>substitute the output of the command in place and then use do the rest of the script</p></li>
 </ul>
-<p>Note that an equivalent way of doing this in Bash is to use <cite>$( … )</cite>.</p>
+<p>Note that an equivalent way of doing this in Bash is to use <code class="docutils literal notranslate"><span class="pre">$(</span> <span class="pre">...</span> <span class="pre">)</span></code>.</p>
 <p>So for example, we could do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> <span class="sb">`</span>ls *.dat<span class="sb">`</span>
 <span class="k">do</span>
@@ -193,6 +193,12 @@ span.prompt1:before {
 </div>
 <p>(but for this simple example, we also know that a wildcard would work here).</p>
 <p>Here’s an example where we change the name of the extension of the file from <cite>.dat</cite> to <cite>.out</cite></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> *.dat
+<span class="k">do</span>
+   <span class="nb">echo</span> <span class="sb">`</span>basename <span class="nv">$creature</span> .dat<span class="sb">`</span>.out
+<span class="k">done</span>
+</pre></div>
+</div>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>

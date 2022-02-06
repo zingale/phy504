@@ -76,7 +76,7 @@ The backtick is a special syntax in a shell command.  Essentially it means:
 
 * substitute the output of the command in place and then use do the rest of the script
 
-Note that an equivalent way of doing this in Bash is to use `$( ... )`.
+Note that an equivalent way of doing this in Bash is to use ``$( ... )``.
 
 So for example, we could do:
 
@@ -92,6 +92,12 @@ So for example, we could do:
 
 Here's an example where we change the name of the extension of the file from `.dat` to `.out`
 
+.. code:: bash
+
+   for creature in *.dat
+   do
+      echo `basename $creature .dat`.out
+   done
 
 Summary
 =======
