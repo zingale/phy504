@@ -53,8 +53,8 @@ Spring 2022
 
    shell-looping
    shell-scripts
-   finding
    permissions
+   finding
 
 .. toctree::
    :maxdepth: 1
