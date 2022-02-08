@@ -71,7 +71,13 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">File Permissions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">File Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-permissions">Modifying permissions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#executable-scripts">Executable scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
@@ -123,7 +129,114 @@
              
   <section id="file-permissions">
 <h1>File Permissions<a class="headerlink" href="#file-permissions" title="Permalink to this headline">¶</a></h1>
+<p>Let’s look at the full directory listing in our <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">ls -l</span>
+</pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="mi">56</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">2</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>  <span class="mi">4096</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">creatures</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">5</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>  <span class="mi">4096</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">data</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">2</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>  <span class="mi">4096</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">molecules</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">3</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>  <span class="mi">4096</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">north</span><span class="o">-</span><span class="n">pacific</span><span class="o">-</span><span class="n">gyre</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>    <span class="mi">86</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">notes</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>    <span class="mi">13</span> <span class="n">Aug</span>  <span class="mi">4</span>  <span class="mi">2021</span> <span class="n">numbers</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>    <span class="mi">32</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">pizza</span><span class="o">.</span><span class="n">cfg</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span> <span class="mi">21583</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">solar</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">5</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>  <span class="mi">4096</span> <span class="n">Jul</span> <span class="mi">30</span>  <span class="mi">2021</span> <span class="n">writing</span>
+</pre></div>
+</div>
+<p>Let’s talk about the fields / columns that we see the listing:</p>
+<ul class="simple">
+<li><p>The first field (e.g. <code class="docutils literal notranslate"><span class="pre">drwxrwxr-x</span></code>) are the permissions of the file / directory.  They
+control who can read, write, and execute the file.</p></li>
+<li><p>We’ll skip the second column – we rarely need to worry about this</p></li>
+<li><p>The third field, <code class="docutils literal notranslate"><span class="pre">mzingale</span></code> in my case, is the username of the owner of the file</p></li>
+<li><p>The fourth field, <code class="docutils literal notranslate"><span class="pre">domain</span> <span class="pre">users</span></code> here, is the group that the file
+belongs to.  Groups are a Unix way to group together a bunch of
+users to give them all permission to access a file.</p></li>
+</ul>
+<p>We already discussed the remaining fields.</p>
+<p>Let’s look at the file permission block.  It looks something like this:</p>
 <a class="reference internal image-reference" href="_images/file_permissions.png"><img alt="_images/file_permissions.png" class="align-center" src="_images/file_permissions.png" style="width: 80%;" /></a>
+<ul class="simple">
+<li><p>The first character is either <code class="docutils literal notranslate"><span class="pre">-</span></code> for a regular file, <code class="docutils literal notranslate"><span class="pre">l</span></code> for a link, or <code class="docutils literal notranslate"><span class="pre">d</span></code> for a directory</p></li>
+<li><p>The next characters are grouped into 3 sets of 3 characters.  The sets are:</p>
+<ul>
+<li><p><em>owner</em> or <em>user</em> : this tells you what you are allowed to do with the file</p></li>
+<li><p><em>group</em> : this tells you what anyone in the Unix group is allowed to do with the file</p></li>
+<li><p><em>other</em> : this tells you what any user on the system that doesn’t
+fall into the first 2 categories can do with the file</p></li>
+</ul>
+</li>
+</ul>
+<p>Within each set, the meanings are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code> : read permission</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">w</span></code> : write permission</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> : execute permission</p></li>
+</ul>
+<p>In the image above, the owner has read, write, and execute
+permissions, while members of the same group and anyone else only have
+read permissions for the file.</p>
+<section id="modifying-permissions">
+<h2>Modifying permissions<a class="headerlink" href="#modifying-permissions" title="Permalink to this headline">¶</a></h2>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">chmod</span></code> command to change permissions on a file.</p>
+<p>For example, to remove the group’s write permission on <code class="docutils literal notranslate"><span class="pre">solar.pdf</span></code>, we would do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">chmod g-w solar.pdf</span>
+</pre></div></div><p>Here, <code class="docutils literal notranslate"><span class="pre">g</span></code> means “group”.  You could also do <code class="docutils literal notranslate"><span class="pre">u</span></code> for “user” or
+<code class="docutils literal notranslate"><span class="pre">o</span></code> for “other”.  The <code class="docutils literal notranslate"><span class="pre">-</span></code> means remove the permission (and a <code class="docutils literal notranslate"><span class="pre">+</span></code>
+would add the permission), then the letters after that are what
+permission you are altering, <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">w</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is an equivalent numerical way to describe permissions that
+you can read about here in the Wikipedia <a class="reference external" href="https://en.wikipedia.org/wiki/File-system_permissions">File-system permissions</a> article.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to be allowed to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into a directory, you need to have
+execute permission on that directory.</p>
+<p>For example, try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">chmod u-x creatures</span>
+<span class="prompt1"><span class="nb">cd</span> creatures</span>
+</pre></div></div></div>
+<section id="executable-scripts">
+<h3>Executable scripts<a class="headerlink" href="#executable-scripts" title="Permalink to this headline">¶</a></h3>
+<p>Let’s create a simple script that just does <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> for us.  But
+we’ll look to see how to make it executable on its own.  Put the
+following into a file <code class="docutils literal notranslate"><span class="pre">myscript.sh</span></code> (the <code class="docutils literal notranslate"><span class="pre">.sh</span></code> extension isn’t
+required, but it can be useful as a prompt to the user).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+ls -l
+</pre></div>
+</div>
+<p>The first line is new to us.  That is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> and it tells the
+operating system what interpreter to use to execute the script.  In
+this case, we point to <code class="docutils literal notranslate"><span class="pre">bash</span></code>.</p>
+<p>The next thing we need to do is make the script executable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">chmod u+x myscript.sh</span>
+</pre></div></div><p>We can then run the script simply as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./myscript.sh</span>
+</pre></div></div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The leading <code class="docutils literal notranslate"><span class="pre">./</span></code> here tells bash the path to find the file.  In
+this case, you are saying that the script is in the current (<code class="docutils literal notranslate"><span class="pre">.</span></code>)
+directory.</p>
+<p>Depending on how your system is set up, bash might not search in
+your current directory for commands when you type them, e.g., if
+you just do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt2:before {
+  content: " ";
+}
+</style><span class="prompt2">myscript.sh</span>
+</pre></div></div><p>you might be met with <code class="docutils literal notranslate"><span class="pre">myscript.sh:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code>.</p>
+</div>
+</section>
+</section>
 </section>
 
 
