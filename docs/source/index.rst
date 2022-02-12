@@ -67,6 +67,8 @@ Spring 2022
    :maxdepth: 1
    :caption: Introduction to C++
 
+   book
+   hardware
    intro-cxx
    tools
  
