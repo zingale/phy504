@@ -89,6 +89,7 @@ Spring 2022
    :caption: Homework
 
    homework/homework1
+   homework/homework2
 
 
 
