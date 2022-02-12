@@ -130,7 +130,44 @@
 <p class="admonition-title">reading</p>
 <p>Cyganek section 2.1</p>
 </div>
-</section>
+<p>Modern computers implement a <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">von Neumann architecture</a> which consists of
+(copied from Wikipedia):</p>
+<ul class="simple">
+<li><p>A processing unit that contains an arithmetic logic unit and processor registers</p></li>
+<li><p>A control unit that contains an instruction register and program counter</p></li>
+<li><p>Memory that stores data and instructions</p></li>
+<li><p>External mass storage</p></li>
+<li><p>Input and output mechanisms</p></li>
+</ul>
+<p>An example architecture is shown here:</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/ABasicComputer.gif"><img alt="_images/ABasicComputer.gif" src="_images/ABasicComputer.gif" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">(<a class="reference external" href="https://en.wikipedia.org/wiki/Central_processing_unit#/media/File:ABasicComputer.gif">Lambtron / Wikipedia</a>)</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Our program and the data it operates on is stored in the main memory of the system.  We need to move that from the main memory into the processor.</p>
+<p>The <em>arithmetic logic unit</em> (ALU) performs the basic instructions on
+the data.  The commands that it executes are processor-specific, and
+if we wanted to code them directly, we’d write our code in <em>assembly
+language</em>.  Luckily we don’t need to do that – instead we’ll code in
+C++ and use a <em>complier</em> to transfer our code into the
+machines-specific instructions.</p>
+<p>Data moves through a memory hierarchy, typically something like</p>
+<blockquote>
+<div><p>main memory → L3 cache → L2 cache → L1 cache → processor registers</p>
+</div></blockquote>
+<p>The further away the data is from the processor, the longer it takes
+to move it to the processor, but the larger the pool of memory.</p>
+<p>There are some instances (that’s we’ll see later), where knowledge of
+this memory hierarchy can allow us to write faster programs.</p>
+<p>On our machines, you can see the details of the processor, including the cache size, by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">less /proc/cpuinfo</span>
+</pre></div></div></section>
 
 
            </div>

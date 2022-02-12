@@ -71,6 +71,7 @@ Spring 2022
    hardware
    intro-cxx
    tools
+   structure
  
 .. toctree::
    :maxdepth: 1
