@@ -69,9 +69,14 @@ Spring 2022
 
    book
    hardware
-   intro-cxx
    tools
    structure
+
+.. toctree::
+   :maxdepth: 1
+   :caption: C++ Basics
+
+   intro-cxx
  
 .. toctree::
    :maxdepth: 1
