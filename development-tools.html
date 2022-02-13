@@ -79,14 +79,14 @@
 <li class="toctree-l1"><a class="reference internal" href="editors.html">Editors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
+<p class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Software Development Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure of a C++ Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
 <ul>
@@ -136,6 +136,65 @@
 <p class="admonition-title">reading</p>
 <p>Cyganek section 2.2</p>
 </div>
+<p>There are a number of tools that we will use in the software development process:</p>
+<ul>
+<li><p>Editors / integrated development environments</p>
+<p>Beyond just letting us type in text, these can check syntax,
+highlight code, autocomplete function / variable names, etc. making
+it easier to write our code.</p>
+</li>
+<li><p>Version control</p>
+<p>We already had an introduction to git.  Good version control is a
+critical part of the software development process.  We will put all of
+our projects under git control.</p>
+</li>
+<li><p>Compiler</p>
+<p>The job of the compiler is to turn the source code in a file into
+machine instructions for the computer we are using.</p>
+<p>We will use the <a class="reference external" href="https://gcc.gnu.org/">GNU Compiler Collection</a>
+for most of this class.  The name of the C++ compiler in GCC is <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">g++</span></code> supports different language standards depending on what
+version of the compiler we use.  Here is a list of <a class="reference external" href="https://gcc.gnu.org/projects/cxx-status.html">C++ standard
+support in GCC</a></p>
+</li>
+<li><p>Linker</p>
+<p>When working with multiple source files or calling function in libraries
+we need to link all of the compiled code together.  <code class="docutils literal notranslate"><span class="pre">g++</span></code> will act as the
+frontend to the linker.</p>
+<p>Sometimes we will be able to compile and link with one command, but
+these are distinct steps in the process of building a program.</p>
+</li>
+<li><p>Testing</p>
+<p>To ensure that our code gets the correct answer, there are a number
+of different testing methods we can employ.  A simple type of
+testing is called <em>unit testing</em>, where we write tests for each
+function (or program unit) to separately test that they work as
+intended.  We’ll look at unit testing toward the end of the
+semester.</p>
+<p>Once we have some tests, we’d ideally like to automate them.  Github
+allows us to do this via <em>continuous integration</em>, where the tests
+are run before each change is merged into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of our
+code repo.</p>
+</li>
+<li><p>Debugging</p>
+<p>When our code is not giving us the expected result, a debugger (like
+<code class="docutils literal notranslate"><span class="pre">gdb</span></code>) allows us to step through the execution of the code
+bit-by-bit and inspect the variables to understand where it is going
+wrong.</p>
+</li>
+<li><p>Profiler</p>
+<p>One our code is working, we can think about performance.  A profiler
+(like <code class="docutils literal notranslate"><span class="pre">gprof</span></code>) will give use a report of which functions or even
+lines in our code are taking the most time.  This helps us identify
+where to spend our time optimizing the code to perform better.</p>
+</li>
+<li><p>Documentation</p>
+<p>Ultimately, when we make our code available, we would like to have
+documentation explaining how to use our code <em>and</em> how to contribute
+to its development.  We’ll look at some standard documentation tools
+and how to host a website.</p>
+</li>
+</ul>
 </section>
 
 
