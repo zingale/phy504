@@ -69,6 +69,8 @@ Spring 2022
 
    book
    hardware
+   development-tools
+   development-cycle
    tools
    structure
 

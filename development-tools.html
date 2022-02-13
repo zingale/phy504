@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Looping on the Command Line &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Software Development Tools &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Shell Scripts" href="shell-scripts.html" />
-    <link rel="prev" title="github" href="github.html" /> 
+    <link rel="next" title="Software Development Cycle" href="development-cycle.html" />
+    <link rel="prev" title="Computer Hardware" href="hardware.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,12 +68,8 @@
 <li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Looping on the Command Line</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#if-tests">If-Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="permissions.html">File Permissions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
@@ -84,10 +80,10 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Introduction to C++</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development-tools.html">Software Development Tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Development Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure of a C++ Program</a></li>
@@ -124,9 +120,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Looping on the Command Line</li>
+      <li>Software Development Tools</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/shell-looping.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/development-tools.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -134,98 +130,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="looping-on-the-command-line">
-<h1>Looping on the Command Line<a class="headerlink" href="#looping-on-the-command-line" title="Permalink to this headline">¶</a></h1>
+  <section id="software-development-tools">
+<h1>Software Development Tools<a class="headerlink" href="#software-development-tools" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/05-loop/index.html">Loops</a>
-lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
+<p>Cyganek section 2.2</p>
 </div>
-<section id="if-tests">
-<h2>If-Tests<a class="headerlink" href="#if-tests" title="Permalink to this headline">¶</a></h2>
-<p>That lesson does not cover <em>if-tests</em>, so we will supplement that
-here.  Some information can be found on the Linux Documentation Project
-<a class="reference external" href="https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html">Conditional Statements</a>
-section.</p>
-<p>And if-test has the form:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> condition <span class="o">]</span>
-<span class="k">then</span>
-   <span class="c1"># do something</span>
-<span class="k">fi</span>
-</pre></div>
-</div>
-<p>where <em>condition</em> is evaluated, and if true, we take the action
-specified in the block.  <code class="docutils literal notranslate"><span class="pre">fi</span></code> is the <em>end-if</em> statement, ending the
-block of code that is conditionally executed.</p>
-<p>Let’s go back to looping over the files in <code class="docutils literal notranslate"><span class="pre">creatures/</span></code> that the
-Software Carpentry lesson did.  But let’s add some that don’t exist
-and have our loop test for that</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> basilisk.dat pegasus.dat minotaur.dat centaur.dat unicorn.dat
-<span class="k">do</span>
-   <span class="k">if</span> <span class="o">[</span> ! -e <span class="si">${</span><span class="nv">creature</span><span class="si">}</span> <span class="o">]</span>
-   <span class="k">then</span>
-      <span class="nb">echo</span> creature <span class="si">${</span><span class="nv">creature</span><span class="si">}</span> does not exist
-   <span class="k">fi</span>
-<span class="k">done</span>
-</pre></div>
-</div>
-<p>Now, let’s look back at the loop we put into our <code class="docutils literal notranslate"><span class="pre">mybashrc</span></code> and now
-we can understand what it is doing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> dotfile <span class="k">in</span> ~/MySBFiles/dotfiles/.*
-<span class="k">do</span>
-   <span class="k">if</span> <span class="o">[</span> ! -f ~/<span class="sb">`</span>basename <span class="nv">$dotfile</span><span class="sb">`</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-      ln -s <span class="nv">$dotfile</span> ~/<span class="p">;</span>
-   <span class="k">fi</span><span class="p">;</span>
-<span class="k">done</span>
-</pre></div>
-</div>
-<p>Notice that you can put the <code class="docutils literal notranslate"><span class="pre">then</span></code> on the same line as <code class="docutils literal notranslate"><span class="pre">if</span></code> if you separate with a <code class="docutils literal notranslate"><span class="pre">;</span></code>.
-There is still one new command here, <code class="docutils literal notranslate"><span class="pre">basename</span></code> and one new piece of syntax – using the backticks, `.</p>
-<p>We can see what basename does by looking at the man page:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">man basename</span>
-</pre></div></div><p>The backtick is a special syntax in a shell command.  Essentially it means:</p>
-<ul class="simple">
-<li><p>first execute any commands inside the openning ` and closing `</p></li>
-<li><p>substitute the output of the command in place and then use do the rest of the script</p></li>
-</ul>
-<p>Note that an equivalent way of doing this in Bash is to use <code class="docutils literal notranslate"><span class="pre">$(</span> <span class="pre">...</span> <span class="pre">)</span></code>.</p>
-<p>So for example, we could do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> <span class="sb">`</span>ls *.dat<span class="sb">`</span>
-<span class="k">do</span>
-   <span class="nb">echo</span> <span class="si">${</span><span class="nv">creature</span><span class="si">}</span>
-<span class="k">done</span>
-</pre></div>
-</div>
-<p>(but for this simple example, we also know that a wildcard would work here).</p>
-<p>Here’s an example where we change the name of the extension of the file from <cite>.dat</cite> to <cite>.out</cite></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> *.dat
-<span class="k">do</span>
-   <span class="nb">echo</span> <span class="sb">`</span>basename <span class="nv">$creature</span> .dat<span class="sb">`</span>.out
-<span class="k">done</span>
-</pre></div>
-</div>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>We learned the following commands:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">do</span></code>, and <code class="docutils literal notranslate"><span class="pre">done</span></code> : the syntax for a loop</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">fi</span></code> : the syntax for an if-test</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">history</span></code> : see the list of commands we used in this session</p></li>
-</ul>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="github.html" class="btn btn-neutral float-left" title="github" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell-scripts.html" class="btn btn-neutral float-right" title="Shell Scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hardware.html" class="btn btn-neutral float-left" title="Computer Hardware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development-cycle.html" class="btn btn-neutral float-right" title="Software Development Cycle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
