@@ -58,13 +58,6 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tools
-
-   editors
-   random-tools
-
-.. toctree::
-   :maxdepth: 1
    :caption: Introduction to Programming
 
    book
@@ -73,6 +66,13 @@ Spring 2022
    development-cycle
    structure
    tools
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Tools
+
+   editors
+   random-tools
 
 .. toctree::
    :maxdepth: 1
