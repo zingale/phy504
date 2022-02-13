@@ -65,14 +65,14 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Introduction to C++
+   :caption: Introduction to Programming
 
    book
    hardware
    development-tools
    development-cycle
-   tools
    structure
+   tools
 
 .. toctree::
    :maxdepth: 1
