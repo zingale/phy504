@@ -18,7 +18,7 @@ Here's an example of a flowchart of the thought process in debugging a broken la
 
 .. figure:: 750px-LampFlowchart.svg.png
    :align: center
-   :width: 70%
+   :width: 50%
 
    `(Booyabazooka/Wikipedia) <https://commons.wikimedia.org/wiki/File:LampFlowchart.svg>`_
 
@@ -31,7 +31,7 @@ Flowcharts can also have loops, like this example for a code that appears as:
 
 .. figure:: For-loop-diagram.png
    :align: center
-   :width: 70%
+   :width: 50%
 
    `(Paweł Zdziarski (faxe)/Wikipedia) <https://en.wikipedia.org/wiki/Flowchart#/media/File:For-loop-diagram.png>`_
 
@@ -42,8 +42,8 @@ An alternative to flowcharts is to write out the algorithm in
 Both of these concepts help you layout the organization of your
 program before you start writing the code.
 
-Compiling
-=========
+Hello, World
+============
 
 Let's look at a simple "Hello, World" program (your text has an
 example to computes the square root of an input number).
@@ -82,34 +82,4 @@ A few important bits:
 
 * ``::`` is the scope operator.  This tells us that ``cout`` is part of a *namespace*
   called ``std``, and the compiler should look there for its implementation.
-
-We can compile this using an online compiler.  Let's try https://godbolt.org/
-
-This will show us the assembly instructions it generated for our code
-and by checking "Execute the code" in the "Output" dropdown, it will
-run the code for us.
-
-
-Compiling on the Command Line
-=============================
-
-Now let's see how to invoke ``g++`` on the command line.
-
-With your editor, create a file ``hello.cpp`` with the above source code in it.
-
-Then we build our executable (compiling and linking all in a single command) via:
-
-.. prompt:: bash
-
-   g++ -o hello hello.cpp
-
-The option ``-o`` is used to name the executable.  If we do not
-provide a name, then the name ``a.out`` will be used.
-
-We can then run our program as:
-
-.. prompt:: bash
-
-   ./hello
-
 
