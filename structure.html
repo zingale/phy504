@@ -82,6 +82,8 @@
 <li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Structure of a C++ Program</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#flowcharts">Flowcharts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling">Compiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-on-the-command-line">Compiling on the Command Line</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
@@ -166,9 +168,58 @@ programming flowcharts that you should be familiar with.</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudocode">pseudocode</a></p>
 <p>Both of these concepts help you layout the organization of your
 program before you start writing the code.</p>
-<p>A nice breakdown of a “Hello, World” program is shown here: <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/program_structure/">https://www.cplusplus.com/doc/tutorial/program_structure/</a></p>
-<p>Let’s walk through that.</p>
 </section>
+<section id="compiling">
+<h2>Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h2>
+<p>Let’s look at a simple “Hello, World” program (your text has an
+example to computes the square root of an input number).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="c1">// our Hello, World program</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A nice breakdown of a “Hello, World” program is shown here: <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/program_structure/">https://www.cplusplus.com/doc/tutorial/program_structure/</a> – let’s walk through that.</p>
+<p>A few important bits:</p>
+<ul class="simple">
+<li><p>A preprocessor is used to bring additional functionality into our code
+(the <code class="docutils literal notranslate"><span class="pre">#include</span></code>)</p></li>
+<li><p>C++ comments start with <code class="docutils literal notranslate"><span class="pre">//</span></code></p></li>
+<li><p>Each C++ program needs to have a function called <code class="docutils literal notranslate"><span class="pre">main()</span></code> and that function
+is of type <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span></code> and <code class="docutils literal notranslate"><span class="pre">}</span></code> are used to denote blocks of code in C++</p></li>
+<li><p>The C++ Standard Library provides a lot of useful functions and
+capabilities.  Here we use <code class="docutils literal notranslate"><span class="pre">std::cout</span></code> from the standard library
+to output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> is an operator in C++.  Its meaning can depend on context.
+Here it is used to pass <code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">World!&quot;</span></code> to <code class="docutils literal notranslate"><span class="pre">cout</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">::</span></code> is the scope operator.  This tells us that <code class="docutils literal notranslate"><span class="pre">cout</span></code> is part of a <em>namespace</em>
+called <code class="docutils literal notranslate"><span class="pre">std</span></code>, and the compiler should look there for its implementation.</p></li>
+</ul>
+<p>We can compile this using an online compiler.  Let’s try <a class="reference external" href="https://godbolt.org/">https://godbolt.org/</a></p>
+<p>This will show us the assembly instructions it generated for our code
+and by checking “Execute the code” in the “Output” dropdown, it will
+run the code for us.</p>
+</section>
+<section id="compiling-on-the-command-line">
+<h2>Compiling on the Command Line<a class="headerlink" href="#compiling-on-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Now let’s see how to invoke <code class="docutils literal notranslate"><span class="pre">g++</span></code> on the command line.</p>
+<p>With your editor, create a file <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> with the above source code in it.</p>
+<p>Then we build our executable (compiling and linking all in a single command) via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++ -o hello hello.cpp</span>
+</pre></div></div><p>The option <code class="docutils literal notranslate"><span class="pre">-o</span></code> is used to name the executable.  If we do not
+provide a name, then the name <code class="docutils literal notranslate"><span class="pre">a.out</span></code> will be used.</p>
+<p>We can then run our program as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./hello</span>
+</pre></div></div></section>
 </section>
 
 
