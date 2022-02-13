@@ -83,3 +83,5 @@ A few important bits:
 * ``::`` is the scope operator.  This tells us that ``cout`` is part of a *namespace*
   called ``std``, and the compiler should look there for its implementation.
 
+* Statements end with ``;``
+
