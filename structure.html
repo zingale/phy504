@@ -82,11 +82,11 @@
 <li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Structure of a C++ Program</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#flowcharts">Flowcharts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compiling">Compiling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#compiling-on-the-command-line">Compiling on the Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello, World</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul>
@@ -148,7 +148,7 @@
 programming flowcharts that you should be familiar with.</p>
 <p>Here’s an example of a flowchart of the thought process in debugging a broken lamp:</p>
 <figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/750px-LampFlowchart.svg.png"><img alt="_images/750px-LampFlowchart.svg.png" src="_images/750px-LampFlowchart.svg.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="_images/750px-LampFlowchart.svg.png"><img alt="_images/750px-LampFlowchart.svg.png" src="_images/750px-LampFlowchart.svg.png" style="width: 50%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text"><a class="reference external" href="https://commons.wikimedia.org/wiki/File:LampFlowchart.svg">(Booyabazooka/Wikipedia)</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -159,7 +159,7 @@ programming flowcharts that you should be familiar with.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id2">
-<a class="reference internal image-reference" href="_images/For-loop-diagram.png"><img alt="_images/For-loop-diagram.png" src="_images/For-loop-diagram.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="_images/For-loop-diagram.png"><img alt="_images/For-loop-diagram.png" src="_images/For-loop-diagram.png" style="width: 50%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text"><a class="reference external" href="https://en.wikipedia.org/wiki/Flowchart#/media/File:For-loop-diagram.png">(Paweł Zdziarski (faxe)/Wikipedia)</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
@@ -169,8 +169,8 @@ programming flowcharts that you should be familiar with.</p>
 <p>Both of these concepts help you layout the organization of your
 program before you start writing the code.</p>
 </section>
-<section id="compiling">
-<h2>Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h2>
+<section id="hello-world">
+<h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
 <p>Let’s look at a simple “Hello, World” program (your text has an
 example to computes the square root of an input number).</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -200,26 +200,7 @@ Here it is used to pass <code class="docutils literal notranslate"><span class="
 <li><p><code class="docutils literal notranslate"><span class="pre">::</span></code> is the scope operator.  This tells us that <code class="docutils literal notranslate"><span class="pre">cout</span></code> is part of a <em>namespace</em>
 called <code class="docutils literal notranslate"><span class="pre">std</span></code>, and the compiler should look there for its implementation.</p></li>
 </ul>
-<p>We can compile this using an online compiler.  Let’s try <a class="reference external" href="https://godbolt.org/">https://godbolt.org/</a></p>
-<p>This will show us the assembly instructions it generated for our code
-and by checking “Execute the code” in the “Output” dropdown, it will
-run the code for us.</p>
 </section>
-<section id="compiling-on-the-command-line">
-<h2>Compiling on the Command Line<a class="headerlink" href="#compiling-on-the-command-line" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s see how to invoke <code class="docutils literal notranslate"><span class="pre">g++</span></code> on the command line.</p>
-<p>With your editor, create a file <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> with the above source code in it.</p>
-<p>Then we build our executable (compiling and linking all in a single command) via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">g++ -o hello hello.cpp</span>
-</pre></div></div><p>The option <code class="docutils literal notranslate"><span class="pre">-o</span></code> is used to name the executable.  If we do not
-provide a name, then the name <code class="docutils literal notranslate"><span class="pre">a.out</span></code> will be used.</p>
-<p>We can then run our program as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./hello</span>
-</pre></div></div></section>
 </section>
 
 

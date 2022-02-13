@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>C++ Datatypes &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Compiling &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Makefiles" href="make.html" />
-    <link rel="prev" title="Some Random Unix Tools" href="random-tools.html" /> 
+    <link rel="next" title="Editors" href="editors.html" />
+    <link rel="prev" title="Helpful C++ Tools" href="tools.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -75,14 +75,18 @@
 <li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development-tools.html">Software Development Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure of a C++ Program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compiling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#online-compilers">Online Compilers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-on-the-command-line">Compiling on the Command Line</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul>
@@ -90,11 +94,8 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ Datatypes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello world</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro-cxx.html">C++ Datatypes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -124,9 +125,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>C++ Datatypes</li>
+      <li>Compiling</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/intro-cxx.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/compiling.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -134,31 +135,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="c-datatypes">
-<h1>C++ Datatypes<a class="headerlink" href="#c-datatypes" title="Permalink to this headline">¶</a></h1>
-<p>A table of C++ datatypes is provided in the <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/variables/">CPlusPlus tutorial variables section</a></p>
-<section id="hello-world">
-<h2>Hello world<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;hello world&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
+  <section id="compiling">
+<h1>Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h1>
+<section id="online-compilers">
+<h2>Online Compilers<a class="headerlink" href="#online-compilers" title="Permalink to this headline">¶</a></h2>
+<p>We can compile this using an online compiler.  Let’s try <a class="reference external" href="https://godbolt.org/">https://godbolt.org/</a></p>
+<p>This will show us the assembly instructions it generated for our code
+and by checking “Execute the code” in the “Output” dropdown, it will
+run the code for us.</p>
 </section>
+<section id="compiling-on-the-command-line">
+<h2>Compiling on the Command Line<a class="headerlink" href="#compiling-on-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Now let’s see how to invoke <code class="docutils literal notranslate"><span class="pre">g++</span></code> on the command line.</p>
+<p>With your editor, create a file <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> with the above source code in it.</p>
+<p>Then we build our executable (compiling and linking all in a single command) via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++ -o hello hello.cpp</span>
+</pre></div></div><p>The option <code class="docutils literal notranslate"><span class="pre">-o</span></code> is used to name the executable.  If we do not
+provide a name, then the name <code class="docutils literal notranslate"><span class="pre">a.out</span></code> will be used.</p>
+<p>We can then run our program as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./hello</span>
+</pre></div></div></section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="random-tools.html" class="btn btn-neutral float-left" title="Some Random Unix Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="make.html" class="btn btn-neutral float-right" title="Makefiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tools.html" class="btn btn-neutral float-left" title="Helpful C++ Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="editors.html" class="btn btn-neutral float-right" title="Editors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

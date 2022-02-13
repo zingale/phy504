@@ -66,6 +66,7 @@ Spring 2022
    development-cycle
    structure
    tools
+   compiling
 
 .. toctree::
    :maxdepth: 1
