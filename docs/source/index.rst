@@ -80,7 +80,7 @@ Spring 2022
    :maxdepth: 1
    :caption: C++ Basics
 
-   intro-cxx
+   cxx-datatypes
  
 .. toctree::
    :maxdepth: 1
