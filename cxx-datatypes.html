@@ -19,6 +19,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -94,6 +96,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">C++ Datatypes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mixing-types">Mixing types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sizes">Sizes</a></li>
 </ul>
 </li>
@@ -160,6 +163,18 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> : a single precision floating point number</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">double</span></code> : a double precision floating point number</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <em>floating point number</em> is any number with a decimal point, like <code class="docutils literal notranslate"><span class="pre">2.0</span></code> or <code class="docutils literal notranslate"><span class="pre">1.e-20</span></code>.</p>
+<p>Generally, floating point numbers cannot be exactly represented on
+a computer, since there are infinite numbers on the number line
+between <span class="math notranslate nohighlight">\([0, 1]\)</span>, but the computer only has a finite amount
+of memory.</p>
+<p>Single and double precision refer to how much memory (and therefore
+how much precision) is used to store the numbers.  Usually single
+precision uses 32 bits and double precision uses 64 bits.</p>
+<p>More on this later.</p>
+</div>
 <p>There are also modifiers that can be used with many of these like: <code class="docutils literal notranslate"><span class="pre">short</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span></code>.</p>
 <p>A table of C++ datatypes is provided in the <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/variables/">CPlusPlus tutorial variables section</a></p>
 <section id="initialization">
@@ -196,13 +211,52 @@ objects that we will encounter later.</p>
 </pre></div>
 </div>
 </section>
+<section id="mixing-types">
+<h2>Mixing types<a class="headerlink" href="#mixing-types" title="Permalink to this headline">¶</a></h2>
+<p>You need to be careful when mixing different data types.  C++ will
+implicitly <em>cast</em> objects to the more general type, sometimes with
+unexpected consequences.  Later we’ll see how to explicitly cast data
+if needed.</p>
+<p>Try the following (you’ll need to put this in a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function and compile it.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// convert from Fahrenheit to Celsius</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">T_F</span><span class="w"> </span><span class="p">{</span><span class="mf">100.0</span><span class="p">};</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">T_C</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">(</span><span class="n">T_F</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;T_C = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">T_C</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Why doesn’t this work as expected?</p>
+</section>
 <section id="sizes">
 <h2>Sizes<a class="headerlink" href="#sizes" title="Permalink to this headline">¶</a></h2>
+<p>The link above as well as your text tells you how the standard defines
+the sizes of the different data types.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>C++ guarantees a minimum size of the different types, but different
 compilers or processors may have different defaults.</p>
 </div>
+<p>But we can explicitly determine this with a C++ program using <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code> – that returns the number of <em>bytes</em></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The following is guaranteed:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>We can find out a lot about the range and precision of numbers that can be stored with a given type by using
+<a class="reference external" href="https://en.cppreference.com/w/cpp/types/numeric_limits">std::numeric_limits</a>:</p>
+<p>Notice that there is a new pattern here, the use of <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> – this is
+used in template functions, a topic we will talk a lot about later.</p>
+<p>What happens if we exceed the limits of a data type?</p>
+<figure class="align-center" id="id1">
+<img alt="https://imgs.xkcd.com/comics/cant_sleep.png" src="https://imgs.xkcd.com/comics/cant_sleep.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">(<a class="reference external" href="https://imgs.xkcd.com/comics/cant_sleep.png">xkcd</a>)</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Let’s try this.</p>
 </section>
 </section>
 

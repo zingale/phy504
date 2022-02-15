@@ -30,6 +30,21 @@ There are several basic types of data:
 
 * ``double`` : a double precision floating point number
 
+.. note::
+
+   A *floating point number* is any number with a decimal point, like ``2.0`` or ``1.e-20``.
+
+   Generally, floating point numbers cannot be exactly represented on
+   a computer, since there are infinite numbers on the number line
+   between :math:`[0, 1]`, but the computer only has a finite amount
+   of memory.
+
+   Single and double precision refer to how much memory (and therefore
+   how much precision) is used to store the numbers.  Usually single
+   precision uses 32 bits and double precision uses 64 bits.
+
+   More on this later.
+
 There are also modifiers that can be used with many of these like: ``short``, ``unsigned``, ``long``.
 
 A table of C++ datatypes is provided in the `CPlusPlus tutorial variables section <https://www.cplusplus.com/doc/tutorial/variables/>`_
@@ -79,12 +94,75 @@ Objects defined with ``const`` cannot be changed, so you are required to initial
 
    const double G = 6.67e-8;
 
+Mixing types
+============
+
+You need to be careful when mixing different data types.  C++ will
+implicitly *cast* objects to the more general type, sometimes with
+unexpected consequences.  Later we'll see how to explicitly cast data
+if needed.
+
+Try the following (you'll need to put this in a ``main()`` function and compile it.
+
+.. code:: c++
+
+   // convert from Fahrenheit to Celsius
+
+   double T_F {100.0};
+   double T_C =  (T_F - 32) * (5 / 9);
+
+   std::cout << "T_C = " << T_C << std::endl;
+
+
+Why doesn't this work as expected?
+
 
 Sizes
 =====
+
+The link above as well as your text tells you how the standard defines
+the sizes of the different data types.
 
 .. note:: 
 
    C++ guarantees a minimum size of the different types, but different
    compilers or processors may have different defaults.
+
+But we can explicitly determine this with a C++ program using ``sizeof()`` -- that returns the number of *bytes*
+
+.. code:: c++
+
+   std::cout << sizeof(double) << std::endl;
+
+The following is guaranteed:
+
+.. code:: C++
+
+   sizeof(char) == 1  <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)
+
+We can find out a lot about the range and precision of numbers that can be stored with a given type by using
+`std::numeric_limits <https://en.cppreference.com/w/cpp/types/numeric_limits>`_:
+
+.. literalinclude:: ../../examples/limits/limits_test.cpp
+   :language: c++
+   :linenos:
+
+Notice that there is a new pattern here, the use of ``<>`` -- this is
+used in template functions, a topic we will talk a lot about later.
+
+What happens if we exceed the limits of a data type?
+
+.. figure:: https://imgs.xkcd.com/comics/cant_sleep.png
+   :align: center
+
+   (`xkcd <https://imgs.xkcd.com/comics/cant_sleep.png>`_)
+
+
+Let's try this.
+
+
+
+
+
+
 
