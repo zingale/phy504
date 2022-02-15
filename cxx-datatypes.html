@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>C++ Datatypes &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Topics" href="topics.html" />
-    <link rel="prev" title="PHY 504: Computational Methods in Physics and Astrophysics I" href="index.html" /> 
+    <link rel="next" title="Makefiles" href="make.html" />
+    <link rel="prev" title="Some Random Unix Tools" href="random-tools.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,14 +45,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#in-class">In class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-your-own-machine">Using your own machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-mathlab-remotely">Using the MathLab remotely</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">MySBFiles</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
@@ -97,8 +91,12 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ Datatypes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sizes">Sizes</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -128,9 +126,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Getting Started</li>
+      <li>C++ Datatypes</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-datatypes.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -138,81 +136,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>We will use the Linux computer lab / Math SINC site for the class.</p>
-<p>In-class work presentations will mostly be live-coding, where we all
-work on the ideas together.  Notes will be presented on the class
-website before class to guide the discussion and then updated after
-class to reflect what we covered.</p>
-<p>(Thanks to Doug Swesty for his advice on using the MathLab computers)</p>
-<section id="in-class">
-<h2>In class<a class="headerlink" href="#in-class" title="Permalink to this headline">¶</a></h2>
-<p>The computers in class are running Ubuntu 18.04 and have all of the
-software needed for this course installed.  There are a few quicks
-compared to how a normal Linux system will behave.  Most importantly
-<strong>your home directory is wiped clean every 48 hours</strong>.  This means
-that we cannot rely on storing configuration files on our system (but
-there is a workaround that we will see later).</p>
-<p>You will log in with your NetID and password and then you will be
-presented a terminal prompt for your password a second time to mount
-your Stony Brook <a class="reference external" href="https://it.stonybrook.edu/services/mysbfiles">MySBfiles</a> directory.  This is where
-you will want to store your data.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Do not try to get superuser privileges on these machines.  Any
-attempts to <code class="docutils literal notranslate"><span class="pre">su</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span></code> are logged and repeated attempts may
-be reported to campus IT.</p>
+  <section id="c-datatypes">
+<h1>C++ Datatypes<a class="headerlink" href="#c-datatypes" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 3.1</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You should familarized yourself with the campus IT policy:
-<a class="reference external" href="https://it.stonybrook.edu/policies/p109">https://it.stonybrook.edu/policies/p109</a></p>
-</div>
-</section>
-<section id="using-your-own-machine">
-<h2>Using your own machine<a class="headerlink" href="#using-your-own-machine" title="Permalink to this headline">¶</a></h2>
-<p>You are encouraged to also work on your own personal laptop.  The
-easiest way to do so would be to install a Linux virtual machine (for
-example, <a class="reference external" href="https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview">using Ubuntu</a>).
-Other options include the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a>.</p>
-<p>You will want to make sure you install the <code class="docutils literal notranslate"><span class="pre">g++</span></code> compiler (something
-later than version 7), <code class="docutils literal notranslate"><span class="pre">git</span></code>, and <code class="docutils literal notranslate"><span class="pre">bash</span></code>.</p>
-<p>These instructions on <a class="reference external" href="https://code.visualstudio.com/docs/cpp/config-wsl">Using C++ and WSL in VS Code</a> offer a nice solution.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>I only use Linux, so I cannot help you debug any Windows issues.  If you find something
-that works for you, please feel free to share it with the code.</p>
-</div>
-</section>
-<section id="using-the-mathlab-remotely">
-<h2>Using the MathLab remotely<a class="headerlink" href="#using-the-mathlab-remotely" title="Permalink to this headline">¶</a></h2>
-<p>There are 2 special machines that you can log onto remotely via ssh.
-If you are using Windows, then I would recommend the <a class="reference external" href="https://www.putty.org/">PuTTY SSH client</a>.</p>
-<p>With ssh you can connect to:</p>
+<p>Data is stored in computer memory.  We’ll refer to the data in memory as an <em>object</em>.</p>
+<p>We can access this data:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">portal.mathlab.stonybrook.edu</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">portal2.mathlab.stonybrook.edu</span></code></p></li>
+<li><p>directly: using a descriptive object name</p></li>
+<li><p>indirectly: using a pointer or a reference to the memory location</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>These are shared resources, so you should not run anything compute
-intensive or non-class work on these machines.</p>
-</div>
-<p>If you are connecting to one of these via ssh on the command line, then you would do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">&lt;</span><span class="n">netid</span><span class="o">&gt;</span><span class="nd">@portal</span><span class="o">.</span><span class="n">mathlab</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span>
+<p>Data stored in the object can be:</p>
+<ul class="simple">
+<li><p><em>mutable</em> : we can change it – these are variables</p></li>
+<li><p><em>immutable</em> : it cannot be changed – these are constants</p></li>
+</ul>
+<p>There are several basic types of data:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">char</span></code> : a 1 byte character (like <code class="docutils literal notranslate"><span class="pre">'a'</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code> : an integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> : a single precision floating point number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">double</span></code> : a double precision floating point number</p></li>
+</ul>
+<p>There are also modifiers that can be used with many of these like: <code class="docutils literal notranslate"><span class="pre">short</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span></code>.</p>
+<p>A table of C++ datatypes is provided in the <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/variables/">CPlusPlus tutorial variables section</a></p>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<p>We can initialize a define a variable as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">slope</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>where you replace <code class="docutils literal notranslate"><span class="pre">&lt;netid&gt;</span></code> with your NetID.</p>
-<p>You can connect similarly with PuTTY.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C++ variable names are case-sensitive, so <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">X</span></code> are distinct.</p>
+<p>Variable names can include letters, numbers, and <code class="docutils literal notranslate"><span class="pre">_</span></code>, but cannot
+begin with a number.</p>
+<p>There are some reserved keywords (like <code class="docutils literal notranslate"><span class="pre">int</span></code>) that cannot be used
+as variable names.</p>
+</div>
+<p>It is always a good idea to initialize a variable with a starting
+value.  Otherwise, most compilers will leave it undefined and you can
+run into problems if you try to use it without first remembering to
+initialize it.</p>
+<p>There are a few ways to initialize.  Here are the two we’ll see the most:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Both of these will initialize the variable to <code class="docutils literal notranslate"><span class="pre">0</span></code>.  The <code class="docutils literal notranslate"><span class="pre">{}</span></code>
+notation is more flexible, since it will work with more complicated
+objects that we will encounter later.</p>
+<p>We’ll see a third way to initialize objects when we look at classes (and constructors).</p>
+<p>Objects defined with <code class="docutils literal notranslate"><span class="pre">const</span></code> cannot be changed, so you are required to initialize the immediately:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.67e-8</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
 </section>
-<section id="id1">
-<h2>MySBFiles<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">~/MySBFiles/</span></code> directory is mounted from a windows machine and
-is (1) slow, (2) unreliable, and (3) times out after 120 minutes.  It
-is therefore suggested that you do your work in your home directory
-and then move anything you wish to keep to your <code class="docutils literal notranslate"><span class="pre">~/MySBFiles/</span></code> drive
-before logging off.</p>
+<section id="sizes">
+<h2>Sizes<a class="headerlink" href="#sizes" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C++ guarantees a minimum size of the different types, but different
+compilers or processors may have different defaults.</p>
+</div>
 </section>
 </section>
 
@@ -220,8 +210,8 @@ before logging off.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="PHY 504: Computational Methods in Physics and Astrophysics I" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="topics.html" class="btn btn-neutral float-right" title="Topics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="random-tools.html" class="btn btn-neutral float-left" title="Some Random Unix Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="make.html" class="btn btn-neutral float-right" title="Makefiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
