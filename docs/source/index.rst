@@ -67,6 +67,7 @@ Spring 2022
    structure
    tools
    compiling
+   first_project
 
 .. toctree::
    :maxdepth: 1
