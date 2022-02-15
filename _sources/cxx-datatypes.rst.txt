@@ -161,7 +161,18 @@ What happens if we exceed the limits of a data type?
 Let's try this.
 
 
+Precision is also important with floating point.  Consider the following: what do you expect?
 
+.. code:: c++
+
+   double a = 1.0;
+   double b = -1.0;
+   double c = 2.e-15;
+
+   std::cout << (a + b) + c << std::endl;
+   std::cout << a + (b + c) << std::endl;
+
+With floating point, the associate property of addition does not hold.
 
 
 
