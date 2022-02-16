@@ -7,7 +7,7 @@ Helpful C++ Tools
   This is a source-to-source compiler that can help clarify what some
   complex C++ patterns are actually doing.
 
-* IDE One: https:://ideone.com
+* IDE One: https://ideone.com
 
   An online compiler that will build and run your code.
 
