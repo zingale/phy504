@@ -81,6 +81,7 @@ Spring 2022
    :caption: C++ Basics
 
    cxx-datatypes
+   cxx-vectors
  
 .. toctree::
    :maxdepth: 1

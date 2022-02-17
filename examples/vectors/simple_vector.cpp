@@ -9,5 +9,7 @@ int main() {
     container.push_back(15.3);
     container.push_back(3.14159);
 
-    std::cout << container[3] << std::endl;
+    for (double e : container) {
+        std::cout << e << std::endl;
+    }
 }
