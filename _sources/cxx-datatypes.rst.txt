@@ -175,5 +175,8 @@ Precision is also important with floating point.  Consider the following: what d
 With floating point, the associate property of addition does not hold.
 
 
+.. admonition:: quick exercise
 
+   Create a program that initializes a ``short`` integer and through
+   addition triggers an overflow.
 
