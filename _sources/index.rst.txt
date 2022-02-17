@@ -82,7 +82,8 @@ Spring 2022
 
    cxx-datatypes
    cxx-vectors
- 
+   cxx-strings
+
 .. toctree::
    :maxdepth: 1
    :caption: Elements of Software Engineering
