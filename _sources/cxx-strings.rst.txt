@@ -4,4 +4,4 @@ Strings
 
 .. admonition:: reading
 
-   Cyganek section 3.5
+   Cyganek section 3.6
