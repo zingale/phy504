@@ -31,6 +31,11 @@ We can always get the number of elements in a vector via the ``size()`` function
    int nlen = int_vec.size();
 
 
+.. admonition:: c++
+
+   We saw that we access an element via ``[]``.  What happens if we
+   access the vector out of bounds?
+
 Inserting
 =========
 
