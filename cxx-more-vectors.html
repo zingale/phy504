@@ -150,9 +150,12 @@
 <section id="initializing">
 <h2>Initializing<a class="headerlink" href="#initializing" title="Permalink to this headline">¶</a></h2>
 <p>We can initialize a vector when we declare it.  The following creates a vector with 5 elements, all initialized to 0:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
+<p>Notice that we are using <code class="docutils literal notranslate"><span class="pre">()</span></code> here instead of <code class="docutils literal notranslate"><span class="pre">{}</span></code>.  As we’ll see
+later, this means that we are calling a function here to do the
+initialization (the constructor).</p>
 <p>Here we instead initialize a vector by telling it the values of each of the elements:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container2</span><span class="p">{</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">30.0</span><span class="p">};</span><span class="w"></span>
 </pre></div>

@@ -11,7 +11,11 @@ We can initialize a vector when we declare it.  The following creates a vector w
 
 .. code:: c++
 
-   vector<double> container{5, 0.0};
+   vector<double> container(5, 0.0);
+
+Notice that we are using ``()`` here instead of ``{}``.  As we'll see
+later, this means that we are calling a function here to do the
+initialization (the constructor).
 
 Here we instead initialize a vector by telling it the values of each of the elements:
 
