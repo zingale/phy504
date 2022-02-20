@@ -91,9 +91,20 @@ These can also be used in some powerful algorithms provided by the
 .. literalinclude:: ../../examples/vectors/find_example.cpp
    :language: c++
 
+We'll see more algorithms provided by the STL later.
+
 
 Resize and clear
 ================
+
+If we have an existing vector we can resize it with ``.resize(num,
+init)`` where ``num`` is the number of new elements and (optionally) ``init`` is
+their initial value.
+
+We can remove everything from the vector using ``.clear()``.  Here's an example:
+
+.. literalinclude:: ../../examples/vectors/resize_example.cpp
+   :language: c++
 
 
 
