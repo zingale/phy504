@@ -82,6 +82,7 @@ Spring 2022
 
    cxx-datatypes
    cxx-vectors
+   cxx-more-vectors
    cxx-strings
 
 .. toctree::
