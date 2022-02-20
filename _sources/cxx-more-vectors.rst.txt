@@ -30,16 +30,70 @@ We can always get the number of elements in a vector via the ``size()`` function
 
    int nlen = int_vec.size();
 
-Insert
 
-Find
+Inserting
+=========
 
-accumulate
+We saw that ``.push_back()`` is used to add an element to the end of a
+vector.  To insert in the middle of the vector, we use
+``.insert(pos)``, where ``pos`` is the element in the vector we want
+to insert *in front of*.  (Note: ``insert()`` can actually allow you to
+insert multiple elements by specifying an additional argument.)
+
+.. admonition:: try it...
+
+   Create a vector that initially has the elements ``100``, ``200``,
+   ``300`` and then use ``insert()`` to put ``150`` in between ``100``
+   and ``200``.
+
+   Finally loop over and print out all the elements of the vector.
 
 
-Resizing
+Bounds, iterators, and pointers
+===============================
 
-Clear
+There are 2 ways to access the beginning and end of a ``vector``:
 
-Indexing out of bounds
+* ``.cbegin()``, ``.begin()`` : these will give you an interator that
+  points to the first element.  The difference is that accessing with
+  ``.cbegin()`` will not allow you to modify the vector (the ``c`` is
+  for ``const``).  You can increment an *iterator* loop over the
+  contents of the vector.
+
+* ``.cend()``, ``.end()`` : these will return an iterator that points
+  *to one past the last element*.
+
+An iterator can be thought of as a special type of *pointer* -- a
+topic that we will discuss much more later.  Iterators have
+restrictions on their use, depending on the container -- this makes
+them more safe to use.
+
+If we think about an iterator like:
+
+.. code:: c++
+
+   auto it = container.cbegin();
+
+Then we can access the next element in ``container`` by incrementing the iterator, ``it++``.
+
+If we want to see the value in ``container`` that the iterator is
+pointing to, then we need to *dereference* it -- this is done with the
+``*`` operator:
+
+.. code:: c++
+
+   std::cout << "cbegin is " << *it << std::endl;
+
+
+These can also be used in some powerful algorithms provided by the
+``algorithms`` header.  Here's an example of using ``find`` on a vector:
+
+.. literalinclude:: ../../examples/vectors/find_example.cpp
+   :language: c++
+
+
+Resize and clear
+================
+
+
 

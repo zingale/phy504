@@ -97,6 +97,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">More Vectors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#initializing">Initializing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#size">Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inserting">Inserting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bounds-iterators-and-pointers">Bounds, iterators, and pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resize-and-clear">Resize and clear</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
@@ -162,12 +165,77 @@
 <span class="kt">int</span><span class="w"> </span><span class="n">nlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int_vec</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Insert</p>
-<p>Find</p>
-<p>accumulate</p>
-<p>Resizing</p>
-<p>Clear</p>
-<p>Indexing out of bounds</p>
+</section>
+<section id="inserting">
+<h2>Inserting<a class="headerlink" href="#inserting" title="Permalink to this headline">¶</a></h2>
+<p>We saw that <code class="docutils literal notranslate"><span class="pre">.push_back()</span></code> is used to add an element to the end of a
+vector.  To insert in the middle of the vector, we use
+<code class="docutils literal notranslate"><span class="pre">.insert(pos)</span></code>, where <code class="docutils literal notranslate"><span class="pre">pos</span></code> is the element in the vector we want
+to insert <em>in front of</em>.  (Note: <code class="docutils literal notranslate"><span class="pre">insert()</span></code> can actually allow you to
+insert multiple elements by specifying an additional argument.)</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Create a vector that initially has the elements <code class="docutils literal notranslate"><span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">200</span></code>,
+<code class="docutils literal notranslate"><span class="pre">300</span></code> and then use <code class="docutils literal notranslate"><span class="pre">insert()</span></code> to put <code class="docutils literal notranslate"><span class="pre">150</span></code> in between <code class="docutils literal notranslate"><span class="pre">100</span></code>
+and <code class="docutils literal notranslate"><span class="pre">200</span></code>.</p>
+<p>Finally loop over and print out all the elements of the vector.</p>
+</div>
+</section>
+<section id="bounds-iterators-and-pointers">
+<h2>Bounds, iterators, and pointers<a class="headerlink" href="#bounds-iterators-and-pointers" title="Permalink to this headline">¶</a></h2>
+<p>There are 2 ways to access the beginning and end of a <code class="docutils literal notranslate"><span class="pre">vector</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code>, <code class="docutils literal notranslate"><span class="pre">.begin()</span></code> : these will give you an interator that
+points to the first element.  The difference is that accessing with
+<code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code> will not allow you to modify the vector (the <code class="docutils literal notranslate"><span class="pre">c</span></code> is
+for <code class="docutils literal notranslate"><span class="pre">const</span></code>).  You can increment an <em>iterator</em> loop over the
+contents of the vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.cend()</span></code>, <code class="docutils literal notranslate"><span class="pre">.end()</span></code> : these will return an iterator that points
+<em>to one past the last element</em>.</p></li>
+</ul>
+<p>An iterator can be thought of as a special type of <em>pointer</em> – a
+topic that we will discuss much more later.  Iterators have
+restrictions on their use, depending on the container – this makes
+them more safe to use.</p>
+<p>If we think about an iterator like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then we can access the next element in <code class="docutils literal notranslate"><span class="pre">container</span></code> by incrementing the iterator, <code class="docutils literal notranslate"><span class="pre">it++</span></code>.</p>
+<p>If we want to see the value in <code class="docutils literal notranslate"><span class="pre">container</span></code> that the iterator is
+pointing to, then we need to <em>dereference</em> it – this is done with the
+<code class="docutils literal notranslate"><span class="pre">*</span></code> operator:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;cbegin is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>These can also be used in some powerful algorithms provided by the
+<code class="docutils literal notranslate"><span class="pre">algorithms</span></code> header.  Here’s an example of using <code class="docutils literal notranslate"><span class="pre">find</span></code> on a vector:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">600</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// search through the entire vector to find the first instance of the</span>
+<span class="w">    </span><span class="c1">// element &quot;400&quot;</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">container</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">cend</span><span class="p">(),</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;element found: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pos</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// output the remaining elements after the one we searched for</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">cend</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="resize-and-clear">
+<h2>Resize and clear<a class="headerlink" href="#resize-and-clear" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
