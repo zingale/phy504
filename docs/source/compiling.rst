@@ -40,6 +40,6 @@ We can then run our program as:
    If you are using your own computer, then you will need to ensure that the compiler is
    using a recent C++ standard to build the code we will discuss in this class.
 
-   You can add the option `-std=c++17` to the compilation line to ensure it uses C++ 17.
+   You can add the option ``-std=c++17`` to the compilation line to ensure it uses C++ 17.
 
 
