@@ -19,6 +19,11 @@ Some comments:
   <https://en.wikipedia.org/wiki/Row-_and_column-major_order>`_ of the
   data.
 
+* To access an element at row ``r`` and column ``c``, we do:
+  ``M[r][c]``.  The first indexing, ``M[r]`` gives us the vector that
+  holds row ``r`` 's data.  Then we just index that vector with
+  ``[c]`` to get the position corresponding to the column we want.
+
 * When we ``push_back()`` onto the matrix, we are adding a whole new row.
 
 * When we loop over elements, we first loop over rows (outer loop) and
@@ -29,3 +34,5 @@ Some comments:
   elements -- this can potentially be unsafe if we try to access
   beyond the limits of a row.  We'll fix this later.
 
+* Both of our operations involve sums over elements -- we are careful
+  to first initialize the sum to ``0`` before adding to it.
