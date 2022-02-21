@@ -35,28 +35,10 @@ We can always get the number of elements in a vector via the ``size()`` function
    int nlen = int_vec.size();
 
 
-.. admonition:: c++
+.. admonition:: try it...
 
    We saw that we access an element via ``[]``.  What happens if we
    access the vector out of bounds?
-
-Inserting
-=========
-
-We saw that ``.push_back()`` is used to add an element to the end of a
-vector.  To insert in the middle of the vector, we use
-``.insert(pos)``, where ``pos`` is the element in the vector we want
-to insert *in front of*.  (Note: ``insert()`` can actually allow you to
-insert multiple elements by specifying an additional argument.)
-
-.. admonition:: try it...
-
-   Create a vector that initially has the elements ``100``, ``200``,
-   ``300`` and then use ``insert()`` to put ``150`` in between ``100``
-   and ``200``.
-
-   Finally loop over and print out all the elements of the vector.
-
 
 Bounds, iterators, and pointers
 ===============================
@@ -101,6 +83,25 @@ These can also be used in some powerful algorithms provided by the
    :language: c++
 
 We'll see more algorithms provided by the STL later.
+
+
+Inserting
+=========
+
+We saw that ``.push_back()`` is used to add an element to the end of a
+vector.  To insert in the middle of the vector, we use
+``.insert(it_pos)``, where ``it_pos`` is an iterator pointing to the
+element in the vector we want to insert *in front of*.  (Note:
+``insert()`` can actually allow you to insert multiple elements by
+specifying an additional argument.)
+
+.. admonition:: try it...
+
+   Create a vector that initially has the elements ``100``, ``200``,
+   ``300`` and then use ``insert()`` to put ``150`` in between ``100``
+   and ``200``.
+
+   Finally loop over and print out all the elements of the vector.
 
 
 Resize and clear
