@@ -9,7 +9,7 @@ int main() {
     // search through the entire vector to find the first instance of the
     // element "400"
 
-    auto pos = find(container.cbegin(), container.cend(), 400);
+    auto pos = std::find(container.cbegin(), container.cend(), 400);
 
     std::cout << "element found: " << *pos << std::endl;
 
