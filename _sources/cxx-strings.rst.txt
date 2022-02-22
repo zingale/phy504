@@ -45,4 +45,17 @@ here's an 80-character line:
 
 Note that ``'-'`` is a ``char`` and not a string.
 
+Find and Replace
+================
+
+``string`` s have find and replace methods.  Here's an example of
+extracting the basename of a file from a path and then replacing the
+extension.
+
+Note: there are a lot of different ways we can do a replace:
+`std::string::replace calls
+<https://www.cplusplus.com/reference/string/string/replace/>`_ .
+
+.. literalinclude:: ../../examples/strings/string_replace.cpp
+   :language: c++
 

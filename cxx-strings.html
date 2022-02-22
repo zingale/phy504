@@ -96,7 +96,10 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Matrix Example</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Strings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Strings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#find-and-replace">Find and Replace</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -184,6 +187,50 @@ here’s an 80-character line:</p>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">'-'</span></code> is a <code class="docutils literal notranslate"><span class="pre">char</span></code> and not a string.</p>
+<section id="find-and-replace">
+<h2>Find and Replace<a class="headerlink" href="#find-and-replace" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">string</span></code> s have find and replace methods.  Here’s an example of
+extracting the basename of a file from a path and then replacing the
+extension.</p>
+<p>Note: there are a lot of different ways we can do a replace:
+<a class="reference external" href="https://www.cplusplus.com/reference/string/string/replace/">std::string::replace calls</a> .</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="p">{</span><span class="s">&quot;~/classes/test.cpp&quot;</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// let&#39;s find just the base file name -- reverse find for &#39;/&#39;</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ipos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filename</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="sc">&#39;/&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// create a substring containing just the base name</span>
+<span class="w">    </span><span class="c1">// if we don&#39;t provide a lenght, substr goes to the end</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">basename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filename</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">ipos</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;basename = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">basename</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// now let&#39;s change the extension from .cpp to .txt</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ipos_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">basename</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// there are many forms of replace -- here&#39;s well use iterators that mark</span>
+<span class="w">    </span><span class="c1">// the start and end of the original string and those of the string we want</span>
+<span class="w">    </span><span class="c1">// to substitute</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">new_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.txt&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">basename</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">basename</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">ipos_ext</span><span class="p">,</span><span class="w"> </span><span class="n">basename</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                     </span><span class="n">new_ext</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">new_ext</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;basename = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">basename</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
