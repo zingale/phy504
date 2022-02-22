@@ -103,7 +103,6 @@ and ``200``.
    :language: c++
 
 
-
 Erasing
 =======
 
@@ -120,8 +119,8 @@ Here's an example that removes the first 4 elements of a vector.
 What happens if we try to remove past the end?  To be save, we should
 always add a check on whether our end is past ``.end()``.
 
-
-
+.. literalinclude:: ../../examples/vectors/vector_erase.cpp
+   :language: c++
 
 
 Resize and clear
