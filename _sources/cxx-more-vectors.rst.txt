@@ -95,13 +95,33 @@ element in the vector we want to insert *in front of*.  (Note:
 ``insert()`` can actually allow you to insert multiple elements by
 specifying an additional argument.)
 
-.. admonition:: try it...
+Here's an example: we start with a vector with the elements ``100``, ``200``,
+``300`` and then use ``insert()`` to put ``150`` in between ``100``
+and ``200``.
 
-   Create a vector that initially has the elements ``100``, ``200``,
-   ``300`` and then use ``insert()`` to put ``150`` in between ``100``
-   and ``200``.
+.. literalinclude:: ../../examples/vectors/insert_example.cpp
+   :language: c++
 
-   Finally loop over and print out all the elements of the vector.
+
+
+Erasing
+=======
+
+Erasing works similar to inserting.  We give an iterator pointing to
+the start and end of the range we want to erase, and all elements up
+to, but not including the end, are erased.
+
+The end point being *exclusive* rather than *inclusive* is consistent
+with ``.end()`` returning an iterator that points one-past the end of
+the vector.
+
+Here's an example that removes the first 4 elements of a vector.
+
+What happens if we try to remove past the end?  To be save, we should
+always add a check on whether our end is past ``.end()``.
+
+
+
 
 
 Resize and clear
@@ -116,5 +136,13 @@ We can remove everything from the vector using ``.clear()``.  Here's an example:
 .. literalinclude:: ../../examples/vectors/resize_example.cpp
    :language: c++
 
+
+Sorting
+=======
+
+.. admonition:: try it...
+
+   Let's try to understand how the ``sort`` function works.
+   https://www.cplusplus.com/reference/algorithm/sort/
 
 

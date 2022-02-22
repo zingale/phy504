@@ -99,7 +99,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#size">Size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bounds-iterators-and-pointers">Bounds, iterators, and pointers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#inserting">Inserting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#erasing">Erasing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resize-and-clear">Resize and clear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting">Sorting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Matrix Example</a></li>
@@ -237,13 +239,40 @@ vector.  To insert in the middle of the vector, we use
 element in the vector we want to insert <em>in front of</em>.  (Note:
 <code class="docutils literal notranslate"><span class="pre">insert()</span></code> can actually allow you to insert multiple elements by
 specifying an additional argument.)</p>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>Create a vector that initially has the elements <code class="docutils literal notranslate"><span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">200</span></code>,
+<p>Here’s an example: we start with a vector with the elements <code class="docutils literal notranslate"><span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">200</span></code>,
 <code class="docutils literal notranslate"><span class="pre">300</span></code> and then use <code class="docutils literal notranslate"><span class="pre">insert()</span></code> to put <code class="docutils literal notranslate"><span class="pre">150</span></code> in between <code class="docutils literal notranslate"><span class="pre">100</span></code>
 and <code class="docutils literal notranslate"><span class="pre">200</span></code>.</p>
-<p>Finally loop over and print out all the elements of the vector.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">int_vec</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">int_vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">int_vec</span><span class="p">.</span><span class="n">cend</span><span class="p">(),</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">int_vec</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="mi">150</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">int_vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
 </div>
+</section>
+<section id="erasing">
+<h2>Erasing<a class="headerlink" href="#erasing" title="Permalink to this headline">¶</a></h2>
+<p>Erasing works similar to inserting.  We give an iterator pointing to
+the start and end of the range we want to erase, and all elements up
+to, but not including the end, are erased.</p>
+<p>The end point being <em>exclusive</em> rather than <em>inclusive</em> is consistent
+with <code class="docutils literal notranslate"><span class="pre">.end()</span></code> returning an iterator that points one-past the end of
+the vector.</p>
+<p>Here’s an example that removes the first 4 elements of a vector.</p>
+<p>What happens if we try to remove past the end?  To be save, we should
+always add a check on whether our end is past <code class="docutils literal notranslate"><span class="pre">.end()</span></code>.</p>
 </section>
 <section id="resize-and-clear">
 <h2>Resize and clear<a class="headerlink" href="#resize-and-clear" title="Permalink to this headline">¶</a></h2>
@@ -288,6 +317,14 @@ their initial value.</p>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s try to understand how the <code class="docutils literal notranslate"><span class="pre">sort</span></code> function works.
+<a class="reference external" href="https://www.cplusplus.com/reference/algorithm/sort/">https://www.cplusplus.com/reference/algorithm/sort/</a></p>
 </div>
 </section>
 </section>
