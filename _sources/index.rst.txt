@@ -85,6 +85,7 @@ Spring 2022
    cxx-more-vectors
    cxx-matrix-example
    cxx-strings
+   cxx-auto-decltype
 
 .. toctree::
    :maxdepth: 1
