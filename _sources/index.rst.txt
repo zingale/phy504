@@ -86,6 +86,10 @@ Spring 2022
    cxx-matrix-example
    cxx-strings
    cxx-auto-decltype
+   cxx-structs
+   cxx-arrays
+   cxx-references
+   cxx-pointers
 
 .. toctree::
    :maxdepth: 1

@@ -1,4 +1,10 @@
+******
+Arrays
+******
 
+.. admonition:: reading
+
+   Cyganek section 3.10
 
 
 Nice discussion of the differences between C-arrays and std::array:

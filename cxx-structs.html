@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why Use the Command Line? &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Structures &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Navigating the Filesystem" href="shell.html" />
-    <link rel="prev" title="Hello, World" href="hello_world.html" /> 
+    <link rel="next" title="Arrays" href="cxx-arrays.html" />
+    <link rel="prev" title="auto and decltype" href="cxx-auto-decltype.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Why Use the Command Line?</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
@@ -91,14 +91,14 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Matrix Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-arrays.html">Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-pointers.html">Pointers</a></li>
@@ -133,9 +133,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Why Use the Command Line?</li>
+      <li>Structures</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/why_command_line.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-structs.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -143,28 +143,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="why-use-the-command-line">
-<h1>Why Use the Command Line?<a class="headerlink" href="#why-use-the-command-line" title="Permalink to this headline">¶</a></h1>
-<p>We are all used to the point-and-click graphical user interfaces of modern computers.  So why use the command line?</p>
-<p>There are a few reasons (and see the excellent discussion that is part
-of the <a class="reference external" href="https://swcarpentry.github.io/shell-novice/guide/index.html">Software Carpentry Unix shell notes</a>):</p>
-<ul class="simple">
-<li><p>Scientific computing often involves automating workflows and repetitive tasks.</p></li>
-<li><p>Supercomputing facilities are access via remote connections</p></li>
-<li><p>Much of the analysis software we use is written as a command line
-tool that is meant to be incorporated into a script, or chained
-together with other tools.</p></li>
-<li><p>It helps us understand how the computer thinks about our files and
-data.</p></li>
-</ul>
+  <section id="structures">
+<h1>Structures<a class="headerlink" href="#structures" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 3.9</p>
+</div>
+<p>A structure (or <code class="docutils literal notranslate"><span class="pre">struct</span></code>) is a compound datatype that can hold a mix
+of data.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hello_world.html" class="btn btn-neutral float-left" title="Hello, World" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell.html" class="btn btn-neutral float-right" title="Navigating the Filesystem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-auto-decltype.html" class="btn btn-neutral float-left" title="auto and decltype" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-arrays.html" class="btn btn-neutral float-right" title="Arrays" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
