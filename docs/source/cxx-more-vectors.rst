@@ -123,6 +123,14 @@ always add a check on whether our end is past ``.end()``.
    :language: c++
 
 
+.. admonition:: try it...
+
+   What happens if you use ``.cbegin()`` and/or ``.cend()`` instead
+   ``.begin()`` and ``.end()``?
+
+   Remember that the ``c`` in those functions is for ``const`` -- it
+   provides read-only access to the elements through the iterator.
+
 Resize and clear
 ================
 

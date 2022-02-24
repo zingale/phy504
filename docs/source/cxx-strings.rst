@@ -23,6 +23,11 @@ operate on strings.
    These are quite inflexible and can lead to coding errors if you are
    not careful, and we will avoid them as much as possible.
 
+.. note::
+
+   In C++, single characters (``char``) are enclosed in single-quotes, e.g., ``'A'``,
+   while strings are enclosed in double quotes, e.g. ``"string"``.
+
 When working with strings, we include the ``<string>`` header.
 
 Here's a first example.  We'll create a string and we'll concatenate
