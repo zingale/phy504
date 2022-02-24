@@ -93,6 +93,10 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: Functions and Classes
+
+.. toctree::
+   :maxdepth: 1
    :caption: Elements of Software Engineering
 
    make
