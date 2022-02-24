@@ -143,6 +143,25 @@
              
   <section id="compiling">
 <h1>Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h1>
+<p>When we write C++ code, there are a few concepts we need to understand:</p>
+<ul>
+<li><p><em>source code</em> : this is the C++ instructions we directly write.  We
+will use our text editor and create a file with the extension
+<code class="docutils literal notranslate"><span class="pre">.cpp</span></code>, like <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>.</p>
+<p>This is readable to us, but it does not contain the instructions
+that the processor can interpret directly.</p>
+</li>
+<li><p><em>compiler</em> : a compiler is a program that takes the source code file
+(e.g. <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>) and translates it into machine code
+instructions specific to the processor in our computer.  We will use
+the compiler <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p></li>
+<li><p><em>executable</em> : this is the name of the program output by the
+compiler that is able to be run by the operating system.</p>
+<p>Tradiationally it will not have an extension on Unix (so
+<code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> will produce an executable named <code class="docutils literal notranslate"><span class="pre">hello</span></code>), while on
+Windows, you will often see the extension <code class="docutils literal notranslate"><span class="pre">.exe</span></code>.</p>
+</li>
+</ul>
 <section id="online-compilers">
 <h2>Online Compilers<a class="headerlink" href="#online-compilers" title="Permalink to this headline">¶</a></h2>
 <p>We can compile this using an online compiler.  Let’s try <a class="reference external" href="https://godbolt.org/">https://godbolt.org/</a></p>
@@ -160,7 +179,8 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">g++ -o hello hello.cpp</span>
-</pre></div></div><p>The option <code class="docutils literal notranslate"><span class="pre">-o</span></code> is used to name the executable.  If we do not
+</pre></div></div><p>This turns our source code, <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> into the executable <code class="docutils literal notranslate"><span class="pre">hello</span></code>.</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">-o</span></code> is used to name the executable.  If we do not
 provide a name, then the name <code class="docutils literal notranslate"><span class="pre">a.out</span></code> will be used.</p>
 <p>We can then run our program as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./hello</span>
