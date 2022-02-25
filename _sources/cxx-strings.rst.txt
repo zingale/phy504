@@ -11,7 +11,7 @@ particular, you could imagine doing ``std::vector<char>``.  But it is
 specific to strings, and as such, has many useful functions that
 operate on strings.
 
-.. note::
+.. warning::
 
    C++ can also use older C-style strings, which are essentially a
    null-terminated array of characters, e.g.,

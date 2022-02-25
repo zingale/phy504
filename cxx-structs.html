@@ -19,6 +19,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -150,7 +152,86 @@
 <p>Cyganek section 3.9</p>
 </div>
 <p>A structure (or <code class="docutils literal notranslate"><span class="pre">struct</span></code>) is a compound datatype that can hold a mix
-of data.</p>
+of data.  In C++, a <code class="docutils literal notranslate"><span class="pre">struct</span></code> shares many similarities to a <code class="docutils literal notranslate"><span class="pre">class</span></code>
+– both hold data as well as functions that work on the data (called
+<em>members</em>).</p>
+<p>Consider the following:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">{};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w">            </span><span class="c1">// semi-major axis</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">{};</span><span class="w">            </span><span class="c1">// eccentricity</span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If we create <code class="docutils literal notranslate"><span class="pre">Planet</span></code> object via:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Planet</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then we can access the different members of the <code class="docutils literal notranslate"><span class="pre">struct</span></code> using the “<code class="docutils literal notranslate"><span class="pre">.</span></code>” operator,
+e.g. <code class="docutils literal notranslate"><span class="pre">p.name</span></code>, <code class="docutils literal notranslate"><span class="pre">p.a</span></code>, and <code class="docutils literal notranslate"><span class="pre">p.e</span></code>.</p>
+<p>This is a structure that can describe some basic properties of a planet, including its
+name, semi-major axis, and eccentricity of the orbit.</p>
+<p>Let’s look at a program that stores the basic properties for the
+planets in our solar system and then loops over them and computes
+their orbital period using Kepler’s third law:</p>
+<div class="math notranslate nohighlight">
+\[\left ( \frac{P}{\mathrm{year}} \right )^2 = \left ( \frac{a}{\mathrm{AU}} \right )^3\]</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">{};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w">            </span><span class="c1">// semi-major axis</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">{};</span><span class="w">            </span><span class="c1">// eccentricity</span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Planet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">planets</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;Mercury&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">0.3871</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2056</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Venus&quot;</span><span class="p">,</span><span class="w">    </span><span class="mf">0.7233</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0068</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Earth&quot;</span><span class="p">,</span><span class="w">    </span><span class="mf">1.0000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0167</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Mars&quot;</span><span class="p">,</span><span class="w">     </span><span class="mf">1.5237</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0934</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Jupiter&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">5.2029</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0484</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Saturn&quot;</span><span class="p">,</span><span class="w">   </span><span class="mf">9.5370</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0539</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Uranus&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">19.189</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0473</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Neptune&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">30.070</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0086</span><span class="p">}};</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">planets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has a period of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; years&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Some notes:</p>
+<ul class="simple">
+<li><p>We put the defintion of <code class="docutils literal notranslate"><span class="pre">Planet</span></code> outside of the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function.</p></li>
+<li><p>In the initialization of the <code class="docutils literal notranslate"><span class="pre">planets</span></code> vector, we use
+list-initialization for each of the planets in its own set of
+<code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A common mistake is to forget the <code class="docutils literal notranslate"><span class="pre">;</span></code> after the definition of the <code class="docutils literal notranslate"><span class="pre">struct</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As mentioned above, a <code class="docutils literal notranslate"><span class="pre">class</span></code> is very similar to a <code class="docutils literal notranslate"><span class="pre">struct</span></code> in
+C++.  The main difference is that in a <code class="docutils literal notranslate"><span class="pre">struct</span></code> all of the
+members are publicly accessible while in a <code class="docutils literal notranslate"><span class="pre">class</span></code>, they are
+private unless we make them public.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A common consideration when organizing data that is associated
+together is whether to do a struct-of-arrays or an
+array-of-structs.  See this discussion on <a class="reference external" href="https://en.wikipedia.org/wiki/AoS_and_SoA">AoS and SoA</a>.</p>
+<p>In our planet example above, we created an array of structs.  This
+is a natural organization if we want to loop over planets and
+access their data individually.</p>
+</div>
 </section>
 
 
