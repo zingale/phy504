@@ -64,3 +64,14 @@ Note: there are a lot of different ways we can do a replace:
 .. literalinclude:: ../../examples/strings/string_replace.cpp
    :language: c++
 
+Other Functions
+===============
+
+There are a large number of member functions that work on strings.
+See for instance: https://www.cplusplus.com/reference/string/string/
+
+
+.. admonition:: try it...
+
+   Let's try to use ``std::string::find_first_of``, following this:
+   https://www.cplusplus.com/reference/string/string/find_first_of/
