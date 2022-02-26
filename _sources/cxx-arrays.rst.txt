@@ -7,5 +7,16 @@ Arrays
    Cyganek section 3.10
 
 
-Nice discussion of the differences between C-arrays and std::array:
-https://coders-corner.net/2018/06/16/stdarray-vs-c-style-array/
+.. note::
+
+   In C and older C++, you will see fixed-side arrays declared as:
+
+   .. code:: c++
+
+      double x[10];
+      int p[10][20];
+
+   For a nice discussion of the differences between C-arrays and ``std::array`` see:
+   `https://coders-corner.net/2018/06/16/stdarray-vs-c-style-array/ <https://coders-corner.net/2018/06/16/stdarray-vs-c-style-array/>`_
+
+

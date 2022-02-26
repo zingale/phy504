@@ -9,9 +9,13 @@ We'll write our own version of what the text does.
 .. literalinclude:: ../../examples/vectors/simple_matrix.cpp
    :language: c++
 
+.. tip::
+
+   Notice that we use some type aliases to make it easy to reuse this datatype.
+
+
 Some comments:
 
-* Notice that we use some type aliases to make it easy to reuse this data.
 
 * For our matrix ``M``, ``M[0]`` is the first row.  It is a vector,
   and the columns in that row are all stored together in that vector.

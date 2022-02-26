@@ -53,7 +53,7 @@ Some notes:
   list-initialization for each of the planets in its own set of
   ``{}``.
 
-.. note::
+.. tip::
 
    A common mistake is to forget the ``;`` after the definition of the ``struct``.
 

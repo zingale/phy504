@@ -16,7 +16,7 @@ that we are the only developer on a project and learn the basics and
 then we'll see how to share what we've done locally and remotely using
 GitHub.
 
-.. note::
+.. important::
 
    You should create a `GitHub account <https://github.com>`_.  Pick a
    username that is professional and meaningful.

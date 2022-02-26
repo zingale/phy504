@@ -129,14 +129,14 @@ The ``/`` character has 2 roles:
 
 * A path uses ``/`` to separate directory names
 
-.. note::
+.. tip::
 
    The Unix shell uses tab-completion to make it easier to type.
    Start typing a path (or command) and then press the *Tab* key and
    it will either complete it (if there is a unique file / command) or
    display the possible completions.
 
-.. note::
+.. tip::
 
    You can navigate through your history of commands using the up and down arrows.
 
