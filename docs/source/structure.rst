@@ -48,7 +48,7 @@ Hello, World
 Let's look at a simple "Hello, World" program (your text has an
 example to computes the square root of an input number).
 
-.. note::
+.. important::
 
    Every C++ program needs to have a ``main()`` function
 

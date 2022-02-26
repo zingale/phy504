@@ -56,7 +56,7 @@ storing.  We'll talk about data types next, but for now we'll use
 ``double``, which is double precision floating point format (more on
 that later).
 
-.. note::
+.. important::
 
    C++ is statically typed -- this means we need to declare what type
    of data is to be stored in each variable we use before we can use
@@ -92,7 +92,6 @@ the C++ constructs that we will learn in the next weeks.
 
 .. literalinclude:: ../../examples/interest/interest.cpp
    :language: c++
-   :linenos:
 
 Letter histogram
 ================

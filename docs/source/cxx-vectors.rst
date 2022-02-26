@@ -93,7 +93,7 @@ For example, to loop from 0 to 9, we could do:
       // do stuff depending on i
    }
 
-.. admonition:: try it
+.. admonition:: try it...
 
    Try out the loop above, printing out the value of ``i`` each iteration.
 

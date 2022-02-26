@@ -60,7 +60,7 @@ We can initialize a define a variable as:
    float x;
    double slope;
 
-.. note::
+.. tip::
 
    C++ variable names are case-sensitive, so ``x`` and ``X`` are distinct.
 
@@ -123,7 +123,7 @@ Sizes
 The link above as well as your text tells you how the standard defines
 the sizes of the different data types.
 
-.. note:: 
+.. important:: 
 
    C++ guarantees a minimum size of the different types, but different
    compilers or processors may have different defaults.
@@ -175,7 +175,7 @@ Precision is also important with floating point.  Consider the following: what d
 With floating point, the associate property of addition does not hold.
 
 
-.. admonition:: quick exercise
+.. admonition:: try it...
 
    Create a program that initializes a ``short`` integer and through
    addition triggers an overflow.

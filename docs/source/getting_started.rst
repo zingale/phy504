@@ -72,7 +72,7 @@ With ssh you can connect to:
 
 * ``portal2.mathlab.stonybrook.edu``
 
-.. note::
+.. important::
 
    These are shared resources, so you should not run anything compute
    intensive or non-class work on these machines.
