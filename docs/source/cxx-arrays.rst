@@ -6,6 +6,10 @@ Arrays
 
    Cyganek section 3.10
 
+Vectors can grow in size as needed to accommodate additional data.  In contrast, arrays are fixed-size.  
+
+
+stack vs. heap
 
 .. note::
 
