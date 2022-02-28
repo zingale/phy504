@@ -42,7 +42,7 @@ other new command we will note here: ``ln``.  ``ln -s`` creates a
 in our home directory ``~/`` when they actually live elsewhere in our
 path.
 
-.. note::
+.. tip::
 
    You can add other shortcuts or ``alias`` -es to you ``mybashrc`` file.
    A good thing to do is to also add:

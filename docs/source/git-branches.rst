@@ -34,7 +34,7 @@ To get more practice, we'll start a new project and initialize it.
    This is a new (sub-)command, ``checkout``.
 
 
-   .. note::
+   .. tip::
 
       You can get help on git commands via manpages using a hyphen
       between ``git`` and the command name, e.g.:
@@ -290,7 +290,7 @@ Note that this is on ``main``.  If you switch to ``feature`` you won't see it:
 
    git checkout feature
 
-.. note::
+.. tip::
 
    Just like we can use ``cd -`` to switch to the previous directory we were on,
    we can use

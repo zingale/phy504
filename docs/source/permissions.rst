@@ -132,7 +132,7 @@ We can then run the script simply as:
 
    ./myscript.sh
 
-.. note::
+.. important::
 
    The leading ``./`` here tells bash the path to find the file.  In
    this case, you are saying that the script is in the current (``.``)

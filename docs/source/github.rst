@@ -69,7 +69,7 @@ Here's how we will set things up:
    you'll see 2 files: ``id_ed25519`` and ``id_ed25519.pub`` this is
    the private and public key for encryption.
 
-   .. note::
+   .. caution::
 
       Never share your private key (``id_ed25519``) with anyone.
 

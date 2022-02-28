@@ -53,7 +53,7 @@ In particular:
    With version control, you can checkout an old copy when you know it
    was working, and ask for the difference with the current code.
 
-.. note::
+.. tip::
 
    Version control is not just for source code.  You can use it for
    writing papers in LaTeX, course notes, etc.
@@ -99,7 +99,7 @@ Examples: git, mercurial
 
 * Easy to "fork" -- just clone and go.
 
-.. note::
+.. tip::
 
    Any version control system is better than no version control.
 
