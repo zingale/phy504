@@ -19,7 +19,7 @@ Arrays have many similarities to vectors, but there are some key differences:
 
 Here's a simple example:
 
-.. literalinclude:: ../../examples/simple_array.cpp
+.. literalinclude:: ../../examples/arrays/simple_array.cpp
    :language: c++
 
 Declaring the array takes 2 arguments in the ``<>`` -- the datatype and the number of elements.
