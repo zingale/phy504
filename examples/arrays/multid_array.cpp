@@ -5,9 +5,9 @@
 enum ArrayDims {kcols = 4,
                 krows = 3};
 
-using _1DArray = std::array<double, ArrayDims::kcols>;
+using RowArray = std::array<double, ArrayDims::kcols>;
 
-using FixedSizedMatrix = std::array<_1DArray, ArrayDims::krows>;
+using FixedSizedMatrix = std::array<RowArray, ArrayDims::krows>;
 
 int main() {
 
