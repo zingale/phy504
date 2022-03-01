@@ -6,7 +6,13 @@ Pointers
 
    Cyganek section 3.12
 
+.. figure:: 692px-Pointers.svg.png
+   :align: center
+   :width: 70%
 
+   A pointer, ``a`` that points to the memory location of variable ``b``.
+
+   (Wikipedia/Sven)
 
 .. note::
 
