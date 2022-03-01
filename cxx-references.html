@@ -149,6 +149,40 @@
 <p class="admonition-title">reading</p>
 <p>Cyganek section 3.11</p>
 </div>
+<p><em>References</em> in C++ provide access to an object indirectly.  It
+essentially becomes another name for the object and allows you to
+read and write to its memory directly.</p>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator to create a reference.</p>
+<p>Here’s a simple example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">x_ref</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">x_ref</span></code> is a reference for <code class="docutils literal notranslate"><span class="pre">x</span></code>, modifying its value directly
+modifies <code class="docutils literal notranslate"><span class="pre">x</span></code> ‘s value as well.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can define the reference as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A reference must be initialized when it is created.  You cannot do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">3.14</span><span class="p">};</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x_ref</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">x_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 <p>Here’s an example showing different ways of accessing elements of a
 vector and whether we can modify them:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -157,6 +191,10 @@ vector and whether we can modify them:</p>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// here &quot;e&quot; is just a double that is initialized via a copy to the</span>
+<span class="w">    </span><span class="c1">// current element of container.  Since it is not a reference, it</span>
+<span class="w">    </span><span class="c1">// is disconnected completely from container.</span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">container</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
@@ -168,6 +206,11 @@ vector and whether we can modify them:</p>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// now we create a reference (double&amp;) to the current element in</span>
+<span class="w">    </span><span class="c1">// the container.  This means that &quot;e&quot; is sharing the exact memory</span>
+<span class="w">    </span><span class="c1">// in the vector as the current element, so if we modify it,</span>
+<span class="w">    </span><span class="c1">// container is modified too.</span>
+
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">container</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
@@ -177,6 +220,10 @@ vector and whether we can modify them:</p>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// this is access via iterators that we saw previously.  An</span>
+<span class="w">    </span><span class="c1">// iterator can be thought of as a pointer to the element, and we</span>
+<span class="w">    </span><span class="c1">// need to dereference it to access its value.</span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="p">;</span><span class="w"></span>
