@@ -50,6 +50,27 @@ modifies ``x`` 's value as well.
 
       x_ref = x;
 
+We can create a ``const`` reference that provides only read access to
+an object:
+
+.. code:: c++
+
+   int a = 1.0
+   const int& a_ref = a;
+
+Now if we try to update ``a`` through ``a_ref``, we'll get an error.
+
+.. tip::
+
+   ``const`` references will be very useful when we start writing
+   functions and wish to pass objects in a *read-only*.
+
+.. note::
+
+   You cannot make a reference to a reference.
+
+A great use of references is to access and modify data in containers
+(like strings, vectors, and arrays) via a ranged-for loop.
 
 Here's an example showing different ways of accessing elements of a
 vector and whether we can modify them:
