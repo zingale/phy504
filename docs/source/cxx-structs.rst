@@ -53,6 +53,10 @@ Some notes:
   list-initialization for each of the planets in its own set of
   ``{}``.
 
+* Notice that our vector ``planets`` is ``const``.  This means that we
+  cannot add to it (e.g., via ``.push_back()``).
+
+
 .. tip::
 
    A common mistake is to forget the ``;`` after the definition of the ``struct``.
