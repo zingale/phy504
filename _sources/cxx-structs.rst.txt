@@ -11,6 +11,8 @@ of data.  In C++, a ``struct`` shares many similarities to a ``class``
 -- both hold data as well as functions that work on the data (called
 *members*).
 
+.. _sec:structplanet:
+
 Consider the following:
 
 .. code:: c++

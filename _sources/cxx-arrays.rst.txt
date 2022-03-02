@@ -48,6 +48,8 @@ We can use the same set of algorithms we saw with vectors on arrays, like ``sort
 Multidimensional Arrays
 =======================
 
+.. _sec:multidimensionalarrays:
+
 Just like with vectors, we can have an array of arrays.  This would
 again be fixed-size, so we'll need to specify both the number of rows
 and the number of columns at compile time.

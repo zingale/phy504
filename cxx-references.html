@@ -190,17 +190,19 @@ an object:</p>
 </pre></div>
 </div>
 <p>Now if we try to update <code class="docutils literal notranslate"><span class="pre">a</span></code> through <code class="docutils literal notranslate"><span class="pre">a_ref</span></code>, we’ll get an error.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
 <p><code class="docutils literal notranslate"><span class="pre">const</span></code> references will be very useful when we start writing
 functions and wish to pass objects in a <em>read-only</em>.</p>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You cannot make a reference to a reference.</p>
 </div>
 <p>A great use of references is to access and modify data in containers
 (like strings, vectors, and arrays) via a ranged-for loop.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recall in our <code class="docutils literal notranslate"><span class="pre">array</span></code> examples, we used references to loop over
+rows and columns and set the elements.  <a class="reference internal" href="cxx-arrays.html#sec-multidimensionalarrays"><span class="std std-ref">Let’s look at that again.</span></a></p>
+</div>
 <p>Here’s an example showing different ways of accessing elements of a
 vector and whether we can modify them:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -255,6 +257,12 @@ vector and whether we can modify them:</p>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s modify <a class="reference internal" href="cxx-structs.html#sec-structplanet"><span class="std std-ref">our example from last class</span></a> with the <code class="docutils literal notranslate"><span class="pre">Planet</span></code> type
+to add the period as a member and fill the period automatically via
+Kepler’s law in a loop.</p>
 </div>
 </section>
 

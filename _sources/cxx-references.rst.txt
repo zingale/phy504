@@ -60,10 +60,8 @@ an object:
 
 Now if we try to update ``a`` through ``a_ref``, we'll get an error.
 
-.. tip::
-
-   ``const`` references will be very useful when we start writing
-   functions and wish to pass objects in a *read-only*.
+``const`` references will be very useful when we start writing
+functions and wish to pass objects in a *read-only*.
 
 .. note::
 
@@ -72,9 +70,21 @@ Now if we try to update ``a`` through ``a_ref``, we'll get an error.
 A great use of references is to access and modify data in containers
 (like strings, vectors, and arrays) via a ranged-for loop.
 
+.. note::
+
+   Recall in our ``array`` examples, we used references to loop over
+   rows and columns and set the elements.  :ref:`Let's look at that again.<sec:multidimensionalarrays>`
+
 Here's an example showing different ways of accessing elements of a
 vector and whether we can modify them:
 
 .. literalinclude:: ../../examples/references/vector_modify.cpp
    :language: c++
+
+
+.. admonition:: try it...
+
+   Let's modify :ref:`our example from last class <sec:structplanet>` with the ``Planet`` type
+   to add the period as a member and fill the period automatically via
+   Kepler's law in a loop.
 
