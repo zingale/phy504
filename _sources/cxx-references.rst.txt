@@ -95,5 +95,5 @@ vector and whether we can modify them:
    .. code:: c++
 
       int a{0}, b{1};
-      int& r = a; rr = b;
+      int& r = a, rr = b;
 
