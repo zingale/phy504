@@ -88,3 +88,12 @@ vector and whether we can modify them:
    to add the period as a member and fill the period automatically via
    Kepler's law in a loop.
 
+.. admonition:: try it...
+
+   What do you think happens with this code?
+
+   .. code:: c++
+
+      int a{0}, b{1};
+      int &r = a; rr = b;
+

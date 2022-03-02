@@ -224,6 +224,24 @@ useful for managing memory.  Later (if there is time) we’ll see
 that there are <em>smart pointers</em> in C++ that handle a lot of the
 memory management for us.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is a good idea to initialize all pointers (just like we do for
+all other object types).  C++ provides <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> for this reason:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This then allows us to use the pointer in a conditional, like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// do stuff</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>What happens if we compare two pointers with <code class="docutils literal notranslate"><span class="pre">==</span></code>?</p>
+</div>
 </section>
 
 
