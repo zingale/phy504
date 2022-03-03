@@ -101,8 +101,8 @@ However, someone reading the code might not realize this.
 Conditional Statements
 ======================
 
-if-test
--------
+``if``-test
+-----------
 
 We've already been using if-tests quite a bit.  So let's look a little more at their syntax:
 
@@ -146,3 +146,54 @@ We've already been using if-tests quite a bit.  So let's look a little more at t
 
    For this reason, it is always best to use brackets.
 
+.. note::
+
+   C++17 also allows for a form with an initializer before the
+   conditional (e.g., to open a file).  We will not explore this here.
+
+
+``switch`` statement
+--------------------
+
+A switch statement takes action on a single expression, and has many different
+cases that can take different actions.  For example:
+
+.. code:: c++
+
+   int i{2};
+   std::string text{};
+
+   switch (i) {
+
+      case 0:
+          text = "zero";
+          break;
+
+      case 1:
+          text = "one";
+          break;
+
+      case 2:
+      case 3:
+      case 4:
+          text = "2 <= i <= 4";
+          break;
+
+      case default:
+          text = "i > 4";
+
+   }
+
+Notice that each ``case`` region ends with ``break``.  If you omit the
+``break``, then the flow "falls through" to the next options.
+
+``for`` loops
+-------------
+
+
+``while`` and ``do``-``while`` loops
+------------------------------------
+
+
+``continue`` and ``break``
+==========================

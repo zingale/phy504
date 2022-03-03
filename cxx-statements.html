@@ -106,9 +106,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#statement-blocks">Statement Blocks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#shadowing">Shadowing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conditional-statements">Conditional Statements</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#if-test">if-test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-test"><code class="docutils literal notranslate"><span class="pre">if</span></code>-test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switch-statement"><code class="docutils literal notranslate"><span class="pre">switch</span></code> statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-loops"><code class="docutils literal notranslate"><span class="pre">for</span></code> loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#while-and-do-while-loops"><code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">while</span></code> loops</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#continue-and-break"><code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -260,7 +264,7 @@ option to the compiler.</p>
 <section id="conditional-statements">
 <h2>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
 <section id="if-test">
-<h3>if-test<a class="headerlink" href="#if-test" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">if</span></code>-test<a class="headerlink" href="#if-test" title="Permalink to this headline">¶</a></h3>
 <p>We’ve already been using if-tests quite a bit.  So let’s look a little more at their syntax:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">   </span><span class="c1">// do things if condition1 is true</span>
@@ -295,7 +299,53 @@ conditionally-executed.  <code class="docutils literal notranslate"><span class=
 if-test and will always be executed.</p>
 <p>For this reason, it is always best to use brackets.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C++17 also allows for a form with an initializer before the
+conditional (e.g., to open a file).  We will not explore this here.</p>
+</div>
 </section>
+<section id="switch-statement">
+<h3><code class="docutils literal notranslate"><span class="pre">switch</span></code> statement<a class="headerlink" href="#switch-statement" title="Permalink to this headline">¶</a></h3>
+<p>A switch statement takes action on a single expression, and has many different
+cases that can take different actions.  For example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">2</span><span class="p">};</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">text</span><span class="p">{};</span><span class="w"></span>
+
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="w"></span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;zero&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"></span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="o">:</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="o">:</span><span class="w"></span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2 &lt;= i &lt;= 4&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">       </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="nl">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;i &gt; 4&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Notice that each <code class="docutils literal notranslate"><span class="pre">case</span></code> region ends with <code class="docutils literal notranslate"><span class="pre">break</span></code>.  If you omit the
+<code class="docutils literal notranslate"><span class="pre">break</span></code>, then the flow “falls through” to the next options.</p>
+</section>
+<section id="for-loops">
+<h3><code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="while-and-do-while-loops">
+<h3><code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">while</span></code> loops<a class="headerlink" href="#while-and-do-while-loops" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="continue-and-break">
+<h2><code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code><a class="headerlink" href="#continue-and-break" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
