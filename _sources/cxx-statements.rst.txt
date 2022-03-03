@@ -97,3 +97,52 @@ However, someone reading the code might not realize this.
    g++ can warn you about shadowing if you include the ``-Wshadow``
    option to the compiler.
 
+
+Conditional Statements
+======================
+
+if-test
+-------
+
+We've already been using if-tests quite a bit.  So let's look a little more at their syntax:
+
+.. code:: c++
+
+   if (condition1) {
+      // do things if condition1 is true
+
+   } else (condition2) {
+      // do things if condition1 is false but condition 2 is true
+
+   } else {
+      // do things only if both condition1 and condition2 are false
+
+   }
+
+
+.. tip::
+
+   There is a form of an if-statement that does not use brackets if
+   there is only a single statement to execute:
+
+   .. code:: c++
+
+      if (condition)
+          statement;
+
+   This is potentially dangerous -- if someone later edits the code
+   and decides that they want to add another statement to that
+   condition, they might do:
+
+   .. code:: c++
+
+      if (condition)
+          statement;
+          another_statement;
+
+   But since there are no braces, only ``statement`` is
+   conditionally-executed.  ``another_statement`` is not part of the
+   if-test and will always be executed.
+
+   For this reason, it is always best to use brackets.
+

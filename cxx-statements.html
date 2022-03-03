@@ -105,6 +105,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Statements</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statement-blocks">Statement Blocks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#shadowing">Shadowing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-statements">Conditional Statements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#if-test">if-test</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -252,6 +256,46 @@ However, someone reading the code might not realize this.</p>
 <p>g++ can warn you about shadowing if you include the <code class="docutils literal notranslate"><span class="pre">-Wshadow</span></code>
 option to the compiler.</p>
 </div>
+</section>
+<section id="conditional-statements">
+<h2>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
+<section id="if-test">
+<h3>if-test<a class="headerlink" href="#if-test" title="Permalink to this headline">¶</a></h3>
+<p>We’ve already been using if-tests quite a bit.  So let’s look a little more at their syntax:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// do things if condition1 is true</span>
+
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">(</span><span class="n">condition2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// do things if condition1 is false but condition 2 is true</span>
+
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// do things only if both condition1 and condition2 are false</span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There is a form of an if-statement that does not use brackets if
+there is only a single statement to execute:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">statement</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This is potentially dangerous – if someone later edits the code
+and decides that they want to add another statement to that
+condition, they might do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">statement</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">another_statement</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>But since there are no braces, only <code class="docutils literal notranslate"><span class="pre">statement</span></code> is
+conditionally-executed.  <code class="docutils literal notranslate"><span class="pre">another_statement</span></code> is not part of the
+if-test and will always be executed.</p>
+<p>For this reason, it is always best to use brackets.</p>
+</div>
+</section>
 </section>
 </section>
 
