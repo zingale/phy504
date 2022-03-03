@@ -197,6 +197,35 @@ time to understand some of the nuances of these statements.</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>Inside of the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, we create a <code class="docutils literal notranslate"><span class="pre">vector</span></code> called
+<code class="docutils literal notranslate"><span class="pre">fib</span></code> and an integer <code class="docutils literal notranslate"><span class="pre">n</span></code>.  Both of these are in scope inside of
+<code class="docutils literal notranslate"><span class="pre">main</span></code> – that means that we can use them and access them as needed.</p>
+<p>One of the nice things about the standard types like <code class="docutils literal notranslate"><span class="pre">vector</span></code> is
+that C++ automatically cleans up their memory when they go out of
+scope.  This occurs at the last <code class="docutils literal notranslate"><span class="pre">}</span></code> of <code class="docutils literal notranslate"><span class="pre">main()</span></code>.  At that point,
+<code class="docutils literal notranslate"><span class="pre">fib</span></code> is destroyed and its memory is freed.  The same happens with <code class="docutils literal notranslate"><span class="pre">n</span></code>.
+This behavior is called an <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_variable">automatic variable</a>.</p>
+<p>Automatic variables are allocated in a special part of memory called
+the <a class="reference external" href="https://en.wikipedia.org/wiki/Stack-based_memory_allocation">*stack*</a>.  When you enter a function, all of the automatic
+variables are <em>pushed down</em> onto the stack and are available as long
+as they stay in scope.  When you exit the function, the variables are
+<em>popped</em> off the stack and the memory is automatically freed.</p>
+<p>In our example above, there are a few stacks.  The outermost static is
+defined by the <code class="docutils literal notranslate"><span class="pre">{}</span></code> for <code class="docutils literal notranslate"><span class="pre">main()</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Stack space is limited and you can run out, resulting in a <em>stack overflow</em>.</p>
+<p>Later we’ll see that we can manually manage memory for variables
+that we place in the <em>heap</em> which is generally much larger.</p>
+<p>(But also note that a <code class="docutils literal notranslate"><span class="pre">vector</span></code> keeps the storage for its elements
+separately from the vector object itself, and those can be on the
+heap and automatically managed for us.)</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop defines a new scope, and when we enter the <code class="docutils literal notranslate"><span class="pre">{}</span></code>
+delineating the loop block, a new stack is created, where the
+variables local to that block are managed.  When we exit the loop,
+that stack is destroyed, freeing up all of the memory those local
+variables needed.</p>
 </section>
 <section id="shadowing">
 <h2>Shadowing<a class="headerlink" href="#shadowing" title="Permalink to this headline">¶</a></h2>
