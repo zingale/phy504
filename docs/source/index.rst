@@ -91,6 +91,7 @@ Spring 2022
    cxx-references
    cxx-pointers
    cxx-statements
+   cxx-io
 
 .. toctree::
    :maxdepth: 1
