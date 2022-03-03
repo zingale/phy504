@@ -90,6 +90,7 @@ Spring 2022
    cxx-arrays
    cxx-references
    cxx-pointers
+   cxx-statements
 
 .. toctree::
    :maxdepth: 1
