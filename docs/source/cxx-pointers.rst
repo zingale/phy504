@@ -50,4 +50,24 @@ Here's an example:
    that there are *smart pointers* in C++ that handle a lot of the
    memory management for us.
 
+.. tip::
+
+   It is a good idea to initialize all pointers (just like we do for
+   all other object types).  C++ provides ``nullptr`` for this reason:
+
+   .. code:: c++
+
+      int *p = nullptr;
+
+   This then allows us to use the pointer in a conditional, like:
+
+   .. code:: c++
+
+      if (p) {
+          // do stuff
+      }
+
+.. admonition:: try it...
+
+   What happens if we compare two pointers with ``==``?
 
