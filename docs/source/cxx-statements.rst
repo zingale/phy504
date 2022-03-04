@@ -179,7 +179,7 @@ cases that can take different actions.  For example:
           text = "2 <= i <= 4";
           break;
 
-      case default:
+      default:
           text = "i > 4";
 
    }
