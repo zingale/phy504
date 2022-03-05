@@ -82,7 +82,13 @@ These can also be used in some powerful algorithms provided by the
 .. literalinclude:: ../../examples/vectors/find_example.cpp
    :language: c++
 
-We'll see more algorithms provided by the STL later.
+
+.. note::
+
+   A nice overview of the different algorithms that work on the
+   standard C++ containers is provided by "hacking C++": `C++ Standard
+   Library Algorithms
+   <https://hackingcpp.com/cpp/std/algorithms.png>`_
 
 
 Inserting
