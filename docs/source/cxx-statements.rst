@@ -111,7 +111,7 @@ We've already been using if-tests quite a bit.  So let's look a little more at t
    if (condition1) {
       // do things if condition1 is true
 
-   } else (condition2) {
+   } else if (condition2) {
       // do things if condition1 is false but condition 2 is true
 
    } else {
@@ -179,7 +179,7 @@ cases that can take different actions.  For example:
           text = "2 <= i <= 4";
           break;
 
-      case default:
+      default:
           text = "i > 4";
 
    }
