@@ -1,6 +1,17 @@
-*****************
-Helpful C++ Tools
-*****************
+*****************************
+Helpful C++ Tools / Resources
+*****************************
+
+Tutorials / Cheat Sheets
+========================
+
+* Hacking C++: https://hackingcpp.com/
+
+  This has a wonderful collection of "cheat sheets" showing how a lot
+  of the different parts of the C++ standard library work.
+
+Tools
+=====
 
 * C++ Insights: https://cppinsights.io
 

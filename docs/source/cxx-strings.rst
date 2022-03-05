@@ -50,6 +50,11 @@ here's an 80-character line:
 
 Note that ``'-'`` is a ``char`` and not a string.
 
+.. note::
+
+   A nice overview of working with C++ strings is provided by "hacking C++":
+   `std::string <https://hackingcpp.com/cpp/std/string.png>`_
+
 Find and Replace
 ================
 
