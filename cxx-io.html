@@ -148,7 +148,160 @@
              
   <section id="file-i-o">
 <h1>File I/O<a class="headerlink" href="#file-i-o" title="Permalink to this headline">¶</a></h1>
-<p>You text has an example of writing to a file in table 3.5</p>
+<p>Reading from / writing to a file uses the same stream operators as we
+used to take input from a user or write to the screen.</p>
+<p>To open a file, we use:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">of</span><span class="p">;</span><span class="w"></span>
+<span class="n">of</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>alternately, we can pass the name of the file to the <em>constructor</em> of the class,</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="nf">of</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Once the file is open, we can send output to it using the stream operator <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When we are done with the file, we can close it:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">of</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C++ will manage closing the file when it goes out of scope (e.g. at
+the end of a function).  However, you can still free it earlier if
+desired.</p>
+</div>
+<p>The alternate to open a file for reading is <code class="docutils literal notranslate"><span class="pre">std::ifstream</span></code>.  Note
+that both of these are defined by the <code class="docutils literal notranslate"><span class="pre">fstream</span></code> header.</p>
+<p>Here’s an example of writing our planet information out to a file:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">{};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w">            </span><span class="c1">// semi-major axis</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">{};</span><span class="w">            </span><span class="c1">// eccentricity</span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Planet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">planets</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;Mercury&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">0.3871</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2056</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Venus&quot;</span><span class="p">,</span><span class="w">    </span><span class="mf">0.7233</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0068</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Earth&quot;</span><span class="p">,</span><span class="w">    </span><span class="mf">1.0000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0167</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Mars&quot;</span><span class="p">,</span><span class="w">     </span><span class="mf">1.5237</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0934</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Jupiter&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">5.2029</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0484</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Saturn&quot;</span><span class="p">,</span><span class="w">   </span><span class="mf">9.5370</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0539</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Uranus&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">19.189</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0473</span><span class="p">},</span><span class="w"></span>
+<span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Neptune&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">30.070</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0086</span><span class="p">}};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">of</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">of</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;planets.txt&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">planets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">of</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Let’s now look at how to read that file back in.</p>
+<p>There are 2 approaches we can take:</p>
+<ul>
+<li><p>Just read in each piece of information as needed, e.g.:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="n">infile</span><span class="p">{</span><span class="s">&quot;file.txt&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">infile</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Read the file line-by-line into a string and then treat that string
+as a stream and read from it.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">getline()</span></code> function will do this for us:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">line</span><span class="p">{};</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">of</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To interpret the string as a stream, we can use <code class="docutils literal notranslate"><span class="pre">std::stringstream</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="nf">ss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span><span class="w"></span>
+<span class="n">ss</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">z</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Here’s an example of reading our file line by line.  We rely on the
+fact when it reaches the end of the file, <code class="docutils literal notranslate"><span class="pre">getline()</span></code> will evaluate
+as <code class="docutils literal notranslate"><span class="pre">false</span></code> in a conditional.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">{};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w">            </span><span class="c1">// semi-major axis</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">{};</span><span class="w">            </span><span class="c1">// eccentricity</span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Planet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">planets</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="n">data_file</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">data_file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;planets.txt&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="w"> </span><span class="n">data_file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error opening the file&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">line</span><span class="p">{};</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">data_file</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Planet</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ss</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">e</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">planets</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">data_file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">planets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>A file stream object was an <code class="docutils literal notranslate"><span class="pre">.eof()</span></code> method that is <code class="docutils literal notranslate"><span class="pre">true</span></code> when
+we reach the end of a file.  However, it is only set after a failed
+read from the file.</p>
+<p>If we try using this in our <code class="docutils literal notranslate"><span class="pre">while</span></code> loop, it is possible that we
+will test as <code class="docutils literal notranslate"><span class="pre">true</span></code> and then fail to read in the loop body.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When you open a file for output using <code class="docutils literal notranslate"><span class="pre">ofstream</span></code> as shown above it overwrites
+an existing file of that name.</p>
+<p>If we wish instead to append to an existing file, we would do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="nf">of</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </section>
 
 
