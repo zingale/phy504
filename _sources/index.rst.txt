@@ -97,6 +97,9 @@ Spring 2022
    :maxdepth: 1
    :caption: Functions and Classes
 
+   cxx-functions
+   cxx-functions-example
+
 .. toctree::
    :maxdepth: 1
    :caption: Elements of Software Engineering

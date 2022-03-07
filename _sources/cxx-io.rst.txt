@@ -117,7 +117,10 @@ as ``false`` in a conditional.
    We don't know how to take a command line argument yet, so let's
    just hardcode the file name into the program for now.
 
+   .. dropdown:: solution
 
+      .. literalinclude:: ../../examples/io/wc_example.cpp
+         :language: c++
 
 
 .. You text has an example of writing to a file in table 3.5

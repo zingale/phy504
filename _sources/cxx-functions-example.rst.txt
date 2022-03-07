@@ -1,3 +1,6 @@
+**************
+More Functions
+**************
 
 Consider wanting to write a vector that takes one vector as input and returns a new one.
 
