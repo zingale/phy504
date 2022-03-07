@@ -10,3 +10,4 @@ pandoc
 jupyter
 sphinx-copybutton
 sphinx-prompt
+sphinx-panels
