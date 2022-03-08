@@ -164,6 +164,21 @@ Here's an example:
 .. ==============
 
 
+STL Algorithms
+==============
+
+We looked at some of the algorithms that work on standard C++
+containers (like vectors) previously.  Now we can look at some more.
+Consider ``std::sort()`` -- you can provide a function to ``sort``
+that tells it how to do the comparison.
+
+Here's an example that sorts some strings using the default comparison
+(alphabetically) and then again with a custom comparison function that
+sorts by string length:
+
+.. literalinclude:: ../../examples/functions/algorithms_functions.cpp
+   :language: c++
+
 
 
 .. admonition:: more reading
