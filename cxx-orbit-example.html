@@ -22,9 +22,13 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Makefiles" href="make.html" />
+    <link rel="prev" title="More Functions" href="cxx-functions-example.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -107,9 +111,14 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions and Classes</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Planetary Orbit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#euler-s-method">Euler’s Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -154,12 +163,216 @@
              
   <section id="example-planetary-orbit">
 <h1>Example: Planetary Orbit<a class="headerlink" href="#example-planetary-orbit" title="Permalink to this headline">¶</a></h1>
+<p>Let’s consider an example of integrating the orbit of Earth around the
+Sun (we’ll consider the mass of the Earth to be tiny compared to the
+Sun so we can neglect the Sun’s motion around the center of mass).</p>
+<p>Kepler’s third law tells us:</p>
+<div class="math notranslate nohighlight">
+\[4\pi^2 a^3 = G M_\star P^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is the semi-major axis and <span class="math notranslate nohighlight">\(P\)</span> is the period of the orbit.  If we work in
+units of solar masses, astronomical units, and years, then this becomes:</p>
+<div class="math notranslate nohighlight">
+\[a^3 = P^2\]</div>
+<p>which implies that <span class="math notranslate nohighlight">\(G M_\star = 4 \pi^2\)</span>.</p>
+<p>The evolution of the planet is given by</p>
+<div class="math notranslate nohighlight">
+\[\dot{\bf r} = {\bf v}\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{\bf v} = - \frac{G M_\star {\bf r}}{r^3}\]</div>
+<p>where <span class="math notranslate nohighlight">\({\bf r} = (x, y)\)</span> and <span class="math notranslate nohighlight">\({\bf v} = (v_x, v_y)\)</span>.</p>
+<section id="euler-s-method">
+<h2>Euler’s Method<a class="headerlink" href="#euler-s-method" title="Permalink to this headline">¶</a></h2>
+<p>The simplest method to advance the solution begins with a first-order accurate difference approximation
+to the derivative:</p>
+<div class="math notranslate nohighlight">
+\[\frac{{\bf r}^{n+1} - {\bf r}^n}{\tau} = {\bf v}^n + \mathcal{O}(\tau)\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{{\bf v}^{n+1} - {\bf v}^n}{\tau} = {\bf a}({\bf r}^n,{\bf v}^n) + \mathcal{O}(\tau)\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[{\bf r}^{n+1} = {\bf r}^n + \tau {\bf v}^n + \mathcal{O}(\tau^2)\]</div>
+<div class="math notranslate nohighlight">
+\[{\bf v}^{n+1} = {\bf v}^n + \tau {\bf a}({\bf r}^n,{\bf v}^n) + \mathcal{O}(\tau^2)\]</div>
+<p>This shows that each time we take a step, we make an error (called
+<em>truncation error</em>) of <span class="math notranslate nohighlight">\(\mathcal{O}(\tau^2)\)</span>.  Over the course
+of the orbit we will take <span class="math notranslate nohighlight">\(N = T / \tau\)</span> steps, so the global
+error will be <span class="math notranslate nohighlight">\(\mathcal{O}(\tau)\)</span>.</p>
+<p>This method is <em>first-order accurate</em> in time.</p>
+<p>Graphically, Euler’s method looks like:</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/rk2_Euler.png"><img alt="_images/rk2_Euler.png" src="_images/rk2_Euler.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Euler’s method: we evaluate the slope at the start of the timestep and then follow
+this through to the new time.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>We’ll store the state of the solution at a single instance in time in a <code class="docutils literal notranslate"><span class="pre">struct</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">OrbitState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">vx</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">vy</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and we’ll save the solution at each step in a vector:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">orbit_history</span><span class="p">{};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This corresponds to the “array-of-structs” storage scheme we discussed earlier.</p>
+<p>To make our code flexible, we’ll write the following functions:</p>
+<ul>
+<li><p>A righthand side function, with the forward declaration:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span><span class="w"> </span><span class="nf">rhs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">OrbitState</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>we can evaluate this as needed by passing in an <code class="docutils literal notranslate"><span class="pre">OrbitState</span></code> and
+returning the derivative of that state with respect to time.</p>
+</li>
+<li><p>A function to write out the history:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write_history</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">history</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>We can adapt this as desired to write to the screen or a file.</p>
+</li>
+<li><p>An integration function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span> <span class="n">integrate</span><span class="p">(</span><span class="n">const</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">const</span> <span class="n">double</span> <span class="n">tmax</span><span class="p">,</span> <span class="n">const</span> <span class="n">double</span> <span class="n">dt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This manages the time-stepping, implementing Euler’s method and
+storing the solution in our history vector each step.  At the end of
+integration it will return the history.</p>
+</li>
+</ul>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Implement the solver by filling in the details of the functions described above.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+solution<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">OrbitState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">vx</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">vy</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="n">OrbitState</span><span class="w"> </span><span class="nf">rhs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">OrbitState</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">);</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">write_history</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">history</span><span class="p">);</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">integrate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tmax</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">GM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M_PI</span><span class="p">;</span><span class="w">   </span><span class="c1">// G * Mass in AU, year, solar mass units</span>
+
+<span class="n">OrbitState</span><span class="w"> </span><span class="nf">rhs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">OrbitState</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">OrbitState</span><span class="w"> </span><span class="n">dodt</span><span class="p">{};</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// dx/dt = vx; dy/dt = vy</span>
+
+<span class="w">    </span><span class="n">dodt</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">vx</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">dodt</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">vy</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// d(vx)/dt = - GMx/r**3; d(vy)/dt = - GMy/r**3</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">dodt</span><span class="p">.</span><span class="n">vx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">GM</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">dodt</span><span class="p">.</span><span class="n">vy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">GM</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dodt</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">write_history</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">history</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">history</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">t</span><span class="w"></span>
+<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">x</span><span class="w"></span>
+<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">y</span><span class="w"></span>
+<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">vx</span><span class="w"></span>
+<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">vy</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">integrate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tmax</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// how the history of the orbit</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">orbit_history</span><span class="p">{};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// set initial conditions</span>
+<span class="w">    </span><span class="n">OrbitState</span><span class="w"> </span><span class="n">state</span><span class="p">{};</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// assume circular orbit on the x-axis, counter-clockwise orbit</span>
+
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">vx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="n">vy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">GM</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">orbit_history</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// integration loop</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">tmax</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// get the derivatives</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">state_derivs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// update the state</span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">vx</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">.</span><span class="n">vx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">state</span><span class="p">.</span><span class="n">vy</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">.</span><span class="n">vy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">orbit_history</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">orbit_history</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">tmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w">      </span><span class="c1">// 1 AU</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">orbit_history</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">integrate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">tmax</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">write_history</span><span class="p">(</span><span class="n">orbit_history</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</details></div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cxx-functions-example.html" class="btn btn-neutral float-left" title="More Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="make.html" class="btn btn-neutral float-right" title="Makefiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

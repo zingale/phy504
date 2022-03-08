@@ -136,7 +136,7 @@ But we can explicitly determine this with a C++ program using ``sizeof()`` -- th
 
 The following is guaranteed:
 
-.. code:: C++
+.. code:: c++
 
    sizeof(char) == 1  <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)
 

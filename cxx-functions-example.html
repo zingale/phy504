@@ -25,7 +25,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Makefiles" href="make.html" />
+    <link rel="next" title="Example: Planetary Orbit" href="cxx-orbit-example.html" />
     <link rel="prev" title="Functions" href="cxx-functions.html" /> 
 </head>
 
@@ -112,6 +112,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">More Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-orbit-example.html">Example: Planetary Orbit</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -169,7 +170,7 @@
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This looks like it is returning v_out by value and that when we do:</p>
+<p>This looks like it is returning <code class="docutils literal notranslate"><span class="pre">v_out</span></code> by value and that when we do:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">v_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">v_old</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
@@ -206,7 +207,7 @@ to the data region in <code class="docutils literal notranslate"><span class="pr
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The problem here is that v_out is destroyed at the end of the function
+<p>The problem here is that <code class="docutils literal notranslate"><span class="pre">v_out</span></code> is destroyed at the end of the function
 <code class="docutils literal notranslate"><span class="pre">f</span></code>, so the reference will be to something that no longer exists.
 This is not allowed – we cannot return a reference to a local
 variable.</p>
@@ -286,7 +287,7 @@ variable.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="cxx-functions.html" class="btn btn-neutral float-left" title="Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="make.html" class="btn btn-neutral float-right" title="Makefiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-orbit-example.html" class="btn btn-neutral float-right" title="Example: Planetary Orbit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -18,7 +18,7 @@ We can imagine:
 
    }
 
-This looks like it is returning v_out by value and that when we do:
+This looks like it is returning ``v_out`` by value and that when we do:
 
 .. code:: c++
 
@@ -67,7 +67,7 @@ What about returning a reference?  We might think that we could do:
 
    }
 
-The problem here is that v_out is destroyed at the end of the function
+The problem here is that ``v_out`` is destroyed at the end of the function
 ``f``, so the reference will be to something that no longer exists.
 This is not allowed -- we cannot return a reference to a local
 variable.

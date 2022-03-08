@@ -115,6 +115,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-orbit-example.html">Example: Planetary Orbit</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -166,22 +167,22 @@
 <p>We’ve already seen how using <code class="docutils literal notranslate"><span class="pre">auto</span></code> can make it easier to declare a
 variable when the compiler can infer the proper type.</p>
 <p>For instance, consider a vector:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span> <span class="n">int_vec</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">int_vec</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span><span class="w"></span>
 
-<span class="n">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">int_vec</span><span class="o">.</span><span class="n">cbegin</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int_vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If we wanted to use the actual type for <code class="docutils literal notranslate"><span class="pre">it</span></code>, we’d need to look in
 the <code class="docutils literal notranslate"><span class="pre">vector</span></code> header file for the <code class="docutils literal notranslate"><span class="pre">cbegin()</span></code> function definition to
 see what it returned (or use a smart IDE that could do that for us).
 And then this is what we would have to write:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span><span class="p">::</span><span class="n">const_iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">int_vec</span><span class="o">.</span><span class="n">cbegin</span><span class="p">();</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">const_iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int_vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <p>That’s a lot more verbose.  So using <code class="docutils literal notranslate"><span class="pre">auto</span></code> is a very convenient way
 of declaring this iterator.</p>
 <p>We could also use <code class="docutils literal notranslate"><span class="pre">auto</span></code> in situations like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here the compiler will make <code class="docutils literal notranslate"><span class="pre">x</span></code> a <code class="docutils literal notranslate"><span class="pre">double</span></code>, since we have a
@@ -193,7 +194,7 @@ idea.</p>
 <p>Note that if we intended for <code class="docutils literal notranslate"><span class="pre">x</span></code> to be a <code class="docutils literal notranslate"><span class="pre">const</span></code> (and indeed,
 <code class="docutils literal notranslate"><span class="pre">0.0</span></code> is a const, so why didn’t it deduce that?), then we need to be
 explicit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">auto</span> <span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Again, I would advise against using <code class="docutils literal notranslate"><span class="pre">auto</span></code> in this situation.</p>

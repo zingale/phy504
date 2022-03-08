@@ -11,7 +11,7 @@ variable when the compiler can infer the proper type.
 
 For instance, consider a vector:
 
-.. code::
+.. code:: c++
 
    std::vector<int> int_vec{0, 1, 2, 3, 4, 5};
 
@@ -22,7 +22,7 @@ the ``vector`` header file for the ``cbegin()`` function definition to
 see what it returned (or use a smart IDE that could do that for us).
 And then this is what we would have to write:
 
-.. code::
+.. code:: c++
 
    std::vector<int>::const_iterator it = int_vec.cbegin();
 
@@ -31,7 +31,7 @@ of declaring this iterator.
 
 We could also use ``auto`` in situations like this:
 
-.. code::
+.. code:: c++
 
    auto x{0.0};
 
@@ -46,7 +46,7 @@ Note that if we intended for ``x`` to be a ``const`` (and indeed,
 ``0.0`` is a const, so why didn't it deduce that?), then we need to be
 explicit:
 
-.. code::
+.. code:: c++
 
    const auto x{0.0};
 
