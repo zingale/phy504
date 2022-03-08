@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Matrix Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
@@ -110,7 +110,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions and Classes</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#void">Void</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#passing-by-value-vs-reference">Passing by Value vs. Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
@@ -156,6 +161,10 @@
              
   <section id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 3.14</p>
+</div>
 <p>As we write increasingly complex code, it becomes helpful to split it apart into functions.  This has
 several advantages:</p>
 <ul class="simple">
@@ -170,7 +179,134 @@ one-by-one.</p></li>
 </ul>
 <p>Quite often in C++ we will split our code into multiple files, but for
 now we’ll work all within a single file.</p>
+<section id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with a simple example, and then we’ll talk about the structure:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">{</span><span class="mf">3.2</span><span class="p">},</span><span class="w"> </span><span class="n">n</span><span class="p">{</span><span class="mf">4.0</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Some things to note here:</p>
+<ul>
+<li><p>We include a <em>forward declaration</em> of the function.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This just tells the compiler the function name, its return type, and
+what arguments it takes (and their types).  There is no function
+body.</p>
+<p>With this declaration, the compiler will now know that anytime we
+use <code class="docutils literal notranslate"><span class="pre">sum()</span></code> we need to pass it two <code class="docutils literal notranslate"><span class="pre">double</span></code> ‘s and it returns a
+<code class="docutils literal notranslate"><span class="pre">double</span></code>.</p>
+<p>Often, we would put the forward declaration in a header file and the
+<code class="docutils literal notranslate"><span class="pre">#include</span></code> it just like we do with the standard C++ headers.</p>
+<p>Note that this code will compile even without the forward
+declaration because we have the actual function definition before it
+is used.  But this is not always possible.</p>
+</li>
+<li><p>The function definition provides the actual implementation of the function.
+For our <code class="docutils literal notranslate"><span class="pre">add</span></code> function, it is:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>The function has its own scope – inside of the function, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
+in scope and visible, but they are not available outside of the function.</p></li>
+<li><p>We use <code class="docutils literal notranslate"><span class="pre">return</span></code> to explicitly return a value to the caller of the function.</p>
+<p>Only one return will ever be executed in a function, but the
+function itself could have multiple returns that are executed
+depending on conditions inside the function itself.</p>
+</li>
+</ul>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<ol class="arabic simple">
+<li><p>Move the function definition to be after <code class="docutils literal notranslate"><span class="pre">main</span></code> and remove the
+forward declaration – does the code still compile?</p></li>
+<li><p>Now instead leave in the forward declaration, but remove the
+function definition – what happens when you compile now?</p></li>
+</ol>
+</div>
+</section>
+<section id="void">
+<h2>Void<a class="headerlink" href="#void" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to have a function that doesn’t return anything – in
+that case we mark it as <code class="docutils literal notranslate"><span class="pre">void</span></code>.</p>
+<p>Also, we can have a function that doesn’t take any arguments.  Here’s
+an example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">hello</span><span class="p">();</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="passing-by-value-vs-reference">
+<h2>Passing by Value vs. Reference<a class="headerlink" href="#passing-by-value-vs-reference" title="Permalink to this headline">¶</a></h2>
+<p>When we write a function like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// do stuff -- the caller won&#39;t see any changes to x</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and then call it as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="n">f</span><span class="p">(</span><span class="n">z</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">z</span></code> in our caller is copied into the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> in
+the function <code class="docutils literal notranslate"><span class="pre">f()</span></code>.  This is a <em>pass-by-value</em> argument (sometimes
+called <em>value semantics</em>).</p>
+<p>Inside of <code class="docutils literal notranslate"><span class="pre">f()</span></code> any changes we do to <code class="docutils literal notranslate"><span class="pre">x</span></code> will not be reflected
+back to the caller, so <code class="docutils literal notranslate"><span class="pre">z</span></code> will be unmodified by anything that
+happens in the function.</p>
+<p>Many times this is what we want.  But not always.  What if we want to
+allow the function to modify its argument and for those modifications
+to be reflected to the caller?  In this case, we use a reference
+argument:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// anything we do to x will be reflected back to the caller</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>There is another use however for having references in the argument
+list – sometimes, if the object we are passing is big (like a
+<code class="docutils literal notranslate"><span class="pre">std::vector</span></code>), then the copy incurred by passing by value is
+expensive.  If we use a reference, then there is no copy, and passing
+the object is faster.  If we know that we only want the function we
+are calling to read from the object and not write to it, we can mark the
+reference as const, like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// x is passed as a reference, but we cannot modify it</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here’s an example:</p>
+<div class="admonition-more-reading admonition">
+<p class="admonition-title">more reading</p>
+<p>You text has a few additional sections of interest that we won’t
+directly cover now;</p>
+<p>Section 3.14.3 : the function call mechanism</p>
+<p>Section 3.14.4 : recursive functions</p>
+<p>Section 3.14.5 : function overloading and namespaces</p>
+</div>
+</section>
 </section>
 
 

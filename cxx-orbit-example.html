@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>auto and decltype &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Example: Planetary Orbit &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -24,9 +24,7 @@
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Structures" href="cxx-structs.html" />
-    <link rel="prev" title="Strings" href="cxx-strings.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -94,16 +92,13 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#decltype">decltype</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-arrays.html">Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-references.html">References</a></li>
@@ -147,9 +142,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></li>
+      <li>Example: Planetary Orbit</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-auto-decltype.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-orbit-example.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -157,78 +152,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="auto-and-decltype">
-<h1><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code><a class="headerlink" href="#auto-and-decltype" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>Cyganek section 3.7</p>
-</div>
-<p>We’ve already seen how using <code class="docutils literal notranslate"><span class="pre">auto</span></code> can make it easier to declare a
-variable when the compiler can infer the proper type.</p>
-<p>For instance, consider a vector:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span> <span class="n">int_vec</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
-
-<span class="n">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">int_vec</span><span class="o">.</span><span class="n">cbegin</span><span class="p">();</span>
-</pre></div>
-</div>
-<p>If we wanted to use the actual type for <code class="docutils literal notranslate"><span class="pre">it</span></code>, we’d need to look in
-the <code class="docutils literal notranslate"><span class="pre">vector</span></code> header file for the <code class="docutils literal notranslate"><span class="pre">cbegin()</span></code> function definition to
-see what it returned (or use a smart IDE that could do that for us).
-And then this is what we would have to write:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span><span class="p">::</span><span class="n">const_iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">int_vec</span><span class="o">.</span><span class="n">cbegin</span><span class="p">();</span>
-</pre></div>
-</div>
-<p>That’s a lot more verbose.  So using <code class="docutils literal notranslate"><span class="pre">auto</span></code> is a very convenient way
-of declaring this iterator.</p>
-<p>We could also use <code class="docutils literal notranslate"><span class="pre">auto</span></code> in situations like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
-</pre></div>
-</div>
-<p>Here the compiler will make <code class="docutils literal notranslate"><span class="pre">x</span></code> a <code class="docutils literal notranslate"><span class="pre">double</span></code>, since we have a
-floating point number in the initialization list, <code class="docutils literal notranslate"><span class="pre">{}</span></code>.  But this
-case is less useful, and perhaps less clear to someone reading the
-code.  Usually when you are defining a variable, you have in mind what
-type it should be, so erring on the side of being explicit is a good
-idea.</p>
-<p>Note that if we intended for <code class="docutils literal notranslate"><span class="pre">x</span></code> to be a <code class="docutils literal notranslate"><span class="pre">const</span></code> (and indeed,
-<code class="docutils literal notranslate"><span class="pre">0.0</span></code> is a const, so why didn’t it deduce that?), then we need to be
-explicit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">auto</span> <span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
-</pre></div>
-</div>
-<p>Again, I would advise against using <code class="docutils literal notranslate"><span class="pre">auto</span></code> in this situation.</p>
-<section id="decltype">
-<h2>decltype<a class="headerlink" href="#decltype" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">decltype</span></code> is in some ways the opposite of <code class="docutils literal notranslate"><span class="pre">auto</span></code>.  Imagine that
-we want to declare a new variable to be of the same type as an
-existing one – this is where <code class="docutils literal notranslate"><span class="pre">decltype</span></code> comes into play.</p>
-<p>Here’s an example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="p">};</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myvec</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">myvec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-</section>
+  <section id="example-planetary-orbit">
+<h1>Example: Planetary Orbit<a class="headerlink" href="#example-planetary-orbit" title="Permalink to this headline">¶</a></h1>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-strings.html" class="btn btn-neutral float-left" title="Strings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-structs.html" class="btn btn-neutral float-right" title="Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
