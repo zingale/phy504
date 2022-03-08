@@ -1,6 +1,6 @@
-**************
-Matrix Example
-**************
+***************
+Example: Matrix
+***************
 
 Let's look at an example from your text that create a very simple matrix container as a vector-of-vectors.
 

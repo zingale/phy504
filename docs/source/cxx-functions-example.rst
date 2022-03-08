@@ -73,3 +73,9 @@ This is not allowed -- we cannot return a reference to a local
 variable.
 
 
+Let's play with this:
+
+.. literalinclude:: ../../examples/functions/function_vector.cpp
+   :language: c++
+
+
