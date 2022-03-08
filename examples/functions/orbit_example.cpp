@@ -11,7 +11,10 @@ struct OrbitState {
     double vy;
 };
 
-const double a = 1.0;    // semi-major axis in AU
+OrbitState rhs(const OrbitState& state);
+void write_history(const std::vector<OrbitState>& history);
+std::vector<OrbitState> integrate(const double a, const double tmax, const double dt);
+
 const double GM = 4.0 * M_PI * M_PI;   // G * Mass in AU, year, solar mass units
 
 OrbitState rhs(const OrbitState& state) {
@@ -47,8 +50,7 @@ void write_history(const std::vector<OrbitState>& history) {
 
 }
 
-
-std::vector<OrbitState> integrate(const double tmax, const double dt) {
+std::vector<OrbitState> integrate(const double a, const double tmax, const double dt) {
 
     // how the history of the orbit
 
@@ -91,8 +93,9 @@ int main() {
 
     double tmax = 1.0;
     double dt = 0.001;
+    double a = 1.0;      // 1 AU
 
-    auto orbit_history = integrate(tmax, dt);
+    auto orbit_history = integrate(a, tmax, dt);
     write_history(orbit_history);
 
 }
