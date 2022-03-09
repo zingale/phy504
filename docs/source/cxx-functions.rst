@@ -189,10 +189,8 @@ We'll revisit this yet again when we learn about *lambda functions*.
 .. admonition:: more reading
 
    You text has a few additional sections of interest that we won't
-   directly cover now;
+   directly cover now:
 
-   Section 3.14.3 : the function call mechanism
-
-   Section 3.14.4 : recursive functions
-
-   Section 3.14.5 : function overloading and namespaces
+   * Section 3.14.3 : the function call mechanism
+   * Section 3.14.4 : recursive functions
+   * Section 3.14.5 : function overloading and namespaces
