@@ -161,15 +161,54 @@
              
   <section id="lambda-functions">
 <h1>Lambda Functions<a class="headerlink" href="#lambda-functions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>A nice <a class="reference external" href="https://hackingcpp.com/cpp/lang/lambdas.png">lambda cheatsheet</a> is available from
+hackingcpp.com.</p>
+</div>
 <p>C++ has another type of function called a <em>lambda function</em>.  You can
 think of a lambda as an <a class="reference external" href="https://en.wikipedia.org/wiki/Anonymous_function">anonymous function</a> that can capture
 data directly from its environment and work on it.  Lambda functions
 are typically used when you only need to use a function in a single
 place.</p>
-<p>Lambdas make it easy to provide simply functions as arguments
-to other functions (like we did with <code class="docutils literal notranslate"><span class="pre">std::sort()</span></code> previously).</p>
+<p>The general form of a lambda is:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[</span></code> <em>capture clause</em> <code class="docutils literal notranslate"><span class="pre">]</span> <span class="pre">(</span></code> <em>arguments</em> <code class="docutils literal notranslate"><span class="pre">)</span> <span class="pre">{</span></code> <em>statements</em> <code class="docutils literal notranslate"><span class="pre">};</span></code></p>
+</div></blockquote>
+<p>with optionally some <em>specifiers</em> between the arguments and statements.</p>
+<p>The capture clause tells the compiler how it can access data from the
+surrounding scope:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[=]</span></code> means it captures objects by value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[&amp;]</span></code> means it captures objects by reference</p></li>
+</ul>
+<p>mixed types of capture are also possible, where you can capture some
+data by value and others by reference</p>
+<p>Here’s a simple example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">10.0</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">g</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">g</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">g</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 <section id="sort-example">
 <h2>Sort Example<a class="headerlink" href="#sort-example" title="Permalink to this headline">¶</a></h2>
+<p>Lambdas make it easy to provide simply functions as arguments
+to other functions (like we did with <code class="docutils literal notranslate"><span class="pre">std::sort()</span></code> previously).
+Here’s an implementation of that using a lambda function:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
