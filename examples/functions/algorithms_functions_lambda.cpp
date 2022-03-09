@@ -5,10 +5,10 @@
 
 int main() {
 
-    std::vector<std::string> titles{"a new home",
+    std::vector<std::string> titles{"a new hope",
                                     "the empire strikes back",
                                     "return of the jedi",
-                                    "the phantom menace", 
+                                    "the phantom menace",
                                     "attack of the clones",
                                     "revenge of the sith",
                                     "the force awakens",
@@ -19,7 +19,7 @@ int main() {
 
     for (auto e : titles) {
         std::cout << e << std::endl;
-    }                                    
+    }
     std::cout << std::endl;
 
     // now sort by string length
@@ -29,7 +29,7 @@ int main() {
 
     for (auto e : titles) {
         std::cout << e << std::endl;
-    }                                    
+    }
     std::cout << std::endl;
 
 }

@@ -7,7 +7,7 @@ bool size_compare(const std::string& a, const std::string& b);
 
 int main() {
 
-    std::vector<std::string> titles{"a new home",
+    std::vector<std::string> titles{"a new hope",
                                     "the empire strikes back",
                                     "return of the jedi",
                                     "the phantom menace", 
