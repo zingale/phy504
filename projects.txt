@@ -1,0 +1,24 @@
+For each project you need to do:
+
+1. a github repo
+
+2. documentation (in the README is fine)
+
+3. a makefile
+
+4. at least one unit test (with the docs telling me how to run it)
+
+
+
+* Tower of Hanoi game
+
+* G-S relaxation
+
+* wordle game (with color)
+
+  have it read in a dictionary.txt file with a list of words
+
+  don't worry about checking whether the word entered by the user is a real word
+
+* few-body integrator
+
