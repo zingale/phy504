@@ -35,7 +35,9 @@ Let's start with a simple example, and then we'll talk about the structure:
 
 Some things to note here:
 
-* We include a *forward declaration* of the function.
+* We include a `forward declaration
+  <https://en.wikipedia.org/wiki/Forward_declaration>`_ of the
+  function.
 
   .. code:: c++
 
@@ -144,7 +146,7 @@ argument:
    Sometimes, if the object we are passing is big (like a
    ``std::vector``), then the copy incurred by passing by value is
    expensive.  If we use a reference, then there is no copy, and
-   passing the object is faster.  
+   passing the object is faster.
 
    If we know that we only want the function we are calling to read
    from the object and not write to it, we can mark the reference as
