@@ -1,6 +1,6 @@
-**********
-Statements
-**********
+******************
+Loops and If-Tests
+******************
 
 .. admonition:: reading
 
@@ -150,6 +150,25 @@ We've already been using if-tests quite a bit.  So let's look a little more at t
 
    C++17 also allows for a form with an initializer before the
    conditional (e.g., to open a file).  We will not explore this here.
+
+
+.. top::
+
+   There is also a simple `ternary operator
+   <https://en.wikipedia.org/wiki/%3F:>`_ in C++ of the form:
+
+       *condition* ``?`` *true-result* ``:`` *false result*
+
+   Where *true-result* is the value used if *condition* is ``true``
+   and *false-result* otherwise.
+
+   For instance:
+
+   .. code:: c++
+
+      int i{10};
+
+      double x = (i > 5) ? 1.0 : 0.0;
 
 
 ``switch`` statement
