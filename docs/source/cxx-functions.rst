@@ -35,7 +35,9 @@ Let's start with a simple example, and then we'll talk about the structure:
 
 Some things to note here:
 
-* We include a *forward declaration* of the function.
+* We include a `forward declaration
+  <https://en.wikipedia.org/wiki/Forward_declaration>`_ of the
+  function.
 
   .. code:: c++
 
@@ -139,21 +141,24 @@ argument:
    }
 
 
-There is another use however for having references in the argument
-list -- sometimes, if the object we are passing is big (like a
-``std::vector``), then the copy incurred by passing by value is
-expensive.  If we use a reference, then there is no copy, and passing
-the object is faster.  If we know that we only want the function we
-are calling to read from the object and not write to it, we can mark the 
-reference as const, like:
+.. tip::
 
-.. code:: c++
+   Sometimes, if the object we are passing is big (like a
+   ``std::vector``), then the copy incurred by passing by value is
+   expensive.  If we use a reference, then there is no copy, and
+   passing the object is faster.
 
-   void h(const double& x) {
-       // x is passed as a reference, but we cannot modify it
-   }
+   If we know that we only want the function we are calling to read
+   from the object and not write to it, we can mark the reference as
+   const, like:
 
-Here's an example:
+   .. code:: c++
+
+      void h(const double& x) {
+          // x is passed as a reference, but we cannot modify it
+      }
+
+Here's an example of different ways to pass data into a function:
 
 .. literalinclude:: ../../examples/functions/function_value_reference.cpp
    :language: c++
@@ -167,8 +172,10 @@ Here's an example:
 STL Algorithms
 ==============
 
-We looked at some of the algorithms that work on standard C++
-containers (like vectors) previously.  Now we can look at some more.
+We looked at some of the `algorithms that work on standard C++
+containers <https://en.cppreference.com/w/cpp/algorithm>`_ (like
+vectors) previously.  Now we can look at some more.  
+
 Consider ``std::sort()`` -- you can provide a function to ``sort``
 that tells it how to do the comparison.
 
@@ -179,15 +186,13 @@ sorts by string length:
 .. literalinclude:: ../../examples/functions/algorithms_functions.cpp
    :language: c++
 
-
+We'll revisit this yet again when we learn about *lambda functions*.
 
 .. admonition:: more reading
 
    You text has a few additional sections of interest that we won't
-   directly cover now;
+   directly cover now:
 
-   Section 3.14.3 : the function call mechanism
-
-   Section 3.14.4 : recursive functions
-
-   Section 3.14.5 : function overloading and namespaces
+   * Section 3.14.3 : the function call mechanism
+   * Section 3.14.4 : recursive functions
+   * Section 3.14.5 : function overloading and namespaces

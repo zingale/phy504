@@ -46,31 +46,31 @@ Then we can do:
 .. code:: c++
 
    std::vector<double> v_old{};
-
    std::vector<double> v_new{};
 
    f(v_old, v_new);
 
 
+.. danger::
 
-What about returning a reference?  We might think that we could do:
+   What about returning a reference?  We might think that we could do:
 
-.. code:: c++
+   .. code:: c++
 
-   std::vector<double>& f(const std::vector<double>& v_in) {
+      std::vector<double>& f(const std::vector<double>& v_in) {
 
-       std::vector<double> v_out;
+          std::vector<double> v_out;
 
-       // do stuff to fill v_out based on v_in
+          // do stuff to fill v_out based on v_in
 
-       return v_out;
+          return v_out;
 
-   }
+      }
 
-The problem here is that ``v_out`` is destroyed at the end of the function
-``f``, so the reference will be to something that no longer exists.
-This is not allowed -- we cannot return a reference to a local
-variable.
+   The problem here is that ``v_out`` is destroyed at the end of the function
+   ``f``, so the reference will be to something that no longer exists.
+   This is not allowed -- we cannot return a reference to a local
+   variable.
 
 
 Let's play with this:
