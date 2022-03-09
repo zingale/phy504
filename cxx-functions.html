@@ -287,19 +287,22 @@ argument:</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>There is another use however for having references in the argument
-list – sometimes, if the object we are passing is big (like a
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Sometimes, if the object we are passing is big (like a
 <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>), then the copy incurred by passing by value is
-expensive.  If we use a reference, then there is no copy, and passing
-the object is faster.  If we know that we only want the function we
-are calling to read from the object and not write to it, we can mark the
-reference as const, like:</p>
+expensive.  If we use a reference, then there is no copy, and
+passing the object is faster.</p>
+<p>If we know that we only want the function we are calling to read
+from the object and not write to it, we can mark the reference as
+const, like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// x is passed as a reference, but we cannot modify it</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here’s an example:</p>
+</div>
+<p>Here’s an example of different ways to pass data into a function:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
