@@ -170,8 +170,10 @@ Here's an example of different ways to pass data into a function:
 STL Algorithms
 ==============
 
-We looked at some of the algorithms that work on standard C++
-containers (like vectors) previously.  Now we can look at some more.
+We looked at some of the `algorithms that work on standard C++
+containers <https://en.cppreference.com/w/cpp/algorithm>`_ (like
+vectors) previously.  Now we can look at some more.  
+
 Consider ``std::sort()`` -- you can provide a function to ``sort``
 that tells it how to do the comparison.
 
@@ -182,7 +184,7 @@ sorts by string length:
 .. literalinclude:: ../../examples/functions/algorithms_functions.cpp
    :language: c++
 
-
+We'll revisit this yet again when we learn about *lambda functions*.
 
 .. admonition:: more reading
 
