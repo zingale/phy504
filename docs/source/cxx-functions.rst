@@ -139,21 +139,24 @@ argument:
    }
 
 
-There is another use however for having references in the argument
-list -- sometimes, if the object we are passing is big (like a
-``std::vector``), then the copy incurred by passing by value is
-expensive.  If we use a reference, then there is no copy, and passing
-the object is faster.  If we know that we only want the function we
-are calling to read from the object and not write to it, we can mark the 
-reference as const, like:
+.. tip::
 
-.. code:: c++
+   Sometimes, if the object we are passing is big (like a
+   ``std::vector``), then the copy incurred by passing by value is
+   expensive.  If we use a reference, then there is no copy, and
+   passing the object is faster.  
 
-   void h(const double& x) {
-       // x is passed as a reference, but we cannot modify it
-   }
+   If we know that we only want the function we are calling to read
+   from the object and not write to it, we can mark the reference as
+   const, like:
 
-Here's an example:
+   .. code:: c++
+
+      void h(const double& x) {
+          // x is passed as a reference, but we cannot modify it
+      }
+
+Here's an example of different ways to pass data into a function:
 
 .. literalinclude:: ../../examples/functions/function_value_reference.cpp
    :language: c++
