@@ -101,6 +101,7 @@ Spring 2022
    cxx-functions-example
    cxx-orbit-example
    cxx-lambdas
+   cxx-functions-lambda
 
 .. toctree::
    :maxdepth: 1
