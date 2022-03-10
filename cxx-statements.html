@@ -316,6 +316,21 @@ if-test and will always be executed.</p>
 <p>C++17 also allows for a form with an initializer before the
 conditional (e.g., to open a file).  We will not explore this here.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There is also a simple <a class="reference external" href="https://en.wikipedia.org/wiki/%3F:">ternary operator</a> in C++ of the form:</p>
+<blockquote>
+<div><p><em>condition</em> <code class="docutils literal notranslate"><span class="pre">?</span></code> <em>true-result</em> <code class="docutils literal notranslate"><span class="pre">:</span></code> <em>false result</em></p>
+</div></blockquote>
+<p>Where <em>true-result</em> is the value used if <em>condition</em> is <code class="docutils literal notranslate"><span class="pre">true</span></code>
+and <em>false-result</em> otherwise.</p>
+<p>For instance:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span><span class="w"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="switch-statement">
 <h3><code class="docutils literal notranslate"><span class="pre">switch</span></code> statement<a class="headerlink" href="#switch-statement" title="Permalink to this headline">¶</a></h3>

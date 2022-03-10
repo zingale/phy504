@@ -152,7 +152,7 @@ We've already been using if-tests quite a bit.  So let's look a little more at t
    conditional (e.g., to open a file).  We will not explore this here.
 
 
-.. top::
+.. tip::
 
    There is also a simple `ternary operator
    <https://en.wikipedia.org/wiki/%3F:>`_ in C++ of the form:
