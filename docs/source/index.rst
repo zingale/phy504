@@ -101,7 +101,7 @@ Spring 2022
    cxx-functions-example
    cxx-orbit-example
    cxx-lambdas
-   cxx-functions-lambda
+   cxx-functions-planets
 
 .. toctree::
    :maxdepth: 1
