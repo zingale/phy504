@@ -46,7 +46,7 @@ Here's how this function looks:
 .. note::
 
    Previously we saw that we could not write a function that returns a
-   reference to a local object.  But here, the return value, ``os`` is
+   reference to a local object.  But here, the return value, ``os``, is
    not local -- we pass a reference to it via the argument list.
 
    This construction is what allows us to string ``<<`` together.
