@@ -95,7 +95,7 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Functions and Classes
+   :caption: Functions
 
    cxx-functions
    cxx-functions-example
@@ -111,9 +111,9 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: More Advanced C++
+   :caption: Classes
 
-   advanced-cxx
+   contiguous_array
 
 .. toctree::
    :maxdepth: 1
