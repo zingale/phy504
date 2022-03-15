@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example: Contiguous Array &mdash; PHY 504 Spring 2022 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="prev" title="Makefiles" href="make.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PHY 504
+          </a>
+              <div class="version">
+                Spring 2022
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">File Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development-tools.html">Software Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure of a C++ Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools / Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_project.html">A First C++ Project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="editors.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-pointers.html">Pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-statements.html">Loops and If-Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-orbit-example.html">Example: Planetary Orbit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-lambdas.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions-planets.html">Example: Sorting Planets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Contiguous Array</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vector-of-vector-s"><code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contiguous-multi-dimensional-array">Contiguous multi-dimensional array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework1.html">Homework 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework2.html">Homework 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework3.html">Homework 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework4.html">Homework 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework5.html">Homework 5</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHY 504</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Example: Contiguous Array</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contiguous_array.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-contiguous-array">
+<h1>Example: Contiguous Array<a class="headerlink" href="#example-contiguous-array" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Your text does an example of a multi-dimensional array that is a
+<code class="docutils literal notranslate"><span class="pre">vector</span></code> of <code class="docutils literal notranslate"><span class="pre">vector</span></code> s.</p>
+<p>We are doing something different here – we want the memory space
+to be fully contiguous, so we will create a 1-d memory space and create
+operators to index into it.</p>
+</div>
+<section id="vector-of-vector-s">
+<h2><code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s<a class="headerlink" href="#vector-of-vector-s" title="Permalink to this headline">¶</a></h2>
+<p>If we consider:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">array_2d</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then this is creating a 1-d array that corresponds to the rows of our
+array, where each element of this is a separate vector to store the
+columns that make up that row.  But each of those row vectors are independent,
+and can be in very disparate positions in memory.</p>
+<p>This can be visualized as:</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/vector_of_vectors.png"><img alt="_images/vector_of_vectors.png" src="_images/vector_of_vectors.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Illustration of a <code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s for a <span class="math notranslate nohighlight">\(4\times
+3\)</span> array.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Our goal is to create a contiguous memory space that stores all the
+elements of the 2-d array.</p>
+</section>
+<section id="contiguous-multi-dimensional-array">
+<h2>Contiguous multi-dimensional array<a class="headerlink" href="#contiguous-multi-dimensional-array" title="Permalink to this headline">¶</a></h2>
+<p>To make a contiguous vector, we will use a single <code class="docutils literal notranslate"><span class="pre">vector</span></code>
+dimensioned with a size of <code class="docutils literal notranslate"><span class="pre">nrows</span> <span class="pre">*</span> <span class="pre">ncols</span></code> (note: C++ will likely
+have more elements than this, to allow for the potential expansion of
+the vector, but we won’t use that).</p>
+<p>We will then overload the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator to allow for us to index
+into this one-dimensional buffer as <code class="docutils literal notranslate"><span class="pre">a(nrow,</span> <span class="pre">ncol)</span></code>.</p>
+<p>This can be visualized as:</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/struct_array.png"><img alt="_images/struct_array.png" src="_images/struct_array.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Illustration of a one-dimensional <code class="docutils literal notranslate"><span class="pre">vector</span></code> wrapped in a <code class="docutils literal notranslate"><span class="pre">struct</span></code> that can be
+indexed as a two-dimensional array.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>We will implement the main <code class="docutils literal notranslate"><span class="pre">struct</span></code> in a header so we can reuse this</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
+<span class="cp">#define ARRAY_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="c1">// a contiguous 2-d array</span>
+<span class="c1">// here the data is stored in row-major order in a 1-d memory space</span>
+<span class="c1">// managed as a vector.  We overload () to allow us to index this as</span>
+<span class="c1">// a(irow, icol)</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span><span class="w"></span>
+<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="c1">//_data(rows * cols, val)</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// we do the initialization of _data here so we can first assert</span>
+<span class="w">        </span><span class="c1">// on the rows and cols.  If we placed it in the initialization list,</span>
+<span class="w">        </span><span class="c1">// then it would be created before we could check.</span>
+
+<span class="w">        </span><span class="n">_data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// note the &quot;const&quot; after the argument list here -- this means</span>
+<span class="w">    </span><span class="c1">// that this can be called on a const Array, while the first</span>
+<span class="w">    </span><span class="c1">// &quot;const&quot; refers to the return type</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">};</span><span class="w"></span>
+
+
+<span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+<p>Some comments on this implementation:</p>
+<ul>
+<li><p>We do not include the <code class="docutils literal notranslate"><span class="pre">_data</span></code> vector in the initialization-list,
+but instead explicitly resize it in the constructor.  This allows us
+to do an <code class="docutils literal notranslate"><span class="pre">assert</span></code> on the number of rows and columns before we try
+to resize it.</p>
+<p>The downside of this approach is that it might be a little slower,
+since we create the empty vector and then resize it in two steps
+instead of handling it all at initialization.</p>
+</li>
+<li><p>We have two methods for the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator.  The first is for the
+case of a non-<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code> and the second is for a
+<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code>.</p></li>
+</ul>
+<p>The body of the <code class="docutils literal notranslate"><span class="pre">Array</span></code> methods is provided in a separate <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
+
+<span class="c1">// notice that we can put the function body for these member functions</span>
+<span class="c1">// outside of the class definition.  We just need to prefix them as</span>
+<span class="c1">// Array::</span>
+
+<span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">Array::operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">Array::operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span>
+
+
+<span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Here’s a test program for the <code class="docutils literal notranslate"><span class="pre">Array</span></code> object:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">x</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// this will fail the assertion</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Notice a few things:</p>
+<ul class="simple">
+<li><p>When we loop over the elements of the <code class="docutils literal notranslate"><span class="pre">Array</span></code> we get the number of
+rows via <code class="docutils literal notranslate"><span class="pre">.nrows()</span></code> and the number of columns via <code class="docutils literal notranslate"><span class="pre">.ncols()</span></code>.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">Array</span> <span class="pre">y</span></code>, we use a range-for loop over the elements of
+<code class="docutils literal notranslate"><span class="pre">_data</span></code> directly – this is the one-dimensional representation of
+our array.  We can do this because the data is stored contiguously.</p></li>
+<li><p>When we try to index out of bounds, the <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements catch
+this.</p></li>
+</ul>
+<p>And finally, to build this, here’s a <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCE</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
+<span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCE:.cpp<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="nv">INCLUDEPATH</span><span class="o">=</span>.
+
+<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span>
+	g++ <span class="si">${</span><span class="nv">CFLAGS</span><span class="si">}</span> -I <span class="si">${</span><span class="nv">INCLUDEPATH</span><span class="si">}</span> -c $&lt;
+
+<span class="nf">test_array</span><span class="o">:</span> ${<span class="n">OBJECTS</span>}
+	g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If we want to disable the asserts, then we need to define the
+<code class="docutils literal notranslate"><span class="pre">-DNDEBUG</span></code> preprocessor directive.  By disabling this check,
+we will run faster.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="make.html" class="btn btn-neutral float-left" title="Makefiles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michael Zingale.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+
+</body>
+</html>
