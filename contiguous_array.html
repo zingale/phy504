@@ -391,17 +391,25 @@ span.prompt1:before {
 </pre></div></div><p>But that is a lot to do each time.  Instead, we’ll use a makefile:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCE</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># get all the sources and the headers</span>
+<span class="nv">SOURCE</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
 <span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
+
+<span class="c"># create the list of objects by replacing the .cpp with .o for the</span>
+<span class="c"># sources</span>
 <span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCE:.cpp<span class="o">=</span>.o<span class="k">)</span>
 
+<span class="c"># we have 2 targets here, which means two main() functions.  We need</span>
+<span class="c"># to exclude these from the general list of sources / objects, so we</span>
+<span class="c"># filter them out</span>
 <span class="nv">MAINS</span> <span class="o">:=</span> test_array.o timing.o
 <span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>filter-out <span class="k">$(</span>MAINS<span class="k">)</span>, <span class="k">$(</span>OBJECTS<span class="k">))</span>
 
-<span class="nv">INCLUDEPATH</span><span class="o">=</span> .
+<span class="c"># tell the compiler where to look for our headers</span>
+<span class="nv">INCLUDEPATH</span> <span class="o">:=</span> .
+<span class="nv">INCLUDES</span> <span class="o">:=</span> <span class="k">$(</span>foreach i, <span class="si">${</span><span class="nv">INCLUDEPATH</span><span class="si">}</span>, -I<span class="nv">$i</span><span class="k">)</span>
 
-<span class="nv">INCLUDES</span> <span class="o">=</span> <span class="k">$(</span>foreach i, <span class="si">${</span><span class="nv">INCLUDEPATH</span><span class="si">}</span>, -I<span class="nv">$i</span><span class="k">)</span>
-
+<span class="c"># by default, debug mode will be disabled</span>
 <span class="nv">DEBUG</span> <span class="o">?=</span> FALSE
 
 <span class="cp">ifeq (${DEBUG}, TRUE)</span>
@@ -410,17 +418,23 @@ span.prompt1:before {
    <span class="nv">OPTS</span> <span class="o">+=</span> -DNDEBUG -O3
 <span class="cp">endif</span>
 
+<span class="c"># general rule for compiling a .cpp file to .o</span>
 <span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
 	g++ <span class="si">${</span><span class="nv">CFLAGS</span><span class="si">}</span> <span class="si">${</span><span class="nv">OPTS</span><span class="si">}</span> <span class="si">${</span><span class="nv">INCLUDES</span><span class="si">}</span> -c $&lt;
 
+<span class="c"># the test_array program -- we need to explicitly include</span>
+<span class="c"># test_array.o here</span>
 <span class="nf">test_array</span><span class="o">:</span> <span class="n">test_array</span>.<span class="n">o</span> ${<span class="n">OBJECTS</span>}
 	g++ -o <span class="nv">$@</span> test_array.o <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
 
+<span class="c"># the timing program -- likewise, explicitly include</span>
+<span class="c"># timing.o here</span>
 <span class="nf">timing</span><span class="o">:</span> <span class="n">timing</span>.<span class="n">o</span> <span class="k">$(</span><span class="nv">OBJECTS</span><span class="k">)</span>
 	g++ -o <span class="nv">$@</span> timing.o <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
 
+<span class="c"># &#39;make clean&#39; will erase all the intermediate objects</span>
 <span class="nf">clean</span><span class="o">:</span>
-	rm -f *.o test_array
+	rm -f *.o test_array timing
 </pre></div>
 </div>
 </div>
@@ -438,6 +452,9 @@ build as is, we can do:</p>
 directive, so setting <code class="docutils literal notranslate"><span class="pre">-DNDEBUG</span></code> tells the preprocessor to turn
 off the asserts.</p>
 </div>
+<p>This <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> is a little more complex than the previous ones
+we looked at, since there are two possible targets defined.  The first
+target, <code class="docutils literal notranslate"><span class="pre">test_array</span></code> in this case, is the default.</p>
 </section>
 <section id="performance">
 <h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
@@ -475,7 +492,8 @@ different implementations.  We convert to seconds using
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (row-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (row-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// again Array, but loop in the wrong order</span>
 
@@ -491,7 +509,8 @@ different implementations.  We convert to seconds using
 
 <span class="w">    </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (col-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (col-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// fixed-size array</span>
 
@@ -507,13 +526,16 @@ different implementations.  We convert to seconds using
 
 <span class="w">    </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;fixed-sized std::array&lt;std::array&gt;&gt;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;fixed-sized std::array&lt;std::array&gt;&gt;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
-<p>Some things to consider:</p>
+<p>We can build this via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make timing</span>
+</pre></div></div><p>Some things to consider:</p>
 <ul>
 <li><p>Putting the <code class="docutils literal notranslate"><span class="pre">operator()</span></code> functions in <code class="docutils literal notranslate"><span class="pre">array.H</span></code> gives the
 compiler the opportunity to inline them.  This can have a big
@@ -528,8 +550,11 @@ holds the data on the heap.</p>
 <p>Its size also needs to be known at compilation time.</p>
 </li>
 </ul>
-<p>How does the performance change with array size, compiler optimization
-level, asserts enabled, etc.?</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>How does the performance change with array size, compiler
+optimization level, asserts enabled, etc.?</p>
+</div>
 </section>
 </section>
 
