@@ -147,11 +147,15 @@ But that is a lot to do each time.  Instead, we'll use a makefile:
    directive, so setting ``-DNDEBUG`` tells the preprocessor to turn
    off the asserts.
 
+This ``GNUmakefile`` is a little more complex than the previous ones
+we looked at, since there are two possible targets defined.  The first
+target, ``test_array`` in this case, is the default.
+
 
 Performance
 ===========
 
-Let's see how the speed of this compares to doing 
+Let's see how the speed of this compares to doing
 
 .. code:: c++
 
@@ -166,6 +170,11 @@ different implementations.  We convert to seconds using
    :language: c++
    :caption: ``timing.cpp``
 
+We can build this via:
+
+.. prompt:: bash
+
+   make timing
 
 
 
@@ -186,8 +195,10 @@ Some things to consider:
 
   Its size also needs to be known at compilation time.
 
-How does the performance change with array size, compiler optimization
-level, asserts enabled, etc.?
+.. admonition:: try it...
+
+   How does the performance change with array size, compiler
+   optimization level, asserts enabled, etc.?
 
 
 

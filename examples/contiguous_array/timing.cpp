@@ -23,7 +23,8 @@ int main() {
 
     auto end = clock();
 
-    std::cout << "Array timing (row-major loop): " << static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
+    std::cout << "Array timing (row-major loop): " <<
+        static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
 
     // again Array, but loop in the wrong order
 
@@ -39,7 +40,8 @@ int main() {
 
     end = clock();
 
-    std::cout << "Array timing (col-major loop): " << static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
+    std::cout << "Array timing (col-major loop): " <<
+        static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
 
     // fixed-size array
 
@@ -55,6 +57,7 @@ int main() {
 
     end = clock();
 
-    std::cout << "fixed-sized std::array<std::array>>: " << static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
+    std::cout << "fixed-sized std::array<std::array>>: " <<
+        static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
 
 }
