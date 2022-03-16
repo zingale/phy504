@@ -8,20 +8,6 @@
 // outside of the class definition.  We just need to prefix them as
 // Array::
 
-double& Array::operator()(int row, int col) {
-    assert (row >= 0 && row < _rows);
-    assert (col >= 0 && col < _cols);
-
-    return _data[row*_cols + col];
-}  
-
-const double& Array::operator()(int row, int col) const {
-    assert (row >= 0 && row < _rows);
-    assert (col >= 0 && col < _cols);
-
-    return _data[row*_cols + col];
-}  
-
 
 // the << operator is not part of the of the class, so it is not a member
 

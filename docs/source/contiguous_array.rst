@@ -148,4 +148,48 @@ But that is a lot to do each time.  Instead, we'll use a makefile:
    off the asserts.
 
 
+Performance
+===========
+
+Let's see how the speed of this compares to doing 
+
+.. code:: c++
+
+   std::array<std::array<double, ncols>, nrows>
+
+Here we access a simple clock via ``<chrono>`` and use it to time
+different implementations.  We convert to seconds using
+``CLOCKS_PER_SEC``.
+
+
+.. literalinclude:: ../../examples/contiguous_array/timing.cpp
+   :language: c++
+   :caption: ``timing.cpp``
+
+
+
+
+Some things to consider:
+
+* Putting the ``operator()`` functions in ``array.H`` gives the
+  compiler the opportunity to inline them.  This can have a big
+  performance difference compared to putting their implementation in
+  ``array.cpp``.
+
+* Timing the array creation and loop will reveal that creating our
+  ``Array`` is more expensive than the ``std::array<std::array<>>``
+  approach.
+
+* The ``std::array<std::array<>>`` is allocated on the stack, and we
+  can quickly exceed the stack size.  Meanwhile, the ``Array`` class
+  holds the data on the heap.
+
+  Its size also needs to be known at compilation time.
+
+How does the performance change with array size, compiler optimization
+level, asserts enabled, etc.?
+
+
+
+
 

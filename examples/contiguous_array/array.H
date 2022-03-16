@@ -34,11 +34,11 @@ struct Array {
     // that this can be called on a const Array, while the first
     // "const" refers to the return type
 
-    const std::size_t ncols() const { return _cols;}
-    const std::size_t nrows() const { return _rows;}
+    inline const std::size_t ncols() const { return _cols;}
+    inline const std::size_t nrows() const { return _rows;}
 
-    double& operator()(int row, int col);
-    const double& operator()(int row, int col) const;
+    inline double& operator()(int row, int col);
+    inline const double& operator()(int row, int col) const;
 
 };
 
@@ -46,5 +46,20 @@ struct Array {
 // the << operator is not part of the of the class, so it is not a member
 
 std::ostream& operator<< (std::ostream& os, const Array& a);
+
+inline double& Array::operator()(int row, int col) {
+    assert (row >= 0 && row < _rows);
+    assert (col >= 0 && col < _cols);
+
+    return _data[row*_cols + col];
+}  
+
+inline const double& Array::operator()(int row, int col) const {
+    assert (row >= 0 && row < _rows);
+    assert (col >= 0 && col < _cols);
+
+    return _data[row*_cols + col];
+}  
+
 
 #endif
