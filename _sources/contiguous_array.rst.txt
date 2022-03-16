@@ -87,7 +87,8 @@ The body of the ``Array`` methods is provided in a separate ``.cpp`` file:
    :language: c++
    :caption: ``array.cpp``
 
-Here's a test program for the ``Array`` object:
+Here's a test program for the ``Array`` object.  Notice that we gain
+access to the ``Array`` class via ``#include "array.H"``.
 
 .. literalinclude:: ../../examples/contiguous_array/test_array.cpp
    :language: c++
@@ -105,7 +106,16 @@ Notice a few things:
 * When we try to index out of bounds, the ``assert`` statements catch
   this.
 
-And finally, to build this, here's a ``GNUmakefile``:
+We have 3 files in our project: ``array.H``, ``array.cpp``, and ``test_array.cpp``.
+We could compile and link these on our own as:
+
+.. prompt:: bash
+
+   g++ -c -I. array.cpp
+   g++ -c -I. test_array.cpp
+   g++ -o test_array array.o test_array.o
+
+But that is a lot to do each time.  Instead, we'll use a makefile:
 
 .. literalinclude:: ../../examples/contiguous_array/GNUmakefile
    :language: make
@@ -113,8 +123,29 @@ And finally, to build this, here's a ``GNUmakefile``:
 
 .. note::
 
-   If we want to disable the asserts, then we need to define the
-   ``-DNDEBUG`` preprocessor directive.  By disabling this check,
-   we will run faster.
+   The ``GNUmakefile`` has some helpful features.  To just
+   build as is, we can do:
+
+   .. prompt:: bash
+
+      make
+
+   If we instead want to turn on the ``assert``'s, then we do:
+
+   .. prompt:: bash
+
+      make DEBUG=TRUE
+
+   To force a rebuild, we can do:
+
+   .. prompt:: bash
+
+      make clean
+      make
+
+   The ``assert``'s are handled by the C++ via the ``NDEBUG`` preprocess
+   directive, so setting ``-DNDEBUG`` tells the preprocessor to turn
+   off the asserts.
+
 
 

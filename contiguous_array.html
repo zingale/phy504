@@ -328,7 +328,8 @@ case of a non-<code class="docutils literal notranslate"><span class="pre">const
 </pre></div>
 </div>
 </div>
-<p>Here’s a test program for the <code class="docutils literal notranslate"><span class="pre">Array</span></code> object:</p>
+<p>Here’s a test program for the <code class="docutils literal notranslate"><span class="pre">Array</span></code> object.  Notice that we gain
+access to the <code class="docutils literal notranslate"><span class="pre">Array</span></code> class via <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;array.H&quot;</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -376,7 +377,16 @@ our array.  We can do this because the data is stored contiguously.</p></li>
 <li><p>When we try to index out of bounds, the <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements catch
 this.</p></li>
 </ul>
-<p>And finally, to build this, here’s a <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<p>We have 3 files in our project: <code class="docutils literal notranslate"><span class="pre">array.H</span></code>, <code class="docutils literal notranslate"><span class="pre">array.cpp</span></code>, and <code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code>.
+We could compile and link these on our own as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++ -c -I. array.cpp</span>
+<span class="prompt1">g++ -c -I. test_array.cpp</span>
+<span class="prompt1">g++ -o test_array array.o test_array.o</span>
+</pre></div></div><p>But that is a lot to do each time.  Instead, we’ll use a makefile:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCE</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
@@ -408,9 +418,17 @@ this.</p></li>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If we want to disable the asserts, then we need to define the
-<code class="docutils literal notranslate"><span class="pre">-DNDEBUG</span></code> preprocessor directive.  By disabling this check,
-we will run faster.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> has some helpful features.  To just
+build as is, we can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make</span>
+</pre></div></div><p>If we instead want to turn on the <code class="docutils literal notranslate"><span class="pre">assert</span></code>’s, then we do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make <span class="nv">DEBUG</span><span class="o">=</span>TRUE</span>
+</pre></div></div><p>To force a rebuild, we can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make clean</span>
+<span class="prompt1">make</span>
+</pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">assert</span></code>’s are handled by the C++ via the <code class="docutils literal notranslate"><span class="pre">NDEBUG</span></code> preprocess
+directive, so setting <code class="docutils literal notranslate"><span class="pre">-DNDEBUG</span></code> tells the preprocessor to turn
+off the asserts.</p>
 </div>
 </section>
 </section>
