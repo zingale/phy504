@@ -177,6 +177,29 @@ example.</p>
 <section id="a-first-gnumakefile">
 <h2>A first <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code><a class="headerlink" href="#a-first-gnumakefile" title="Permalink to this headline">¶</a></h2>
 <p>Here’s a basic makefile, which we’ll name <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
+<span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
+<span class="c"># name, it is just commonly used).</span>
+
+<span class="nf">ALL</span><span class="o">:</span> <span class="n">planet_sort_split</span>
+
+<span class="c"># explicitly list the rules for making each of the object files</span>
+
+<span class="nf">planet_sort_split.o</span><span class="o">:</span> <span class="n">planet_sort_split</span>.<span class="n">cpp</span> <span class="n">planet</span>.<span class="n">H</span>
+	g++ -c planet_sort_split.cpp
+
+<span class="nf">planet.o</span><span class="o">:</span> <span class="n">planet</span>.<span class="n">cpp</span> <span class="n">planet</span>.<span class="n">H</span>
+	g++ -c planet.cpp
+
+<span class="c"># explicitly write the rule for linking together the executable</span>
+
+<span class="nf">planet_sort_split</span><span class="o">:</span> <span class="n">planet_sort_split</span>.<span class="n">o</span> <span class="n">planet</span>.<span class="n">o</span>
+	g++ -o planet_sort_split planet_sort_split.o planet.o
+</pre></div>
+</div>
+</div>
 <p>There are a few different types of lines, but the most important are
 the rules that are of the form:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">target</span><span class="p">:</span>   <span class="n">dependencies</span> <span class="o">...</span>
@@ -225,8 +248,8 @@ explicitly.  Instead, we can use <a class="reference external" href="https://www
 and <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Wildcard-Function.html">wildcards</a>
 to automate a lot of the logic.</p>
 <p>Here’s the improved <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">new <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text">new <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
 <span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
 <span class="c"># name, it is just commonly used).</span>
