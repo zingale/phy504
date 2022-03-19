@@ -2,6 +2,8 @@
 Example: Sorting Planets
 ************************
 
+.. _sec:sorting_planets:
+
 Let's use our new understanding of lambda functions to enable ``std::sort()``
 to sort our planets vector based on eccentricity.
 
@@ -56,5 +58,6 @@ and then outputting them.
 
 .. literalinclude:: ../../examples/functions/planet_sort.cpp
    :language: c++
+   :caption: ``planet_sort.cpp``
 
 
