@@ -121,6 +121,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
@@ -186,6 +187,8 @@ surrounding scope:</p>
 <p>mixed types of capture are also possible, where you can capture some
 data by value and others by reference</p>
 <p>Here’s a simple example:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 28 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">lambda_examples.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -205,11 +208,14 @@ data by value and others by reference</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <section id="sort-example">
 <h2>Sort Example<a class="headerlink" href="#sort-example" title="Permalink to this headline">¶</a></h2>
 <p>Lambdas make it easy to provide simply functions as arguments
 to other functions (like we did with <code class="docutils literal notranslate"><span class="pre">std::sort()</span></code> previously).
 Here’s an implementation of that using a lambda function:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 29 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">algorithms_functions_lambda.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
@@ -246,6 +252,7 @@ Here’s an implementation of that using a lambda function:</p>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 </section>
 </section>

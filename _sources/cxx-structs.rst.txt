@@ -46,6 +46,7 @@ their orbital period using Kepler's third law:
 
 .. literalinclude:: ../../examples/structs/struct_example.cpp
    :language: c++
+   :caption: ``struct_example.cpp``
 
 Some notes:
 

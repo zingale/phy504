@@ -121,6 +121,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
@@ -175,6 +176,8 @@ In contrast, arrays are fixed-size.</p></li>
 <li><p>Arrays do not initialize their elements by default when declared.</p></li>
 </ul>
 <p>Here’s a simple example:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 13 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_array.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span><span class="cp"></span>
 
@@ -187,6 +190,7 @@ In contrast, arrays are fixed-size.</p></li>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 <p>Declaring the array takes 2 arguments in the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> – the datatype and the number of elements.</p>
 <p>Notice that when we look over the elements, they are uninitialized.</p>
@@ -209,6 +213,8 @@ In contrast, arrays are fixed-size.</p></li>
 again be fixed-size, so we’ll need to specify both the number of rows
 and the number of columns at compile time.</p>
 <p>Here’s an example:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 14 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">multid_array.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
@@ -239,6 +245,7 @@ and the number of columns at compile time.</p>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 <p>There are a few features here that we have not yet seen.</p>
 <ul class="simple">

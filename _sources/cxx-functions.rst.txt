@@ -31,6 +31,7 @@ Let's start with a simple example, and then we'll talk about the structure:
 
 .. literalinclude:: ../../examples/functions/simple_function.cpp
    :language: c++
+   :caption: ``simple_function.cpp``
 
 
 Some things to note here:
@@ -162,7 +163,7 @@ Here's an example of different ways to pass data into a function:
 
 .. literalinclude:: ../../examples/functions/function_value_reference.cpp
    :language: c++
-
+   :caption: ``function_value_reference.cpp``
 
 
 .. Default Values
@@ -185,6 +186,7 @@ sorts by string length:
 
 .. literalinclude:: ../../examples/functions/algorithms_functions.cpp
    :language: c++
+   :caption: ``algorithms_functions.cpp``
 
 We'll revisit this yet again when we learn about *lambda functions*.
 

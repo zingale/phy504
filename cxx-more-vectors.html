@@ -127,6 +127,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
@@ -226,6 +227,8 @@ pointing to, then we need to <em>dereference</em> it – this is done with the
 </div>
 <p>These can also be used in some powerful algorithms provided by the
 <code class="docutils literal notranslate"><span class="pre">algorithms</span></code> header.  Here’s an example of using <code class="docutils literal notranslate"><span class="pre">find</span></code> on a vector:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">find_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
@@ -249,6 +252,7 @@ pointing to, then we need to <em>dereference</em> it – this is done with the
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A nice overview of the different algorithms that work on the
@@ -267,6 +271,8 @@ specifying an additional argument.)</p>
 <p>Here’s an example: we start with a vector with the elements <code class="docutils literal notranslate"><span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">200</span></code>,
 <code class="docutils literal notranslate"><span class="pre">300</span></code> and then use <code class="docutils literal notranslate"><span class="pre">insert()</span></code> to put <code class="docutils literal notranslate"><span class="pre">150</span></code> in between <code class="docutils literal notranslate"><span class="pre">100</span></code>
 and <code class="docutils literal notranslate"><span class="pre">200</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">insert_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
@@ -286,6 +292,7 @@ and <code class="docutils literal notranslate"><span class="pre">200</span></cod
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 </section>
 <section id="erasing">
 <h2>Erasing<a class="headerlink" href="#erasing" title="Permalink to this headline">¶</a></h2>
@@ -298,6 +305,8 @@ the vector.</p>
 <p>Here’s an example that removes the first 4 elements of a vector.</p>
 <p>What happens if we try to remove past the end?  To be save, we should
 always add a check on whether our end is past <code class="docutils literal notranslate"><span class="pre">.end()</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">vector_erase.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
@@ -324,6 +333,7 @@ always add a check on whether our end is past <code class="docutils literal notr
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>What happens if you use <code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code> and/or <code class="docutils literal notranslate"><span class="pre">.cend()</span></code> instead
@@ -338,6 +348,8 @@ provides read-only access to the elements through the iterator.</p>
 <span class="pre">init)</span></code> where <code class="docutils literal notranslate"><span class="pre">num</span></code> is the number of new elements and (optionally) <code class="docutils literal notranslate"><span class="pre">init</span></code> is
 their initial value.</p>
 <p>We can remove everything from the vector using <code class="docutils literal notranslate"><span class="pre">.clear()</span></code>.  Here’s an example:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">resize_example.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
@@ -375,6 +387,7 @@ their initial value.</p>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 </section>
 <section id="sorting">

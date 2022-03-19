@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Example: Contiguous Array" href="contiguous_array.html" />
-    <link rel="prev" title="Example: Sorting Planets" href="cxx-functions-planets.html" /> 
+    <link rel="prev" title="Working with Multiple Files" href="multiple-files.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -118,6 +118,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Makefiles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#first-example">First example</a></li>
 </ul>
@@ -171,26 +172,29 @@ Make allows us to specify rules for how to compile and link the code.</p>
 <p>There are 3 C++ files and one header that need to be built and then linked together, with the
 main driver in <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>.</p>
 <p>Here’s a basic makefile that controls the building:</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c"># by default, make will try to build the first target it encounters.</span>
-<span class="linenos"> 2</span><span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
-<span class="linenos"> 3</span><span class="c"># name, it is just commonly used).</span>
-<span class="linenos"> 4</span><span class="nf">ALL</span><span class="o">:</span> <span class="n">main</span>
-<span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="c"># explicitly list the rules for making each of the object files</span>
-<span class="linenos"> 7</span><span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">cpp</span>
-<span class="linenos"> 8</span>	g++ -I. -c main.cpp
-<span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="nf">compute.o</span><span class="o">:</span> <span class="n">compute</span>.<span class="n">cpp</span>
-<span class="linenos">11</span>	g++ -I. -c compute.cpp
-<span class="linenos">12</span>
-<span class="linenos">13</span><span class="nf">print_result.o</span><span class="o">:</span> <span class="n">print_result</span>.<span class="n">cpp</span>
-<span class="linenos">14</span>	g++ -I. -c print_result.cpp
-<span class="linenos">15</span>
-<span class="linenos">16</span>
-<span class="linenos">17</span><span class="c"># explicitly write the rule for linking together the executable</span>
-<span class="linenos">18</span><span class="nf">main</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="n">compute</span>.<span class="n">o</span> <span class="n">print_result</span>.<span class="n">o</span>
-<span class="linenos">19</span>	g++ -o main main.o compute.o print_result.o
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
+<span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
+<span class="c"># name, it is just commonly used).</span>
+<span class="nf">ALL</span><span class="o">:</span> <span class="n">main</span>
+
+<span class="c"># explicitly list the rules for making each of the object files</span>
+<span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">cpp</span>
+	g++ -I. -c main.cpp
+
+<span class="nf">compute.o</span><span class="o">:</span> <span class="n">compute</span>.<span class="n">cpp</span>
+	g++ -I. -c compute.cpp
+
+<span class="nf">print_result.o</span><span class="o">:</span> <span class="n">print_result</span>.<span class="n">cpp</span>
+	g++ -I. -c print_result.cpp
+
+
+<span class="c"># explicitly write the rule for linking together the executable</span>
+<span class="nf">main</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="n">compute</span>.<span class="n">o</span> <span class="n">print_result</span>.<span class="n">o</span>
+	g++ -o main main.o compute.o print_result.o
 </pre></div>
+</div>
 </div>
 <p>There are a few different types of lines, but the most important are the rules that are of the form:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">target</span><span class="p">:</span>   <span class="n">dependencies</span> <span class="o">...</span>
@@ -213,7 +217,7 @@ main driver in <code class="docutils literal notranslate"><span class="pre">main
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-functions-planets.html" class="btn btn-neutral float-left" title="Example: Sorting Planets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multiple-files.html" class="btn btn-neutral float-left" title="Working with Multiple Files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="contiguous_array.html" class="btn btn-neutral float-right" title="Example: Contiguous Array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

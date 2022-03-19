@@ -92,6 +92,7 @@ the C++ constructs that we will learn in the next weeks.
 
 .. literalinclude:: ../../examples/interest/interest.cpp
    :language: c++
+   :caption: ``interest.cpp``
 
 Letter histogram
 ================

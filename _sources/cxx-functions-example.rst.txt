@@ -77,5 +77,6 @@ Let's play with this:
 
 .. literalinclude:: ../../examples/functions/function_vector.cpp
    :language: c++
+   :caption: ``function_vector.cpp``
 
 

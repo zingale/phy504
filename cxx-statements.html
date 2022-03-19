@@ -130,6 +130,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
@@ -188,6 +189,8 @@ time to understand some of the nuances of these statements.</p>
 <p>One thing to keep in mind with these blocks is <em>scope</em> – this means whether we have access to the value held by an object.</p>
 <p>A general rule is that we can access objects that are defined outside of our current scope.</p>
 <p>Let’s look at the solution from our homework 3:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 17 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fibonacci.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
@@ -217,6 +220,7 @@ time to understand some of the nuances of these statements.</p>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 <p>Inside of the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, we create a <code class="docutils literal notranslate"><span class="pre">vector</span></code> called
 <code class="docutils literal notranslate"><span class="pre">fib</span></code> and an integer <code class="docutils literal notranslate"><span class="pre">n</span></code>.  Both of these are in scope inside of
@@ -448,6 +452,8 @@ loop block if some conditions is met.  This is where <code class="docutils liter
 <p>In this case, we will want a way to bail out.  Here’s an (silly)
 example of asking for a word from a user and telling them how many
 letters it contains.  But if they enter “0”, we exit:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">infinite_loop.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
@@ -470,9 +476,12 @@ letters it contains.  But if they enter “0”, we exit:</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">continue</span></code> is used to skip to the next iteration.  Here’s an example
 that loops over elements of a vector but only operates on them if they
 are even numbers, in which case, it negates them.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 19 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">continue_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
@@ -493,6 +502,7 @@ are even numbers, in which case, it negates them.</p>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 </section>
 </section>

@@ -20,7 +20,7 @@ Here's a basic makefile that controls the building:
 
 .. literalinclude:: examples/make/1/GNUmakefile
    :language: make
-   :linenos:
+   :caption: ``GNUmakefile``
 
 There are a few different types of lines, but the most important are the rules that are of the form::
 

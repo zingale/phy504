@@ -118,6 +118,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
@@ -188,6 +189,8 @@ desired.</p>
 <p>The alternate to open a file for reading is <code class="docutils literal notranslate"><span class="pre">std::ifstream</span></code>.  Note
 that both of these are defined by the <code class="docutils literal notranslate"><span class="pre">fstream</span></code> header.</p>
 <p>Here’s an example of writing our planet information out to a file:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 20 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">output_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
@@ -224,6 +227,7 @@ that both of these are defined by the <code class="docutils literal notranslate"
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <p>Let’s now look at how to read that file back in.</p>
 <p>There are 2 approaches we can take:</p>
 <ul>
@@ -251,6 +255,8 @@ as a stream and read from it.</p>
 <p>Here’s an example of reading our file line by line.  We rely on the
 fact when it reaches the end of the file, <code class="docutils literal notranslate"><span class="pre">getline()</span></code> will evaluate
 as <code class="docutils literal notranslate"><span class="pre">false</span></code> in a conditional.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 21 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">input_example2.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
@@ -296,6 +302,7 @@ as <code class="docutils literal notranslate"><span class="pre">false</span></co
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>A file stream object was an <code class="docutils literal notranslate"><span class="pre">.eof()</span></code> method that is <code class="docutils literal notranslate"><span class="pre">true</span></code> when
@@ -328,6 +335,8 @@ solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 22 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">wc_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
 
@@ -380,6 +389,7 @@ solution<div class="summary-down docutils">
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 </div>
 </details></div>

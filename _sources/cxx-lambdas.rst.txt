@@ -35,7 +35,7 @@ Here's a simple example:
 
 .. literalinclude:: ../../examples/functions/lambda_examples.cpp
    :language: c++
-
+   :caption: ``lambda_examples.cpp``
 
 
 
@@ -49,4 +49,4 @@ Here's an implementation of that using a lambda function:
 
 .. literalinclude:: ../../examples/functions/algorithms_functions_lambda.cpp
    :language: c++
-
+   :caption: ``algorithms_functions_lambda.cpp``

@@ -107,6 +107,7 @@ Spring 2022
    :maxdepth: 1
    :caption: Elements of Software Engineering
 
+   multiple-files
    make
 
 .. toctree::
