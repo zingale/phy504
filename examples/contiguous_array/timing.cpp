@@ -44,6 +44,8 @@ int main() {
         static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
 
     // fixed-size array
+    // Note: this is allocated on the stack and the code crashes
+    // on my machine if MAX_SIZE >~ 1000
 
     std::array<std::array<double, MAX_SIZE>, MAX_SIZE> c;
 
