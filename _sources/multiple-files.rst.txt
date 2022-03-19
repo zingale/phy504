@@ -2,6 +2,8 @@
 Working with Multiple Files
 ***************************
 
+.. _sec:multiplefiles:
+
 As our projects grow in size, it becomes beneficial to spread our code
 over multiple files.  This has several benefits:
 

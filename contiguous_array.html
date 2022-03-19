@@ -514,6 +514,8 @@ different implementations.  We convert to seconds using
 <span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// fixed-size array</span>
+<span class="w">    </span><span class="c1">// Note: this is allocated on the stack and the code crashes</span>
+<span class="w">    </span><span class="c1">// on my machine if MAX_SIZE &gt;~ 1000</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="o">&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
 

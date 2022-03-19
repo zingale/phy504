@@ -120,7 +120,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Makefiles</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#first-example">First example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-first-gnumakefile">A first <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generalizing-our-gnumakefile">Generalizing our <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#going-further">Going further</a></li>
 </ul>
 </li>
 </ul>
@@ -163,40 +165,20 @@
              
   <section id="makefiles">
 <h1>Makefiles<a class="headerlink" href="#makefiles" title="Permalink to this headline">¶</a></h1>
-<p>We’ll look at <a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a> to manage building projects that are split across multiple files.
-Make allows us to specify rules for how to compile and link the code.</p>
-<p>Note: A popular alternative to GNU Make is <a class="reference external" href="https://cmake.org/">CMake</a>.</p>
-<section id="first-example">
-<h2>First example<a class="headerlink" href="#first-example" title="Permalink to this headline">¶</a></h2>
-<p>Take a look at the project in <a class="reference external" href="https://github.com/zingale/phy504/tree/main/examples/make/1">https://github.com/zingale/phy504/tree/main/examples/make/1</a></p>
-<p>There are 3 C++ files and one header that need to be built and then linked together, with the
-main driver in <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>.</p>
-<p>Here’s a basic makefile that controls the building:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
-<span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
-<span class="c"># name, it is just commonly used).</span>
-<span class="nf">ALL</span><span class="o">:</span> <span class="n">main</span>
-
-<span class="c"># explicitly list the rules for making each of the object files</span>
-<span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">cpp</span>
-	g++ -I. -c main.cpp
-
-<span class="nf">compute.o</span><span class="o">:</span> <span class="n">compute</span>.<span class="n">cpp</span>
-	g++ -I. -c compute.cpp
-
-<span class="nf">print_result.o</span><span class="o">:</span> <span class="n">print_result</span>.<span class="n">cpp</span>
-	g++ -I. -c print_result.cpp
-
-
-<span class="c"># explicitly write the rule for linking together the executable</span>
-<span class="nf">main</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="n">compute</span>.<span class="n">o</span> <span class="n">print_result</span>.<span class="n">o</span>
-	g++ -o main main.o compute.o print_result.o
-</pre></div>
+<p>We’ll look at <a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a> to
+manage building projects that are split across multiple files.  Make
+allows us to specify rules for how to compile and link the code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A popular alternative to GNU Make is <a class="reference external" href="https://cmake.org/">CMake</a>.</p>
 </div>
-</div>
-<p>There are a few different types of lines, but the most important are the rules that are of the form:</p>
+<p>We’ll use this to manage our <a class="reference internal" href="multiple-files.html#sec-multiplefiles"><span class="std std-ref">planets + multiple files</span></a>
+example.</p>
+<section id="a-first-gnumakefile">
+<h2>A first <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code><a class="headerlink" href="#a-first-gnumakefile" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a basic makefile, which we’ll name <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<p>There are a few different types of lines, but the most important are
+the rules that are of the form:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">target</span><span class="p">:</span>   <span class="n">dependencies</span> <span class="o">...</span>
           <span class="n">commands</span>
           <span class="o">...</span>
@@ -206,10 +188,115 @@ main driver in <code class="docutils literal notranslate"><span class="pre">main
 <p class="admonition-title">Note</p>
 <p>make uses a tab character to indent the commands, not spaces.</p>
 </div>
-<p>We build the project by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
+<p>For example, the rule:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">planet_sort_split.o</span><span class="o">:</span> <span class="n">planet_sort_split</span>.<span class="n">cpp</span> <span class="n">planet</span>.<span class="n">H</span>
+        g++ -c planet_sort_split.cpp
 </pre></div>
 </div>
+<p>says that <code class="docutils literal notranslate"><span class="pre">planet_sort_split.o</span></code> depends on the files
+<code class="docutils literal notranslate"><span class="pre">planet_sort_split.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">planet.H</span></code>.  And the rule to make it
+is <code class="docutils literal notranslate"><span class="pre">g++</span> <span class="pre">-c</span> <span class="pre">planet_sort_split.cpp</span></code>.  By specifying the dependencies,
+<code class="docutils literal notranslate"><span class="pre">make</span></code> knows whether it needs to recompile a file by looking at
+whether its dependencies changed.</p>
+<p>It is common to put a target called <code class="docutils literal notranslate"><span class="pre">ALL</span></code> at the top, since by
+default <code class="docutils literal notranslate"><span class="pre">make</span></code> will try to build the first target it encounters.</p>
+<p>We build the project by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">make</span>
+</pre></div></div><div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>If you type <code class="docutils literal notranslate"><span class="pre">make</span></code> again, it doesn’t do anything, since none of the source
+files changed, so it does not need to update the build.</p>
+<p>If you modify one file, e.g.,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch planet.cpp</span>
+</pre></div></div><p>and then do make again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make</span>
+</pre></div></div><p>Then it will only execute the rules that depend on the file that
+changed.</p>
+</div>
+</section>
+<section id="generalizing-our-gnumakefile">
+<h2>Generalizing our <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code><a class="headerlink" href="#generalizing-our-gnumakefile" title="Permalink to this headline">¶</a></h2>
+<p>Our first makefile required us to write a rule for every <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file
+explicitly.  Instead, we can use <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Pattern-Rules.html">pattern rules</a>
+and <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Wildcard-Function.html">wildcards</a>
+to automate a lot of the logic.</p>
+<p>Here’s the improved <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 34 </span><span class="caption-text">new <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
+<span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
+<span class="c"># name, it is just commonly used).</span>
+
+<span class="nf">ALL</span><span class="o">:</span> <span class="n">planet_sort_split</span>
+
+<span class="c"># find all of the source files and header files</span>
+
+<span class="nv">SOURCES</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
+<span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
+
+<span class="c"># create a list of object files by replacing .cpp with .o</span>
+
+<span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="c"># a recipe for making an object file from a .cpp file</span>
+<span class="c"># Note: this makes every header file a dependency of every object file,</span>
+<span class="c"># which is not ideal, but it is safe.</span>
+
+<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
+	g++ -c $&lt;
+
+<span class="c"># explicitly write the rule for linking together the executable</span>
+
+<span class="nf">planet_sort_split</span><span class="o">:</span> ${<span class="n">OBJECTS</span>}
+	g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+</pre></div>
+</div>
+</div>
+<p>The first thing we do is find all of the sources and headers:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCES</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
+<span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">:=</span></code> operator evaluates these expressions immediately when
+<code class="docutils literal notranslate"><span class="pre">make</span></code> encounters them and stores the results in the variables
+<code class="docutils literal notranslate"><span class="pre">SOURCES</span></code> and <code class="docutils literal notranslate"><span class="pre">HEADERS</span></code>.  To reference the list of files in
+these variables, we use <code class="docutils literal notranslate"><span class="pre">${}</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">${SOURCES}</span></code>.</p>
+<p>The next trick is that we create a list of object files by automatically
+replacing the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> extension with a <code class="docutils literal notranslate"><span class="pre">.o</span></code> extension via the <code class="docutils literal notranslate"><span class="pre">make</span></code>
+expression:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+</pre></div>
+</div>
+<p>Finally, we have a generic rule to compile a C++ file:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
+        g++ -c $&lt;
+</pre></div>
+</div>
+<p>Note that we make every header file a dependency for every object
+file, whether or not it is included in the source file.  This is not
+necessary, but simplifies how we specify the dependencies.</p>
+<p>We use a make <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html">automatic variable</a>,
+<code class="docutils literal notranslate"><span class="pre">$&lt;</span></code> to indicate the first name in the dependencies.</p>
+<p>We use another automatic variable in the final rule, <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> to indicate
+the name of the target, to be used as the executable name:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">planet_sort_split</span><span class="o">:</span> ${<span class="n">OBJECTS</span>}
+        g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+</pre></div>
+</div>
+</section>
+<section id="going-further">
+<h2>Going further<a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h2>
+<p>There are more things we can do to generalize our makefile.</p>
+<ul class="simple">
+<li><p>We can use <a class="reference external" href="https://stackoverflow.com/questions/11855386/using-g-with-mmd-in-makefile-to-automatically-generate-dependencies">g++ to automatically determine dependencies</a></p></li>
+<li><p>We can have the makefile create code at build time, for instance, writing
+a function that contains the current git hash of the code</p></li>
+<li><p>We can different levels of build: optimized and debug</p></li>
+</ul>
 </section>
 </section>
 
