@@ -63,3 +63,4 @@ Here's an example:
 
 .. literalinclude:: ../../examples/vectors/vector-decltype.cpp
    :language: c++
+   :caption: ``vector-decltype.cpp``

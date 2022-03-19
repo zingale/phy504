@@ -145,7 +145,7 @@ We can find out a lot about the range and precision of numbers that can be store
 
 .. literalinclude:: ../../examples/limits/limits_test.cpp
    :language: c++
-   :linenos:
+   :caption: ``limits_test.cpp``
 
 Notice that there is a new pattern here, the use of ``<>`` -- this is
 used in template functions, a topic we will talk a lot about later.

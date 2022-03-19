@@ -35,6 +35,7 @@ another string onto it using the ``+`` operator:
 
 .. literalinclude:: ../../examples/strings/string_example.cpp
    :language: c++
+   :caption: ``string_example.cpp``
 
 Note that in this example, the strings that we add to our initial
 string are actually C-style strings, but ``std::string`` knows how to
@@ -68,6 +69,7 @@ Note: there are a lot of different ways we can do a replace:
 
 .. literalinclude:: ../../examples/strings/string_replace.cpp
    :language: c++
+   :caption: ``string_replace.cpp``
 
 Other Functions
 ===============

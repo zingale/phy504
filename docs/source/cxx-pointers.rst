@@ -42,6 +42,7 @@ Here's an example:
 
 .. literalinclude:: ../../examples/pointers/pointers_example.cpp
    :language: c++
+   :caption: ``pointers_example.cpp``
 
 .. note::
 

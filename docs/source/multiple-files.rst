@@ -90,4 +90,27 @@ Compiling
 To produce an executable, we need to compile each of the ``.cpp`` files first
 and then link them all together.  Here are the steps:
 
+.. prompt:: bash
+
+   g++ -c planet.cpp
+   g++ -c planet_sort_split.cpp
+   g++ -o planet_sort_split planet.o planet_sort_split.o
+
+The first two commands are the compilation step.  The take the source file
+and produce an object file (e.g., ``planet.cpp`` → ``planet.o``).
+
+The final command is the link step -- notice that we use the same command,
+``g++``, as the compiler and linker.  In this case, we tell it the name
+for our executable and then give it the list of all object files that it
+needs to link together.
+
+Notice that we don't explicitly do anything with the header file,
+``planet.H`` -- the preprocessor includes this as part of the
+compilation step.
+
+.. admonition:: try it...
+
+   What happens if you don't pass ``planet.o`` to the link step?
+
+
 

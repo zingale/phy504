@@ -8,6 +8,7 @@ We'll write our own version of what the text does.
 
 .. literalinclude:: ../../examples/vectors/simple_matrix.cpp
    :language: c++
+   :caption: ``simple_matrix.cpp``
 
 .. tip::
 
