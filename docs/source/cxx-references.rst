@@ -80,7 +80,7 @@ vector and whether we can modify them:
 
 .. literalinclude:: ../../examples/references/vector_modify.cpp
    :language: c++
-
+   :caption: ``vector_modify.cpp``
 
 .. admonition:: try it...
 

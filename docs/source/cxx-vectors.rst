@@ -38,6 +38,7 @@ Here's a simple example:
 
 .. literalinclude:: ../../examples/vectors/simple_vector.cpp
    :language: c++
+   :caption: ``simple_vector.cpp``
 
 Notice the following:
 

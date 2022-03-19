@@ -136,3 +136,4 @@ To make our code flexible, we'll write the following functions:
 
       .. literalinclude:: ../../examples/functions/orbit_example.cpp
          :language: c++
+         :caption: ``orbit_example.cpp``

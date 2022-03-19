@@ -81,7 +81,7 @@ These can also be used in some powerful algorithms provided by the
 
 .. literalinclude:: ../../examples/vectors/find_example.cpp
    :language: c++
-
+   :caption: ``find_example.cpp``
 
 .. note::
 
@@ -107,7 +107,7 @@ and ``200``.
 
 .. literalinclude:: ../../examples/vectors/insert_example.cpp
    :language: c++
-
+   :caption: ``insert_example.cpp``
 
 Erasing
 =======
@@ -127,7 +127,7 @@ always add a check on whether our end is past ``.end()``.
 
 .. literalinclude:: ../../examples/vectors/vector_erase.cpp
    :language: c++
-
+   :caption: ``vector_erase.cpp``
 
 .. admonition:: try it...
 
@@ -148,7 +148,7 @@ We can remove everything from the vector using ``.clear()``.  Here's an example:
 
 .. literalinclude:: ../../examples/vectors/resize_example.cpp
    :language: c++
-
+   :caption: ``resize_example.cpp``
 
 Sorting
 =======

@@ -29,6 +29,7 @@ Let's look at the solution from our homework 3:
 
 .. literalinclude:: ../../examples/statements/fibonacci.cpp
    :language: c++
+   :caption: ``fibonacci.cpp``
 
 Inside of the ``main()`` function, we create a ``vector`` called
 ``fib`` and an integer ``n``.  Both of these are in scope inside of
@@ -314,6 +315,7 @@ letters it contains.  But if they enter "0", we exit:
 
 .. literalinclude:: ../../examples/statements/infinite_loop.cpp
    :language: c++
+   :caption: ``infinite_loop.cpp``
 
 ``continue`` is used to skip to the next iteration.  Here's an example
 that loops over elements of a vector but only operates on them if they
@@ -321,4 +323,4 @@ are even numbers, in which case, it negates them.
 
 .. literalinclude:: ../../examples/statements/continue_example.cpp
    :language: c++
-
+   :caption: ``continue_example.cpp``

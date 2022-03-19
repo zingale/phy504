@@ -21,6 +21,7 @@ Here's a simple example:
 
 .. literalinclude:: ../../examples/arrays/simple_array.cpp
    :language: c++
+   :caption: ``simple_array.cpp``
 
 Declaring the array takes 2 arguments in the ``<>`` -- the datatype and the number of elements.
 
@@ -58,6 +59,7 @@ Here's an example:
 
 .. literalinclude:: ../../examples/arrays/multid_array.cpp
    :language: c++
+   :caption: ``multid_array.cpp``
 
 There are a few features here that we have not yet seen.
 

@@ -45,6 +45,7 @@ Here's an example of writing our planet information out to a file:
 
 .. literalinclude:: ../../examples/io/output_example.cpp
    :language: c++
+   :caption: ``output_example.cpp``
 
 Let's now look at how to read that file back in.
 
@@ -81,7 +82,7 @@ as ``false`` in a conditional.
 
 .. literalinclude:: ../../examples/io/input_example2.cpp
    :language: c++
-
+   :caption: ``input_example2.cpp``
 
 .. admonition:: try it...
 
@@ -121,6 +122,6 @@ as ``false`` in a conditional.
 
       .. literalinclude:: ../../examples/io/wc_example.cpp
          :language: c++
-
+         :caption: ``wc_example.cpp``
 
 .. You text has an example of writing to a file in table 3.5
