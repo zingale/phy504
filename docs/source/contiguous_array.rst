@@ -1,6 +1,6 @@
-*************************
-Example: Contiguous Array
-*************************
+******************************************
+Example: Multidimensional Contiguous Array
+******************************************
 
 .. admonition:: reading
 
