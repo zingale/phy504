@@ -114,6 +114,7 @@ Spring 2022
    :maxdepth: 1
    :caption: Classes
 
+   cxx-classes-intro
    contiguous_array
 
 .. toctree::
