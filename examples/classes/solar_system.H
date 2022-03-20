@@ -1,3 +1,6 @@
+#ifndef SOLAR_SYSTEM_H
+#define SOLAR_SYSTEM_H
+
 #include <vector>
 #include <cassert>
 
@@ -21,3 +24,4 @@ struct SolarSystem {
     double get_period(const std::string& name);
 
 };
+#endif
