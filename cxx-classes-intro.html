@@ -161,12 +161,59 @@
              
   <section id="introduction-to-classes">
 <h1>Introduction to Classes<a class="headerlink" href="#introduction-to-classes" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 3.15</p>
+</div>
 <p>Classes are objects that hold both data and functions that know how to operate on the data.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In C++, both <code class="docutils literal notranslate"><span class="pre">struct</span></code> and <code class="docutils literal notranslate"><span class="pre">class</span></code> create a class, with the difference being
 whether the data is publicly accessible by default.</p>
 </div>
+<p>We’ll start by doing a <code class="docutils literal notranslate"><span class="pre">struct</span></code> with a <em>constructor</em> – this will
+behave like a class, except by default all of the data will be
+publicly available.</p>
+<p>Here’s the basic format of a struct / class:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">ClassName</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// data members are declared here</span>
+
+<span class="w">    </span><span class="n">ClassName</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">param1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">param2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// do any initialization for when we create a ClassName object</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// other member functions here</span>
+
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The most important function is the <em>constructor</em>.  When we create an
+instance of our class, the constructor function is called and does any
+initialization / setup that the class requires.</p>
+<p>Here’s a concrete example – we’ll build on our vector of planets, but making a class/struct
+that holds the data and member functions that know how to operate on that data.</p>
+<p>The main advantage to using a class here is that we don’t need to know
+how the planet data is actually stored (in this case in a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;Planet&gt;</span></code>.
+But creating member functions that are part of the class, we hide the implementation
+details from the user.  Instead they are given a simple set of functions
+to interact with the data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A class can have multiple constructors.  A constructor that takes no arguments
+is called the <em>default constructor</em>.</p>
+</div>
+<p>In this simple example, we really did not need to use an initialization list, but there
+are situations when it is desired or even required:</p>
+<ul class="simple">
+<li><p>if any of our member data is <code class="docutils literal notranslate"><span class="pre">const</span></code> or a reference.</p></li>
+<li><p>if we have other classes as our member data (including things like <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>)
+and initializing them involves some overhead.  It can be faster to do the initialization
+via the initialization list.</p></li>
+</ul>
+<p>See the stack overflow <a class="reference external" href="https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initialization-lists">Why should I prefer to use member
+initialization lists?</a>
+discussion.</p>
 </section>
 
 
