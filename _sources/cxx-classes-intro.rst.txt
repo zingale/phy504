@@ -150,6 +150,16 @@ details from the user.  Instead they are given a simple set of functions
 to interact with the data.
 
 
+.. admonition:: try it...
+
+   To understand the difference between a ``struct``, where everything is public, and 
+   a ``class`` where everything is private by default, let's edit ``solar_system.H``
+   and change ``struct`` to ``class``.
+
+   What happens when we compile?
+
+   Now try adding a ``public:`` statement to the code.
+
 
 
 

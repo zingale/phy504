@@ -390,6 +390,14 @@ how the planet data is actually stored (in this case in a <code class="docutils 
 By creating member functions that are part of the class, we hide the implementation
 details from the user.  Instead they are given a simple set of functions
 to interact with the data.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>To understand the difference between a <code class="docutils literal notranslate"><span class="pre">struct</span></code>, where everything is public, and
+a <code class="docutils literal notranslate"><span class="pre">class</span></code> where everything is private by default, let’s edit <code class="docutils literal notranslate"><span class="pre">solar_system.H</span></code>
+and change <code class="docutils literal notranslate"><span class="pre">struct</span></code> to <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p>
+<p>What happens when we compile?</p>
+<p>Now try adding a <code class="docutils literal notranslate"><span class="pre">public:</span></code> statement to the code.</p>
+</div>
 <p>In this simple example, we really did not need to use an initialization list, but there
 are situations when it is desired or even required:</p>
 <ul class="simple">
