@@ -103,7 +103,9 @@ Notes:
   and scope operator, ``::``, to reference the class that they belong
   to.
 
-* Our ``get_planet()`` function returns a pointer to a ``Planet``.
+* Our ``get_planet()`` function returns a ``const Planet*``.  We can
+  interpret this as a *pointer to a Planet that is const*.
+
   The reason we did this, is that we could imagine adding a lot more
   functions like ``get_period()`` that all take a planet name as input
   and return or compute some quantity.  So it makes sense to have the
