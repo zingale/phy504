@@ -370,6 +370,34 @@ solution<div class="summary-down docutils">
 </div>
 </div>
 </details></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can plot the solution using <code class="docutils literal notranslate"><span class="pre">gnuplot</span></code>.</p>
+<p>First, when you run, redirect the output to a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">./orbit_example &gt; orbit.dat</span>
+</pre></div></div><p>Now run <code class="docutils literal notranslate"><span class="pre">gnuplot</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">gnuplot</span>
+</pre></div></div><p>A simple plot in <code class="docutils literal notranslate"><span class="pre">gnuplot</span></code> is made using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command, specifying the file with the
+data, the columns to use for x and y axes, and any styling (like <code class="docutils literal notranslate"><span class="pre">w</span> <span class="pre">l</span></code> for <em>with-lines</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt2:before {
+  content: "gnuplot> ";
+}
+</style><span class="prompt2">plot &#39;orbit.dat&#39; using 2:3 w  l</span>
+</pre></div></div><p>You can save the plot as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt2">set term png</span>
+<span class="prompt2">set output &quot;orbit.png&quot;</span>
+<span class="prompt2">replot</span>
+</pre></div></div><p>This will make something like:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/orbit.png"><img alt="_images/orbit.png" src="_images/orbit.png" style="width: 80%;" /></a>
+</figure>
+<p>For more info, see: <a class="reference external" href="http://www.gnuplot.info/">http://www.gnuplot.info/</a></p>
+</div>
 </section>
 </section>
 
