@@ -1,7 +1,5 @@
-#include <iostream>
 #include <vector>
 #include <cassert>
-#include <cmath>
 
 #include "planet.H"
 
@@ -21,9 +19,5 @@ struct SolarSystem {
     Planet* get_planet(const std::string& name);
 
     double get_period(const std::string& name);
-
-    //double get_perihelion_dist(const std::string& name);
-
-    //double get_aphelion_dist(const std::string& name);
 
 };
