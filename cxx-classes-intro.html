@@ -330,8 +330,9 @@ is called the <em>default constructor</em>.</p>
 of the <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">SolarSystem</span> <span class="pre">{};</span></code>, we need to include the namespace
 and scope operator, <code class="docutils literal notranslate"><span class="pre">::</span></code>, to reference the class that they belong
 to.</p></li>
-<li><p>Our <code class="docutils literal notranslate"><span class="pre">get_planet()</span></code> function returns a pointer to a <code class="docutils literal notranslate"><span class="pre">Planet</span></code>.
-The reason we did this, is that we could imagine adding a lot more
+<li><p>Our <code class="docutils literal notranslate"><span class="pre">get_planet()</span></code> function returns a <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">Planet*</span></code>.  We can
+interpret this as a <em>pointer to a Planet that is const</em>.</p>
+<p>The reason we did this, is that we could imagine adding a lot more
 functions like <code class="docutils literal notranslate"><span class="pre">get_period()</span></code> that all take a planet name as input
 and return or compute some quantity.  So it makes sense to have the
 search for the proper planet implemented in a single place.</p>
