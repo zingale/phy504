@@ -41,6 +41,11 @@ initialization / setup that the class requires.
 Here's a concrete example -- we'll build on our vector of planets, but making a class/struct
 that holds the data and member functions that know how to operate on that data.
 
+.. literalinclude:: ../../examples/classes/solar_system.cpp
+   :language: c++
+   :caption: ``solar_system.cpp``
+
+This uses our ``planet.H`` header.
 
 The main advantage to using a class here is that we don't need to know
 how the planet data is actually stored (in this case in a ``std::vector<Planet>``.

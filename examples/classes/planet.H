@@ -11,6 +11,7 @@ struct Planet
     double e{};            // eccentricity
 };
 
-//std::ostream& operator<< (std::ostream& os, const Planet& p);
+std::ostream& operator<< (std::ostream& os, const Planet& p);
+
 
 #endif
