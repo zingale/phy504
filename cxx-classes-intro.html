@@ -191,13 +191,77 @@ publicly available.</p>
 <p>The most important function is the <em>constructor</em>.  When we create an
 instance of our class, the constructor function is called and does any
 initialization / setup that the class requires.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The constructor always has the same name as the class/struct.</p>
+</div>
 <p>Here’s a concrete example – we’ll build on our vector of planets, but making a class/struct
 that holds the data and member functions that know how to operate on that data.</p>
+<p>First well define the <code class="docutils literal notranslate"><span class="pre">struct</span></code> called <code class="docutils literal notranslate"><span class="pre">SolarSystem</span></code> and write the constructor:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">solar_system.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">solar_system.H</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;planet.H&quot;</span><span class="cp"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">SolarSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">star_mass</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Planet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">planets</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">SolarSystem</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mass</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="n">star_mass</span><span class="p">{</span><span class="n">mass</span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">mass</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">add_planet</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Planet</span><span class="o">*</span><span class="w"> </span><span class="nf">get_planet</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">get_period</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Keeping with our strategy to reuse code, this uses our <code class="docutils literal notranslate"><span class="pre">planet.H</span></code> header from before (and
+will rely on the <code class="docutils literal notranslate"><span class="pre">planet.cpp</span></code> source file that implemented some functions).</p>
+<p>Some notes:</p>
+<ul>
+<li><p>After the constructor name and arguments there is a <code class="docutils literal notranslate"><span class="pre">:</span></code> and an initialization:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SolarSystem</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">mass</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">star_mass</span><span class="p">{</span><span class="n">mass</span><span class="p">}</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>this is called the <em>initialization list</em>.  Any member data specified in that (comma-separated)
+list is initialized when an object is created as an instance of the class.</p>
+</li>
+<li><p>In the constructor body we have an <code class="docutils literal notranslate"><span class="pre">assert()</span></code> statement – this
+will abort the code if it is false.  This is a way to add runtime
+checking to the code to ensure that it is being used properly /
+matching your assumptions.</p></li>
+<li><p>We end with some forward declarations of <em>member functions</em> of the class.  These functions
+will have access to the class data directly.</p></li>
+</ul>
+<p>To <em>instantiate</em> the class, i.e., create a <code class="docutils literal notranslate"><span class="pre">SolarSystem</span></code> object, we would do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SolarSystem</span><span class="w"> </span><span class="nf">ss</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where we pass the constructor arguments at the time we create our object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A class can have multiple constructors.  A constructor that takes no arguments
+is called the <em>default constructor</em>.</p>
+</div>
+<p>We provide implementations of the member functions in a separate file:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">solar_system.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;planet.H&quot;</span><span class="cp"></span>
@@ -261,17 +325,71 @@ that holds the data and member functions that know how to operate on that data.<
 </pre></div>
 </div>
 </div>
-<p>This uses our <code class="docutils literal notranslate"><span class="pre">planet.H</span></code> header.</p>
+<p>Notes:</p>
+<ul>
+<li><p>For each of the member functions, since we are defining them outside
+of the <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">SolarSystem</span> <span class="pre">{};</span></code>, we need to include the namespace
+and scope operator, <code class="docutils literal notranslate"><span class="pre">::</span></code>, to reference the class that they belong
+to.</p></li>
+<li><p>Our <code class="docutils literal notranslate"><span class="pre">get_planet()</span></code> function returns a pointer to a <code class="docutils literal notranslate"><span class="pre">Planet</span></code>.
+The reason we did this, is that we could imagine adding a lot more
+functions like <code class="docutils literal notranslate"><span class="pre">get_period()</span></code> that all take a planet name as input
+and return or compute some quantity.  So it makes sense to have the
+search for the proper planet implemented in a single place.</p>
+<p>Now, we could return a copy of the matching <code class="docutils literal notranslate"><span class="pre">Planet</span></code> object, but
+that could be expensive, depending on how many bytes it occupies.
+And in this case, there is no <em>move semantics</em> to help us here,
+since we are not removing this planet from the main <code class="docutils literal notranslate"><span class="pre">vector</span></code>.</p>
+<p>We could provide a reference, which would work here, since it would
+be a reference to some class data, not a local object in the
+<code class="docutils literal notranslate"><span class="pre">get_period()</span></code> scope.  But what happens if the user gives us a
+name that doesn’t exist.  We can’t return a reference to nothing.</p>
+<p>In this case, a pointer works well, and we can return <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> if the
+planet doesn’t exist.</p>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">get_period()</span></code> function, we check if the pointer is valid, and then
+we access its data by dereferencing it and then using the member operator, <code class="docutils literal notranslate"><span class="pre">.</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">planet_ptr</span><span class="p">).</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This type of operation is so common that C++ provides a shortcut syntax:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">planet_ptr</span><span class="o">-&gt;</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Finally, we can use our <code class="docutils literal notranslate"><span class="pre">SolarSystem</span></code> class.  Here’s a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 38 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_solar_system.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;solar_system.H&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">SolarSystem</span><span class="w"> </span><span class="n">ss</span><span class="p">(</span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ss</span><span class="p">.</span><span class="n">add_planet</span><span class="p">(</span><span class="s">&quot;alpha&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ss</span><span class="p">.</span><span class="n">add_planet</span><span class="p">(</span><span class="s">&quot;beta&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">ss</span><span class="p">.</span><span class="n">add_planet</span><span class="p">(</span><span class="s">&quot;gamma&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.24</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// this generates an error</span>
+<span class="w">    </span><span class="c1">//ss.add_planet(&quot;alpha&quot;, 2.0);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;period of alpha = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">get_period</span><span class="p">(</span><span class="s">&quot;alpha&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// this is not a valid planet</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;period of alpha = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">get_period</span><span class="p">(</span><span class="s">&quot;delta&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>We can compile this using the same general <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> we developed previously.</p>
 <p>The main advantage to using a class here is that we don’t need to know
-how the planet data is actually stored (in this case in a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;Planet&gt;</span></code>.
-But creating member functions that are part of the class, we hide the implementation
+how the planet data is actually stored (in this case in a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;Planet&gt;</span></code>).
+By creating member functions that are part of the class, we hide the implementation
 details from the user.  Instead they are given a simple set of functions
 to interact with the data.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A class can have multiple constructors.  A constructor that takes no arguments
-is called the <em>default constructor</em>.</p>
-</div>
 <p>In this simple example, we really did not need to use an initialization list, but there
 are situations when it is desired or even required:</p>
 <ul class="simple">
