@@ -126,6 +126,7 @@ Spring 2022
    homework/homework3
    homework/homework4
    homework/homework5
+   homework/homework6
 
 
 
