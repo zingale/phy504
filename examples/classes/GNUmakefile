@@ -21,3 +21,6 @@ OBJECTS := $(SOURCES:.cpp=.o)
 test_solar_system: ${OBJECTS}
 	g++ -o $@ ${OBJECTS}
 
+
+clean:
+	rm -f *.o test_solarsystem
