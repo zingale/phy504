@@ -22,3 +22,6 @@ For each project you need to do:
 
 * few-body integrator
 
+* explore chaos in the Lorenz system
+
+
