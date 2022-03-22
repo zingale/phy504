@@ -219,7 +219,7 @@ the rules that are of the form:</p>
 </div>
 <p>For example, the rule:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">planet_sort_split.o</span><span class="o">:</span> <span class="n">planet_sort_split</span>.<span class="n">cpp</span> <span class="n">planet</span>.<span class="n">H</span>
-        g++ -c planet_sort_split.cpp
+     g++ -c planet_sort_split.cpp
 </pre></div>
 </div>
 <p>says that <code class="docutils literal notranslate"><span class="pre">planet_sort_split.o</span></code> depends on the files
@@ -302,7 +302,7 @@ expression:</p>
 </div>
 <p>Finally, we have a generic rule to compile a C++ file:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
-        g++ -c $&lt;
+     g++ -c $&lt;
 </pre></div>
 </div>
 <p>Note that we make every header file a dependency for every object
@@ -313,7 +313,7 @@ necessary, but simplifies how we specify the dependencies.</p>
 <p>We use another automatic variable in the final rule, <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> to indicate
 the name of the target, to be used as the executable name:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">planet_sort_split</span><span class="o">:</span> ${<span class="n">OBJECTS</span>}
-        g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+     g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
 </pre></div>
 </div>
 </section>
