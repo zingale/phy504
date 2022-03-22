@@ -128,6 +128,12 @@ Spring 2022
    homework/homework5
    homework/homework6
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Project
+
+   project
+
 
 
 
