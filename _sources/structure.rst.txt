@@ -89,3 +89,9 @@ A few important bits:
 
 * Statements end with ``;``
 
+.. note::
+
+   C++ files can have a variety of extensions, including: ``.C``,
+   ``.cxx``, ``.cc``, and ``.cpp``.
+
+   I'll use ``.cpp`` throughout this course.

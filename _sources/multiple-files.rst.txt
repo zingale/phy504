@@ -56,6 +56,12 @@ A few things to note:
 * We only have the forward declaration for ``operator<<`` and not the
   definition of the function itself here.
 
+.. note::
+
+   Header files usually have the extension ``.H`` or ``.hpp``.  I'll use ``.H``
+   throughout this course.
+
+
 Now we'll create a source file that implements the ``<<`` operator:
 
 .. literalinclude:: ../../examples/multiple_files/planet.cpp
