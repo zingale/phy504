@@ -14,7 +14,4 @@ int main() {
 
     std::cout << "period of alpha = " << ss.get_period("alpha") << std::endl;
 
-    // this is not a valid planet
-    //std::cout << "period of alpha = " << ss.get_period("delta") << std::endl;
-
 }
