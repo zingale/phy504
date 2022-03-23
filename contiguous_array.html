@@ -370,7 +370,7 @@ access to the <code class="docutils literal notranslate"><span class="pre">Array
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c1">// this will fail the assertion</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//std::cout &lt;&lt; x(11, 9);</span>
 
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -412,22 +412,20 @@ span.prompt1:before {
 <span class="nv">MAINS</span> <span class="o">:=</span> test_array.o timing.o
 <span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>filter-out <span class="k">$(</span>MAINS<span class="k">)</span>, <span class="k">$(</span>OBJECTS<span class="k">))</span>
 
-<span class="c"># tell the compiler where to look for our headers</span>
-<span class="nv">INCLUDEPATH</span> <span class="o">:=</span> .
-<span class="nv">INCLUDES</span> <span class="o">:=</span> <span class="k">$(</span>foreach i, <span class="si">${</span><span class="nv">INCLUDEPATH</span><span class="si">}</span>, -I<span class="nv">$i</span><span class="k">)</span>
-
 <span class="c"># by default, debug mode will be disabled</span>
 <span class="nv">DEBUG</span> <span class="o">?=</span> FALSE
 
+<span class="nv">CXXFLAGS</span> <span class="o">:=</span> -Wall -Wextra -Wpedantic -Wshadow
+
 <span class="cp">ifeq (${DEBUG}, TRUE)</span>
-   <span class="nv">OPTS</span> <span class="o">+=</span> -g
+   <span class="nv">CXXFLAGS</span> <span class="o">+=</span> -g
 <span class="cp">else</span>
-   <span class="nv">OPTS</span> <span class="o">+=</span> -DNDEBUG -O3
+   <span class="nv">CXXFLAGS</span> <span class="o">+=</span> -DNDEBUG -O3
 <span class="cp">endif</span>
 
 <span class="c"># general rule for compiling a .cpp file to .o</span>
 <span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
-	g++ <span class="si">${</span><span class="nv">CFLAGS</span><span class="si">}</span> <span class="si">${</span><span class="nv">OPTS</span><span class="si">}</span> <span class="si">${</span><span class="nv">INCLUDES</span><span class="si">}</span> -c $&lt;
+	g++ <span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span> -c $&lt;
 
 <span class="c"># the test_array program -- we need to explicitly include</span>
 <span class="c"># test_array.o here</span>
