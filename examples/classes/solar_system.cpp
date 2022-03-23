@@ -5,31 +5,16 @@
 #include "planet.H"
 #include "solar_system.H"
 
-const Planet* SolarSystem::get_planet(const std::string& name) {
-
-    Planet *planet_ptr{nullptr};
-
-    for (auto p: planets) {
-        if (p.name == name) {
-            planet_ptr = &p;
-            break;
-        }
-    }
-
-    return planet_ptr;
-
-}
-
 void SolarSystem::add_planet(const std::string& name, const double a, const double e) {
 
     // make sure a planet with that name doesn't already exist
     // if the pointer returned here is not null, then the planet exists
 
-    auto planet_ptr = get_planet(name);
-
-    if (planet_ptr) {
-        std::cout << "Error: planet already exists" << std::endl;
-        return;
+    for (auto p : planets) {
+        if (name == p.name) {
+            std::cout << "planet already exists" << std::endl;
+            return;
+        }
     }
 
     Planet p;
@@ -41,17 +26,9 @@ void SolarSystem::add_planet(const std::string& name, const double a, const doub
 
 }
 
-double SolarSystem::get_period(const std::string& name) {
+void SolarSystem::print_planets() {
 
-    double period = -1;
-
-    auto planet_ptr = get_planet(name);
-
-    if (planet_ptr) {
-        double a = (*planet_ptr).a;    // alternately, planet_ptr->a
-
-        period = std::sqrt(std::pow(a, 3) / star_mass);
+    for (auto p : planets) {
+        std::cout << p << std::endl;
     }
-
-    return period;
 }

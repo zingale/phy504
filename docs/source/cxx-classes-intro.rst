@@ -103,39 +103,7 @@ Notes:
   and scope operator, ``::``, to reference the class that they belong
   to.
 
-* Our ``get_planet()`` function returns a ``const Planet*``.  We can
-  interpret this as a *pointer to a Planet that is const*.
-
-  The reason we did this, is that we could imagine adding a lot more
-  functions like ``get_period()`` that all take a planet name as input
-  and return or compute some quantity.  So it makes sense to have the
-  search for the proper planet implemented in a single place.
-
-  Now, we could return a copy of the matching ``Planet`` object, but
-  that could be expensive, depending on how many bytes it occupies.
-  And in this case, there is no *move semantics* to help us here,
-  since we are not removing this planet from the main ``vector``.
-
-  We could provide a reference, which would work here, since it would
-  be a reference to some class data, not a local object in the
-  ``get_period()`` scope.  But what happens if the user gives us a
-  name that doesn't exist.  We can't return a reference to nothing.
-
-  In this case, a pointer works well, and we can return ``nullptr`` if the
-  planet doesn't exist.
-
-* In ``get_period()`` function, we check if the pointer is valid, and then
-  we access its data by dereferencing it and then using the member operator, ``.``:
-
-  .. code:: c++
-
-     double a = (*planet_ptr).a;
-
-  This type of operation is so common that C++ provides a shortcut syntax:
-
-  .. code:: c++
-
-     double a = planet_ptr->a;
+* Our ``add_planet()`` method checks to see if a planet already exists.
 
 Finally, we can use our ``SolarSystem`` class.  Here's a ``main()`` function:
 
@@ -143,7 +111,31 @@ Finally, we can use our ``SolarSystem`` class.  Here's a ``main()`` function:
    :language: c++
    :caption: ``test_solar_system.cpp``
 
-We can compile this using the same general ``GNUmakefile`` we developed previously.
+We can compile this using the same general ``GNUmakefile`` we developed previously.  We'll
+add two features to it:
+
+.. literalinclude:: ../../examples/classes/GNUmakefile
+   :language: make
+   :caption: ``GNUmakefile``
+
+The first is a new target: ``clean``.  By doing
+
+.. prompt:: bash
+
+   make clean
+
+We will remove all of the object files (``*.o``) and the executable.
+
+The section new feature is the addition of some compilation flags:
+
+.. code:: make
+
+   CFLAGS := -Wall -Wextra -Wpedantic -Wshadow
+
+These are specific to the GNU compilers, and turn on some warnings
+that help spot code mistakes.  See `GCC warning options
+<https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html>`_ for more
+details.
 
 The main advantage to using a class here is that we don't need to know
 how the planet data is actually stored (in this case in a ``std::vector<Planet>``).
@@ -154,7 +146,7 @@ to interact with the data.
 
 .. admonition:: try it...
 
-   To understand the difference between a ``struct``, where everything is public, and 
+   To understand the difference between a ``struct``, where everything is public, and
    a ``class`` where everything is private by default, let's edit ``solar_system.H``
    and change ``struct`` to ``class``.
 

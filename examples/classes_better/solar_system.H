@@ -19,7 +19,9 @@ struct SolarSystem {
 
     void add_planet(const std::string& name, const double a, const double e=0.0);
 
-    void print_planets();
+    Planet* get_planet(const std::string& name);
+
+    double get_period(const std::string& name);
 
 };
 #endif
