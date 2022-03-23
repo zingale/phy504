@@ -27,6 +27,14 @@ int SolarSystem::get_planet(const std::string& name, Planet& p_return) {
 }
 
 
+std::vector<Planet>::iterator SolarSystem::find_planet(const std::string& name) {
+
+    auto it = std::find_if(planets.begin(), planets.end(),
+                           [&] (const Planet& p) {return p.name == name;});
+
+    return it;
+}
+
 void SolarSystem::add_planet(const std::string& name, const double a, const double e) {
 
     // make sure a planet with that name doesn't already exist
