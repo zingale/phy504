@@ -12,22 +12,20 @@ OBJECTS := $(SOURCE:.cpp=.o)
 MAINS := test_array.o timing.o
 OBJECTS := $(filter-out $(MAINS), $(OBJECTS))
 
-# tell the compiler where to look for our headers
-INCLUDEPATH := .
-INCLUDES := $(foreach i, ${INCLUDEPATH}, -I$i)
-
 # by default, debug mode will be disabled
 DEBUG ?= FALSE
 
+CXXFLAGS := -Wall -Wextra -Wpedantic -Wshadow
+
 ifeq (${DEBUG}, TRUE)
-   OPTS += -g
+   CXXFLAGS += -g
 else
-   OPTS += -DNDEBUG -O3
+   CXXFLAGS += -DNDEBUG -O3
 endif
 
 # general rule for compiling a .cpp file to .o
 %.o : %.cpp ${HEADERS}
-	g++ ${CFLAGS} ${OPTS} ${INCLUDES} -c $<
+	g++ ${CXXFLAGS} -c $<
 
 # the test_array program -- we need to explicitly include
 # test_array.o here
