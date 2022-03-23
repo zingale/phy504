@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 #include "planet.H"
 #include "solar_system.H"
@@ -23,6 +24,15 @@ int SolarSystem::get_planet(const std::string& name, Planet& p_return) {
 
     return istatus;
 
+}
+
+
+std::vector<Planet>::iterator SolarSystem::find_planet(const std::string& name) {
+
+    auto it = std::find_if(planets.begin(), planets.end(),
+                           [&] (const Planet& p) {return p.name == name;});
+
+    return it;
 }
 
 void SolarSystem::add_planet(const std::string& name, const double a, const double e) {
