@@ -126,7 +126,7 @@ The first is a new target: ``clean``.  By doing
 
 We will remove all of the object files (``*.o``) and the executable.
 
-The section new feature is the addition of some compilation flags:
+The second new feature is the addition of some compilation flags:
 
 .. code:: make
 
@@ -163,6 +163,26 @@ to interact with the data.
    The second will take a planet ``name`` and compute and return its
    period.
 
+   .. dropdown:: solution
+
+      The updated header is:
+
+      .. literalinclude:: ../../examples/classes_better/solar_system.H
+         :language: c++
+         :caption: new ``solar_system.H``
+
+      and corresponding functions:
+
+      .. literalinclude:: ../../examples/classes_better/solar_system.cpp
+         :language: c++
+         :caption: new ``solar_system.cpp``
+
+      and test driver:
+
+      .. literalinclude:: ../../examples/classes_better/test_solar_system.cpp
+         :language: c++
+         :caption: new ``test_solar_system.cpp``
+
 
 .. admonition:: try it...
 
@@ -175,6 +195,20 @@ to interact with the data.
    Now try adding a ``public:`` statement to the code.
 
 
+.. tip::
+
+   Instead of doing a ``get_planet()`` to return a copy of a planet from our
+   solar system object, we can return an iterator using ``std::find_if()`` as:
+
+   .. code:: c++
+
+      std::vector<Planet>::iterator SolarSystem::find_planet(const std::string& name) {
+
+          auto it = std::find_if(planets.begin(), planets.end(),
+                                 [&] (const Planet& p) {return p.name == name;});
+
+          return it;
+      }
 
 
 In this simple example, we really did not need to use an initialization list, but there
