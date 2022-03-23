@@ -392,6 +392,22 @@ details from the user.  Instead they are given a simple set of functions
 to interact with the data.</p>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
+<p>Let’s make our class more useful.  Lets implement the following functions:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">get_planet</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Planet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p_return</span><span class="p">);</span><span class="w"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">get_period</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The first will take a <code class="docutils literal notranslate"><span class="pre">Planet</span></code> in the argument list (by
+reference) and if <code class="docutils literal notranslate"><span class="pre">name</span></code> exists, it will return its properties
+through the reference.  The return value here is <code class="docutils literal notranslate"><span class="pre">int</span></code> and is
+meant to return a status that we can check to see if the <code class="docutils literal notranslate"><span class="pre">name</span></code>
+was a valid planet.</p>
+<p>The second will take a planet <code class="docutils literal notranslate"><span class="pre">name</span></code> and compute and return its
+period.</p>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
 <p>To understand the difference between a <code class="docutils literal notranslate"><span class="pre">struct</span></code>, where everything is public, and
 a <code class="docutils literal notranslate"><span class="pre">class</span></code> where everything is private by default, let’s edit <code class="docutils literal notranslate"><span class="pre">solar_system.H</span></code>
 and change <code class="docutils literal notranslate"><span class="pre">struct</span></code> to <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p>

@@ -146,6 +146,26 @@ to interact with the data.
 
 .. admonition:: try it...
 
+   Let's make our class more useful.  Lets implement the following functions:
+
+   .. code:: c++
+
+      int get_planet(const std::string& name, Planet& p_return);
+
+      double get_period(const std::string& name);
+
+   The first will take a ``Planet`` in the argument list (by
+   reference) and if ``name`` exists, it will return its properties
+   through the reference.  The return value here is ``int`` and is
+   meant to return a status that we can check to see if the ``name``
+   was a valid planet.
+
+   The second will take a planet ``name`` and compute and return its
+   period.
+
+
+.. admonition:: try it...
+
    To understand the difference between a ``struct``, where everything is public, and
    a ``class`` where everything is private by default, let's edit ``solar_system.H``
    and change ``struct`` to ``class``.
