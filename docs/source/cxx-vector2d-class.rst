@@ -120,9 +120,9 @@ resources are just 2 doubles, which C++ can handle on its own.
 
 Now let's test this out.  Here's a test driver:
 
-.. literalinclude:: ../../examples/vector_class/test_vector.cpp
+.. literalinclude:: ../../examples/vector_class/test_vectors.cpp
    :language: c++
-   :caption: ``test_vector.cpp``
+   :caption: ``test_vectors.cpp``
 
 There are a wide range of other capabilities we could imagine adding
 to this class to make it easier to work with vectors.  We'll explore some
