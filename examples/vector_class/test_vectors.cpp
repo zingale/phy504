@@ -14,7 +14,10 @@ int main() {
 
     auto v4 = v3;
     std::cout << v3 << " " << v4 << std::endl;
-    v3.x = 0.0;
-    v3.y = 0.0;
+    v3.set_x(0.0);
+    v3.set_y(0.0);
     std::cout << v3 << " " << v4 << std::endl;
+
+    auto v5 = -v3;
+
 }
