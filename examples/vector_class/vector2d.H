@@ -3,51 +3,67 @@
 
 #include <iostream>
 
-struct Vector2d {
+class Vector2d {
 
-    private:
-        double x;
-        double y;
+private:
 
-    public:
-        Vector2d()
-            : x{0.0}, y{0.0}
-        {}
+    // our member data
 
-        Vector2d(double _x, double _y)
-            : x{_x}, y{_y}
-        {}
+    double x;
+    double y;
 
-        inline void set_x(double _x) {
-            x = _x;
-        }
+public:
 
-        inline void set_y(double _y) {
-            y = _y;
-        }
+    // default constructor
 
-        Vector2d operator+(const Vector2d& vec) {
-            Vector2d v_out;
-            v_out.x = x + vec.x;
-            v_out.y = y + vec.y;
-            return v_out;
-        }
+    Vector2d()
+        : x{0.0}, y{0.0}
+    {}
 
-        Vector2d operator-(const Vector2d& vec) {
-            Vector2d v_out;
-            v_out.x = x - vec.x;
-            v_out.y = y - vec.y;
-            return v_out;
-        }
+    // another constructor
 
-        Vector2d operator-() {
-            Vector2d v_out;
-            v_out.x = -x;
-            v_out.y = -y;
-            return v_out;
-        }
+    Vector2d(double _x, double _y)
+        : x{_x}, y{_y}
+    {}
 
-        friend std::ostream& operator<< (std::ostream& os, const Vector2d& v);
+    // setters
+
+    inline void set_x(double _x) {x = _x;}
+
+    inline void set_y(double _y) {y = _y;}
+
+    // operators
+
+    // add two vectors
+    
+    Vector2d operator+(const Vector2d& vec) {
+        Vector2d v_out;
+        v_out.x = x + vec.x;
+        v_out.y = y + vec.y;
+        return v_out;
+    }
+
+    // subtract two vectors
+
+    Vector2d operator-(const Vector2d& vec) {
+        Vector2d v_out;
+        v_out.x = x - vec.x;
+        v_out.y = y - vec.y;
+        return v_out;
+    }
+
+    // unary minus
+
+    Vector2d operator-() {
+        Vector2d v_out;
+        v_out.x = -x;
+        v_out.y = -y;
+        return v_out;
+    }
+
+    // << is not a class member, but needs access to the member data
+
+    friend std::ostream& operator<< (std::ostream& os, const Vector2d& v);
 };
 
 std::ostream& operator<< (std::ostream& os, const Vector2d& v)
