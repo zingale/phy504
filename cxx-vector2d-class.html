@@ -213,51 +213,67 @@ So we will create <em>setters</em> that allow us to change these values.</p>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">Vector2d</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector2d</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">Vector2d</span><span class="p">()</span><span class="w"></span>
-<span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">0.0</span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// our member data</span>
 
-<span class="w">        </span><span class="n">Vector2d</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="n">_x</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="n">_y</span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">        </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
 
-<span class="w">        </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// default constructor</span>
 
-<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">0.0</span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">{}</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// another constructor</span>
 
-<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="n">_x</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="n">_y</span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">{}</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// setters</span>
+
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// operators</span>
+
+<span class="w">    </span><span class="c1">// add two vectors</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// subtract two vectors</span>
+
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// unary minus</span>
+
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// &lt;&lt; is not a class member, but needs access to the member data</span>
+
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
