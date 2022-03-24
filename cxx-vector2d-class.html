@@ -270,6 +270,32 @@ So we will create <em>setters</em> that allow us to change these values.</p>
 </pre></div>
 </div>
 </div>
+<p>What happens when we do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span> <span class="n">v1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
+
+<span class="n">auto</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>?</p>
+<p>This invokes the <em>copy constructor</em>, which should look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span> <span class="p">(</span><span class="n">const</span> <span class="n">Vector2d</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>but we didn’t write this.  It turns out that C++ will automatically generate
+the copy constructor for us, and in most cases, it will work fine.  Only
+if we have complicated member data (like pointers) would we need to explicitly write
+the copy.</p>
+<p>There is another special function that we haven’t talked about – the
+<a class="reference external" href="https://en.cppreference.com/w/cpp/language/destructor">*destructor*</a>.  This cleans
+up an objects resources when it goes out of scope, the program ends, or
+an object is explicitly deleted.  For our class, the resources are just 2 doubles,
+which C++ can handle on its own.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of Three</a>
+says that if you define any of: the <em>destructor</em>, <em>copy constructor</em>, or <em>copy assignment</em>,
+then you should define all three.</p>
+</div>
 </section>
 
 

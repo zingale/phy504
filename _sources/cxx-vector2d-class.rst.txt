@@ -60,3 +60,41 @@ Here's an implementation:
    :caption: ``vector2d.H``
 
 
+
+What happens when we do:
+
+.. code::
+
+   Vector2d v1(1.0, 2.0);
+
+   auto v2 = v1;
+
+?
+
+This invokes the *copy constructor*, which should look like:
+
+.. code::
+
+   Vector2d (const Vector2d &v);
+
+but we didn't write this.  It turns out that C++ will automatically generate
+the copy constructor for us, and in most cases, it will work fine.  Only
+if we have complicated member data (like pointers) would we need to explicitly write
+the copy.
+
+There is another special function that we haven't talked about -- the
+`*destructor*
+<https://en.cppreference.com/w/cpp/language/destructor>`_.  This cleans
+up an objects resources when it goes out of scope, the program ends, or
+an object is explicitly deleted.  For our class, the resources are just 2 doubles,
+which C++ can handle on its own.
+
+.. tip::
+
+   The `Rule of Three <https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)>`_
+   says that if you define any of: the *destructor*, *copy constructor*, or *copy assignment*,
+   then you should define all three.
+
+
+
+
