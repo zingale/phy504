@@ -59,7 +59,33 @@ Here's an implementation:
    :language: c++
    :caption: ``vector2d.H``
 
+Some notes:
 
+* We explicitly mark the member data as private and the functions are public
+
+* We have 2 *setter* functions to modify the underlying vector data:
+
+  .. code:: c++
+
+     inline void set_x(double _x) {x = _x;}
+     inline void set_y(double _y) {y = _y;}
+
+   These are marked ``inline``, which is a hint to the compiler that
+   it can replace the function call with just inserting the code where
+   it is needed.  This gives us better performance.
+
+* We have 3 operators that are member functions: ``+``, and two implementations of ``-``.
+  The second ``-`` has the form:
+
+  .. code:: c++
+
+     Vector2d operator-();
+
+   This is the *unary minus*, and is invoked when we do ``-v`` for a ``Vector2d v``.
+
+* The stream operator, ``<<``, has the keyword ``friend``.  This is
+  needed since technically this function is not a member of the class,
+  but it needs to have access to the private member data.
 
 What happens when we do:
 
@@ -68,8 +94,6 @@ What happens when we do:
    Vector2d v1(1.0, 2.0);
 
    auto v2 = v1;
-
-?
 
 This invokes the *copy constructor*, which should look like:
 
@@ -83,11 +107,10 @@ if we have complicated member data (like pointers) would we need to explicitly w
 the copy.
 
 There is another special function that we haven't talked about -- the
-`*destructor*
-<https://en.cppreference.com/w/cpp/language/destructor>`_.  This cleans
-up an objects resources when it goes out of scope, the program ends, or
-an object is explicitly deleted.  For our class, the resources are just 2 doubles,
-which C++ can handle on its own.
+`destructor <https://en.cppreference.com/w/cpp/language/destructor>`_.
+This cleans up an objects resources when it goes out of scope, the
+program ends, or an object is explicitly deleted.  For our class, the
+resources are just 2 doubles, which C++ can handle on its own.
 
 .. tip::
 
@@ -95,6 +118,15 @@ which C++ can handle on its own.
    says that if you define any of: the *destructor*, *copy constructor*, or *copy assignment*,
    then you should define all three.
 
+Now let's test this out.  Here's a test driver:
+
+.. literalinclude:: ../../examples/vector_class/test_vector.cpp
+   :language: c++
+   :caption: ``test_vector.cpp``
+
+There are a wide range of other capabilities we could imagine adding
+to this class to make it easier to work with vectors.  We'll explore some
+of them in our homework.
 
 
 
