@@ -169,6 +169,12 @@
              
   <section id="example-mathematical-vectors">
 <h1>Example: Mathematical Vectors<a class="headerlink" href="#example-mathematical-vectors" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 3.16</p>
+<p>Once again, we are doing a different example than your text, but
+the emphasis here remains on encapsulation.</p>
+</div>
 <p>Consider a two-dimension vector:</p>
 <div class="math notranslate nohighlight">
 \[\vec{v} = a \hat{x} + b \hat{y}\]</div>
@@ -289,15 +295,17 @@ So we will create <em>setters</em> that allow us to change these values.</p>
 <p>Some notes:</p>
 <ul>
 <li><p>We explicitly mark the member data as private and the functions are public</p></li>
+<li><p>We have 2 contructors: the <em>default constructor</em> and a <em>parametric
+constructor</em>.  These both have the same name – that’s fine, C++
+will call which ever one matches the argument list you use.</p></li>
 <li><p>We have 2 <em>setter</em> functions to modify the underlying vector data:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>  inline void set_x(double _x) {x = _x;}
-  inline void set_y(double _y) {y = _y;}
-
-These are marked ``inline``, which is a hint to the compiler that
-it can replace the function call with just inserting the code where
-it is needed.  This gives us better performance.
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;}</span><span class="w"></span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;}</span><span class="w"></span>
 </pre></div>
 </div>
+<p>These are marked <code class="docutils literal notranslate"><span class="pre">inline</span></code>, which is a hint to the compiler that
+it can replace the function call with just inserting the code where
+it is needed.  This gives us better performance.</p>
 </li>
 <li><p>We have 3 operators that are member functions: <code class="docutils literal notranslate"><span class="pre">+</span></code>, and two implementations of <code class="docutils literal notranslate"><span class="pre">-</span></code>.
 The second <code class="docutils literal notranslate"><span class="pre">-</span></code> has the form:</p>
@@ -309,7 +317,10 @@ This is the *unary minus*, and is invoked when we do ``-v`` for a ``Vector2d v``
 </li>
 <li><p>The stream operator, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, has the keyword <code class="docutils literal notranslate"><span class="pre">friend</span></code>.  This is
 needed since technically this function is not a member of the class,
-but it needs to have access to the private member data.</p></li>
+but it needs to have access to the private member data.</p>
+<p>As an alternate to making this a <code class="docutils literal notranslate"><span class="pre">friend</span></code>, we could have added <em>getter</em>
+functions to our class to get the private data.</p>
+</li>
 </ul>
 <p>What happens when we do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span> <span class="n">v1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>

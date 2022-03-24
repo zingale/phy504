@@ -2,6 +2,13 @@
 Example: Mathematical Vectors
 *****************************
 
+.. admonition:: reading
+
+   Cyganek section 3.16
+
+   Once again, we are doing a different example than your text, but
+   the emphasis here remains on encapsulation.
+
 Consider a two-dimension vector:
 
 .. math::
@@ -63,6 +70,10 @@ Some notes:
 
 * We explicitly mark the member data as private and the functions are public
 
+* We have 2 contructors: the *default constructor* and a *parametric
+  constructor*.  These both have the same name -- that's fine, C++
+  will call which ever one matches the argument list you use.
+
 * We have 2 *setter* functions to modify the underlying vector data:
 
   .. code:: c++
@@ -70,9 +81,9 @@ Some notes:
      inline void set_x(double _x) {x = _x;}
      inline void set_y(double _y) {y = _y;}
 
-   These are marked ``inline``, which is a hint to the compiler that
-   it can replace the function call with just inserting the code where
-   it is needed.  This gives us better performance.
+  These are marked ``inline``, which is a hint to the compiler that
+  it can replace the function call with just inserting the code where
+  it is needed.  This gives us better performance.
 
 * We have 3 operators that are member functions: ``+``, and two implementations of ``-``.
   The second ``-`` has the form:
@@ -86,6 +97,9 @@ Some notes:
 * The stream operator, ``<<``, has the keyword ``friend``.  This is
   needed since technically this function is not a member of the class,
   but it needs to have access to the private member data.
+
+  As an alternate to making this a ``friend``, we could have added *getter*
+  functions to our class to get the private data.
 
 What happens when we do:
 
