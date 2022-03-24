@@ -6,8 +6,8 @@ int main() {
 
     Array x(10, 10);
 
-    for (int row=0; row < x.nrows(); ++row) {
-        for (int col=0; col < x.ncols(); ++col) {
+    for (std::size_t row=0; row < x.nrows(); ++row) {
+        for (std::size_t col=0; col < x.ncols(); ++col) {
             if (row == col) {
                 x(row, col) = 1.0;
             }

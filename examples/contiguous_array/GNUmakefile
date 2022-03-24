@@ -15,7 +15,7 @@ OBJECTS := $(filter-out $(MAINS), $(OBJECTS))
 # by default, debug mode will be disabled
 DEBUG ?= FALSE
 
-CXXFLAGS := -Wall -Wextra -Wpedantic -Wshadow
+CXXFLAGS := -Wall -Wextra -Wpedantic -Wshadow -g
 
 ifeq (${DEBUG}, TRUE)
    CXXFLAGS += -g

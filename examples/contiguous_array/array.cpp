@@ -13,8 +13,8 @@
 
 std::ostream& operator<< (std::ostream& os, const Array& a) {
 
-    for (int row=0; row < a.nrows(); ++row) {
-        for (int col=0; col < a.ncols(); ++col) {
+    for (std::size_t row=0; row < a.nrows(); ++row) {
+        for (std::size_t col=0; col < a.ncols(); ++col) {
             os << a(row, col) << " ";
         }
         os << std::endl;

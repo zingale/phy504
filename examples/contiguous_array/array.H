@@ -15,6 +15,7 @@ struct Array {
     std::vector<double> _data;
     std::size_t _rows;
     std::size_t _cols;
+
     Array (std::size_t rows, std::size_t cols, double val=0.0)
         : _rows{rows},
           _cols{cols}
@@ -29,13 +30,13 @@ struct Array {
 
         _data.resize(rows * cols, val);
     }
-    
+
     // note the "const" after the argument list here -- this means
     // that this can be called on a const Array, while the first
     // "const" refers to the return type
 
-    inline const std::size_t ncols() const { return _cols;}
-    inline const std::size_t nrows() const { return _rows;}
+    inline std::size_t ncols() const { return _cols;}
+    inline std::size_t nrows() const { return _rows;}
 
     inline double& operator()(int row, int col);
     inline const double& operator()(int row, int col) const;
@@ -52,14 +53,14 @@ inline double& Array::operator()(int row, int col) {
     assert (col >= 0 && col < _cols);
 
     return _data[row*_cols + col];
-}  
+}
 
 inline const double& Array::operator()(int row, int col) const {
     assert (row >= 0 && row < _rows);
     assert (col >= 0 && col < _cols);
 
     return _data[row*_cols + col];
-}  
+}
 
 
 #endif
