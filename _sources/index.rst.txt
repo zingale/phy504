@@ -115,6 +115,7 @@ Spring 2022
    :caption: Classes
 
    cxx-classes-intro
+   cxx-vector2d-class
    contiguous_array
 
 .. toctree::
