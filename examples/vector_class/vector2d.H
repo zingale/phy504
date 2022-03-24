@@ -16,7 +16,7 @@ struct Vector2d {
 
         Vector2d(double _x, double _y)
             : x{_x}, y{_y}
-        {};
+        {}
 
         inline void set_x(double _x) {
             x = _x;
