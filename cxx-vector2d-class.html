@@ -309,11 +309,10 @@ it is needed.  This gives us better performance.</p>
 </li>
 <li><p>We have 3 operators that are member functions: <code class="docutils literal notranslate"><span class="pre">+</span></code>, and two implementations of <code class="docutils literal notranslate"><span class="pre">-</span></code>.
 The second <code class="docutils literal notranslate"><span class="pre">-</span></code> has the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>  Vector2d operator-();
-
-This is the *unary minus*, and is invoked when we do ``-v`` for a ``Vector2d v``.
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
+<p>This is the <em>unary minus</em>, and is invoked when we do <code class="docutils literal notranslate"><span class="pre">-v</span></code> for a <code class="docutils literal notranslate"><span class="pre">Vector2d</span> <span class="pre">v</span></code>.</p>
 </li>
 <li><p>The stream operator, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, has the keyword <code class="docutils literal notranslate"><span class="pre">friend</span></code>.  This is
 needed since technically this function is not a member of the class,

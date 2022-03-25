@@ -92,7 +92,7 @@ Some notes:
 
      Vector2d operator-();
 
-   This is the *unary minus*, and is invoked when we do ``-v`` for a ``Vector2d v``.
+  This is the *unary minus*, and is invoked when we do ``-v`` for a ``Vector2d v``.
 
 * The stream operator, ``<<``, has the keyword ``friend``.  This is
   needed since technically this function is not a member of the class,
