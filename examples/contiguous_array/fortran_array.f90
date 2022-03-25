@@ -2,10 +2,10 @@ program main
 
   implicit none
 
-  integer, parameter :: MAX_SIZE = 2000
+  integer, parameter :: MAX_SIZE = 10000
 
   double precision, allocatable :: a(:,:)
-  double precision :: start, end
+  real :: start, end
   integer :: irow, icol
 
   allocate(a(MAX_SIZE, MAX_SIZE))

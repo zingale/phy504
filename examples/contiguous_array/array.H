@@ -12,23 +12,22 @@
 
 struct Array {
 
-    std::vector<double> _data;
     std::size_t _rows;
     std::size_t _cols;
+    std::vector<double> _data;
 
     Array (std::size_t rows, std::size_t cols, double val=0.0)
         : _rows{rows},
-          _cols{cols}
-          //_data(rows * cols, val)
+          _cols{cols},
+          _data(rows * cols, val)
     {
+        // we do the asserts here after the initialization of _data
+        // in the initialization list, but if the size is zero, we'll
+        // abort here anyway.
+
         assert (rows > 0);
         assert (cols > 0);
 
-        // we do the initialization of _data here so we can first assert
-        // on the rows and cols.  If we placed it in the initialization list,
-        // then it would be created before we could check.
-
-        _data.resize(rows * cols, val);
     }
 
     // note the "const" after the argument list here -- this means
@@ -38,29 +37,22 @@ struct Array {
     inline std::size_t ncols() const { return _cols;}
     inline std::size_t nrows() const { return _rows;}
 
-    inline double& operator()(int row, int col);
-    inline const double& operator()(int row, int col) const;
+    inline double& operator()(int row, int col) {
+        assert (row >= 0 && row < _rows);
+        assert (col >= 0 && col < _cols);
+        return _data[row*_cols + col];
+    }
+
+    inline const double& operator()(int row, int col) const {
+        assert (row >= 0 && row < _rows);
+        assert (col >= 0 && col < _cols);
+        return _data[row*_cols + col];
+    }
 
 };
-
 
 // the << operator is not part of the of the class, so it is not a member
 
 std::ostream& operator<< (std::ostream& os, const Array& a);
-
-inline double& Array::operator()(int row, int col) {
-    assert (row >= 0 && row < _rows);
-    assert (col >= 0 && col < _cols);
-
-    return _data[row*_cols + col];
-}
-
-inline const double& Array::operator()(int row, int col) const {
-    assert (row >= 0 && row < _rows);
-    assert (col >= 0 && col < _cols);
-
-    return _data[row*_cols + col];
-}
-
 
 #endif

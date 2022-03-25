@@ -4,7 +4,7 @@
 
 #include "array.H"
 
-constexpr int MAX_SIZE = 1000;
+constexpr int MAX_SIZE = 10000;
 
 int main() {
 

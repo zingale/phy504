@@ -23,9 +23,14 @@ else
    CXXFLAGS += -DNDEBUG -O3
 endif
 
+F90FLAGS := -O3 -g
+
 # general rule for compiling a .cpp file to .o
 %.o : %.cpp ${HEADERS}
 	g++ ${CXXFLAGS} -c $<
+
+%.o : %.f90
+	gfortran ${F90FLAGS} -c $<
 
 # the test_array program -- we need to explicitly include
 # test_array.o here
@@ -37,6 +42,9 @@ test_array: test_array.o ${OBJECTS}
 timing: timing.o $(OBJECTS)
 	g++ -o $@ timing.o ${OBJECTS}
 
+fortran_array: fortran_array.o
+	gfortran -o $@ fortran_array.o
+
 # 'make clean' will erase all the intermediate objects
 clean:
-	rm -f *.o test_array timing
+	rm -f *.o test_array timing fortran_array
