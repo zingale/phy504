@@ -53,6 +53,16 @@ struct Array {
 
 // the << operator is not part of the of the class, so it is not a member
 
-std::ostream& operator<< (std::ostream& os, const Array& a);
+std::ostream& operator<< (std::ostream& os, const Array& a) {
+
+    for (std::size_t row=0; row < a.nrows(); ++row) {
+        for (std::size_t col=0; col < a.ncols(); ++col) {
+            os << a(row, col) << " ";
+        }
+        os << std::endl;
+    }
+
+    return os;
+}
 
 #endif
