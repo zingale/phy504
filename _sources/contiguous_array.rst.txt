@@ -68,24 +68,16 @@ We will implement the main ``struct`` in a header so we can reuse this
 
 Some comments on this implementation:
 
-* We do not include the ``_data`` vector in the initialization-list,
-  but instead explicitly resize it in the constructor.  This allows us
-  to do an ``assert`` on the number of rows and columns before we try
-  to resize it.
+* We need to order things in the initialization-list in the same order
+  they appear as member data in the class.
 
-  The downside of this approach is that it might be a little slower,
-  since we create the empty vector and then resize it in two steps
-  instead of handling it all at initialization.
+* We include the ``_data`` vector in the initialization-list without
+  worrying about if its size is zone -- the ``asserts``'s in the
+  function body do that for us.
 
 * We have two methods for the ``()`` operator.  The first is for the
   case of a non-``const`` declared ``Array`` and the second is for a
   ``const`` declared ``Array``.
-
-The body of the ``Array`` methods is provided in a separate ``.cpp`` file:
-
-.. literalinclude:: ../../examples/contiguous_array/array.cpp
-   :language: c++
-   :caption: ``array.cpp``
 
 Here's a test program for the ``Array`` object.  Notice that we gain
 access to the ``Array`` class via ``#include "array.H"``.
@@ -106,16 +98,8 @@ Notice a few things:
 * When we try to index out of bounds, the ``assert`` statements catch
   this.
 
-We have 3 files in our project: ``array.H``, ``array.cpp``, and ``test_array.cpp``.
-We could compile and link these on our own as:
-
-.. prompt:: bash
-
-   g++ -c -I. array.cpp
-   g++ -c -I. test_array.cpp
-   g++ -o test_array array.o test_array.o
-
-But that is a lot to do each time.  Instead, we'll use a makefile:
+Here's a makefile that builds this test program + a few others that
+we'll compare with.
 
 .. literalinclude:: ../../examples/contiguous_array/GNUmakefile
    :language: make

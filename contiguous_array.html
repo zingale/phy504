@@ -281,42 +281,6 @@ indexed as a two-dimensional array.</span><a class="headerlink" href="#id2" titl
 
 <span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
-
-<span class="cp">#endif</span>
-</pre></div>
-</div>
-</div>
-<p>Some comments on this implementation:</p>
-<ul>
-<li><p>We do not include the <code class="docutils literal notranslate"><span class="pre">_data</span></code> vector in the initialization-list,
-but instead explicitly resize it in the constructor.  This allows us
-to do an <code class="docutils literal notranslate"><span class="pre">assert</span></code> on the number of rows and columns before we try
-to resize it.</p>
-<p>The downside of this approach is that it might be a little slower,
-since we create the empty vector and then resize it in two steps
-instead of handling it all at initialization.</p>
-</li>
-<li><p>We have two methods for the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator.  The first is for the
-case of a non-<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code> and the second is for a
-<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code>.</p></li>
-</ul>
-<p>The body of the <code class="docutils literal notranslate"><span class="pre">Array</span></code> methods is provided in a separate <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
-
-<span class="c1">// notice that we can put the function body for these member functions</span>
-<span class="c1">// outside of the class definition.  We just need to prefix them as</span>
-<span class="c1">// Array::</span>
-
-
-<span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
-
 <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -328,13 +292,26 @@ case of a non-<code class="docutils literal notranslate"><span class="pre">const
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
+
+<span class="cp">#endif</span>
 </pre></div>
 </div>
 </div>
+<p>Some comments on this implementation:</p>
+<ul class="simple">
+<li><p>We need to order things in the initialization-list in the same order
+they appear as member data in the class.</p></li>
+<li><p>We include the <code class="docutils literal notranslate"><span class="pre">_data</span></code> vector in the initialization-list without
+worrying about if its size is zone – the <code class="docutils literal notranslate"><span class="pre">asserts</span></code>’s in the
+function body do that for us.</p></li>
+<li><p>We have two methods for the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator.  The first is for the
+case of a non-<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code> and the second is for a
+<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code>.</p></li>
+</ul>
 <p>Here’s a test program for the <code class="docutils literal notranslate"><span class="pre">Array</span></code> object.  Notice that we gain
 access to the <code class="docutils literal notranslate"><span class="pre">Array</span></code> class via <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;array.H&quot;</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
@@ -380,18 +357,10 @@ our array.  We can do this because the data is stored contiguously.</p></li>
 <li><p>When we try to index out of bounds, the <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements catch
 this.</p></li>
 </ul>
-<p>We have 3 files in our project: <code class="docutils literal notranslate"><span class="pre">array.H</span></code>, <code class="docutils literal notranslate"><span class="pre">array.cpp</span></code>, and <code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code>.
-We could compile and link these on our own as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">g++ -c -I. array.cpp</span>
-<span class="prompt1">g++ -c -I. test_array.cpp</span>
-<span class="prompt1">g++ -o test_array array.o test_array.o</span>
-</pre></div></div><p>But that is a lot to do each time.  Instead, we’ll use a makefile:</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<p>Here’s a makefile that builds this test program + a few others that
+we’ll compare with.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># get all the sources and the headers</span>
 <span class="nv">SOURCE</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
 <span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
@@ -449,7 +418,11 @@ span.prompt1:before {
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> has some helpful features.  To just
 build as is, we can do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">make</span>
 </pre></div></div><p>If we instead want to turn on the <code class="docutils literal notranslate"><span class="pre">assert</span></code>’s, then we do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make <span class="nv">DEBUG</span><span class="o">=</span>TRUE</span>
 </pre></div></div><p>To force a rebuild, we can do:</p>
@@ -472,8 +445,8 @@ target, <code class="docutils literal notranslate"><span class="pre">test_array<
 <p>Here we access a simple clock via <code class="docutils literal notranslate"><span class="pre">&lt;chrono&gt;</span></code> and use it to time
 different implementations.  We convert to seconds using
 <code class="docutils literal notranslate"><span class="pre">CLOCKS_PER_SEC</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">timing.cpp</span></code></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">timing.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span><span class="cp"></span>
