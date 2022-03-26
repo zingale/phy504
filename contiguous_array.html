@@ -348,12 +348,17 @@ access to the <code class="docutils literal notranslate"><span class="pre">Array
 </div>
 </div>
 <p>Notice a few things:</p>
-<ul class="simple">
+<ul>
 <li><p>When we loop over the elements of the <code class="docutils literal notranslate"><span class="pre">Array</span></code> we get the number of
-rows via <code class="docutils literal notranslate"><span class="pre">.nrows()</span></code> and the number of columns via <code class="docutils literal notranslate"><span class="pre">.ncols()</span></code>.</p></li>
+rows via <code class="docutils literal notranslate"><span class="pre">.nrows()</span></code> and the number of columns via <code class="docutils literal notranslate"><span class="pre">.ncols()</span></code>.
+Technically these are of type <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> (which is some form
+of an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>).</p></li>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">Array</span> <span class="pre">y</span></code>, we use a range-for loop over the elements of
 <code class="docutils literal notranslate"><span class="pre">_data</span></code> directly – this is the one-dimensional representation of
-our array.  We can do this because the data is stored contiguously.</p></li>
+our array.  We can do this because the data is stored contiguously.</p>
+<p>Note though – this breaks the idea of encapsulation in a class, since
+we are accessing this data directly.</p>
+</li>
 <li><p>When we try to index out of bounds, the <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements catch
 this.</p></li>
 </ul>
@@ -433,8 +438,19 @@ directive, so setting <code class="docutils literal notranslate"><span class="pr
 off the asserts.</p>
 </div>
 <p>This <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> is a little more complex than the previous ones
-we looked at, since there are two possible targets defined.  The first
-target, <code class="docutils literal notranslate"><span class="pre">test_array</span></code> in this case, is the default.</p>
+we looked at, since there are several possible targets defined.  The first
+target, <code class="docutils literal notranslate"><span class="pre">test_array</span></code> in this case, is the default.  The other two targets
+will be discussed below.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s add <code class="docutils literal notranslate"><span class="pre">.min()</span></code> and <code class="docutils literal notranslate"><span class="pre">.max()</span></code> member functions to the class to
+return the minimum and maximum element in the array respectively.</p>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>What would we need to change if we wanted to make this a <code class="docutils literal notranslate"><span class="pre">class</span></code>
+instead of a <code class="docutils literal notranslate"><span class="pre">struct</span></code>?</p>
+</div>
 </section>
 <section id="performance">
 <h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
@@ -442,9 +458,17 @@ target, <code class="docutils literal notranslate"><span class="pre">test_array<
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="o">&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here we access a simple clock via <code class="docutils literal notranslate"><span class="pre">&lt;chrono&gt;</span></code> and use it to time
-different implementations.  We convert to seconds using
-<code class="docutils literal notranslate"><span class="pre">CLOCKS_PER_SEC</span></code>.</p>
+<p>This needs the size known at compile time, and the array in this case
+is allocated on the <em>stack</em> instead of the <em>heap</em>.  This means that it
+is likely we will have a stack overflow if we make the array too big.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Here we access a simple clock via <code class="docutils literal notranslate"><span class="pre">&lt;chrono&gt;</span></code> by calling
+<code class="docutils literal notranslate"><span class="pre">clock()</span></code> and use it to time different implementations.</p>
+<p>We need to call <code class="docutils literal notranslate"><span class="pre">clock()</span></code> before and after the code block we are
+timing to remove any offset in the time returned by <code class="docutils literal notranslate"><span class="pre">clock()</span></code>.  We
+convert to seconds using <code class="docutils literal notranslate"><span class="pre">CLOCKS_PER_SEC</span></code>.</p>
+</div>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">timing.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -521,26 +545,57 @@ different implementations.  We convert to seconds using
 <p>We can build this via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make timing</span>
 </pre></div></div><p>Some things to consider:</p>
-<ul>
+<ul class="simple">
 <li><p>Putting the <code class="docutils literal notranslate"><span class="pre">operator()</span></code> functions in <code class="docutils literal notranslate"><span class="pre">array.H</span></code> gives the
 compiler the opportunity to inline them.  This can have a big
 performance difference compared to putting their implementation in
-<code class="docutils literal notranslate"><span class="pre">array.cpp</span></code>.</p></li>
-<li><p>Timing the array creation and loop will reveal that creating our
-<code class="docutils literal notranslate"><span class="pre">Array</span></code> is more expensive than the <code class="docutils literal notranslate"><span class="pre">std::array&lt;std::array&lt;&gt;&gt;</span></code>
-approach.</p></li>
+a separate C++ file.</p></li>
+<li><p>We are not timing the array creation.  It is likely that creating
+our <code class="docutils literal notranslate"><span class="pre">Array</span></code> is more expensive than the
+<code class="docutils literal notranslate"><span class="pre">std::array&lt;std::array&lt;&gt;&gt;</span></code> approach.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">std::array&lt;std::array&lt;&gt;&gt;</span></code> is allocated on the stack, and we
 can quickly exceed the stack size.  Meanwhile, the <code class="docutils literal notranslate"><span class="pre">Array</span></code> class
-holds the data on the heap.</p>
-<p>Its size also needs to be known at compilation time.</p>
-</li>
+holds the data on the heap.</p></li>
 </ul>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>How does the performance change with array size, compiler
 optimization level, asserts enabled, etc.?</p>
 </div>
-</section>
+<p>Finally, we can compare to a Fortran implementation:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fortran_array.f90</span></code></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">main</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="k">end</span>
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">do </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"></span>
+<span class="w">     </span><span class="k">do </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"></span>
+<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dble</span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="k">end do</span>
+<span class="k">  end do</span>
+
+<span class="k">  call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="k">end</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cpu time = &quot;</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">main</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>which we can build via</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make fortran_array</span>
+</pre></div></div></section>
 </section>
 
 
