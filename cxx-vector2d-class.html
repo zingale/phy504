@@ -323,11 +323,11 @@ functions to our class to get the private data.</p>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In the</p>
+<p>In the operator-overload function</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w">  </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>function, <code class="docutils literal notranslate"><span class="pre">vec</span></code> is a second <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object that we are going to
+<p><code class="docutils literal notranslate"><span class="pre">vec</span></code> is a second <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object that we are going to
 add to our current one.  So why can we access the private data of <code class="docutils literal notranslate"><span class="pre">vec</span></code>?
 i.e., <code class="docutils literal notranslate"><span class="pre">vec.x</span></code> and <code class="docutils literal notranslate"><span class="pre">vec.y</span></code>?</p>
 <p>This is part of the design of C++.  Two instances of the same class can access
