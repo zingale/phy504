@@ -103,13 +103,13 @@ Some notes:
 
 .. tip::
 
-   In the
+   In the operator-overload function
 
    .. code:: c++
 
       Vector2d operator+(const Vector2d& vec)  {}
 
-   function, ``vec`` is a second ``Vector2d`` object that we are going to
+   ``vec`` is a second ``Vector2d`` object that we are going to
    add to our current one.  So why can we access the private data of ``vec``?
    i.e., ``vec.x`` and ``vec.y``?
 
