@@ -119,6 +119,35 @@ Some notes:
 
    See this `stackoverflow discussion <https://stackoverflow.com/questions/6921185/why-do-objects-of-the-same-class-have-access-to-each-others-private-data>`_
 
+.. tip::
+
+   When do we need to make something a ``friend``?
+
+   Essentially, it is needed for an operator where our class is not to
+   the left of the operator.
+
+   Imagine that it did make sense to add a ``double`` to a
+   ``Vector2d``, then we could imagine 2 different additions:
+
+   .. code:: c++
+
+      double a{};
+      Vector2d vec{};
+
+      auto new_vec = a + vec;   // our class is on the right -- this is not a member func
+      auto new2_vec = vec + a;  // our class is on the left -- this is a member func
+
+   When we write a member function, we don't include the object itself
+   in the argument list, so for the second case, ``vec + a``, we would
+   use the function signature:
+
+   .. code:: c++
+
+      Vector2d operator+ (const double& a);
+
+   The current ``Vector2d`` object is implicitly part of the function,
+   and C++ provides a pointer called ``this`` that points to the
+   address of the object that we are working on.
 
 What happens when we do:
 
