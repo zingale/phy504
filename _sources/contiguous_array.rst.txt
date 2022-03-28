@@ -76,7 +76,7 @@ Some comments on this implementation:
   they appear as member data in the class.
 
 * We include the ``_data`` vector in the initialization-list without
-  worrying about if its size is zone -- the ``asserts``'s in the
+  worrying about if its size is zero -- the ``asserts``'s in the
   function body do that for us.
 
 * We have two methods for the ``()`` operator.  The first is for the
