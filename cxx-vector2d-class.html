@@ -335,6 +335,30 @@ private data of one another directly.  The <code class="docutils literal notrans
 on a class-basis, not an object-basis.</p>
 <p>See this <a class="reference external" href="https://stackoverflow.com/questions/6921185/why-do-objects-of-the-same-class-have-access-to-each-others-private-data">stackoverflow discussion</a></p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When do we need to make something a <code class="docutils literal notranslate"><span class="pre">friend</span></code>?</p>
+<p>Essentially, it is needed for an operator where our class is not to
+the left of the operator.</p>
+<p>Imagine that it did make sense to add a <code class="docutils literal notranslate"><span class="pre">double</span></code> to a
+<code class="docutils literal notranslate"><span class="pre">Vector2d</span></code>, then we could imagine 2 different additions:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w"></span>
+<span class="n">Vector2d</span><span class="w"> </span><span class="n">vec</span><span class="p">{};</span><span class="w"></span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">new_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span><span class="w">   </span><span class="c1">// our class is on the right -- this is not a member func</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">new2_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">  </span><span class="c1">// our class is on the left -- this is a member func</span>
+</pre></div>
+</div>
+<p>When we write a member function, we don’t include the object itself
+in the argument list, so for the second case, <code class="docutils literal notranslate"><span class="pre">vec</span> <span class="pre">+</span> <span class="pre">a</span></code>, we would
+use the function signature:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The current <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object is implicitly part of the function,
+and C++ provides a pointer called <code class="docutils literal notranslate"><span class="pre">this</span></code> that points to the
+address of the object that we are working on.</p>
+</div>
 <p>What happens when we do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span> <span class="n">v1</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
 
