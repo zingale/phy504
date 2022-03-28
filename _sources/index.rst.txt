@@ -117,7 +117,7 @@ Spring 2022
    cxx-classes-intro
    cxx-vector2d-class
    contiguous_array
-   cxx-unit-testing
+   cxx-unit-tests
 
 .. toctree::
    :maxdepth: 1
@@ -129,6 +129,7 @@ Spring 2022
    homework/homework4
    homework/homework5
    homework/homework6
+   homework/homework7
 
 .. toctree::
    :maxdepth: 1
