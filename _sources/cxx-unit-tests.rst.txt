@@ -27,6 +27,7 @@ Unit tests for ``Array``
 
 We can use the basic ``assert`` statement together with a makefile target to automate testing.
 
+We'll do this with our ``Vector2d`` class.
 
 
 
