@@ -2,6 +2,8 @@
 Example: Matrix
 ***************
 
+.. _sec:cxx_matrix:
+
 Let's look at an example from your text that create a very simple matrix container as a vector-of-vectors.
 
 We'll write our own version of what the text does.

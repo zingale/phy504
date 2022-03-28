@@ -117,6 +117,7 @@ Spring 2022
    cxx-classes-intro
    cxx-vector2d-class
    contiguous_array
+   cxx-unit-testing
 
 .. toctree::
    :maxdepth: 1

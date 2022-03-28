@@ -25,6 +25,8 @@ array, where each element of this is a separate vector to store the
 columns that make up that row.  But each of those row vectors are independent,
 and can be in very disparate positions in memory.
 
+This is essentially what we did previously as our :ref:`matrix container <sec:cxx_matrix>`.
+
 This can be visualized as:
 
 .. figure:: vector_of_vectors.png
@@ -34,11 +36,13 @@ This can be visualized as:
    Illustration of a ``vector``-of-``vector``'s for a :math:`4\times
    3` array.
 
-Our goal is to create a contiguous memory space that stores all the
-elements of the 2-d array.
 
 Contiguous multi-dimensional array
 ==================================
+
+Our goal now is to create a contiguous memory space that stores all the
+elements of the 2-d array.
+
 
 To make a contiguous vector, we will use a single ``vector``
 dimensioned with a size of ``nrows * ncols`` (note: C++ will likely

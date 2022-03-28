@@ -193,6 +193,7 @@ operators to index into it.</p>
 array, where each element of this is a separate vector to store the
 columns that make up that row.  But each of those row vectors are independent,
 and can be in very disparate positions in memory.</p>
+<p>This is essentially what we did previously as our <a class="reference internal" href="cxx-matrix-example.html#sec-cxx-matrix"><span class="std std-ref">matrix container</span></a>.</p>
 <p>This can be visualized as:</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="_images/vector_of_vectors.png"><img alt="_images/vector_of_vectors.png" src="_images/vector_of_vectors.png" style="width: 80%;" /></a>
@@ -201,11 +202,11 @@ and can be in very disparate positions in memory.</p>
 3\)</span> array.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Our goal is to create a contiguous memory space that stores all the
-elements of the 2-d array.</p>
 </section>
 <section id="contiguous-multi-dimensional-array">
 <h2>Contiguous multi-dimensional array<a class="headerlink" href="#contiguous-multi-dimensional-array" title="Permalink to this headline">¶</a></h2>
+<p>Our goal now is to create a contiguous memory space that stores all the
+elements of the 2-d array.</p>
 <p>To make a contiguous vector, we will use a single <code class="docutils literal notranslate"><span class="pre">vector</span></code>
 dimensioned with a size of <code class="docutils literal notranslate"><span class="pre">nrows</span> <span class="pre">*</span> <span class="pre">ncols</span></code> (note: C++ will likely
 have more elements than this, to allow for the potential expansion of
