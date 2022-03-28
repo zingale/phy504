@@ -94,10 +94,15 @@ Notice a few things:
 
 * When we loop over the elements of the ``Array`` we get the number of
   rows via ``.nrows()`` and the number of columns via ``.ncols()``.
+  Technically these are of type ``std::size_t`` (which is some form
+  of an ``unsigned int``).
 
 * For ``Array y``, we use a range-for loop over the elements of
   ``_data`` directly -- this is the one-dimensional representation of
   our array.  We can do this because the data is stored contiguously.
+
+  Note though -- this breaks the idea of encapsulation in a class, since
+  we are accessing this data directly.
 
 * When we try to index out of bounds, the ``assert`` statements catch
   this.
@@ -136,8 +141,19 @@ we'll compare with.
    off the asserts.
 
 This ``GNUmakefile`` is a little more complex than the previous ones
-we looked at, since there are two possible targets defined.  The first
-target, ``test_array`` in this case, is the default.
+we looked at, since there are several possible targets defined.  The first
+target, ``test_array`` in this case, is the default.  The other two targets
+will be discussed below.
+
+.. admonition:: try it...
+
+   Let's add ``.min()`` and ``.max()`` member functions to the class to
+   return the minimum and maximum element in the array respectively.
+
+.. admonition:: try it...
+
+   What would we need to change if we wanted to make this a ``class``
+   instead of a ``struct``?
 
 
 Performance
@@ -149,9 +165,18 @@ Let's see how the speed of this compares to doing
 
    std::array<std::array<double, ncols>, nrows>
 
-Here we access a simple clock via ``<chrono>`` and use it to time
-different implementations.  We convert to seconds using
-``CLOCKS_PER_SEC``.
+This needs the size known at compile time, and the array in this case
+is allocated on the *stack* instead of the *heap*.  This means that it
+is likely we will have a stack overflow if we make the array too big.
+
+.. tip::
+
+   Here we access a simple clock via ``<chrono>`` by calling
+   ``clock()`` and use it to time different implementations.
+
+   We need to call ``clock()`` before and after the code block we are
+   timing to remove any offset in the time returned by ``clock()``.  We
+   convert to seconds using ``CLOCKS_PER_SEC``.
 
 
 .. literalinclude:: ../../examples/contiguous_array/timing.cpp
@@ -171,22 +196,32 @@ Some things to consider:
 * Putting the ``operator()`` functions in ``array.H`` gives the
   compiler the opportunity to inline them.  This can have a big
   performance difference compared to putting their implementation in
-  ``array.cpp``.
+  a separate C++ file.
 
-* Timing the array creation and loop will reveal that creating our
-  ``Array`` is more expensive than the ``std::array<std::array<>>``
-  approach.
+* We are not timing the array creation.  It is likely that creating
+  our ``Array`` is more expensive than the
+  ``std::array<std::array<>>`` approach.
 
 * The ``std::array<std::array<>>`` is allocated on the stack, and we
   can quickly exceed the stack size.  Meanwhile, the ``Array`` class
   holds the data on the heap.
 
-  Its size also needs to be known at compilation time.
-
 .. admonition:: try it...
 
    How does the performance change with array size, compiler
    optimization level, asserts enabled, etc.?
+
+Finally, we can compare to a Fortran implementation:
+
+.. literalinclude:: ../../examples/contiguous_array/fortran_array.f90
+   :language: fortran
+   :caption: ``fortran_array.f90``
+
+which we can build via
+
+.. prompt:: bash
+
+   make fortran_array
 
 
 

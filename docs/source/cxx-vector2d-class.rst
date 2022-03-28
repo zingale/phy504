@@ -101,6 +101,25 @@ Some notes:
   As an alternate to making this a ``friend``, we could have added *getter*
   functions to our class to get the private data.
 
+.. tip::
+
+   In the operator-overload function
+
+   .. code:: c++
+
+      Vector2d operator+(const Vector2d& vec)  {}
+
+   ``vec`` is a second ``Vector2d`` object that we are going to
+   add to our current one.  So why can we access the private data of ``vec``?
+   i.e., ``vec.x`` and ``vec.y``?
+
+   This is part of the design of C++.  Two instances of the same class can access
+   private data of one another directly.  The ``private`` attribute is enforced
+   on a class-basis, not an object-basis.
+
+   See this `stackoverflow discussion <https://stackoverflow.com/questions/6921185/why-do-objects-of-the-same-class-have-access-to-each-others-private-data>`_
+
+
 What happens when we do:
 
 .. code::
