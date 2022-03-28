@@ -101,7 +101,7 @@ Some notes:
   As an alternate to making this a ``friend``, we could have added *getter*
   functions to our class to get the private data.
 
-.. tip::
+.. hint::
 
    In the operator-overload function
 
@@ -119,7 +119,7 @@ Some notes:
 
    See this `stackoverflow discussion <https://stackoverflow.com/questions/6921185/why-do-objects-of-the-same-class-have-access-to-each-others-private-data>`_
 
-.. tip::
+.. hint::
 
    When do we need to make something a ``friend``?
 
@@ -148,6 +148,13 @@ Some notes:
    The current ``Vector2d`` object is implicitly part of the function,
    and C++ provides a pointer called ``this`` that points to the
    address of the object that we are working on.
+
+.. tip::
+
+   There is a nice FAQ of operator overloading on stack overflow:
+
+   `What are the basic rules and idioms for operator overloading? <https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading>`_
+
 
 What happens when we do:
 
