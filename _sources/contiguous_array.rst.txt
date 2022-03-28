@@ -136,7 +136,7 @@ we'll compare with.
       make clean
       make
 
-   The ``assert``'s are handled by the C++ via the ``NDEBUG`` preprocess
+   The ``assert``'s are handled by the C++ via the ``NDEBUG`` preprocessor
    directive, so setting ``-DNDEBUG`` tells the preprocessor to turn
    off the asserts.
 
