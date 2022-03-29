@@ -1,6 +1,6 @@
-******************
-Aside Unit Testing
-******************
+*******************
+Aside: Unit Testing
+*******************
 
 As we write increasingly complex codes, we want some way to automate
 testing to ensure that our changes don't break the functionality.
