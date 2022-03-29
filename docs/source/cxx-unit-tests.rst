@@ -110,13 +110,66 @@ So we want to overload those operators and add them to our class:
 The ``const`` after the argument list allows these to be used on a
 ``const Vector2d`` object.
 
+These should be added directly to the class in ``vector2d.H``.
+
+
 Writing tests
 =============
 
 Let's write some basic tests:
 
+.. literalinclude:: ../../examples/unit_tests/unit_test_vector2d.cpp
+   :language: c++
+   :caption: ``unit_test_vector2d.cpp``
 
+These tests cover most of the functionality we explicitly implemented
+in ``vector2d.H``.  As written, they should all pass.
+
+
+Automating with make
+====================
+
+We'd like to provide a way to automate these tests.  Our first method
+will be via ``make`` that we can run on our own computer.
+
+Let's start with the general ``GNUmakefile`` we developed in our
+:ref:`sec:makefiles` section.
+
+We can use the `GNU make shell function
+<https://www.gnu.org/software/make/manual/html_node/Shell-Function.html?>`_
+to run our test and capture the return code.
+
+Here's what the rule would look like:
+
+.. code:: make
+
+   testing: unit_test_vector2d
+   	$(shell ./unit_test_vector2d)
+   	@if [ ${.SHELLSTATUS} == 0 ]; then echo "all tests pass"; fi
+
+We use ``$(shell )`` to run our executable.  Then we use a Bash
+``if-then`` statement to check the output.  Note the ``@`` at the
+start of the line makes it so ``make`` doesn't print the command
+itself to the screen, just the output.
+
+
+.. admonition:: try it...
+
+   Let's make a test fail in our ``unit_test_vector2d.cpp`` and make sure that this still works.
 
 
 Continuous integration and github
 =================================
+
+For a large project, with multiple developers, we often want to ensure
+that any changes that they make to the code still pass all of the
+tests before we merge it into the ``main`` git branch.  This is called
+*continuous integration*.  Github has a feature called `Github actions
+<https://docs.github.com/en/actions>`_ that allow us to set up simple
+scripts that run on all pull requests.
+
+We'll look at how this can work -- this is a high level overview of
+the process that we will experiment with.  Usually one of the main
+developers of a large project will have already implemented the
+testing.
+

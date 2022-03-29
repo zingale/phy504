@@ -22,4 +22,11 @@ int main() {
 
     assert(v1 != v2);
 
+    // test the setters and the default constructor
+
+    v1.set_x(0.0);
+    v1.set_y(0.0);
+
+    assert(v1 == Vector2d());
+
 }
