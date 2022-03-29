@@ -127,7 +127,10 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Aside Unit Testing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#unit-tests-for-array">Unit tests for <code class="docutils literal notranslate"><span class="pre">Array</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-tests-for-vector2d">Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparing-vectors">Comparing vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration-and-github">Continuous integration and github</a></li>
 </ul>
 </li>
 </ul>
@@ -174,22 +177,99 @@
 <h1>Aside Unit Testing<a class="headerlink" href="#aside-unit-testing" title="Permalink to this headline">¶</a></h1>
 <p>As we write increasingly complex codes, we want some way to automate
 testing to ensure that our changes don’t break the functionality.</p>
-<p>There are a wide variety of tests for general codes:</p>
+<p>There are a wide variety of tests for general codes (the Wikipedia
+<a class="reference external" href="https://en.wikipedia.org/wiki/Software_testing">software testing</a>
+page gives a good overview:</p>
 <ul class="simple">
-<li><p><em>unit testing</em></p></li>
-<li><p><em>integration testing</em></p></li>
-<li><p><em>regression testing</em></p></li>
+<li><p><em>unit testing</em> : for each of your functions, you provide one or more
+tests that exercise that function alone, ensuring that it gives the
+expected result.</p></li>
+<li><p><em>integration testing</em> : you test the several pieces of the program
+or the entire program interacting.  Since unit tests are done in isolation,
+integration tests will catch issues in how the different functions work
+together.</p></li>
+<li><p><em>regression testing</em> : you store a “correct answer” from your code and
+you run the code regularly to see if any changes have unexpectedly
+changed the answer.</p></li>
 </ul>
 <p>For numerical algorithms, we also can discuss:</p>
 <ul class="simple">
-<li><p><em>convergence testing</em></p></li>
-<li><p><em>verification</em></p></li>
-<li><p><em>validation</em></p></li>
+<li><p><em>convergence testing</em> : some algorithms have a formal order of
+accuracy, For instance, our Euler method for integrating the orbits
+is first-order accurate in time, but the RK2 algorithm in your
+homework is second-order accurate in time.  In convergence testing
+you varying the space or time resolution and see if you get the
+expected convergence.</p></li>
+<li><p><em>verification</em> and <em>validation</em> : verification asks the question “am
+I solving the equations correctly?”, while validation asks “am I
+solving the right equations to begin with?”  For verification, one
+can compare to known analytic solutions of the set of equations you
+are solving.  For validation, you will typically want to compare to
+experiments to see if you are appropriately modeling all of the
+physics you need.</p></li>
 </ul>
-<section id="unit-tests-for-array">
-<h2>Unit tests for <code class="docutils literal notranslate"><span class="pre">Array</span></code><a class="headerlink" href="#unit-tests-for-array" title="Permalink to this headline">¶</a></h2>
+<section id="unit-tests-for-vector2d">
+<h2>Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code><a class="headerlink" href="#unit-tests-for-vector2d" title="Permalink to this headline">¶</a></h2>
 <p>We can use the basic <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement together with a makefile target to automate testing.</p>
 <p>We’ll do this with our <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class.</p>
+<p>The basic structure we will use is:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// create some vectors v1 and v2</span>
+
+<span class="w">    </span><span class="c1">// do some operations on v1 and v2</span>
+
+<span class="w">    </span><span class="c1">// assert the result</span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Ideally, we’d like to be able to capture the success of our test in a
+Bash script, so let’s start by checking what the return value of a
+program that failed an <code class="docutils literal notranslate"><span class="pre">assert</span></code> is</p>
+<p>Consider the following:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">assert</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Let’s build and run that, and then check the return code via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1"><span class="nb">echo</span> <span class="nv">$?</span></span>
+</pre></div></div><p>On my machine, I get <code class="docutils literal notranslate"><span class="pre">134</span></code>, but the actual code may vary depending
+on the compiler and OS.  The key however is that it is non-zero.  This
+means that we can test for a non-zero return in a script.</p>
+</section>
+<section id="comparing-vectors">
+<h2>Comparing vectors<a class="headerlink" href="#comparing-vectors" title="Permalink to this headline">¶</a></h2>
+<p>To make life easier, we’d like to be able to check if two vectors are
+equal, using <code class="docutils literal notranslate"><span class="pre">==</span></code>, and not equal, using <code class="docutils literal notranslate"><span class="pre">!=</span></code>.</p>
+<p>So we want to overload those operators and add them to our class:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">const</span></code> after the argument list allows these to be used on a
+<code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">Vector2d</span></code> object.</p>
+</section>
+<section id="writing-tests">
+<h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
+<p>Let’s write some basic tests:</p>
+</section>
+<section id="continuous-integration-and-github">
+<h2>Continuous integration and github<a class="headerlink" href="#continuous-integration-and-github" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
