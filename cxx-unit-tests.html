@@ -211,7 +211,20 @@ physics you need.</p></li>
 </ul>
 <section id="unit-tests-for-vector2d">
 <h2>Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code><a class="headerlink" href="#unit-tests-for-vector2d" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are a lot of unit testing frameworks for C++ programs (for
+example, <a class="reference external" href="https://github.com/catchorg/Catch2">Catch2</a>).  We are just going to
+something simple here.</p>
+</div>
 <p>We can use the basic <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement together with a makefile target to automate testing.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">assert</span></code> will end the execution at the first failure.  We could
+instead keep track of the number of failures and explicitly return
+that as the return value of <code class="docutils literal notranslate"><span class="pre">main</span></code>, with <code class="docutils literal notranslate"><span class="pre">0</span></code> signifying all tests
+passing.</p>
+</div>
 <p>We’ll do this with our <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class.</p>
 <p>The basic structure we will use is:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -343,6 +356,7 @@ scripts that run on all pull requests.</p>
 the process that we will experiment with.  Usually one of the main
 developers of a large project will have already implemented the
 testing.</p>
+<p>We’ll use this repository: <a class="reference external" href="https://github.com/phy504-sbu/unit_tests">https://github.com/phy504-sbu/unit_tests</a></p>
 </section>
 </section>
 
