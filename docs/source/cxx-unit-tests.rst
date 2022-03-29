@@ -43,7 +43,20 @@ For numerical algorithms, we also can discuss:
 Unit tests for ``Vector2d``
 ===========================
 
+.. note::
+
+   There are a lot of unit testing frameworks for C++ programs (for
+   example, `Catch2 <https://github.com/catchorg/Catch2>`_).  We are just going to
+   something simple here.
+
 We can use the basic ``assert`` statement together with a makefile target to automate testing.
+
+.. tip::
+
+   ``assert`` will end the execution at the first failure.  We could
+   instead keep track of the number of failures and explicitly return
+   that as the return value of ``main``, with ``0`` signifying all tests
+   passing.
 
 We'll do this with our ``Vector2d`` class.
 
@@ -172,4 +185,6 @@ We'll look at how this can work -- this is a high level overview of
 the process that we will experiment with.  Usually one of the main
 developers of a large project will have already implemented the
 testing.
+
+We'll use this repository: https://github.com/phy504-sbu/unit_tests
 
