@@ -150,6 +150,13 @@ will be discussed below.
    Let's add ``.min()`` and ``.max()`` member functions to the class to
    return the minimum and maximum element in the array respectively.
 
+   .. dropdown:: solution
+
+      .. literalinclude:: ../../examples/contiguous_array/array_new.H
+         :language: c++
+         :caption: new ``array.H``
+         :emphasize-lines: 7, 53-67
+
 .. admonition:: try it...
 
    What would we need to change if we wanted to make this a ``class``
