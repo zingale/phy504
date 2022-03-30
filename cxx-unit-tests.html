@@ -357,6 +357,25 @@ the process that we will experiment with.  Usually one of the main
 developers of a large project will have already implemented the
 testing.</p>
 <p>We’ll use this repository: <a class="reference external" href="https://github.com/phy504-sbu/unit_tests">https://github.com/phy504-sbu/unit_tests</a></p>
+<p>There are a few places to look:</p>
+<ul>
+<li><p>The github action itself is a <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">YAML</a> file:
+<a class="reference external" href="https://github.com/phy504-sbu/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml">https://github.com/phy504-sbu/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml</a></p>
+<p>This is placed in the repository in the <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory</p>
+</li>
+<li><p>The action runs on all pull requests.  You can see the status of all actions
+that have run here: <a class="reference external" href="https://github.com/phy504-sbu/unit_tests/actions">https://github.com/phy504-sbu/unit_tests/actions</a></p></li>
+</ul>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s break the code and issue a pull request to see the action in action…</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A Github action is used to build this lecture notes from the ReST source
+in the lecture note repo: <a class="reference external" href="https://github.com/zingale/phy504">https://github.com/zingale/phy504</a></p>
+<p>This is that action: <a class="reference external" href="https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml">https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml</a></p>
+</div>
 </section>
 </section>
 
