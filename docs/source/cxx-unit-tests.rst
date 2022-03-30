@@ -188,3 +188,23 @@ testing.
 
 We'll use this repository: https://github.com/phy504-sbu/unit_tests
 
+There are a few places to look:
+
+* The github action itself is a `YAML <https://en.wikipedia.org/wiki/YAML>`_ file:
+  https://github.com/phy504-sbu/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml
+
+  This is placed in the repository in the ``.github/workflows/`` directory
+
+* The action runs on all pull requests.  You can see the status of all actions
+  that have run here: https://github.com/phy504-sbu/unit_tests/actions
+
+.. admonition:: try it...
+
+   Let's break the code and issue a pull request to see the action in action...
+
+.. tip::
+
+   A Github action is used to build this lecture notes from the ReST source
+   in the lecture note repo: https://github.com/zingale/phy504
+
+   This is that action: https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml
