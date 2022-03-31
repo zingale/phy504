@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version Control &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Operators &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Dotfiles and the Mathlab" href="shell-setup.html" />
-    <link rel="prev" title="Redirection and Pipes" href="shell-3.html" /> 
+    <link rel="next" title="Floating Point" href="floating-point.html" />
+    <link rel="prev" title="I/O Manipulators" href="cxx-iomanip.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,16 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Version Control</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#why-use-version-control">Why use version control?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#centralized-vs-distributed-version-control">Centralized vs. distributed version control</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#centralized-version-control">Centralized version control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#distributed-version-control">Distributed version control</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
@@ -137,9 +129,9 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Aside: Unit Testing</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
@@ -171,9 +163,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Version Control</li>
+      <li>Operators</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/version_control.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/operators.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -181,127 +173,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="version-control">
-<h1>Version Control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
-<section id="why-use-version-control">
-<h2>Why use version control?<a class="headerlink" href="#why-use-version-control" title="Permalink to this headline">¶</a></h2>
-<p>When we develop code, we are going to be making lots of changes over time.  And you will
-find yourself in the following situations:</p>
-<ul class="simple">
-<li><p><em>You swear that the code worked perfectly 6 months ago</em> but today it doesn’t and
-you can’t figure out what changed.</p></li>
-<li><p><em>The code looks different than you remembered and you don’t know why it changed</em>.</p></li>
-<li><p><em>Your research group is all working on the same code</em> and you need to sync up with
-everyone’s changes and make sure that no one breaks the code.</p></li>
-</ul>
-<p>This is what version control does for us.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Version control systems keep track of the history of changes to
-source code and allow multiple developers to all work on the same code
-base.</p>
-</div>
-<p>In particular:</p>
-<ul class="simple">
-<li><p>Logs tell you what changes have been made to each file over time.</p></li>
-<li><p>You can request the source as it was at any time in the past.</p></li>
-<li><p>Multiple developers can all work on the same source code and share and synchronize changes.</p>
-<ul>
-<li><p>Changes by different developers to the same file are merged.</p></li>
-<li><p>If two developers changed the same part of a file, version control
-provides mechanisms to resolve conflicts.</p></li>
-</ul>
-</li>
-<li><p>You can make a branch and work on new features without breaking the
-current working code, and when you are ready, merge those changes
-into the main version.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Even for a single developer, version control is a great asset.</p>
-<p>Common task: you notice your code is giving different answers than you’ve
-seen in the past.</p>
-<p>With version control, you can checkout an old copy when you know it
-was working, and ask for the difference with the current code.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Version control is not just for source code.  You can use it for
-writing papers in LaTeX, course notes, etc.</p>
-</div>
-</section>
-<section id="centralized-vs-distributed-version-control">
-<h2>Centralized vs. distributed version control<a class="headerlink" href="#centralized-vs-distributed-version-control" title="Permalink to this headline">¶</a></h2>
-<p>Broadly speaking, there are two different types of version control:
-centralized and distributed.  We’ll call the collection of code under
-version control the <em>repository</em>.</p>
-<section id="centralized-version-control">
-<h3>Centralized version control<a class="headerlink" href="#centralized-version-control" title="Permalink to this headline">¶</a></h3>
-<p>Examples: CVS, subversion</p>
-<ul class="simple">
-<li><p>A server holds the master copy of the source, stores the history, changes</p></li>
-<li><p>Each user communicates with the server:</p>
-<ul>
-<li><p>“checkout” source</p></li>
-<li><p>“commit” changes back to the source</p></li>
-<li><p>request the log (history) of a file from the server</p></li>
-<li><p>“diff” your local version with the version on the server</p></li>
-</ul>
-</li>
-</ul>
-<p>This is the older style of version control, and not widely used for new projects.</p>
-</section>
-<section id="distributed-version-control">
-<h3>Distributed version control<a class="headerlink" href="#distributed-version-control" title="Permalink to this headline">¶</a></h3>
-<p>Examples: git, mercurial</p>
-<ul class="simple">
-<li><p>Everyone has a full-fledged repository</p></li>
-<li><p>Commits, history, diff, logs, etc. are all local operations</p></li>
-<li><p>You can clone another person’s repo and they can pull your changes
-back to their version</p></li>
-<li><p>Each copy is a backup of the whole history of the project</p></li>
-<li><p>Easy to “fork” – just clone and go.</p></li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Any version control system is better than no version control.</p>
-<p>Git is the most popular right now, so we’ll focus on that.</p>
-</div>
-<p>Consider the figure below:</p>
-<img alt="_images/distributed_version_control.png" class="align-center" src="_images/distributed_version_control.png" />
-<p>We see:</p>
-<ol class="arabic">
-<li><p>You in the upper left box interacting with your local computer.
-You can add changes to your repo and query the log, etc. all just
-using your own machine.</p></li>
-<li><p>Your colleague in the upper right.  They can also interact with
-their own computer, using their own version of the repo.</p>
-<p>Now, imagine that they make a change that you want.  You can <em>pull</em>
-their version of the code into your repo, getting all of their
-changes.</p>
-</li>
-<li><p>Suppose you both want to efficiently share work as a group.  So you
-setup a group server and you can both synchronize your repo with
-that server by doing <em>pull</em> and <em>push</em>.</p>
-<p>This server provides a mechanism for everyone in the group to stay
-in sync.</p>
-</li>
-<li><p>Imagine now that you have an external collaborator who doesn’t have
-access to your server.  You can let them <em>pull</em> from your copy of
-the repo, without giving them permission to push changes back.</p>
-<p>They can then interact with their copy locally.</p>
-</li>
-</ol>
-</section>
-</section>
+  <section id="operators">
+<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="shell-3.html" class="btn btn-neutral float-left" title="Redirection and Pipes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell-setup.html" class="btn btn-neutral float-right" title="Dotfiles and the Mathlab" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-iomanip.html" class="btn btn-neutral float-left" title="I/O Manipulators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="floating-point.html" class="btn btn-neutral float-right" title="Floating Point" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

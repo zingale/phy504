@@ -121,6 +121,14 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: Digging Deeper into C++
+
+   cxx-iomanip
+   operators
+   floating-point
+
+.. toctree::
+   :maxdepth: 1
    :caption: Homework
 
    homework/homework1
