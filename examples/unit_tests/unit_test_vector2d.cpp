@@ -8,17 +8,25 @@ int main() {
 
     // test addition
 
+    std::cout << "testing addition" << std::endl;
+
     assert(v1 + v2 == Vector2d(1, 11));
 
     // test subtraction
+
+    std::cout << "testing subraction" << std::endl;
 
     assert(v1 - v2 == Vector2d(3, -3));
 
     // test unary minus
 
+    std::cout << "testing unary minus" << std::endl;
+
     assert(-v1 == Vector2d(-2, -4));
 
     // test not equal
+
+    std::cout << "testing inequality" << std::endl;
 
     assert(v1 != v2);
 
@@ -27,6 +35,9 @@ int main() {
     v1.set_x(0.0);
     v1.set_y(0.0);
 
+    std::cout << "testing setters" << std::endl;
+
     assert(v1 == Vector2d());
 
+    std::cout << "all tests passed" << std::endl;
 }
