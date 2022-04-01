@@ -25,7 +25,7 @@ To output in columns, we can use:
 
 * ``std::setw(N)`` : use a column with a ``N`` characters
 
-* ``set::setw(c)`` : fill empty places in a column with the ``char c``.
+* ``set::setfill(c)`` : fill empty places in a column with the ``char c``.
 
 * ``std::left`` : flush left in the column
 

@@ -288,8 +288,8 @@ equal, using <code class="docutils literal notranslate"><span class="pre">==</sp
 <section id="writing-tests">
 <h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
 <p>Let’s write some basic tests:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
 
@@ -345,18 +345,25 @@ in <code class="docutils literal notranslate"><span class="pre">vector2d.H</span
 will be via <code class="docutils literal notranslate"><span class="pre">make</span></code> that we can run on our own computer.</p>
 <p>Let’s start with the general <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> we developed in our
 <a class="reference internal" href="make.html#sec-makefiles"><span class="std std-ref">Makefiles</span></a> section.</p>
-<p>We can use the <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Shell-Function.html?">GNU make shell function</a>
-to run our test and capture the return code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is a <a href="#id1"><span class="problematic" id="id2">`</span></a>GNU make shell function</p>
+</div>
+<dl class="simple">
+<dt>&lt;<a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Shell-Function.html">https://www.gnu.org/software/make/manual/html_node/Shell-Function.html</a>?&gt;`_</dt><dd><p>that looks like it might work, but that actually expands the command
+and then tries to execute the output.</p>
+</dd>
+</dl>
 <p>Here’s what the rule would look like:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">testing</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
-     <span class="k">$(</span>shell ./unit_test_vector2d<span class="k">)</span>
-     @if <span class="o">[</span> <span class="si">${</span><span class="p">.SHELLSTATUS</span><span class="si">}</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;all tests pass&quot;</span><span class="p">;</span> <span class="k">fi</span>
+     ./unit_test_vector2d &gt; /dev/null
+     @if <span class="o">[</span> <span class="nv">$$</span>? <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;tests passed&quot;</span><span class="p">;</span> <span class="k">fi</span>
 </pre></div>
 </div>
-<p>We use <code class="docutils literal notranslate"><span class="pre">$(shell</span> <span class="pre">)</span></code> to run our executable.  Then we use a Bash
-<code class="docutils literal notranslate"><span class="pre">if-then</span></code> statement to check the output.  Note the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> at the
-start of the line makes it so <code class="docutils literal notranslate"><span class="pre">make</span></code> doesn’t print the command
-itself to the screen, just the output.</p>
+<p>After we run our command (we redirect <code class="docutils literal notranslate"><span class="pre">stdout</span></code> to <code class="docutils literal notranslate"><span class="pre">/dev/null</span></code> to
+make it quiet) we use an <code class="docutils literal notranslate"><span class="pre">if-then</span></code> statement to check the output.
+Note the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> at the start of the line makes it so <code class="docutils literal notranslate"><span class="pre">make</span></code> doesn’t
+print the command itself to the screen, just the output.</p>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>Let’s make a test fail in our <code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code> and make sure that this still works.</p>

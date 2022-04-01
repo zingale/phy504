@@ -148,22 +148,25 @@ will be via ``make`` that we can run on our own computer.
 Let's start with the general ``GNUmakefile`` we developed in our
 :ref:`sec:makefiles` section.
 
-We can use the `GNU make shell function
+.. note::
+
+   There is a `GNU make shell function
 <https://www.gnu.org/software/make/manual/html_node/Shell-Function.html?>`_
-to run our test and capture the return code.
+   that looks like it might work, but that actually expands the command
+   and then tries to execute the output.
 
 Here's what the rule would look like:
 
 .. code:: make
 
    testing: unit_test_vector2d
-   	$(shell ./unit_test_vector2d)
-   	@if [ ${.SHELLSTATUS} == 0 ]; then echo "all tests pass"; fi
+   	./unit_test_vector2d > /dev/null
+   	@if [ $$? == 0 ]; then echo "tests passed"; fi
 
-We use ``$(shell )`` to run our executable.  Then we use a Bash
-``if-then`` statement to check the output.  Note the ``@`` at the
-start of the line makes it so ``make`` doesn't print the command
-itself to the screen, just the output.
+After we run our command (we redirect ``stdout`` to ``/dev/null`` to
+make it quiet) we use an ``if-then`` statement to check the output.
+Note the ``@`` at the start of the line makes it so ``make`` doesn't
+print the command itself to the screen, just the output.
 
 
 .. admonition:: try it...
