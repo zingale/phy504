@@ -121,11 +121,15 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Digging Deeper into C++
+   :caption: Some Random Bits...
 
    cxx-iomanip
    operators
    floating-point
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Digging Deeper into C++
 
 .. toctree::
    :maxdepth: 1
