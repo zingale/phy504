@@ -288,8 +288,8 @@ equal, using <code class="docutils literal notranslate"><span class="pre">==</sp
 <section id="writing-tests">
 <h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
 <p>Let’s write some basic tests:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
 
@@ -347,13 +347,10 @@ will be via <code class="docutils literal notranslate"><span class="pre">make</s
 <a class="reference internal" href="make.html#sec-makefiles"><span class="std std-ref">Makefiles</span></a> section.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There is a <a href="#id1"><span class="problematic" id="id2">`</span></a>GNU make shell function</p>
-</div>
-<dl class="simple">
-<dt>&lt;<a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Shell-Function.html">https://www.gnu.org/software/make/manual/html_node/Shell-Function.html</a>?&gt;`_</dt><dd><p>that looks like it might work, but that actually expands the command
+<p>There is a <a class="reference external" href="https://www.gnu.org/software/make/manual/html_node/Shell-Function.html?">GNU make shell function</a>
+that looks like it might work, but that actually expands the command
 and then tries to execute the output.</p>
-</dd>
-</dl>
+</div>
 <p>Here’s what the rule would look like:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">testing</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
      ./unit_test_vector2d &gt; /dev/null

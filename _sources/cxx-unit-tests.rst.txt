@@ -150,8 +150,7 @@ Let's start with the general ``GNUmakefile`` we developed in our
 
 .. note::
 
-   There is a `GNU make shell function
-<https://www.gnu.org/software/make/manual/html_node/Shell-Function.html?>`_
+   There is a `GNU make shell function <https://www.gnu.org/software/make/manual/html_node/Shell-Function.html?>`_
    that looks like it might work, but that actually expands the command
    and then tries to execute the output.
 
