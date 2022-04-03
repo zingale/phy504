@@ -132,7 +132,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Operators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#l-value-vs-r-value">l-value vs. r-value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lvalue-vs-rvalue">lvalue vs. rvalue</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#precedence">Precedence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prefix-and-postfix-operators">Prefix and postfix operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#associativity">Associativity</a></li>
@@ -181,8 +181,16 @@
              
   <section id="operators">
 <h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
-<section id="l-value-vs-r-value">
-<h2>l-value vs. r-value<a class="headerlink" href="#l-value-vs-r-value" title="Permalink to this headline">¶</a></h2>
+<section id="lvalue-vs-rvalue">
+<h2>lvalue vs. rvalue<a class="headerlink" href="#lvalue-vs-rvalue" title="Permalink to this headline">¶</a></h2>
+<p>We will often see <em>lvalue</em> and <em>rvalue</em> used:</p>
+<ul class="simple">
+<li><p>lvalue: an object that can be assigned to – i.e., it can be put on
+the lefthand side of the <code class="docutils literal notranslate"><span class="pre">=</span></code> operator.</p></li>
+<li><p>rvalue: an object that can appear on the righthand side of the <code class="docutils literal notranslate"><span class="pre">=</span></code>
+operator – it acts as a value.</p></li>
+</ul>
+<p>see, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Value_(computer_science)#Assignment:_l-values_and_r-values">Assignment: l-values and r-values</a>.</p>
 </section>
 <section id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
