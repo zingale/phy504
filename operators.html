@@ -131,7 +131,13 @@
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Operators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#l-value-vs-r-value">l-value vs. r-value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#precedence">Precedence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prefix-and-postfix-operators">Prefix and postfix operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#associativity">Associativity</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
@@ -175,6 +181,61 @@
              
   <section id="operators">
 <h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+<section id="l-value-vs-r-value">
+<h2>l-value vs. r-value<a class="headerlink" href="#l-value-vs-r-value" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="precedence">
+<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
+<p>What happens when we have an expression like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The language defines the order that operators are considered, called
+<em>operator precedence</em>.</p>
+<p>This table: <a class="reference external" href="https://en.cppreference.com/w/cpp/language/operator_precedence">C++ Operator Precedence</a>
+lists the order in which operators are evaluated.</p>
+<p>In the example above, multiplication has higher precedence, so it is
+evaluated first, and then the addition is done.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Play around with some expressions to explore the precedence of operators.</p>
+</div>
+</section>
+<section id="prefix-and-postfix-operators">
+<h2>Prefix and postfix operators<a class="headerlink" href="#prefix-and-postfix-operators" title="Permalink to this headline">¶</a></h2>
+<p>We haven’t yet discussed the difference between <code class="docutils literal notranslate"><span class="pre">++a</span></code> and <code class="docutils literal notranslate"><span class="pre">a++</span></code>.  These are the prefix
+and postfix increment operators.  Let’s do that now.</p>
+<p>The prefix operator is:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The prefix increment operator first increments the value of the object
+and then returns a reference to the result.
+So in the above example, the result would be <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<p>Now consider the postfix operator:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">d</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here, a copy of <code class="docutils literal notranslate"><span class="pre">c</span></code> is made, then <code class="docutils literal notranslate"><span class="pre">c</span></code> is incremented, and finally the copy is returned.
+So in the above example, the result would be <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The behavior of the prefix and postfix operator is essentially the same when it is
+on its own line.  Also in the <code class="docutils literal notranslate"><span class="pre">for</span></code> construction:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>it doesn’t matter much which version you use – although you will
+commonly see the prefix version used since it does not make a copy,
+and therefore can be faster.</p>
+</div>
+</section>
+<section id="associativity">
+<h2>Associativity<a class="headerlink" href="#associativity" title="Permalink to this headline">¶</a></h2>
+</section>
 </section>
 
 
