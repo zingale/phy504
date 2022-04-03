@@ -181,6 +181,10 @@
              
   <section id="operators">
 <h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 3.19</p>
+</div>
 <section id="lvalue-vs-rvalue">
 <h2>lvalue vs. rvalue<a class="headerlink" href="#lvalue-vs-rvalue" title="Permalink to this headline">¶</a></h2>
 <p>We will often see <em>lvalue</em> and <em>rvalue</em> used:</p>
@@ -243,6 +247,29 @@ and therefore can be faster.</p>
 </section>
 <section id="associativity">
 <h2>Associativity<a class="headerlink" href="#associativity" title="Permalink to this headline">¶</a></h2>
+<p>When an expression has two operators at the same precedence, <a class="reference external" href="https://en.wikipedia.org/wiki/Operator_associativity">operator
+associativity rules</a> come into
+play.  Most operators in C++ are <em>left associative</em> – that is, they
+are grouped from the left, but some are right associative (like the
+unary operators and assignment) meaning that they are grouped from the
+right.</p>
+<p>Consider assignment:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">=</span></code> has right associativity, we interpret this as <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">(b</span> <span class="pre">=</span> <span class="pre">c)</span></code>, which can further
+be thought of as <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">c;</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">c</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In C++, assignment evaluates to the left value.</p>
+</div>
+<p>In the expression:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> have the same precedence, and these are
+left-associative, so first <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code> is evaluated and then <code class="docutils literal notranslate"><span class="pre">c</span></code> is
+subtracted from that result.</p>
 </section>
 </section>
 
