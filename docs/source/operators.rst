@@ -2,6 +2,10 @@
 Operators
 *********
 
+.. admonition:: reading
+
+   Cyganek section 3.19
+
 lvalue vs. rvalue
 ===================
 
@@ -84,3 +88,35 @@ So in the above example, the result would be ``d = 0``.
 
 Associativity
 =============
+
+When an expression has two operators at the same precedence, `operator
+associativity rules
+<https://en.wikipedia.org/wiki/Operator_associativity>`_ come into
+play.  Most operators in C++ are *left associative* -- that is, they
+are grouped from the left, but some are right associative (like the
+unary operators and assignment) meaning that they are grouped from the
+right.
+
+Consider assignment:
+
+.. code:: c++
+
+   a = b = c
+
+Since ``=`` has right associativity, we interpret this as ``a = (b = c)``, which can further
+be thought of as ``b = c; a = c``.
+
+.. note:: 
+
+   In C++, assignment evaluates to the left value.
+
+In the expression:
+
+.. code:: c++
+
+   a + b - c
+
+Both ``+`` and ``-`` have the same precedence, and these are
+left-associative, so first ``a + b`` is evaluated and then ``c`` is
+subtracted from that result.
+
