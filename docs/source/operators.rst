@@ -2,9 +2,18 @@
 Operators
 *********
 
-l-value vs. r-value
+lvalue vs. rvalue
 ===================
 
+We will often see *lvalue* and *rvalue* used:
+
+* lvalue: an object that can be assigned to -- i.e., it can be put on
+  the lefthand side of the ``=`` operator.
+
+* rvalue: an object that can appear on the righthand side of the ``=``
+  operator -- it acts as a value.
+
+see, e.g., `Assignment: l-values and r-values <https://en.wikipedia.org/wiki/Value_(computer_science)#Assignment:_l-values_and_r-values>`_.
 
 Precedence
 ==========
