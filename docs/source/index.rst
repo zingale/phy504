@@ -117,7 +117,6 @@ Spring 2022
    cxx-classes-intro
    cxx-vector2d-class
    contiguous_array
-   cxx-unit-tests
 
 .. toctree::
    :maxdepth: 1
@@ -126,6 +125,14 @@ Spring 2022
    cxx-iomanip
    operators
    floating-point
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Testing
+
+   testing
+   cxx-unit-tests
+   cxx-convergence-tests
 
 .. toctree::
    :maxdepth: 1
