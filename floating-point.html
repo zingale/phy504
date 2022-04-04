@@ -137,6 +137,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. truncation error</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing-for-equality">Testing for equality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#minimizing-roundoff">Minimizing roundoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-numbers">Special numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trapping-floating-point-exceptions">Trapping floating point exceptions</a></li>
 </ul>
 </li>
 </ul>
@@ -208,6 +210,13 @@ are split between the signifcand and exponent as well as a single bit for the si
           0 \cdot 2^{-3} +
           1 \cdot 2^{-4} +
           1 \cdot 2^{-5} + \ldots) \times 2^{-4}\]</div>
+<p>We already saw how to access the limits of the data type via
+<code class="docutils literal notranslate"><span class="pre">std::numeric_limits</span></code>. When we looked at <em>machine epsilon</em>, we saw that for a
+<code class="docutils literal notranslate"><span class="pre">double</span></code> it was about <span class="math notranslate nohighlight">\(2\times 10^{-16}\)</span>.</p>
+<p>Note that this is a relative error, so for a number like <code class="docutils literal notranslate"><span class="pre">1000</span></code> we could only add
+<code class="docutils literal notranslate"><span class="pre">2.e-13</span></code> to it before it became indistinguishable from <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[\mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}{|\mbox{true number}|} \le \epsilon\]</div>
 <section id="roundoff-vs-truncation-error">
 <h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
@@ -220,8 +229,8 @@ are split between the signifcand and exponent as well as a single bit for the si
 <p>This shows that this approximation for the derivative is first-order accurate in <span class="math notranslate nohighlight">\(\Delta x\)</span> – that is the truncation error of the approximation.</p>
 <p>We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
@@ -349,8 +358,8 @@ machine epsilon.</p></li>
 <p>Because of roundoff error, we should never exactly compare two floating point numbers,
 but instead ask they they agree within some tolerance.</p>
 <p>For example:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -382,8 +391,8 @@ but instead ask they they agree within some tolerance.</p>
 <p>by factoring this, we are subtracting more reasonably sized numbers, reducing the roundoff.</p>
 <p>We can see this directly by doing this with single precision (<cite>float</cite>) and comparing to an answer computed via double precious (<cite>double</cite>)</p>
 <p>Here’s an example:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -403,6 +412,64 @@ but instead ask they they agree within some tolerance.</p>
 </pre></div>
 </div>
 </div>
+<p>As another example, consider computing <a class="footnote-reference brackets" href="#f1" id="id1">1</a>:</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{x + 1} - \sqrt{x}\]</div>
+<p>We can alternately rewrite this to avoid the subtraction of two close numbers:</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{x + 1} - \sqrt{x} = ()\sqrt{x + 1} - \sqrt{x})
+     \left ( \frac{\sqrt{x+1} + \sqrt{x}}{\sqrt{x+1} + \sqrt{x}} \right )
+     = \frac{1}{\sqrt{x+1} + \sqrt{x}}\]</div>
+<p>Again we’ll compare a single-precision calculation using each of these methods
+to a double precision “correct answer”.  To ensure that we use the
+single-precision version of the <code class="docutils literal notranslate"><span class="pre">std::sqrt()</span></code> function, we will use single
+precision literal suffix, e.g., <code class="docutils literal notranslate"><span class="pre">1.0f</span></code> tells the compiler that this is a
+single-precision constant.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">squareroots.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">201010.0f</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;r1 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; r2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xd</span><span class="p">{</span><span class="mf">201010.0</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;d = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="special-numbers">
+<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this headline">¶</a></h2>
+<p>IEEE 754 defines a few special quantities:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) is the result of <code class="docutils literal notranslate"><span class="pre">0.0/0.0</span></code> or <code class="docutils literal notranslate"><span class="pre">std::sqrt(-1.0)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Inf</span></code> (infinity) is the result of <code class="docutils literal notranslate"><span class="pre">1.0/0.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-0</span></code> is a valid number and the standard says that <code class="docutils literal notranslate"><span class="pre">-0</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+</section>
+<section id="trapping-floating-point-exceptions">
+<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>this example is based on Yakowitz &amp; Szidarovszky</p>
+</dd>
+</dl>
 </section>
 </section>
 
