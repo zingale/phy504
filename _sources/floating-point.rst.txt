@@ -2,7 +2,24 @@
 Floating Point
 **************
 
+.. admonition:: reading
 
+   `What Every COmputer Scientist Should Know About Floating-Point Arithmetic <https://dl.acm.org/doi/10.1145/103162.103163>`
+
+
+We can think of a floating point number as having the form:
+
+.. math::
+
+   \mbox{significand} \times 10^\mbox{exponent}
+
+Most computers follow the IEEE 754 standard for floating point, and we commonly work
+with 32-bit and 64-bit floating point numbers (single and double precision).  These bits
+are split between the signifcand and exponent as well as a single bit for the sign:
+
+.. figure:: 1024px-IEEE_754_Double_Floating_Point_Format.svg.png
+   :align: center
+   :width: 80%
 
 
 
@@ -21,7 +38,7 @@ We can solve for the derivative to find an approximation for the first derivativ
 
 .. math::
 
-   \left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)
+   \left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)
 
 This shows that this approximation for the derivative is first-order accurate in :math:`\Delta x` -- that is the truncation error of the approximation.
 
@@ -111,4 +128,3 @@ Let's discuss the trends:
 * The minimum error here is around :math:`\sqrt{\epsilon}`, where :math:`\epsilon` is
   machine epsilon.
 
-  

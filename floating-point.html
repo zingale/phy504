@@ -185,6 +185,19 @@
              
   <section id="floating-point">
 <h1>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p><cite>What Every COmputer Scientist Should Know About Floating-Point Arithmetic &lt;https://dl.acm.org/doi/10.1145/103162.103163&gt;</cite></p>
+</div>
+<p>We can think of a floating point number as having the form:</p>
+<div class="math notranslate nohighlight">
+\[\mbox{significand} \times 10^\mbox{exponent}\]</div>
+<p>Most computers follow the IEEE 754 standard for floating point, and we commonly work
+with 32-bit and 64-bit floating point numbers (single and double precision).  These bits
+are split between the signifcand and exponent as well as a single bit for the sign:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png"><img alt="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" src="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" style="width: 80%;" /></a>
+</figure>
 <section id="roundoff-vs-truncation-error">
 <h2>Roundoff vs. Truncation Error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
@@ -193,7 +206,7 @@
 <p>where <span class="math notranslate nohighlight">\(\Delta x = x - x_0\)</span></p>
 <p>We can solve for the derivative to find an approximation for the first derivative:</p>
 <div class="math notranslate nohighlight">
-\[\left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)\]</div>
+\[\left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)\]</div>
 <p>This shows that this approximation for the derivative is first-order accurate in <span class="math notranslate nohighlight">\(\Delta x\)</span> – that is the truncation error of the approximation.</p>
 <p>We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
