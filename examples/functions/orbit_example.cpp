@@ -13,19 +13,19 @@ struct OrbitState {
 
 OrbitState rhs(const OrbitState& state);
 void write_history(const std::vector<OrbitState>& history);
-std::vector<OrbitState> integrate(const double a, const double tmax, const double dt);
+std::vector<OrbitState> integrate(const double a, const double tmax, const double dt_in);
 
 const double GM = 4.0 * M_PI * M_PI;   // G * Mass in AU, year, solar mass units
 
 OrbitState rhs(const OrbitState& state) {
 
     OrbitState dodt{};
-    
+
     // dx/dt = vx; dy/dt = vy
 
     dodt.x = state.vx;
     dodt.y = state.vy;
-    
+
     // d(vx)/dt = - GMx/r**3; d(vy)/dt = - GMy/r**3
 
     double r = std::sqrt(state.x * state.x + state.y * state.y);
@@ -50,7 +50,7 @@ void write_history(const std::vector<OrbitState>& history) {
 
 }
 
-std::vector<OrbitState> integrate(const double a, const double tmax, const double dt) {
+std::vector<OrbitState> integrate(const double a, const double tmax, const double dt_in) {
 
     // how the history of the orbit
 
@@ -69,8 +69,14 @@ std::vector<OrbitState> integrate(const double a, const double tmax, const doubl
 
     orbit_history.push_back(state);
 
+    double dt = dt_in;
+
     // integration loop
     while (state.t < tmax) {
+
+        if (state.t + dt > tmax) {
+            dt = tmax - state.t;
+        }
 
         // get the derivatives
         auto state_derivs = rhs(state);
