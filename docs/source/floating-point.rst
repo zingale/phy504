@@ -141,7 +141,8 @@ Let's discuss the trends:
 Testing for equality
 ====================
 
-
+Because of roundoff error, we should never exactly compare two floating point numbers,
+but instead ask they they agree within some tolerance.
 
 
 Minimizing roundoff
@@ -164,4 +165,11 @@ we can instead do:
 by factoring this, we are subtracting more reasonably sized numbers, reducing the roundoff.
 
 We can see this directly by doing this with single precision (`float`) and comparing to an answer computed via double precious (`double`)
+
+Here's an example:
+
+.. literalinclude:: ../../examples/roundoff/subtraction.cpp
+   :language: c++
+   :caption: ``subtraction.cpp``
+
 
