@@ -32,6 +32,18 @@ Since the number is stored in binary, we can think about expanding a number in p
              1 \cdot 2^{-4} +
              1 \cdot 2^{-5} + \ldots) \times 2^{-4}
 
+
+We already saw how to access the limits of the data type via
+``std::numeric_limits``. When we looked at *machine epsilon*, we saw that for a
+``double`` it was about :math:`2\times 10^{-16}``.
+
+Note that this is a relative error, so for a number like ``1000`` we could only add
+``2.e-13`` to it before it became indistinguishable from ``1000``.
+
+.. math::
+
+   \mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}{|\mbox{true number}|} \le \epsilon
+
 Roundoff vs. truncation error
 ==============================
 
@@ -180,3 +192,47 @@ Here's an example:
    :caption: ``subtraction.cpp``
 
 
+As another example, consider computing [#f1]_:
+
+.. math::
+
+   \sqrt{x + 1} - \sqrt{x}
+
+We can alternately rewrite this to avoid the subtraction of two close numbers:
+
+.. math::
+
+   \sqrt{x + 1} - \sqrt{x} = ()\sqrt{x + 1} - \sqrt{x})
+        \left ( \frac{\sqrt{x+1} + \sqrt{x}}{\sqrt{x+1} + \sqrt{x}} \right )
+        = \frac{1}{\sqrt{x+1} + \sqrt{x}}
+
+Again we'll compare a single-precision calculation using each of these methods
+to a double precision "correct answer".  To ensure that we use the
+single-precision version of the ``std::sqrt()`` function, we will use single
+precision literal suffix, e.g., ``1.0f`` tells the compiler that this is a
+single-precision constant.
+
+.. literalinclude:: ../../examples/roundoff/squareroots.cpp
+   :language: c++
+   :caption: ``squareroots.cpp``
+
+
+Special numbers
+===============
+
+IEEE 754 defines a few special quantities:
+
+* ``NaN`` (not a number) is the result of ``0.0/0.0`` or ``std::sqrt(-1.0)``
+
+* ``Inf`` (infinity) is the result of ``1.0/0.0``
+
+* ``-0`` is a valid number and the standard says that ``-0`` is equivalent to ``0``
+
+
+Trapping floating point exceptions
+==================================
+
+
+
+
+.. [#f1] this example is based on Yakowitz & Szidarovszky
