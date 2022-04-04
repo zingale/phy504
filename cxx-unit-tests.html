@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aside: Unit Testing &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Unit Testing &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="I/O Manipulators" href="cxx-iomanip.html" />
-    <link rel="prev" title="Example: Multidimensional Contiguous Array" href="contiguous_array.html" /> 
+    <link rel="next" title="Convergence Testing" href="cxx-convergence-tests.html" />
+    <link rel="prev" title="Testing" href="testing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -122,11 +122,21 @@
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Aside: Unit Testing</a><ul>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unit Testing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#unit-tests-for-vector2d">Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#comparing-vectors">Comparing vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing tests</a></li>
@@ -134,12 +144,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#continuous-integration-and-github">Continuous integration and github</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -170,7 +175,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Aside: Unit Testing</li>
+      <li>Unit Testing</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-unit-tests.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -180,41 +185,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="aside-unit-testing">
-<h1>Aside: Unit Testing<a class="headerlink" href="#aside-unit-testing" title="Permalink to this headline">¶</a></h1>
-<p>As we write increasingly complex codes, we want some way to automate
-testing to ensure that our changes don’t break the functionality.</p>
-<p>There are a wide variety of tests for general codes (the Wikipedia
-<a class="reference external" href="https://en.wikipedia.org/wiki/Software_testing">software testing</a>
-page gives a good overview:</p>
-<ul class="simple">
-<li><p><em>unit testing</em> : for each of your functions, you provide one or more
-tests that exercise that function alone, ensuring that it gives the
-expected result.</p></li>
-<li><p><em>integration testing</em> : you test the several pieces of the program
-or the entire program interacting.  Since unit tests are done in isolation,
-integration tests will catch issues in how the different functions work
-together.</p></li>
-<li><p><em>regression testing</em> : you store a “correct answer” from your code and
-you run the code regularly to see if any changes have unexpectedly
-changed the answer.</p></li>
-</ul>
-<p>For numerical algorithms, we also can discuss:</p>
-<ul class="simple">
-<li><p><em>convergence testing</em> : some algorithms have a formal order of
-accuracy, For instance, our Euler method for integrating the orbits
-is first-order accurate in time, but the RK2 algorithm in your
-homework is second-order accurate in time.  In convergence testing
-you varying the space or time resolution and see if you get the
-expected convergence.</p></li>
-<li><p><em>verification</em> and <em>validation</em> : verification asks the question “am
-I solving the equations correctly?”, while validation asks “am I
-solving the right equations to begin with?”  For verification, one
-can compare to known analytic solutions of the set of equations you
-are solving.  For validation, you will typically want to compare to
-experiments to see if you are appropriately modeling all of the
-physics you need.</p></li>
-</ul>
+  <section id="unit-testing">
+<h1>Unit Testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h1>
 <section id="unit-tests-for-vector2d">
 <h2>Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code><a class="headerlink" href="#unit-tests-for-vector2d" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
@@ -289,7 +261,7 @@ equal, using <code class="docutils literal notranslate"><span class="pre">==</sp
 <h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
 <p>Let’s write some basic tests:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 51 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
 
@@ -404,8 +376,8 @@ in the lecture note repo: <a class="reference external" href="https://github.com
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="contiguous_array.html" class="btn btn-neutral float-left" title="Example: Multidimensional Contiguous Array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-iomanip.html" class="btn btn-neutral float-right" title="I/O Manipulators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="testing.html" class="btn btn-neutral float-left" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-convergence-tests.html" class="btn btn-neutral float-right" title="Convergence Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Files and Directories &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Testing &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Redirection and Pipes" href="shell-3.html" />
-    <link rel="prev" title="Navigating the Filesystem" href="shell.html" /> 
+    <link rel="next" title="Unit Testing" href="cxx-unit-tests.html" />
+    <link rel="prev" title="Floating Point" href="floating-point.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,14 +55,10 @@
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Create Files and Directories</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
@@ -138,8 +134,8 @@
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Testing</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Unit Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 </ul>
@@ -172,9 +168,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Create Files and Directories</li>
+      <li>Testing</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/shell-2.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/testing.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -182,56 +178,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="create-files-and-directories">
-<h1>Create Files and Directories<a class="headerlink" href="#create-files-and-directories" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/03-create/index.html">Working with Files
-and Directories</a>
-lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
-</div>
-<p>Let’s work through that lesson together…</p>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>We learned the following commands:</p>
+  <section id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<p>As we write increasingly complex codes, we want some way to automate
+testing to ensure that our changes don’t break the functionality.</p>
+<p>There are a wide variety of tests for general codes (the Wikipedia
+<a class="reference external" href="https://en.wikipedia.org/wiki/Software_testing">software testing</a>
+page gives a good overview:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> : make a directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nano</span></code> : a basic text editor</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">touch</span></code> : update a file’s timestamp (and create an empty file if it does not exist)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mv</span></code> : move a file or directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cp</span></code> : copy a file or directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rm</span></code> : remove a file (and/or directory if done recursively)</p></li>
+<li><p><em>unit testing</em> : for each of your functions, you provide one or more
+tests that exercise that function alone, ensuring that it gives the
+expected result.</p></li>
+<li><p><em>integration testing</em> : you test the several pieces of the program
+or the entire program interacting.  Since unit tests are done in isolation,
+integration tests will catch issues in how the different functions work
+together.</p></li>
+<li><p><em>regression testing</em> : you store a “correct answer” from your code and
+you run the code regularly to see if any changes have unexpectedly
+changed the answer.</p></li>
 </ul>
-<p>We also learned about wildcards:</p>
+<p>For numerical algorithms, we also can discuss:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> matches multiple (or 0) characters</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> matches a single character</p></li>
+<li><p><em>convergence testing</em> : some algorithms have a formal order of
+accuracy, For instance, our Euler method for integrating the orbits
+is first-order accurate in time, but the RK2 algorithm in your
+homework is second-order accurate in time.  In convergence testing
+you varying the space or time resolution and see if you get the
+expected convergence.</p></li>
+<li><p><em>verification</em> and <em>validation</em> : verification asks the question “am
+I solving the equations correctly?”, while validation asks “am I
+solving the right equations to begin with?”  For verification, one
+can compare to known analytic solutions of the set of equations you
+are solving.  For validation, you will typically want to compare to
+experiments to see if you are appropriately modeling all of the
+physics you need.</p></li>
 </ul>
-</section>
-<section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>From your home directory, create a directory / file structure that looks like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project
-├── code
-├── data
-│   ├── experiment-01.txt
-│   ├── experiment-02.txt
-│   └── experiment-03.txt
-└── results
-</pre></div>
-</div>
-</div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="shell.html" class="btn btn-neutral float-left" title="Navigating the Filesystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell-3.html" class="btn btn-neutral float-right" title="Redirection and Pipes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="floating-point.html" class="btn btn-neutral float-left" title="Floating Point" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-unit-tests.html" class="btn btn-neutral float-right" title="Unit Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
