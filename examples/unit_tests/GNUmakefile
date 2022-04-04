@@ -27,5 +27,5 @@ unit_test_vector2d: ${OBJECTS}
 
 testing: unit_test_vector2d
 	./unit_test_vector2d > /dev/null
-	@if [ $$? == 0 ]; then echo "tests passed"; fi
+	@if [ $$? -eq 0 ]; then echo "tests passed"; fi
 
