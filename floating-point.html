@@ -134,7 +134,9 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Floating Point</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. Truncation Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. truncation error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-for-equality">Testing for equality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimizing-roundoff">Minimizing roundoff</a></li>
 </ul>
 </li>
 </ul>
@@ -187,7 +189,7 @@
 <h1>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p><cite>What Every COmputer Scientist Should Know About Floating-Point Arithmetic &lt;https://dl.acm.org/doi/10.1145/103162.103163&gt;</cite></p>
+<p><a class="reference external" href="https://dl.acm.org/doi/10.1145/103162.103163">What Every COmputer Scientist Should Know About Floating-Point Arithmetic</a></p>
 </div>
 <p>We can think of a floating point number as having the form:</p>
 <div class="math notranslate nohighlight">
@@ -198,8 +200,16 @@ are split between the signifcand and exponent as well as a single bit for the si
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png"><img alt="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" src="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" style="width: 80%;" /></a>
 </figure>
+<p>Since the number is stored in binary, we can think about expanding a number in powers of 2:</p>
+<div class="math notranslate nohighlight">
+\[0.1 \sim (1 +
+          1 \cdot 2^{-1} +
+          0 \cdot 2^{-2} +
+          0 \cdot 2^{-3} +
+          1 \cdot 2^{-4} +
+          1 \cdot 2^{-5} + \ldots) \times 2^{-4}\]</div>
 <section id="roundoff-vs-truncation-error">
-<h2>Roundoff vs. Truncation Error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
+<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = f(x_0 + \Delta x) = f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \Delta x + \mathcal{O}(\Delta x^2)\]</div>
@@ -333,6 +343,21 @@ to dominate.  In effect, we are seeing that:</p>
 <li><p>The minimum error here is around <span class="math notranslate nohighlight">\(\sqrt{\epsilon}\)</span>, where <span class="math notranslate nohighlight">\(\epsilon\)</span> is
 machine epsilon.</p></li>
 </ul>
+</section>
+<section id="testing-for-equality">
+<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="minimizing-roundoff">
+<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this headline">¶</a></h2>
+<p>Consider subtracting the square of two numbers – taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
+<p>Instead of doing:</p>
+<div class="math notranslate nohighlight">
+\[x^2 - y^2\]</div>
+<p>we can instead do:</p>
+<div class="math notranslate nohighlight">
+\[(x - y)(x + y)\]</div>
+<p>by factoring this, we are subtracting more reasonably sized numbers, reducing the roundoff.</p>
+<p>We can see this directly by doing this with single precision (<cite>float</cite>) and comparing to an answer computed via double precious (<cite>double</cite>)</p>
 </section>
 </section>
 
