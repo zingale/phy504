@@ -4,7 +4,7 @@ Floating Point
 
 .. admonition:: reading
 
-   `What Every COmputer Scientist Should Know About Floating-Point Arithmetic <https://dl.acm.org/doi/10.1145/103162.103163>`
+   `What Every COmputer Scientist Should Know About Floating-Point Arithmetic <https://dl.acm.org/doi/10.1145/103162.103163>`_
 
 
 We can think of a floating point number as having the form:
@@ -21,9 +21,18 @@ are split between the signifcand and exponent as well as a single bit for the si
    :align: center
    :width: 80%
 
+Since the number is stored in binary, we can think about expanding a number in powers of 2:
 
+.. math::
 
-Roundoff vs. Truncation Error
+   0.1 \sim (1 +
+             1 \cdot 2^{-1} +
+             0 \cdot 2^{-2} +
+             0 \cdot 2^{-3} +
+             1 \cdot 2^{-4} +
+             1 \cdot 2^{-5} + \ldots) \times 2^{-4}
+
+Roundoff vs. truncation error
 ==============================
 
 Consider the Taylor expansion of :math:`f(x)` about some point :math:`x_0`:
@@ -127,4 +136,32 @@ Let's discuss the trends:
 
 * The minimum error here is around :math:`\sqrt{\epsilon}`, where :math:`\epsilon` is
   machine epsilon.
+
+
+Testing for equality
+====================
+
+
+
+
+Minimizing roundoff
+===================
+
+Consider subtracting the square of two numbers -- taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.
+
+Instead of doing:
+
+.. math::
+
+   x^2 - y^2
+
+we can instead do:
+
+.. math::
+
+   (x - y)(x + y)
+
+by factoring this, we are subtracting more reasonably sized numbers, reducing the roundoff.
+
+We can see this directly by doing this with single precision (`float`) and comparing to an answer computed via double precious (`double`)
 
