@@ -22,6 +22,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -131,7 +133,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Floating Point</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Floating Point</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. Truncation Error</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Testing</span></p>
 <ul>
@@ -180,6 +185,142 @@
              
   <section id="floating-point">
 <h1>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h1>
+<section id="roundoff-vs-truncation-error">
+<h2>Roundoff vs. Truncation Error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
+<p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = f(x_0 + \Delta x) = f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \Delta x + \mathcal{O}(\Delta x^2)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta x = x - x_0\)</span></p>
+<p>We can solve for the derivative to find an approximation for the first derivative:</p>
+<div class="math notranslate nohighlight">
+\[\left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)\]</div>
+<p>This shows that this approximation for the derivative is first-order accurate in <span class="math notranslate nohighlight">\(\Delta x\)</span> – that is the truncation error of the approximation.</p>
+<p>We can see the relative size of roundoff and truncation error by using this approximation
+to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">dfdx_true</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">point</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">point</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dfdx_approx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">dfdx_approx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dfdx_true</span><span class="p">(</span><span class="n">x0</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">err</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">scientific</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>when we run this, we get:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.00000000e-01</span> <span class="mf">4.29385533e-02</span>
+<span class="mf">5.00000000e-02</span> <span class="mf">2.12574901e-02</span>
+<span class="mf">2.50000000e-02</span> <span class="mf">1.05741192e-02</span>
+<span class="mf">1.25000000e-02</span> <span class="mf">5.27319544e-03</span>
+<span class="mf">6.25000000e-03</span> <span class="mf">2.63310585e-03</span>
+<span class="mf">3.12500000e-03</span> <span class="mf">1.31567674e-03</span>
+<span class="mf">1.56250000e-03</span> <span class="mf">6.57618923e-04</span>
+<span class="mf">7.81250000e-04</span> <span class="mf">3.28754549e-04</span>
+<span class="mf">3.90625000e-04</span> <span class="mf">1.64363540e-04</span>
+<span class="mf">1.95312500e-04</span> <span class="mf">8.21783356e-05</span>
+<span class="mf">9.76562500e-05</span> <span class="mf">4.10883092e-05</span>
+<span class="mf">4.88281250e-05</span> <span class="mf">2.05439403e-05</span>
+<span class="mf">2.44140625e-05</span> <span class="mf">1.02719161e-05</span>
+<span class="mf">1.22070313e-05</span> <span class="mf">5.13594041e-06</span>
+<span class="mf">6.10351563e-06</span> <span class="mf">2.56797303e-06</span>
+<span class="mf">3.05175781e-06</span> <span class="mf">1.28400298e-06</span>
+<span class="mf">1.52587891e-06</span> <span class="mf">6.41936098e-07</span>
+<span class="mf">7.62939453e-07</span> <span class="mf">3.20993608e-07</span>
+<span class="mf">3.81469727e-07</span> <span class="mf">1.60631502e-07</span>
+<span class="mf">1.90734863e-07</span> <span class="mf">8.05959686e-08</span>
+<span class="mf">9.53674316e-08</span> <span class="mf">3.92685293e-08</span>
+<span class="mf">4.76837158e-08</span> <span class="mf">1.94779246e-08</span>
+<span class="mf">2.38418579e-08</span> <span class="mf">1.24930053e-08</span>
+<span class="mf">1.19209290e-08</span> <span class="mf">3.17977955e-09</span>
+<span class="mf">5.96046448e-09</span> <span class="mf">3.17977955e-09</span>
+<span class="mf">2.98023224e-09</span> <span class="mf">1.54466719e-08</span>
+<span class="mf">1.49011612e-09</span> <span class="mf">5.90591340e-08</span>
+<span class="mf">7.45058060e-10</span> <span class="mf">5.90591340e-08</span>
+<span class="mf">3.72529030e-10</span> <span class="mf">8.99524779e-08</span>
+<span class="mf">1.86264515e-10</span> <span class="mf">8.99524779e-08</span>
+<span class="mf">9.31322575e-11</span> <span class="mf">5.06093970e-07</span>
+<span class="mf">4.65661287e-11</span> <span class="mf">5.06093970e-07</span>
+<span class="mf">2.32830644e-11</span> <span class="mf">1.87809182e-06</span>
+<span class="mf">1.16415322e-11</span> <span class="mf">1.87809182e-06</span>
+<span class="mf">5.82076609e-12</span> <span class="mf">7.65865134e-06</span>
+<span class="mf">2.91038305e-12</span> <span class="mf">1.14148350e-05</span>
+<span class="mf">1.45519152e-12</span> <span class="mf">1.14148350e-05</span>
+<span class="mf">7.27595761e-13</span> <span class="mf">1.14148350e-05</span>
+<span class="mf">3.63797881e-13</span> <span class="mf">1.41173056e-04</span>
+<span class="mf">1.81898940e-13</span> <span class="mf">1.41173056e-04</span>
+<span class="mf">9.09494702e-14</span> <span class="mf">4.69178507e-04</span>
+<span class="mf">4.54747351e-14</span> <span class="mf">1.68988163e-03</span>
+<span class="mf">2.27373675e-14</span> <span class="mf">3.19293087e-03</span>
+<span class="mf">1.13686838e-14</span> <span class="mf">3.19293087e-03</span>
+<span class="mf">5.68434189e-15</span> <span class="mf">6.57269413e-03</span>
+<span class="mf">2.84217094e-15</span> <span class="mf">6.57269413e-03</span>
+<span class="mf">1.42108547e-15</span> <span class="mf">7.15523059e-02</span>
+<span class="mf">7.10542736e-16</span> <span class="mf">7.15523059e-02</span>
+<span class="mf">3.55271368e-16</span> <span class="mf">8.46976941e-02</span>
+</pre></div>
+</div>
+<p>It is easier to see the trend if we make a plot:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/error_plot.png"><img alt="_images/error_plot.png" src="_images/error_plot.png" style="width: 80%;" /></a>
+</figure>
+<p>Let’s discuss the trends:</p>
+<ul>
+<li><p>Starting with the largest value of <span class="math notranslate nohighlight">\(\Delta x\)</span>, as
+we make <span class="math notranslate nohighlight">\(\Delta x\)</span> smaller, we see that the error decreases.
+This is following the expected behavior of the truncation error
+derived above.</p></li>
+<li><p>Once our <span class="math notranslate nohighlight">\(\Delta x\)</span> becomes really small, roundoff error starts
+to dominate.  In effect, we are seeing that:</p>
+<div class="math notranslate nohighlight">
+\[(x_0 + \Delta x) - x_0 \ne 0\]</div>
+<p>because of roundoff error.</p>
+</li>
+<li><p>The minimum error here is around <span class="math notranslate nohighlight">\(\sqrt{\epsilon}\)</span>, where <span class="math notranslate nohighlight">\(\epsilon\)</span> is
+machine epsilon.</p></li>
+</ul>
+</section>
 </section>
 
 
