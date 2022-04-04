@@ -44,6 +44,26 @@ Note that this is a relative error, so for a number like ``1000`` we could only 
 
    \mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}{|\mbox{true number}|} \le \epsilon
 
+
+Now consider the exponent, we use 11 bits to store it in double
+precision.  Two are reserved for special numbers, so out of the 2048
+possible exponent values, one is 0, and 2 are reserved, leaving 2045
+to split between positive and negative exponents.  These are set as:
+
+.. math::
+
+   2^{-1022} \mbox{to} 2^{1023}
+
+converting to base 10, this is
+
+.. math::
+
+   \sim 10^{-308} \mbox{to} \sim 10^{308}
+
+
+
+
+
 Roundoff vs. truncation error
 ==============================
 

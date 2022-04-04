@@ -217,6 +217,15 @@ are split between the signifcand and exponent as well as a single bit for the si
 <code class="docutils literal notranslate"><span class="pre">2.e-13</span></code> to it before it became indistinguishable from <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p>
 <div class="math notranslate nohighlight">
 \[\mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}{|\mbox{true number}|} \le \epsilon\]</div>
+<p>Now consider the exponent, we use 11 bits to store it in double
+precision.  Two are reserved for special numbers, so out of the 2048
+possible exponent values, one is 0, and 2 are reserved, leaving 2045
+to split between positive and negative exponents.  These are set as:</p>
+<div class="math notranslate nohighlight">
+\[2^{-1022} \mbox{to} 2^{1023}\]</div>
+<p>converting to base 10, this is</p>
+<div class="math notranslate nohighlight">
+\[\sim 10^{-308} \mbox{to} \sim 10^{308}\]</div>
 <section id="roundoff-vs-truncation-error">
 <h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
