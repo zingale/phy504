@@ -7,6 +7,9 @@ Floating Point
    `What Every Computer Scientist Should Know About Floating-Point Arithmetic <https://dl.acm.org/doi/10.1145/103162.103163>`_
 
 
+Storage overview
+================
+
 We can think of a floating point number as having the form:
 
 .. math::
@@ -20,6 +23,8 @@ are split between the signifcand and exponent as well as a single bit for the si
 .. figure:: 1024px-IEEE_754_Double_Floating_Point_Format.svg.png
    :align: center
    :width: 80%
+
+   (source: wikipedia)
 
 Since the number is stored in binary, we can think about expanding a number in powers of 2:
 
@@ -49,7 +54,7 @@ machine epsilon is
 
 .. math::
 
-   2^{-53} \approx 2.22\times 10^{-16}
+   2^{-53} \approx 1.11\times 10^{-16}
 
 
 
@@ -235,7 +240,109 @@ IEEE 754 defines a few special quantities:
 Trapping floating point exceptions
 ==================================
 
+What happens when we do something bad?  Consider this example:
 
+.. literalinclude:: ../../examples/roundoff/undefined.cpp
+   :language: c++
+   :caption: ``undefined.cpp``
+
+Here, we pass ``-1`` to ``trouble()`` which then takes the square root
+of it -- this results in a NaN.  But if we run the code, it goes
+merrily about its way, using that result in the later computations.
+
+Unix uses `signals <https://en.wikipedia.org/wiki/Signal_(IPC)>`_ to
+indicate that a problem has happened during the code execution.  If a
+program created a *signal handler* then that signal can be trapped and
+any desired action can be taken.
+
+.. note::
+
+   This example was only tested on a Linux machine with GCC.  Other OSes
+   or compilers might have slightly different headers or functionality.
+
+There are a few parts to trapping a floating point exception (FPE).  First we need
+to enable exception trapping via:
+
+.. code:: c++
+
+   feenableexcept(FE_INVALID|FE_DIVBYZERO|FE_OVERFLOW);
+
+That catches 3 different types of floating point exceptions -- invalid, divide-by-zero, and overflows.
+
+Next we need to add a handler to deal with the exception:
+
+.. code:: c++
+
+   signal (SIGFPE, fpe_handler);
+
+Here, ``SIGFPE`` is the standard name for a floating point exception,
+and ``fpe_handler`` is the name of a function that will be called when
+we detect a ``SIGFPE``.
+
+In our handler, we use the Linux ``backtrace()`` function to access the stack
+of our program execution.  This is really a C-function, so we need to use C-style
+arrays here.
+
+Here's the new version of our code:
+
+.. literalinclude:: ../../examples/roundoff/undefined_trap.cpp
+   :language: c++
+   :caption: ``undefined_trap.cpp``
+
+When we compile the code, we want to add the ``-g`` option to store the
+symbols in the code -- this allows us to understand where problems arise:
+
+.. prompt:: bash
+
+   g++ -g -o undefined_trap undefined_trap.cpp
+
+
+
+Now when we run this, the program aborts and we see:
+
+::
+
+    floating point exception, signal 8
+    0: ./undefined_trap() [0x401261]
+    1: /lib64/libc.so.6(+0x42750) [0x7f3dc35dc750]
+    2: /lib64/libm.so.6(+0x1435c) [0x7f3dc37d335c]
+    3: ./undefined_trap() [0x4012ff]
+    4: ./undefined_trap() [0x401347]
+    5: /lib64/libc.so.6(+0x2d560) [0x7f3dc35c7560]
+    6: /lib64/libc.so.6(__libc_start_main+0x7c) [0x7f3dc35c760c]
+    7: ./undefined_trap() [0x401145]
+    Aborted (core dumped)
+
+This is the call stack for our program.  In the brackets are the address in
+the program where the execution was when the FPE occurred.  These are ordered
+such that the calling function is below the function where the execution is.
+So it usually is best to look at the addresses near the top.
+
+We can turn those into line numbers using ``addr2line``:
+
+.. prompt:: bash
+
+  addr2line  -e undefined_trap 0x4012ff
+
+gives:
+
+::
+
+   /home/zingale/classes/phy504/examples/roundoff/undefined_trap.cpp:23
+
+and that line is precisely where the ``sqrt()`` is!
+
+We can get slightly nicer output (including the function name) by doing:
+
+.. prompt:: bash
+
+   addr2line  -C -f -i -p -e undefined_trap 0x4012ff
+
+which gives:
+
+::
+
+    trouble(double) at /home/zingale/classes/phy504/examples/roundoff/undefined_trap.cpp:23
 
 
 .. [#f1] this example is based on Yakowitz & Szidarovszky

@@ -134,18 +134,19 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Floating Point</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#precision">Precision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#range">Range</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. truncation error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#testing-for-equality">Testing for equality</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#minimizing-roundoff">Minimizing roundoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-overview">Storage overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#precision">Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#range">Range</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#summation-algorithms">Summation algorithms</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#special-numbers">Special numbers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#trapping-floating-point-exceptions">Trapping floating point exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. truncation error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-for-equality">Testing for equality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimizing-roundoff">Minimizing roundoff</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summation-algorithms">Summation algorithms</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#special-numbers">Special numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trapping-floating-point-exceptions">Trapping floating point exceptions</a></li>
 </ul>
 </li>
 </ul>
@@ -200,14 +201,19 @@
 <p class="admonition-title">reading</p>
 <p><a class="reference external" href="https://dl.acm.org/doi/10.1145/103162.103163">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
 </div>
+<section id="storage-overview">
+<h2>Storage overview<a class="headerlink" href="#storage-overview" title="Permalink to this headline">¶</a></h2>
 <p>We can think of a floating point number as having the form:</p>
 <div class="math notranslate nohighlight">
 \[\mbox{significand} \times 10^\mbox{exponent}\]</div>
 <p>Most computers follow the IEEE 754 standard for floating point, and we commonly work
 with 32-bit and 64-bit floating point numbers (single and double precision).  These bits
 are split between the signifcand and exponent as well as a single bit for the sign:</p>
-<figure class="align-center">
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png"><img alt="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" src="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">(source: wikipedia)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
 </figure>
 <p>Since the number is stored in binary, we can think about expanding a number in powers of 2:</p>
 <div class="math notranslate nohighlight">
@@ -218,7 +224,7 @@ are split between the signifcand and exponent as well as a single bit for the si
           1 \cdot 2^{-4} +
           1 \cdot 2^{-5} + \ldots) \times 2^{-4}\]</div>
 <section id="precision">
-<h2>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h2>
+<h3>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h3>
 <p>With 52 bits for the significand, the smallest number compared to <code class="docutils literal notranslate"><span class="pre">1</span></code> we can represent is</p>
 <div class="math notranslate nohighlight">
 \[2^{-52} \approx 2.22\times 10^{-16}\]</div>
@@ -227,7 +233,7 @@ first bit is <code class="docutils literal notranslate"><span class="pre">1</spa
 to store that <code class="docutils literal notranslate"><span class="pre">1</span></code>, giving us an extra bit of precision, so the
 machine epsilon is</p>
 <div class="math notranslate nohighlight">
-\[2^{-53} \approx 2.22\times 10^{-16}\]</div>
+\[2^{-53} \approx 1.11\times 10^{-16}\]</div>
 <p>We already saw how to access the limits of the data type via
 <code class="docutils literal notranslate"><span class="pre">std::numeric_limits</span></code>. When we looked at <em>machine epsilon</em>, we saw that for a
 <code class="docutils literal notranslate"><span class="pre">double</span></code> it was about <span class="math notranslate nohighlight">\(1.1\times 10^{-16}\)</span>.</p>
@@ -238,7 +244,7 @@ machine epsilon is</p>
    {|\mbox{true number}|} \le \epsilon\]</div>
 </section>
 <section id="range">
-<h2>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h2>
+<h3>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h3>
 <p>Now consider the exponent, we use 11 bits to store it in double
 precision.  Two are reserved for special numbers, so out of the 2048
 possible exponent values, one is 0, and 2 are reserved, leaving 2045
@@ -248,8 +254,10 @@ to split between positive and negative exponents.  These are set as:</p>
 <p>converting to base 10, this is</p>
 <div class="math notranslate nohighlight">
 \[\sim 10^{-308} \mbox{ to } \sim 10^{308}\]</div>
+</section>
+</section>
 <section id="roundoff-vs-truncation-error">
-<h3>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h3>
+<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = f(x_0 + \Delta x) = f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \Delta x + \mathcal{O}(\Delta x^2)\]</div>
@@ -260,8 +268,8 @@ to split between positive and negative exponents.  These are set as:</p>
 <p>This shows that this approximation for the derivative is first-order accurate in <span class="math notranslate nohighlight">\(\Delta x\)</span> – that is the truncation error of the approximation.</p>
 <p>We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
@@ -333,14 +341,14 @@ machine epsilon.</p></li>
 </ul>
 </section>
 <section id="testing-for-equality">
-<h3>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this headline">¶</a></h3>
+<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this headline">¶</a></h2>
 <p>Because of roundoff error, we should never exactly compare two floating point numbers,
 but instead ask they they agree within some tolerance, e.g., test equality as:</p>
 <div class="math notranslate nohighlight">
 \[| x - y | &lt; \epsilon\]</div>
 <p>For example:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -361,7 +369,7 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 </div>
 </section>
 <section id="minimizing-roundoff">
-<h3>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this headline">¶</a></h3>
+<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this headline">¶</a></h2>
 <p>Consider subtracting the square of two numbers – taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
 <p>Instead of doing:</p>
 <div class="math notranslate nohighlight">
@@ -372,8 +380,8 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 <p>by factoring this, we are subtracting more reasonably sized numbers, reducing the roundoff.</p>
 <p>We can see this directly by doing this with single precision (<cite>float</cite>) and comparing to an answer computed via double precious (<cite>double</cite>)</p>
 <p>Here’s an example:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -406,8 +414,8 @@ to a double precision “correct answer”.  To ensure that we use the
 single-precision version of the <code class="docutils literal notranslate"><span class="pre">std::sqrt()</span></code> function, we will use single
 precision literal suffix, e.g., <code class="docutils literal notranslate"><span class="pre">1.0f</span></code> tells the compiler that this is a
 single-precision constant.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">squareroots.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">squareroots.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 
@@ -434,17 +442,17 @@ single-precision constant.</p>
 </pre></div>
 </div>
 </div>
-</section>
-</section>
 <section id="summation-algorithms">
-<h2>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Permalink to this headline">¶</a></h2>
+<h3>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Permalink to this headline">¶</a></h3>
 <p>Summing a sequence of numbers is a common place where roundoff error
 comes into play, especially if the numbers all vary in magnitude and
 you do not attempt to add them in a sorted fashion.  There are a
 number of different summation algorithms that keep track of the loss
 due to roundoff and compensate the sum, for example <a class="reference external" href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm#See_also">the Kahan summation algorithm</a>.</p>
+</section>
+</section>
 <section id="special-numbers">
-<h3>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this headline">¶</a></h3>
+<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this headline">¶</a></h2>
 <p>IEEE 754 defines a few special quantities:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) is the result of <code class="docutils literal notranslate"><span class="pre">0.0/0.0</span></code> or <code class="docutils literal notranslate"><span class="pre">std::sqrt(-1.0)</span></code></p></li>
@@ -453,13 +461,155 @@ due to roundoff and compensate the sum, for example <a class="reference external
 </ul>
 </section>
 <section id="trapping-floating-point-exceptions">
-<h3>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this headline">¶</a></h3>
+<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this headline">¶</a></h2>
+<p>What happens when we do something bad?  Consider this example:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined.cpp</span></code></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cfenv&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trouble</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Here, we pass <code class="docutils literal notranslate"><span class="pre">-1</span></code> to <code class="docutils literal notranslate"><span class="pre">trouble()</span></code> which then takes the square root
+of it – this results in a NaN.  But if we run the code, it goes
+merrily about its way, using that result in the later computations.</p>
+<p>Unix uses <a class="reference external" href="https://en.wikipedia.org/wiki/Signal_(IPC)">signals</a> to
+indicate that a problem has happened during the code execution.  If a
+program created a <em>signal handler</em> then that signal can be trapped and
+any desired action can be taken.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example was only tested on a Linux machine with GCC.  Other OSes
+or compilers might have slightly different headers or functionality.</p>
+</div>
+<p>There are a few parts to trapping a floating point exception (FPE).  First we need
+to enable exception trapping via:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>That catches 3 different types of floating point exceptions – invalid, divide-by-zero, and overflows.</p>
+<p>Next we need to add a handler to deal with the exception:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="w"> </span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">SIGFPE</span></code> is the standard name for a floating point exception,
+and <code class="docutils literal notranslate"><span class="pre">fpe_handler</span></code> is the name of a function that will be called when
+we detect a <code class="docutils literal notranslate"><span class="pre">SIGFPE</span></code>.</p>
+<p>In our handler, we use the Linux <code class="docutils literal notranslate"><span class="pre">backtrace()</span></code> function to access the stack
+of our program execution.  This is really a C-function, so we need to use C-style
+arrays here.</p>
+<p>Here’s the new version of our code:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined_trap.cpp</span></code></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cfenv&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">fpe_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;floating point exception, signal &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nbuf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span><span class="w">                                                                                                  </span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">bt_buffer</span><span class="p">[</span><span class="n">nbuf</span><span class="p">];</span><span class="w">                                                                                                </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nentries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backtrace</span><span class="p">(</span><span class="n">bt_buffer</span><span class="p">,</span><span class="w"> </span><span class="n">nbuf</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backtrace_symbols</span><span class="p">(</span><span class="n">bt_buffer</span><span class="p">,</span><span class="w"> </span><span class="n">nentries</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nentries</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">abort</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trouble</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w"> </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>When we compile the code, we want to add the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option to store the
+symbols in the code – this allows us to understand where problems arise:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++ -g -o undefined_trap undefined_trap.cpp</span>
+</pre></div></div><p>Now when we run this, the program aborts and we see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">floating</span> <span class="n">point</span> <span class="n">exception</span><span class="p">,</span> <span class="n">signal</span> <span class="mi">8</span>
+<span class="mi">0</span><span class="p">:</span> <span class="o">./</span><span class="n">undefined_trap</span><span class="p">()</span> <span class="p">[</span><span class="mh">0x401261</span><span class="p">]</span>
+<span class="mi">1</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">(</span><span class="o">+</span><span class="mh">0x42750</span><span class="p">)</span> <span class="p">[</span><span class="mh">0x7f3dc35dc750</span><span class="p">]</span>
+<span class="mi">2</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libm</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">(</span><span class="o">+</span><span class="mh">0x1435c</span><span class="p">)</span> <span class="p">[</span><span class="mh">0x7f3dc37d335c</span><span class="p">]</span>
+<span class="mi">3</span><span class="p">:</span> <span class="o">./</span><span class="n">undefined_trap</span><span class="p">()</span> <span class="p">[</span><span class="mh">0x4012ff</span><span class="p">]</span>
+<span class="mi">4</span><span class="p">:</span> <span class="o">./</span><span class="n">undefined_trap</span><span class="p">()</span> <span class="p">[</span><span class="mh">0x401347</span><span class="p">]</span>
+<span class="mi">5</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">(</span><span class="o">+</span><span class="mh">0x2d560</span><span class="p">)</span> <span class="p">[</span><span class="mh">0x7f3dc35c7560</span><span class="p">]</span>
+<span class="mi">6</span><span class="p">:</span> <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="mf">.6</span><span class="p">(</span><span class="n">__libc_start_main</span><span class="o">+</span><span class="mh">0x7c</span><span class="p">)</span> <span class="p">[</span><span class="mh">0x7f3dc35c760c</span><span class="p">]</span>
+<span class="mi">7</span><span class="p">:</span> <span class="o">./</span><span class="n">undefined_trap</span><span class="p">()</span> <span class="p">[</span><span class="mh">0x401145</span><span class="p">]</span>
+<span class="n">Aborted</span> <span class="p">(</span><span class="n">core</span> <span class="n">dumped</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the call stack for our program.  In the brackets are the address in
+the program where the execution was when the FPE occurred.  These are ordered
+such that the calling function is below the function where the execution is.
+So it usually is best to look at the addresses near the top.</p>
+<p>We can turn those into line numbers using <code class="docutils literal notranslate"><span class="pre">addr2line</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line  -e undefined_trap 0x4012ff</span>
+</pre></div></div><p>gives:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">roundoff</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
+</pre></div>
+</div>
+<p>and that line is precisely where the <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> is!</p>
+<p>We can get slightly nicer output (including the function name) by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line  -C -f -i -p -e undefined_trap 0x4012ff</span>
+</pre></div></div><p>which gives:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trouble</span><span class="p">(</span><span class="n">double</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">roundoff</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
+</pre></div>
+</div>
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>this example is based on Yakowitz &amp; Szidarovszky</p>
 </dd>
 </dl>
-</section>
 </section>
 </section>
 
