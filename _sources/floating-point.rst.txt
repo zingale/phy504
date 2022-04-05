@@ -37,6 +37,12 @@ Since the number is stored in binary, we can think about expanding a number in p
              1 \cdot 2^{-4} +
              1 \cdot 2^{-5} + \ldots) \times 2^{-4}
 
+In fact, ``0.1`` cannot be exactly represented in floating point:
+
+.. literalinclude:: ../../floating_point/simple_roundoff.cpp
+   :language: c++
+   :caption: ``simple_roundoff.cpp
+
 
 Precision
 ---------
