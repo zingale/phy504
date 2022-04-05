@@ -41,7 +41,7 @@ In fact, ``0.1`` cannot be exactly represented in floating point:
 
 .. literalinclude:: ../../examples/floating_point/simple_roundoff.cpp
    :language: c++
-   :caption: ``simple_roundoff.cpp
+   :caption: ``simple_roundoff.cpp``
 
 
 Precision
