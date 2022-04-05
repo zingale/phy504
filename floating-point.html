@@ -510,7 +510,7 @@ to enable exception trapping via:</p>
 </div>
 <p>That catches 3 different types of floating point exceptions – invalid, divide-by-zero, and overflows.</p>
 <p>Next we need to add a handler to deal with the exception:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="w"> </span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">SIGFPE</span></code> is the standard name for a floating point exception,
@@ -595,14 +595,14 @@ So it usually is best to look at the addresses near the top.</p>
 <p>We can turn those into line numbers using <code class="docutils literal notranslate"><span class="pre">addr2line</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line  -e undefined_trap 0x4012ff</span>
 </pre></div></div><p>gives:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">roundoff</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">floating_point</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
 </pre></div>
 </div>
 <p>and that line is precisely where the <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> is!</p>
 <p>We can get slightly nicer output (including the function name) by doing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line  -C -f -i -p -e undefined_trap 0x4012ff</span>
 </pre></div></div><p>which gives:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trouble</span><span class="p">(</span><span class="n">double</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">roundoff</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trouble</span><span class="p">(</span><span class="n">double</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">floating_point</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
 </pre></div>
 </div>
 <dl class="footnote brackets">

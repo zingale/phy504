@@ -115,7 +115,7 @@ This shows that this approximation for the derivative is first-order accurate in
 We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of :math:`\Delta x`:
 
-.. literalinclude:: ../../examples/roundoff/truncation_vs_roundoff.cpp
+.. literalinclude:: ../../examples/floating_point/truncation_vs_roundoff.cpp
    :language: c++
    :caption: ``truncation_vs_roundoff.cpp``
 
@@ -157,7 +157,7 @@ but instead ask they they agree within some tolerance, e.g., test equality as:
 
 For example:
 
-.. literalinclude:: ../../examples/roundoff/comparing.cpp
+.. literalinclude:: ../../examples/floating_point/comparing.cpp
    :language: c++
    :caption: ``comparing.cpp``
 
@@ -186,7 +186,7 @@ We can see this directly by doing this with single precision (`float`) and compa
 
 Here's an example:
 
-.. literalinclude:: ../../examples/roundoff/subtraction.cpp
+.. literalinclude:: ../../examples/floating_point/subtraction.cpp
    :language: c++
    :caption: ``subtraction.cpp``
 
@@ -211,7 +211,7 @@ single-precision version of the ``std::sqrt()`` function, we will use single
 precision literal suffix, e.g., ``1.0f`` tells the compiler that this is a
 single-precision constant.
 
-.. literalinclude:: ../../examples/roundoff/squareroots.cpp
+.. literalinclude:: ../../examples/floating_point/squareroots.cpp
    :language: c++
    :caption: ``squareroots.cpp``
 
@@ -242,7 +242,7 @@ Trapping floating point exceptions
 
 What happens when we do something bad?  Consider this example:
 
-.. literalinclude:: ../../examples/roundoff/undefined.cpp
+.. literalinclude:: ../../examples/floating_point/undefined.cpp
    :language: c++
    :caption: ``undefined.cpp``
 
@@ -273,7 +273,7 @@ Next we need to add a handler to deal with the exception:
 
 .. code:: c++
 
-   signal (SIGFPE, fpe_handler);
+   signal(SIGFPE, fpe_handler);
 
 Here, ``SIGFPE`` is the standard name for a floating point exception,
 and ``fpe_handler`` is the name of a function that will be called when
@@ -285,7 +285,7 @@ arrays here.
 
 Here's the new version of our code:
 
-.. literalinclude:: ../../examples/roundoff/undefined_trap.cpp
+.. literalinclude:: ../../examples/floating_point/undefined_trap.cpp
    :language: c++
    :caption: ``undefined_trap.cpp``
 
@@ -328,7 +328,7 @@ gives:
 
 ::
 
-   /home/zingale/classes/phy504/examples/roundoff/undefined_trap.cpp:23
+   /home/zingale/classes/phy504/examples/floating_point/undefined_trap.cpp:23
 
 and that line is precisely where the ``sqrt()`` is!
 
@@ -342,7 +342,7 @@ which gives:
 
 ::
 
-    trouble(double) at /home/zingale/classes/phy504/examples/roundoff/undefined_trap.cpp:23
+    trouble(double) at /home/zingale/classes/phy504/examples/floating_point/undefined_trap.cpp:23
 
 
 .. [#f1] this example is based on Yakowitz & Szidarovszky
