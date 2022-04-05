@@ -467,9 +467,6 @@ due to roundoff and compensate the sum, for example <a class="reference external
 <div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined.cpp</span></code></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cfenv&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
 
 <span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
