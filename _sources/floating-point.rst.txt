@@ -4,7 +4,7 @@ Floating Point
 
 .. admonition:: reading
 
-   `What Every COmputer Scientist Should Know About Floating-Point Arithmetic <https://dl.acm.org/doi/10.1145/103162.103163>`_
+   `What Every Computer Scientist Should Know About Floating-Point Arithmetic <https://dl.acm.org/doi/10.1145/103162.103163>`_
 
 
 We can think of a floating point number as having the form:
@@ -33,17 +33,41 @@ Since the number is stored in binary, we can think about expanding a number in p
              1 \cdot 2^{-5} + \ldots) \times 2^{-4}
 
 
-We already saw how to access the limits of the data type via
-``std::numeric_limits``. When we looked at *machine epsilon*, we saw that for a
-``double`` it was about :math:`2\times 10^{-16}``.
+Precision
+---------
 
-Note that this is a relative error, so for a number like ``1000`` we could only add
-``2.e-13`` to it before it became indistinguishable from ``1000``.
+With 52 bits for the significand, the smallest number compared to ``1`` we can represent is
 
 .. math::
 
-   \mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}{|\mbox{true number}|} \le \epsilon
+   2^{-52} \approx 2.22\times 10^{-16}
 
+but the IEEE 754 format always expresses the significant such that the
+first bit is ``1`` (by adjusting the exponent) and then doesn't need
+to store that ``1``, giving us an extra bit of precision, so the
+machine epsilon is
+
+.. math::
+
+   2^{-53} \approx 2.22\times 10^{-16}
+
+
+
+We already saw how to access the limits of the data type via
+``std::numeric_limits``. When we looked at *machine epsilon*, we saw that for a
+``double`` it was about :math:`1.1\times 10^{-16}``.
+
+Note that this is a relative error, so for a number like ``1000`` we could only add
+``1.1e-13`` to it before it became indistinguishable from ``1000``.
+
+.. math::
+
+   \mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}
+      {|\mbox{true number}|} \le \epsilon
+
+
+Range
+-----
 
 Now consider the exponent, we use 11 bits to store it in double
 precision.  Two are reserved for special numbers, so out of the 2048
@@ -52,13 +76,13 @@ to split between positive and negative exponents.  These are set as:
 
 .. math::
 
-   2^{-1022} \mbox{to} 2^{1023}
+   2^{-1022} \mbox{ to } 2^{1023}
 
 converting to base 10, this is
 
 .. math::
 
-   \sim 10^{-308} \mbox{to} \sim 10^{308}
+   \sim 10^{-308} \mbox{ to } \sim 10^{308}
 
 
 
@@ -90,61 +114,7 @@ to compute a derivative for different values of :math:`\Delta x`:
    :language: c++
    :caption: ``truncation_vs_roundoff.cpp``
 
-when we run this, we get:
-
-::
-
-   1.00000000e-01 4.29385533e-02
-   5.00000000e-02 2.12574901e-02
-   2.50000000e-02 1.05741192e-02
-   1.25000000e-02 5.27319544e-03
-   6.25000000e-03 2.63310585e-03
-   3.12500000e-03 1.31567674e-03
-   1.56250000e-03 6.57618923e-04
-   7.81250000e-04 3.28754549e-04
-   3.90625000e-04 1.64363540e-04
-   1.95312500e-04 8.21783356e-05
-   9.76562500e-05 4.10883092e-05
-   4.88281250e-05 2.05439403e-05
-   2.44140625e-05 1.02719161e-05
-   1.22070313e-05 5.13594041e-06
-   6.10351563e-06 2.56797303e-06
-   3.05175781e-06 1.28400298e-06
-   1.52587891e-06 6.41936098e-07
-   7.62939453e-07 3.20993608e-07
-   3.81469727e-07 1.60631502e-07
-   1.90734863e-07 8.05959686e-08
-   9.53674316e-08 3.92685293e-08
-   4.76837158e-08 1.94779246e-08
-   2.38418579e-08 1.24930053e-08
-   1.19209290e-08 3.17977955e-09
-   5.96046448e-09 3.17977955e-09
-   2.98023224e-09 1.54466719e-08
-   1.49011612e-09 5.90591340e-08
-   7.45058060e-10 5.90591340e-08
-   3.72529030e-10 8.99524779e-08
-   1.86264515e-10 8.99524779e-08
-   9.31322575e-11 5.06093970e-07
-   4.65661287e-11 5.06093970e-07
-   2.32830644e-11 1.87809182e-06
-   1.16415322e-11 1.87809182e-06
-   5.82076609e-12 7.65865134e-06
-   2.91038305e-12 1.14148350e-05
-   1.45519152e-12 1.14148350e-05
-   7.27595761e-13 1.14148350e-05
-   3.63797881e-13 1.41173056e-04
-   1.81898940e-13 1.41173056e-04
-   9.09494702e-14 4.69178507e-04
-   4.54747351e-14 1.68988163e-03
-   2.27373675e-14 3.19293087e-03
-   1.13686838e-14 3.19293087e-03
-   5.68434189e-15 6.57269413e-03
-   2.84217094e-15 6.57269413e-03
-   1.42108547e-15 7.15523059e-02
-   7.10542736e-16 7.15523059e-02
-   3.55271368e-16 8.46976941e-02
-
-It is easier to see the trend if we make a plot:
+It is easier to see the behavior if we make a plot of the output:
 
 .. figure:: error_plot.png
    :align: center
@@ -174,7 +144,11 @@ Testing for equality
 ====================
 
 Because of roundoff error, we should never exactly compare two floating point numbers,
-but instead ask they they agree within some tolerance.
+but instead ask they they agree within some tolerance, e.g., test equality as:
+
+.. math::
+
+   | x - y | < \epsilon
 
 For example:
 
@@ -236,6 +210,15 @@ single-precision constant.
    :language: c++
    :caption: ``squareroots.cpp``
 
+
+Summation algorithms
+--------------------
+
+Summing a sequence of numbers is a common place where roundoff error
+comes into play, especially if the numbers all vary in magnitude and
+you do not attempt to add them in a sorted fashion.  There are a
+number of different summation algorithms that keep track of the loss
+due to roundoff and compensate the sum, for example `the Kahan summation algorithm <https://en.wikipedia.org/wiki/Kahan_summation_algorithm#See_also>`_.
 
 Special numbers
 ===============

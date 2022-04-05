@@ -134,11 +134,18 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Floating Point</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. truncation error</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#testing-for-equality">Testing for equality</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#minimizing-roundoff">Minimizing roundoff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#special-numbers">Special numbers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#trapping-floating-point-exceptions">Trapping floating point exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#precision">Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#range">Range</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#roundoff-vs-truncation-error">Roundoff vs. truncation error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-for-equality">Testing for equality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minimizing-roundoff">Minimizing roundoff</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#summation-algorithms">Summation algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#special-numbers">Special numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trapping-floating-point-exceptions">Trapping floating point exceptions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -191,7 +198,7 @@
 <h1>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p><a class="reference external" href="https://dl.acm.org/doi/10.1145/103162.103163">What Every COmputer Scientist Should Know About Floating-Point Arithmetic</a></p>
+<p><a class="reference external" href="https://dl.acm.org/doi/10.1145/103162.103163">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
 </div>
 <p>We can think of a floating point number as having the form:</p>
 <div class="math notranslate nohighlight">
@@ -210,24 +217,39 @@ are split between the signifcand and exponent as well as a single bit for the si
           0 \cdot 2^{-3} +
           1 \cdot 2^{-4} +
           1 \cdot 2^{-5} + \ldots) \times 2^{-4}\]</div>
+<section id="precision">
+<h2>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h2>
+<p>With 52 bits for the significand, the smallest number compared to <code class="docutils literal notranslate"><span class="pre">1</span></code> we can represent is</p>
+<div class="math notranslate nohighlight">
+\[2^{-52} \approx 2.22\times 10^{-16}\]</div>
+<p>but the IEEE 754 format always expresses the significant such that the
+first bit is <code class="docutils literal notranslate"><span class="pre">1</span></code> (by adjusting the exponent) and then doesn’t need
+to store that <code class="docutils literal notranslate"><span class="pre">1</span></code>, giving us an extra bit of precision, so the
+machine epsilon is</p>
+<div class="math notranslate nohighlight">
+\[2^{-53} \approx 2.22\times 10^{-16}\]</div>
 <p>We already saw how to access the limits of the data type via
 <code class="docutils literal notranslate"><span class="pre">std::numeric_limits</span></code>. When we looked at <em>machine epsilon</em>, we saw that for a
-<code class="docutils literal notranslate"><span class="pre">double</span></code> it was about <span class="math notranslate nohighlight">\(2\times 10^{-16}\)</span>.</p>
+<code class="docutils literal notranslate"><span class="pre">double</span></code> it was about <span class="math notranslate nohighlight">\(1.1\times 10^{-16}\)</span>.</p>
 <p>Note that this is a relative error, so for a number like <code class="docutils literal notranslate"><span class="pre">1000</span></code> we could only add
-<code class="docutils literal notranslate"><span class="pre">2.e-13</span></code> to it before it became indistinguishable from <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">1.1e-13</span></code> to it before it became indistinguishable from <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p>
 <div class="math notranslate nohighlight">
-\[\mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}{|\mbox{true number}|} \le \epsilon\]</div>
+\[\mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}
+   {|\mbox{true number}|} \le \epsilon\]</div>
+</section>
+<section id="range">
+<h2>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h2>
 <p>Now consider the exponent, we use 11 bits to store it in double
 precision.  Two are reserved for special numbers, so out of the 2048
 possible exponent values, one is 0, and 2 are reserved, leaving 2045
 to split between positive and negative exponents.  These are set as:</p>
 <div class="math notranslate nohighlight">
-\[2^{-1022} \mbox{to} 2^{1023}\]</div>
+\[2^{-1022} \mbox{ to } 2^{1023}\]</div>
 <p>converting to base 10, this is</p>
 <div class="math notranslate nohighlight">
-\[\sim 10^{-308} \mbox{to} \sim 10^{308}\]</div>
+\[\sim 10^{-308} \mbox{ to } \sim 10^{308}\]</div>
 <section id="roundoff-vs-truncation-error">
-<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
+<h3>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h3>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = f(x_0 + \Delta x) = f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \Delta x + \mathcal{O}(\Delta x^2)\]</div>
@@ -290,59 +312,7 @@ to compute a derivative for different values of <span class="math notranslate no
 </pre></div>
 </div>
 </div>
-<p>when we run this, we get:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.00000000e-01</span> <span class="mf">4.29385533e-02</span>
-<span class="mf">5.00000000e-02</span> <span class="mf">2.12574901e-02</span>
-<span class="mf">2.50000000e-02</span> <span class="mf">1.05741192e-02</span>
-<span class="mf">1.25000000e-02</span> <span class="mf">5.27319544e-03</span>
-<span class="mf">6.25000000e-03</span> <span class="mf">2.63310585e-03</span>
-<span class="mf">3.12500000e-03</span> <span class="mf">1.31567674e-03</span>
-<span class="mf">1.56250000e-03</span> <span class="mf">6.57618923e-04</span>
-<span class="mf">7.81250000e-04</span> <span class="mf">3.28754549e-04</span>
-<span class="mf">3.90625000e-04</span> <span class="mf">1.64363540e-04</span>
-<span class="mf">1.95312500e-04</span> <span class="mf">8.21783356e-05</span>
-<span class="mf">9.76562500e-05</span> <span class="mf">4.10883092e-05</span>
-<span class="mf">4.88281250e-05</span> <span class="mf">2.05439403e-05</span>
-<span class="mf">2.44140625e-05</span> <span class="mf">1.02719161e-05</span>
-<span class="mf">1.22070313e-05</span> <span class="mf">5.13594041e-06</span>
-<span class="mf">6.10351563e-06</span> <span class="mf">2.56797303e-06</span>
-<span class="mf">3.05175781e-06</span> <span class="mf">1.28400298e-06</span>
-<span class="mf">1.52587891e-06</span> <span class="mf">6.41936098e-07</span>
-<span class="mf">7.62939453e-07</span> <span class="mf">3.20993608e-07</span>
-<span class="mf">3.81469727e-07</span> <span class="mf">1.60631502e-07</span>
-<span class="mf">1.90734863e-07</span> <span class="mf">8.05959686e-08</span>
-<span class="mf">9.53674316e-08</span> <span class="mf">3.92685293e-08</span>
-<span class="mf">4.76837158e-08</span> <span class="mf">1.94779246e-08</span>
-<span class="mf">2.38418579e-08</span> <span class="mf">1.24930053e-08</span>
-<span class="mf">1.19209290e-08</span> <span class="mf">3.17977955e-09</span>
-<span class="mf">5.96046448e-09</span> <span class="mf">3.17977955e-09</span>
-<span class="mf">2.98023224e-09</span> <span class="mf">1.54466719e-08</span>
-<span class="mf">1.49011612e-09</span> <span class="mf">5.90591340e-08</span>
-<span class="mf">7.45058060e-10</span> <span class="mf">5.90591340e-08</span>
-<span class="mf">3.72529030e-10</span> <span class="mf">8.99524779e-08</span>
-<span class="mf">1.86264515e-10</span> <span class="mf">8.99524779e-08</span>
-<span class="mf">9.31322575e-11</span> <span class="mf">5.06093970e-07</span>
-<span class="mf">4.65661287e-11</span> <span class="mf">5.06093970e-07</span>
-<span class="mf">2.32830644e-11</span> <span class="mf">1.87809182e-06</span>
-<span class="mf">1.16415322e-11</span> <span class="mf">1.87809182e-06</span>
-<span class="mf">5.82076609e-12</span> <span class="mf">7.65865134e-06</span>
-<span class="mf">2.91038305e-12</span> <span class="mf">1.14148350e-05</span>
-<span class="mf">1.45519152e-12</span> <span class="mf">1.14148350e-05</span>
-<span class="mf">7.27595761e-13</span> <span class="mf">1.14148350e-05</span>
-<span class="mf">3.63797881e-13</span> <span class="mf">1.41173056e-04</span>
-<span class="mf">1.81898940e-13</span> <span class="mf">1.41173056e-04</span>
-<span class="mf">9.09494702e-14</span> <span class="mf">4.69178507e-04</span>
-<span class="mf">4.54747351e-14</span> <span class="mf">1.68988163e-03</span>
-<span class="mf">2.27373675e-14</span> <span class="mf">3.19293087e-03</span>
-<span class="mf">1.13686838e-14</span> <span class="mf">3.19293087e-03</span>
-<span class="mf">5.68434189e-15</span> <span class="mf">6.57269413e-03</span>
-<span class="mf">2.84217094e-15</span> <span class="mf">6.57269413e-03</span>
-<span class="mf">1.42108547e-15</span> <span class="mf">7.15523059e-02</span>
-<span class="mf">7.10542736e-16</span> <span class="mf">7.15523059e-02</span>
-<span class="mf">3.55271368e-16</span> <span class="mf">8.46976941e-02</span>
-</pre></div>
-</div>
-<p>It is easier to see the trend if we make a plot:</p>
+<p>It is easier to see the behavior if we make a plot of the output:</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/error_plot.png"><img alt="_images/error_plot.png" src="_images/error_plot.png" style="width: 80%;" /></a>
 </figure>
@@ -363,9 +333,11 @@ machine epsilon.</p></li>
 </ul>
 </section>
 <section id="testing-for-equality">
-<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this headline">¶</a></h2>
+<h3>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this headline">¶</a></h3>
 <p>Because of roundoff error, we should never exactly compare two floating point numbers,
-but instead ask they they agree within some tolerance.</p>
+but instead ask they they agree within some tolerance, e.g., test equality as:</p>
+<div class="math notranslate nohighlight">
+\[| x - y | &lt; \epsilon\]</div>
 <p>For example:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
@@ -389,7 +361,7 @@ but instead ask they they agree within some tolerance.</p>
 </div>
 </section>
 <section id="minimizing-roundoff">
-<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this headline">¶</a></h2>
+<h3>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this headline">¶</a></h3>
 <p>Consider subtracting the square of two numbers – taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
 <p>Instead of doing:</p>
 <div class="math notranslate nohighlight">
@@ -463,8 +435,16 @@ single-precision constant.</p>
 </div>
 </div>
 </section>
+</section>
+<section id="summation-algorithms">
+<h2>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>Summing a sequence of numbers is a common place where roundoff error
+comes into play, especially if the numbers all vary in magnitude and
+you do not attempt to add them in a sorted fashion.  There are a
+number of different summation algorithms that keep track of the loss
+due to roundoff and compensate the sum, for example <a class="reference external" href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm#See_also">the Kahan summation algorithm</a>.</p>
 <section id="special-numbers">
-<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this headline">¶</a></h2>
+<h3>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this headline">¶</a></h3>
 <p>IEEE 754 defines a few special quantities:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) is the result of <code class="docutils literal notranslate"><span class="pre">0.0/0.0</span></code> or <code class="docutils literal notranslate"><span class="pre">std::sqrt(-1.0)</span></code></p></li>
@@ -473,12 +453,13 @@ single-precision constant.</p>
 </ul>
 </section>
 <section id="trapping-floating-point-exceptions">
-<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this headline">¶</a></h2>
+<h3>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this headline">¶</a></h3>
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>this example is based on Yakowitz &amp; Szidarovszky</p>
 </dd>
 </dl>
+</section>
 </section>
 </section>
 
