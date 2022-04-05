@@ -448,6 +448,22 @@ then you should define all three.</p>
 <p>There are a wide range of other capabilities we could imagine adding
 to this class to make it easier to work with vectors.  We’ll explore some
 of them in our homework.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Try overloading <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> so we can read directly into a <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object, e.g.,</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Your function should look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">friend</span> <span class="n">std</span><span class="p">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="ow">is</span><span class="p">,</span> <span class="n">Vector2d</span> <span class="o">&amp;</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> is not <code class="docutils literal notranslate"><span class="pre">const</span></code>, since we will be modifying it.</p>
+<p>You will want to read 2 pieces of data from the input stream and directly
+set <code class="docutils literal notranslate"><span class="pre">v.x</span></code> and <code class="docutils literal notranslate"><span class="pre">v.y</span></code>.</p>
+</div>
 </section>
 
 
