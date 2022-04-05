@@ -273,7 +273,7 @@ Next we need to add a handler to deal with the exception:
 
 .. code:: c++
 
-   signal (SIGFPE, fpe_handler);
+   signal(SIGFPE, fpe_handler);
 
 Here, ``SIGFPE`` is the standard name for a floating point exception,
 and ``fpe_handler`` is the name of a function that will be called when
