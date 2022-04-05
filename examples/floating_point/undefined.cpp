@@ -1,8 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <csignal>
-#include <cfenv>
-#include <execinfo.h>
 
 double trouble(double x) {
     return std::sqrt(x);
