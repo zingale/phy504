@@ -39,7 +39,7 @@ Since the number is stored in binary, we can think about expanding a number in p
 
 In fact, ``0.1`` cannot be exactly represented in floating point:
 
-.. literalinclude:: ../../floating_point/simple_roundoff.cpp
+.. literalinclude:: ../../examples/floating_point/simple_roundoff.cpp
    :language: c++
    :caption: ``simple_roundoff.cpp
 
