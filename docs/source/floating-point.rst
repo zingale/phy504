@@ -232,6 +232,8 @@ single-precision constant.
    :language: c++
    :caption: ``squareroots.cpp``
 
+Notice that we get several more significant digits correct when we compute it with
+the second formulation compared to the original form.
 
 Summation algorithms
 --------------------
