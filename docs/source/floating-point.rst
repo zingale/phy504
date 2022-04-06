@@ -76,6 +76,7 @@ Note that this is a relative error, so for a number like ``1000`` we could only 
    \mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}
       {|\mbox{true number}|} \le \epsilon
 
+Note that there are `varying definitions of machine epsilon <https://en.wikipedia.org/wiki/Machine_epsilon#Variant_definitions>`_ which differ by a factor of 2.
 
 Range
 -----
@@ -94,6 +95,16 @@ converting to base 10, this is
 .. math::
 
    \sim 10^{-308} \mbox{ to } \sim 10^{308}
+
+
+Reporting values
+----------------
+
+We can use ``std::numeric_limits<double>`` to query these floating point properties:
+
+.. literalinclude:: ../../examples/floating_point/limits.cpp
+   :language: c++
+   :caption: ``limits.cpp``
 
 
 
