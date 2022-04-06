@@ -218,7 +218,7 @@ We can alternately rewrite this to avoid the subtraction of two close numbers:
 
 .. math::
 
-   \sqrt{x + 1} - \sqrt{x} = ()\sqrt{x + 1} - \sqrt{x})
+   \sqrt{x + 1} - \sqrt{x} = (\sqrt{x + 1} - \sqrt{x})
         \left ( \frac{\sqrt{x+1} + \sqrt{x}}{\sqrt{x+1} + \sqrt{x}} \right )
         = \frac{1}{\sqrt{x+1} + \sqrt{x}}
 
