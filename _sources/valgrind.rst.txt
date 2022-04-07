@@ -13,6 +13,11 @@ Usually you will run your code through valgrind even if there are no
 apparently bugs, just to ensure that you didn't miss anything.  If you
 know you have bugs, valgrind can help you find them.
 
+We have not (yet) been doing manually memory management (because
+modern C++ really makes it rare that we need to), so this greatly
+reduces our chance of memory leaks.  But if we did, valgrind would be
+able to tell us if we didn't free up any memory.
+
 
 Uninitialized variables
 =======================
