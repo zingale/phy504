@@ -133,6 +133,8 @@ Spring 2022
    testing
    cxx-unit-tests
    cxx-convergence-tests
+   valgrind
+   debugging
 
 .. toctree::
    :maxdepth: 1
