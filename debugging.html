@@ -22,6 +22,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -140,6 +142,8 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="valgrind.html">Valgrind</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Debugging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-integrating-a-function">Example: integrating a function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bugs">bugs!</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gdb">gdb</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#vs-code">VS Code</a></li>
 </ul>
@@ -186,18 +190,162 @@
              
   <section id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p><em>Every code has at least one bug and one extra line.  Apply recursively.</em></p>
+</div></blockquote>
 <p>A debugger lets you step through your code one line at a time and
 examine the state of any objects.  This can help you understand why
 the code is not producing the results you expect.</p>
 <p>We’ll look at two ways to debug.  One on the command line using <code class="docutils literal notranslate"><span class="pre">gdb</span></code>
 and the other in VS Code directly.</p>
+<section id="example-integrating-a-function">
+<h2>Example: integrating a function<a class="headerlink" href="#example-integrating-a-function" title="Permalink to this headline">¶</a></h2>
+<p>Let’s consider writing a program to compute the integral of a function:</p>
+<div class="math notranslate nohighlight">
+\[I = \int_a^b f(x) dx\]</div>
+<p>In your calculus class, you learned that you can approximate an integral
+by dividing it into slabs and then adding up the area of each of those slabs:</p>
+<div class="math notranslate nohighlight">
+\[I = \int_a^b f(x) dx = \lim_{\Delta x\rightarrow 0} \sum_{i=1}^N f(x_i) \Delta x\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is defined such that <span class="math notranslate nohighlight">\(N = (b - a)/\Delta x\)</span>.</p>
+<p>If we use just a single interval, this looks like:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/rectangle_N1.png"><img alt="_images/rectangle_N1.png" src="_images/rectangle_N1.png" style="width: 80%;" /></a>
+</figure>
+<p>and the integral would be:</p>
+<div class="math notranslate nohighlight">
+\[I \approx f(a)(b-a)\]</div>
+<p>We can do slighly better by connecting the two endpoints:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/trapezoid_N1.png"><img alt="_images/trapezoid_N1.png" src="_images/trapezoid_N1.png" style="width: 80%;" /></a>
+</figure>
+<p>This looks like a trapezoid, and therefore this is called the <em>trapezoid rule</em>
+and has the integral:</p>
+<div class="math notranslate nohighlight">
+\[I \approx \frac{1}{2} (b -a) \left(f(a) + f(b)\right)\]</div>
+<p>To do better, we add intervals, for example, with <span class="math notranslate nohighlight">\(N = 6\)</span>, we have:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/trapezoid_N6.png"><img alt="_images/trapezoid_N6.png" src="_images/trapezoid_N6.png" style="width: 80%;" /></a>
+</figure>
+<p>and the integral approximation is:</p>
+<div class="math notranslate nohighlight">
+\[I = \frac{1}{2} \Delta x \sum_{i = 1}^N \left (f(x_i) + f(x_{i+1})\right)\]</div>
+<p>This is called the <em>compound trapezoid rule</em></p>
+</section>
+<section id="bugs">
+<h2>bugs!<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a buggy implementation of integrating</p>
+<div class="math notranslate nohighlight">
+\[I = \int_0^{2\pi} \sin^2(x) dx\]</div>
+<p>We know that the answer is <span class="math notranslate nohighlight">\(I = \pi\)</span>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 64 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">integrate.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">integrate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xleft</span><span class="p">{</span><span class="n">xmin</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">fleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xleft</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xright</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">fright</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">xright</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">fright</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xright</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">I</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fright</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">xleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xright</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">fleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fright</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;enter the number of intervals: &quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">I</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">{</span><span class="mf">2.0</span><span class="o">*</span><span class="n">M_PI</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">integrate</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;integral is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>There is <em>more than one bug</em>.</p>
+<p>When we run this with 10 intervals, we get a result of <code class="docutils literal notranslate"><span class="pre">0</span></code> – that’s clearly not correct!</p>
+<p>We want to learn how to use a debugger to help us locate any issues.</p>
+</section>
 <section id="gdb">
 <h2>gdb<a class="headerlink" href="#gdb" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.sourceware.org/gdb/documentation/">gdb</a> is the GNU debugger.</p>
+<p><a class="reference external" href="https://www.sourceware.org/gdb/documentation/">gdb</a> is the GNU debugger.  This runs on the command line and
+let’s us:</p>
+<ul class="simple">
+<li><p>set breakpoints in the code where the execution pauses</p></li>
+<li><p>step line-by-line through the code, diving into, or skipping over functions</p></li>
+<li><p>inspect the value of any objects</p></li>
+</ul>
+<p>Here’s a summary of some useful commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code> : run the code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span></code> : set a break point (give the line number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code> : execute the next instruction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">next</span></code> : run the next line of code without diving into functions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> : show the code (give a line number to show code in that region)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info</span> <span class="pre">breakpoints</span></code> : show the current break points</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bt</span></code> : show a backtrace</p></li>
+</ul>
+<p>for most of these commands, we can just use the first letter, like <code class="docutils literal notranslate"><span class="pre">b</span></code> instead of <code class="docutils literal notranslate"><span class="pre">break</span></code>.</p>
+<p>First we compile the code with the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++ -g -o integrate integrate.cpp</span>
+</pre></div></div><p>then we run it though <code class="docutils literal notranslate"><span class="pre">gdb</span></code> as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">gdb ./integrate</span>
+</pre></div></div><p>Let’s set a breakpoint at line <code class="docutils literal notranslate"><span class="pre">21</span></code> – that’s the start of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in the <code class="docutils literal notranslate"><span class="pre">integrate()</span></code> function.
+And then let’s run the code up to then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt2:before {
+  content: "(gdb) ";
+}
+</style><span class="prompt2">b 21</span>
+<span class="prompt2">run</span>
+</pre></div></div><p>we can see where we are using <code class="docutils literal notranslate"><span class="pre">l</span></code> and print out a variable with <code class="docutils literal notranslate"><span class="pre">p</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt2">l</span>
+<span class="prompt2">p xleft</span>
+<span class="prompt2">p fleft</span>
+</pre></div></div><p>Now let’s step through the code and see if we can understand why <code class="docutils literal notranslate"><span class="pre">I</span></code> is not changing from 0, as well as whether
+there are any other bugs…</p>
 </section>
 <section id="vs-code">
 <h2>VS Code<a class="headerlink" href="#vs-code" title="Permalink to this headline">¶</a></h2>
-<p>We can <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging">debug directly in VS code</a></p>
+<p>We can <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging">debug directly in VS code</a>.  The same concepts
+described above apply.  Let’s work our way through this.</p>
 </section>
 </section>
 
