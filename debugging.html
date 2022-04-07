@@ -8,8 +8,8 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -139,7 +139,11 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Unit Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="valgrind.html">Valgrind</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Debugging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Debugging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gdb">gdb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vs-code">VS Code</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -182,6 +186,19 @@
              
   <section id="debugging">
 <h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<p>A debugger lets you step through your code one line at a time and
+examine the state of any objects.  This can help you understand why
+the code is not producing the results you expect.</p>
+<p>We’ll look at two ways to debug.  One on the command line using <code class="docutils literal notranslate"><span class="pre">gdb</span></code>
+and the other in VS Code directly.</p>
+<section id="gdb">
+<h2>gdb<a class="headerlink" href="#gdb" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.sourceware.org/gdb/documentation/">gdb</a> is the GNU debugger.</p>
+</section>
+<section id="vs-code">
+<h2>VS Code<a class="headerlink" href="#vs-code" title="Permalink to this headline">¶</a></h2>
+<p>We can <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging">debug directly in VS code</a></p>
+</section>
 </section>
 
 
