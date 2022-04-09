@@ -83,7 +83,9 @@ We know that the answer is :math:`I = \pi`.
    :language: c++
    :caption: ``integrate.cpp``
 
-There is *more than one bug*.
+.. tip::
+
+   There is *more than one bug*.
 
 When we run this with 10 intervals, we get a result of ``0`` -- that's clearly not correct!
 
@@ -106,7 +108,11 @@ Here's a summary of some useful commands:
 
 * ``run`` : run the code
 
+* ``continue`` : resume execution
+
 * ``break`` : set a break point (give the line number)
+
+* ``print`` : print a variable's value (give the variable name)
 
 * ``step`` : execute the next instruction
 
