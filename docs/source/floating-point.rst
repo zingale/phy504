@@ -364,4 +364,27 @@ which gives:
     trouble(double) at /home/zingale/classes/phy504/examples/floating_point/undefined_trap.cpp:23
 
 
+.. note::
+
+   On the MathLab machines, the stack trace seems to include an offset, like:
+
+   ::
+
+      floating point exception, signal 8
+      0: ./undefined_trap(+0xc03) [0x561d8799dc03]
+      1: /lib/x86_64-linux-gnu/libc.so.6(+0x3ef10) [0x7f5461e3df10]
+      2: /lib/x86_64-linux-gnu/libm.so.6(+0x11397) [0x7f5462201397]
+      3: ./undefined_trap(+0xccf) [0x561d8799dccf]
+      4: ./undefined_trap(+0xd21) [0x561d8799dd21]
+      5: /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7) [0x7f5461e20c87]
+      6: ./undefined_trap(+0xaaa) [0x561d8799daaa]
+      Aborted (core dumped)
+
+   and we need to use that offset instead with ``addr2line``, like:
+
+   .. prompt:: bash
+
+      addr2line -a -f -e ./undefined_trap +0xcd5
+
+
 .. [#f1] this example is based on Yakowitz & Szidarovszky
