@@ -140,6 +140,8 @@ Spring 2022
    :maxdepth: 1
    :caption: Digging Deeper into C++
 
+   object-oriented
+
 .. toctree::
    :maxdepth: 1
    :caption: Homework
