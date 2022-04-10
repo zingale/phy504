@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vectors &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Copy, Assignment, and Destructors &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="More Vectors" href="cxx-more-vectors.html" />
-    <link rel="prev" title="C++ Datatypes" href="cxx-datatypes.html" /> 
+    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="prev" title="this" href="this-class.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -94,13 +94,9 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Vectors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#looping">Looping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-averaging-grades">Example: averaging grades</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
@@ -146,10 +142,10 @@
 <li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Copy, Assignment, and Destructors</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -180,9 +176,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Vectors</li>
+      <li>Copy, Assignment, and Destructors</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-vectors.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/copy_and_assignment.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -190,111 +186,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="vectors">
-<h1>Vectors<a class="headerlink" href="#vectors" title="Permalink to this headline">¶</a></h1>
-<p>C++ has the <em>standard template library</em> or STL which adds an immense
-amount of functionality to the language.  Let’s look at
-<code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.  A <code class="docutils literal notranslate"><span class="pre">vector</span></code> is a container that can hold data of
-the same type (e.g., <code class="docutils literal notranslate"><span class="pre">double</span></code>).  It differs from an array that you
-might have used in other languages in that it is not a fixed size –
-it can grow as needed to hold more data.</p>
-<p>Vectors are very useful to store data and loop over it, etc.</p>
-<p>Information on the properties of C++ vectors can be found at the
-<a class="reference external" href="https://www.cplusplus.com/reference/vector/vector/">CPlusPlus vector page</a>.</p>
-<p>From that description, we see that vectors:</p>
-<ul class="simple">
-<li><p>store the data contiguously in memory</p></li>
-<li><p>can grow as needed (but occasionally, this means creating a new
-vector of larger size and copying data into it – a slow operation)</p></li>
-<li><p>have a lot of functions that can work on them</p></li>
-<li><p>can access any location directly</p></li>
-<li><p>are very efficient at adding data to the end, but not efficient for
-inserting data in the middle</p></li>
-</ul>
-<p>Your text has an example of creating a vector to store student grades
-and then computing an average.  We’ll write our own version.</p>
-<p>First lets see how to create a vector and add some data to it.</p>
-<p>Here’s a simple example:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_vector.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+  <section id="copy-assignment-and-destructors">
+<h1>Copy, Assignment, and Destructors<a class="headerlink" href="#copy-assignment-and-destructors" title="Permalink to this headline">¶</a></h1>
+<p>The copy constructor is invoked when we do something like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="nf">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">;</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">vec2</span><span class="p">(</span><span class="n">vec</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">vec3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In both of these cases, we need to create a separate <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> with
+its own memory and copy the data over.  The copy constructor has
+the function signature:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The assignment operator is invoked when we do something like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="nf">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="n">Vector2d</span><span class="w"> </span><span class="n">vec2</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">container</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">container</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">-1.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">container</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">15.3</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">container</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">3.14159</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">container</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-
-<span class="p">}</span><span class="w"></span>
+<span class="n">vec2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The assignment operator has the signature:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The reason that the assignment operator returns a reference is to
+allow us to chain assignment, e.g.:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v3</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
-<p>Notice the following:</p>
-<ul class="simple">
-<li><p>We specify the data type when creating a vector</p></li>
-<li><p>We use <code class="docutils literal notranslate"><span class="pre">push_back</span></code> to add data to the end of a vector.  Here we
-are using the <code class="docutils literal notranslate"><span class="pre">.</span></code> operator to indicate that we are performing the
-<code class="docutils literal notranslate"><span class="pre">push_back</span></code> on the vector <code class="docutils literal notranslate"><span class="pre">container</span></code> that we created.</p></li>
-<li><p>We access elements of a vector using <code class="docutils literal notranslate"><span class="pre">[]</span></code> with an index, and that
-indices start at 0.</p></li>
-</ul>
-<section id="looping">
-<h2>Looping<a class="headerlink" href="#looping" title="Permalink to this headline">¶</a></h2>
-<p>Often we will want to loop over the elements contained in a vector,
-and C++ provides a <a class="reference external" href="https://en.cppreference.com/w/cpp/language/range-for">range-based loop</a> for this
-purpose.  For example to loop over all elements and output them to the
-terminal, we could do:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">container</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Unless our class is complicated and manages its own memory (e.g.,
+via pointers), we don’t need to write these functions.  The
+compiler will automatically generate them for us.</p>
+<p>This is the <a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of 3</a>
+(or Rule of 5, as we’ll see later) that we previously mentioned.</p>
 </div>
-<p>Here we see a new keyword, <code class="docutils literal notranslate"><span class="pre">auto</span></code>.  Each pass through this loop,
-<code class="docutils literal notranslate"><span class="pre">e</span></code> will take on the next value in our <code class="docutils literal notranslate"><span class="pre">vector</span></code> called
-<code class="docutils literal notranslate"><span class="pre">container</span></code>.  The body of the loop is contained in the <code class="docutils literal notranslate"><span class="pre">{...}</span></code>.</p>
-<p>C++ requires that we declare the data type of
-<code class="docutils literal notranslate"><span class="pre">e</span></code>.  In this case, the compiler knows that it will have to be a
-<code class="docutils literal notranslate"><span class="pre">double</span></code>, since the <code class="docutils literal notranslate"><span class="pre">vector</span></code> is a vector of <code class="docutils literal notranslate"><span class="pre">double</span></code> s, so we can
-use the <code class="docutils literal notranslate"><span class="pre">auto</span></code> keyword to have the compiler automatically deduce the
-data type.</p>
-<p>Let’s try this in our code.</p>
-<p>There is another more classic type of loop in C++ that takes the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">start</span><span class="p">;</span><span class="w"> </span><span class="n">end</span><span class="p">;</span><span class="w"> </span><span class="n">incremement</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// do stuff</span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<p>For example, to loop from 0 to 9, we could do:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="c1">// do stuff depending on i</span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>Try out the loop above, printing out the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> each iteration.</p>
-</div>
-</section>
-<section id="example-averaging-grades">
-<h2>Example: averaging grades<a class="headerlink" href="#example-averaging-grades" title="Permalink to this headline">¶</a></h2>
-<p>You text has an example of reading and averaging student grades.  It
-uses a few more bits of C++ syntax (like conditional statements) that
-we’ll see in detail shortly.  Let’s look over that code:</p>
-<p><a class="reference external" href="https://github.com/BogCyg/BookCpp/blob/master/Grades/src/main.cpp">https://github.com/BogCyg/BookCpp/blob/master/Grades/src/main.cpp</a></p>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-datatypes.html" class="btn btn-neutral float-left" title="C++ Datatypes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-more-vectors.html" class="btn btn-neutral float-right" title="More Vectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="this-class.html" class="btn btn-neutral float-left" title="this" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

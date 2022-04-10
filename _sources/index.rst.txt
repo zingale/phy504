@@ -141,6 +141,9 @@ Spring 2022
    :caption: Digging Deeper into C++
 
    object-oriented
+   static_and_classes
+   this-class
+   copy_and_assignment
 
 .. toctree::
    :maxdepth: 1
