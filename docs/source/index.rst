@@ -142,8 +142,8 @@ Spring 2022
 
    object-oriented
    inheritance-and-access
-   static_and_classes
    this-class
+   static_and_classes
    copy_and_assignment
 
 .. toctree::
