@@ -190,15 +190,43 @@
              
   <section id="object-oriented-design">
 <h1>Object-Oriented Design<a class="headerlink" href="#object-oriented-design" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 4.1</p>
+</div>
 <p>The use of classes to organize concepts into reusable software objects
 containing data and functions is the hallmark of <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented
 programming</a>.</p>
-<p>Core concepts in OO programming are:</p>
-<ul class="simple">
-<li><p><em>abstraction</em> :</p></li>
-<li><p><em>encapsulation</em> :</p></li>
-<li><p><em>inheritance</em> :</p></li>
-<li><p><em>polymorphism</em> :</p></li>
+<p>Core concepts in OO programming are listed below.  It’s hard to find
+precise definitions of these, and they often seem to overlap a bit
+in what they mean.</p>
+<ul>
+<li><p><em>encapsulation</em> : this means we hide how the data in the class is
+stored.  For example, by making the member data <code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
+<p>There may be <em>setters</em> and <em>getters</em> to access some information, but
+the types of objects that are used are hidden from a user of the
+class.  This allows us to change how we store the data (refactor the
+code) without affecting users of the class.</p>
+</li>
+<li><p><em>inheritance</em> : this means that we can use a class as the <em>base class</em>
+(or <em>superclass</em>) to define new classes.  These new classes <em>inherit</em> all
+of the data and functions of the base, but can also change its behavior as
+needed to work in a new way, specific to the new class.</p></li>
+<li><p><em>abstraction</em> : this works at the level of the interfaces of the
+member functions of the class.  Similar to encapsulation, it hides
+implementation details from the user.</p>
+<p>For example, operator overloading the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator to work with
+our vectors is an example of abstraction.  We used something
+familiar to ourself to work on our vectors without having to know
+how it is implemented in the class.</p>
+<p>Another example comes into play with inheritance, where a base class
+implements the interface that all of the child classes will then
+define for their specific data.</p>
+</li>
+<li><p><em>polymorphism</em> : this is another type of abstraction, and means
+“many forms”.  This typically means that we have functions that know
+how to operate with different types.  Overloading functions and
+operators with the same name is an example of polymorphism.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -211,6 +239,8 @@ here.</p>
 <li><p>encapsulation means <em>information hiding</em></p></li>
 <li><p>abstraction means <em>implementation hiding</em></p></li>
 </ul>
+<p>We’ve already been practicing both of these, even if we didn’t
+explicitly point it out.</p>
 </section>
 
 
