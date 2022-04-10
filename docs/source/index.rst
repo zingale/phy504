@@ -141,6 +141,7 @@ Spring 2022
    :caption: Digging Deeper into C++
 
    object-oriented
+   inheritance-and-access
    static_and_classes
    this-class
    copy_and_assignment

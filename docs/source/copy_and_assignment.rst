@@ -3,6 +3,19 @@ Copy, Assignment, and Destructors
 *********************************
 
 
+.. admonition:: reading
+
+   Cyganek section 4.4
+
+So far, we've been relying on the compiler to provide a default
+copy constructor, assignment operator, and destructor.  As long
+as our data is simple, we can do this, since the compiler will know
+how to work with it.
+
+Here we'll explicitly write this out anyway, just to understand how
+they would look.
+
+We'll use the :ref:`sec:vector2d` ``Vector2d`` class as our example here.
 
 The copy constructor is invoked when we do something like:
 
