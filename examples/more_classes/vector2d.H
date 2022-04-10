@@ -27,6 +27,9 @@ public:
         : x{_x}, y{_y}
     {}
 
+    // the destructor
+
+    ~Vector2d() {std::cout << "in the destructor" << std::endl;};
 
     // copy and assignment constructors -- we don't need to define them, but we
     // explicitly say to use the default
@@ -116,7 +119,7 @@ public:
         return x * vec.x + y * vec.y;
     }
     
-    // << is not a class member, but needs access to the member data
+    // << and >> are not class members, but need access to the member data
 
     friend std::ostream& operator<< (std::ostream& os, const Vector2d& v);
     friend std::istream& operator>> (std::istream& is, Vector2d& v);
