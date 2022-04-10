@@ -81,3 +81,32 @@ is executed.
    given in the `Learn C++ tutorials
    <https://www.learncpp.com/cpp-tutorial/constructors-and-initialization-of-derived-classes/>`_.
 
+Example
+=======
+
+Here's an example of the base ``Quadrilateral`` class and the
+``Rectangle`` class that inherits from it.
+
+.. literalinclude:: ../../example/inheritance/shapes.H
+   :language: c++
+   :caption: ``shapes.H``
+
+A few notes:
+
+* The ``Rectangle`` constructor takes only 2 arguments, since opposite
+  sides of a rectangle are the same length.  We then call the base
+  class constructor to store these in the ``vector sides``,
+  duplicating the information as needed to initialize all 4 sides.
+
+* There is no additional member data in ``Rectangle``, so no further
+  initialization is needed.
+
+* The ``perimeter`` function is general to any quadrilateral, so
+  ``Rectangle`` does not need to define it.
+
+Here's a test driver:
+
+.. literalinclude:: ../../examples/inheritance/test_shapes.cpp
+   :language: c++
+   :caption: ``test_shapes.cpp``
+
