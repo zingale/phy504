@@ -144,6 +144,8 @@
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="static_and_classes.html"><code class="docutils literal notranslate"><span class="pre">static</span></code> and Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Copy, Assignment, and Destructors</a></li>
 </ul>
@@ -188,6 +190,17 @@
              
   <section id="copy-assignment-and-destructors">
 <h1>Copy, Assignment, and Destructors<a class="headerlink" href="#copy-assignment-and-destructors" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 4.4</p>
+</div>
+<p>So far, we’ve been relying on the compiler to provide a default
+copy constructor, assignment operator, and destructor.  As long
+as our data is simple, we can do this, since the compiler will know
+how to work with it.</p>
+<p>Here we’ll explicitly write this out anyway, just to understand how
+they would look.</p>
+<p>We’ll use the <a class="reference internal" href="cxx-vector2d-class.html#sec-vector2d"><span class="std std-ref">Example: Mathematical Vectors</span></a> <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class as our example here.</p>
 <p>The copy constructor is invoked when we do something like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="nf">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 

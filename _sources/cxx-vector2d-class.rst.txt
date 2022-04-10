@@ -1,3 +1,5 @@
+.. _sec:vector2d:
+
 *****************************
 Example: Mathematical Vectors
 *****************************
