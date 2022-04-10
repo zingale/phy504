@@ -147,6 +147,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Inheritance and Access</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#access">Access</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#constructor">Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="static_and_classes.html"><code class="docutils literal notranslate"><span class="pre">static</span></code> and Classes</a></li>
@@ -256,6 +257,43 @@ is executed.</p>
 <p class="admonition-title">Tip</p>
 <p>A nice description of how the constructor of the sub class works is
 given in the <a class="reference external" href="https://www.learncpp.com/cpp-tutorial/constructors-and-initialization-of-derived-classes/">Learn C++ tutorials</a>.</p>
+</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Here’s an example of the base <code class="docutils literal notranslate"><span class="pre">Quadrilateral</span></code> class and the
+<code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> class that inherits from it.</p>
+<p>A few notes:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> constructor takes only 2 arguments, since opposite
+sides of a rectangle are the same length.  We then call the base
+class constructor to store these in the <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">sides</span></code>,
+duplicating the information as needed to initialize all 4 sides.</p></li>
+<li><p>There is no additional member data in <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code>, so no further
+initialization is needed.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">perimeter</span></code> function is general to any quadrilateral, so
+<code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> does not need to define it.</p></li>
+</ul>
+<p>Here’s a test driver:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 65 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_shapes.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;shapes.H&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Quadrilateral</span><span class="w"> </span><span class="n">q</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;perimeter of q = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Rectangle</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;perimenter of r = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;area of r = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>
