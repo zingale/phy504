@@ -59,6 +59,17 @@ The assignment operator has the signature:
 
       v1 = v2 = v3;
 
+Finally, the *destructor* is written as:
+
+   .. code:: c++
+
+      ~Vector2d()
+
+Its job is to clean up any of the memory we allocated.  But for our
+``Vector2d`` class, all the data are automatic variables, so they will
+be deleted when they go out of scope by the stack.  This is the reason
+we really don't need to write a destructor for this class.
+
 .. tip::
 
    Unless our class is complicated and manages its own memory (e.g.,
@@ -68,4 +79,23 @@ The assignment operator has the signature:
    This is the `Rule of 3
    <https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)>`_
    (or Rule of 5, as we'll see later) that we previously mentioned.
+
+Here's an example of our ``Vector2d`` class that explicitly implements
+the copy constructor, assignment operator, and destructor.
+Additionally, we add a print to stdout in each of these so we can see
+when each of them are called.
+
+.. literalinclude:: ../../examples/more_classes/vector2d.H
+   :language: c++
+   :caption: a newer ``vector2d.H``
+
+Here's a driver that exercises them.
+
+.. literalinclude:: ../../examples/more_classes/test_vectors.cpp
+   :language: c++
+   :caption: ``test_vectors.cpp``
+
+Some notes:
+
+* We see that the destructor is called for each of the ``Vector2d`` 's we created.
 
