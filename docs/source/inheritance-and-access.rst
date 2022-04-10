@@ -87,7 +87,7 @@ Example
 Here's an example of the base ``Quadrilateral`` class and the
 ``Rectangle`` class that inherits from it.
 
-.. literalinclude:: ../../example/inheritance/shapes.H
+.. literalinclude:: ../../examples/inheritance/shapes.H
    :language: c++
    :caption: ``shapes.H``
 
