@@ -29,15 +29,14 @@ public:
 
     // the destructor
 
-    ~Vector2d() {std::cout << "in the destructor" << std::endl;}
+    ~Vector2d() {}
 
     // copy and assignment constructors -- we don't need to define them, but we
     // explicitly say to use the default
 
     //Vector2d(const Vector2d& vec) = default;
     Vector2d(const Vector2d& vec)
-        : x(vec.x), y(vec.y)
-        {std::cout << "in the copy constructor" << std::endl;}
+        : x(vec.x), y(vec.y) {}
 
     // assignment here means that we want to set our current class's values to
     // those to the right of the = -- that's the Vector2d coming in through the
@@ -45,7 +44,6 @@ public:
 
     //Vector2d& operator= (const Vector2d& vec) = default;
     Vector2d& operator= (const Vector2d& vec) {
-        std::cout << "in the assignment operator" << std::endl;
         x = vec.x;
         y = vec.y;
         return *this;
@@ -61,7 +59,7 @@ public:
     // operators
 
     // add two vectors
-    
+
     Vector2d operator+ (const Vector2d& vec) {
         Vector2d vec_out(x + vec.x, y + vec.y);
         return vec_out;
@@ -101,6 +99,32 @@ public:
         return vec_out;
     }
 
+    // compound operators
+
+    Vector2d& operator+= (const Vector2d& vec) {
+        x += vec.x;
+        y += vec.y;
+        return *this;
+    }
+
+    Vector2d& operator-= (const Vector2d& vec) {
+        x -= vec.x;
+        y -= vec.y;
+        return *this;
+    }
+
+    Vector2d& operator*= (double a) {
+        x *= a;
+        y *= a;
+        return *this;
+    }
+
+    Vector2d& operator/= (double a) {
+        x /= a;
+        y /= a;
+        return *this;
+    }
+
     // comparison operators
 
     bool operator== (const Vector2d& vec) const {
@@ -118,7 +142,7 @@ public:
     double dot(const Vector2d& vec) {
         return x * vec.x + y * vec.y;
     }
-    
+
     // << and >> are not class members, but need access to the member data
 
     friend std::ostream& operator<< (std::ostream& os, const Vector2d& v);

@@ -143,8 +143,9 @@ Spring 2022
    object-oriented
    inheritance-and-access
    this-class
-   static_and_classes
    copy_and_assignment
+   compound-operators
+   static_and_classes
 
 .. toctree::
    :maxdepth: 1
