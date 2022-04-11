@@ -85,13 +85,13 @@ the copy constructor, assignment operator, and destructor.
 Additionally, we add a print to stdout in each of these so we can see
 when each of them are called.
 
-.. literalinclude:: ../../examples/more_classes/vector2d.H
+.. literalinclude:: ../../examples/more_classes/dtor/vector2d.H
    :language: c++
    :caption: a newer ``vector2d.H``
 
 Here's a driver that exercises them.
 
-.. literalinclude:: ../../examples/more_classes/test_vectors.cpp
+.. literalinclude:: ../../examples/more_classes/dtor/more_test_vectors.cpp
    :language: c++
    :caption: ``test_vectors.cpp``
 
