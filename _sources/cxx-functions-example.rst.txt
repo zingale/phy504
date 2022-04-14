@@ -1,3 +1,5 @@
+.. _sec:more_functions:
+
 **************
 More Functions
 **************
