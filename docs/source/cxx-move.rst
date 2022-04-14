@@ -60,8 +60,11 @@ Here's an example where we use the *move constructor* of a string to steal the d
    :language: c++
    :caption: ``move_example.cpp``
 
-A simple container
-==================
+Allocating memory
+=================
+
+A simple container: attempt I
+=============================
 
 Here's a simple container that manages its own memory (dynamic allocation on the heap),
 via a ``unique_ptr`` -- this is a pointer that the compiler will automatically clean up
@@ -74,13 +77,95 @@ after once it goes out of scope.
 
 First the class:
 
+.. literalinclude:: ../../examples/move/container_basic.H
+   :language: c++
+   :caption: ``container_basic.H``
+
+Now a simple driver that creates a ``Container`` and then creates a new one via copying:
+
+.. literalinclude:: ../../examples/move/test_copy.cpp
+   :language: c++
+   :caption: ``test_copy.cpp``
+
+When we try to compile this, we get:
+
+::
+
+    test_copy.cpp: In function ‘int main()’:
+    test_copy.cpp:15:14: error: use of deleted function ‘Container::Container(const Container&)’
+       15 |     auto b = a;
+          |              ^
+    In file included from test_copy.cpp:3:
+    container_basic.H:9:7: note: ‘Container::Container(const Container&)’ is implicitly deleted because the default definition would be ill-formed:
+        9 | class Container {
+          |       ^~~~~~~~~
+    container_basic.H:9:7: error: use of deleted function ‘std::unique_ptr<_Tp [], _Dp>::unique_ptr(const std::unique_ptr<_Tp [], _Dp>&) [with _Tp = double; _Dp = std::default_delete<double []>]’
+    In file included from /usr/include/c++/11/memory:76,
+                     from container_basic.H:6,
+                     from test_copy.cpp:3:
+    /usr/include/c++/11/bits/unique_ptr.h:723:7: note: declared here
+      723 |       unique_ptr(const unique_ptr&) = delete;
+          |       ^~~~~~~~~~
+
+Here the compiler is telling us that for this class, it the default
+copy constructor would not be correct, so it doesn't create one.  Therefore we need to explicitly write one.
+
+A simple container: attempt II
+==============================
+
+What if we try to implement the copy constructor as:
+
+.. code:: c++
+
+   Container(const Container& c)
+       : _size(c._size), _data(c._data.get()) {}
+
+Here we are using member list initialization to set `_data` to be the
+same pointer as `c._data` -- the ``.get()`` function on a
+``unique_ptr`` returns the underlying pointer to the data.
+
+If we add this, and run with it, we will see:
+
+::
+
+    in parametric constructor
+    0 1 2 3 4 5 6 7 8 9 
+
+    0 0 0 0 0 0 0 0 0 0 
+
+    0 0 0 0 0 0 0 0 0 0 
+
+    free(): double free detected in tcache 2
+    Aborted (core dumped)
+
+Two things happened here: first we did a *shallow-copy* of the data.
+The two objects shared the same underlying data region, so anything we
+did to one was reflected in the other.  And second, when the
+destructor was called at the very end, it tried to free the data
+pointer twice.
+
+
+A simple container: attempt III
+===============================
+
+We want the copy constructor to do a *deep copy* -- it should create
+its own memory space and copy the data, element-by-element from the
+input ``Container`` to the new one.
+
+C++ provides a `memcpy
+<https://www.cplusplus.com/reference/cstring/memcpy/>`_ function to
+copy from one buffer to another.  We'll use that.
+
+Here's a final implementation of the class.  This also implements the
+move operations, which we'll talk about in a minute.
+
 .. literalinclude:: ../../examples/move/container.H
    :language: c++
    :caption: ``container.H``
 
-Now the tests
+If we use this version in ``test_copy.cpp``, then it works as expected.
 
-.. literalinclude:: ../../examples/move/test_container.cpp
-   :language: c++
-   :caption: ``test_container.cpp``
+
+Moving
+======
 
