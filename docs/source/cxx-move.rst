@@ -165,7 +165,46 @@ move operations, which we'll talk about in a minute.
 
 If we use this version in ``test_copy.cpp``, then it works as expected.
 
+Also take a look at the assignment operator.  We need to be careful
+that we don't try to do a copy when if we try something like:
+
+.. code:: c++
+
+   Container a(10);
+
+   a = a;
 
 Moving
 ======
 
+The latest iteration of the class also implements the move constructor:
+
+.. code:: c++
+
+   Container(Container&& c) noexcept
+       : _size(0), _data(nullptr)
+   {
+       std::cout << "in move constructor" << std::endl;
+
+       std::swap(_size, c._size);
+
+       // swap the data pointers
+
+       _data.swap(c._data);
+   }
+
+This first invalidates the pointer of the data region and then it uses
+``std::swap()`` to swap the size from the incoming ``Container`` to
+ours and also does a swap on the pointers.
+
+At the end of this operation, the incoming ``Container c`` will be invalid.
+
+The move assignment works in a similar fashion.
+
+Here's a driver that exercises all of these functions:
+
+.. literalinclude:: ../../examples/move/test_container.cpp
+   :language: c++
+   :caption: ``test_container.cpp``
+
+There are prints in each of the functions so we can see where each comes into play.
