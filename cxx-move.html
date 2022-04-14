@@ -150,7 +150,7 @@
 <li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Move Semantics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#right-value-references">Right-value references</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-container">A simple container</a></li>
 </ul>
 </li>
 </ul>
@@ -215,10 +215,11 @@ copy.  The C++ compiler will know when it can use a move and
 automatically do it for you.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This is where the Rule of 3 becomes the Rule of 5: now we consider
-the (1) copy constructor, (2) assignment operator, (3)
-destructor, (4) move constructor, (5) move assignment operator.  If
-we write any one of these, we should write all 5.</p>
+<p>This is where the <a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of 3</a>
+becomes the <em>Rule of 5</em>: now we consider the (1) copy
+constructor, (2) assignment operator, (3) destructor, (4) move
+constructor, (5) move assignment operator.  If we write any one of
+these, we should write all 5.</p>
 </div>
 <section id="right-value-references">
 <h2>Right-value references<a class="headerlink" href="#right-value-references" title="Permalink to this headline">¶</a></h2>
@@ -226,12 +227,35 @@ we write any one of these, we should write all 5.</p>
 references</em> or <em>rvalue references</em>.  These use <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and as the name
 suggests, they can appear to the right of the assignment operator,
 <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> here does not mean “reference-to-a-reference”, it is just the
+syntax that was chosen for an rvalue reference.</p>
+</div>
 <p>The object that an rvalue reference is a temporary object and it is assumed that
 it will never be used again, therefore we are free to steal its data.
 This is sometimes called a <em>destructive read</em></p>
+<p>We can convert an object into an rvalue reference (indicating that it can be moved) via <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/move">std::move</a>.</p>
+<p>Here’s an example where we use the <em>move constructor</em> of a string to steal the data of the input string:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 72 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">move_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="s">&quot;test&quot;</span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">steal</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">));</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;steal = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">steal</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </section>
-<section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<section id="a-simple-container">
+<h2>A simple container<a class="headerlink" href="#a-simple-container" title="Permalink to this headline">¶</a></h2>
 <p>Here’s a simple container that manages its own memory (dynamic allocation on the heap),
 via a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> – this is a pointer that the compiler will automatically clean up
 after once it goes out of scope.</p>
@@ -241,8 +265,8 @@ after once it goes out of scope.</p>
 Here’s a discussion on <a class="reference external" href="https://stackoverflow.com/questions/16711697/is-there-any-use-for-unique-ptr-with-array">unique pointers vs arrays</a>.</p>
 </div>
 <p>First the class:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 72 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -387,8 +411,8 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 </div>
 </div>
 <p>Now the tests</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_move.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 74 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
