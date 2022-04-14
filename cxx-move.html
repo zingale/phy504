@@ -148,7 +148,10 @@
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Move Semantics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Move Semantics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#right-value-references">Right-value references</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -191,6 +194,17 @@
              
   <section id="move-semantics">
 <h1>Move Semantics<a class="headerlink" href="#move-semantics" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<p>Cyganek section 4.5</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B11#Rvalue_references_and_move_constructors">Rvalue references and move constructors</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We are discussing this for completeness, but move semantics can be complicated.
+I’ll show a “simple” example of a class that manages its own memory and implements
+move semantics.</p>
+</div>
 <p>C++11 introduced move semantics, which make it possible for objects to
 take the data region from one another, instead of having to copy.  We
 first saw this when we did our orbit integrator and returned a
@@ -205,6 +219,16 @@ the (1) copy constructor, (2) assignment operator, (3)
 destructor, (4) move constructor, (5) move assignment operator.  If
 we write any one of these, we should write all 5.</p>
 </div>
+<section id="right-value-references">
+<h2>Right-value references<a class="headerlink" href="#right-value-references" title="Permalink to this headline">¶</a></h2>
+<p>To allow for move operations, C++11 introduced <em>right-value
+references</em> or <em>rvalue references</em>.  These use <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and as the name
+suggests, they can appear to the right of the assignment operator,
+<code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<p>The object that an rvalue reference is a temporary object and it is assumed that
+it will never be used again, therefore we are free to steal its data.
+This is sometimes called a <em>destructive read</em></p>
+</section>
 </section>
 
 
