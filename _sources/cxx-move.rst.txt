@@ -46,3 +46,28 @@ it will never be used again, therefore we are free to steal its data.
 This is sometimes called a *destructive read*
 
 
+
+Example
+=======
+
+Here's a simple container that manages its own memory (dynamic allocation on the heap),
+via a ``unique_ptr`` -- this is a pointer that the compiler will automatically clean up
+after once it goes out of scope.
+
+.. tip::
+
+   We previously used ``std::vector`` for this role, and that remains a good option.
+   Here's a discussion on `unique pointers vs arrays <https://stackoverflow.com/questions/16711697/is-there-any-use-for-unique-ptr-with-array>`_.
+
+First the class:
+
+.. literalinclude:: ../../examples/move/container.H
+   :language: c++
+   :caption: ``container.H``
+
+Now the tests
+
+.. literalinclude:: ../../examples/move/simple_move.cpp
+   :language: c++
+   :caption: ``simple_move.cpp``
+
