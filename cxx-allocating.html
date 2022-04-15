@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example: Matrix &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Allocating Memory &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Strings" href="cxx-strings.html" />
-    <link rel="prev" title="More Vectors" href="cxx-more-vectors.html" /> 
+    <link rel="next" title="Example: A Simple Container" href="cxx-simple-container.html" />
+    <link rel="prev" title="Move Semantics" href="cxx-move.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -94,11 +94,11 @@
 <li class="toctree-l1"><a class="reference internal" href="random-tools.html">Some Random Unix Tools</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
@@ -142,14 +142,14 @@
 <li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-move.html">Move Semantics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-allocating.html">Allocating Memory</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Allocating Memory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-simple-container.html">Example: A Simple Container</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
@@ -181,9 +181,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Example: Matrix</li>
+      <li>Allocating Memory</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-matrix-example.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-allocating.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -191,95 +191,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="example-matrix">
-<h1>Example: Matrix<a class="headerlink" href="#example-matrix" title="Permalink to this headline">¶</a></h1>
-<p id="sec-cxx-matrix">Let’s look at an example from your text that create a very simple matrix container as a vector-of-vectors.</p>
-<p>We’ll write our own version of what the text does.</p>
+  <section id="allocating-memory">
+<h1>Allocating Memory<a class="headerlink" href="#allocating-memory" title="Permalink to this headline">¶</a></h1>
+<p>In C++ we can allocate memory using <code class="docutils literal notranslate"><span class="pre">new</span></code> and then explicitly free it up with <code class="docutils literal notranslate"><span class="pre">delete</span></code>.
+But this can be dangerous – a very frequent bug is forgetting to free up memory that you
+manually allocated.</p>
+<p>Instead, we’d like to be able to have the memory freed automatically for us
+when the object managing it goes out of scope.  This is where a unique pointer
+comes into play.</p>
+<p><code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> is a <em>smart pointer</em> that manages another object and cleans up
+after it when the <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> goes out of scope.</p>
+<p>In particular, <a class="reference external" href="https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique">make_unique</a>
+is used to create an object and wrap it in <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code>.</p>
+<p>Here’s how we can allocate memory for an array of doubles and wrap it in a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code>
+(we also compare to the old C++ way here):</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_matrix.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unique_pointer.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-
-<span class="c1">// a type alias -- we can now use RealVec to mean a vector of doubles</span>
-
-<span class="k">using</span><span class="w"> </span><span class="n">RealVec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
-
-<span class="c1">// a RealMatrix is a vector of vectors of doubles</span>
-
-<span class="k">using</span><span class="w"> </span><span class="n">RealMatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">RealVec</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">RealMatrix</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                     </span><span class="p">{</span><span class="w">  </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">  </span><span class="mf">4.1</span><span class="p">},</span><span class="w"></span>
-<span class="w">                     </span><span class="p">{</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">,</span><span class="w">  </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-3.1</span><span class="p">},</span><span class="w"></span>
-<span class="w">                     </span><span class="p">{</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-6.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.2</span><span class="p">,</span><span class="w">  </span><span class="mf">4.0</span><span class="p">}</span><span class="w"></span>
-<span class="w">                    </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// new way to allocate</span>
 
-<span class="w">    </span><span class="c1">// add another row</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">M</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">});</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// let&#39;s compute the trace (sum over the diagonal)</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">trace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">trace</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;trace = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">trace</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// old C++ way</span>
 
-<span class="w">    </span><span class="c1">// now the sum of all the off-diagonal terms</span>
+<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">data_old</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">[</span><span class="n">size</span><span class="p">];</span><span class="w"></span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">off_diag_sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">r</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">off_diag_sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">];</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">data_old</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;off-diagonal sum = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">off_diag_sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">data_old</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Notice that we use some type aliases to make it easy to reuse this datatype.</p>
+<p>Why would we want to do this?
+Compared to <code class="docutils literal notranslate"><span class="pre">std::array</span></code>, this allows us to specify the size at
+runtime, instead of compile time.  Compared to <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, there
+is no additional overhead to allow the array to grow, since its size
+is fixed once it is created.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Test this example with valgrind to see if any memory is not freed.
+Remove the <code class="docutils literal notranslate"><span class="pre">delete</span></code> and try again.  Notice that the
+<code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> version was freed when it went out of scope.</p>
 </div>
-<p>Some comments:</p>
-<ul class="simple">
-<li><p>For our matrix <code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">M[0]</span></code> is the first row.  It is a vector,
-and the columns in that row are all stored together in that vector.
-This is an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Row-_and_column-major_order">row major ordering</a> of the
-data.</p></li>
-<li><p>To access an element at row <code class="docutils literal notranslate"><span class="pre">r</span></code> and column <code class="docutils literal notranslate"><span class="pre">c</span></code>, we do:
-<code class="docutils literal notranslate"><span class="pre">M[r][c]</span></code>.  The first indexing, <code class="docutils literal notranslate"><span class="pre">M[r]</span></code> gives us the vector that
-holds row <code class="docutils literal notranslate"><span class="pre">r</span></code> ‘s data.  Then we just index that vector with
-<code class="docutils literal notranslate"><span class="pre">[c]</span></code> to get the position corresponding to the column we want.</p></li>
-<li><p>When we <code class="docutils literal notranslate"><span class="pre">push_back()</span></code> onto the matrix, we are adding a whole new row.</p></li>
-<li><p>When we loop over elements, we first loop over rows (outer loop) and
-then we loop over the columns in that row – that data is
-contiguous, so this looping will make the best use of memory cache.</p></li>
-<li><p>We do nothing here to enforce that every row has the same number of
-elements – this can potentially be unsafe if we try to access
-beyond the limits of a row.  We’ll fix this later.</p></li>
-<li><p>Both of our operations involve sums over elements – we are careful
-to first initialize the sum to <code class="docutils literal notranslate"><span class="pre">0</span></code> before adding to it.</p></li>
-</ul>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-more-vectors.html" class="btn btn-neutral float-left" title="More Vectors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-strings.html" class="btn btn-neutral float-right" title="Strings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-move.html" class="btn btn-neutral float-left" title="Move Semantics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-simple-container.html" class="btn btn-neutral float-right" title="Example: A Simple Container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
