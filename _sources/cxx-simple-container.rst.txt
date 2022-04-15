@@ -100,8 +100,8 @@ We want the copy constructor to do a *deep copy* -- it should create
 its own memory space and copy the data, element-by-element from the
 input ``Container`` to the new one.
 
-C++ provides a `memcpy
-<https://www.cplusplus.com/reference/cstring/memcpy/>`_ function to
+C++ provides a `memcpy function
+<https://www.cplusplus.com/reference/cstring/memcpy/>`_ to
 copy from one buffer to another.  We'll use that.
 
 Here's a final implementation of the class.  This also implements the
