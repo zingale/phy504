@@ -270,17 +270,49 @@ comes into play.</p>
 after it when the <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> goes out of scope.</p>
 <p>In particular, <a class="reference external" href="https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique">make_unique</a>
 is used to create an object and wrap it in <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code>.</p>
-<p>Here’s how we can allocate memory for an array of doubles and wrap it in a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">size</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<p>Here’s how we can allocate memory for an array of doubles and wrap it in a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code>
+(we also compare to the old C++ way here):</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unique_pointer.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
 
-<span class="n">std</span><span class="p">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">double</span> <span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// new way to allocate</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// old C++ way</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">data_old</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">[</span><span class="n">size</span><span class="p">];</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">data_old</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">data_old</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
+</div>
 </div>
 <p>Why would we want to do this?
 Compared to <code class="docutils literal notranslate"><span class="pre">std::array</span></code>, this allows us to specify the size at
 runtime, instead of compile time.  Compared to <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, there
 is no additional overhead to allow the array to grow, since its size
 is fixed once it is created.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Test this example with valgrind to see if any memory is not freed.
+Remove the <code class="docutils literal notranslate"><span class="pre">delete</span></code> and try again.  Notice that the
+<code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> version was freed when it went out of scope.</p>
+</div>
 </section>
 <section id="a-simple-container-attempt-i">
 <h2>A simple container: attempt I<a class="headerlink" href="#a-simple-container-attempt-i" title="Permalink to this headline">¶</a></h2>
@@ -293,8 +325,8 @@ after once it goes out of scope.</p>
 Here’s a discussion on <a class="reference external" href="https://stackoverflow.com/questions/16711697/is-there-any-use-for-unique-ptr-with-array">unique pointers vs arrays</a>.</p>
 </div>
 <p>First the class:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container_basic.H</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 74 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container_basic.H</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -363,8 +395,8 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 </div>
 </div>
 <p>Now a simple driver that creates a <code class="docutils literal notranslate"><span class="pre">Container</span></code> and then creates a new one via copying:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 74 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 75 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span><span class="cp"></span>
@@ -450,8 +482,8 @@ input <code class="docutils literal notranslate"><span class="pre">Container</sp
 copy from one buffer to another.  We’ll use that.</p>
 <p>Here’s a final implementation of the class.  This also implements the
 move operations, which we’ll talk about in a minute.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 75 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -626,8 +658,8 @@ ours and also does a swap on the pointers.</p>
 <p>At the end of this operation, the incoming <code class="docutils literal notranslate"><span class="pre">Container</span> <span class="pre">c</span></code> will be invalid.</p>
 <p>The move assignment works in a similar fashion.</p>
 <p>Here’s a driver that exercises all of these functions:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
