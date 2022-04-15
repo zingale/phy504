@@ -147,6 +147,8 @@ Spring 2022
    compound-operators
    .. static_and_classes
    cxx-move
+   cxx-allocating
+   cxx-simple-container
 
 .. toctree::
    :maxdepth: 1
