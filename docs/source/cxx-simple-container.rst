@@ -68,8 +68,8 @@ What if we try to implement the copy constructor as:
    Container(const Container& c)
        : _size(c._size), _data(c._data.get()) {}
 
-Here we are using member list initialization to set `_data` to be the
-same pointer as `c._data` -- the ``.get()`` function on a
+Here we are using member list initialization to set ``_data`` to be the
+same pointer as ``c._data`` -- the ``.get()`` function on a
 ``unique_ptr`` returns the underlying pointer to the data.
 
 If we add this, and run with it, we will see:
