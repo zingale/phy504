@@ -138,7 +138,7 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Digging Deeper into C++
+   :caption: Digging Deeper into C++ Classes
 
    object-oriented
    inheritance-and-access
@@ -149,6 +149,12 @@ Spring 2022
    cxx-move
    cxx-allocating
    cxx-simple-container
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Templates
+
+   cxx-template-array
 
 .. toctree::
    :maxdepth: 1
