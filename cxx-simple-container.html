@@ -344,8 +344,8 @@ copy constructor would not be correct, so it doesn’t create one.  Therefore we
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here we are using member list initialization to set <cite>_data</cite> to be the
-same pointer as <cite>c._data</cite> – the <code class="docutils literal notranslate"><span class="pre">.get()</span></code> function on a
+<p>Here we are using member list initialization to set <code class="docutils literal notranslate"><span class="pre">_data</span></code> to be the
+same pointer as <code class="docutils literal notranslate"><span class="pre">c._data</span></code> – the <code class="docutils literal notranslate"><span class="pre">.get()</span></code> function on a
 <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> returns the underlying pointer to the data.</p>
 <p>If we add this, and run with it, we will see:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ow">in</span> <span class="n">parametric</span> <span class="n">constructor</span>
