@@ -154,6 +154,7 @@ Spring 2022
    :maxdepth: 1
    :caption: Templates
 
+   templates-intro
    cxx-template-array
 
 .. toctree::
