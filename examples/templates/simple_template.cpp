@@ -1,9 +1,9 @@
 #include <iostream>
 
-template <typename T>                                                                                                                
-T add(const T& x, const T& y) {                                                                                                   
-    return x + y;                                                                                                                 
-}   
+template <typename T>
+T add(const T& x, const T& y) {
+    return x + y;
+}
 
 int main() {
 
