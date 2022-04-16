@@ -152,6 +152,15 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: Documentating Code
+
+   html-css
+   doxygen
+   sphinx
+   github-pages
+
+.. toctree::
+   :maxdepth: 1
    :caption: Templates
 
    templates-intro
