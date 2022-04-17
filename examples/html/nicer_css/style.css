@@ -1,10 +1,11 @@
 
 #container {
-
-
+    background-color: #aaaaaa;
     width: 80%;
     max-width: 800px;
     margin: 5em auto;
     border: 1px black solid;
     padding: 1em;
 }
+
+.center {text-align: center;}

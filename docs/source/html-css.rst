@@ -122,10 +122,76 @@ HTML elements (including divs) can have either a *class* name or and
      .name {}
 
 
+.. admonition:: try it...
+
+   Let's wrap our "Hello World" in a div and try to style it:
+
+   .. literalinclude:: ../../examples/html/nicer_css/index.html
+      :language: html
+      :caption: ``index.html``
+
+   In particular, create a rule:
+
+   .. code:: css
+
+      #container {}
+
+   and let's try to do the following:
+
+   * make the width only 80% of the page
+
+   * add some padding (this applies inside the div between the div and
+     the content)
+
+   * use margins (these apply outside the div, between the div and the outer
+     element) to give the content a ``max-width``
+
+   * change the background color of the div region
+
+   * add a border
+
+   .. dropdown:: solution
+
+      .. literalinclude:: ../../examples/html/nicer_css/style.css
+         :language: css
+         :caption: ``style.css``
+
+Inspector
+=========
+
+Most web browsers have an *inspector* that let's you look at the styling
+on a page.  In Chrome, you open the inspector by doing "F12".
+
+We can see what styling is taking effect on the different elements and
+also adjust the styling right in the browser to see how it takes effect.
+
+
 
 Images
 ======
 
+Images in HTML are included via the ``<img>`` tag.  Here's an example
+image:
+
+  .. figure:: ../../examples/html/nicer_css/luna_bw.png
+     :align: center
+     :width: 40%
+
+     ``luna_bw.png``
+
+We would include this as:
+
+.. code:: html
+
+   <p class="center"><img src="luna_bw.png" alt="picture of luna"></p>
+
+Here, ``<p> ... </p>`` denotes a paragraph
+
+and we could style it via:
+
+.. code:: css
+
+   .center {text-align: center;}
 
 .. tip::
 
@@ -152,13 +218,3 @@ Let's start with this and try to style it a bit.
    Instead of writing your own page from scratch, start with a template
    from a site like: https://html5up.net/ 
 
-
-
-
-
-
-
-
-The latest version of CSS supports a grid layout:
-
-https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
