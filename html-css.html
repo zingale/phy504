@@ -209,15 +209,69 @@
              
   <section id="html-css">
 <h1>HTML + CSS<a class="headerlink" href="#html-css" title="Permalink to this headline">¶</a></h1>
-<p>Webpages are written in a combination of HTML as CSS.  The basic division
+<div class="admonition-reading admonition">
+<p class="admonition-title">reading</p>
+<ul class="simple">
+<li><p>The official HTML spec: <a class="reference external" href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a></p></li>
+</ul>
+</div>
+<p>Web pages are written in a combination of HTML as CSS.  The basic division
 is that:</p>
 <ul class="simple">
 <li><p>HTML provides the content and structure</p></li>
 <li><p>CSS provides the style</p></li>
 </ul>
 <p>We don’t have time to dive deep into how to write a modern webpage, but we can look at some of the concepts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Our goal here is to learn how to write a basic webpage describing
+our codes.  We are not going to be able to cover web design deeply,
+but hopefully we’ll learn enough so that we can use templates that
+others have written to write our own pages.</p>
+</div>
 <section id="basic-html-structure">
 <h2>Basic HTML structure<a class="headerlink" href="#basic-html-structure" title="Permalink to this headline">¶</a></h2>
+<p>A basic HTML page has the following format:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+Hello, World!
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Some comments:</p>
+<ul>
+<li><p>HTML <em>tags</em> need to be opened and closed to denote a block in
+which they apply.  For instance: <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> opens the main
+body of the page and <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;</span></code> closes the main body of the
+page.</p></li>
+<li><p>Some tags are self-closing, and we end with <code class="docutils literal notranslate"><span class="pre">/&gt;</span></code>, for instance
+in above: <code class="docutils literal notranslate"><span class="pre">&lt;meta</span> <span class="pre">charset=&quot;utf-8&quot;</span> <span class="pre">/&gt;</span></code></p></li>
+<li><p>The name <code class="docutils literal notranslate"><span class="pre">index.html</span></code> is commonly used to indicate the first
+page of a website.  Many web-servers will automatically display
+this page when we go to a web site.</p></li>
+<li><p>We can open this page in our browser as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">google-chrome index.html</span>
+</pre></div></div><p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">firefox index.html</span>
+</pre></div></div></li>
+</ul>
 </section>
 <section id="divs">
 <h2>divs<a class="headerlink" href="#divs" title="Permalink to this headline">¶</a></h2>
@@ -225,6 +279,8 @@ is that:</p>
 properties of other elements.</p>
 <p>Very simple layout:</p>
 <p><a class="reference external" href="https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_grid">https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_grid</a></p>
+<p>The latest version of CSS supports a grid layout:</p>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout</a></p>
 </section>
 </section>
 
