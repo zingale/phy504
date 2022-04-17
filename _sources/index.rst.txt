@@ -155,9 +155,9 @@ Spring 2022
    :caption: Documentating Code
 
    html-css
-   doxygen
-   sphinx
    github-pages
+   sphinx
+   doxygen
 
 .. toctree::
    :maxdepth: 1
