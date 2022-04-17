@@ -155,7 +155,10 @@
 <p class="caption" role="heading"><span class="caption-text">Documentating Code</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="html-css.html">HTML + CSS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Github Pages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Github Pages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-our-page">Creating our page</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doxygen.html">Doxygen</a></li>
 </ul>
@@ -238,6 +241,8 @@ click <em>save</em>.</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/github-pages.png"><img alt="_images/github-pages.png" src="_images/github-pages.png" style="width: 90%;" /></a>
 </figure>
+<section id="creating-our-page">
+<h2>Creating our page<a class="headerlink" href="#creating-our-page" title="Permalink to this headline">¶</a></h2>
 <p>Now in our cloned repository, we need to create the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory
 and put our initial page there.  In your <code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code> create the <code class="docutils literal notranslate"><span class="pre">docs/</span></code>
 directory:</p>
@@ -261,12 +266,21 @@ directory:</p>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>and finally add it and push:</p>
+<p>and finally add it.  From within <code class="docutils literal notranslate"><span class="pre">cxx-array/docs</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html</span>
 <span class="prompt1">git commit -m <span class="s2">&quot;first webpage&quot;</span></span>
-<span class="prompt1">git push</span>
-</pre></div></div><p>After a minute or two, we can view our page:</p>
-<p><a class="reference external" href="https://zingale.github.io/cxx-array/">https://zingale.github.io/cxx-array/</a></p>
+</pre></div></div><p>There is one more thing we need to do.  By default, Github Pages looks for
+a website in <a class="reference external" href="https://github.com/jekyll/jekyll">Jekyll format</a>.  We can
+disable this by adding a <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file in our top level directory (<code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch .nojekyll</span>
+<span class="prompt1">git add .nojekyll</span>
+<span class="prompt1">git commit -m <span class="s2">&quot;add nojekyll&quot;</span></span>
+</pre></div></div><p>Now we can push to github:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push</span>
+</pre></div></div><p>After a minute or two, we can view our page at:
+<code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/cxx-array/</span></code>, where you replace
+<code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> with your github username.</p>
+</section>
 </section>
 
 

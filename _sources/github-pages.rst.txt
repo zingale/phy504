@@ -46,6 +46,9 @@ click *save*.
    :width: 90%
 
 
+Creating our page
+=================
+
 Now in our cloned repository, we need to create the ``docs/`` directory
 and put our initial page there.  In your ``cxx-array/`` create the ``docs/``
 directory:
@@ -75,15 +78,34 @@ Now let's add the following ``index.html`` there:
    <body>
    </html>
 
-and finally add it and push:
+and finally add it.  From within ``cxx-array/docs``:
 
 .. prompt:: bash
 
    git add index.html
    git commit -m "first webpage"
+
+
+There is one more thing we need to do.  By default, Github Pages looks for
+a website in `Jekyll format <https://github.com/jekyll/jekyll>`_.  We can
+disable this by adding a ``.nojekyll`` file in our top level directory (``cxx-array/``):
+
+.. prompt:: bash
+
+   touch .nojekyll
+   git add .nojekyll
+   git commit -m "add nojekyll"
+
+Now we can push to github:
+
+.. prompt:: bash
+
    git push
 
-After a minute or two, we can view our page:
 
-https://zingale.github.io/cxx-array/
+After a minute or two, we can view our page at:
+``https://<username>.github.io/cxx-array/``, where you replace
+``<username>`` with your github username.
+
+
 
