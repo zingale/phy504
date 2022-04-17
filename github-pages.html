@@ -239,8 +239,33 @@ click <em>save</em>.</p>
 <a class="reference internal image-reference" href="_images/github-pages.png"><img alt="_images/github-pages.png" src="_images/github-pages.png" style="width: 90%;" /></a>
 </figure>
 <p>Now in our cloned repository, we need to create the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory
-and put our initial page there.</p>
-<p>Now we can view our page:</p>
+and put our initial page there.  In your <code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code> create the <code class="docutils literal notranslate"><span class="pre">docs/</span></code>
+directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">mkdir docs/</span>
+</pre></div></div><p>Now let’s add the following <code class="docutils literal notranslate"><span class="pre">index.html</span></code> there:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>C++ Array Class<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">tt</span><span class="p">&gt;</span>Array.H<span class="p">&lt;/</span><span class="nt">tt</span><span class="p">&gt;</span> provides a simple C++ multi-dimensional array class.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>and finally add it and push:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html</span>
+<span class="prompt1">git commit -m <span class="s2">&quot;first webpage&quot;</span></span>
+<span class="prompt1">git push</span>
+</pre></div></div><p>After a minute or two, we can view our page:</p>
 <p><a class="reference external" href="https://zingale.github.io/cxx-array/">https://zingale.github.io/cxx-array/</a></p>
 </section>
 

@@ -47,11 +47,43 @@ click *save*.
 
 
 Now in our cloned repository, we need to create the ``docs/`` directory
-and put our initial page there.
+and put our initial page there.  In your ``cxx-array/`` create the ``docs/``
+directory:
 
+.. prompt:: bash
 
+   mkdir docs/
 
-Now we can view our page:
+Now let's add the following ``index.html`` there:
+
+.. code:: html
+
+   <!DOCTYPE html>
+   <html lang="en">
+
+   <head>
+       <title>Hello</title>
+       <meta charset="utf-8" />
+   </head>
+
+   <body>
+
+   <h1>C++ Array Class</h1>
+
+   <p><tt>Array.H</tt> provides a simple C++ multi-dimensional array class.</p>
+
+   <body>
+   </html>
+
+and finally add it and push:
+
+.. prompt:: bash
+
+   git add index.html
+   git commit -m "first webpage"
+   git push
+
+After a minute or two, we can view our page:
 
 https://zingale.github.io/cxx-array/
 
