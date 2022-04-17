@@ -85,7 +85,7 @@ For example, we can style the body of our page with a *stylesheet*:
 
 and then add the line:
 
-.. code:: css
+.. code:: html
 
    <link rel="stylesheet" href="style.css" />
 
@@ -102,11 +102,36 @@ for that region using.
 
 
 
-It is common to name divs with either a *class* name or and *id selector*:
+HTML elements (including divs) can have either a *class* name or and
+*id selector*:
 
-* ``#`` denotes an id selector and 
+* ``<div id="name">`` is used to indicate that there is a *single instance*
+  of ``name`` in the HTML page.  This is called an *id-selector*   Elements
+  in this div can be styled as:
+
+  .. code:: css
+
+     #name {}
+
+* ``<div class="name">`` is used when we might want to have multiple 
+  divs on the page with the same styling.  This is called a *class selector*
+  and we style as:
+
+  .. code:: css
+
+     .name {}
 
 
+
+Images
+======
+
+
+.. tip::
+
+   Accessibility is an important design consideration when making web pages,
+   and you should use the ``alt`` tag to provide a text alternative to the
+   image for screen readers.
 
 
 Responsive pages

@@ -158,6 +158,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#basic-html-structure">Basic HTML structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-css">Adding CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#divs">divs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#images">Images</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#responsive-pages">Responsive pages</a></li>
 </ul>
 </li>
@@ -297,7 +298,7 @@ extension.</p>
 </div>
 </div>
 <p>and then add the line:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span><span class="w"> </span><span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span><span class="w"> </span><span class="nt">href</span><span class="o">=</span><span class="s2">&quot;style.css&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;style.css&quot;</span> <span class="p">/&gt;</span>
 </pre></div>
 </div>
 <p>to the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span> <span class="pre">..</span> <span class="pre">&lt;/head&gt;</span></code> block in our HTML file to load this sheet.</p>
@@ -307,10 +308,33 @@ extension.</p>
 <p>A useful HTML element for grouping styles is the <a class="reference external" href="https://www.w3schools.com/tags/tag_div.asp">div tag</a>, <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code>.  We can put
 any content in a <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/div&gt;</span></code> region and specify the styling
 for that region using.</p>
-<p>It is common to name divs with either a <em>class</em> name or and <em>id selector</em>:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">#</span></code> denotes an id selector and</p></li>
+<p>HTML elements (including divs) can have either a <em>class</em> name or and
+<em>id selector</em>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">id=&quot;name&quot;&gt;</span></code> is used to indicate that there is a <em>single instance</em>
+of <code class="docutils literal notranslate"><span class="pre">name</span></code> in the HTML page.  This is called an <em>id-selector</em>   Elements
+in this div can be styled as:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">name</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;name&quot;&gt;</span></code> is used when we might want to have multiple
+divs on the page with the same styling.  This is called a <em>class selector</em>
+and we style as:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">name</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
 </ul>
+</section>
+<section id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Accessibility is an important design consideration when making web pages,
+and you should use the <code class="docutils literal notranslate"><span class="pre">alt</span></code> tag to provide a text alternative to the
+image for screen readers.</p>
+</div>
 </section>
 <section id="responsive-pages">
 <h2>Responsive pages<a class="headerlink" href="#responsive-pages" title="Permalink to this headline">¶</a></h2>
