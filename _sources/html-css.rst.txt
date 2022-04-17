@@ -65,6 +65,23 @@ Some comments:
    A good reference on the different tags is provided by
    https://www.w3schools.com/tags/default.asp
 
+Separating content
+==================
+
+HTML using `headings <https://www.w3schools.com/html/html_headings.asp>`_
+to break the content of a page into sections.  The headings are
+indicated by ``<h1> ... </h1>`` down through ``<h6> ... </h6>``.
+
+We can also denote paragraphs by wrapping them in ``<p> ... </p>``.
+
+Here's an example:
+
+.. literalinclude:: ../../examples/html/basic_headings/index.html
+   :language: html
+   :caption: ``index.html``
+
+
+
 
 Adding CSS
 ==========

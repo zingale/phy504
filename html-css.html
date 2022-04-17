@@ -156,6 +156,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">HTML + CSS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-html-structure">Basic HTML structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#separating-content">Separating content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-css">Adding CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#divs">divs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#inspector">Inspector</a></li>
@@ -283,6 +284,36 @@ span.prompt1:before {
 <a class="reference external" href="https://www.w3schools.com/tags/default.asp">https://www.w3schools.com/tags/default.asp</a></p>
 </div>
 </section>
+<section id="separating-content">
+<h2>Separating content<a class="headerlink" href="#separating-content" title="Permalink to this headline">¶</a></h2>
+<p>HTML using <a class="reference external" href="https://www.w3schools.com/html/html_headings.asp">headings</a>
+to break the content of a page into sections.  The headings are
+indicated by <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/h1&gt;</span></code> down through <code class="docutils literal notranslate"><span class="pre">&lt;h6&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/h6&gt;</span></code>.</p>
+<p>We can also denote paragraphs by wrapping them in <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/p&gt;</span></code>.</p>
+<p>Here’s an example:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>PHY 504: Introduction to Computing in Physics and Astronomy I<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Spring 2022<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hello, World!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</section>
 <section id="adding-css">
 <h2>Adding CSS<a class="headerlink" href="#adding-css" title="Permalink to this headline">¶</a></h2>
 <p>CSS means <a class="reference external" href="https://en.wikipedia.org/wiki/CSS">cascading style sheets</a>.
@@ -292,8 +323,8 @@ that is followed if more than one rule tries to modify an element.</p>
 <p>Typically we provide the styles in a separate file with the <code class="docutils literal notranslate"><span class="pre">.css</span></code>
 extension.</p>
 <p>For example, we can style the body of our page with a <em>stylesheet</em>:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">orange</span><span class="p">;}</span><span class="w"></span>
 </pre></div>
 </div>
@@ -330,8 +361,8 @@ and we style as:</p>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>Let’s wrap our “Hello World” in a div and try to style it:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 
@@ -374,8 +405,8 @@ solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 82 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">container</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#aaaaaa</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
@@ -402,10 +433,10 @@ also adjust the styling right in the browser to see how it takes effect.</p>
 <p>Images in HTML are included via the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> tag.  Here’s an example
 image:</p>
 <blockquote>
-<div><figure class="align-center" id="id5">
+<div><figure class="align-center" id="id6">
 <a class="reference internal image-reference" href="_images/luna_bw.png"><img alt="_images/luna_bw.png" src="_images/luna_bw.png" style="width: 40%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">luna_bw.png</span></code></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">luna_bw.png</span></code></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </div></blockquote>
