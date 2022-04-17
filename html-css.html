@@ -156,7 +156,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">HTML + CSS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-html-structure">Basic HTML structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-css">Adding CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#divs">divs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#responsive-pages">Responsive pages</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="doxygen.html">Doxygen</a></li>
@@ -213,6 +215,7 @@
 <p class="admonition-title">reading</p>
 <ul class="simple">
 <li><p>The official HTML spec: <a class="reference external" href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a></p></li>
+<li><p>Reference on the different tags: <a class="reference external" href="https://www.w3schools.com/tags/default.asp">https://www.w3schools.com/tags/default.asp</a></p></li>
 </ul>
 </div>
 <p>Web pages are written in a combination of HTML as CSS.  The basic division
@@ -272,13 +275,56 @@ span.prompt1:before {
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">firefox index.html</span>
 </pre></div></div></li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A good reference on the different tags is provided by
+<a class="reference external" href="https://www.w3schools.com/tags/default.asp">https://www.w3schools.com/tags/default.asp</a></p>
+</div>
+</section>
+<section id="adding-css">
+<h2>Adding CSS<a class="headerlink" href="#adding-css" title="Permalink to this headline">¶</a></h2>
+<p>CSS means <a class="reference external" href="https://en.wikipedia.org/wiki/CSS">cascading style sheets</a>.
+CSS files provide a set of styling rules for different HTML elements.
+“Cascading” here means that the rules on a element have a hierarchy
+that is followed if more than one rule tries to modify an element.</p>
+<p>Typically we provide the styles in a separate file with the <code class="docutils literal notranslate"><span class="pre">.css</span></code>
+extension.</p>
+<p>For example, we can style the body of our page with a <em>stylesheet</em>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">orange</span><span class="p">;}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>and then add the line:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">link</span><span class="w"> </span><span class="nt">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span><span class="w"> </span><span class="nt">href</span><span class="o">=</span><span class="s2">&quot;style.css&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>to the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span> <span class="pre">..</span> <span class="pre">&lt;/head&gt;</span></code> block in our HTML file to load this sheet.</p>
 </section>
 <section id="divs">
 <h2>divs<a class="headerlink" href="#divs" title="Permalink to this headline">¶</a></h2>
-<p>responsive pages typically use a <code class="docutils literal notranslate"><span class="pre">&#64;media</span></code> property to override
-properties of other elements.</p>
-<p>Very simple layout:</p>
-<p><a class="reference external" href="https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_grid">https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_grid</a></p>
+<p>A useful HTML element for grouping styles is the <a class="reference external" href="https://www.w3schools.com/tags/tag_div.asp">div tag</a>, <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code>.  We can put
+any content in a <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/div&gt;</span></code> region and specify the styling
+for that region using.</p>
+<p>It is common to name divs with either a <em>class</em> name or and <em>id selector</em>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#</span></code> denotes an id selector and</p></li>
+</ul>
+</section>
+<section id="responsive-pages">
+<h2>Responsive pages<a class="headerlink" href="#responsive-pages" title="Permalink to this headline">¶</a></h2>
+<p>A <em>responsive</em> page changes the styling based on the device / screen
+size.  Usually this is triggered by the <code class="docutils literal notranslate"><span class="pre">&#64;media</span></code> rule:
+<a class="reference external" href="https://www.w3schools.com/cssref/css3_pr_mediaquery.asp">https://www.w3schools.com/cssref/css3_pr_mediaquery.asp</a></p>
+<p>A very simply responsive page using only HTML and CSS is shown here:
+<a class="reference external" href="https://www.w3schools.com/cssref/css3_pr_mediaquery.asp">https://www.w3schools.com/cssref/css3_pr_mediaquery.asp</a></p>
+<p>Let’s start with this and try to style it a bit.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Instead of writing your own page from scratch, start with a template
+from a site like: <a class="reference external" href="https://html5up.net/">https://html5up.net/</a></p>
+</div>
 <p>The latest version of CSS supports a grid layout:</p>
 <p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout</a></p>
 </section>

@@ -6,6 +6,7 @@ HTML + CSS
 
    * The official HTML spec: https://html.spec.whatwg.org/
 
+   * Reference on the different tags: https://www.w3schools.com/tags/default.asp
 
 Web pages are written in a combination of HTML as CSS.  The basic division
 is that:
@@ -59,18 +60,75 @@ Some comments:
 
      firefox index.html
 
+.. tip::
+
+   A good reference on the different tags is provided by
+   https://www.w3schools.com/tags/default.asp
+
+
+Adding CSS
+==========
+
+CSS means `cascading style sheets <https://en.wikipedia.org/wiki/CSS>`_.
+CSS files provide a set of styling rules for different HTML elements.
+"Cascading" here means that the rules on a element have a hierarchy
+that is followed if more than one rule tries to modify an element.
+
+Typically we provide the styles in a separate file with the ``.css``
+extension.
+
+For example, we can style the body of our page with a *stylesheet*:
+
+.. literalinclude:: ../../examples/html/basic_with_css/style.css
+   :language: css
+   :caption: ``style.css``
+
+and then add the line:
+
+.. code:: css
+
+   <link rel="stylesheet" href="style.css" />
+
+to the ``<head> .. </head>`` block in our HTML file to load this sheet.
+
 
 divs
 ====
 
+A useful HTML element for grouping styles is the `div tag
+<https://www.w3schools.com/tags/tag_div.asp>`_, ``<div>``.  We can put
+any content in a ``<div> ... </div>`` region and specify the styling
+for that region using.
 
-responsive pages typically use a ``@media`` property to override
-properties of other elements.
 
 
-Very simple layout:
+It is common to name divs with either a *class* name or and *id selector*:
 
-https://www.w3schools.com/css/tryit.asp?filename=trycss_website_layout_grid
+* ``#`` denotes an id selector and 
+
+
+
+
+Responsive pages
+================
+
+A *responsive* page changes the styling based on the device / screen
+size.  Usually this is triggered by the ``@media`` rule:
+https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
+
+A very simply responsive page using only HTML and CSS is shown here:
+https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
+
+Let's start with this and try to style it a bit.
+
+
+.. tip::
+
+   Instead of writing your own page from scratch, start with a template
+   from a site like: https://html5up.net/ 
+
+
+
 
 
 
