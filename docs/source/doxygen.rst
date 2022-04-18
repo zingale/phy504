@@ -144,12 +144,27 @@ Note that we have an empty ``///`` before and after the documentation.
 Now we can annotate our C++ ``Array`` class code.  Here's a version of ``array.H`` that we developed in class with
 some documentation comments.
 
+.. literalinclude:: ../../examples/doxygen/array.H
+   :language: c++
+   :caption: ``array.H``
 
-Add these files to your git repo and commit them.
+Add this file to your git repo and commit it.
 
 
 Trying it out locally
 ---------------------
+
+We can test out Doxygen locally by doing:
+
+.. prompt:: bash
+
+   doxygen Doxyfile
+
+The HTML will then be in the ``html/`` directory, and we can view the page as:
+
+.. prompt:: bash
+
+   google-chrome html/index.html
 
 
 Setting up a GitHub action
