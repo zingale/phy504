@@ -128,7 +128,19 @@ This creates a file called ``Doxyfile``.  We need to make a few edits to it:
 Annotating our code
 ===================
 
-Now we can comment our code following:
+Doxygen uses ``///`` for C++ documentation as code comments.  So we would do:
+
+.. code:: c++
+
+   ///
+   /// a function to add two numbers
+   ///
+   double add(double x, double y);
+
+Note that we have an empty ``///`` before and after the documentation.
+
+Now we can annotate our C++ ``Array`` class code.  Here's a version of ``array.H`` that we developed in class with
+some documentation comments.
 
 Comment style: https://www.doxygen.nl/manual/docblocks.html#specialblock
 
@@ -136,9 +148,72 @@ Comment style: https://www.doxygen.nl/manual/docblocks.html#specialblock
 Setting up a GitHub action
 ==========================
 
+Now create a file: ``.github/workflows/gh-pages.yml`` with the following content:
 
-Using with Sphinx
-=================
+.. code:: yaml
 
-The Sphinx breathe extension allows us to incorporate Doxygen documentation
-into Sphinx sites.
+   name: github pages
+
+   on:
+     push:
+       branches:
+         - main
+
+   jobs:
+     deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+
+         - name: Install pandoc and doxygen
+           run: |
+             sudo apt install pandoc doxygen
+
+         - name: Setup Python
+           uses: actions/setup-python@v3
+           with:
+             python-version: '3.9'
+
+         - name: Upgrade pip
+           run: |
+             python3 -m pip install --upgrade pip
+
+         - name: Get pip cache dir
+           id: pip-cache
+           run: echo "::set-output name=dir::$(pip cache dir)"
+
+         - name: Cache dependencies
+           uses: actions/cache@v1
+           with:
+             path: ${{ steps.pip-cache.outputs.dir }}
+             key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+             restore-keys: |
+               ${{ runner.os }}-pip-
+
+         - name: Install dependencies
+           run: python3 -m pip install -r ./requirements.txt
+
+         - name: Build Doxygen
+           run: |
+                mkdir docs
+                doxygen Doxyfile
+
+         - name: Deploy
+           uses: peaceiris/actions-gh-pages@v3
+           with:
+             github_token: ${{ secrets.GITHUB_TOKEN }}
+             publish_dir: ./docs
+             keep_files: true
+
+This does a little more than we need for now, as it gets us prepped
+for Sphinx coming next.
+
+Since we're adding stuff, let's add a ``cxx-array/requirements.txt`` now as well,
+with the following content:
+
+.. code::
+
+   sphinx
+   sphinx_rtd_theme
+
+And finally add, commit, and push these files to the GitHub repo.
