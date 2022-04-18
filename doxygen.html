@@ -164,8 +164,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#doxygen-configuration">Doxygen configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#annotating-our-code">Annotating our code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annotating-our-code">Annotating our code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trying-it-out-locally">Trying it out locally</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-a-github-action">Setting up a GitHub action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#one-last-thing">One last thing…</a></li>
 </ul>
 </li>
 </ul>
@@ -320,6 +324,9 @@ for it by default.</p>
 <p>Now we can annotate our C++ <code class="docutils literal notranslate"><span class="pre">Array</span></code> class code.  Here’s a version of <code class="docutils literal notranslate"><span class="pre">array.H</span></code> that we developed in class with
 some documentation comments.</p>
 <p>Comment style: <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html#specialblock">https://www.doxygen.nl/manual/docblocks.html#specialblock</a></p>
+<section id="trying-it-out-locally">
+<h3>Trying it out locally<a class="headerlink" href="#trying-it-out-locally" title="Permalink to this headline">¶</a></h3>
+</section>
 </section>
 <section id="setting-up-a-github-action">
 <h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this headline">¶</a></h2>
@@ -387,6 +394,15 @@ with the following content:</p>
 </pre></div>
 </div>
 <p>And finally add, commit, and push these files to the GitHub repo.</p>
+</section>
+<section id="one-last-thing">
+<h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Permalink to this headline">¶</a></h2>
+<p>We need to go back to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> and now link to the Doxygen docs from our <code class="docutils literal notranslate"><span class="pre">index.html</span></code>.</p>
+<div class="admonition-voila admonition">
+<p class="admonition-title">voila!</p>
+<p>If everything worked correctly, then the GitHub action should run
+Doxygen and copy the HTML it generated to our web page.</p>
+</div>
 </section>
 </section>
 

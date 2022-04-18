@@ -145,6 +145,10 @@ some documentation comments.
 Comment style: https://www.doxygen.nl/manual/docblocks.html#specialblock
 
 
+Trying it out locally
+---------------------
+
+
 Setting up a GitHub action
 ==========================
 
@@ -217,3 +221,16 @@ with the following content:
    sphinx_rtd_theme
 
 And finally add, commit, and push these files to the GitHub repo.
+
+One last thing...
+=================
+
+We need to go back to ``gh-pages`` and now link to the Doxygen docs from our ``index.html``.
+
+
+.. admonition:: voila!
+
+   If everything worked correctly, then the GitHub action should run
+   Doxygen and copy the HTML it generated to our web page.
+
+
