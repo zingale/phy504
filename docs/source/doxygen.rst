@@ -128,7 +128,9 @@ This creates a file called ``Doxyfile``.  We need to make a few edits to it:
 Annotating our code
 ===================
 
-Doxygen uses ``///`` for C++ documentation as code comments.  So we would do:
+Doxygen uses ``///`` as the `documentation comment style
+<https://www.doxygen.nl/manual/docblocks.html#specialblock>`_ for C++.
+So we would do:
 
 .. code:: c++
 
@@ -142,7 +144,8 @@ Note that we have an empty ``///`` before and after the documentation.
 Now we can annotate our C++ ``Array`` class code.  Here's a version of ``array.H`` that we developed in class with
 some documentation comments.
 
-Comment style: https://www.doxygen.nl/manual/docblocks.html#specialblock
+
+Add these files to your git repo and commit them.
 
 
 Trying it out locally
@@ -173,26 +176,10 @@ Now create a file: ``.github/workflows/gh-pages.yml`` with the following content
            run: |
              sudo apt install pandoc doxygen
 
-         - name: Setup Python
+         - name: Setup python
            uses: actions/setup-python@v3
            with:
              python-version: '3.9'
-
-         - name: Upgrade pip
-           run: |
-             python3 -m pip install --upgrade pip
-
-         - name: Get pip cache dir
-           id: pip-cache
-           run: echo "::set-output name=dir::$(pip cache dir)"
-
-         - name: Cache dependencies
-           uses: actions/cache@v1
-           with:
-             path: ${{ steps.pip-cache.outputs.dir }}
-             key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-             restore-keys: |
-               ${{ runner.os }}-pip-
 
          - name: Install dependencies
            run: python3 -m pip install -r ./requirements.txt
