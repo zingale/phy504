@@ -280,6 +280,13 @@ disable this by adding a <code class="docutils literal notranslate"><span class=
 </pre></div></div><p>After a minute or two, we can view our page at:
 <code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/cxx-array/</span></code>, where you replace
 <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> with your github username.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Our page has an error – there are 2 <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> tags – the last should be <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;</span></code>.
+We can use a tool to catch errors like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip3 install html5validator --user</span>
+<span class="prompt1">html5validator index.html</span>
+</pre></div></div></div>
 </section>
 </section>
 
