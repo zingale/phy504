@@ -158,6 +158,14 @@
 <li class="toctree-l1"><a class="reference internal" href="github-pages.html">Github Pages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Doxygen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-gh-pages">Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-gh-pages-branch">Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-the-web-location-on-github">Updating the web location on GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#doxygen-configuration">Doxygen configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annotating-our-code">Annotating our code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-a-github-action">Setting up a GitHub action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-with-sphinx">Using with Sphinx</a></li>
 </ul>
 </li>
@@ -208,6 +216,106 @@
              
   <section id="doxygen">
 <h1>Doxygen<a class="headerlink" href="#doxygen" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.doxygen.nl/index.html">Doxygen</a> is a standard tool for
+documenting C++ code.  It works off of comments added to the code to
+build documentation (including web pages) describing the structure of
+a code and its classes and functions.</p>
+<p>We’ll continue to work on our <code class="docutils literal notranslate"><span class="pre">cxx-array</span></code> repo that we just created.
+But to help automate things, we need to make a change to how the
+webpage is stored.</p>
+<section id="using-gh-pages">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code><a class="headerlink" href="#using-gh-pages" title="Permalink to this headline">¶</a></h2>
+<p>Our goal is to have GitHub automatically generate our website.  When
+we do this, it is best to have the actual web page on a separate branch
+so we don’t have to keep merging with the regenerating web page
+every time we make changes.  This is the purpose of the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>
+branch.  It is an <em>orphaned branch</em>, so it doesn’t have any connection
+to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<section id="creating-the-gh-pages-branch">
+<h3>Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch<a class="headerlink" href="#creating-the-gh-pages-branch" title="Permalink to this headline">¶</a></h3>
+<p>We’ll follow <a class="reference external" href="https://jiafulow.github.io/blog/2020/07/09/create-gh-pages-branch-in-existing-repo/">these instructions</a>
+for creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
+<p>Here’s the procedure.  In <code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code>, make sure you don’t have any
+uncommitted work, and then do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git checkout --orphan gh-pages</span>
+<span class="prompt1">git reset --hard</span>
+<span class="prompt1">git commit --allow-empty -m <span class="s2">&quot;Initializing gh-pages branch&quot;</span></span>
+</pre></div></div><p>Now add an <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in the empty directory:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>C++ Array Class<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">tt</span><span class="p">&gt;</span>Array.H<span class="p">&lt;/</span><span class="nt">tt</span><span class="p">&gt;</span> provides a simple C++ multi-dimensional array class.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>and do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html</span>
+<span class="prompt1">git commit</span>
+</pre></div></div><p>Finally, let’s push our branch to our repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push origin gh-pages</span>
+</pre></div></div></section>
+<section id="updating-the-web-location-on-github">
+<h3>Updating the web location on GitHub<a class="headerlink" href="#updating-the-web-location-on-github" title="Permalink to this headline">¶</a></h3>
+<p>Now we need to go back to the GitHub page for our repo and go to
+settings and “Pages” and change the “Source” to be “Branch: gh-pages”
+and “/ (root)” and save.</p>
+<p>After a minute or so, the page should be regenerated and appear at the
+same URL as before.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From now on, when we want to manually make changes to our web page, we need
+to be on the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
+</div>
+<p>We can now switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout main</span>
+</pre></div></div></section>
+</section>
+<section id="doxygen-configuration">
+<h2>Doxygen configuration<a class="headerlink" href="#doxygen-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Setting up: <a class="reference external" href="https://www.doxygen.nl/manual/starting.html">https://www.doxygen.nl/manual/starting.html</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen -g</span>
+</pre></div></div><p>This creates a file called <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>.  We need to make a few edits to it:</p>
+<ul>
+<li><p>We want to change <code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">C++</span> <span class="pre">Array</span></code></p></li>
+<li><p>We want to change <code class="docutils literal notranslate"><span class="pre">OUTPUT_DIRECTORY</span></code> to <code class="docutils literal notranslate"><span class="pre">docs</span></code>, since that’s where we expect our
+source to live</p></li>
+<li><p>We’ll have Doxygen use the same <code class="docutils literal notranslate"><span class="pre">README.md</span></code> that github displays as
+the main page for the Doxygen start page.  This is done by changing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">USE_MDFILE_AS_MAINPAGE</span> <span class="o">=</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+</pre></div>
+</div>
+</li>
+<li><p>We’ll turn off Latex output by changing <code class="docutils literal notranslate"><span class="pre">GENERATE_LATEX</span></code> from <code class="docutils literal notranslate"><span class="pre">YES</span></code> to <code class="docutils literal notranslate"><span class="pre">NO</span></code></p></li>
+<li><p>We’ve been using <code class="docutils literal notranslate"><span class="pre">*.H</span></code> for our header files, so we need to add
+this to the list <code class="docutils literal notranslate"><span class="pre">FILE_PATTERNS</span></code> in the <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>.</p>
+<p>Doxygen already associates <code class="docutils literal notranslate"><span class="pre">.H</span></code> with C++, but just doesn’t search
+for it by default.</p>
+</li>
+</ul>
+</section>
+<section id="annotating-our-code">
+<h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Permalink to this headline">¶</a></h2>
+<p>Now we can comment our code following:</p>
+<p>Comment style: <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html#specialblock">https://www.doxygen.nl/manual/docblocks.html#specialblock</a></p>
+</section>
+<section id="setting-up-a-github-action">
+<h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this headline">¶</a></h2>
+</section>
 <section id="using-with-sphinx">
 <h2>Using with Sphinx<a class="headerlink" href="#using-with-sphinx" title="Permalink to this headline">¶</a></h2>
 <p>The Sphinx breathe extension allows us to incorporate Doxygen documentation
