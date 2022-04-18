@@ -108,4 +108,14 @@ After a minute or two, we can view our page at:
 ``<username>`` with your github username.
 
 
+.. tip::
+
+   Our page has an error -- there are 2 ``<body>`` tags -- the last should be ``</body>``.
+   We can use a tool to catch errors like this:
+
+   .. prompt:: bash
+
+      pip3 install html5validator --user
+      html5validator index.html
+
 

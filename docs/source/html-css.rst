@@ -224,11 +224,6 @@ A *responsive* page changes the styling based on the device / screen
 size.  Usually this is triggered by the ``@media`` rule:
 https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
 
-A very simply responsive page using only HTML and CSS is shown here:
-https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
-
-Let's start with this and try to style it a bit.
-
 
 .. tip::
 
