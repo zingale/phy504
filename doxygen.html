@@ -166,7 +166,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#doxygen-configuration">Doxygen configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#annotating-our-code">Annotating our code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-a-github-action">Setting up a GitHub action</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-with-sphinx">Using with Sphinx</a></li>
 </ul>
 </li>
 </ul>
@@ -310,16 +309,84 @@ for it by default.</p>
 </section>
 <section id="annotating-our-code">
 <h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Permalink to this headline">¶</a></h2>
-<p>Now we can comment our code following:</p>
+<p>Doxygen uses <code class="docutils literal notranslate"><span class="pre">///</span></code> for C++ documentation as code comments.  So we would do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">///</span>
+<span class="c1">/// a function to add two numbers</span>
+<span class="c1">///</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that we have an empty <code class="docutils literal notranslate"><span class="pre">///</span></code> before and after the documentation.</p>
+<p>Now we can annotate our C++ <code class="docutils literal notranslate"><span class="pre">Array</span></code> class code.  Here’s a version of <code class="docutils literal notranslate"><span class="pre">array.H</span></code> that we developed in class with
+some documentation comments.</p>
 <p>Comment style: <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html#specialblock">https://www.doxygen.nl/manual/docblocks.html#specialblock</a></p>
 </section>
 <section id="setting-up-a-github-action">
 <h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this headline">¶</a></h2>
-</section>
-<section id="using-with-sphinx">
-<h2>Using with Sphinx<a class="headerlink" href="#using-with-sphinx" title="Permalink to this headline">¶</a></h2>
-<p>The Sphinx breathe extension allows us to incorporate Doxygen documentation
-into Sphinx sites.</p>
+<p>Now create a file: <code class="docutils literal notranslate"><span class="pre">.github/workflows/gh-pages.yml</span></code> with the following content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github pages</span><span class="w"></span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install pandoc and doxygen</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">          </span><span class="no">sudo apt install pandoc doxygen</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upgrade pip</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">          </span><span class="no">python3 -m pip install --upgrade pip</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get pip cache dir</span><span class="w"></span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-cache</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;::set-output name=dir::$(pip cache dir)&quot;</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache dependencies</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v1</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.pip-cache.outputs.dir }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.txt&#39;) }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">            </span><span class="no">${{ runner.os }}-pip-</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3 -m pip install -r ./requirements.txt</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Doxygen</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">             </span><span class="no">mkdir docs</span><span class="w"></span>
+<span class="w">             </span><span class="no">doxygen Doxyfile</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docs</span><span class="w"></span>
+<span class="w">          </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This does a little more than we need for now, as it gets us prepped
+for Sphinx coming next.</p>
+<p>Since we’re adding stuff, let’s add a <code class="docutils literal notranslate"><span class="pre">cxx-array/requirements.txt</span></code> now as well,
+with the following content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span>
+<span class="n">sphinx_rtd_theme</span>
+</pre></div>
+</div>
+<p>And finally add, commit, and push these files to the GitHub repo.</p>
 </section>
 </section>
 
