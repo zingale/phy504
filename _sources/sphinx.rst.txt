@@ -230,5 +230,107 @@ This does 3 things:
 Using Doxygen with Sphinx
 =========================
 
-The Sphinx breathe extension allows us to incorporate Doxygen documentation
-into Sphinx sites.
+Now we'll try to combine Doxygen and Sphinx.
+
+.. tip::
+
+   The Sphinx *breathe* extension allows us to incorporate Doxygen
+   documentation into Sphinx sites.
+
+1. Move ``Doxyfile`` into ``docs/`` and change the following:
+
+   * change ``OUTPUT_DIRECTORY`` to ``doxy_files`
+
+   * change ``INPUT`` to ``../``
+
+   * Turn off HTML and turn on XML -- Breathe works off of the XML output.
+
+2. Update our ``conf.py`` to include Breathe and also run Doxygen for us.  Here's
+   the updated ``conf.py``:
+
+   .. code:: python
+
+      # Configuration file for the Sphinx documentation builder.
+      #
+      # This file only contains a selection of the most common options. For a full
+      # list see the documentation:
+      # https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+      # -- Path setup --------------------------------------------------------------
+
+      # If extensions (or modules to document with autodoc) are in another directory,
+      # add these directories to sys.path here. If the directory is relative to the
+      # documentation root, use os.path.abspath to make it absolute, like shown here.
+      #
+      # import os
+      # import sys
+      # sys.path.insert(0, os.path.abspath('.'))
+
+      import subprocess
+
+      # run doyxgen
+
+      subprocess.call("cd ..; doxygen", shell=True)
+
+      # -- Project information -----------------------------------------------------
+
+      project = 'C++ Array'
+      copyright = '2022, PHY 504'
+      author = 'PHY 504'
+
+
+      # -- General configuration ---------------------------------------------------
+
+      # Add any Sphinx extension module names here, as strings. They can be
+      # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+      # ones.
+      extensions = ["sphinx.ext.autodoc", "breathe"]
+
+      # Add any paths that contain templates here, relative to this directory.
+      templates_path = ['_templates']
+
+      # List of patterns, relative to source directory, that match files and
+      # directories to ignore when looking for source files.
+      # This pattern also affects html_static_path and html_extra_path.
+      exclude_patterns = []
+
+
+      # -- Options for HTML output -------------------------------------------------
+
+      # The theme to use for HTML and HTML Help pages.  See the documentation for
+      # a list of builtin themes.
+      #
+      html_theme = 'sphinx_rtd_theme'
+
+      # Add any paths that contain custom static files (such as style sheets) here,
+      # relative to this directory. They are copied after the builtin static files,
+      # so a file named "default.css" will overwrite the builtin "default.css".
+      html_static_path = ['_static']
+
+
+      breathe_projects = { "cxx_array": "../doxy_files/xml/" }
+      breathe_default_project = "cxx_array"
+
+3. Create a  ``doxygen_files.rst`` in ``source/`` with the following:
+
+   .. code:: ReST
+
+      Doxygen Files
+      =============
+
+      .. doxygenindex::
+         :project: cxx_array
+
+4. Update ``index.rst`` by adding the following:
+
+   .. code:: ReST
+
+      .. toctree::
+         :maxdepth: 1
+         :caption: API
+
+         doxygen_files
+
+We don't need to do any changes to our GitHub workflow.  We should be able to just add these new
+files / changes, commit, and push, and the website will be updated.
+
