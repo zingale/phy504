@@ -12,6 +12,7 @@ We'll continue to work on our ``cxx-array`` repo that we just created.
 But to help automate things, we need to make a change to how the
 webpage is stored.
 
+
 Using ``gh-pages``
 ==================
 
@@ -59,11 +60,17 @@ Now add an ``index.html`` in the empty directory:
    </body>
    </html>
 
-and do:
+Let's also add the ``.nojekyll`` file:
 
 .. prompt:: bash
 
-   git add index.html
+   touch .nojekyll
+
+Now let's commit these:
+
+.. prompt:: bash
+
+   git add index.html .nojekyll
    git commit
 
 Finally, let's push our branch to our repo:
@@ -125,6 +132,10 @@ This creates a file called ``Doxyfile``.  We need to make a few edits to it:
   Doxygen already associates ``.H`` with C++, but just doesn't search
   for it by default.
 
+.. tip::
+
+   Add ``Doxyfile`` to your git repo and commit.
+
 Annotating our code
 ===================
 
@@ -148,7 +159,10 @@ some documentation comments.
    :language: c++
    :caption: ``array.H``
 
-Add this file to your git repo and commit it.
+
+.. tip::
+
+   Add ``array.H`` to your git repo and commit.
 
 
 Trying it out locally
@@ -160,11 +174,18 @@ We can test out Doxygen locally by doing:
 
    doxygen Doxyfile
 
-The HTML will then be in the ``html/`` directory, and we can view the page as:
+The HTML will then be in the ``docs/html/`` directory, and we can view the page as:
 
 .. prompt:: bash
 
-   google-chrome html/index.html
+   google-chrome docs/html/index.html
+
+.. tip::
+
+   The default Doxygen generated pages look a little bland.  There are
+   `themes available
+   <https://jothepro.github.io/doxygen-awesome-css/>`_ to make it look
+   a lot nicer.
 
 
 Setting up a GitHub action
@@ -221,13 +242,25 @@ with the following content:
 
    sphinx
    sphinx_rtd_theme
+   breathe
 
-And finally add, commit, and push these files to the GitHub repo.
+.. tip::
+
+   Add `requirement.txt`` and ``.github/workflow/gh-pages.yml`` to your git repo and commit.
+
+Finally, ``git push`` these changes back to GitHub.
+
 
 One last thing...
 =================
 
 We need to go back to ``gh-pages`` and now link to the Doxygen docs from our ``index.html``.
+
+We can do that with the following addition to ``index.html``:
+
+.. code:: html
+
+   <a href="html/index.html">Doxygen documentation</a>
 
 
 .. admonition:: voila!

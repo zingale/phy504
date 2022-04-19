@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Templates" href="templates-intro.html" />
-    <link rel="prev" title="Sphinx" href="sphinx.html" /> 
+    <link rel="next" title="Sphinx" href="sphinx.html" />
+    <link rel="prev" title="Github Pages" href="github-pages.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -156,7 +156,6 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="html-css.html">HTML + CSS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github-pages.html">Github Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Doxygen</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#using-gh-pages">Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-the-gh-pages-branch">Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</a></li>
@@ -172,6 +171,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#one-last-thing">One last thing…</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Templates</span></p>
 <ul>
@@ -266,8 +266,10 @@ span.prompt1:before {
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>and do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html</span>
+<p>Let’s also add the <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch .nojekyll</span>
+</pre></div></div><p>Now let’s commit these:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html .nojekyll</span>
 <span class="prompt1">git commit</span>
 </pre></div></div><p>Finally, let’s push our branch to our repo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push origin gh-pages</span>
@@ -310,6 +312,10 @@ this to the list <code class="docutils literal notranslate"><span class="pre">FI
 for it by default.</p>
 </li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> to your git repo and commit.</p>
+</div>
 </section>
 <section id="annotating-our-code">
 <h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Permalink to this headline">¶</a></h2>
@@ -332,6 +338,7 @@ some documentation comments.</p>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
 
 <span class="c1">///</span>
 <span class="c1">/// a contiguous 2-d array</span>
@@ -389,6 +396,45 @@ some documentation comments.</p>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="c1">/// return a flattened view of the data region -- this can be used with</span>
+<span class="w">    </span><span class="c1">/// a range-for loop, e.g. `for (auto &amp;e : a.flat()) {...}`</span>
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">flat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="c1">/// set the array element i in the flattened index space</span>
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">flat</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="c1">/// return the global minimum of the array</span>
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">current_min</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">current_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current_min</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="c1">/// return the global maximum of the array</span>
+<span class="w">    </span><span class="c1">///</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">current_max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">current_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current_max</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
 
 <span class="p">};</span><span class="w"></span>
@@ -411,14 +457,23 @@ some documentation comments.</p>
 </pre></div>
 </div>
 </div>
-<p>Add this file to your git repo and commit it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">array.H</span></code> to your git repo and commit.</p>
+</div>
 <section id="trying-it-out-locally">
 <h3>Trying it out locally<a class="headerlink" href="#trying-it-out-locally" title="Permalink to this headline">¶</a></h3>
 <p>We can test out Doxygen locally by doing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen Doxyfile</span>
-</pre></div></div><p>The HTML will then be in the <code class="docutils literal notranslate"><span class="pre">html/</span></code> directory, and we can view the page as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome html/index.html</span>
-</pre></div></div></section>
+</pre></div></div><p>The HTML will then be in the <code class="docutils literal notranslate"><span class="pre">docs/html/</span></code> directory, and we can view the page as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome docs/html/index.html</span>
+</pre></div></div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The default Doxygen generated pages look a little bland.  There are
+<a class="reference external" href="https://jothepro.github.io/doxygen-awesome-css/">themes available</a> to make it look
+a lot nicer.</p>
+</div>
+</section>
 </section>
 <section id="setting-up-a-github-action">
 <h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this headline">¶</a></h2>
@@ -467,13 +522,22 @@ for Sphinx coming next.</p>
 with the following content:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span>
 <span class="n">sphinx_rtd_theme</span>
+<span class="n">breathe</span>
 </pre></div>
 </div>
-<p>And finally add, commit, and push these files to the GitHub repo.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add <cite>requirement.txt`</cite> and <code class="docutils literal notranslate"><span class="pre">.github/workflow/gh-pages.yml</span></code> to your git repo and commit.</p>
+</div>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> these changes back to GitHub.</p>
 </section>
 <section id="one-last-thing">
 <h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Permalink to this headline">¶</a></h2>
 <p>We need to go back to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> and now link to the Doxygen docs from our <code class="docutils literal notranslate"><span class="pre">index.html</span></code>.</p>
+<p>We can do that with the following addition to <code class="docutils literal notranslate"><span class="pre">index.html</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;html/index.html&quot;</span><span class="p">&gt;</span>Doxygen documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <div class="admonition-voila admonition">
 <p class="admonition-title">voila!</p>
 <p>If everything worked correctly, then the GitHub action should run
@@ -486,8 +550,8 @@ Doxygen and copy the HTML it generated to our web page.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="sphinx.html" class="btn btn-neutral float-left" title="Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="templates-intro.html" class="btn btn-neutral float-right" title="Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="github-pages.html" class="btn btn-neutral float-left" title="Github Pages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sphinx.html" class="btn btn-neutral float-right" title="Sphinx" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -156,8 +156,8 @@ Spring 2022
 
    html-css
    github-pages
-   sphinx
    doxygen
+   sphinx
 
 .. toctree::
    :maxdepth: 1
