@@ -222,7 +222,7 @@ Now create a file: ``.github/workflows/gh-pages.yml`` with the following content
 
          - name: Build Doxygen
            run: |
-                mkdir docs
+                mkdir -p docs
                 doxygen Doxyfile
 
          - name: Deploy
@@ -246,9 +246,7 @@ with the following content:
 
 .. tip::
 
-   Add `requirement.txt`` and ``.github/workflow/gh-pages.yml`` to your git repo and commit.
-
-Finally, ``git push`` these changes back to GitHub.
+   Add ``requirements.txt`` and ``.github/workflow/gh-pages.yml`` to your git repo and commit.
 
 
 One last thing...
@@ -261,6 +259,9 @@ We can do that with the following addition to ``index.html``:
 .. code:: html
 
    <a href="html/index.html">Doxygen documentation</a>
+
+
+Finally, ``git push`` these changes back to GitHub.
 
 
 .. admonition:: voila!
