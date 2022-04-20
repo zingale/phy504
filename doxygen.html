@@ -511,7 +511,7 @@ a lot nicer.</p>
 
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Doxygen</span><span class="w"></span>
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">             </span><span class="no">mkdir docs</span><span class="w"></span>
+<span class="w">             </span><span class="no">mkdir -p docs</span><span class="w"></span>
 <span class="w">             </span><span class="no">doxygen Doxyfile</span><span class="w"></span>
 
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
@@ -533,9 +533,8 @@ with the following content:</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Add <cite>requirement.txt`</cite> and <code class="docutils literal notranslate"><span class="pre">.github/workflow/gh-pages.yml</span></code> to your git repo and commit.</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">.github/workflow/gh-pages.yml</span></code> to your git repo and commit.</p>
 </div>
-<p>Finally, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> these changes back to GitHub.</p>
 </section>
 <section id="one-last-thing">
 <h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Permalink to this headline">¶</a></h2>
@@ -544,6 +543,7 @@ with the following content:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;html/index.html&quot;</span><span class="p">&gt;</span>Doxygen documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> these changes back to GitHub.</p>
 <div class="admonition-voila admonition">
 <p class="admonition-title">voila!</p>
 <p>If everything worked correctly, then the GitHub action should run
