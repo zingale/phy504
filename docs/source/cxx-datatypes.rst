@@ -94,6 +94,14 @@ Objects defined with ``const`` cannot be changed, so you are required to initial
 
    const double G = 6.67e-8;
 
+.. tip::
+
+   We can use ``'`` to separate thousands in a number -- this is called a digit separator.  For example:
+
+   .. code:: c++
+
+      int a{1'234'567'890};
+
 Mixing types
 ============
 
