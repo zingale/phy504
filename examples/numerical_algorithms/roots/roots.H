@@ -6,7 +6,8 @@
 #include <cmath>
 
 namespace Roots {
-    const double TOL = 1.e-10;
+    const double ATOL = 1.e-10;   // absolute tolerance
+    const double RTOL = 1.e-10;   // relative tolerance
     const int MAX_ITER = 100;
 }
 
@@ -14,7 +15,9 @@ namespace Roots {
 /// Apply bisection to find a root of f(x) in the range [xleft, xright]
 /// Return value is 0 if root found, non-zero if there was an error
 ///
-int bisection(double xleft, double xright, std::function<double(double)> f, double& root) {
+int bisection(double xleft, double xright,
+              std::function<double(double)> f,
+              double& root) {
 
     int ierr{0};
 
@@ -46,7 +49,7 @@ int bisection(double xleft, double xright, std::function<double(double)> f, doub
         err = std::abs(xright - xleft);
         xmid = 0.5 * (xleft + xright);
 
-        if (err < Roots::TOL) {
+        if (err < Roots::RTOL * std::abs(xmid) + Roots::ATOL) {
             ierr = 0;
             break;
         }
@@ -83,7 +86,7 @@ int newton(double x0,
 
         double dx = -f0/dfdx0;
 
-        if (std::abs(dx) < Roots::TOL) {
+        if (std::abs(dx) < Roots::RTOL * std::abs(x0) + Roots::ATOL) {
             ierr = 0;
             root = x0;
             break;
