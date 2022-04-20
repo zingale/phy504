@@ -1,9 +1,14 @@
+#ifndef ROOTS_H
+#define ROOTS_H
+
 #include <iostream>
 #include <functional>
 #include <cmath>
 
-const double TOL = 1.e-10;
-const int MAX_ITER = 100;
+namespace Roots {
+    const double TOL = 1.e-10;
+    const int MAX_ITER = 100;
+}
 
 ///
 /// Apply bisection to find a root of f(x) in the range [xleft, xright]
@@ -27,7 +32,7 @@ int bisection(double xleft, double xright, std::function<double(double)> f, doub
     double err = std::abs(xright - xleft);
 
     int iter{1};
-    while (iter < MAX_ITER) {
+    while (iter < Roots::MAX_ITER) {
         double fmid = f(xmid);
 
         if (fleft * fmid > 0.0) {
@@ -41,7 +46,7 @@ int bisection(double xleft, double xright, std::function<double(double)> f, doub
         err = std::abs(xright - xleft);
         xmid = 0.5 * (xleft + xright);
 
-        if (err < TOL) {
+        if (err < Roots::TOL) {
             ierr = 0;
             break;
         }
@@ -74,11 +79,11 @@ int newton(double x0,
     double err{1.e30};
     int iter{0};
 
-    while (iter < MAX_ITER ) {
+    while (iter < Roots::MAX_ITER ) {
 
         double dx = -f0/dfdx0;
 
-        if (std::abs(dx) < TOL) {
+        if (std::abs(dx) < Roots::TOL) {
             ierr = 0;
             root = x0;
             break;
@@ -94,37 +99,4 @@ int newton(double x0,
 
     return ierr;
 }
-
-int main() {
-
-    int ierr{0};
-    double root{0.0};
-
-    ierr = bisection(-5.0, 5.0,
-                     [] (double x) {return x*x*x + x*x - 1.0;}, root);
-
-    if (ierr == 0) {
-        std::cout << root << std::endl;
-    } else {
-        std::cout << "root not found" << std::endl;
-    }
-
-    ierr = bisection(-5.0, 5.0,
-                     [] (double x) {return x*x;}, root);
-
-    if (ierr == 0) {
-        std::cout << root << std::endl;
-    } else {
-        std::cout << "root not found" << std::endl;
-    }
-
-    ierr = newton(-1.0,
-                  [] (double x) {return x*x;}, [] (double x) {return 2*x;}, root);
-
-    if (ierr == 0) {
-        std::cout << root << std::endl;
-    } else {
-        std::cout << "root not found" << std::endl;
-    }
-    
-}
+#endif
