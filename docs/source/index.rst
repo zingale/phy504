@@ -152,7 +152,7 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Documentating Code
+   :caption: Documenting Code
 
    html-css
    github-pages
@@ -165,6 +165,14 @@ Spring 2022
 
    templates-intro
    cxx-template-array
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Algorithms
+
+   poisson-relax
+   monte-carlo
+   roots
 
 .. toctree::
    :maxdepth: 1
