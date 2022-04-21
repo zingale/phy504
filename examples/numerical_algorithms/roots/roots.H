@@ -34,7 +34,8 @@ int bisection(double xleft, double xright,
 
     double err = std::abs(xright - xleft);
 
-    int iter{1};
+    int iter{0};
+
     while (iter < Roots::MAX_ITER) {
         double fmid = f(xmid);
 
