@@ -33,6 +33,19 @@ including:
 
 The C++ standard library has these methods and more for us to use.
 
+Here's a simple example of a uniform random number distribution:
+
+.. literalinclude:: ../../examples/random/test_random.cpp
+   :language: c++
+   :caption: ``test_random.cpp``
+
+Other distributions exist, like a normal distribution.
+
+.. tip::
+
+   The cppreference site has a `nice example of a normal distributon
+   <https://en.cppreference.com/w/cpp/numeric/random/normal_distribution>`_
+   that also introduces ``std::map`` to hold "key:value" pairs.
 
 Example: computing :math:`\pi`
 ==============================
