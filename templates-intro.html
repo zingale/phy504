@@ -163,6 +163,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
@@ -225,6 +226,12 @@ example:</p>
 this function.  The compiler will determine which data types are used
 with <code class="docutils literal notranslate"><span class="pre">add</span></code> and it will create and compile a version of the function
 that works with each of the types.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can use either <code class="docutils literal notranslate"><span class="pre">typename</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code> for the template parameters.  Only
+in rare instances is the difference important.</p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/2023977/difference-of-keywords-typename-and-class-in-templates">https://stackoverflow.com/questions/2023977/difference-of-keywords-typename-and-class-in-templates</a></p>
+</div>
 <p>We can call this with <code class="docutils literal notranslate"><span class="pre">double</span></code> s as:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">3</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mi">4</span><span class="p">};</span><span class="w"></span>
 <span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>

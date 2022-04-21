@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Files and Directories &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>More On Templates &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Redirection and Pipes" href="shell-3.html" />
-    <link rel="prev" title="Navigating the Filesystem" href="shell.html" /> 
+    <link rel="next" title="Function Objects" href="functionals.html" />
+    <link rel="prev" title="Example: Templated Array" href="cxx-template-array.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,14 +55,10 @@
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Create Files and Directories</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
@@ -164,10 +160,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Templates</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
-<li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">More On Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#static-assert"><code class="docutils literal notranslate"><span class="pre">static_assert</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
@@ -205,9 +204,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Create Files and Directories</li>
+      <li>More On Templates</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/shell-2.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/templates-more.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -215,44 +214,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="create-files-and-directories">
-<h1>Create Files and Directories<a class="headerlink" href="#create-files-and-directories" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/03-create/index.html">Working with Files
-and Directories</a>
-lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
+  <section id="more-on-templates">
+<h1>More On Templates<a class="headerlink" href="#more-on-templates" title="Permalink to this headline">¶</a></h1>
+<section id="static-assert">
+<h2><code class="docutils literal notranslate"><span class="pre">static_assert</span></code><a class="headerlink" href="#static-assert" title="Permalink to this headline">¶</a></h2>
+<p>Notice that we can create an <code class="docutils literal notranslate"><span class="pre">Array&lt;std::string&gt;</span></code> – but that’s really not our intent,
+and we are likely going to do things that only make sense with numbers.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
 </div>
-<p>Let’s work through that lesson together…</p>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>We learned the following commands:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> : make a directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nano</span></code> : a basic text editor</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">touch</span></code> : update a file’s timestamp (and create an empty file if it does not exist)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mv</span></code> : move a file or directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cp</span></code> : copy a file or directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rm</span></code> : remove a file (and/or directory if done recursively)</p></li>
-</ul>
-<p>We also learned about wildcards:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> matches multiple (or 0) characters</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">?</span></code> matches a single character</p></li>
-</ul>
-</section>
-<section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>From your home directory, create a directory / file structure that looks like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project
-├── code
-├── data
-│   ├── experiment-01.txt
-│   ├── experiment-02.txt
-│   └── experiment-03.txt
-└── results
+<p>We can add a <code class="docutils literal notranslate"><span class="pre">static_assert</span></code> to disallow this – a static assert is evaluated at compile time.
+Just instead of our <code class="docutils literal notranslate"><span class="pre">Array</span></code> constructor, we just add:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static_assert</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic_v</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This ensures that <code class="docutils literal notranslate"><span class="pre">T</span></code> is an arithmetic type (integer or floating point type).</p>
+<p>There are additional type checks like <code class="docutils literal notranslate"><span class="pre">is_integral_v</span></code> and <code class="docutils literal notranslate"><span class="pre">is_floating_point_v</span></code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">_v</span></code> versions of these checks were introduced in C++17.  For C++11, you would do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">static_assert</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -263,8 +244,8 @@ lesson from <a class="reference external" href="https://swcarpentry.github.io/sh
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="shell.html" class="btn btn-neutral float-left" title="Navigating the Filesystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell-3.html" class="btn btn-neutral float-right" title="Redirection and Pipes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-template-array.html" class="btn btn-neutral float-left" title="Example: Templated Array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functionals.html" class="btn btn-neutral float-right" title="Function Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

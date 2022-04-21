@@ -25,7 +25,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Function Objects" href="functionals.html" />
+    <link rel="next" title="More On Templates" href="templates-more.html" />
     <link rel="prev" title="Templates" href="templates-intro.html" /> 
 </head>
 
@@ -163,6 +163,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Templated Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
@@ -214,7 +215,7 @@
 <h1>Example: Templated Array<a class="headerlink" href="#example-templated-array" title="Permalink to this headline">¶</a></h1>
 <p>With templates we can easily extend our contiguous array class to work
 with any data type.  We will mark it as:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Array</span><span class="w"></span>
 </pre></div>
 </div>
@@ -240,7 +241,7 @@ with any data type.  We will mark it as:</p>
 <span class="c1">// managed as a vector.  We overload () to allow us to index this as</span>
 <span class="c1">// a(irow, icol)</span>
 
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="k">private</span><span class="o">:</span><span class="w"></span>
@@ -256,6 +257,7 @@ with any data type.  We will mark it as:</p>
 <span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span><span class="w"></span>
 <span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
+
 <span class="w">        </span><span class="c1">// we do the asserts here after the initialization of _data</span>
 <span class="w">        </span><span class="c1">// in the initialization list, but if the size is zero, we&#39;ll</span>
 <span class="w">        </span><span class="c1">// abort here anyway.</span>
@@ -304,7 +306,7 @@ with any data type.  We will mark it as:</p>
 
 <span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
 
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
 <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -371,7 +373,7 @@ with any data type.  We will mark it as:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="templates-intro.html" class="btn btn-neutral float-left" title="Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="functionals.html" class="btn btn-neutral float-right" title="Function Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="templates-more.html" class="btn btn-neutral float-right" title="More On Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

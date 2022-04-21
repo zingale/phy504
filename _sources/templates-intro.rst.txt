@@ -18,6 +18,13 @@ this function.  The compiler will determine which data types are used
 with ``add`` and it will create and compile a version of the function
 that works with each of the types.
 
+.. tip::
+
+   We can use either ``typename`` or ``class`` for the template parameters.  Only
+   in rare instances is the difference important.
+
+   https://stackoverflow.com/questions/2023977/difference-of-keywords-typename-and-class-in-templates
+
 We can call this with ``double`` s as:
 
 .. code:: c++
