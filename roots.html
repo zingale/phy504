@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Homework 1" href="homework/homework1.html" />
-    <link rel="prev" title="Monte Carlo Methods" href="monte-carlo.html" /> 
+    <link rel="next" title="Monte Carlo Methods" href="monte-carlo.html" />
+    <link rel="prev" title="Example: Templated Array" href="cxx-template-array.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -166,16 +166,16 @@
 <li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Root finding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#bisection">Bisection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#newton-s-method">Newton’s method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -225,13 +225,36 @@ all of the <span class="math notranslate nohighlight">\(x\)</span> such that <sp
 </section>
 <section id="newton-s-method">
 <h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
+<p>For <a class="reference external" href="https://en.wikipedia.org/wiki/Newton's_method">Newton’s method</a>, we start by Taylor
+expanding the function about some initial guess for the root,
+<span class="math notranslate nohighlight">\(x_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f(x_0 + \delta x) \approx f(x_0) + \left . \frac{df}{dx} \right |_{x_0} + ...\]</div>
+<p>if <span class="math notranslate nohighlight">\(x_0\)</span> is close to the actual root, then <span class="math notranslate nohighlight">\(\delta x\)</span> is a correction that
+will bring it closer to the actual root, and the higher order terms in this expansion
+will be small, so we can neglect them.  This tells us that the correction is:</p>
+<div class="math notranslate nohighlight">
+\[\delta x = -\frac{f(x_0)}{df/dx|_{x_0}}\]</div>
+<p>Then we can correct our guess:</p>
+<div class="math notranslate nohighlight">
+\[x_0 \leftarrow x_0 + \delta x\]</div>
+<p>and iterate on this procedure until <span class="math notranslate nohighlight">\(|\delta x|\)</span> is small.</p>
+<p>There are a few things to note here:</p>
+<ul class="simple">
+<li><p>The initial guess needs to be good – if it is not, then the higher
+order terms, which start with <span class="math notranslate nohighlight">\(\delta x^2\)</span> are not small, and
+we should not have neglected them.</p></li>
+<li><p>We need a good estimate of the derivative.  Ideally this means that we
+supply a function that computes the derivative analytically.</p></li>
+<li><p>Newton’s method can fail in a variety of ways, including <a class="reference external" href="https://en.wikipedia.org/wiki/Newton's_method#Starting_point_enters_a_cycle">entering a cycle</a>.</p></li>
+</ul>
 </section>
 <section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>We want to write a function that takes as input the function we want to zero.</p>
 <p>Here’s the header that implements both bisection and Newton’s method:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 87 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">roots.H</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 87 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">roots.H</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ROOTS_H</span>
 <span class="cp">#define ROOTS_H</span>
 
@@ -363,8 +386,8 @@ error.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="monte-carlo.html" class="btn btn-neutral float-left" title="Monte Carlo Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-template-array.html" class="btn btn-neutral float-left" title="Example: Templated Array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="monte-carlo.html" class="btn btn-neutral float-right" title="Monte Carlo Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

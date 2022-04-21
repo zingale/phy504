@@ -167,11 +167,11 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
-   :caption: Algorithms
+   :caption: Some Numerical Algorithms
 
-   poisson-relax
-   monte-carlo
    roots
+   monte-carlo
+   poisson-relax
 
 .. toctree::
    :maxdepth: 1
