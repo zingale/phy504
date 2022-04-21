@@ -213,9 +213,15 @@
              
   <section id="templates">
 <h1>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h1>
-<p>C++ templates are a form of <em>generic programming</em>.  They allow us to
-write functions that work on a variety of data types.  Here’s a simple
-example:</p>
+<p>C++ templates are a form of <a class="reference external" href="https://en.wikipedia.org/wiki/Generic_programming">generic programming</a>.  They allow us
+to write functions that work on a variety of data types.</p>
+<p>The main advantage is that is saves on development time, since we don’t need to maintain
+specialized functions for each datatype that we may want to use.</p>
+<p>We’ve been using templates all throughout the semester – basically
+whenever you see the <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> is a
+template-class and we tell it what type of vector we wish to create
+through the type parameter, e.g., <code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code></p>
+<p>Here’s a simple example of a function template:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
 <span class="n">T</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
