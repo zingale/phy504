@@ -164,7 +164,7 @@ Spring 2022
 
    templates-intro
    cxx-template-array
-   functional
+   functionals
 
 .. toctree::
    :maxdepth: 1
