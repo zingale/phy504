@@ -233,6 +233,21 @@ use <em>pseudo-random</em> numbers.  These should have the following properties:
 </section>
 <section id="example-computing-pi">
 <h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Permalink to this headline">¶</a></h2>
+<p>A fun way to compute <span class="math notranslate nohighlight">\(\pi\)</span> is to pick pairs of random numbers in
+the range <span class="math notranslate nohighlight">\([0, 1)\)</span> – these will all fall inside a unit square,
+but we also check to see if they fall inside a circle of diameter
+<code class="docutils literal notranslate"><span class="pre">1</span></code> inscribed inside the unit square.</p>
+<p>We can write</p>
+<div class="math notranslate nohighlight">
+\[\pi = \frac{\pi (d/2)^2}{d^2} = \frac{A_\mathrm{circle}}{A_\mathrm{square}}\]</div>
+<p>We then pick a large number (<span class="math notranslate nohighlight">\(N\)</span>) of random number pairs.  We
+approximate the area of the circle and square as simply the number of
+random pairs that fall inside each shape.  If we call the number of
+random numbers that fall inside the circle <span class="math notranslate nohighlight">\(N_\mathrm{circle}\)</span>
+and note that all <span class="math notranslate nohighlight">\(N\)</span> fall inside the square, so we can
+approximate <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\pi \approx \frac{N_\mathrm{circ}}{N}\]</div>
 </section>
 </section>
 
