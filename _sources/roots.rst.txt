@@ -44,7 +44,7 @@ A few features:
 
      \epsilon < \mathrm{RTOL} |x_0| + \mathrm{ATOL}
 
-   This ensures that if the current estimate of the root, :math:`x_0`,
-   is close to zero then :math:`\mathrm{ATOL}` is used but if the root
-   :math:`x_0` is large, then :math:`\mathrm{RTOL}` use used for the
-   error.
+  This ensures that if the current estimate of the root, :math:`x_0`,
+  is close to zero then :math:`\mathrm{ATOL}` is used but if the root
+  :math:`x_0` is large, then :math:`\mathrm{RTOL}` use used for the
+  error.

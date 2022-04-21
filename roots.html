@@ -349,10 +349,11 @@ any that might be locally defined.</p></li>
 <li><p>We use both a relative and absolute tolerance for assessing the error.  Convergence
 is met when:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}  \epsilon &lt; \mathrm{RTOL} |x_0| + \mathrm{ATOL}\\This ensures that if the current estimate of the root, :math:`x_0`,
-is close to zero then :math:`\mathrm{ATOL}` is used but if the root
-:math:`x_0` is large, then :math:`\mathrm{RTOL}` use used for the
-error.\end{aligned}\end{align} \]</div>
+\[\epsilon &lt; \mathrm{RTOL} |x_0| + \mathrm{ATOL}\]</div>
+<p>This ensures that if the current estimate of the root, <span class="math notranslate nohighlight">\(x_0\)</span>,
+is close to zero then <span class="math notranslate nohighlight">\(\mathrm{ATOL}\)</span> is used but if the root
+<span class="math notranslate nohighlight">\(x_0\)</span> is large, then <span class="math notranslate nohighlight">\(\mathrm{RTOL}\)</span> use used for the
+error.</p>
 </li>
 </ul>
 </section>
