@@ -292,7 +292,8 @@ supply a function that computes the derivative analytically.</p></li>
 
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">xright</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xleft</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">fmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xmid</span><span class="p">);</span><span class="w"></span>
 
