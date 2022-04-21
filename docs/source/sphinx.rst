@@ -253,7 +253,7 @@ Now we'll try to combine Doxygen and Sphinx.
 
 1. Move ``Doxyfile`` into ``docs/`` and change the following:
 
-   * change ``OUTPUT_DIRECTORY`` to ``doxy_files`
+   * change ``OUTPUT_DIRECTORY`` to ``doxy_files``
 
    * change ``INPUT`` to ``../``
 
