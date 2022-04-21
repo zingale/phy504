@@ -11,7 +11,7 @@
 // managed as a vector.  We overload () to allow us to index this as
 // a(irow, icol)
 
-template <class T>
+template <typename T>
 class Array {
 
 private:
@@ -75,7 +75,7 @@ public:
 
 // the << operator is not part of the of the class, so it is not a member
 
-template <class T>
+template <typename T>
 std::ostream& operator<< (std::ostream& os, const Array<T>& a) {
 
     for (std::size_t row=0; row < a.nrows(); ++row) {

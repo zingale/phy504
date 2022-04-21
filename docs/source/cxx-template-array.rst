@@ -7,7 +7,7 @@ with any data type.  We will mark it as:
 
 .. code:: c++
 
-   template <class T>
+   template <typename T>
    class Array
 
 and our member data will now be:
