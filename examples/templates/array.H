@@ -27,6 +27,7 @@ public:
           _cols{cols},
           _data(rows * cols, val)
     {
+
         // we do the asserts here after the initialization of _data
         // in the initialization list, but if the size is zero, we'll
         // abort here anyway.
