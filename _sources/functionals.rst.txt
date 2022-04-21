@@ -55,6 +55,8 @@ to the elements of the vector.  We assume that the order of ``x`` and ``y`` does
    :caption: ``functional_reduce.cpp``
 
 
+Notice that this approach works just fine with a lambda function!
+
 
 
 
