@@ -145,7 +145,6 @@ Spring 2022
    this-class
    copy_and_assignment
    compound-operators
-   .. static_and_classes
    cxx-move
    cxx-allocating
    cxx-simple-container
