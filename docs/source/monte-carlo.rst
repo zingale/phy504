@@ -59,7 +59,7 @@ We can write
 
 .. math::
 
-   \pi = \frac{\pi (d/2)^2}{d^2} = \frac{A_\mathrm{circle}}{A_\mathrm{square}}
+   \frac{A_\mathrm{circle}}{A_\mathrm{square}} = \frac{\pi (d/2)^2}{d^2} = \frac{\pi}{4}
 
 We then pick a large number (:math:`N`) of random number pairs.  We
 approximate the area of the circle and square as simply the number of
@@ -70,4 +70,4 @@ approximate :math:`\pi` as:
 
 .. math::
 
-   \pi \approx \frac{N_\mathrm{circ}}{N}
+   \pi \approx 4 \frac{N_\mathrm{circ}}{N}
