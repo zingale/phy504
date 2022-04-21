@@ -230,6 +230,17 @@ use <em>pseudo-random</em> numbers.  These should have the following properties:
 <li><p>Each number is not correlated with the one that came before it</p></li>
 <li><p>They uniformly sample the range of interest (usually <span class="math notranslate nohighlight">\([0, 1)\)</span>)</p></li>
 </ul>
+<p>There are a few popular methods for <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">generating pseudo-random numbers</a>,
+including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generators</a> :
+these are easy to code up and fast but don’t give the best
+statistical properties.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Mersenne_Twister">Mersenne twister</a> :
+this method is one of the most widely used now and generates good quality
+random numbers.  It is more complicated to code up.</p></li>
+</ul>
+<p>The C++ standard library has these methods and more for us to use.</p>
 </section>
 <section id="example-computing-pi">
 <h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Permalink to this headline">¶</a></h2>

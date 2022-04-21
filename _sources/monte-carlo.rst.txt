@@ -18,6 +18,21 @@ use *pseudo-random* numbers.  These should have the following properties:
 
 * They uniformly sample the range of interest (usually :math:`[0, 1)`)
 
+There are a few popular methods for `generating pseudo-random numbers
+<https://en.wikipedia.org/wiki/Pseudorandom_number_generator>`_,
+including:
+
+* `linear congruential generators
+  <https://en.wikipedia.org/wiki/Linear_congruential_generator>`_ :
+  these are easy to code up and fast but don't give the best
+  statistical properties.
+
+* `Mersenne twister <https://en.wikipedia.org/wiki/Mersenne_Twister>`_ :
+  this method is one of the most widely used now and generates good quality
+  random numbers.  It is more complicated to code up.
+
+The C++ standard library has these methods and more for us to use.
+
 
 Example: computing :math:`\pi`
 ==============================
