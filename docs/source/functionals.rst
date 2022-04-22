@@ -5,12 +5,12 @@ Function Objects
 
 
 Often we want to write numerical algorithms to be general, so we'd like to be able to
-pass a function as an argument for the algorithm to operate on.  ``std::forward`` provides
+pass a function as an argument for the algorithm to operate on.  ``std::function`` provides
 the mechanism for us to pass a function to a function.  It has the form:
 
 .. code:: c++
 
-   std::forward<return_type(arg1_type, arg2_type)> f
+   std::function<return_type(arg1_type, arg2_type)> f
 
 where we specify both the function's return type (as ``return_type``)
 and the type of any arguments that the function takes (as
