@@ -25,7 +25,7 @@ The basic idea is as follows:
 
 * Define :math:`x_m = (x_l + x_r) / 2` and :math:`f_m = f(x_m)`
 
-* If :math:`fl \cdot f_m < 0` then the :math:`x_0 \in [x_l, x_m]`, so define :math:`x_r = x_m`;
+* If :math:`f_l \cdot f_m < 0` then the :math:`x_0 \in [x_l, x_m]`, so define :math:`x_r = x_m`;
   otherwise set :math:`x_l = x_m`
 
 * Iterate
@@ -51,7 +51,7 @@ expanding the function about some initial guess for the root,
 
 .. math::
 
-   f(x_0 + \delta x) \approx f(x_0) + \left . \frac{df}{dx} \right |_{x_0} + ...
+   f(x_0 + \delta x) \approx f(x_0) + \left . \frac{df}{dx} \right |_{x_0} + ~ ...
 
 if :math:`x_0` is close to the actual root, then :math:`\delta x` is a correction that
 will bring it closer to the actual root, and the higher order terms in this expansion
