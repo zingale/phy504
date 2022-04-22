@@ -218,9 +218,9 @@
   <section id="function-objects">
 <h1>Function Objects<a class="headerlink" href="#function-objects" title="Permalink to this headline">¶</a></h1>
 <p>Often we want to write numerical algorithms to be general, so we’d like to be able to
-pass a function as an argument for the algorithm to operate on.  <code class="docutils literal notranslate"><span class="pre">std::forward</span></code> provides
+pass a function as an argument for the algorithm to operate on.  <code class="docutils literal notranslate"><span class="pre">std::function</span></code> provides
 the mechanism for us to pass a function to a function.  It has the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">return_type</span><span class="p">(</span><span class="n">arg1_type</span><span class="p">,</span><span class="w"> </span><span class="n">arg2_type</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="n">return_type</span><span class="p">(</span><span class="n">arg1_type</span><span class="p">,</span><span class="w"> </span><span class="n">arg2_type</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="w"></span>
 </pre></div>
 </div>
 <p>where we specify both the function’s return type (as <code class="docutils literal notranslate"><span class="pre">return_type</span></code>)
