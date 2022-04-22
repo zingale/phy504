@@ -10,11 +10,14 @@ Pseudo-random numbers
 =====================
 
 Generally, producing truly random numbers is hard and we most often
-use *pseudo-random* numbers.  These should have the following properties:
+use `pseudo-random numbers
+<https://en.wikipedia.org/wiki/Pseudorandom_number_generator>`_.
+These should have the following properties:
 
 * The are fast to generate
 
-* Each number is not correlated with the one that came before it
+* Each number is not correlated with the one that came before it (actually, there
+  are a number of statistical tests they should satisfy).
 
 * They uniformly sample the range of interest (usually :math:`[0, 1)`)
 
@@ -35,7 +38,7 @@ The C++ standard library has these methods and more for us to use.
 
 Here's a simple example of a uniform random number distribution:
 
-.. literalinclude:: ../../examples/random/test_random.cpp
+.. literalinclude:: ../../examples/numerical_algorithms/random/test_random.cpp
    :language: c++
    :caption: ``test_random.cpp``
 
@@ -71,3 +74,10 @@ approximate :math:`\pi` as:
 .. math::
 
    \pi \approx 4 \frac{N_\mathrm{circ}}{N}
+
+Here's an implementation of our computing :math:`\pi`:
+
+.. literalinclude:: ../../examples/numerical_algorithms/random/pi.cpp
+   :language: c++
+   :caption: ``pi.cpp``
+
