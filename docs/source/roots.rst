@@ -8,7 +8,10 @@ all of the :math:`x` such that :math:`f(x) = 0`.
 Bisection
 =========
 
+Here's an animation of bisection finding a root:
 
+.. figure:: bisection.gif
+   :align: center
 
 Newton's method
 ===============
