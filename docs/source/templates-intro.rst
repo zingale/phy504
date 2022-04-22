@@ -56,5 +56,19 @@ Here's an example illustrating all of this:
    :caption: ``simple_templates.cpp``
 
 
+.. admonition:: try it...
 
+   Make the function take two potentially different types,
+
+   .. code:: c++
+
+      template <typename T, typename U>
+      T add(const T& x, const U& y) {
+          return static_cast<T>(x + y);
+      }
+
+   Notice that the return type is the same as the first argument.
+
+   What happens if you call it with ``int, double`` compared to
+   ``double, int`` -- is it still commutative?
 
