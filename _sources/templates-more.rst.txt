@@ -21,11 +21,22 @@ Just instead of our ``Array`` constructor, we just add:
 
 This ensures that ``T`` is an arithmetic type (integer or floating point type).
 
+.. note::
+
+   This is defined in ``<type_traits>``
+
 There are additional type checks like ``is_integral_v`` and ``is_floating_point_v``
 
 .. tip::
 
-   The ``_v`` versions of these checks were introduced in C++17.  For C++11, you would do:
+   The ``_v`` versions of these checks were introduced in C++17.  You may need to compile
+   as:
+
+   .. prompt:: bash
+
+      g++ -std=c++17 ...
+
+   For C++11, you would do:
 
    .. code:: c++
 
