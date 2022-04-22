@@ -38,6 +38,11 @@ Then we can correct our guess:
 
 and iterate on this procedure until :math:`|\delta x|` is small.
 
+Here's an animation showing the method converging:
+
+.. figure:: newton.gif
+   :align: center
+
 There are a few things to note here:
 
 * The initial guess needs to be good -- if it is not, then the higher
