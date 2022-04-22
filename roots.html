@@ -222,12 +222,32 @@
 <h1>Root finding<a class="headerlink" href="#root-finding" title="Permalink to this headline">¶</a></h1>
 <p>Given a function <span class="math notranslate nohighlight">\(f(x)\)</span>, the <em>root-finding</em> problem is to find
 all of the <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
+<p>Root finding algorithms often need a range that bracket the root,
+<span class="math notranslate nohighlight">\(x_0\)</span>, i.e. <span class="math notranslate nohighlight">\(x_0 \in [x_l, x_r]\)</span>.</p>
+<p>Notice that (for most functions) near <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, <span class="math notranslate nohighlight">\(f(x)\)</span> changes sign,
+so often we will check that <span class="math notranslate nohighlight">\(f(x_l) \cdot f(x_r) &lt; 0\)</span>.</p>
+<figure class="align-center">
+<img alt="_images/newton-basins.png" src="_images/newton-basins.png" />
+</figure>
 <section id="bisection">
 <h2>Bisection<a class="headerlink" href="#bisection" title="Permalink to this headline">¶</a></h2>
+<p>Bisection works by iteratively cutting the range where the root is located in half.
+The basic idea is as follows:</p>
+<ul class="simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(f_l = f(x_l)\)</span> and <span class="math notranslate nohighlight">\(f_r = f(x_r)\)</span></p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(x_m = (x_l + x_r) / 2\)</span> and <span class="math notranslate nohighlight">\(f_m = f(x_m)\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(fl \cdot f_m &lt; 0\)</span> then the <span class="math notranslate nohighlight">\(x_0 \in [x_l, x_m]\)</span>, so define <span class="math notranslate nohighlight">\(x_r = x_m\)</span>;
+otherwise set <span class="math notranslate nohighlight">\(x_l = x_m\)</span></p></li>
+<li><p>Iterate</p></li>
+</ul>
 <p>Here’s an animation of bisection finding a root:</p>
 <figure class="align-center">
 <img alt="_images/bisection.gif" src="_images/bisection.gif" />
 </figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bisection will fail to find the root for <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>.</p>
+</div>
 </section>
 <section id="newton-s-method">
 <h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
@@ -261,7 +281,8 @@ supply a function that computes the derivative analytically.</p></li>
 </section>
 <section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
-<p>We want to write a function that takes as input the function we want to zero.</p>
+<p>We want to write a function that takes as input the function we want to zero, so we’ll
+use <code class="docutils literal notranslate"><span class="pre">std::function</span></code> to define the function as an argument.</p>
 <p>Here’s the header that implements both bisection and Newton’s method:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 89 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">roots.H</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
@@ -390,6 +411,51 @@ is close to zero then <span class="math notranslate nohighlight">\(\mathrm{ATOL}
 error.</p>
 </li>
 </ul>
+<p>Here’s a test driver for it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+
+<span class="c1">#include &quot;roots.H&quot;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nb">int</span> <span class="n">ierr</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">double</span> <span class="n">root</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
+    <span class="n">ierr</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span>
+                     <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">;},</span> <span class="n">root</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ierr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">root</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;root not found&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ierr</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span>
+                     <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="n">root</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ierr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">root</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;root not found&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ierr</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>
+                  <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="n">root</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ierr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">root</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;root not found&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>What happens if we use <span class="math notranslate nohighlight">\(x_0 = 0\)</span> as the initial guess for <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>
+with Newton’s method?</p>
+</div>
 </section>
 </section>
 

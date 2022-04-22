@@ -5,13 +5,41 @@ Root finding
 Given a function :math:`f(x)`, the *root-finding* problem is to find
 all of the :math:`x` such that :math:`f(x) = 0`.
 
+Root finding algorithms often need a range that bracket the root,
+:math:`x_0`, i.e. :math:`x_0 \in [x_l, x_r]`.
+
+Notice that (for most functions) near :math:`f(x) = 0`, :math:`f(x)` changes sign,
+so often we will check that :math:`f(x_l) \cdot f(x_r) < 0`.
+
+.. figure:: newton-basins.png
+   :align: center
+
+
 Bisection
 =========
+
+Bisection works by iteratively cutting the range where the root is located in half.
+The basic idea is as follows:
+
+* Compute :math:`f_l = f(x_l)` and :math:`f_r = f(x_r)`
+
+* Define :math:`x_m = (x_l + x_r) / 2` and :math:`f_m = f(x_m)`
+
+* If :math:`fl \cdot f_m < 0` then the :math:`x_0 \in [x_l, x_m]`, so define :math:`x_r = x_m`;
+  otherwise set :math:`x_l = x_m`
+
+* Iterate
 
 Here's an animation of bisection finding a root:
 
 .. figure:: bisection.gif
    :align: center
+
+
+.. note::
+
+   Bisection will fail to find the root for :math:`f(x) = x^2`.
+
 
 Newton's method
 ===============
@@ -62,10 +90,8 @@ There are a few things to note here:
 Implementation
 ==============
 
-We want to write a function that takes as input the function we want to zero.
-
-
-
+We want to write a function that takes as input the function we want to zero, so we'll
+use ``std::function`` to define the function as an argument.
 
 
 Here's the header that implements both bisection and Newton's method:
@@ -73,7 +99,6 @@ Here's the header that implements both bisection and Newton's method:
 .. literalinclude:: ../../examples/numerical_algorithms/roots/roots.H
    :language: c++
    :caption: ``roots.H``
-
 
 
 A few features:
@@ -94,3 +119,15 @@ A few features:
   is close to zero then :math:`\mathrm{ATOL}` is used but if the root
   :math:`x_0` is large, then :math:`\mathrm{RTOL}` use used for the
   error.
+
+
+Here's a test driver for it:
+
+.. literalinclude:: ../../examples/numerical_algorithms/roots/test_roots.cpp
+
+
+.. note::
+
+   What happens if we use :math:`x_0 = 0` as the initial guess for :math:`f(x) = x^2`
+   with Newton's method?
+
