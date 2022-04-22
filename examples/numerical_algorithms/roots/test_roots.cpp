@@ -33,5 +33,5 @@ int main() {
     } else {
         std::cout << "root not found" << std::endl;
     }
-    
+
 }
