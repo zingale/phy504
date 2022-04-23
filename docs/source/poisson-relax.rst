@@ -18,7 +18,7 @@ Let's try it on the problem:
 
 .. math::
 
-   \phi^{\prime\prime} = sin(x)
+   \phi^{\prime\prime} = \sin(x)
 
 on :math:`[0, 1]` with the boundary conditions:
 
@@ -34,7 +34,7 @@ This has the analytic solution:
 
 .. math::
 
-   \phi(x) = -sin(x)  + (1 + sin(1)) x
+   \phi(x) = -\sin(x)  + (1 + \sin(1)) x
 
 Here's the driver that implements this problem:
 
