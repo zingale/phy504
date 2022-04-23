@@ -9,21 +9,22 @@ class Poisson {
 
 private:
 
-    std::vector<double> x;
-    std::vector<double> phi;
-    std::vector<double> f;
-
-    int N;
-
     double xmin;
     double xmax;
 
+    int N;
+
+    std::vector<double> x;
+    std::vector<double> phi;
+    std::vector<double> f;
+    
     double dx;
 
 public:
 
     Poisson(double xmin_in, double xmax_in, int N_in)
-        : xmin{xmin_in}, xmax{xmax_in}, N{N_in}, x(N_in, 0), phi(N_in, 0), f(N_in, 0)
+        : xmin{xmin_in}, xmax{xmax_in}, N{N_in},
+          x(N_in, 0), phi(N_in, 0), f(N_in, 0)
     {
 
         // initialize the coordinates
