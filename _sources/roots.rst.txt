@@ -54,7 +54,7 @@ expanding the function about some initial guess for the root,
 
 .. math::
 
-   f(x_0 + \delta x) \approx f(x_0) + \left . \frac{df}{dx} \right |_{x_0} + ~ ...
+   f(x_0 + \delta x) \approx f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \delta x + ~ ...
 
 if :math:`x_0` is close to the actual root, then :math:`\delta x` is a correction that
 will bring it closer to the actual root, and the higher order terms in this expansion
