@@ -14,6 +14,7 @@ so often we will check that :math:`f(x_l) \cdot f(x_r) < 0`.
 .. figure:: newton-basins.png
    :align: center
 
+There are a large number of `root finding algorithms <https://en.wikipedia.org/wiki/Root-finding_algorithms>`_.
 
 Bisection
 =========
@@ -35,6 +36,8 @@ Here's an animation of bisection finding a root:
 .. figure:: bisection.gif
    :align: center
 
+
+Bisection is slow to converge -- it only reduces the error by a factor of 2 each iteration.
 
 .. note::
 
@@ -85,6 +88,11 @@ There are a few things to note here:
 
 * Newton's method can fail in a variety of ways, including `entering a cycle <https://en.wikipedia.org/wiki/Newton's_method#Starting_point_enters_a_cycle>`_.
 
+.. note::
+
+   If we don't have an analytic form of the derivative, then we can compute it via
+   finite-differences.   This can give rise to the `secant method <https://en.wikipedia.org/wiki/Secant_method>`_.
+
 
 
 Implementation
@@ -130,4 +138,10 @@ Here's a test driver for it:
 
    What happens if we use :math:`x_0 = 0` as the initial guess for :math:`f(x) = x^2`
    with Newton's method?
+
+
+.. admonition:: try it...
+
+   Write a version of Newton's method that uses a finite-difference approximation
+   to the derivative.
 

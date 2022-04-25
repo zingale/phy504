@@ -229,6 +229,7 @@ so often we will check that <span class="math notranslate nohighlight">\(f(x_l) 
 <figure class="align-center">
 <img alt="_images/newton-basins.png" src="_images/newton-basins.png" />
 </figure>
+<p>There are a large number of <a class="reference external" href="https://en.wikipedia.org/wiki/Root-finding_algorithms">root finding algorithms</a>.</p>
 <section id="bisection">
 <h2>Bisection<a class="headerlink" href="#bisection" title="Permalink to this headline">¶</a></h2>
 <p>Bisection works by iteratively cutting the range where the root is located in half.
@@ -244,6 +245,7 @@ otherwise set <span class="math notranslate nohighlight">\(x_l = x_m\)</span></p
 <figure class="align-center">
 <img alt="_images/bisection.gif" src="_images/bisection.gif" />
 </figure>
+<p>Bisection is slow to converge – it only reduces the error by a factor of 2 each iteration.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Bisection will fail to find the root for <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>.</p>
@@ -278,6 +280,11 @@ we should not have neglected them.</p></li>
 supply a function that computes the derivative analytically.</p></li>
 <li><p>Newton’s method can fail in a variety of ways, including <a class="reference external" href="https://en.wikipedia.org/wiki/Newton's_method#Starting_point_enters_a_cycle">entering a cycle</a>.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If we don’t have an analytic form of the derivative, then we can compute it via
+finite-differences.   This can give rise to the <a class="reference external" href="https://en.wikipedia.org/wiki/Secant_method">secant method</a>.</p>
+</div>
 </section>
 <section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
@@ -455,6 +462,11 @@ error.</p>
 <p class="admonition-title">Note</p>
 <p>What happens if we use <span class="math notranslate nohighlight">\(x_0 = 0\)</span> as the initial guess for <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>
 with Newton’s method?</p>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Write a version of Newton’s method that uses a finite-difference approximation
+to the derivative.</p>
 </div>
 </section>
 </section>
