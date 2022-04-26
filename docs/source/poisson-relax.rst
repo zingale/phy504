@@ -32,7 +32,7 @@ Here we represent the discrete value of $\phi$ with a subscript:
 
    \phi_i = \phi(x_i)
 
-and similarly for $f_i$.
+and similarly for :math:`f_i`.
 
 Notice that with this grid we have a point on each boundary.  We will set these points to the boundary conditions:
 
