@@ -24,3 +24,14 @@ approaches:
 
 Often we will do a little of each -- shared memory parallelism inside
 a compute node and distributed memory parallelism across nodes.
+
+There is another type of parallelism -- using accelerators, like GPUs,
+that dominates high performace computing now.  Here we can use OpenMP,
+OpenACC, or a vendor-specific library like CUDA or HIP to do the
+offloading.
+
+Amdahl's law
+============
+
+
+
