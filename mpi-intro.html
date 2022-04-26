@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Git Remotes &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>MPI &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="github" href="github.html" />
-    <link rel="prev" title="Git Branches" href="git-branches.html" /> 
+    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="prev" title="OpenMP" href="openmp-intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,16 +62,12 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Git Remotes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#bare-repository">Bare Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-first-example-of-collaboration">A First Example of Collaboration</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
@@ -177,10 +173,10 @@
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-intro.html">OpenMP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">MPI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MPI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -211,9 +207,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Git Remotes</li>
+      <li>MPI</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/git-remotes.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mpi-intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -221,82 +217,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="git-remotes">
-<h1>Git Remotes<a class="headerlink" href="#git-remotes" title="Permalink to this headline">¶</a></h1>
-<section id="bare-repository">
-<h2>Bare Repository<a class="headerlink" href="#bare-repository" title="Permalink to this headline">¶</a></h2>
-<p>So far, we’ve just been using our git repo for ourselves.</p>
-<p>Let’s look back at the figure illustrating ways we can share with distributed version control:</p>
-<img alt="_images/distributed_version_control.png" class="align-center" src="_images/distributed_version_control.png" />
-<p>When multiple developers are working on the same code together, it is
-convenient to have a central repository that everyone can communicate
-with.</p>
-<p>We use a special <code class="docutils literal notranslate"><span class="pre">bare</span></code> repository for this purpose.  A bare repo
-has all of the metadata for the project, but we don’t work directly in
-it.  This way we avoid the risk of having unsaved changed in the repo
-that other people are using to synchronize with.</p>
-<p>Let’s create a bare repo from our <code class="docutils literal notranslate"><span class="pre">project2</span></code> project.  From your home directory
-(assuming that project2 is <code class="docutils literal notranslate"><span class="pre">~/project2/</span></code>, we do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">git clone --bare project2</span>
-</pre></div></div><p>Now we see a new directory <code class="docutils literal notranslate"><span class="pre">project2.git</span></code>.</p>
-</section>
-<section id="a-first-example-of-collaboration">
-<h2>A First Example of Collaboration<a class="headerlink" href="#a-first-example-of-collaboration" title="Permalink to this headline">¶</a></h2>
-<p>Let’s pretend we are a different user.  Let’s make a directory for our pretend user and clone our project:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~</span>
-<span class="prompt1">mkdir newuser</span>
-<span class="prompt1"><span class="nb">cd</span> newuser</span>
-<span class="prompt1">git clone ~/project2.git</span>
-</pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">clone</span></code> command make a new git repo for our user called <code class="docutils literal notranslate"><span class="pre">project2/</span></code></p>
-<p>If we do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> in it, we’ll see the whole history we had from
-our earlier work.</p>
-<p>Now, this repo knows where it was cloned from, through a concept
-called <em>remotes</em>.  A remote is a repo (usually a bare repo) that we
-communicate with the share our changes (a <em>push</em>) of get changes from
-other users (a <em>pull</em>).  We can see our remote by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote -v</span>
-</pre></div></div><p>We’ll see something like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
-<span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Now’s let’s make a change</p>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>add the new user’s name to <code class="docutils literal notranslate"><span class="pre">authors.txt</span></code> and commit the change.</p>
-</div>
-<p>Now we can share our changes with our remote – the bare repo by doing a <em>push</em>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt2:before {
-  content: " ";
-}
-</style><span class="prompt2">git push</span>
-</pre></div></div><p>This pushes our changes back to the bare repo.  Now go back to our original repo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span></span>
-<span class="prompt1"><span class="nb">cd</span> project2</span>
-</pre></div></div><p>We need to add a remote to this original repo (if you do <code class="docutils literal notranslate"><span class="pre">git</span>
-<span class="pre">remote</span></code> it will show nothing).  We’ll add a remote called <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add origin ~/project2.git</span>
-</pre></div></div><p>Now, we can communicate with the bare repo and get the changes that
-the other user made by doing a <em>pull</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull origin main</span>
-</pre></div></div><p>To make our life easier, we can tell git what remote branch to track:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git branch --set-upstream-to<span class="o">=</span>origin/main main</span>
-</pre></div></div><p>then we can do just</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull</span>
-</pre></div></div></section>
+  <section id="mpi">
+<h1>MPI<a class="headerlink" href="#mpi" title="Permalink to this headline">¶</a></h1>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="git-branches.html" class="btn btn-neutral float-left" title="Git Branches" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="github.html" class="btn btn-neutral float-right" title="github" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="openmp-intro.html" class="btn btn-neutral float-left" title="OpenMP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
