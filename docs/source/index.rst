@@ -177,6 +177,14 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: Parallel Programming
+
+   parallel-intro
+   openmp-intro
+   mpi-intro
+
+.. toctree::
+   :maxdepth: 1
    :caption: Homework
 
    homework/homework1
