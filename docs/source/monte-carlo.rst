@@ -49,7 +49,7 @@ Here's a simple example of a uniform random number distribution:
 Some notes:
 
 * In C++ ``<random>``, the generator and distribution are separate
-  concepts.  Here we pick the Mersenne Twister `std::mt19937`
+  concepts.  Here we pick the Mersenne Twister ``std::mt19937``
   generator and use it with the uniform distrbution
   ``std::uniform_real_distribution``.
 
