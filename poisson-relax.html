@@ -177,6 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#relaxation">Relaxation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#stopping">Stopping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#convergence">Convergence</a></li>
 </ul>
 </li>
 </ul>
@@ -518,6 +519,18 @@ can do with the number of points we are using in the discretization.</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
+</div>
+</section>
+<section id="convergence">
+<h2>Convergence<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h2>
+<p>This method should converge as second-order – i.e., if we double the number of points, the
+error should go down by a factor of 4.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s add a method to our class that accepts a function that
+provides the analytic solution and returns the norm of the error
+(solution compared to analytic solution.</p>
+<p>Then run with 64, 128, 256 points and see how the error changes.</p>
 </div>
 </section>
 </section>

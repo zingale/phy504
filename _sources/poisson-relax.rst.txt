@@ -156,3 +156,17 @@ Here's the driver that implements this problem:
    :language: c++
    :caption: ``poisson.cpp``
 
+
+Convergence
+===========
+
+This method should converge as second-order -- i.e., if we double the number of points, the
+error should go down by a factor of 4.
+
+.. admonition:: try it...
+
+   Let's add a method to our class that accepts a function that
+   provides the analytic solution and returns the norm of the error
+   (solution compared to analytic solution.
+
+   Then run with 64, 128, 256 points and see how the error changes.
