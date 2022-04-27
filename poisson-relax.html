@@ -174,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Poisson Equation and Relaxation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#discretization">Discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relaxation">Relaxation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#stopping">Stopping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
 </ul>
@@ -251,11 +252,27 @@
 \[\phi(a) = A\]</div>
 <div class="math notranslate nohighlight">
 \[\phi(b) = B\]</div>
-<p>We now discretize the Poisson equation, writing it as:</p>
+<p>We now discretize the Poisson equation.  Let’s start with the Taylor
+expansions for <span class="math notranslate nohighlight">\(\phi_{i+1}\)</span> and <span class="math notranslate nohighlight">\(\phi_{i-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\phi_{i\pm 1} = \phi_i \pm \left . \frac{d\phi}{dx} \right |_i \Delta x
+   + \frac{1}{2} \left . \frac{d^2\phi}{dx^2} \right |_i \Delta x^2
+   \pm \frac{1}{6} \left . \frac{d^3\phi}{dx^3} \right |_i \Delta x^3 + \mathcal{O}(\Delta x^4)\]</div>
+<p>adding <span class="math notranslate nohighlight">\(\phi_{i+1}\)</span> and <span class="math notranslate nohighlight">\(\phi_{i-1}\)</span>, we get:</p>
+<div class="math notranslate nohighlight">
+\[\phi_{i+1} + \phi_{i-1} = 2 \phi_i + \left . \frac{d^2\phi}{dx^2} \right |_i (\Delta x^2) + \mathcal{O}(\Delta x^4)\]</div>
+<p>which we can solve for:</p>
+<div class="math notranslate nohighlight">
+\[\left . \frac{d^2\phi}{dx^2} \right |_i = \frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2}  + \mathcal{O}(\Delta x^2)\]</div>
+<p>This shows that our approximation to the second derivative is second-order accurate.  We can
+then write the discrete Poisson equation as:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2} = f_i\]</div>
 <p>Since the boundary values are fixed, for a grid of <span class="math notranslate nohighlight">\(N\)</span> points, we need to
 update the points <span class="math notranslate nohighlight">\(1 \ldots N-2\)</span> using this expression.</p>
+</section>
+<section id="relaxation">
+<h2>Relaxation<a class="headerlink" href="#relaxation" title="Permalink to this headline">¶</a></h2>
 <p>We can solve for the update for a single zone:</p>
 <div class="math notranslate nohighlight">
 \[\phi_i = \frac{1}{2} (\phi_{i+1} + \phi_{i-1} - \Delta x^2 f_i)\]</div>

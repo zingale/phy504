@@ -44,7 +44,30 @@ Notice that with this grid we have a point on each boundary.  We will set these 
 
    \phi(b) = B
 
-We now discretize the Poisson equation, writing it as:
+
+We now discretize the Poisson equation.  Let's start with the Taylor
+expansions for :math:`\phi_{i+1}` and :math:`\phi_{i-1}`:
+
+.. math::
+
+   \phi_{i\pm 1} = \phi_i \pm \left . \frac{d\phi}{dx} \right |_i \Delta x
+      + \frac{1}{2} \left . \frac{d^2\phi}{dx^2} \right |_i \Delta x^2
+      \pm \frac{1}{6} \left . \frac{d^3\phi}{dx^3} \right |_i \Delta x^3 + \mathcal{O}(\Delta x^4)
+
+adding :math:`\phi_{i+1}` and :math:`\phi_{i-1}`, we get:
+
+.. math::
+
+   \phi_{i+1} + \phi_{i-1} = 2 \phi_i + \left . \frac{d^2\phi}{dx^2} \right |_i (\Delta x^2) + \mathcal{O}(\Delta x^4)
+
+which we can solve for:
+
+.. math::
+
+   \left . \frac{d^2\phi}{dx^2} \right |_i = \frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2}  + \mathcal{O}(\Delta x^2)
+
+This shows that our approximation to the second derivative is second-order accurate.  We can
+then write the discrete Poisson equation as:
 
 .. math::
 
@@ -52,6 +75,9 @@ We now discretize the Poisson equation, writing it as:
 
 Since the boundary values are fixed, for a grid of :math:`N` points, we need to
 update the points :math:`1 \ldots N-2` using this expression.
+
+Relaxation
+==========
 
 We can solve for the update for a single zone:
 
