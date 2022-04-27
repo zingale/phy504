@@ -26,7 +26,7 @@ We will represent :math:`\phi` and :math:`f` on a 1-d uniform grid:
 
    Our 1-d finite difference grid
 
-Here we represent the discrete value of $\phi$ with a subscript:
+Here we represent the discrete value of :math:`\phi` with a subscript:
 
 .. math::
 

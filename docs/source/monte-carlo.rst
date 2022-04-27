@@ -45,6 +45,17 @@ Here's a simple example of a uniform random number distribution:
    :language: c++
    :caption: ``test_random.cpp``
 
+Some notes:
+
+* In C++ ``<random>``, the generator and distribution are separate
+  concepts.  Here we pick the Mersenne Twister `std::mt19937`
+  generator and use it with the uniform distrbution
+  ``std::uniform_real_distribution``.
+
+* To initialize the generator, we use ``std::random_device`` -- this is a true
+  random number generator (depending on system support) and will provide a seed
+  as the starting point for our pseudo-random number generator.
+
 Notice that each time we run it we get a different sequence of random numbers.
 
 Other distributions
