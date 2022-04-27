@@ -42,7 +42,17 @@ Here's a simple example of a uniform random number distribution:
    :language: c++
    :caption: ``test_random.cpp``
 
-Other distributions exist, like a normal distribution.
+We can create other distributions.  Imagine that :math:`q(z)` is the probably of getting
+a number between :math:`z` and :math:`z +dz`.  For the uniform distribution, :math:`q(z) = 1`.
+We want to find an :math:`x(z)` that maps the uniformly-distributed numbers into another distribution.
+Since the total probability is :math:`1`, we require:
+
+.. math::
+
+   p(x) dx = q(z) dz
+
+where :math:`p(x)` will be the new distribution function.  Integrating
+this allows us to map the uniform distribution to other distributions.
 
 .. tip::
 
