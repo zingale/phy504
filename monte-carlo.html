@@ -172,7 +172,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="roots.html">Root finding</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Monte Carlo Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pseudo-random-numbers">Pseudo-random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pseudo-random-numbers">Pseudo-random numbers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uniform-distribution">Uniform distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-distributions">Other distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seeding">Seeding</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#example-computing-pi">Example: computing <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 </ul>
 </li>
@@ -249,6 +254,8 @@ this method is one of the most widely used now and generates good quality
 random numbers.  It is more complicated to code up.</p></li>
 </ul>
 <p>The C++ standard library has these methods and more for us to use.</p>
+<section id="uniform-distribution">
+<h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">¶</a></h3>
 <p>Here’s a simple example of a uniform random number distribution:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 90 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
@@ -257,11 +264,17 @@ random numbers.  It is more complicated to code up.</p></li>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
+<span class="w">    </span><span class="c1">// a uniform random number generator that will be used as our seed</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// the Mersenne Twister -- we initialize it with a random seed</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="n">generator</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// our random number distribution</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">uniform_real_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// sample our distribution with our generator</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uniform</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
@@ -269,6 +282,10 @@ random numbers.  It is more complicated to code up.</p></li>
 </pre></div>
 </div>
 </div>
+<p>Notice that each time we run it we get a different sequence of random numbers.</p>
+</section>
+<section id="other-distributions">
+<h3>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline">¶</a></h3>
 <p>We can create other distributions.  Imagine that <span class="math notranslate nohighlight">\(q(z)\)</span> is the probably of getting
 a number between <span class="math notranslate nohighlight">\(z\)</span> and <span class="math notranslate nohighlight">\(z +dz\)</span>.  For the uniform distribution, <span class="math notranslate nohighlight">\(q(z) = 1\)</span>.
 We want to find an <span class="math notranslate nohighlight">\(x(z)\)</span> that maps the uniformly-distributed numbers into another distribution.
@@ -282,6 +299,30 @@ this allows us to map the uniform distribution to other distributions.</p>
 <p>The cppreference site has a <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/random/normal_distribution">nice example of a normal distributon</a>
 that also introduces <code class="docutils literal notranslate"><span class="pre">std::map</span></code> to hold “key:value” pairs.</p>
 </div>
+</section>
+<section id="seeding">
+<h3>Seeding<a class="headerlink" href="#seeding" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes we want reproducible random numbers – i.e. we want the sequence of numbers we
+get to be random but we want to get the same sequence each time we run.  To accomplish
+this, we can explicitly feed a seed into our random generator:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="nf">generator</span><span class="p">(</span><span class="mi">12345</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To do better, you can use <code class="docutils literal notranslate"><span class="pre">std::seed_seq</span></code>
+(<a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/random/seed_seq">https://en.cppreference.com/w/cpp/numeric/random/seed_seq</a>) to build a
+better seed:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">seed_seq</span><span class="w"> </span><span class="n">seed</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="w"> </span><span class="nf">generator</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For applications that require security, you need to be more
+careful.  But for physics simulations where we are not worried
+about someone being able to guess our sequence, seeding allows for
+reproducibility, and is good for testing.</p>
+</div>
+</section>
 </section>
 <section id="example-computing-pi">
 <h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Permalink to this headline">¶</a></h2>

@@ -36,12 +36,19 @@ including:
 
 The C++ standard library has these methods and more for us to use.
 
+Uniform distribution
+--------------------
+
 Here's a simple example of a uniform random number distribution:
 
 .. literalinclude:: ../../examples/numerical_algorithms/random/test_random.cpp
    :language: c++
    :caption: ``test_random.cpp``
 
+Notice that each time we run it we get a different sequence of random numbers.
+
+Other distributions
+-------------------
 We can create other distributions.  Imagine that :math:`q(z)` is the probably of getting
 a number between :math:`z` and :math:`z +dz`.  For the uniform distribution, :math:`q(z) = 1`.
 We want to find an :math:`x(z)` that maps the uniformly-distributed numbers into another distribution.
@@ -59,6 +66,35 @@ this allows us to map the uniform distribution to other distributions.
    The cppreference site has a `nice example of a normal distributon
    <https://en.cppreference.com/w/cpp/numeric/random/normal_distribution>`_
    that also introduces ``std::map`` to hold "key:value" pairs.
+
+Seeding
+-------
+
+Sometimes we want reproducible random numbers -- i.e. we want the sequence of numbers we
+get to be random but we want to get the same sequence each time we run.  To accomplish
+this, we can explicitly feed a seed into our random generator:
+
+.. code:: c++
+
+   std::mt19937 generator(12345);
+
+To do better, you can use ``std::seed_seq``
+(https://en.cppreference.com/w/cpp/numeric/random/seed_seq) to build a
+better seed:
+
+.. code:: c++
+
+   std::seed_seq seed{1, 2, 3, 4, 5};
+   std::mt19937 generator(seed);
+
+.. warning::
+
+   For applications that require security, you need to be more
+   careful.  But for physics simulations where we are not worried
+   about someone being able to guess our sequence, seeding allows for
+   reproducibility, and is good for testing.
+
+
 
 Example: computing :math:`\pi`
 ==============================
@@ -90,4 +126,3 @@ Here's an implementation of our computing :math:`\pi`:
 .. literalinclude:: ../../examples/numerical_algorithms/random/pi.cpp
    :language: c++
    :caption: ``pi.cpp``
-
