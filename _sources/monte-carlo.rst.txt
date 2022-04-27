@@ -34,7 +34,8 @@ including:
   this method is one of the most widely used now and generates good quality
   random numbers.  It is more complicated to code up.
 
-The C++ standard library has these methods and more for us to use.
+The C++ standard library has these methods and more for us to use in the
+`random <https://www.cplusplus.com/reference/random/`_ library.
 
 Uniform distribution
 --------------------
