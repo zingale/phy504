@@ -113,6 +113,12 @@ compared to the norm of the source:
 Once that is satisfied, then we have solved the problem as well as we
 can do with the number of points we are using in the discretization.
 
+This requires us to define a vector norm.  We'll use the L2 norm:
+
+.. math::
+
+   \| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}
+
 Implementation
 ==============
 
