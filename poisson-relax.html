@@ -295,6 +295,9 @@ compared to the norm of the source:</p>
 \[\| r \| &lt; \epsilon \| f \|\]</div>
 <p>Once that is satisfied, then we have solved the problem as well as we
 can do with the number of points we are using in the discretization.</p>
+<p>This requires us to define a vector norm.  We’ll use the L2 norm:</p>
+<div class="math notranslate nohighlight">
+\[\| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}\]</div>
 </section>
 <section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
