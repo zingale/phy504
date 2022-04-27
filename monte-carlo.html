@@ -283,6 +283,16 @@ random numbers.  It is more complicated to code up.</p></li>
 </pre></div>
 </div>
 </div>
+<p>Some notes:</p>
+<ul class="simple">
+<li><p>In C++ <code class="docutils literal notranslate"><span class="pre">&lt;random&gt;</span></code>, the generator and distribution are separate
+concepts.  Here we pick the Mersenne Twister <cite>std::mt19937</cite>
+generator and use it with the uniform distrbution
+<code class="docutils literal notranslate"><span class="pre">std::uniform_real_distribution</span></code>.</p></li>
+<li><p>To initialize the generator, we use <code class="docutils literal notranslate"><span class="pre">std::random_device</span></code> – this is a true
+random number generator (depending on system support) and will provide a seed
+as the starting point for our pseudo-random number generator.</p></li>
+</ul>
 <p>Notice that each time we run it we get a different sequence of random numbers.</p>
 </section>
 <section id="other-distributions">
