@@ -179,6 +179,7 @@ Spring 2022
    :maxdepth: 1
    :caption: Parallel Programming
 
+   trivially-parallel
    parallel-intro
    openmp-intro
    mpi-intro
@@ -200,12 +201,3 @@ Spring 2022
    :caption: Project
 
    project
-
-
-
-
-
-
-
-
-
