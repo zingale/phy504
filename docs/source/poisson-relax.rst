@@ -170,3 +170,50 @@ error should go down by a factor of 4.
    (solution compared to analytic solution.
 
    Then run with 64, 128, 256 points and see how the error changes.
+
+
+2D implementation
+=================
+
+Here's a 2D implementation:
+
+.. dropdown:: 2D Poisson solver
+
+   Header:
+
+   .. literalinclude:: ../../examples/numerical_algorithms/poisson_2d/poisson2d.H
+      :language: c++
+      :caption: ``poisson2d.H``
+
+We can solve the problem:
+
+.. math::
+
+   \phi_{xx} + \phi_{yy} = -2 \left [(1-6x^2)y^2(1-y^2) + (1-6y^2)x^2(1-x^2) \right ]
+
+on :math:`[0, 1] \times [0, 1]` with homogeneous Dirichlet BCs.  The analytic solution
+in this case is:
+
+.. math::
+
+   \phi(x, y) = (x^2 - x^4) (y^4 - y^2)
+
+Here's the driver:
+
+.. literalinclude:: ../../examples/numerical_algorithms/poisson_2d/poisson.cpp
+   :language: c++
+   :caption: ``poisson.cpp``
+
+
+This outputs the data in a way that can be visualized with gnuplot using:
+
+.. prompt::
+   :prompts: gnuplot>
+
+   set pm3d map
+   set size square
+   splot 'poisson.txt'
+
+.. figure:: poisson2d.png
+
+We'll use this example next week when we do parallel programming.
