@@ -24,15 +24,17 @@ int bisection(double xleft, double xright,
     double fleft = f(xleft);
     double fright = f(xright);
 
-    if (fleft * fright >= 0) {
+    if (fleft * fright > 0) {
         std::cout << "no root in interval [xleft, right]" << std::endl;
+        ierr = 1;
+        return ierr;
+    } else if (fleft == 0 || fright == 0) {
+        std::cout << "root is one of bounds" << std::endl;
         ierr = 1;
         return ierr;
     }
 
     double xmid = 0.5 * (xleft + xright);
-
-    double err = std::abs(xright - xleft);
 
     int iter{0};
 
@@ -47,7 +49,7 @@ int bisection(double xleft, double xright,
             xright = xmid;
         }
 
-        err = std::abs(xright - xleft);
+        double err = std::abs(xright - xleft);
         xmid = 0.5 * (xleft + xright);
 
         if (err < Roots::RTOL * std::abs(xmid) + Roots::ATOL) {
@@ -70,7 +72,7 @@ int bisection(double xleft, double xright,
 ///
 int newton(double x0,
            std::function<double(double)> f,
-           std::function<double(double)> dfdx,           
+           std::function<double(double)> dfdx,
            double& root) {
 
     int ierr{1};
@@ -80,7 +82,6 @@ int newton(double x0,
 
     root = x0;
 
-    double err{1.e30};
     int iter{0};
 
     while (iter < Roots::MAX_ITER ) {

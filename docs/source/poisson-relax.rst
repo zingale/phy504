@@ -26,13 +26,13 @@ We will represent :math:`\phi` and :math:`f` on a 1-d uniform grid:
 
    Our 1-d finite difference grid
 
-Here we represent the discrete value of $\phi$ with a subscript:
+Here we represent the discrete value of :math:`\phi` with a subscript:
 
 .. math::
 
    \phi_i = \phi(x_i)
 
-and similarly for $f_i$.
+and similarly for :math:`f_i`.
 
 Notice that with this grid we have a point on each boundary.  We will set these points to the boundary conditions:
 
@@ -44,7 +44,30 @@ Notice that with this grid we have a point on each boundary.  We will set these 
 
    \phi(b) = B
 
-We now discretize the Poisson equation, writing it as:
+
+We now discretize the Poisson equation.  Let's start with the Taylor
+expansions for :math:`\phi_{i+1}` and :math:`\phi_{i-1}`:
+
+.. math::
+
+   \phi_{i\pm 1} = \phi_i \pm \left . \frac{d\phi}{dx} \right |_i \Delta x
+      + \frac{1}{2} \left . \frac{d^2\phi}{dx^2} \right |_i \Delta x^2
+      \pm \frac{1}{6} \left . \frac{d^3\phi}{dx^3} \right |_i \Delta x^3 + \mathcal{O}(\Delta x^4)
+
+adding :math:`\phi_{i+1}` and :math:`\phi_{i-1}`, we get:
+
+.. math::
+
+   \phi_{i+1} + \phi_{i-1} = 2 \phi_i + \left . \frac{d^2\phi}{dx^2} \right |_i (\Delta x^2) + \mathcal{O}(\Delta x^4)
+
+which we can solve for:
+
+.. math::
+
+   \left . \frac{d^2\phi}{dx^2} \right |_i = \frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2}  + \mathcal{O}(\Delta x^2)
+
+This shows that our approximation to the second derivative is second-order accurate.  We can
+then write the discrete Poisson equation as:
 
 .. math::
 
@@ -52,6 +75,9 @@ We now discretize the Poisson equation, writing it as:
 
 Since the boundary values are fixed, for a grid of :math:`N` points, we need to
 update the points :math:`1 \ldots N-2` using this expression.
+
+Relaxation
+==========
 
 We can solve for the update for a single zone:
 
@@ -86,6 +112,12 @@ compared to the norm of the source:
 
 Once that is satisfied, then we have solved the problem as well as we
 can do with the number of points we are using in the discretization.
+
+This requires us to define a vector norm.  We'll use the L2 norm:
+
+.. math::
+
+   \| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}
 
 Implementation
 ==============
@@ -124,3 +156,17 @@ Here's the driver that implements this problem:
    :language: c++
    :caption: ``poisson.cpp``
 
+
+Convergence
+===========
+
+This method should converge as second-order -- i.e., if we double the number of points, the
+error should go down by a factor of 4.
+
+.. admonition:: try it...
+
+   Let's add a method to our class that accepts a function that
+   provides the analytic solution and returns the norm of the error
+   (solution compared to analytic solution.
+
+   Then run with 64, 128, 256 points and see how the error changes.

@@ -34,7 +34,11 @@ including:
   this method is one of the most widely used now and generates good quality
   random numbers.  It is more complicated to code up.
 
-The C++ standard library has these methods and more for us to use.
+The C++ standard library has these methods and more for us to use in the
+`random <https://www.cplusplus.com/reference/random/>`_ library.
+
+Uniform distribution
+--------------------
 
 Here's a simple example of a uniform random number distribution:
 
@@ -42,13 +46,67 @@ Here's a simple example of a uniform random number distribution:
    :language: c++
    :caption: ``test_random.cpp``
 
-Other distributions exist, like a normal distribution.
+Some notes:
+
+* In C++ ``<random>``, the generator and distribution are separate
+  concepts.  Here we pick the Mersenne Twister ``std::mt19937``
+  generator and use it with the uniform distrbution
+  ``std::uniform_real_distribution``.
+
+* To initialize the generator, we use ``std::random_device`` -- this is a true
+  random number generator (depending on system support) and will provide a seed
+  as the starting point for our pseudo-random number generator.
+
+Notice that each time we run it we get a different sequence of random numbers.
+
+Other distributions
+-------------------
+We can create other distributions.  Imagine that :math:`q(z)` is the probably of getting
+a number between :math:`z` and :math:`z +dz`.  For the uniform distribution, :math:`q(z) = 1`.
+We want to find an :math:`x(z)` that maps the uniformly-distributed numbers into another distribution.
+Since the total probability is :math:`1`, we require:
+
+.. math::
+
+   p(x) dx = q(z) dz
+
+where :math:`p(x)` will be the new distribution function.  Integrating
+this allows us to map the uniform distribution to other distributions.
 
 .. tip::
 
    The cppreference site has a `nice example of a normal distributon
    <https://en.cppreference.com/w/cpp/numeric/random/normal_distribution>`_
    that also introduces ``std::map`` to hold "key:value" pairs.
+
+Seeding
+-------
+
+Sometimes we want reproducible random numbers -- i.e. we want the sequence of numbers we
+get to be random but we want to get the same sequence each time we run.  To accomplish
+this, we can explicitly feed a seed into our random generator:
+
+.. code:: c++
+
+   std::mt19937 generator(12345);
+
+To do better, you can use ``std::seed_seq``
+(https://en.cppreference.com/w/cpp/numeric/random/seed_seq) to build a
+better seed:
+
+.. code:: c++
+
+   std::seed_seq seed{1, 2, 3, 4, 5};
+   std::mt19937 generator(seed);
+
+.. warning::
+
+   For applications that require security, you need to be more
+   careful.  But for physics simulations where we are not worried
+   about someone being able to guess our sequence, seeding allows for
+   reproducibility, and is good for testing.
+
+
 
 Example: computing :math:`\pi`
 ==============================
@@ -80,4 +138,3 @@ Here's an implementation of our computing :math:`\pi`:
 .. literalinclude:: ../../examples/numerical_algorithms/random/pi.cpp
    :language: c++
    :caption: ``pi.cpp``
-
