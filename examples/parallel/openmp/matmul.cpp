@@ -2,16 +2,13 @@
 #include <omp.h>
 #include <vector>
 
-#include "array.H"
-
-const int N = 10000;
+const int N = 20000;
 
 int main() {
 
-
-    Array a(N, N);
-    std::vector<double> x(N);
-    std::vector<double> b(N);
+    std::vector<std::vector<double>> a(N, std::vector<double>(N, 0));
+    std::vector<double> x(N, 0);
+    std::vector<double> b(N, 0);
 
     #pragma omp parallel
     {
@@ -19,16 +16,16 @@ int main() {
         #pragma omp for
         for (int i = 0; i < N; ++i) {
             for (int j = 0; j < N; ++j) {
-                a(i, j) = static_cast<double>(i + j);
+                a[i][j] = static_cast<double>(i + j);
             }
-            x[i] = i;
+            x[i] = static_cast<double>(i);
             b[i] = 0.0;
         }
 
         #pragma omp for
         for (int i = 0; i < N; ++i) {
             for (int j = 0; j < N; ++j) {
-                b[i] += a(i, j) * x[j];
+                b[i] += a[i][j] * x[j];
             }
         }
 
