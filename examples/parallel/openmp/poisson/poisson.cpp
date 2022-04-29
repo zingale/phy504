@@ -1,10 +1,13 @@
 #include <iostream>
+#include <chrono>
 
 #include "poisson2d.H"
 
 const double TOL = 1.e-10;
 
 int main() {
+
+    auto start = std::chrono::system_clock::now();
 
     const int N = 128;
 
@@ -24,6 +27,13 @@ int main() {
     std::cout << "error = "
         << p.true_error([] (double x, double y)
                         {return (x*x - x*x*x*x) * (y*y*y*y - y*y);}) << std::endl;
+    
+
+    auto end = std::chrono::system_clock::now();
+
+    std::cout << "time to solution: " << 
+        std::chrono::duration_cast<std::chrono::milliseconds>(end -start).count() / 1000.0 << " s" << std::endl;
+
 
     p.write_solution("poisson.txt");
 }

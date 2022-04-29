@@ -91,5 +91,13 @@ We can compile this as:
 
    g++ -fopenmp -o poisson poisson.cpp
 
+On my computer (with 8 cores) running with :math:`128^2` gives:
 
-
+===================  ========
+``OMP_NUM_THREADS``  time (s)
+===================  ========
+1                     20.710
+2                     10.421
+4                      5.709
+8                      2.951
+===================  ========
