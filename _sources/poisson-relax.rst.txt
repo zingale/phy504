@@ -167,7 +167,7 @@ error should go down by a factor of 4.
 
    Let's add a method to our class that accepts a function that
    provides the analytic solution and returns the norm of the error
-   (solution compared to analytic solution.
+   (solution compared to analytic solution).
 
    Then run with 64, 128, 256 points and see how the error changes.
 
@@ -215,5 +215,6 @@ This outputs the data in a way that can be visualized with gnuplot using:
    splot 'poisson.txt'
 
 .. figure:: poisson2d.png
+   :align: center
 
 We'll use this example next week when we do parallel programming.
