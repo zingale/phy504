@@ -70,11 +70,24 @@ public:
     ///
     inline int ny() const { return _ny;}
 
-
+    ///
+    /// get the lower x index
+    ///
     inline int xlo() const { return _xoffset;}
+    
+    ///
+    /// get the lower y index
+    ///
     inline int ylo() const { return _yoffset;}    
 
+    ///
+    /// get the upper x index
+    ///
     inline int xhi() const { return _xoffset + _nx - 1;}
+
+    ///
+    /// get the upper y index
+    ///
     inline int yhi() const { return _yoffset + _ny - 1;}    
 
     inline double& operator()(int i, int j) {
@@ -85,7 +98,7 @@ public:
         return _data[row * _ny + col];
     }
 
-    inline const double& operator()(int row, int col) const {
+    inline const double& operator()(int i, int j) const {
         int row = i - _xoffset;
         int col = j - _yoffset;
         assert (row >= 0 && row < _nx);
