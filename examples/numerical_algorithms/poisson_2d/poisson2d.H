@@ -12,7 +12,7 @@
 #include "array.H"
 
 ///
-/// Solve the 1-d Poisson problem on a node-centered finite-difference
+/// Solve the 2-d Poisson problem on a node-centered finite-difference
 /// grid with Dirichlet BCs using Gauss-Seidel smoothing
 ///
 class Poisson {
