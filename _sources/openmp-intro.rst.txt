@@ -16,6 +16,26 @@ Interface Examples document
    a quick overview of the different syntax in OpenMP.
 
 
+
+Threads
+=======
+
+In an OpenMP application, threads are spawned as needed.
+
+* When you star the program, there is one thread -- the master thread
+
+* When you enter a parallel region, multiple threads run concurrently
+
+This looks like:
+
+.. figure:: 1280px-Fork_join.svg.png
+   :align: center
+
+   (A1 / Wikipedia)
+
+
+
+
 Hello, World
 ============
 
