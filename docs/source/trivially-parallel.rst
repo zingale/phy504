@@ -24,3 +24,9 @@ Here's an implementation:
 .. literalinclude:: ../../example/parallel/bash/parallel.sh
    :language: bash
    :caption: ``parallel.sh``
+
+This looks for files with the name ``plt*`` and then runs an analysis
+tool on them (for this simple example, it is just ``echo``).  You can
+control the number of processors that are used at the top of the
+script.
+
