@@ -179,8 +179,8 @@ Spring 2022
    :maxdepth: 1
    :caption: Parallel Programming
 
-   trivially-parallel
    parallel-intro
+   trivially-parallel
    openmp-intro
    openmp-relax
    mpi-intro
