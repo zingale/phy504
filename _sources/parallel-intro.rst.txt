@@ -206,6 +206,8 @@ socket on the motherboard) with multiple cores.  Each of these cores
 will have direct access to the same pool of memory:
 
 .. figure:: shared_memory.png
+   :align: center
+   :width: 80%
 
    A single 4-core chip and its pool of memory
 
