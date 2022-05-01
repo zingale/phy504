@@ -21,7 +21,7 @@ The basic flow is:
 
 Here's an implementation:
 
-.. literalinclude:: ../../example/parallel/bash/parallel.sh
+.. literalinclude:: ../../examples/parallel/bash/parallel.sh
    :language: bash
    :caption: ``parallel.sh``
 
@@ -29,4 +29,11 @@ This looks for files with the name ``plt*`` and then runs an analysis
 tool on them (for this simple example, it is just ``echo``).  You can
 control the number of processors that are used at the top of the
 script.
+
+
+Alternatives
+============
+
+`GNU parallel <https://www.gnu.org/software/parallel/>`_ is a similar
+tool that can be used for trivially parallel jobs.
 
