@@ -183,3 +183,62 @@ Examples:
 
   * Each file is processed on a single core.
 
+Making your code parallel
+=========================
+
+There is no magic compiler flag that makes your code run in parallel.
+So your approach really depends on what you are doing and where you
+intend to run.
+
+Runtime dominated by one task
+-----------------------------
+
+Imagine that the majority of your runtime is dominated by a single
+task (like linear algebra).  You can get a good speed up just by
+switching to a library that does the linear algebra in parallel.  This
+requires minimal code changes.
+
+Shared memory
+-------------
+
+Imagine that we want to run on a single computer that has one CPU (one
+socket on the motherboard) with multiple cores.  Each of these cores
+will have direct access to the same pool of memory:
+
+.. figure:: shared_memory.png
+
+   A single 4-core chip and its pool of memory
+
+In this situation, the parallelism is straightforward:
+
+* Allocate a single big array for your problem
+
+* Spawn threads: separate instance of a sequence of instructions operating
+
+* Multiple threads operate simultaneously
+
+* Each core/thread operates on a smaller portion of the same array, writing to the same memory
+
+  * Some intermediate variables may need to be duplicated on each thread—thread-private data
+
+OpenMP is the standard here.
+
+.. note::
+
+   Some machines are more complex -- multiple chips each with their own pool of local memory.
+   The chips can talk to one another through a slower connection, so accessing memory "off chip"
+   could slow you down.
+
+   Best performance requires knowing your machine's architecture.
+
+
+Distributed memory
+------------------
+
+With distributed memory, we run on a collection of computers, connected by a high-speed network.
+
+* Each task cannot directly see the memory for the other tasks
+
+* Need to explicitly send messages from one machine to another over the network exchanging the needed data
+
+MPI is the standard here.
