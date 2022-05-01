@@ -21,3 +21,6 @@ The basic flow is:
 
 Here's an implementation:
 
+.. literalinclude:: ../../example/parallel/bash/parallel.sh
+   :language: bash
+   :caption: ``parallel.sh``
