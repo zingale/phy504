@@ -2,9 +2,11 @@
 #include <omp.h>
 #include <vector>
 
-const int N = 20000;
+const int N = 50000;
 
 int main() {
+
+    auto start = omp_get_wtime();
 
     std::vector<std::vector<double>> a(N, std::vector<double>(N, 0));
     std::vector<double> x(N, 0);
@@ -30,4 +32,8 @@ int main() {
         }
 
     }
+
+    auto end = omp_get_wtime();
+
+    std::cout << "execution time (s) = " << end - start << std::endl;
 }

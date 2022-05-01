@@ -183,6 +183,7 @@ Spring 2022
    trivially-parallel
    openmp-intro
    openmp-relax
+   openmp-pi
    mpi-intro
 
 .. toctree::
