@@ -261,7 +261,7 @@ a quick overview of the different syntax in OpenMP.</p>
 threads and then enter a parallel region where each thread prints its
 id separately:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 96 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 97 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
 
@@ -292,7 +292,7 @@ a different ordering.</p></li>
 <h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Permalink to this headline">¶</a></h2>
 <p>Here’s a matrix-vector multiply:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 97 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
@@ -336,7 +336,7 @@ a different ordering.</p></li>
 will be updating its local sum or min/max, but then at the end of the
 parallel region, a reduction over the threads needs to be done.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 99 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
