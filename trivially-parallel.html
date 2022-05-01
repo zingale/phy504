@@ -226,6 +226,17 @@ but each analysis is completely independent of the others.  This is a
 <em>trivially parallel</em> application.</p>
 <p>We can manage the analysis via a Bash script that looks for available
 CPUs and starts up jobs as resources become free.</p>
+<p>The basic flow is:</p>
+<ul class="simple">
+<li><p>Loop over files</p>
+<ul>
+<li><p>Run jobs until all the processors are full</p></li>
+<li><p>Use lockfiles to indicate when a job is running</p></li>
+<li><p>When resources become free, start up the next job</p></li>
+</ul>
+</li>
+</ul>
+<p>Here’s an implementation:</p>
 </section>
 
 
