@@ -16,6 +16,15 @@ Interface Examples document
    a quick overview of the different syntax in OpenMP.
 
 
+Compiler support
+================
+
+In order to build an OpenMP application, you need a compiler that
+supports it.  Fortunately, most recent compilers support OpenMP.  For
+g++, the OpenMP standards are fully supported (up to version 5.0)
+
+See this table for `compiler support for OpenMP <https://www.openmp.org/resources/openmp-compilers-tools/>`_.
+
 
 Threads
 =======
@@ -55,9 +64,48 @@ When we compile this, we need to tell the compiler to interpret the OpenMP direc
 
 A few notes:
 
+* OpenMP directives are specified via ``#pragma omp``
+
 * When we run this, the threads are all printing independent of one
   another, so the output is all mixed up.  Run it again and you'll see
   a different ordering.
+
+* There are a few library functions that we access, by including ``omp.h``
+
+
+Controlling the number of threads
+=================================
+
+The easiest way to control the number of threads an OpenMP application
+uses is to set the ``OMP_NUM_THREADS`` environment variable.  For
+instance, you can set it globally in your shell as:
+
+.. prompt:: bash
+
+   export OMP_NUM_THREADS=2
+
+or just for the instance of your application as:
+
+.. prompt:: bash
+
+   OMP_NUM_THREADS=2 ./hello
+
+.. tip::
+
+   Your code will still run if you specify more threads than there are
+   cores in your machine.  On a Linux machine, you can do:
+
+   .. prompt:: bash
+
+      cat /proc/cpuinfo
+
+   To see the information about your processor and how many cores Linux thinks
+   you have.
+
+   Note: modern processors sometimes use hyperthreading, which makes a
+   single core look like 2 to the OS.  But OpenMP may not benefit from
+   this hardware threading.
+
 
 
 Parallelizing Loops
@@ -69,6 +117,16 @@ Here's a matrix-vector multiply:
    :language: c++
    :caption: ``matmul.cpp``
 
+
+.. warning::
+
+   There is an overhead associated with spawning threads, and some
+   regions might not have enough work to offset that overhead.  Some
+   experimentation may be necessary with your application.
+
+One thing we want is for the performance to scale with the number of
+cores -- if you double the number of cores, does the code run twice as
+fast?
 
 Reductions
 ==========

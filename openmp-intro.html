@@ -179,8 +179,10 @@
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trivially-parallel.html">Trivially Parallel + BASH</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">OpenMP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compiler-support">Compiler support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#threads">Threads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello, World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-the-number-of-threads">Controlling the number of threads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parallelizing-loops">Parallelizing Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reductions">Reductions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-monte-carlo-pi">Example: Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
@@ -240,6 +242,13 @@ Interface Examples document</a>.</p>
 <p>The <a class="reference external" href="https://www.openmp.org/wp-content/uploads/OpenMPRef-5.0-111802-web.pdf">OpenMP Reference Guide</a> provides
 a quick overview of the different syntax in OpenMP.</p>
 </div>
+<section id="compiler-support">
+<h2>Compiler support<a class="headerlink" href="#compiler-support" title="Permalink to this headline">¶</a></h2>
+<p>In order to build an OpenMP application, you need a compiler that
+supports it.  Fortunately, most recent compilers support OpenMP.  For
+g++, the OpenMP standards are fully supported (up to version 5.0)</p>
+<p>See this table for <a class="reference external" href="https://www.openmp.org/resources/openmp-compilers-tools/">compiler support for OpenMP</a>.</p>
+</section>
 <section id="threads">
 <h2>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h2>
 <p>In an OpenMP application, threads are spawned as needed.</p>
@@ -283,10 +292,32 @@ span.prompt1:before {
 </style><span class="prompt1">g++ -fopenmp -o hello hello.cpp</span>
 </pre></div></div><p>A few notes:</p>
 <ul class="simple">
+<li><p>OpenMP directives are specified via <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span></code></p></li>
 <li><p>When we run this, the threads are all printing independent of one
 another, so the output is all mixed up.  Run it again and you’ll see
 a different ordering.</p></li>
+<li><p>There are a few library functions that we access, by including <code class="docutils literal notranslate"><span class="pre">omp.h</span></code></p></li>
 </ul>
+</section>
+<section id="controlling-the-number-of-threads">
+<h2>Controlling the number of threads<a class="headerlink" href="#controlling-the-number-of-threads" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to control the number of threads an OpenMP application
+uses is to set the <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> environment variable.  For
+instance, you can set it globally in your shell as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span></span>
+</pre></div></div><p>or just for the instance of your application as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span> ./hello</span>
+</pre></div></div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Your code will still run if you specify more threads than there are
+cores in your machine.  On a Linux machine, you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat /proc/cpuinfo</span>
+</pre></div></div><p>To see the information about your processor and how many cores Linux thinks
+you have.</p>
+<p>Note: modern processors sometimes use hyperthreading, which makes a
+single core look like 2 to the OS.  But OpenMP may not benefit from
+this hardware threading.</p>
+</div>
 </section>
 <section id="parallelizing-loops">
 <h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Permalink to this headline">¶</a></h2>
@@ -329,6 +360,15 @@ a different ordering.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is an overhead associated with spawning threads, and some
+regions might not have enough work to offset that overhead.  Some
+experimentation may be necessary with your application.</p>
+</div>
+<p>One thing we want is for the performance to scale with the number of
+cores – if you double the number of cores, does the code run twice as
+fast?</p>
 </section>
 <section id="reductions">
 <h2>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h2>
