@@ -2,7 +2,10 @@
 #include <omp.h>
 #include <vector>
 
-const int N = 50000;
+// be careful about memory (N**2)
+// N = 10000 is 0.75 GB of memory
+
+const int N = 10000;
 
 int main() {
 
