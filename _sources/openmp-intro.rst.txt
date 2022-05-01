@@ -140,6 +140,3 @@ parallel region, a reduction over the threads needs to be done.
    :caption: ``reduce.cpp``
 
 
-Example: Monte Carlo :math:`\pi`
-================================
-
