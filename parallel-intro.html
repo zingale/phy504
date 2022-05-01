@@ -183,6 +183,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#types-of-parallelism">Types of parallelism</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mimd">MIMD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#trivially-parallel">Trivially parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-your-code-parallel">Making your code parallel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#runtime-dominated-by-one-task">Runtime dominated by one task</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shared-memory">Shared memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distributed-memory">Distributed memory</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="trivially-parallel.html">Trivially Parallel + BASH</a></li>
@@ -436,6 +442,59 @@ multiple pipelines each on a separate file.</p></li>
 </ul>
 </li>
 </ul>
+</section>
+<section id="making-your-code-parallel">
+<h2>Making your code parallel<a class="headerlink" href="#making-your-code-parallel" title="Permalink to this headline">¶</a></h2>
+<p>There is no magic compiler flag that makes your code run in parallel.
+So your approach really depends on what you are doing and where you
+intend to run.</p>
+<section id="runtime-dominated-by-one-task">
+<h3>Runtime dominated by one task<a class="headerlink" href="#runtime-dominated-by-one-task" title="Permalink to this headline">¶</a></h3>
+<p>Imagine that the majority of your runtime is dominated by a single
+task (like linear algebra).  You can get a good speed up just by
+switching to a library that does the linear algebra in parallel.  This
+requires minimal code changes.</p>
+</section>
+<section id="shared-memory">
+<h3>Shared memory<a class="headerlink" href="#shared-memory" title="Permalink to this headline">¶</a></h3>
+<p>Imagine that we want to run on a single computer that has one CPU (one
+socket on the motherboard) with multiple cores.  Each of these cores
+will have direct access to the same pool of memory:</p>
+<figure class="align-default" id="id3">
+<img alt="_images/shared_memory.png" src="_images/shared_memory.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">A single 4-core chip and its pool of memory</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In this situation, the parallelism is straightforward:</p>
+<ul class="simple">
+<li><p>Allocate a single big array for your problem</p></li>
+<li><p>Spawn threads: separate instance of a sequence of instructions operating</p></li>
+<li><p>Multiple threads operate simultaneously</p></li>
+<li><p>Each core/thread operates on a smaller portion of the same array, writing to the same memory</p>
+<ul>
+<li><p>Some intermediate variables may need to be duplicated on each thread—thread-private data</p></li>
+</ul>
+</li>
+</ul>
+<p>OpenMP is the standard here.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some machines are more complex – multiple chips each with their own pool of local memory.
+The chips can talk to one another through a slower connection, so accessing memory “off chip”
+could slow you down.</p>
+<p>Best performance requires knowing your machine’s architecture.</p>
+</div>
+</section>
+<section id="distributed-memory">
+<h3>Distributed memory<a class="headerlink" href="#distributed-memory" title="Permalink to this headline">¶</a></h3>
+<p>With distributed memory, we run on a collection of computers, connected by a high-speed network.</p>
+<ul class="simple">
+<li><p>Each task cannot directly see the memory for the other tasks</p></li>
+<li><p>Need to explicitly send messages from one machine to another over the network exchanging the needed data</p></li>
+</ul>
+<p>MPI is the standard here.</p>
+</section>
 </section>
 </section>
 
