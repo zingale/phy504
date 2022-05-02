@@ -31,7 +31,7 @@ Threads
 
 In an OpenMP application, threads are spawned as needed.
 
-* When you star the program, there is one thread -- the master thread
+* When you start the program, there is one thread -- the master thread
 
 * When you enter a parallel region, multiple threads run concurrently
 
@@ -71,6 +71,19 @@ A few notes:
   a different ordering.
 
 * There are a few library functions that we access, by including ``omp.h``
+
+
+Critical regions
+================
+
+We can use a *critical region* in an OpenMP parallel region to force
+the threads to operate one at a time.  For example, in the above
+``hello.cpp``, we can get the prints to be done one at a time as:
+
+.. literalinclude:: ../../examples/parallel/openmp/hello-critical.cpp
+   :language: c++
+   :caption: ``hello-critical.cpp``
+
 
 
 Controlling the number of threads
@@ -123,6 +136,25 @@ Here's a matrix-vector multiply:
    There is an overhead associated with spawning threads, and some
    regions might not have enough work to offset that overhead.  Some
    experimentation may be necessary with your application.
+
+
+.. tip::
+
+   We cannot put the ``{`` on the same line as the ``#pragma``, since the
+   ``#pragma`` is dealt with by the preprocessor.  So we do:
+
+   .. code:: c++
+
+      #pragma omp parallel
+      {
+        ...
+      }
+
+   and not
+
+      #pragma omp parallel {
+        ...
+      }
 
 One thing we want is for the performance to scale with the number of
 cores -- if you double the number of cores, does the code run twice as
