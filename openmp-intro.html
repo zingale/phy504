@@ -180,6 +180,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#compiler-support">Compiler support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#threads">Threads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello, World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#critical-regions">Critical regions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controlling-the-number-of-threads">Controlling the number of threads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parallelizing-loops">Parallelizing Loops</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reductions">Reductions</a></li>
@@ -251,7 +252,7 @@ g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 <h2>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h2>
 <p>In an OpenMP application, threads are spawned as needed.</p>
 <ul class="simple">
-<li><p>When you star the program, there is one thread – the master thread</p></li>
+<li><p>When you start the program, there is one thread – the master thread</p></li>
 <li><p>When you enter a parallel region, multiple threads run concurrently</p></li>
 </ul>
 <p>This looks like:</p>
@@ -296,6 +297,12 @@ another, so the output is all mixed up.  Run it again and you’ll see
 a different ordering.</p></li>
 <li><p>There are a few library functions that we access, by including <code class="docutils literal notranslate"><span class="pre">omp.h</span></code></p></li>
 </ul>
+</section>
+<section id="critical-regions">
+<h2>Critical regions<a class="headerlink" href="#critical-regions" title="Permalink to this headline">¶</a></h2>
+<p>We can use a <em>critical region</em> in an OpenMP parallel region to force
+the threads to operate one at a time.  For example, in the above
+<code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>, we can get the prints to be done one at a time as:</p>
 </section>
 <section id="controlling-the-number-of-threads">
 <h2>Controlling the number of threads<a class="headerlink" href="#controlling-the-number-of-threads" title="Permalink to this headline">¶</a></h2>
@@ -372,6 +379,25 @@ this hardware threading.</p>
 <p>There is an overhead associated with spawning threads, and some
 regions might not have enough work to offset that overhead.  Some
 experimentation may be necessary with your application.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We cannot put the <code class="docutils literal notranslate"><span class="pre">{</span></code> on the same line as the <code class="docutils literal notranslate"><span class="pre">#pragma</span></code>, since the
+<code class="docutils literal notranslate"><span class="pre">#pragma</span></code> is dealt with by the preprocessor.  So we do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma omp parallel</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and not</p>
+<blockquote>
+<div><dl class="simple">
+<dt>#pragma omp parallel {</dt><dd><p>…</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
 </div>
 <p>One thing we want is for the performance to scale with the number of
 cores – if you double the number of cores, does the code run twice as
