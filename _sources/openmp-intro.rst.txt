@@ -152,6 +152,8 @@ Here's a matrix-vector multiply:
 
    and not
 
+   .. code::
+
       #pragma omp parallel {
         ...
       }

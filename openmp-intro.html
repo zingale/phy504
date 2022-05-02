@@ -409,13 +409,11 @@ experimentation may be necessary with your application.</p>
 </pre></div>
 </div>
 <p>and not</p>
-<blockquote>
-<div><dl class="simple">
-<dt>#pragma omp parallel {</dt><dd><p>…</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#pragma omp parallel {</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <p>One thing we want is for the performance to scale with the number of
 cores – if you double the number of cores, does the code run twice as
