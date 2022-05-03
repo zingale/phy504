@@ -22,6 +22,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -180,7 +182,10 @@
 <li class="toctree-l1"><a class="reference internal" href="openmp-relax.html">OpenMP Poisson Relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">MPI</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MPI Send and Receive</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MPI Send and Receive</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -223,11 +228,40 @@
              
   <section id="mpi-send-and-receive">
 <h1>MPI Send and Receive<a class="headerlink" href="#mpi-send-and-receive" title="Permalink to this headline">¶</a></h1>
-<figure class="align-center">
+<p>The main concept in MPI is sending messages between processes.  Two
+basic functions: <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> provide this
+functionality.  You provide a buffer that contains the data you want
+to send / receive.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> are a <em>blocking</em> send/receive.</p></li>
+<li><p>For the sending code, the program resumes when it is safe to reuse
+the buffer.</p></li>
+<li><p>For the receiving code, the program resumes when the message was received.</p></li>
+</ul>
+<p>This may cause network contention if the destination process is busy
+doing its own communication.  There are non-blocking sends that we can use
+in this case.</p>
+<section id="basic-example">
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a basic example that mimics the <em>ghost cell filling</em> process used
+in hydrodynamics codes.</p>
+<ol class="arabic simple">
+<li><p>On each processor we allocate an integer vector of 5 elements</p></li>
+<li><p>We fill the middle 3 element with a sequence based on the processor number.
+Processor 0 gets <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2</span></code>, processor 1 gets <code class="docutils literal notranslate"><span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5</span></code>, and so on.</p></li>
+<li><p>We send messages to the left and right element with the corresponding
+element from the neighboring processors.</p></li>
+</ol>
+<p>This looks like:</p>
+<figure class="align-center" id="id1">
 <img alt="_images/send_recv_diagram.png" src="_images/send_recv_diagram.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Sharing data at the boundary of our vectors</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
 </figure>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 106 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<p>Here’s the implementation:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 106 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
@@ -283,6 +317,10 @@
 </pre></div>
 </div>
 </div>
+<p>Notice that at the two ends, we don’t send anything in one case (for
+processor 0, there is no left, and for processor <span class="math notranslate nohighlight">\(N-1\)</span>, there is
+no right).</p>
+</section>
 </section>
 
 
