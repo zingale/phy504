@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Development Cycle &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>MPI Send and Receive &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Structure of a C++ Program" href="structure.html" />
-    <link rel="prev" title="Software Development Tools" href="development-tools.html" /> 
+    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="prev" title="MPI" href="mpi-intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -78,11 +78,11 @@
 <li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development-tools.html">Software Development Tools</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Development Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development-cycle.html">Software Development Cycle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html">Structure of a C++ Program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools / Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling</a></li>
@@ -173,14 +173,14 @@
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trivially-parallel.html">Trivially Parallel + BASH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-intro.html">OpenMP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-relax.html">OpenMP Poisson Relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">MPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MPI Send and Receive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -211,9 +211,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Software Development Cycle</li>
+      <li>MPI Send and Receive</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/development-cycle.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mpi-sendrecv.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -221,30 +221,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="software-development-cycle">
-<h1>Software Development Cycle<a class="headerlink" href="#software-development-cycle" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>Cyganek section 2.3</p>
-</div>
-<p>A typical software development cycle looks like this:</p>
-<figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/764px-SDLC_-_Software_Development_Life_Cycle.jpg"><img alt="_images/764px-SDLC_-_Software_Development_Life_Cycle.jpg" src="_images/764px-SDLC_-_Software_Development_Life_Cycle.jpg" style="width: 70%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text"><a class="reference external" href="https://en.wikipedia.org/wiki/File:SDLC_-_Software_Development_Life_Cycle.jpg">(Cliffydcw/Wikipedia)</a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>Notice that it is a closed cycle – often by the time we’ve finish the
-initial task, we’ve identified new features that we wish to
-incorporate.</p>
+  <section id="mpi-send-and-receive">
+<h1>MPI Send and Receive<a class="headerlink" href="#mpi-send-and-receive" title="Permalink to this headline">¶</a></h1>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="development-tools.html" class="btn btn-neutral float-left" title="Software Development Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="structure.html" class="btn btn-neutral float-right" title="Structure of a C++ Program" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mpi-intro.html" class="btn btn-neutral float-left" title="MPI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

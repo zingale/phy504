@@ -185,6 +185,7 @@ Spring 2022
    openmp-relax
    openmp-pi
    mpi-intro
+   mpi-sendrecv
 
 .. toctree::
    :maxdepth: 1

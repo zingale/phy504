@@ -17,6 +17,7 @@ efficiently.
    pointers and not references, so we need to pass the address of the
    data we are using.
 
+
 Hello, World
 ============
 
@@ -55,6 +56,38 @@ This will pass any compiler flags onto the actual compiler, so we can
 use this the same way we've been using ``g++``.
 
 
+MPI Concepts
+============
+
+With MPI, a separate instance of your program is run on each processor
+-- these are the MPI processes.  We don't need to worry about
+thread-safety is not an issue here, since each instance of the program
+is isolated from the others.
+
+A few considerations:
+
+* You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).
+
+  * Together with the address of the buffer specify what is being sent
+
+* Processors can be grouped together
+
+  * Communicators label different groups
+
+  * ``MPI_COMM_WORLD`` is the default communicator (all processes)
+
+MPI has many types of operations:
+
+  * Send / receive
+
+  * Collective communications (broadcast, gather/scatter)
+
+On supercomputers, system vendors will often provide their own MPI
+implementation that is tuned to their hardware / network.  On your own
+machine, `MPICH <https://www.mpich.org/>`_ is a popular
+implemetation.
+
+
 Integrating :math:`\pi`
 =======================
 
@@ -67,6 +100,16 @@ Here we want to construct the integral:
 using a simple midpoint method.  We will break the domain :math:`[0,
 1]` into :math:`N` intervals, and spread those over the different MPI
 processes.
+
+We have 2 communications here.
+
+* At the start, one processor (we pick ``0`` since it will always
+  exist) reads in the number of intervals and then *broadcasts* that
+  to all the other processors.
+
+* At the end of the integration, we do a *reduce* to add up the partial
+  sums from each processor into the total.  In our case, we only add them
+  up on processor ``0``, since that's out I/O processor.
 
 .. literalinclude:: ../../examples/parallel/mpi/pi.cpp
    :language: c++

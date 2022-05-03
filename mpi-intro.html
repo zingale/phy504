@@ -27,7 +27,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="next" title="MPI Send and Receive" href="mpi-sendrecv.html" />
     <link rel="prev" title="OpenMP Monte Carlo \(\pi\)" href="openmp-pi.html" /> 
 </head>
 
@@ -183,9 +183,11 @@
 <li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MPI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello, World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpi-concepts">MPI Concepts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#integrating-pi">Integrating <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -297,6 +299,38 @@ span.prompt1:before {
 </pre></div></div><p>This will pass any compiler flags onto the actual compiler, so we can
 use this the same way we’ve been using <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
 </section>
+<section id="mpi-concepts">
+<h2>MPI Concepts<a class="headerlink" href="#mpi-concepts" title="Permalink to this headline">¶</a></h2>
+<p>With MPI, a separate instance of your program is run on each processor
+– these are the MPI processes.  We don’t need to worry about
+thread-safety is not an issue here, since each instance of the program
+is isolated from the others.</p>
+<p>A few considerations:</p>
+<ul class="simple">
+<li><p>You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).</p>
+<ul>
+<li><p>Together with the address of the buffer specify what is being sent</p></li>
+</ul>
+</li>
+<li><p>Processors can be grouped together</p>
+<ul>
+<li><p>Communicators label different groups</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> is the default communicator (all processes)</p></li>
+</ul>
+</li>
+</ul>
+<p>MPI has many types of operations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Send / receive</p></li>
+<li><p>Collective communications (broadcast, gather/scatter)</p></li>
+</ul>
+</div></blockquote>
+<p>On supercomputers, system vendors will often provide their own MPI
+implementation that is tuned to their hardware / network.  On your own
+machine, <a class="reference external" href="https://www.mpich.org/">MPICH</a> is a popular
+implemetation.</p>
+</section>
 <section id="integrating-pi">
 <h2>Integrating <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#integrating-pi" title="Permalink to this headline">¶</a></h2>
 <p>Here we want to construct the integral:</p>
@@ -305,6 +339,15 @@ use this the same way we’ve been using <code class="docutils literal notransla
 <p>using a simple midpoint method.  We will break the domain <span class="math notranslate nohighlight">\([0,
 1]\)</span> into <span class="math notranslate nohighlight">\(N\)</span> intervals, and spread those over the different MPI
 processes.</p>
+<p>We have 2 communications here.</p>
+<ul class="simple">
+<li><p>At the start, one processor (we pick <code class="docutils literal notranslate"><span class="pre">0</span></code> since it will always
+exist) reads in the number of intervals and then <em>broadcasts</em> that
+to all the other processors.</p></li>
+<li><p>At the end of the integration, we do a <em>reduce</em> to add up the partial
+sums from each processor into the total.  In our case, we only add them
+up on processor <code class="docutils literal notranslate"><span class="pre">0</span></code>, since that’s out I/O processor.</p></li>
+</ul>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 105 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -374,7 +417,7 @@ processes.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="openmp-pi.html" class="btn btn-neutral float-left" title="OpenMP Monte Carlo \(\pi\)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mpi-sendrecv.html" class="btn btn-neutral float-right" title="MPI Send and Receive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
