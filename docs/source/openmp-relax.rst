@@ -21,6 +21,16 @@ If we look at the 2-d update, it has the form:
             \left [ \frac{1}{\Delta x^2} (\phi_{i-1,j} + \phi_{i+1,j} ) +
                     \frac{1}{\Delta y^2} (\phi_{i,j-1} + \phi_{i,j+1} ) - f_{i,j} \right ]
 
+
+If :math:`\Delta x = \Delta y`, then this simplifies to:
+
+.. math::
+
+   \phi_{i,j} = \frac{1}{4}
+            \left [ \phi_{i-1,j} + \phi_{i+1,j} +
+                    \phi_{i,j-1} + \phi_{i,j+1} - \Delta x^2 f_{i,j} \right ]
+
+
 We see that the update of :math:`\phi_{i,j}` depends only on the
 values above, below, and to the left and right.  We can visualize this
 as a checkerboard:
