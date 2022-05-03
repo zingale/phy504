@@ -2,7 +2,7 @@
 OpenMP Monte Carlo :math:`\pi`
 ******************************
 
-Let's parallelize our :ref:`sec:computing_pi`.
+Let's parallelize our :ref:`Monte Carlo example of computing pi <sec:computing_pi>`.
 
 We now want each thread to have independent random numbers.  We do
 this by creating a random number generator separately on each thread.
