@@ -107,7 +107,7 @@ better seed:
    reproducibility, and is good for testing.
 
 
-.. _sec:computing_pi::
+.. _sec:computing_pi:
 
 Example: computing :math:`\pi`
 ==============================
