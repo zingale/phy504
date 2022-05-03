@@ -228,8 +228,32 @@
              
   <section id="mpi">
 <h1>MPI<a class="headerlink" href="#mpi" title="Permalink to this headline">¶</a></h1>
+<p>In contrast to OpenMP, MPI does not use directives / pragmas to
+specify the parallelism, but instead we call functions.  The <a class="reference external" href="https://www.mpi-forum.org/">MPI
+standard</a> is big, but we only actually
+need a few routines to be able to express any type of parallelism.
+However, the additional capabilities allow us to do things more
+efficiently.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is no separate C++ interface to the MPI library – we use the
+C interface.  This means that the functions accept arguments as
+pointers and not references, so we need to pass the address of the
+data we are using.</p>
+</div>
 <section id="hello-world">
 <h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a “Hello, World!” with MPI.  Every MPI application begins with
+<code class="docutils literal notranslate"><span class="pre">MPI_Initialize()</span></code> and end with <code class="docutils literal notranslate"><span class="pre">MPI_Finalize()</span></code>.  Note that
+<code class="docutils literal notranslate"><span class="pre">MPI_Initialize()</span></code> can take 2 arguments that are the command line
+parameters passed into the code.  Since we are not using this, we pass
+<code class="docutils literal notranslate"><span class="pre">nullptr</span></code>.</p>
+<p>There are 2 other function we use here:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI_Comm_size()</span></code> : this tells us the total number of MPI processes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI_Comm_rank()</span></code> : this tells us which processor the current
+program represents out of the total number used by MPI.</p></li>
+</ul>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 104 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -257,6 +281,21 @@
 </pre></div>
 </div>
 </div>
+<p>There is one additional bit that we won’t explore here.  MPI allows
+you to setup communicators that are subgroups of the total number of
+processors.  This can be useful to divide tasks up between the total
+number of processors.  We’ll stick to <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> which
+represents all processors.</p>
+<p>To compile this, we need to supply the path where the header file is
+located as well as explicitly link in the libraries we use.
+Thankfully, most MPI implementation provide a wrapper for that: <code class="docutils literal notranslate"><span class="pre">mpic++</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">mpic++ -o hello hello.cpp</span>
+</pre></div></div><p>This will pass any compiler flags onto the actual compiler, so we can
+use this the same way we’ve been using <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
 </section>
 <section id="integrating-pi">
 <h2>Integrating <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#integrating-pi" title="Permalink to this headline">¶</a></h2>
