@@ -184,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">MPI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MPI Send and Receive</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpi-sendrecv">MPI_Sendrecv</a></li>
 </ul>
 </li>
 </ul>
@@ -320,6 +321,12 @@ element from the neighboring processors.</p></li>
 <p>Notice that at the two ends, we don’t send anything in one case (for
 processor 0, there is no left, and for processor <span class="math notranslate nohighlight">\(N-1\)</span>, there is
 no right).</p>
+</section>
+<section id="mpi-sendrecv">
+<h2>MPI_Sendrecv<a class="headerlink" href="#mpi-sendrecv" title="Permalink to this headline">¶</a></h2>
+<p>Good communication performance often requires staggering the communication.  A combined <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code>
+can help with this.  We can use <code class="docutils literal notranslate"><span class="pre">MPI_PROC_NULL</span></code> when there is no destination.</p>
+<p>Here’s the same example as above, but now using this single funciton.</p>
 </section>
 </section>
 
