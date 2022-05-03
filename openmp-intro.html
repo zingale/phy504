@@ -22,6 +22,8 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
+        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -424,6 +426,29 @@ fast?</p>
 <p>Reductions (e.g., summing, min/max) are trickier, since each thread
 will be updating its local sum or min/max, but then at the end of the
 parallel region, a reduction over the threads needs to be done.</p>
+<p>A reduction clause takes the form:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#openmp parallel reduction (operator | variable)</span>
+</pre></div>
+</div>
+<p>Each thread will have its own local copy of <code class="docutils literal notranslate"><span class="pre">variable</span></code> and they will
+be reduced into a single quantity at the end of the parallel region.</p>
+<p>The possible operators are listed here: <a class="reference external" href="https://www.openmp.org/spec-html/5.0/openmpsu107.html">https://www.openmp.org/spec-html/5.0/openmpsu107.html</a>
+and include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+</span></code> for summation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> for subtraction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> for multiplication</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code> for finding the global minimum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code> for finding the global maximum</p></li>
+</ul>
+<p>Here’s an example where we construct the sum:</p>
+<div class="math notranslate nohighlight">
+\[S = \sum_{i = 0}^{N-1} \left [ e^{i \% 5} - 2 e^{i \% 7} \right ]\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will give slightly different answers depending on the number of threads
+because of different roundoff behavior.</p>
+</div>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 100 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
