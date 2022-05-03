@@ -238,6 +238,11 @@ avoid these.</p>
 \[\phi_{i,j} = \frac{1}{2} \frac{\Delta x^2 \Delta y^2}{\Delta x^2 + \Delta y^2}
          \left [ \frac{1}{\Delta x^2} (\phi_{i-1,j} + \phi_{i+1,j} ) +
                  \frac{1}{\Delta y^2} (\phi_{i,j-1} + \phi_{i,j+1} ) - f_{i,j} \right ]\]</div>
+<p>If <span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span>, then this simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[\phi_{i,j} = \frac{1}{4}
+         \left [ \phi_{i-1,j} + \phi_{i+1,j} +
+                 \phi_{i,j-1} + \phi_{i,j+1} - \Delta x^2 f_{i,j} \right ]\]</div>
 <p>We see that the update of <span class="math notranslate nohighlight">\(\phi_{i,j}\)</span> depends only on the
 values above, below, and to the left and right.  We can visualize this
 as a checkerboard:</p>
