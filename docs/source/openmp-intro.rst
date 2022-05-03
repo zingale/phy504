@@ -169,6 +169,35 @@ Reductions (e.g., summing, min/max) are trickier, since each thread
 will be updating its local sum or min/max, but then at the end of the
 parallel region, a reduction over the threads needs to be done.
 
+A reduction clause takes the form:
+
+.. code:: c++
+
+   #openmp parallel reduction (operator | variable)
+
+Each thread will have its own local copy of ``variable`` and they will
+be reduced into a single quantity at the end of the parallel region.
+
+The possible operators are listed here: https://www.openmp.org/spec-html/5.0/openmpsu107.html
+and include:
+
+* ``+`` for summation
+* ``-`` for subtraction
+* ``*`` for multiplication
+* ``min`` for finding the global minimum
+* ``max`` for finding the global maximum
+
+Here's an example where we construct the sum:
+
+.. math::
+
+   S = \sum_{i = 0}^{N-1} \left [ e^{i \% 5} - 2 e^{i \% 7} \right ]
+
+.. note::
+
+   This will give slightly different answers depending on the number of threads
+   because of different roundoff behavior.
+
 .. literalinclude:: ../../examples/parallel/openmp/reduce.cpp
    :language: c++
    :caption: ``reduce.cpp``
