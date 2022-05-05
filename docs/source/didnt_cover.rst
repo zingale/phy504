@@ -11,7 +11,7 @@ dictionary.  And C++17 offers an easy way to iterate over keys and
 values:
 
 .. literalinclude:: ../../examples/map/map_test.cpp
-   :langauge: c++
+   :language: c++
    :caption: ``map_test.cpp``
 
 
@@ -27,7 +27,7 @@ that handles the general case.
 
 Here's a trivial example:
 
-.. literalinclude:: ../../examples/constexpr_example.cpp
+.. literalinclude:: ../../examples/constexpr-if/constexpr_example.cpp
    :language: c++
    :caption: ``constexpr_example.cpp``
 
