@@ -47,12 +47,18 @@ Memory management
 Regular expressions
 ===================
 
-
-Interacting with the OS
-=======================
-
+Regular expressions are a powerful way to search for patterns and
+extract substrings out of strings.  The C++ `regular expressions
+library <https://en.cppreference.com/w/cpp/regex>`_ provides all the
+capability needed to work with regular expressions.
 
 Profiling
 =========
 
+A profiler will allow you to time independent functions or even lines
+of code and generate a report telling you where your code spends most
+of its time.
+
+`GNU gprof <https://sourceware.org/binutils/docs/gprof/>` is the GNU profiler
+than can be used with ``g++``.
 
