@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trivially Parallel + BASH &mdash; PHY 504 Spring 2022 documentation</title>
+  <title>Stuff We Didn’t Cover &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="OpenMP" href="openmp-intro.html" />
-    <link rel="prev" title="Introduction to Parallel Programming" href="parallel-intro.html" /> 
+    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="prev" title="MPI Send and Receive" href="mpi-sendrecv.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -173,12 +173,9 @@
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Trivially Parallel + BASH</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#alternatives">Alternatives</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="trivially-parallel.html">Trivially Parallel + BASH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-intro.html">OpenMP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-relax.html">OpenMP Poisson Relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
@@ -186,8 +183,18 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="didnt_cover.html">Stuff We Didn’t Cover</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stuff We Didn’t Cover</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#std-map"><code class="docutils literal notranslate"><span class="pre">std::map</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#if-constexpr"><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-functions">Virtual functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-member-data"><code class="docutils literal notranslate"><span class="pre">static</span></code> member data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-management">Memory management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regular-expressions">Regular expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interacting-with-the-os">Interacting with the OS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#profiling">Profiling</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -218,9 +225,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Trivially Parallel + BASH</li>
+      <li>Stuff We Didn’t Cover</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/trivially-parallel.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/didnt_cover.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -228,127 +235,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="trivially-parallel-bash">
-<h1>Trivially Parallel + BASH<a class="headerlink" href="#trivially-parallel-bash" title="Permalink to this headline">¶</a></h1>
-<p>Sometimes we have to run an analysis tool on a large number of files,
-but each analysis is completely independent of the others.  This is a
-<em>trivially parallel</em> application.</p>
-<p>We can manage the analysis via a Bash script that looks for available
-CPUs and starts up jobs as resources become free.</p>
-<p>The basic flow is:</p>
-<ul class="simple">
-<li><p>Loop over files</p>
-<ul>
-<li><p>Run jobs until all the processors are full</p></li>
-<li><p>Use lockfiles to indicate when a job is running</p></li>
-<li><p>When resources become free, start up the next job</p></li>
-</ul>
-</li>
-</ul>
-<p>Here’s an implementation:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 96 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-
-<span class="c1"># run a bunch of single-processor analysis jobs in parallel.  Lock</span>
-<span class="c1"># files are used to keep track of how many processors are in use at</span>
-<span class="c1"># any given time -- this allows for jobs of varying length to be run</span>
-<span class="c1"># together.</span>
-
-<span class="c1">#----------------------------------------------------------------------------</span>
-<span class="c1"># user modifiable variables:</span>
-
-<span class="c1"># number of parallel tasks to run</span>
-<span class="nv">NCPUS</span><span class="o">=</span><span class="m">4</span>
-
-<span class="c1"># set the prefix of the datafile to process</span>
-<span class="nv">data_prefix</span><span class="o">=</span>plt
-
-<span class="c1"># set the full name of the analysis routines (must be in the path)</span>
-<span class="nv">analysis</span><span class="o">=</span><span class="nb">echo</span>
-
-<span class="c1"># Number of seconds to sleep before checking again.</span>
-<span class="nv">N</span><span class="o">=</span><span class="m">60</span>
-
-
-<span class="c1">#----------------------------------------------------------------------------</span>
-<span class="c1"># the processing functions</span>
-<span class="k">function</span> process_files
-<span class="o">{</span>
-
-    <span class="c1"># the argument $1 is the name of the datafile</span>
-
-    <span class="nb">echo</span> <span class="s2">&quot;working on &quot;</span> <span class="nv">$1</span>
-    <span class="nv">root</span><span class="o">=</span><span class="k">$(</span>basename <span class="nv">$1</span><span class="k">)</span>
-    <span class="nb">echo</span> <span class="nv">$1</span> &gt; _process.<span class="nv">$root</span>
-
-    <span class="k">if</span> <span class="o">[</span> -f <span class="nv">$1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-
-        <span class="c1"># do processing</span>
-        <span class="si">${</span><span class="nv">analysis</span><span class="si">}</span> <span class="nv">$1</span>   <span class="c1">#&gt;&gt; /dev/null</span>
-
-        <span class="c1"># this sleep line is not necessary if the analysis takes any</span>
-	    <span class="c1"># measurable amount of time</span>
-	    sleep <span class="m">30</span>
-
-    <span class="k">fi</span>   <span class="c1"># end test of whether datafile is a file (as it should be)</span>
-
-    rm -f _process.<span class="nv">$root</span>
-<span class="o">}</span>
-
-
-
-<span class="c1">#----------------------------------------------------------------------------</span>
-<span class="c1"># The function freecpus looks counts the _process.XX files to determine how many</span>
-<span class="c1"># files we are currently processing.  If we are processing &lt; NCPUS, return 1 to</span>
-<span class="c1"># indicate that there are free CPUs available to do more processing.</span>
-<span class="k">function</span> freecpus
-<span class="o">{</span>
-    <span class="nv">num</span><span class="o">=</span><span class="k">$(</span>ls -l _process.* <span class="m">2</span>&gt; /dev/null <span class="p">|</span> wc -l<span class="k">)</span>
-
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$num</span> -lt <span class="nv">$NCPUS</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        <span class="k">return</span> <span class="m">1</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="m">0</span>
-    <span class="k">fi</span>
-<span class="o">}</span>
-
-
-<span class="c1">#----------------------------------------------------------------------------</span>
-<span class="c1"># the main loop</span>
-
-<span class="c1"># We process NCPUS files at a time.  We loop over files, waiting for free CPUs.</span>
-<span class="c1"># When a CPU becomes available, we launch the processing job in the background,</span>
-<span class="c1"># and move to the next file, again waiting for an available CPU.</span>
-
-<span class="nv">filelist</span><span class="o">=</span><span class="k">$(</span>find . -maxdepth <span class="m">1</span> -type f -name <span class="s2">&quot;</span><span class="si">${</span><span class="nv">data_prefix</span><span class="si">}</span><span class="s2">*&quot;</span> -print <span class="p">|</span> sort<span class="k">)</span>
-
-<span class="k">for</span> file <span class="k">in</span> <span class="si">${</span><span class="nv">filelist</span><span class="si">}</span>
-<span class="k">do</span>
-
-    <span class="c1"># wait for available CPUS</span>
-    freecpus
-    <span class="k">while</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span>
-    <span class="k">do</span>
-        sleep <span class="m">1</span>
-        freecpus
-    <span class="k">done</span>
-
-    process_files <span class="si">${</span><span class="nv">file</span><span class="si">}</span> <span class="p">&amp;</span>
-
-    sleep <span class="m">1</span>
-<span class="k">done</span>
-</pre></div>
-</div>
-</div>
-<p>This looks for files with the name <code class="docutils literal notranslate"><span class="pre">plt*</span></code> and then runs an analysis
-tool on them (for this simple example, it is just <code class="docutils literal notranslate"><span class="pre">echo</span></code>).  You can
-control the number of processors that are used at the top of the
-script.</p>
-<section id="alternatives">
-<h2>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.gnu.org/software/parallel/">GNU parallel</a> is a similar
-tool that can be used for trivially parallel jobs.</p>
+  <section id="stuff-we-didn-t-cover">
+<h1>Stuff We Didn’t Cover<a class="headerlink" href="#stuff-we-didn-t-cover" title="Permalink to this headline">¶</a></h1>
+<section id="std-map">
+<h2><code class="docutils literal notranslate"><span class="pre">std::map</span></code><a class="headerlink" href="#std-map" title="Permalink to this headline">¶</a></h2>
+<p>With a <code class="docutils literal notranslate"><span class="pre">std::map</span></code> you can create an object that looks like a python
+dictionary.  And C++17 offers an easy way to iterate over keys and
+values:</p>
+</section>
+<section id="if-constexpr">
+<h2><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code><a class="headerlink" href="#if-constexpr" title="Permalink to this headline">¶</a></h2>
+<p>An <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code> is a compile-time if-test.  It essentially allows
+you to template a general function and have the compiler write
+specific versions based on the template paramters.  One way this is
+used is to cut out expensive computations if we know we won’t need
+them, while still being able to write just a single implementation
+that handles the general case.</p>
+<p>Here’s a trivial example:</p>
+</section>
+<section id="virtual-functions">
+<h2>Virtual functions<a class="headerlink" href="#virtual-functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="static-member-data">
+<h2><code class="docutils literal notranslate"><span class="pre">static</span></code> member data<a class="headerlink" href="#static-member-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="regular-expressions">
+<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="interacting-with-the-os">
+<h2>Interacting with the OS<a class="headerlink" href="#interacting-with-the-os" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="profiling">
+<h2>Profiling<a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
@@ -356,8 +277,8 @@ tool that can be used for trivially parallel jobs.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="parallel-intro.html" class="btn btn-neutral float-left" title="Introduction to Parallel Programming" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="openmp-intro.html" class="btn btn-neutral float-right" title="OpenMP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mpi-sendrecv.html" class="btn btn-neutral float-left" title="MPI Send and Receive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

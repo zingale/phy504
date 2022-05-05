@@ -189,6 +189,12 @@ Spring 2022
 
 .. toctree::
    :maxdepth: 1
+   :caption: To Be Continued...
+
+   didnt_cover
+
+.. toctree::
+   :maxdepth: 1
    :caption: Homework
 
    homework/homework1
