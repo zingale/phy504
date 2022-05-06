@@ -39,7 +39,7 @@ There are 2 other function we use here:
    :caption: ``hello.cpp``
 
 There is one additional bit that we won't explore here.  MPI allows
-you to setup communicators that are subgroups of the total number of
+you to set up communicators that are subgroups of the total number of
 processors.  This can be useful to divide tasks up between the total
 number of processors.  We'll stick to ``MPI_COMM_WORLD`` which
 represents all processors.
@@ -54,38 +54,6 @@ Thankfully, most MPI implementation provide a wrapper for that: ``mpic++``:
 
 This will pass any compiler flags onto the actual compiler, so we can
 use this the same way we've been using ``g++``.
-
-
-MPI Concepts
-============
-
-With MPI, a separate instance of your program is run on each processor
--- these are the MPI processes.  We don't need to worry about
-thread-safety is not an issue here, since each instance of the program
-is isolated from the others.
-
-A few considerations:
-
-* You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).
-
-  * Together with the address of the buffer specify what is being sent
-
-* Processors can be grouped together
-
-  * Communicators label different groups
-
-  * ``MPI_COMM_WORLD`` is the default communicator (all processes)
-
-MPI has many types of operations:
-
-  * Send / receive
-
-  * Collective communications (broadcast, gather/scatter)
-
-On supercomputers, system vendors will often provide their own MPI
-implementation that is tuned to their hardware / network.  On your own
-machine, `MPICH <https://www.mpich.org/>`_ is a popular
-implemetation.
 
 
 Integrating :math:`\pi`
@@ -114,4 +82,37 @@ We have 2 communications here.
 .. literalinclude:: ../../examples/parallel/mpi/pi.cpp
    :language: c++
    :caption: ``pi.cpp``
+
+
+MPI Concepts
+============
+
+With MPI, a separate instance of your program is run on each processor
+-- these are the MPI processes.  We don't need to worry about
+thread-safety is not an issue here, since each instance of the program
+is isolated from the others.
+
+A few considerations:
+
+* You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).
+
+  * Together with the address of the buffer specify what is being sent
+
+* Processors can be grouped together
+
+  * Communicators label different groups
+
+  * ``MPI_COMM_WORLD`` is the default communicator (all processes)
+
+MPI has many types of operations, including:
+
+  * Send / receive
+
+  * Collective communications (broadcast, gather/scatter, reduce)
+
+On supercomputers, system vendors will often provide their own MPI
+implementation that is tuned to their hardware / network.  On your own
+machine, `MPICH <https://www.mpich.org/>`_ is a popular
+implemetation.
+
 
