@@ -380,6 +380,42 @@ and then tries to execute the output.</p>
 make it quiet) we use an <code class="docutils literal notranslate"><span class="pre">if-then</span></code> statement to check the output.
 Note the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> at the start of the line makes it so <code class="docutils literal notranslate"><span class="pre">make</span></code> doesn’t
 print the command itself to the screen, just the output.</p>
+<p>Here’s the full version:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 61 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
+<span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
+<span class="c"># name, it is just commonly used).</span>
+
+<span class="nf">ALL</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
+
+<span class="c"># find all of the source files and header files</span>
+
+<span class="nv">SOURCES</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
+<span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
+
+<span class="c"># create a list of object files by replacing .cpp with .o</span>
+
+<span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="c"># a recipe for making an object file from a .cpp file</span>
+<span class="c"># Note: this makes every header file a dependency of every object file,</span>
+<span class="c"># which is not ideal, but it is safe.</span>
+
+<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
+	g++ -c $&lt;
+
+<span class="c"># explicitly write the rule for linking together the executable</span>
+
+<span class="nf">unit_test_vector2d</span><span class="o">:</span> ${<span class="n">OBJECTS</span>}
+	g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+
+<span class="nf">testing</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
+	./unit_test_vector2d &gt; /dev/null
+	@if <span class="o">[</span> <span class="nv">$$</span>? -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;tests passed&quot;</span><span class="p">;</span> <span class="k">fi</span>
+</pre></div>
+</div>
+</div>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>Let’s make a test fail in our <code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code> and make sure that this still works.</p>

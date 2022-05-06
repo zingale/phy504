@@ -129,6 +129,11 @@ make it quiet) we use an ``if-then`` statement to check the output.
 Note the ``@`` at the start of the line makes it so ``make`` doesn't
 print the command itself to the screen, just the output.
 
+Here's the full version:
+
+.. literalinclude:: ../../examples/unit_tests/GNUmakefile
+   :language: make
+   :caption: ``GNUmakefile``
 
 .. admonition:: try it...
 
