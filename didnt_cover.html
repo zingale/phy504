@@ -187,7 +187,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Stuff We Didn’t Cover</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#std-map"><code class="docutils literal notranslate"><span class="pre">std::map</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#if-constexpr"><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#virtual-functions">Virtual functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#static-member-data"><code class="docutils literal notranslate"><span class="pre">static</span></code> member data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-management">Memory management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#regular-expressions">Regular expressions</a></li>
@@ -301,14 +300,18 @@ that handles the general case.</p>
 </div>
 </div>
 </section>
-<section id="virtual-functions">
-<h2>Virtual functions<a class="headerlink" href="#virtual-functions" title="Permalink to this headline">¶</a></h2>
-</section>
 <section id="static-member-data">
 <h2><code class="docutils literal notranslate"><span class="pre">static</span></code> member data<a class="headerlink" href="#static-member-data" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">static</span></code> members of a class are not associated with objects that are instances of the class
+but instead there is one value for all instances of the class.  In this sense, they act as
+global data in the class’s namespace.</p>
 </section>
 <section id="memory-management">
 <h2>Memory management<a class="headerlink" href="#memory-management" title="Permalink to this headline">¶</a></h2>
+<p>We’ve been relying mainly on objects that manage their own memory
+internally (like <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>).  We saw one instance of allocating memory
+on our own using <code class="docutils literal notranslate"><span class="pre">new</span></code> or by <code class="docutils literal notranslate"><span class="pre">make_unique</span></code>.  The latter is the safest way
+to deal with allocating memory.</p>
 </section>
 <section id="regular-expressions">
 <h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
@@ -322,7 +325,7 @@ capability needed to work with regular expressions.</p>
 <p>A profiler will allow you to time independent functions or even lines
 of code and generate a report telling you where your code spends most
 of its time.</p>
-<p><cite>GNU gprof &lt;https://sourceware.org/binutils/docs/gprof/&gt;</cite> is the GNU profiler
+<p><a class="reference external" href="https://sourceware.org/binutils/docs/gprof/">GNU gprof</a> is the GNU profiler
 than can be used with <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
 </section>
 </section>
