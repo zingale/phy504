@@ -183,8 +183,8 @@
 <li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MPI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#hello-world">Hello, World</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mpi-concepts">MPI Concepts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#integrating-pi">Integrating <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mpi-concepts">MPI Concepts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
@@ -288,7 +288,7 @@ program represents out of the total number used by MPI.</p></li>
 </div>
 </div>
 <p>There is one additional bit that we won’t explore here.  MPI allows
-you to setup communicators that are subgroups of the total number of
+you to set up communicators that are subgroups of the total number of
 processors.  This can be useful to divide tasks up between the total
 number of processors.  We’ll stick to <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> which
 represents all processors.</p>
@@ -302,38 +302,6 @@ span.prompt1:before {
 </style><span class="prompt1">mpic++ -o hello hello.cpp</span>
 </pre></div></div><p>This will pass any compiler flags onto the actual compiler, so we can
 use this the same way we’ve been using <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
-</section>
-<section id="mpi-concepts">
-<h2>MPI Concepts<a class="headerlink" href="#mpi-concepts" title="Permalink to this headline">¶</a></h2>
-<p>With MPI, a separate instance of your program is run on each processor
-– these are the MPI processes.  We don’t need to worry about
-thread-safety is not an issue here, since each instance of the program
-is isolated from the others.</p>
-<p>A few considerations:</p>
-<ul class="simple">
-<li><p>You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).</p>
-<ul>
-<li><p>Together with the address of the buffer specify what is being sent</p></li>
-</ul>
-</li>
-<li><p>Processors can be grouped together</p>
-<ul>
-<li><p>Communicators label different groups</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> is the default communicator (all processes)</p></li>
-</ul>
-</li>
-</ul>
-<p>MPI has many types of operations:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Send / receive</p></li>
-<li><p>Collective communications (broadcast, gather/scatter)</p></li>
-</ul>
-</div></blockquote>
-<p>On supercomputers, system vendors will often provide their own MPI
-implementation that is tuned to their hardware / network.  On your own
-machine, <a class="reference external" href="https://www.mpich.org/">MPICH</a> is a popular
-implemetation.</p>
 </section>
 <section id="integrating-pi">
 <h2>Integrating <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#integrating-pi" title="Permalink to this headline">¶</a></h2>
@@ -413,6 +381,38 @@ up on processor <code class="docutils literal notranslate"><span class="pre">0</
 </pre></div>
 </div>
 </div>
+</section>
+<section id="mpi-concepts">
+<h2>MPI Concepts<a class="headerlink" href="#mpi-concepts" title="Permalink to this headline">¶</a></h2>
+<p>With MPI, a separate instance of your program is run on each processor
+– these are the MPI processes.  We don’t need to worry about
+thread-safety is not an issue here, since each instance of the program
+is isolated from the others.</p>
+<p>A few considerations:</p>
+<ul class="simple">
+<li><p>You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).</p>
+<ul>
+<li><p>Together with the address of the buffer specify what is being sent</p></li>
+</ul>
+</li>
+<li><p>Processors can be grouped together</p>
+<ul>
+<li><p>Communicators label different groups</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> is the default communicator (all processes)</p></li>
+</ul>
+</li>
+</ul>
+<p>MPI has many types of operations, including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Send / receive</p></li>
+<li><p>Collective communications (broadcast, gather/scatter, reduce)</p></li>
+</ul>
+</div></blockquote>
+<p>On supercomputers, system vendors will often provide their own MPI
+implementation that is tuned to their hardware / network.  On your own
+machine, <a class="reference external" href="https://www.mpich.org/">MPICH</a> is a popular
+implemetation.</p>
 </section>
 </section>
 
