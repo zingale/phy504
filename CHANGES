@@ -1,0 +1,14 @@
+Homework:
+
+* Make a driver in the assignment itself, and the students need to write
+  the implementation of a header such that all of the asserts in the driver
+  pass.
+
+* Class attendance falls off toward the end.  I think that we need to do
+  the project in stages.  And then have the project be due 3 weeks before the
+  end of class and then have them improve it with CI or unit tests, etc.
+  in the remaining weeks.
+
+* Solutions will be posted 1 week after the due date.  Any changes
+  after that will not be accepted.
+
