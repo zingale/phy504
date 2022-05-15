@@ -66,16 +66,34 @@ For each project you need to do:
 
 - [ ] a github repo
 
+- [ ] make sure that the code compiles on the mathlab machines
+
 - [ ] documentation (in the README is fine) describing what the program
       does, what assumptions are made, how the program is organized.
 
+- [ ] every function has doxygen-style documentation that explains
+      what it does, what are the inputs and what are the outputs.
+      
 - [ ] your code spread out logically into multiple functions / headers,
       demonstrating that you understand how to reuse code
 
-- [ ] a makefile that builds in both optimized and debug mode
+- [ ] a makefile that builds in both optimized and debug mode (this
+      should disable / enable asserts)
 
-- [ ] at least one test (with the docs telling me how to run it and how
+- [ ] at least one unit test (with the docs telling me how to run it and how
       to verify that it is correct)
 
 
+Note:
 
+ * If you use C++ features that we did not discuss in class, please
+   reference where you learned them from.
+
+ * If you used code samples found online, please reference them.  Your
+   code must be considerably different than anything you might have
+   worked from online.
+
+ * If you are using some libraries that are not part of standard C++,
+   include directions on how to install them and make sure that they
+   work on the MathLab machines.
+   

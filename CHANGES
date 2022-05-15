@@ -1,3 +1,12 @@
+Content:
+
+* Add an example of list-initialization for return values of vectors:
+
+  https://en.cppreference.com/w/cpp/language/list_initialization
+
+  e.g., ``return {v1, v2, v3}``
+
+
 Homework:
 
 * Make a driver in the assignment itself, and the students need to write
