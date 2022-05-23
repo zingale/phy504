@@ -261,7 +261,13 @@ etc.), more cache, or increasing the number of cores.  Presently,
 individual cores are not getting much faster from one year to the
 next, but the number of cores packed into a chip is increasing
 considerably (especially if you consider GPUs too).</p>
-<p>In fact, <a class="reference external" href="https://preshing.com/20120208/a-look-back-at-single-threaded-cpu-performance/">increases in single-threaded CPU performance have greatly slowed</a></p>
+<p>In fact, increases in single-threaded CPU performance have greatly slowed:</p>
+<figure class="align-center" id="id3">
+<img alt="_images/50-years-processor-trend.png" src="_images/50-years-processor-trend.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Figure from <a class="reference external" href="https://github.com/karlrupp/microprocessor-trend-data">https://github.com/karlrupp/microprocessor-trend-data</a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>This means that to effectively take advantage of new processors, we
 need to put these additional cores to work.</p>
 <p>Looking at the <a class="reference external" href="https://top500.org/lists/top500/list/2021/11/">Top 500 list</a> also shows the trends in how
@@ -466,10 +472,10 @@ requires minimal code changes.</p>
 <p>Imagine that we want to run on a single computer that has one CPU (one
 socket on the motherboard) with multiple cores.  Each of these cores
 will have direct access to the same pool of memory:</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="_images/shared_memory.png"><img alt="_images/shared_memory.png" src="_images/shared_memory.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">A single 4-core chip and its pool of memory</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">A single 4-core chip and its pool of memory</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>In this situation, the parallelism is straightforward:</p>

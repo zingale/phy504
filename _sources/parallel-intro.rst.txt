@@ -23,7 +23,12 @@ individual cores are not getting much faster from one year to the
 next, but the number of cores packed into a chip is increasing
 considerably (especially if you consider GPUs too).
 
-In fact, `increases in single-threaded CPU performance have greatly slowed <https://preshing.com/20120208/a-look-back-at-single-threaded-cpu-performance/>`_
+In fact, increases in single-threaded CPU performance have greatly slowed:
+
+.. figure:: 50-years-processor-trend.png
+   :align: center
+
+   Figure from https://github.com/karlrupp/microprocessor-trend-data
 
 This means that to effectively take advantage of new processors, we
 need to put these additional cores to work.
