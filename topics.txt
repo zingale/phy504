@@ -54,3 +54,7 @@
 * GPU
 
 * DOIs and publishing
+
+* CMake:
+
+  https://cliutils.gitlab.io/modern-cmake/
