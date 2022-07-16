@@ -58,3 +58,5 @@
 * CMake:
 
   https://cliutils.gitlab.io/modern-cmake/
+  https://crascit.com/professional-cmake/
+  https://cgold.readthedocs.io/en/latest/
