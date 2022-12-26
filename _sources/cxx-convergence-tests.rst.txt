@@ -21,7 +21,7 @@ We can integrate this using first order Euler and 2nd order Runge
 Kutta (RK2) and compute the error with respect to the analytic
 solution.  As we reduce the timestep, the error in the Euler method
 should decrease as :math:`\Delta t`, while for the RK2 method it will
-decrease as :math:`(Delta t)^2`.
+decrease as :math:`(\Delta t)^2`.
 
 Here's an implementation that integrates with both Euler and RK2 using
 a variety of timesteps (each time halving the timestep):

@@ -214,8 +214,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>File I/O</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">File I/O</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-io.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -235,7 +235,7 @@ used to take input from a user or write to the screen.</p>
 </pre></div>
 </div>
 <p>alternately, we can pass the name of the file to the <em>constructor</em> of the class,</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="nf">of</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">of</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Once the file is open, we can send output to it using the stream operator <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>:</p>
@@ -383,7 +383,7 @@ will test as <code class="docutils literal notranslate"><span class="pre">true</
 <p>When you open a file for output using <code class="docutils literal notranslate"><span class="pre">ofstream</span></code> as shown above it overwrites
 an existing file of that name.</p>
 <p>If we wish instead to append to an existing file, we would do:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="nf">of</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">of</span><span class="p">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
