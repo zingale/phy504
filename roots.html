@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Root finding &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -221,7 +223,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Root finding</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/roots.rst.txt" rel="nofollow"> View page source</a>
@@ -233,7 +235,7 @@
            <div itemprop="articleBody">
              
   <section id="root-finding">
-<h1>Root finding<a class="headerlink" href="#root-finding" title="Permalink to this headline">¶</a></h1>
+<h1>Root finding<a class="headerlink" href="#root-finding" title="Permalink to this heading">¶</a></h1>
 <p>Given a function <span class="math notranslate nohighlight">\(f(x)\)</span>, the <em>root-finding</em> problem is to find
 all of the <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
 <p>Root finding algorithms often need a range that bracket the root,
@@ -245,7 +247,7 @@ so often we will check that <span class="math notranslate nohighlight">\(f(x_l) 
 </figure>
 <p>There are a large number of <a class="reference external" href="https://en.wikipedia.org/wiki/Root-finding_algorithms">root finding algorithms</a>.</p>
 <section id="bisection">
-<h2>Bisection<a class="headerlink" href="#bisection" title="Permalink to this headline">¶</a></h2>
+<h2>Bisection<a class="headerlink" href="#bisection" title="Permalink to this heading">¶</a></h2>
 <p>Bisection works by iteratively cutting the range where the root is located in half.
 The basic idea is as follows:</p>
 <ul class="simple">
@@ -266,7 +268,7 @@ otherwise set <span class="math notranslate nohighlight">\(x_l = x_m\)</span></p
 </div>
 </section>
 <section id="newton-s-method">
-<h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">¶</a></h2>
+<h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Permalink to this heading">¶</a></h2>
 <p>For <a class="reference external" href="https://en.wikipedia.org/wiki/Newton's_method">Newton’s method</a>, we start by Taylor
 expanding the function about some initial guess for the root,
 <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
@@ -301,7 +303,7 @@ finite-differences.   This can give rise to the <a class="reference external" hr
 </div>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h2>
 <p>We want to write a function that takes as input the function we want to zero, so we’ll
 use <code class="docutils literal notranslate"><span class="pre">std::function</span></code> to define the function as an argument.</p>
 <p>Here’s the header that implements both bisection and Newton’s method:</p>
@@ -310,109 +312,109 @@ use <code class="docutils literal notranslate"><span class="pre">std::function</
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ROOTS_H</span>
 <span class="cp">#define ROOTS_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
-<span class="k">namespace</span><span class="w"> </span><span class="nn">Roots</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Roots</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ATOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span><span class="w">   </span><span class="c1">// absolute tolerance</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">RTOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span><span class="w">   </span><span class="c1">// relative tolerance</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_ITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="c1">///</span>
 <span class="c1">/// Apply bisection to find a root of f(x) in the range [xleft, xright]</span>
 <span class="c1">/// Return value is 0 if root found, non-zero if there was an error</span>
 <span class="c1">///</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">bisection</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">xleft</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xright</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">bisection</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">xleft</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xright</span><span class="p">,</span>
+<span class="w">              </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">,</span>
+<span class="w">              </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ierr</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ierr</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">fleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xleft</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">fright</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xright</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">fleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xleft</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">fright</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xright</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fright</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;no root in interval [xleft, right]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">fright</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;root is one of bounds&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fright</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;no root in interval [xleft, right]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">fright</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;root is one of bounds&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xleft</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xright</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xleft</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xright</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">fmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xmid</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">MAX_ITER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">fmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xmid</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fmid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fleft</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fmid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// root is in [fmid, fright]</span>
-<span class="w">            </span><span class="n">xleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmid</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">xleft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmid</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// root is in [fleft, fmid]</span>
-<span class="w">            </span><span class="n">xright</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmid</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">xright</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmid</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">xright</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xleft</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">xmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xleft</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xright</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">xright</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xleft</span><span class="p">);</span>
+<span class="w">        </span><span class="n">xmid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xleft</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xright</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">RTOL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">xmid</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">ATOL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">RTOL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">xmid</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">ATOL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">iter</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">iter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmid</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmid</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="c1">///</span>
 <span class="c1">/// Apply Newtons&#39;s method to find a root of f(x) starting with the initial</span>
 <span class="c1">/// guess x0.  In addition to f(x) we need to supply the derivative, dfdx(x).</span>
 <span class="c1">/// Return value is 0 if root found, non-zero if there was an error</span>
 <span class="c1">///</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">newton</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dfdx</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">newton</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span>
+<span class="w">           </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">,</span>
+<span class="w">           </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dfdx</span><span class="p">,</span>
+<span class="w">           </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ierr</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ierr</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dfdx0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfdx</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dfdx0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfdx</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iter</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">MAX_ITER</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">iter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">MAX_ITER</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">f0</span><span class="o">/</span><span class="n">dfdx0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">f0</span><span class="o">/</span><span class="n">dfdx0</span><span class="p">;</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">RTOL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">ATOL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">RTOL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Roots</span><span class="o">::</span><span class="n">ATOL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x0</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">x0</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">x0</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">dfdx0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfdx</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dfdx0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfdx</span><span class="p">(</span><span class="n">x0</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">iter</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">iter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ierr</span><span class="p">;</span>
+<span class="p">}</span>
 <span class="cp">#endif</span>
 </pre></div>
 </div>

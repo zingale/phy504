@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HTML + CSS &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -223,7 +225,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">HTML + CSS</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/html-css.rst.txt" rel="nofollow"> View page source</a>
@@ -235,7 +237,7 @@
            <div itemprop="articleBody">
              
   <section id="html-css">
-<h1>HTML + CSS<a class="headerlink" href="#html-css" title="Permalink to this headline">¶</a></h1>
+<h1>HTML + CSS<a class="headerlink" href="#html-css" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <ul class="simple">
@@ -258,7 +260,7 @@ but hopefully we’ll learn enough so that we can use templates that
 others have written to write our own pages.</p>
 </div>
 <section id="basic-html-structure">
-<h2>Basic HTML structure<a class="headerlink" href="#basic-html-structure" title="Permalink to this headline">¶</a></h2>
+<h2>Basic HTML structure<a class="headerlink" href="#basic-html-structure" title="Permalink to this heading">¶</a></h2>
 <p>A basic HTML page has the following format:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
@@ -295,9 +297,9 @@ this page when we go to a web site.</p></li>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">google-chrome index.html</span>
+</style><span class="prompt1">google-chrome<span class="w"> </span>index.html</span>
 </pre></div></div><p>or</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">firefox index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">firefox<span class="w"> </span>index.html</span>
 </pre></div></div></li>
 </ul>
 <div class="admonition tip">
@@ -307,7 +309,7 @@ span.prompt1:before {
 </div>
 </section>
 <section id="separating-content">
-<h2>Separating content<a class="headerlink" href="#separating-content" title="Permalink to this headline">¶</a></h2>
+<h2>Separating content<a class="headerlink" href="#separating-content" title="Permalink to this heading">¶</a></h2>
 <p>HTML using <a class="reference external" href="https://www.w3schools.com/html/html_headings.asp">headings</a>
 to break the content of a page into sections.  The headings are
 indicated by <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/h1&gt;</span></code> down through <code class="docutils literal notranslate"><span class="pre">&lt;h6&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/h6&gt;</span></code>.</p>
@@ -337,7 +339,7 @@ indicated by <code class="docutils literal notranslate"><span class="pre">&lt;h1
 </div>
 </section>
 <section id="adding-css">
-<h2>Adding CSS<a class="headerlink" href="#adding-css" title="Permalink to this headline">¶</a></h2>
+<h2>Adding CSS<a class="headerlink" href="#adding-css" title="Permalink to this heading">¶</a></h2>
 <p>CSS means <a class="reference external" href="https://en.wikipedia.org/wiki/CSS">cascading style sheets</a>.
 CSS files provide a set of styling rules for different HTML elements.
 “Cascading” here means that the rules on a element have a hierarchy
@@ -347,7 +349,7 @@ extension.</p>
 <p>For example, we can style the body of our page with a <em>stylesheet</em>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">orange</span><span class="p">;}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">orange</span><span class="p">;}</span>
 </pre></div>
 </div>
 </div>
@@ -358,7 +360,7 @@ extension.</p>
 <p>to the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span> <span class="pre">..</span> <span class="pre">&lt;/head&gt;</span></code> block in our HTML file to load this sheet.</p>
 </section>
 <section id="divs">
-<h2>divs<a class="headerlink" href="#divs" title="Permalink to this headline">¶</a></h2>
+<h2>divs<a class="headerlink" href="#divs" title="Permalink to this heading">¶</a></h2>
 <p>A useful HTML element for grouping styles is the <a class="reference external" href="https://www.w3schools.com/tags/tag_div.asp">div tag</a>, <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code>.  We can put
 any content in a <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/div&gt;</span></code> region and specify the styling
 for that region using.</p>
@@ -368,14 +370,14 @@ for that region using.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">id=&quot;name&quot;&gt;</span></code> is used to indicate that there is a <em>single instance</em>
 of <code class="docutils literal notranslate"><span class="pre">name</span></code> in the HTML page.  This is called an <em>id-selector</em>   Elements
 in this div can be styled as:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">name</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">name</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;name&quot;&gt;</span></code> is used when we might want to have multiple
 divs on the page with the same styling.  This is called a <em>class selector</em>
 and we style as:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">name</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">name</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 </li>
@@ -407,7 +409,7 @@ Hello, World!
 </div>
 </div>
 <p>In particular, create a rule:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">container</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">container</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 <p>and let’s try to do the following:</p>
@@ -429,14 +431,14 @@ solution<div class="summary-down docutils">
 </summary><div class="summary-content card-body docutils">
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 83 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">container</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#aaaaaa</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">em</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">black</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#aaaaaa</span><span class="p">;</span>
+<span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">em</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">black</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -444,14 +446,14 @@ solution<div class="summary-down docutils">
 </details></div>
 </section>
 <section id="inspector">
-<h2>Inspector<a class="headerlink" href="#inspector" title="Permalink to this headline">¶</a></h2>
+<h2>Inspector<a class="headerlink" href="#inspector" title="Permalink to this heading">¶</a></h2>
 <p>Most web browsers have an <em>inspector</em> that let’s you look at the styling
 on a page.  In Chrome, you open the inspector by doing “F12”.</p>
 <p>We can see what styling is taking effect on the different elements and
 also adjust the styling right in the browser to see how it takes effect.</p>
 </section>
 <section id="images">
-<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this heading">¶</a></h2>
 <p>Images in HTML are included via the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> tag.  Here’s an example
 image:</p>
 <blockquote>
@@ -468,7 +470,7 @@ image:</p>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/p&gt;</span></code> denotes a paragraph</p>
 <p>and we could style it via:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">center</span><span class="w"> </span><span class="p">{</span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">center</span><span class="w"> </span><span class="p">{</span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;}</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -479,7 +481,7 @@ image for screen readers.</p>
 </div>
 </section>
 <section id="responsive-pages">
-<h2>Responsive pages<a class="headerlink" href="#responsive-pages" title="Permalink to this headline">¶</a></h2>
+<h2>Responsive pages<a class="headerlink" href="#responsive-pages" title="Permalink to this heading">¶</a></h2>
 <p>A <em>responsive</em> page changes the styling based on the device / screen
 size.  Usually this is triggered by the <code class="docutils literal notranslate"><span class="pre">&#64;media</span></code> rule:
 <a class="reference external" href="https://www.w3schools.com/cssref/css3_pr_mediaquery.asp">https://www.w3schools.com/cssref/css3_pr_mediaquery.asp</a></p>

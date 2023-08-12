@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loops and If-Tests &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -226,7 +228,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Loops and If-Tests</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-statements.rst.txt" rel="nofollow"> View page source</a>
@@ -238,7 +240,7 @@
            <div itemprop="articleBody">
              
   <section id="loops-and-if-tests">
-<h1>Loops and If-Tests<a class="headerlink" href="#loops-and-if-tests" title="Permalink to this headline">¶</a></h1>
+<h1>Loops and If-Tests<a class="headerlink" href="#loops-and-if-tests" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 3.13</p>
@@ -246,7 +248,7 @@
 <p>We’ve been using <code class="docutils literal notranslate"><span class="pre">if</span></code> tests and <code class="docutils literal notranslate"><span class="pre">for</span></code> loops already, but now it’s
 time to understand some of the nuances of these statements.</p>
 <section id="statement-blocks">
-<h2>Statement Blocks<a class="headerlink" href="#statement-blocks" title="Permalink to this headline">¶</a></h2>
+<h2>Statement Blocks<a class="headerlink" href="#statement-blocks" title="Permalink to this heading">¶</a></h2>
 <p>We use curly braces, <code class="docutils literal notranslate"><span class="pre">{}</span></code> to denote blocks of code.  These are used in a number of contexts:</p>
 <ul class="simple">
 <li><p>to define the body of a function (so far we’ve only seen <code class="docutils literal notranslate"><span class="pre">main()</span></code>, but this applies to any function).</p></li>
@@ -258,34 +260,34 @@ time to understand some of the nuances of these statements.</p>
 <p>Let’s look at the solution from our homework 3:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 17 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fibonacci.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">// note that the limits of int are 2147483647, so we are going to overflow</span>
 <span class="w">    </span><span class="c1">// after ~50 terms</span>
 
 <span class="w">    </span><span class="c1">// we could instead use long here</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fib</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fib</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;how many terms should we compute?&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;how many terms should we compute?&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">f_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fib</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fib</span><span class="p">[</span><span class="n">i</span><span class="mi">-2</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="n">fib</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">f_new</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">f_new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fib</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fib</span><span class="p">[</span><span class="n">i</span><span class="mi">-2</span><span class="p">];</span>
+<span class="w">        </span><span class="n">fib</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">f_new</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">fib</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">fib</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -320,16 +322,16 @@ that stack is destroyed, freeing up all of the memory those local
 variables needed.</p>
 </section>
 <section id="shadowing">
-<h2>Shadowing<a class="headerlink" href="#shadowing" title="Permalink to this headline">¶</a></h2>
+<h2>Shadowing<a class="headerlink" href="#shadowing" title="Permalink to this heading">¶</a></h2>
 <p>Consider the following:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">test</span><span class="p">{</span><span class="nb">true</span><span class="p">};</span><span class="w"></span>
-<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">test</span><span class="p">{</span><span class="nb">true</span><span class="p">};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
-<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
 
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Here we’ve defined a new variable <code class="docutils literal notranslate"><span class="pre">x</span></code> inside the <code class="docutils literal notranslate"><span class="pre">if</span></code> block.
@@ -346,36 +348,36 @@ option to the compiler.</p>
 </div>
 </section>
 <section id="conditional-statements">
-<h2>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
+<h2>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this heading">¶</a></h2>
 <section id="if-test">
-<h3><code class="docutils literal notranslate"><span class="pre">if</span></code>-test<a class="headerlink" href="#if-test" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">if</span></code>-test<a class="headerlink" href="#if-test" title="Permalink to this heading">¶</a></h3>
 <p>We’ve already been using if-tests quite a bit.  So let’s look a little more at their syntax:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// do things if condition1 is true</span>
 
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// do things if condition1 is false but condition 2 is true</span>
 
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// do things only if both condition1 and condition2 are false</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>There is a form of an if-statement that does not use brackets if
 there is only a single statement to execute:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">statement</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+<span class="w">    </span><span class="n">statement</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This is potentially dangerous – if someone later edits the code
 and decides that they want to add another statement to that
 condition, they might do:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">statement</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">another_statement</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+<span class="w">    </span><span class="n">statement</span><span class="p">;</span>
+<span class="w">    </span><span class="n">another_statement</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>But since there are no braces, only <code class="docutils literal notranslate"><span class="pre">statement</span></code> is
@@ -397,65 +399,65 @@ conditional (e.g., to open a file).  We will not explore this here.</p>
 <p>Where <em>true-result</em> is the value used if <em>condition</em> is <code class="docutils literal notranslate"><span class="pre">true</span></code>
 and <em>false-result</em> otherwise.</p>
 <p>For instance:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="switch-statement">
-<h3><code class="docutils literal notranslate"><span class="pre">switch</span></code> statement<a class="headerlink" href="#switch-statement" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">switch</span></code> statement<a class="headerlink" href="#switch-statement" title="Permalink to this heading">¶</a></h3>
 <p>A switch statement takes action on a single expression, and has many different
 cases that can take different actions.  For example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">2</span><span class="p">};</span><span class="w"></span>
-<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">text</span><span class="p">{};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">2</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">text</span><span class="p">{};</span>
 
-<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"></span>
-<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;zero&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">       </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;zero&quot;</span><span class="p">;</span>
+<span class="w">       </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"></span>
-<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">       </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="p">;</span>
+<span class="w">       </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"></span>
-<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"></span>
-<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"></span>
-<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2 &lt;= i &lt;= 4&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">       </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
+<span class="w">   </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;2 &lt;= i &lt;= 4&quot;</span><span class="p">;</span>
+<span class="w">       </span><span class="k">break</span><span class="p">;</span>
 
-<span class="w">   </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
-<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;i &gt; 4&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">default</span><span class="o">:</span>
+<span class="w">       </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;i &gt; 4&quot;</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Notice that each <code class="docutils literal notranslate"><span class="pre">case</span></code> region ends with <code class="docutils literal notranslate"><span class="pre">break</span></code>.  If you omit the
 <code class="docutils literal notranslate"><span class="pre">break</span></code>, then the flow “falls through” to the next options.</p>
 </section>
 <section id="for-loops">
-<h3><code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this heading">¶</a></h3>
 <p>We’ve already seen the basic structure of a for loop:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">initializer</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">iterator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">initializer</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">iterator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="c1">// do stuff</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>We can do this for just a simple integer counter:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="c1">// we&#39;ll see i = 0, 2, 4, 6, 8</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>or with an iterator, like:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">my_string</span><span class="p">{</span><span class="s">&quot;this is my string&quot;</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">my_string</span><span class="p">{</span><span class="s">&quot;this is my string&quot;</span><span class="p">};</span>
 
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_string</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">my_string</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_string</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">my_string</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">     </span><span class="c1">// work on the string character by character</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -465,55 +467,55 @@ that doesn’t use brackets for the loop body – this should be
 avoided.</p>
 </div>
 <p>We also saw the range-for loop that works with a variety of containers.  For example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">};</span>
 
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// work on the current element in x</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="while-and-do-while-loops">
-<h3><code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">while</span></code> loops<a class="headerlink" href="#while-and-do-while-loops" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code>-<code class="docutils literal notranslate"><span class="pre">while</span></code> loops<a class="headerlink" href="#while-and-do-while-loops" title="Permalink to this heading">¶</a></h3>
 <p>There are two types of <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in C++.  The first takes the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// do stuff</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>where the body is executed so long as <code class="docutils literal notranslate"><span class="pre">condition</span></code> is true.  For example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The loop body is only ever executed if the condition is true.  The
 other form puts the <code class="docutils literal notranslate"><span class="pre">while</span></code> at the end:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// do stuff</span>
-<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>In this case, all of the statements in the loop body are executed at least once.</p>
 </section>
 </section>
 <section id="continue-and-break">
-<h2><code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code><a class="headerlink" href="#continue-and-break" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">continue</span></code> and <code class="docutils literal notranslate"><span class="pre">break</span></code><a class="headerlink" href="#continue-and-break" title="Permalink to this heading">¶</a></h2>
 <p>Sometimes we want to exit a loop early or skip the remainder of the
 loop block if some conditions is met.  This is where <code class="docutils literal notranslate"><span class="pre">continue</span></code> and
 <code class="docutils literal notranslate"><span class="pre">break</span></code> come into play.</p>
 <p>It is not uncommon to write an infinite loop, like:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(;;)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(;;)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// do stuff</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// do stuff</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>In this case, we will want a way to bail out.  Here’s an (silly)
@@ -521,26 +523,26 @@ example of asking for a word from a user and telling them how many
 letters it contains.  But if they enter “0”, we exit:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">infinite_loop.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">word</span><span class="p">{};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">word</span><span class="p">{};</span>
 
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Enter a word (0 to exit): &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">word</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Enter a word (0 to exit): &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">word</span><span class="p">;</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">word</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; characters&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">word</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; characters&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -549,25 +551,25 @@ that loops over elements of a vector but only operates on them if they
 are even numbers, in which case, it negates them.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 19 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">continue_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">};</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

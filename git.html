@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A Git Walkthrough &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -217,7 +219,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">A Git Walkthrough</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/git.rst.txt" rel="nofollow"> View page source</a>
@@ -229,7 +231,7 @@
            <div itemprop="articleBody">
              
   <section id="a-git-walkthrough">
-<h1>A Git Walkthrough<a class="headerlink" href="#a-git-walkthrough" title="Permalink to this headline">¶</a></h1>
+<h1>A Git Walkthrough<a class="headerlink" href="#a-git-walkthrough" title="Permalink to this heading">¶</a></h1>
 <p>We’ll do a walkthrough on git.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -255,29 +257,29 @@ project.</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">mkdir project</span>
-<span class="prompt1"><span class="nb">cd</span> project</span>
-<span class="prompt1"><span class="nb">echo</span> <span class="s2">&quot;this is the start of my awesome new project&quot;</span> &gt; README</span>
+</style><span class="prompt1">mkdir<span class="w"> </span>project</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>project</span>
+<span class="prompt1"><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;this is the start of my awesome new project&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>README</span>
 </pre></div></div></li>
 <li><p>Now let’s tell git that we want to track this directory.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git init</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>init</span>
 </pre></div></div><p>If you do <code class="docutils literal notranslate"><span class="pre">ls</span></code> it will look like nothing has changed, but this
 command created a <code class="docutils literal notranslate"><span class="pre">.git/</span></code> sub-directory in our project, which you
 can see by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls -a</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls<span class="w"> </span>-a</span>
 </pre></div></div></li>
 <li><p>The version of git on the MathLab computers is old, and it will
 create a default <em>branch</em> named <code class="docutils literal notranslate"><span class="pre">master</span></code>.  This has been
 deprecated and the community is moving to the name <code class="docutils literal notranslate"><span class="pre">main</span></code> for the
 default, so we’ll change this now:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>main</span>
 </pre></div></div><p>We’ll talk about branches in a bit.  Just note that with a recent
 version of git, this command would be unnecessary.</p>
 </li>
 <li><p>At this point, we haven’t told git about any of our files.  To tell git
 to track the file <code class="docutils literal notranslate"><span class="pre">README</span></code> we do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add README</span>
-<span class="prompt1">git commit README</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>README</span>
+<span class="prompt1">git<span class="w"> </span>commit<span class="w"> </span>README</span>
 </pre></div></div><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When you <code class="docutils literal notranslate"><span class="pre">commit</span></code>, and editor window will pop up asking you to
@@ -288,14 +290,14 @@ made.</p>
 <p>We set our default editor to nano, so type in your message, save
 the change with <code class="docutils literal notranslate"><span class="pre">^O</span></code>, and then exit with <code class="docutils literal notranslate"><span class="pre">^X</span></code>.</p>
 <p>We can now ask git the state of our project with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>status</span>
 </pre></div></div><p>You should see something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
 <span class="n">nothing</span> <span class="n">to</span> <span class="n">commit</span><span class="p">,</span> <span class="n">working</span> <span class="n">tree</span> <span class="n">clean</span>
 </pre></div>
 </div>
 <p>We can also see our log message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git log</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>log</span>
 </pre></div></div><p>The output will look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="mi">2001</span><span class="n">a0e996110926a576dcb5fc13fc8022864d0b</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span>
 <span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingake</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
@@ -310,15 +312,15 @@ the string the <code class="docutils literal notranslate"><span class="pre">hash
 </li>
 <li><p>Now let’s modify the file</p>
 <p>Open the file with nano and add a second line of text:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano README</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano<span class="w"> </span>README</span>
 </pre></div></div><p>Here’s my file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat README</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat<span class="w"> </span>README</span>
 </pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>this is the start of my awesome new project
 this is now under version control!
 </pre></div>
 </div>
 <p>What does git think about our changes?</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>status</span>
 </pre></div></div><p>you should see something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
 <span class="n">Changes</span> <span class="ow">not</span> <span class="n">staged</span> <span class="k">for</span> <span class="n">commit</span><span class="p">:</span>
@@ -332,7 +334,7 @@ this is now under version control!
 </div>
 <p>This is telling you that you have local changes but you haven’t yet told git to care about them.</p>
 <p>Let’s <code class="docutils literal notranslate"><span class="pre">add</span></code> the changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add README</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>README</span>
 </pre></div></div><p>and now <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> will show something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
 <span class="n">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">committed</span><span class="p">:</span>
@@ -352,7 +354,7 @@ will accumulate these in the staging area.</p>
 changes that are staged into a “commit”.</p>
 </div>
 <p>To have git track these changes, we can now just do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>Notice that we didn’t specify the file here – all the changes that
 were staged were part of that commit.</p>
 <p>If we now do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, we’ll see that there is a second commit
@@ -375,7 +377,7 @@ in our project, and it has a different unique hash:</p>
 <p>This repo now captures the state of our project.  Next we’ll see how to use branches to
 help our development process.</p>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
 <p>We learned:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></li>

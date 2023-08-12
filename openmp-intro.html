@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OpenMP &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -225,7 +227,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">OpenMP</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/openmp-intro.rst.txt" rel="nofollow"> View page source</a>
@@ -237,7 +239,7 @@
            <div itemprop="articleBody">
              
   <section id="openmp">
-<h1>OpenMP<a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h1>
+<h1>OpenMP<a class="headerlink" href="#openmp" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.openmp.org/">OpenMP</a> provides a <em>directive-based</em>
 approach to marking regions of code for parallelism.  It supports
 shared-memory parallelism and offloading to accelerators.</p>
@@ -249,14 +251,14 @@ Interface Examples document</a>.</p>
 a quick overview of the different syntax in OpenMP.</p>
 </div>
 <section id="compiler-support">
-<h2>Compiler support<a class="headerlink" href="#compiler-support" title="Permalink to this headline">¶</a></h2>
+<h2>Compiler support<a class="headerlink" href="#compiler-support" title="Permalink to this heading">¶</a></h2>
 <p>In order to build an OpenMP application, you need a compiler that
 supports it.  Fortunately, most recent compilers support OpenMP.  For
 g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 <p>See this table for <a class="reference external" href="https://www.openmp.org/resources/openmp-compilers-tools/">compiler support for OpenMP</a>.</p>
 </section>
 <section id="threads">
-<h2>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h2>
+<h2>Threads<a class="headerlink" href="#threads" title="Permalink to this heading">¶</a></h2>
 <p>In an OpenMP application, threads are spawned as needed.</p>
 <ul class="simple">
 <li><p>When you start the program, there is one thread – the master thread</p></li>
@@ -271,22 +273,22 @@ g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 </figure>
 </section>
 <section id="hello-world">
-<h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this heading">¶</a></h2>
 <p>Here’s a simple “Hello, World” in OpenMP.  We print out the number of
 threads and then enter a parallel region where each thread prints its
 id separately:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;total number of threads = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_max_threads</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;total number of threads = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_max_threads</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cp">#pragma omp parallel</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello from thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello from thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -295,7 +297,7 @@ id separately:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">g++ -fopenmp -o hello hello.cpp</span>
+</style><span class="prompt1">g++<span class="w"> </span>-fopenmp<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>hello.cpp</span>
 </pre></div></div><p>A few notes:</p>
 <ul class="simple">
 <li><p>OpenMP directives are specified via <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span></code></p></li>
@@ -306,42 +308,42 @@ a different ordering.</p></li>
 </ul>
 </section>
 <section id="critical-regions">
-<h2>Critical regions<a class="headerlink" href="#critical-regions" title="Permalink to this headline">¶</a></h2>
+<h2>Critical regions<a class="headerlink" href="#critical-regions" title="Permalink to this heading">¶</a></h2>
 <p>We can use a <em>critical region</em> in an OpenMP parallel region to force
 the threads to operate one at a time.  For example, in the above
 <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>, we can get the prints to be done one at a time as:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 99 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;total number of threads = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_max_threads</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;total number of threads = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_max_threads</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cp">#pragma omp parallel</span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="cp">#pragma omp critical</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello from thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello from thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="controlling-the-number-of-threads">
-<h2>Controlling the number of threads<a class="headerlink" href="#controlling-the-number-of-threads" title="Permalink to this headline">¶</a></h2>
+<h2>Controlling the number of threads<a class="headerlink" href="#controlling-the-number-of-threads" title="Permalink to this heading">¶</a></h2>
 <p>The easiest way to control the number of threads an OpenMP application
 uses is to set the <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> environment variable.  For
 instance, you can set it globally in your shell as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span></span>
 </pre></div></div><p>or just for the instance of your application as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span> ./hello</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>./hello</span>
 </pre></div></div><div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Your code will still run if you specify more threads than there are
 cores in your machine.  On a Linux machine, you can do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat /proc/cpuinfo</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat<span class="w"> </span>/proc/cpuinfo</span>
 </pre></div></div><p>To see the information about your processor and how many cores Linux thinks
 you have.</p>
 <p>Note: modern processors sometimes use hyperthreading, which makes a
@@ -350,52 +352,52 @@ this hardware threading.</p>
 </div>
 </section>
 <section id="parallelizing-loops">
-<h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Permalink to this headline">¶</a></h2>
+<h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Permalink to this heading">¶</a></h2>
 <p>Here’s a matrix-vector multiply:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 100 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
 <span class="c1">// be careful about memory (N**2)</span>
 <span class="c1">// N = 10000 is 0.75 GB of memory</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
 <span class="w">    </span><span class="cp">#pragma omp parallel</span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span>
 
 <span class="w">        </span><span class="cp">#pragma omp for</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">            </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="cp">#pragma omp for</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;execution time (s) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;execution time (s) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -410,9 +412,9 @@ experimentation may be necessary with your application.</p>
 <p>We cannot put the <code class="docutils literal notranslate"><span class="pre">{</span></code> on the same line as the <code class="docutils literal notranslate"><span class="pre">#pragma</span></code>, since the
 <code class="docutils literal notranslate"><span class="pre">#pragma</span></code> is dealt with by the preprocessor.  So we do:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma omp parallel</span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>and not</p>
@@ -427,7 +429,7 @@ cores – if you double the number of cores, does the code run twice as
 fast?</p>
 </section>
 <section id="reductions">
-<h2>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h2>
+<h2>Reductions<a class="headerlink" href="#reductions" title="Permalink to this heading">¶</a></h2>
 <p>Reductions (e.g., summing, min/max) are trickier, since each thread
 will be updating its local sum or min/max, but then at the end of the
 parallel region, a reduction over the threads needs to be done.</p>
@@ -456,34 +458,34 @@ because of different roundoff behavior.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 101 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
 <span class="w">    </span><span class="cp">#pragma omp parallel reduction(+:sum)</span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="cp">#pragma omp for</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exp</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"></span>
-<span class="w">                            </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">7</span><span class="p">));</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exp</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">-</span>
+<span class="w">                            </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">7</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;execution time (s) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;execution time (s) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

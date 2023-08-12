@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Looping on the Command Line &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -218,7 +220,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Looping on the Command Line</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/shell-looping.rst.txt" rel="nofollow"> View page source</a>
@@ -230,22 +232,22 @@
            <div itemprop="articleBody">
              
   <section id="looping-on-the-command-line">
-<h1>Looping on the Command Line<a class="headerlink" href="#looping-on-the-command-line" title="Permalink to this headline">¶</a></h1>
+<h1>Looping on the Command Line<a class="headerlink" href="#looping-on-the-command-line" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>We will loosely follow the Software Carpentry <a class="reference external" href="https://swcarpentry.github.io/shell-novice/05-loop/index.html">Loops</a>
 lesson from <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
 </div>
 <section id="if-tests">
-<h2>If-Tests<a class="headerlink" href="#if-tests" title="Permalink to this headline">¶</a></h2>
+<h2>If-Tests<a class="headerlink" href="#if-tests" title="Permalink to this heading">¶</a></h2>
 <p>That lesson does not cover <em>if-tests</em>, so we will supplement that
 here.  Some information can be found on the Linux Documentation Project
 <a class="reference external" href="https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html">Conditional Statements</a>
 section.</p>
 <p>And if-test has the form:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> condition <span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>condition<span class="w"> </span><span class="o">]</span>
 <span class="k">then</span>
-   <span class="c1"># do something</span>
+<span class="w">   </span><span class="c1"># do something</span>
 <span class="k">fi</span>
 </pre></div>
 </div>
@@ -255,22 +257,22 @@ block of code that is conditionally executed.</p>
 <p>Let’s go back to looping over the files in <code class="docutils literal notranslate"><span class="pre">creatures/</span></code> that the
 Software Carpentry lesson did.  But let’s add some that don’t exist
 and have our loop test for that</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> basilisk.dat pegasus.dat minotaur.dat centaur.dat unicorn.dat
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>creature<span class="w"> </span><span class="k">in</span><span class="w"> </span>basilisk.dat<span class="w"> </span>pegasus.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>centaur.dat<span class="w"> </span>unicorn.dat
 <span class="k">do</span>
-   <span class="k">if</span> <span class="o">[</span> ! -e <span class="si">${</span><span class="nv">creature</span><span class="si">}</span> <span class="o">]</span>
-   <span class="k">then</span>
-      <span class="nb">echo</span> creature <span class="si">${</span><span class="nv">creature</span><span class="si">}</span> does not exist
-   <span class="k">fi</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">creature</span><span class="si">}</span><span class="w"> </span><span class="o">]</span>
+<span class="w">   </span><span class="k">then</span>
+<span class="w">      </span><span class="nb">echo</span><span class="w"> </span>creature<span class="w"> </span><span class="si">${</span><span class="nv">creature</span><span class="si">}</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist
+<span class="w">   </span><span class="k">fi</span>
 <span class="k">done</span>
 </pre></div>
 </div>
 <p>Now, let’s look back at the loop we put into our <code class="docutils literal notranslate"><span class="pre">mybashrc</span></code> and now
 we can understand what it is doing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> dotfile <span class="k">in</span> ~/MySBFiles/dotfiles/.*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>dotfile<span class="w"> </span><span class="k">in</span><span class="w"> </span>~/MySBFiles/dotfiles/.*
 <span class="k">do</span>
-   <span class="k">if</span> <span class="o">[</span> ! -f ~/<span class="sb">`</span>basename <span class="nv">$dotfile</span><span class="sb">`</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-      ln -s <span class="nv">$dotfile</span> ~/<span class="p">;</span>
-   <span class="k">fi</span><span class="p">;</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span>~/<span class="sb">`</span>basename<span class="w"> </span><span class="nv">$dotfile</span><span class="sb">`</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$dotfile</span><span class="w"> </span>~/<span class="p">;</span>
+<span class="w">   </span><span class="k">fi</span><span class="p">;</span>
 <span class="k">done</span>
 </pre></div>
 </div>
@@ -281,7 +283,7 @@ There is still one new command here, <code class="docutils literal notranslate">
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">man basename</span>
+</style><span class="prompt1">man<span class="w"> </span>basename</span>
 </pre></div></div><p>The backtick is a special syntax in a shell command.  Essentially it means:</p>
 <ul class="simple">
 <li><p>first execute any commands inside the openning ` and closing `</p></li>
@@ -289,17 +291,17 @@ span.prompt1:before {
 </ul>
 <p>Note that an equivalent way of doing this in Bash is to use <code class="docutils literal notranslate"><span class="pre">$(</span> <span class="pre">...</span> <span class="pre">)</span></code>.</p>
 <p>So for example, we could do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> <span class="sb">`</span>ls *.dat<span class="sb">`</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>creature<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>ls<span class="w"> </span>*.dat<span class="sb">`</span>
 <span class="k">do</span>
-   <span class="nb">echo</span> <span class="si">${</span><span class="nv">creature</span><span class="si">}</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">creature</span><span class="si">}</span>
 <span class="k">done</span>
 </pre></div>
 </div>
 <p>(but for this simple example, we also know that a wildcard would work here).</p>
 <p>Here’s an example where we change the name of the extension of the file from <cite>.dat</cite> to <cite>.out</cite></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> creature <span class="k">in</span> *.dat
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>creature<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.dat
 <span class="k">do</span>
-   <span class="nb">echo</span> <span class="sb">`</span>basename <span class="nv">$creature</span> .dat<span class="sb">`</span>.out
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="sb">`</span>basename<span class="w"> </span><span class="nv">$creature</span><span class="w"> </span>.dat<span class="sb">`</span>.out
 <span class="k">done</span>
 </pre></div>
 </div>
@@ -312,7 +314,7 @@ see here: <a class="reference external" href="http://www.gnu.org/software/bash/m
 </div>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
 <p>We learned the following commands:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">do</span></code>, and <code class="docutils literal notranslate"><span class="pre">done</span></code> : the syntax for a loop</p></li>

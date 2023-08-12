@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Poisson Equation and Relaxation &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -224,7 +226,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Poisson Equation and Relaxation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/poisson-relax.rst.txt" rel="nofollow"> View page source</a>
@@ -236,7 +238,7 @@
            <div itemprop="articleBody">
              
   <section id="poisson-equation-and-relaxation">
-<h1>Poisson Equation and Relaxation<a class="headerlink" href="#poisson-equation-and-relaxation" title="Permalink to this headline">¶</a></h1>
+<h1>Poisson Equation and Relaxation<a class="headerlink" href="#poisson-equation-and-relaxation" title="Permalink to this heading">¶</a></h1>
 <p>We want to solve the Poisson equation:</p>
 <div class="math notranslate nohighlight">
 \[\nabla^2 \phi = f\]</div>
@@ -245,7 +247,7 @@
 \[\frac{d^2 \phi}{dx^2} = f\]</div>
 <p>on a domain <span class="math notranslate nohighlight">\([a, b]\)</span>.</p>
 <section id="discretization">
-<h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this headline">¶</a></h2>
+<h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">¶</a></h2>
 <p>We will represent <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(f\)</span> on a 1-d uniform grid:</p>
 <figure class="align-center" id="id1">
 <img alt="_images/fd_grid_bnd.png" src="_images/fd_grid_bnd.png" />
@@ -282,7 +284,7 @@ then write the discrete Poisson equation as:</p>
 update the points <span class="math notranslate nohighlight">\(1 \ldots N-2\)</span> using this expression.</p>
 </section>
 <section id="relaxation">
-<h2>Relaxation<a class="headerlink" href="#relaxation" title="Permalink to this headline">¶</a></h2>
+<h2>Relaxation<a class="headerlink" href="#relaxation" title="Permalink to this heading">¶</a></h2>
 <p>We can solve for the update for a single zone:</p>
 <div class="math notranslate nohighlight">
 \[\phi_i = \frac{1}{2} (\phi_{i+1} + \phi_{i-1} - \Delta x^2 f_i)\]</div>
@@ -293,7 +295,7 @@ use the new information immediately as it becomes available is called
 <em>Gauss-Seidel relaxation</em>.</p>
 </section>
 <section id="stopping">
-<h2>Stopping<a class="headerlink" href="#stopping" title="Permalink to this headline">¶</a></h2>
+<h2>Stopping<a class="headerlink" href="#stopping" title="Permalink to this heading">¶</a></h2>
 <p>We need a measure to determine when we should stop relaxing the solution.  We define
 the <em>residual</em>, <span class="math notranslate nohighlight">\(r\)</span>, as:</p>
 <div class="math notranslate nohighlight">
@@ -310,187 +312,187 @@ can do with the number of points we are using in the discretization.</p>
 \[\| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}\]</div>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h2>
 <p>Here’s a class that implements smoothing:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 93 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.H</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef POISSON_H</span>
 <span class="cp">#define POISSON_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
 
 <span class="c1">///</span>
 <span class="c1">/// Solve the 1-d Poisson problem on a node-centered finite-difference</span>
 <span class="c1">/// grid with Dirichlet BCs using Gauss-Seidel smoothing</span>
 <span class="c1">///</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Poisson</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Poisson</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">Poisson</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">xmin_in</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax_in</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N_in</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">xmin</span><span class="p">{</span><span class="n">xmin_in</span><span class="p">},</span><span class="w"> </span><span class="n">xmax</span><span class="p">{</span><span class="n">xmax_in</span><span class="p">},</span><span class="w"> </span><span class="n">N</span><span class="p">{</span><span class="n">N_in</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">x</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Poisson</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">xmin_in</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax_in</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N_in</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">xmin</span><span class="p">{</span><span class="n">xmin_in</span><span class="p">},</span><span class="w"> </span><span class="n">xmax</span><span class="p">{</span><span class="n">xmax_in</span><span class="p">},</span><span class="w"> </span><span class="n">N</span><span class="p">{</span><span class="n">N_in</span><span class="p">},</span>
+<span class="w">          </span><span class="n">x</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 
 <span class="w">        </span><span class="c1">// initialize the coordinates</span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">xmin</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">xmin</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="mi">-1</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the left Dirichlet boundary condition</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_left_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_left_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the right Dirichlet boundary condition</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_right_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">phi</span><span class="p">[</span><span class="n">N</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_right_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">phi</span><span class="p">[</span><span class="n">N</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the source term, f, in L phi = f</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_source</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_source</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the number of points</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">npts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">N</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">npts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">N</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the coordinate vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">xc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">xc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the source vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">get_source</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">get_source</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the solution vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">get_phi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">get_phi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// do Gauss-Seidel smoothing for n_smooth iterations</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">smooth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">smooth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">        </span><span class="c1">// perform Gauss-Seidel smoothing</span>
 
 <span class="w">        </span><span class="c1">// we only operate on the interior nodes</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// solve the Poisson problem via relaxation until the residual</span>
 <span class="w">    </span><span class="c1">/// norm is tol compared to the source norm</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">source_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">source_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="n">smooth</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">smooth</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">());</span>
 
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">source_norm</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">source_norm</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">source_norm</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">source_norm</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// compute the residual</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">residual</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">residual</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// given a vector e on our grid, return the L2 norm</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">l2</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">l2</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">l2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">l2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">l2</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">l2</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l2</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// output the solution to file fname</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">write_solution</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="p">(</span><span class="n">fname</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">write_solution</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="p">(</span><span class="n">fname</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 <span class="cp">#endif</span>
 </pre></div>
 </div>
@@ -509,29 +511,29 @@ can do with the number of points we are using in the discretization.</p>
 <p>Here’s the driver that implements this problem:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 94 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;poisson.H&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;poisson.H&quot;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Poisson</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Poisson</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_source</span><span class="p">([]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);});</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_source</span><span class="p">([]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);});</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_left_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_right_bc</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_left_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_right_bc</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">TOL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">TOL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">write_solution</span><span class="p">(</span><span class="s">&quot;poisson.txt&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">write_solution</span><span class="p">(</span><span class="s">&quot;poisson.txt&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="convergence">
-<h2>Convergence<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h2>
+<h2>Convergence<a class="headerlink" href="#convergence" title="Permalink to this heading">¶</a></h2>
 <p>This method should converge as second-order – i.e., if we double the number of points, the
 error should go down by a factor of 4.</p>
 <div class="admonition-try-it admonition">
@@ -543,7 +545,7 @@ provides the analytic solution and returns the norm of the error
 </div>
 </section>
 <section id="d-implementation">
-<h2>2D implementation<a class="headerlink" href="#d-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>2D implementation<a class="headerlink" href="#d-implementation" title="Permalink to this heading">¶</a></h2>
 <p>Here’s a 2D implementation:</p>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
@@ -558,252 +560,252 @@ provides the analytic solution and returns the norm of the error
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef POISSON_H</span>
 <span class="cp">#define POISSON_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
 
 <span class="c1">///</span>
 <span class="c1">/// Solve the 2-d Poisson problem on a node-centered finite-difference</span>
 <span class="c1">/// grid with Dirichlet BCs using Gauss-Seidel smoothing</span>
 <span class="c1">///</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Poisson</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Poisson</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ymin</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ymax</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ymin</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ymax</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">Poisson</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">xmin_in</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax_in</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">ymin_in</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ymax_in</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ny_in</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">xmin</span><span class="p">{</span><span class="n">xmin_in</span><span class="p">},</span><span class="w"> </span><span class="n">xmax</span><span class="p">{</span><span class="n">xmax_in</span><span class="p">},</span><span class="w"> </span><span class="n">ymin</span><span class="p">{</span><span class="n">ymin_in</span><span class="p">},</span><span class="w"> </span><span class="n">ymax</span><span class="p">{</span><span class="n">ymax_in</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">nx</span><span class="p">{</span><span class="n">nx_in</span><span class="p">},</span><span class="w"> </span><span class="n">ny</span><span class="p">{</span><span class="n">ny_in</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">x</span><span class="p">(</span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">ny_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">          </span><span class="n">phi</span><span class="p">(</span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="n">ny_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="n">ny_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Poisson</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">xmin_in</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax_in</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">ymin_in</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ymax_in</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ny_in</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">xmin</span><span class="p">{</span><span class="n">xmin_in</span><span class="p">},</span><span class="w"> </span><span class="n">xmax</span><span class="p">{</span><span class="n">xmax_in</span><span class="p">},</span><span class="w"> </span><span class="n">ymin</span><span class="p">{</span><span class="n">ymin_in</span><span class="p">},</span><span class="w"> </span><span class="n">ymax</span><span class="p">{</span><span class="n">ymax_in</span><span class="p">},</span>
+<span class="w">          </span><span class="n">nx</span><span class="p">{</span><span class="n">nx_in</span><span class="p">},</span><span class="w"> </span><span class="n">ny</span><span class="p">{</span><span class="n">ny_in</span><span class="p">},</span>
+<span class="w">          </span><span class="n">x</span><span class="p">(</span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">ny_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<span class="w">          </span><span class="n">phi</span><span class="p">(</span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="n">ny_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">nx_in</span><span class="p">,</span><span class="w"> </span><span class="n">ny_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 
 <span class="w">        </span><span class="c1">// initialize the coordinates</span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">xmin</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">ymax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ymin</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">xmin</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">ymax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ymin</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nx</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ymax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ymin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ny</span><span class="mi">-1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nx</span><span class="mi">-1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ymax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ymin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ny</span><span class="mi">-1</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the -x Dirichlet boundary condition</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_xlo_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_xlo_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the +x Dirichlet boundary condition</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_xhi_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="n">nx</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_xhi_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="n">nx</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the -y Dirichlet boundary condition</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_ylo_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_ylo_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the +y Dirichlet boundary condition</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_yhi_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_yhi_bc</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the source term, f, in L phi = f</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_source</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">set_source</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the number of points in x</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nx_pts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">nx</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nx_pts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">nx</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the number of points in y</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ny_pts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">ny</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ny_pts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">ny</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the x coordinate vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">xc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">xc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the y coordinate vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">yc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">yc</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the source vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">get_source</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">get_source</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the solution vector</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">get_phi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">get_phi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// do Gauss-Seidel smoothing for n_smooth iterations</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">smooth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">smooth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">        </span><span class="c1">// perform Gauss-Seidel smoothing</span>
 
 <span class="w">        </span><span class="c1">// we only operate on the interior nodes</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">fac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dx2i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dy2i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">fac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dx2i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dy2i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n_smooth</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fac</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dx2i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="mi">-1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
-<span class="w">                                            </span><span class="n">dy2i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">));</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fac</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dx2i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="mi">-1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                            </span><span class="n">dy2i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">));</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// solve the Poisson problem via relaxation until the residual</span>
 <span class="w">    </span><span class="c1">/// norm is tol compared to the source norm</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">solve</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">source_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">source_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="n">smooth</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">smooth</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">());</span>
 
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">source_norm</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">source_norm</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">source_norm</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">source_norm</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_norm</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// compute the residual</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">residual</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Array</span><span class="w"> </span><span class="nf">r</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">residual</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Array</span><span class="w"> </span><span class="nf">r</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">r</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="mi">-1</span><span class="p">,</span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="mi">-1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">r</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="w">                    </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="mi">-1</span><span class="p">,</span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="p">)</span>
+<span class="w">                    </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="mi">-1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// given a vector e on our grid, return the L2 norm</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">l2</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">l2</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">l2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">l2</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">l2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">e</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">l2</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l2</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">l2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// output the solution to file fname</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">write_solution</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="p">(</span><span class="n">fname</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">write_solution</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">fname</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="p">(</span><span class="n">fname</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"></span>
-<span class="w">                   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"></span>
-<span class="w">                   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span>
+<span class="w">                   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span>
+<span class="w">                   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">of</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 <span class="cp">#endif</span>
 </pre></div>
 </div>
@@ -819,27 +821,27 @@ in this case is:</p>
 <p>Here’s the driver:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 96 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;poisson2d.H&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;poisson2d.H&quot;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Poisson</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Poisson</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_source</span><span class="p">([]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
-<span class="w">                 </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="mf">-2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">((</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">6.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
-<span class="w">                                 </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">6.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">));});</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_source</span><span class="p">([]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">                 </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="mf">-2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">((</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">6.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                 </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">6.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">));});</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_xlo_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_xhi_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_ylo_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_yhi_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_xlo_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_xhi_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_ylo_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">set_yhi_bc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">TOL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">TOL</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">write_solution</span><span class="p">(</span><span class="s">&quot;poisson.txt&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">write_solution</span><span class="p">(</span><span class="s">&quot;poisson.txt&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

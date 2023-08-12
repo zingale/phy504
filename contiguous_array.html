@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: Multidimensional Contiguous Array &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -222,7 +224,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Example: Multidimensional Contiguous Array</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/contiguous_array.rst.txt" rel="nofollow"> View page source</a>
@@ -234,7 +236,7 @@
            <div itemprop="articleBody">
              
   <section id="example-multidimensional-contiguous-array">
-<h1>Example: Multidimensional Contiguous Array<a class="headerlink" href="#example-multidimensional-contiguous-array" title="Permalink to this headline">¶</a></h1>
+<h1>Example: Multidimensional Contiguous Array<a class="headerlink" href="#example-multidimensional-contiguous-array" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Your text does an example of a multi-dimensional array that is a
@@ -244,9 +246,9 @@ to be fully contiguous, so we will create a 1-d memory space and create
 operators to index into it.</p>
 </div>
 <section id="vector-of-vector-s">
-<h2><code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s<a class="headerlink" href="#vector-of-vector-s" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s<a class="headerlink" href="#vector-of-vector-s" title="Permalink to this heading">¶</a></h2>
 <p>If we consider:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">array_2d</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">array_2d</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Then this is creating a 1-d array that corresponds to the rows of our
@@ -264,7 +266,7 @@ and can be in very disparate positions in memory.</p>
 </figure>
 </section>
 <section id="contiguous-multi-dimensional-array">
-<h2>Contiguous multi-dimensional array<a class="headerlink" href="#contiguous-multi-dimensional-array" title="Permalink to this headline">¶</a></h2>
+<h2>Contiguous multi-dimensional array<a class="headerlink" href="#contiguous-multi-dimensional-array" title="Permalink to this heading">¶</a></h2>
 <p>Our goal now is to create a contiguous memory space that stores all the
 elements of the 2-d array.</p>
 <p>To make a contiguous vector, we will use a single <code class="docutils literal notranslate"><span class="pre">vector</span></code>
@@ -283,76 +285,76 @@ indexed as a two-dimensional array.</span><a class="headerlink" href="#id2" titl
 </figure>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h2>
 <p>We will implement the main <code class="docutils literal notranslate"><span class="pre">struct</span></code> in a header so we can reuse this</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 45 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
 <span class="cp">#define ARRAY_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 
 <span class="c1">// a contiguous 2-d array</span>
 <span class="c1">// here the data is stored in row-major order in a 1-d memory space</span>
 <span class="c1">// managed as a vector.  We overload () to allow us to index this as</span>
 <span class="c1">// a(irow, icol)</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span>
+<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span>
+<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// we do the asserts here after the initialization of _data</span>
 <span class="w">        </span><span class="c1">// in the initialization list, but if the size is zero, we&#39;ll</span>
 <span class="w">        </span><span class="c1">// abort here anyway.</span>
 
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// note the &quot;const&quot; after the argument list here -- this means</span>
 <span class="w">    </span><span class="c1">// that this can be called on a const Array, while the first</span>
 <span class="w">    </span><span class="c1">// &quot;const&quot; refers to the return type</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span><span class="w"></span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
 <span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -373,38 +375,38 @@ case of a non-<code class="docutils literal notranslate"><span class="pre">const
 access to the <code class="docutils literal notranslate"><span class="pre">Array</span></code> class via <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;array.H&quot;</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">x</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">x</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c1">// this will fail the assertion</span>
 <span class="w">    </span><span class="c1">//std::cout &lt;&lt; x(11, 9);</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -428,55 +430,55 @@ we’ll compare with.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># get all the sources and the headers</span>
-<span class="nv">SOURCE</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
-<span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
+<span class="nv">SOURCE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
+<span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
 
 <span class="c"># create the list of objects by replacing the .cpp with .o for the</span>
 <span class="c"># sources</span>
-<span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCE:.cpp<span class="o">=</span>.o<span class="k">)</span>
+<span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCE:.cpp<span class="o">=</span>.o<span class="k">)</span>
 
 <span class="c"># we have 2 targets here, which means two main() functions.  We need</span>
 <span class="c"># to exclude these from the general list of sources / objects, so we</span>
 <span class="c"># filter them out</span>
-<span class="nv">MAINS</span> <span class="o">:=</span> test_array.o timing.o
-<span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>filter-out <span class="k">$(</span>MAINS<span class="k">)</span>, <span class="k">$(</span>OBJECTS<span class="k">))</span>
+<span class="nv">MAINS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>test_array.o<span class="w"> </span>timing.o
+<span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>filter-out<span class="w"> </span><span class="k">$(</span>MAINS<span class="k">)</span>,<span class="w"> </span><span class="k">$(</span>OBJECTS<span class="k">))</span>
 
 <span class="c"># by default, debug mode will be disabled</span>
-<span class="nv">DEBUG</span> <span class="o">?=</span> FALSE
+<span class="nv">DEBUG</span><span class="w"> </span><span class="o">?=</span><span class="w"> </span>FALSE
 
-<span class="nv">CXXFLAGS</span> <span class="o">:=</span> -Wall -Wextra -Wpedantic -Wshadow -g
+<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wpedantic<span class="w"> </span>-Wshadow<span class="w"> </span>-g
 
 <span class="cp">ifeq (${DEBUG}, TRUE)</span>
-   <span class="nv">CXXFLAGS</span> <span class="o">+=</span> -g
+<span class="w">   </span><span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-g
 <span class="cp">else</span>
-   <span class="nv">CXXFLAGS</span> <span class="o">+=</span> -DNDEBUG -O3
+<span class="w">   </span><span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-O3
 <span class="cp">endif</span>
 
-<span class="nv">F90FLAGS</span> <span class="o">:=</span> -O3 -g
+<span class="nv">F90FLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-O3<span class="w"> </span>-g
 
 <span class="c"># general rule for compiling a .cpp file to .o</span>
-<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
-	g++ <span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span> -c $&lt;
+<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
+<span class="w">	</span>g++<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>-c<span class="w"> </span>$&lt;
 
-<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">f</span>90
-	gfortran <span class="si">${</span><span class="nv">F90FLAGS</span><span class="si">}</span> -c $&lt;
+<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">f</span>90
+<span class="w">	</span>gfortran<span class="w"> </span><span class="si">${</span><span class="nv">F90FLAGS</span><span class="si">}</span><span class="w"> </span>-c<span class="w"> </span>$&lt;
 
 <span class="c"># the test_array program -- we need to explicitly include</span>
 <span class="c"># test_array.o here</span>
-<span class="nf">test_array</span><span class="o">:</span> <span class="n">test_array</span>.<span class="n">o</span> ${<span class="n">OBJECTS</span>}
-	g++ -o <span class="nv">$@</span> test_array.o <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+<span class="nf">test_array</span><span class="o">:</span><span class="w"> </span><span class="n">test_array</span>.<span class="n">o</span> ${<span class="n">OBJECTS</span>}
+<span class="w">	</span>g++<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>test_array.o<span class="w"> </span><span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
 
 <span class="c"># the timing program -- likewise, explicitly include</span>
 <span class="c"># timing.o here</span>
-<span class="nf">timing</span><span class="o">:</span> <span class="n">timing</span>.<span class="n">o</span> <span class="k">$(</span><span class="nv">OBJECTS</span><span class="k">)</span>
-	g++ -o <span class="nv">$@</span> timing.o <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+<span class="nf">timing</span><span class="o">:</span><span class="w"> </span><span class="n">timing</span>.<span class="n">o</span> <span class="k">$(</span><span class="nv">OBJECTS</span><span class="k">)</span>
+<span class="w">	</span>g++<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>timing.o<span class="w"> </span><span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
 
-<span class="nf">fortran_array</span><span class="o">:</span> <span class="n">fortran_array</span>.<span class="n">o</span>
-	gfortran -o <span class="nv">$@</span> fortran_array.o
+<span class="nf">fortran_array</span><span class="o">:</span><span class="w"> </span><span class="n">fortran_array</span>.<span class="n">o</span>
+<span class="w">	</span>gfortran<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>fortran_array.o
 
 <span class="c"># &#39;make clean&#39; will erase all the intermediate objects</span>
 <span class="nf">clean</span><span class="o">:</span>
-	rm -f *.o test_array timing fortran_array
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>*.o<span class="w"> </span>test_array<span class="w"> </span>timing<span class="w"> </span>fortran_array
 </pre></div>
 </div>
 </div>
@@ -490,9 +492,9 @@ span.prompt1:before {
 }
 </style><span class="prompt1">make</span>
 </pre></div></div><p>If we instead want to turn on the <code class="docutils literal notranslate"><span class="pre">assert</span></code>’s, then we do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make <span class="nv">DEBUG</span><span class="o">=</span>TRUE</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span>TRUE</span>
 </pre></div></div><p>To force a rebuild, we can do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make clean</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make<span class="w"> </span>clean</span>
 <span class="prompt1">make</span>
 </pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">assert</span></code>’s are handled by the C++ via the <code class="docutils literal notranslate"><span class="pre">NDEBUG</span></code> preprocessor
 directive, so setting <code class="docutils literal notranslate"><span class="pre">-DNDEBUG</span></code> tells the preprocessor to turn
@@ -518,86 +520,86 @@ solution<div class="summary-down docutils">
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
 <span class="cp">#define ARRAY_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
 </span>
 <span class="c1">// a contiguous 2-d array</span>
 <span class="c1">// here the data is stored in row-major order in a 1-d memory space</span>
 <span class="c1">// managed as a vector.  We overload () to allow us to index this as</span>
 <span class="c1">// a(irow, icol)</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span>
+<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span>
+<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// we do the asserts here after the initialization of _data</span>
 <span class="w">        </span><span class="c1">// in the initialization list, but if the size is zero, we&#39;ll</span>
 <span class="w">        </span><span class="c1">// abort here anyway.</span>
 
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// note the &quot;const&quot; after the argument list here -- this means</span>
 <span class="w">    </span><span class="c1">// that this can be called on a const Array, while the first</span>
 <span class="w">    </span><span class="c1">// &quot;const&quot; refers to the return type</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span><span class="w"></span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="hll"><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">arr_min</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()};</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-</span><span class="hll"><span class="w">            </span><span class="n">arr_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">arr_min</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="p">}</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">arr_min</span><span class="p">;</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">arr_min</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()};</span>
+</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">            </span><span class="n">arr_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">arr_min</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+</span><span class="hll"><span class="w">        </span><span class="p">}</span>
+</span><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">arr_min</span><span class="p">;</span>
+</span><span class="hll"><span class="w">    </span><span class="p">}</span>
 </span><span class="hll">
-</span><span class="hll"><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">arr_max</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">()};</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-</span><span class="hll"><span class="w">            </span><span class="n">arr_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">arr_max</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="p">}</span><span class="w"></span>
-</span><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">arr_max</span><span class="p">;</span><span class="w"></span>
-</span><span class="hll"><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">arr_max</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">()};</span>
+</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">            </span><span class="n">arr_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">arr_max</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+</span><span class="hll"><span class="w">        </span><span class="p">}</span>
+</span><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">arr_max</span><span class="p">;</span>
+</span><span class="hll"><span class="w">    </span><span class="p">}</span>
 </span>
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
 <span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -612,9 +614,9 @@ instead of a <code class="docutils literal notranslate"><span class="pre">struct
 </div>
 </section>
 <section id="performance">
-<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this heading">¶</a></h2>
 <p>Let’s see how the speed of this compares to doing</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="o">&gt;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>This needs the size known at compile time, and the array in this case
@@ -630,52 +632,52 @@ convert to seconds using <code class="docutils literal notranslate"><span class=
 </div>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">timing.cpp</span></code></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
 
-<span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"></span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 
 <span class="w">    </span><span class="c1">// our Array class</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">irow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">irow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (row-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
-<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (row-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// again Array, but loop in the wrong order</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">irow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">b</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">irow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">b</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (col-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
-<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Array timing (col-major loop): &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="cp">#if 0</span><span class="c"></span>
+<span class="cp">#if 0</span>
 <span class="c">    // fixed-size array</span>
 <span class="c">    // Note: this is allocated on the stack and the code crashes</span>
 <span class="c">    // on my machine if MAX_SIZE &gt;~ 1000</span>
@@ -697,12 +699,12 @@ convert to seconds using <code class="docutils literal notranslate"><span class=
 <span class="c">        static_cast&lt;double&gt;(end - start) / CLOCKS_PER_SEC &lt;&lt; std::endl;</span>
 <span class="cp">#endif</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <p>We can build this via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make timing</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make<span class="w"> </span>timing</span>
 </pre></div></div><p>Some things to consider:</p>
 <ul class="simple">
 <li><p>Putting the <code class="docutils literal notranslate"><span class="pre">operator()</span></code> functions in <code class="docutils literal notranslate"><span class="pre">array.H</span></code> gives the
@@ -724,36 +726,36 @@ optimization level, asserts enabled, etc.?</p>
 <p>Finally, we can compare to a Fortran implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-number">Listing 50 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fortran_array.f90</span></code></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">main</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">main</span>
 
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"></span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span>
 
-<span class="w">  </span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double precision</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:,:)</span>
 <span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="k">end</span>
-<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="w"></span>
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span>
 
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="p">))</span>
 
-<span class="w">  </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
 
-<span class="w">  </span><span class="k">do </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"></span>
-<span class="w">     </span><span class="k">do </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span><span class="w"></span>
-<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dble</span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">do </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span>
+<span class="w">     </span><span class="k">do </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span>
+<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dble</span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 <span class="w">     </span><span class="k">end do</span>
 <span class="k">  end do</span>
 
-<span class="k">  call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="k">end</span><span class="p">)</span><span class="w"></span>
+<span class="k">  call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="k">end</span><span class="p">)</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cpu time = &quot;</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cpu time = &quot;</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span>
 
-<span class="k">end program </span><span class="n">main</span><span class="w"></span>
+<span class="k">end program </span><span class="n">main</span>
 </pre></div>
 </div>
 </div>
 <p>which we can build via</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make fortran_array</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make<span class="w"> </span>fortran_array</span>
 </pre></div></div></section>
 </section>
 

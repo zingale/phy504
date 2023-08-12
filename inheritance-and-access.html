@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inheritance and Access &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -219,7 +221,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Inheritance and Access</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/inheritance-and-access.rst.txt" rel="nofollow"> View page source</a>
@@ -231,7 +233,7 @@
            <div itemprop="articleBody">
              
   <section id="inheritance-and-access">
-<h1>Inheritance and Access<a class="headerlink" href="#inheritance-and-access" title="Permalink to this headline">¶</a></h1>
+<h1>Inheritance and Access<a class="headerlink" href="#inheritance-and-access" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 4.3</p>
@@ -250,7 +252,7 @@ the base class and can extend it.</p>
 </ul>
 </div>
 <section id="access">
-<h2>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h2>
+<h2>Access<a class="headerlink" href="#access" title="Permalink to this heading">¶</a></h2>
 <p>There are different modes of access that come into play.  First within the base
 class, we expand <em>private</em> and <em>public</em> to include <em>protected</em>:</p>
 <ul class="simple">
@@ -264,7 +266,7 @@ we would generally make the member data <em>protected</em>.</p>
 <p>The second way access comes into play is when we define the class that inherits from
 the base.  Shortly we’ll look at an example that defines a base class called <code class="docutils literal notranslate"><span class="pre">Quadrilateral</span></code>
 and then a class <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> that inherits from it.  We will define the class as:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Quadrilateral</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Quadrilateral</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">:</span></code> says that <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> inherits from <code class="docutils literal notranslate"><span class="pre">Quadrilateral</span></code> and
@@ -274,7 +276,7 @@ We could alternately use <code class="docutils literal notranslate"><span class=
 the access to the inherited data.</p>
 </section>
 <section id="constructor">
-<h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h2>
+<h2>Constructor<a class="headerlink" href="#constructor" title="Permalink to this heading">¶</a></h2>
 <p>How do we write the constructor of the sub class?</p>
 <p>For our <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> example, we might think that we could
 just use a member initialization list to initialize the data,
@@ -297,7 +299,7 @@ given in the <a class="reference external" href="https://www.learncpp.com/cpp-tu
 </div>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <p>Here’s an example of the base <code class="docutils literal notranslate"><span class="pre">Quadrilateral</span></code> class and the
 <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> class that inherits from it.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
@@ -305,42 +307,42 @@ given in the <a class="reference external" href="https://www.learncpp.com/cpp-tu
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef SHAPES_H</span>
 <span class="cp">#define SHAPES_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Quadrilateral</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Quadrilateral</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="k">protected</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// store the side data</span>
 <span class="w">    </span><span class="c1">// order: top, bottom, left, right</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sides</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sides</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">Quadrilateral</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">sides</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Quadrilateral</span><span class="p">()</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">sides</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}</span><span class="w"> </span><span class="p">{}</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">Quadrilateral</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">s2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">s3</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">s4</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">sides</span><span class="p">{</span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">,</span><span class="w"> </span><span class="n">s3</span><span class="p">,</span><span class="w"> </span><span class="n">s4</span><span class="p">}</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Quadrilateral</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">s2</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">s3</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">s4</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">sides</span><span class="p">{</span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">,</span><span class="w"> </span><span class="n">s3</span><span class="p">,</span><span class="w"> </span><span class="n">s4</span><span class="p">}</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">sides</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">sides</span><span class="p">.</span><span class="n">cend</span><span class="p">(),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">sides</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="w"> </span><span class="n">sides</span><span class="p">.</span><span class="n">cend</span><span class="p">(),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Quadrilateral</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Quadrilateral</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">Rectangle</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Quadrilateral</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Rectangle</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Quadrilateral</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sides</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sides</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sides</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sides</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -360,21 +362,21 @@ initialization is needed.</p></li>
 <p>Here’s a test driver:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 67 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_shapes.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;shapes.H&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;shapes.H&quot;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">Quadrilateral</span><span class="w"> </span><span class="n">q</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Quadrilateral</span><span class="w"> </span><span class="n">q</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;perimeter of q = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;perimeter of q = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Rectangle</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Rectangle</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;perimenter of r = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;area of r = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;perimenter of r = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">perimeter</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;area of r = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

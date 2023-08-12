@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>github &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -224,7 +226,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">github</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/github.rst.txt" rel="nofollow"> View page source</a>
@@ -236,13 +238,13 @@
            <div itemprop="articleBody">
              
   <section id="github">
-<h1>github<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h1>
+<h1>github<a class="headerlink" href="#github" title="Permalink to this heading">¶</a></h1>
 <p>Github provides a web-based way to interact with git repositories.  At
 its heart it hosts a bare repo that we can push-pull to/from, but it
 also provides features to make it easier for users to request their
 changes be incorporated.</p>
 <section id="creating-a-repository-on-github">
-<h2>Creating a repository on github<a class="headerlink" href="#creating-a-repository-on-github" title="Permalink to this headline">¶</a></h2>
+<h2>Creating a repository on github<a class="headerlink" href="#creating-a-repository-on-github" title="Permalink to this heading">¶</a></h2>
 <p>Let’s start by creating a new git repository using github’s web interface.  Start
 on your github home page and click on the “+” icon and select “New repository”:</p>
 <img alt="_images/github-new.png" class="align-center" src="_images/github-new.png" />
@@ -258,7 +260,7 @@ where <em>username</em> is your Github username and <em>reponame</em> is the nam
 the repository you just created.</p>
 </section>
 <section id="ssh-interlude">
-<h2>SSH interlude<a class="headerlink" href="#ssh-interlude" title="Permalink to this headline">¶</a></h2>
+<h2>SSH interlude<a class="headerlink" href="#ssh-interlude" title="Permalink to this heading">¶</a></h2>
 <p>Github works best is we communicate via <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_Shell">secure shell</a> or <em>SSH</em>.  This is the
 same protocol we used for connecting to the portal MathLab machines.</p>
 <p>There is some nice documentation describing key pairs in the Software
@@ -271,13 +273,13 @@ section.</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">ssh-keygen -t ed25519</span>
+</style><span class="prompt1">ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519</span>
 </pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">-t</span></code> option picks a secure encryption method.</p>
 <p>It will ask you for a passpharse – just hit “Enter” to keep it
 empty (if other people had access to your account, the you would
 want to pick a passphrase).</p>
 <p>If you do</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls -l ~/.ssh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls<span class="w"> </span>-l<span class="w"> </span>~/.ssh</span>
 </pre></div></div><p>you’ll see 2 files: <code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code> and <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> this is
 the private and public key for encryption.</p>
 <div class="admonition caution">
@@ -294,13 +296,13 @@ we can give it to places we want to communicate with, like github</p>
 <code class="docutils literal notranslate"><span class="pre">MathLab</span></code></p></li>
 <li><p>copy and paste the contents of <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> into the <em>key</em>
 text box.  You can see the contents by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat ~/.ssh/id_ed25519.pub</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat<span class="w"> </span>~/.ssh/id_ed25519.pub</span>
 </pre></div></div></li>
 <li><p>Click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code></p></li>
 </ul>
 </li>
 <li><p>Test things out:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ssh -T git@github.com</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com</span>
 </pre></div></div><p>It will ask you if we want to save the <em>fingerprint</em> – say “yes”, and then
 it should report:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hi zingale! You&#39;ve successfully authenticated, but GitHub does
@@ -321,17 +323,17 @@ wise to link these from our shared MySBFiles drive.</p>
 </div>
 </section>
 <section id="working-remotely">
-<h2>Working remotely<a class="headerlink" href="#working-remotely" title="Permalink to this headline">¶</a></h2>
+<h2>Working remotely<a class="headerlink" href="#working-remotely" title="Permalink to this heading">¶</a></h2>
 <p>Now we can git clone this repo.  From the github project page, click on the
 <em>code</em> button.</p>
 <img alt="_images/github-clone.png" class="align-center" src="_images/github-clone.png" />
 <p>Copy the string in the text box there and then on your command line clone
 the repo as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:zingale/mz_class_repo.git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:zingale/mz_class_repo.git</span>
 </pre></div></div><p>(replacing my repo and username with your own).</p>
 <p>Now we can go into our repo and look around.  Notice that there is a
 <code class="docutils literal notranslate"><span class="pre">.git/</span></code> directory.  Also look at the remotes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote -v</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>-v</span>
 </pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>       <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zingale</span><span class="o">/</span><span class="n">mz_class_repo</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
 <span class="n">origin</span>       <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zingale</span><span class="o">/</span><span class="n">mz_class_repo</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
 </pre></div>
@@ -344,7 +346,7 @@ and keep the code base in sync across all of them.</p>
 <p>If the project has multiple developers, this can be where all of the
 developers sync up their projects.</p>
 <section id="readme-md-is-special">
-<h3><code class="docutils literal notranslate"><span class="pre">README.md</span></code> is special<a class="headerlink" href="#readme-md-is-special" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">README.md</span></code> is special<a class="headerlink" href="#readme-md-is-special" title="Permalink to this heading">¶</a></h3>
 <p>The web interface that github provides to our repo has a number of features.</p>
 <p>First, the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file is always displayed on the main project
 page.  This is where you can put descriptions of what your project is,
@@ -357,7 +359,7 @@ projects: <a class="reference external" href="https://github.com/pynucastro/pynu
 </section>
 </section>
 <section id="pull-requests">
-<h2>Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline">¶</a></h2>
+<h2>Pull requests<a class="headerlink" href="#pull-requests" title="Permalink to this heading">¶</a></h2>
 <p>Github allows you to give permissions to users to contribute to a
 repository (read, write, or admin access).  But the best type of workflow
 is one where users don’t push directly to the git repo.  Instead it is based
@@ -369,15 +371,15 @@ around pulls.</p>
 can all have different access permissions.  It provides tools for
 managing who can do different things to the repos under its control.</p>
 <p>Let’s clone this repo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:phy504-sbu/test-repo.git</span>
-<span class="prompt1"><span class="nb">cd</span> test-repo</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:phy504-sbu/test-repo.git</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>test-repo</span>
 </pre></div></div><p>Now, let’s each try to add a file of the form <em>username.txt</em> containing
 your full name.  Ex:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">echo</span> Michael Zingale &gt; zingale.txt</span>
-<span class="prompt1">git add zingale.txt</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">echo</span><span class="w"> </span>Michael<span class="w"> </span>Zingale<span class="w"> </span>&gt;<span class="w"> </span>zingale.txt</span>
+<span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>zingale.txt</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>Now try to push it to the repo we clone:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push</span>
 </pre></div></div><p>what happened?</p>
 <p>The issue is that you don’t have <em>write</em> permission to that repo,
 since I own it.  So you are denied access.</p>
@@ -392,10 +394,10 @@ under your profile / username.</p>
 URL that should look something like: <a class="reference external" href="https://github.com/zingale/test-repo">https://github.com/zingale/test-repo</a></p>
 <p>Now click on the <em>code</em> button and copy the SSH location.</p>
 <p>We want to add this fork as a new remote:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add myfork git@github.com:zingale/test-repo.git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>myfork<span class="w"> </span>git@github.com:zingale/test-repo.git</span>
 </pre></div></div><p>(again, make sure you replace that with the link to your repo).</p>
 <p>Now you can do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push myfork</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>myfork</span>
 </pre></div></div><p>If you reload your github page, you should see your change there.</p>
 <p>Now we can do all <em>pull-request</em>.  Select “pull requests”</p>
 <img alt="_images/github-pr.png" class="align-center" src="_images/github-pr.png" />
@@ -413,7 +415,7 @@ via the github web tools.</p>
 <a class="reference internal image-reference" href="_images/github-workflow.png"><img alt="_images/github-workflow.png" class="align-center" src="_images/github-workflow.png" style="width: 80%;" /></a>
 </section>
 <section id="our-class-notes-github">
-<h2>Our class notes github<a class="headerlink" href="#our-class-notes-github" title="Permalink to this headline">¶</a></h2>
+<h2>Our class notes github<a class="headerlink" href="#our-class-notes-github" title="Permalink to this heading">¶</a></h2>
 <p>Let’s take a tour of our class notes on github: <a class="reference external" href="https://github.com/zingale/phy504">https://github.com/zingale/phy504</a></p>
 <p>There are a lot of other features that github provides that we will explore later in the semester, including:</p>
 <ul class="simple">

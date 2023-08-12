@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: A Simple Container &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -220,7 +222,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Example: A Simple Container</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-simple-container.rst.txt" rel="nofollow"> View page source</a>
@@ -232,7 +234,7 @@
            <div itemprop="articleBody">
              
   <section id="example-a-simple-container">
-<h1>Example: A Simple Container<a class="headerlink" href="#example-a-simple-container" title="Permalink to this headline">¶</a></h1>
+<h1>Example: A Simple Container<a class="headerlink" href="#example-a-simple-container" title="Permalink to this heading">¶</a></h1>
 <p>We want to combine what we learned about allocating memory and move semantics
 into a class that exercises both.</p>
 <div class="admonition note">
@@ -241,7 +243,7 @@ into a class that exercises both.</p>
 but here we do something simpler.</p>
 </div>
 <section id="a-simple-container-attempt-i">
-<h2>A simple container: attempt I<a class="headerlink" href="#a-simple-container-attempt-i" title="Permalink to this headline">¶</a></h2>
+<h2>A simple container: attempt I<a class="headerlink" href="#a-simple-container-attempt-i" title="Permalink to this heading">¶</a></h2>
 <p>Here’s a simple container that manages its own memory (dynamic allocation on the heap),
 via a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> – this is a pointer that the compiler will automatically clean up
 after once it goes out of scope.</p>
@@ -256,65 +258,65 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// this is a simple container class that</span>
 <span class="w">    </span><span class="c1">// just stores a 1-d array buffer</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_size</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_size</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// default constructor</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in default constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="p">()</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in default constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">// parameteric constructor</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span>
 <span class="w">        </span><span class="c1">// allocate a 1-d array with size elements</span>
 <span class="w">        </span><span class="c1">// this is placed on the heap and managed by</span>
 <span class="w">        </span><span class="c1">// a unique pointer</span>
 
-<span class="w">        </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in parametric constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in parametric constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 
 <span class="w">    </span><span class="c1">// getters</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">get_size</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_size</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">get_size</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_size</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">get_data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">();}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">get_data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">();}</span>
 
 <span class="w">    </span><span class="c1">// operators</span>
 
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -323,30 +325,30 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 <p>Now a simple driver that creates a <code class="docutils literal notranslate"><span class="pre">Container</span></code> and then creates a new one via copying:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">b</span><span class="p">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">b</span><span class="p">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -372,10 +374,10 @@ In file included from /usr/include/c++/11/memory:76,
 copy constructor would not be correct, so it doesn’t create one.  Therefore we need to explicitly write one.</p>
 </section>
 <section id="a-simple-container-attempt-ii">
-<h2>A simple container: attempt II<a class="headerlink" href="#a-simple-container-attempt-ii" title="Permalink to this headline">¶</a></h2>
+<h2>A simple container: attempt II<a class="headerlink" href="#a-simple-container-attempt-ii" title="Permalink to this heading">¶</a></h2>
 <p>What if we try to implement the copy constructor as:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 <p>Here we are using member list initialization to set <code class="docutils literal notranslate"><span class="pre">_data</span></code> to be the
@@ -400,7 +402,7 @@ destructor was called at the very end, it tried to free the data
 pointer twice.</p>
 </section>
 <section id="a-simple-container-attempt-iii">
-<h2>A simple container: attempt III<a class="headerlink" href="#a-simple-container-attempt-iii" title="Permalink to this headline">¶</a></h2>
+<h2>A simple container: attempt III<a class="headerlink" href="#a-simple-container-attempt-iii" title="Permalink to this heading">¶</a></h2>
 <p>We want the copy constructor to do a <em>deep copy</em> – it should create
 its own memory space and copy the data, element-by-element from the
 input <code class="docutils literal notranslate"><span class="pre">Container</span></code> to the new one.</p>
@@ -413,141 +415,141 @@ move operations, which we’ll talk about in a minute.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// this is a simple container class that</span>
 <span class="w">    </span><span class="c1">// just stores a 1-d array buffer</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_size</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">_size</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// default constructor</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in default constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="p">()</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in default constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">// parameteric constructor</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span>
 <span class="w">        </span><span class="c1">// allocate a 1-d array with size elements</span>
 <span class="w">        </span><span class="c1">// this is placed on the heap and managed by</span>
 <span class="w">        </span><span class="c1">// a unique pointer</span>
 
-<span class="w">        </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in parametric constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in parametric constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// destructor -- since we are using a unique ptr to</span>
 <span class="w">    </span><span class="c1">// manage our data, there is nothing to do</span>
 
-<span class="w">    </span><span class="o">~</span><span class="n">Container</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in destructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="o">~</span><span class="n">Container</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in destructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">// copy constructor</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in copy constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in copy constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// reset the data buffer</span>
 
-<span class="w">        </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">_size</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// copy the data over from c to this</span>
 <span class="w">        </span><span class="c1">// this has the form: destination, source, number of bytes</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"></span>
-<span class="w">                    </span><span class="n">_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// assignment operator</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in assignment operator&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in assignment operator&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// make sure we are not assigning ourselves</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">            </span><span class="n">_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span>
 
-<span class="w">            </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="w"> </span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">_size</span><span class="p">);</span>
 
 <span class="w">            </span><span class="c1">// copy the data over from c to this</span>
 <span class="w">            </span><span class="c1">// this has the form: destination, source, number of bytes</span>
-<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"></span>
-<span class="w">                        </span><span class="n">_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span>
+<span class="w">                        </span><span class="n">_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
 
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// move constructor</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// swap the data pointers</span>
 
-<span class="w">        </span><span class="n">_data</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">_data</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// move assignment</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move assignment&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move assignment&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">        </span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// swap the data pointers</span>
 
-<span class="w">        </span><span class="n">_data</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">_data</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span>
 
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// getters</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">get_size</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_size</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">get_size</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_size</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">get_data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">();}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">get_data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">();}</span>
 
 <span class="w">    </span><span class="c1">// operators</span>
 
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -556,26 +558,26 @@ move operations, which we’ll talk about in a minute.</p>
 <p>If we use this version in <code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code>, then it works as expected.</p>
 <p>Also take a look at the assignment operator.  We need to be careful
 that we don’t try to do a copy when if we try something like:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="moving">
-<h2>Moving<a class="headerlink" href="#moving" title="Permalink to this headline">¶</a></h2>
+<h2>Moving<a class="headerlink" href="#moving" title="Permalink to this heading">¶</a></h2>
 <p>The latest iteration of the class also implements the move constructor:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// swap the data pointers</span>
 
-<span class="w">    </span><span class="n">_data</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">_data</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This first invalidates the pointer of the data region and then it uses
@@ -586,69 +588,69 @@ ours and also does a swap on the pointers.</p>
 <p>Here’s a driver that exercises all of these functions:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span>
 
-<span class="n">Container</span><span class="w"> </span><span class="nf">fill_new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">Container</span><span class="w"> </span><span class="nf">fill_new</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">Container</span><span class="w"> </span><span class="n">c_new</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Container</span><span class="w"> </span><span class="n">c_new</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c_new</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">c_new</span><span class="p">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c_new</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">c_new</span><span class="p">.</span><span class="n">get_data</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;leaving fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c_new</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;leaving fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c_new</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing Container c(10)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing Container c(10)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">Container</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Container</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">get_data</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">get_data</span><span class="p">();</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">get_size</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c_size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">c_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">c_size</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">c_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing c1 = c&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing c1 = c&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing c1 = fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing c1 = fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fill_new</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fill_new</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing auto c2 = fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing auto c2 = fill_new()&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fill_new</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fill_new</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing cvec.push_back(fill_new())&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;doing cvec.push_back(fill_new())&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Container</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cvec</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">cvec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">fill_new</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Container</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cvec</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cvec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">fill_new</span><span class="p">());</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;done with main&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;done with main&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

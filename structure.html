@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Structure of a C++ Program &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -218,7 +220,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Structure of a C++ Program</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/structure.rst.txt" rel="nofollow"> View page source</a>
@@ -230,13 +232,13 @@
            <div itemprop="articleBody">
              
   <section id="structure-of-a-c-program">
-<h1>Structure of a C++ Program<a class="headerlink" href="#structure-of-a-c-program" title="Permalink to this headline">¶</a></h1>
+<h1>Structure of a C++ Program<a class="headerlink" href="#structure-of-a-c-program" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 2.4</p>
 </div>
 <section id="flowcharts">
-<h2>Flowcharts<a class="headerlink" href="#flowcharts" title="Permalink to this headline">¶</a></h2>
+<h2>Flowcharts<a class="headerlink" href="#flowcharts" title="Permalink to this heading">¶</a></h2>
 <p>We can represent algorithms using flowcharts.  There are some
 <a class="reference external" href="https://en.wikipedia.org/wiki/Flowchart#Common_symbols">standard symbols</a> used in
 programming flowcharts that you should be familiar with.</p>
@@ -248,8 +250,8 @@ programming flowcharts that you should be familiar with.</p>
 </figcaption>
 </figure>
 <p>Flowcharts can also have loops, like this example for a code that appears as:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="n">B</span><span class="p">;</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">D</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="n">B</span><span class="p">;</span><span class="w"> </span><span class="n">C</span><span class="p">)</span>
+<span class="w">    </span><span class="n">D</span><span class="p">;</span>
 </pre></div>
 </div>
 <figure class="align-center" id="id2">
@@ -264,21 +266,21 @@ programming flowcharts that you should be familiar with.</p>
 program before you start writing the code.</p>
 </section>
 <section id="hello-world">
-<h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this heading">¶</a></h2>
 <p>Let’s look at a simple “Hello, World” program (your text has an
 example to computes the square root of an input number).</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Every C++ program needs to have a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function</p>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="c1">// our Hello, World program</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>A nice breakdown of a “Hello, World” program is shown here: <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/program_structure/">https://www.cplusplus.com/doc/tutorial/program_structure/</a> – let’s walk through that.</p>

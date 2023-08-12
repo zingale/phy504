@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Git Remotes &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -218,7 +220,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Git Remotes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/git-remotes.rst.txt" rel="nofollow"> View page source</a>
@@ -230,9 +232,9 @@
            <div itemprop="articleBody">
              
   <section id="git-remotes">
-<h1>Git Remotes<a class="headerlink" href="#git-remotes" title="Permalink to this headline">¶</a></h1>
+<h1>Git Remotes<a class="headerlink" href="#git-remotes" title="Permalink to this heading">¶</a></h1>
 <section id="bare-repository">
-<h2>Bare Repository<a class="headerlink" href="#bare-repository" title="Permalink to this headline">¶</a></h2>
+<h2>Bare Repository<a class="headerlink" href="#bare-repository" title="Permalink to this heading">¶</a></h2>
 <p>So far, we’ve just been using our git repo for ourselves.</p>
 <p>Let’s look back at the figure illustrating ways we can share with distributed version control:</p>
 <img alt="_images/distributed_version_control.png" class="align-center" src="_images/distributed_version_control.png" />
@@ -249,16 +251,16 @@ that other people are using to synchronize with.</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">git clone --bare project2</span>
+</style><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>--bare<span class="w"> </span>project2</span>
 </pre></div></div><p>Now we see a new directory <code class="docutils literal notranslate"><span class="pre">project2.git</span></code>.</p>
 </section>
 <section id="a-first-example-of-collaboration">
-<h2>A First Example of Collaboration<a class="headerlink" href="#a-first-example-of-collaboration" title="Permalink to this headline">¶</a></h2>
+<h2>A First Example of Collaboration<a class="headerlink" href="#a-first-example-of-collaboration" title="Permalink to this heading">¶</a></h2>
 <p>Let’s pretend we are a different user.  Let’s make a directory for our pretend user and clone our project:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~</span>
-<span class="prompt1">mkdir newuser</span>
-<span class="prompt1"><span class="nb">cd</span> newuser</span>
-<span class="prompt1">git clone ~/project2.git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span><span class="w"> </span>~</span>
+<span class="prompt1">mkdir<span class="w"> </span>newuser</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>newuser</span>
+<span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>~/project2.git</span>
 </pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">clone</span></code> command make a new git repo for our user called <code class="docutils literal notranslate"><span class="pre">project2/</span></code></p>
 <p>If we do a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> in it, we’ll see the whole history we had from
 our earlier work.</p>
@@ -266,7 +268,7 @@ our earlier work.</p>
 called <em>remotes</em>.  A remote is a repo (usually a bare repo) that we
 communicate with the share our changes (a <em>push</em>) of get changes from
 other users (a <em>pull</em>).  We can see our remote by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote -v</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>-v</span>
 </pre></div></div><p>We’ll see something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
 <span class="n">origin</span>       <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">project2</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
@@ -285,17 +287,17 @@ span.prompt2:before {
 </style><span class="prompt2">git push</span>
 </pre></div></div><p>This pushes our changes back to the bare repo.  Now go back to our original repo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span></span>
-<span class="prompt1"><span class="nb">cd</span> project2</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>project2</span>
 </pre></div></div><p>We need to add a remote to this original repo (if you do <code class="docutils literal notranslate"><span class="pre">git</span>
 <span class="pre">remote</span></code> it will show nothing).  We’ll add a remote called <code class="docutils literal notranslate"><span class="pre">origin</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add origin ~/project2.git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>~/project2.git</span>
 </pre></div></div><p>Now, we can communicate with the bare repo and get the changes that
 the other user made by doing a <em>pull</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull origin main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main</span>
 </pre></div></div><p>To make our life easier, we can tell git what remote branch to track:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git branch --set-upstream-to<span class="o">=</span>origin/main main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>branch<span class="w"> </span>--set-upstream-to<span class="o">=</span>origin/main<span class="w"> </span>main</span>
 </pre></div></div><p>then we can do just</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>pull</span>
 </pre></div></div></section>
 </section>
 

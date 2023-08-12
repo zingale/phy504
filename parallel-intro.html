@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction to Parallel Programming &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -230,7 +232,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Introduction to Parallel Programming</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/parallel-intro.rst.txt" rel="nofollow"> View page source</a>
@@ -242,12 +244,12 @@
            <div itemprop="articleBody">
              
   <section id="introduction-to-parallel-programming">
-<h1>Introduction to Parallel Programming<a class="headerlink" href="#introduction-to-parallel-programming" title="Permalink to this headline">¶</a></h1>
+<h1>Introduction to Parallel Programming<a class="headerlink" href="#introduction-to-parallel-programming" title="Permalink to this heading">¶</a></h1>
 <p>Modern computers have multiple CPU cores.  So far, we’ve only been
 doing work on a single core, but a lot of computational physics
 numerical work can be spread across multiple CPUs.</p>
 <section id="moore-s-law">
-<h2>Moore’s law<a class="headerlink" href="#moore-s-law" title="Permalink to this headline">¶</a></h2>
+<h2>Moore’s law<a class="headerlink" href="#moore-s-law" title="Permalink to this heading">¶</a></h2>
 <p>Moore observed that over time, the number of transistors that can be
 packed into a chip doubled roughly every two years.</p>
 <figure class="align-center" id="id2">
@@ -274,7 +276,7 @@ need to put these additional cores to work.</p>
 the fastest computers are changing.</p>
 </section>
 <section id="memory-architecture">
-<h2>Memory architecture<a class="headerlink" href="#memory-architecture" title="Permalink to this headline">¶</a></h2>
+<h2>Memory architecture<a class="headerlink" href="#memory-architecture" title="Permalink to this heading">¶</a></h2>
 <p>A lot of the considerations in parallel program involve how we access
 the memory where the data is stored.  There are generally two
 approaches:</p>
@@ -303,7 +305,7 @@ the algorithm we are using.  We’ll see an example of this shortly.</p>
 </div>
 </section>
 <section id="amdahl-s-law">
-<h2>Amdahl’s law<a class="headerlink" href="#amdahl-s-law" title="Permalink to this headline">¶</a></h2>
+<h2>Amdahl’s law<a class="headerlink" href="#amdahl-s-law" title="Permalink to this heading">¶</a></h2>
 <p>In a typical application, you’ll have sections of code that adapt
 easily to parallelism and stuff that does not, and remains serial.</p>
 <ul class="simple">
@@ -318,10 +320,6 @@ processors, given the fraction of the code that is parallel, <cite>P</cite>:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(P = 0.5\)</span> (half of our code can be executed in parallel):</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>N</p></th>
 <th class="head"><p>S</p></th>
@@ -351,10 +349,6 @@ processors, given the fraction of the code that is parallel, <cite>P</cite>:</p>
 </li>
 <li><p><span class="math notranslate nohighlight">\(P = 0.9\)</span> (90% of our code can be executed in parallel):</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 63%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>N</p></th>
 <th class="head"><p>S</p></th>
@@ -392,7 +386,7 @@ descreases.</p></li>
 </ul>
 </section>
 <section id="types-of-parallelism">
-<h2>Types of parallelism<a class="headerlink" href="#types-of-parallelism" title="Permalink to this headline">¶</a></h2>
+<h2>Types of parallelism<a class="headerlink" href="#types-of-parallelism" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Flynn%27s_taxonomy">Flynn’s taxonomy</a> categorizes the different types
 of parallelism.</p>
 <p>4 classifications: single/multiple data; single/multiple instruction:</p>
@@ -422,7 +416,7 @@ of parallelism.</p>
 </ul>
 </section>
 <section id="mimd">
-<h2>MIMD<a class="headerlink" href="#mimd" title="Permalink to this headline">¶</a></h2>
+<h2>MIMD<a class="headerlink" href="#mimd" title="Permalink to this heading">¶</a></h2>
 <p>We can do MIMD different ways:</p>
 <ul class="simple">
 <li><p>Single program, multiple data:</p>
@@ -436,7 +430,7 @@ of parallelism.</p>
 </ul>
 </section>
 <section id="trivially-parallel">
-<h2>Trivially parallel<a class="headerlink" href="#trivially-parallel" title="Permalink to this headline">¶</a></h2>
+<h2>Trivially parallel<a class="headerlink" href="#trivially-parallel" title="Permalink to this heading">¶</a></h2>
 <p>Sometimes no communication is needed between processes – this is <em>trivially parallel</em></p>
 <p>Examples:</p>
 <ul class="simple">
@@ -456,19 +450,19 @@ multiple pipelines each on a separate file.</p></li>
 </ul>
 </section>
 <section id="making-your-code-parallel">
-<h2>Making your code parallel<a class="headerlink" href="#making-your-code-parallel" title="Permalink to this headline">¶</a></h2>
+<h2>Making your code parallel<a class="headerlink" href="#making-your-code-parallel" title="Permalink to this heading">¶</a></h2>
 <p>There is no magic compiler flag that makes your code run in parallel.
 So your approach really depends on what you are doing and where you
 intend to run.</p>
 <section id="runtime-dominated-by-one-task">
-<h3>Runtime dominated by one task<a class="headerlink" href="#runtime-dominated-by-one-task" title="Permalink to this headline">¶</a></h3>
+<h3>Runtime dominated by one task<a class="headerlink" href="#runtime-dominated-by-one-task" title="Permalink to this heading">¶</a></h3>
 <p>Imagine that the majority of your runtime is dominated by a single
 task (like linear algebra).  You can get a good speed up just by
 switching to a library that does the linear algebra in parallel.  This
 requires minimal code changes.</p>
 </section>
 <section id="shared-memory">
-<h3>Shared memory<a class="headerlink" href="#shared-memory" title="Permalink to this headline">¶</a></h3>
+<h3>Shared memory<a class="headerlink" href="#shared-memory" title="Permalink to this heading">¶</a></h3>
 <p>Imagine that we want to run on a single computer that has one CPU (one
 socket on the motherboard) with multiple cores.  Each of these cores
 will have direct access to the same pool of memory:</p>
@@ -499,7 +493,7 @@ could slow you down.</p>
 </div>
 </section>
 <section id="distributed-memory">
-<h3>Distributed memory<a class="headerlink" href="#distributed-memory" title="Permalink to this headline">¶</a></h3>
+<h3>Distributed memory<a class="headerlink" href="#distributed-memory" title="Permalink to this heading">¶</a></h3>
 <p>With distributed memory, we run on a collection of computers, connected by a high-speed network.</p>
 <ul class="simple">
 <li><p>Each task cannot directly see the memory for the other tasks</p></li>

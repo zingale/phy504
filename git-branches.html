@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Git Branches &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -224,7 +226,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Git Branches</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/git-branches.rst.txt" rel="nofollow"> View page source</a>
@@ -236,7 +238,7 @@
            <div itemprop="articleBody">
              
   <section id="git-branches">
-<h1>Git Branches<a class="headerlink" href="#git-branches" title="Permalink to this headline">¶</a></h1>
+<h1>Git Branches<a class="headerlink" href="#git-branches" title="Permalink to this heading">¶</a></h1>
 <p>When we develop as a team, we often use <em>branches</em> to organize our
 changes.  Here we walk through an example of branches.</p>
 <p>To get more practice, we’ll start a new project and initialize it.</p>
@@ -252,48 +254,48 @@ changes.  Here we walk through an example of branches.</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">mkdir project2</span>
-<span class="prompt1"><span class="nb">cd</span> project2</span>
-<span class="prompt1"><span class="nb">echo</span> <span class="s2">&quot;a second git project&quot;</span> &gt; README</span>
-<span class="prompt1">git init</span>
+</style><span class="prompt1">mkdir<span class="w"> </span>project2</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>project2</span>
+<span class="prompt1"><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;a second git project&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>README</span>
+<span class="prompt1">git<span class="w"> </span>init</span>
 </pre></div></div><p>Now let’s look at the command we did last time to name our branch
 <code class="docutils literal notranslate"><span class="pre">main</span></code> instead of <code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>main</span>
 </pre></div></div><p>This is a new (sub-)command, <code class="docutils literal notranslate"><span class="pre">checkout</span></code>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can get help on git commands via manpages using a hyphen
 between <code class="docutils literal notranslate"><span class="pre">git</span></code> and the command name, e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">man git-checkout</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">man<span class="w"> </span>git-checkout</span>
 </pre></div></div></div>
 <p>The <code class="docutils literal notranslate"><span class="pre">checkout</span></code> command is used to switch branches or to restore
 files.  The command we did above, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">main</span></code> created a
 new branch called <code class="docutils literal notranslate"><span class="pre">main</span></code> and switched us to it.</p>
 </li>
 <li><p>Now let’s add our <code class="docutils literal notranslate"><span class="pre">README</span></code> to git and commit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add README</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>README</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>(Remember to enter a log and save…)</p>
 </li>
 <li><p>Let’s create and add another file.</p>
 <p>We’ll write our first shell script.  Open a new file in nano:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano myscript</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano<span class="w"> </span>myscript</span>
 </pre></div></div><p>and copy-paste the following content into it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -l &gt; script.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span>&gt;<span class="w"> </span>script.out
 </pre></div>
 </div>
 <p>be sure to end with a new line.</p>
 <p>Now, this script is not that fancy and it needs to be run as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">bash ./myscript</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">bash<span class="w"> </span>./myscript</span>
 </pre></div></div><p>when you do this, you should see the output <code class="docutils literal notranslate"><span class="pre">script.out</span></code> created.</p>
 <p>Now let’s tell git that we want it to track this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add myscript</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>myscript</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>Be sure to add a useful message.</p>
 </li>
 <li><p>Ignoring things.</p>
 <p>Let’s look at the status of our project:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git status</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>status</span>
 </pre></div></div><p>You’ll see something like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">On</span> <span class="n">branch</span> <span class="n">main</span>
 <span class="n">Untracked</span> <span class="n">files</span><span class="p">:</span>
@@ -310,7 +312,7 @@ script, and generally we don’t keep the output of our codes in
 version control.</p>
 <p>So we’d like to tell git to ignore that file.  The way to do this is to
 create a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano .gitignore</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano<span class="w"> </span>.gitignore</span>
 </pre></div></div><p>and add the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*.</span><span class="n">out</span>
 </pre></div>
@@ -321,15 +323,15 @@ by <code class="docutils literal notranslate"><span class="pre">git</span> <span
 </li>
 </ol>
 <section id="a-feature-branch">
-<h2>A Feature Branch<a class="headerlink" href="#a-feature-branch" title="Permalink to this headline">¶</a></h2>
+<h2>A Feature Branch<a class="headerlink" href="#a-feature-branch" title="Permalink to this heading">¶</a></h2>
 <p>Now let’s imagine that our project is mature and we don’t want to break it as
 we test out some new ideas.  This is where <em>branches</em> come into play.</p>
 <p>Let’s create a new branch called <code class="docutils literal notranslate"><span class="pre">feature</span></code> that we can work on without
 disturbing our code in <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature</span>
 </pre></div></div><p>This creates a new branch called <code class="docutils literal notranslate"><span class="pre">feature</span></code> that is initially identical to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 <p>You can tell what branch you are on by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git branch</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>branch</span>
 </pre></div></div><p>and we see:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">feature</span>
   <span class="n">main</span>
@@ -337,7 +339,7 @@ disturbing our code in <code class="docutils literal notranslate"><span class="p
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> indicates which branch we are currently on.</p>
 <p>What about the log?</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git log</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>log</span>
 </pre></div></div><p>we see:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">commit</span> <span class="mi">69</span><span class="n">eb3bf482bd78c3bf63e890f52b9aac33d5ee2a</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">feature</span><span class="p">,</span> <span class="n">main</span><span class="p">)</span>
 <span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingale</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
@@ -364,18 +366,18 @@ are at the same hash, and it also calls that commit <code class="docutils litera
 <p>Now let’s make a change.</p>
 <p>Let’s put our “Hello, World” code in our repo!  Create a file called
 <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> and add the following:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Let’s add it to git control:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add hello.cpp</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>hello.cpp</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>Now look at the log:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Author</span><span class="p">:</span> <span class="n">Michael</span> <span class="n">Zingale</span> <span class="o">&lt;</span><span class="n">michael</span><span class="o">.</span><span class="n">zingale</span><span class="nd">@stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">&gt;</span>
 <span class="n">Date</span><span class="p">:</span>   <span class="n">Tue</span> <span class="n">Feb</span> <span class="mi">1</span> <span class="mi">10</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">51</span> <span class="mi">2022</span> <span class="o">-</span><span class="mi">0500</span>
@@ -404,16 +406,16 @@ are at the same hash, and it also calls that commit <code class="docutils litera
 <p>Now it is clear that <code class="docutils literal notranslate"><span class="pre">main</span></code> is still on the last commit but
 <code class="docutils literal notranslate"><span class="pre">feature</span></code> is on the latest (<code class="docutils literal notranslate"><span class="pre">HEAD</span></code>) commit.</p>
 <p>Recall that we can compile our <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">g++ -o hello hello.cpp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">g++<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>hello.cpp</span>
 </pre></div></div><div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>We don’t want the executable <code class="docutils literal notranslate"><span class="pre">hello</span></code> to be under git control, so
 add it to your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> and commit that change.</p>
 </div>
 <section id="switching-branches">
-<h3>Switching Branches<a class="headerlink" href="#switching-branches" title="Permalink to this headline">¶</a></h3>
+<h3>Switching Branches<a class="headerlink" href="#switching-branches" title="Permalink to this heading">¶</a></h3>
 <p>Let’s go back to <code class="docutils literal notranslate"><span class="pre">main</span></code>.  The <code class="docutils literal notranslate"><span class="pre">checkout</span></code> command does this for us:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>main</span>
 </pre></div></div><p>Now notice that if you do <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you don’t see <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>!  That
 file is in your <code class="docutils literal notranslate"><span class="pre">feature</span></code> branch, and under git control, and git
 knows it is not on <code class="docutils literal notranslate"><span class="pre">main</span></code> so when you switch to main, it does not
@@ -424,20 +426,20 @@ appear.</p>
 <p>create an <code class="docutils literal notranslate"><span class="pre">authors.txt</span></code> and add it to git control.</p>
 </div>
 <p>Note that this is on <code class="docutils literal notranslate"><span class="pre">main</span></code>.  If you switch to <code class="docutils literal notranslate"><span class="pre">feature</span></code> you won’t see it:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>feature</span>
 </pre></div></div><div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Just like we can use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> to switch to the previous directory we were on,
 we can use</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>-</span>
 </pre></div></div><p>to switch back to the previous branch we were on – in this case, <code class="docutils literal notranslate"><span class="pre">main</span></code></p>
 </div>
 <p>Switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 </section>
 <section id="visualizing-branches">
-<h3>Visualizing Branches<a class="headerlink" href="#visualizing-branches" title="Permalink to this headline">¶</a></h3>
+<h3>Visualizing Branches<a class="headerlink" href="#visualizing-branches" title="Permalink to this heading">¶</a></h3>
 <p>We can visualize the <em>graph</em> of changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git log --graph --all --oneline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>log<span class="w"> </span>--graph<span class="w"> </span>--all<span class="w"> </span>--oneline</span>
 </pre></div></div><p>When we do this, we’ll see something like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">c8904ec</span> <span class="p">(</span><span class="n">HEAD</span> <span class="o">-&gt;</span> <span class="n">main</span><span class="p">)</span> <span class="n">add</span> <span class="n">authors</span>
 <span class="o">|</span> <span class="o">*</span> <span class="n">bb38a3d</span> <span class="p">(</span><span class="n">feature</span><span class="p">)</span> <span class="n">don</span><span class="s1">&#39;t track executable</span>
@@ -452,19 +454,19 @@ we can use</p>
 from <code class="docutils literal notranslate"><span class="pre">main</span></code>, and we see what the latest commit is on each branch.</p>
 </section>
 <section id="diff">
-<h3>Diff<a class="headerlink" href="#diff" title="Permalink to this headline">¶</a></h3>
+<h3>Diff<a class="headerlink" href="#diff" title="Permalink to this heading">¶</a></h3>
 <p>Let’s look at the differences between our branches.  Since we’re on
 <code class="docutils literal notranslate"><span class="pre">main</span></code>, we can ask git what the difference between our current code
 and the code in <code class="docutils literal notranslate"><span class="pre">feature</span></code> is via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git diff feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>diff<span class="w"> </span>feature</span>
 </pre></div></div><p>As you use git more and more, you’ll see that <code class="docutils literal notranslate"><span class="pre">diff</span></code> is very handy.</p>
 </section>
 <section id="merging">
-<h3>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h3>
+<h3>Merging<a class="headerlink" href="#merging" title="Permalink to this heading">¶</a></h3>
 <p>Now we’re happy with the changes we made on <code class="docutils literal notranslate"><span class="pre">feature</span></code> and we want to
 incorporate them into <code class="docutils literal notranslate"><span class="pre">main</span></code> – this is called <em>merging</em>, we
 accomplish this by doing</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git merge feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>feature</span>
 </pre></div></div><p>This is a special type of commit, and your editor will pop up with a
 merge commit already entered.  Just save this, and it will be logged.</p>
 <p>If you look at the graph of changes, you’ll see something like:</p>
@@ -487,10 +489,10 @@ both branches.</p>
 </section>
 </section>
 <section id="going-back-in-time">
-<h2>Going back in time…<a class="headerlink" href="#going-back-in-time" title="Permalink to this headline">¶</a></h2>
+<h2>Going back in time…<a class="headerlink" href="#going-back-in-time" title="Permalink to this heading">¶</a></h2>
 <p>If we look at our project history so far:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git log</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>log</span>
 </pre></div></div></div></blockquote>
 <p>We see something like this (again, your hashes will be different)</p>
 <blockquote>
@@ -546,7 +548,7 @@ at the log or the graph shows that that change came in with the commit
 state of the code before that commit by using the hash from the
 previous commit:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout 69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a</span>
 </pre></div></div></div></blockquote>
 <p>Note that you don’t need to type out the entire hash – you only need the starting bits,
 as long as it is unique.</p>

@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Navigating the Filesystem &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -222,7 +224,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Navigating the Filesystem</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/shell.rst.txt" rel="nofollow"> View page source</a>
@@ -234,13 +236,13 @@
            <div itemprop="articleBody">
              
   <section id="navigating-the-filesystem">
-<h1>Navigating the Filesystem<a class="headerlink" href="#navigating-the-filesystem" title="Permalink to this headline">¶</a></h1>
+<h1>Navigating the Filesystem<a class="headerlink" href="#navigating-the-filesystem" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>We will loosely follow the Software Carpentry lesson on <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
 </div>
 <section id="the-shell">
-<h2>The shell<a class="headerlink" href="#the-shell" title="Permalink to this headline">¶</a></h2>
+<h2>The shell<a class="headerlink" href="#the-shell" title="Permalink to this heading">¶</a></h2>
 <p>The <em>shell</em> is your interface to the operator system.  It implements a <em>REPL</em> interface:
 Read, Execute, Print, Loop.  This means it:</p>
 <ul class="simple">
@@ -259,10 +261,10 @@ it to the terminal:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1"><span class="nb">echo</span> Hello, World</span>
+</style><span class="prompt1"><span class="nb">echo</span><span class="w"> </span>Hello,<span class="w"> </span>World</span>
 </pre></div></div></section>
 <section id="which-shell">
-<h2>Which shell?<a class="headerlink" href="#which-shell" title="Permalink to this headline">¶</a></h2>
+<h2>Which shell?<a class="headerlink" href="#which-shell" title="Permalink to this heading">¶</a></h2>
 <p>There are a wide variety of shells that are used today.  The default
 on many systems is <a class="reference external" href="https://www.gnu.org/software/bash/">BASH</a>.  Others
 that you might commonly encounter are <a class="reference external" href="https://www.zsh.org/">zsh</a> and
@@ -277,26 +279,26 @@ directly to the other shells.</p>
 <p>A basic “cheat sheet” is available here: <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/7/79/Unix_command_cheatsheet.pdf">Unix/Linux Command Reference</a>.</p>
 </section>
 <section id="setting-up">
-<h2>Setting up<a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h2>
+<h2>Setting up<a class="headerlink" href="#setting-up" title="Permalink to this heading">¶</a></h2>
 <p>To help us understand some basic shell operations, we will all work
 with a collection of files and directories.  Type the following
 commands (we’ll explain their meaning later) to get the files we
 need</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">curl https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip --output shell-lesson-data.zip</span>
-<span class="prompt1">unzip shell-lesson-data.zip</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">curl<span class="w"> </span>https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip<span class="w"> </span>--output<span class="w"> </span>shell-lesson-data.zip</span>
+<span class="prompt1">unzip<span class="w"> </span>shell-lesson-data.zip</span>
 </pre></div></div><p>This data set comes from the Software Carpentry project.</p>
 <p>This creates a directory on the filesystem named <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/</span></code>.  To begin, we want to
 “change directory” into that directory, using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> shell-lesson-data</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span><span class="w"> </span>shell-lesson-data</span>
 </pre></div></div></section>
 <section id="first-walkthrough">
-<h2>First walkthrough<a class="headerlink" href="#first-walkthrough" title="Permalink to this headline">¶</a></h2>
+<h2>First walkthrough<a class="headerlink" href="#first-walkthrough" title="Permalink to this heading">¶</a></h2>
 <p>Let’s walkthrough the <a class="reference external" href="https://swcarpentry.github.io/shell-novice/02-filedir/index.html">Navigating Files and Directories</a>
 lesson together.  You are also encouraged to work through it on your
 own outside of class.</p>
 </section>
 <section id="filesystem-terminology">
-<h2>Filesystem terminology<a class="headerlink" href="#filesystem-terminology" title="Permalink to this headline">¶</a></h2>
+<h2>Filesystem terminology<a class="headerlink" href="#filesystem-terminology" title="Permalink to this heading">¶</a></h2>
 <p>We’ll use the following terms throughout here:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">system</span></code> : the collection (and organization) of all of the files stored on your computer</p></li>
@@ -307,7 +309,7 @@ this is where you are.</p></li>
 </ul>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
 <p>We learned the following commands:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> : print working directory (where you currently are in the file system)</p></li>

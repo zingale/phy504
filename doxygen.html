@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Doxygen &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -228,7 +230,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Doxygen</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/doxygen.rst.txt" rel="nofollow"> View page source</a>
@@ -240,7 +242,7 @@
            <div itemprop="articleBody">
              
   <section id="doxygen">
-<h1>Doxygen<a class="headerlink" href="#doxygen" title="Permalink to this headline">¶</a></h1>
+<h1>Doxygen<a class="headerlink" href="#doxygen" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.doxygen.nl/index.html">Doxygen</a> is a standard tool for
 documenting C++ code.  It works off of comments added to the code to
 build documentation (including web pages) describing the structure of
@@ -249,7 +251,7 @@ a code and its classes and functions.</p>
 But to help automate things, we need to make a change to how the
 webpage is stored.</p>
 <section id="using-gh-pages">
-<h2>Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code><a class="headerlink" href="#using-gh-pages" title="Permalink to this headline">¶</a></h2>
+<h2>Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code><a class="headerlink" href="#using-gh-pages" title="Permalink to this heading">¶</a></h2>
 <p>Our goal is to have GitHub automatically generate our website.  When
 we do this, it is best to have the actual web page on a separate branch
 so we don’t have to keep merging with the regenerating web page
@@ -257,7 +259,7 @@ every time we make changes.  This is the purpose of the <code class="docutils li
 branch.  It is an <em>orphaned branch</em>, so it doesn’t have any connection
 to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 <section id="creating-the-gh-pages-branch">
-<h3>Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch<a class="headerlink" href="#creating-the-gh-pages-branch" title="Permalink to this headline">¶</a></h3>
+<h3>Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch<a class="headerlink" href="#creating-the-gh-pages-branch" title="Permalink to this heading">¶</a></h3>
 <p>We’ll follow <a class="reference external" href="https://jiafulow.github.io/blog/2020/07/09/create-gh-pages-branch-in-existing-repo/">these instructions</a>
 for creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
 <p>Here’s the procedure.  In <code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code>, make sure you don’t have any
@@ -266,9 +268,9 @@ uncommitted work, and then do:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">git checkout --orphan gh-pages</span>
-<span class="prompt1">git reset --hard</span>
-<span class="prompt1">git commit --allow-empty -m <span class="s2">&quot;Initializing gh-pages branch&quot;</span></span>
+</style><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>--orphan<span class="w"> </span>gh-pages</span>
+<span class="prompt1">git<span class="w"> </span>reset<span class="w"> </span>--hard</span>
+<span class="prompt1">git<span class="w"> </span>commit<span class="w"> </span>--allow-empty<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initializing gh-pages branch&quot;</span></span>
 </pre></div></div><p>Now add an <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in the empty directory:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
@@ -289,15 +291,15 @@ span.prompt1:before {
 </pre></div>
 </div>
 <p>Let’s also add the <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch .nojekyll</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch<span class="w"> </span>.nojekyll</span>
 </pre></div></div><p>Now let’s commit these:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html .nojekyll</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>index.html<span class="w"> </span>.nojekyll</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>Finally, let’s push our branch to our repo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push origin gh-pages</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>gh-pages</span>
 </pre></div></div></section>
 <section id="updating-the-web-location-on-github">
-<h3>Updating the web location on GitHub<a class="headerlink" href="#updating-the-web-location-on-github" title="Permalink to this headline">¶</a></h3>
+<h3>Updating the web location on GitHub<a class="headerlink" href="#updating-the-web-location-on-github" title="Permalink to this heading">¶</a></h3>
 <p>Now we need to go back to the GitHub page for our repo and go to
 settings and “Pages” and change the “Source” to be “Branch: gh-pages”
 and “/ (root)” and save.</p>
@@ -309,13 +311,13 @@ same URL as before.</p>
 to be on the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
 </div>
 <p>We can now switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>main</span>
 </pre></div></div></section>
 </section>
 <section id="doxygen-configuration">
-<h2>Doxygen configuration<a class="headerlink" href="#doxygen-configuration" title="Permalink to this headline">¶</a></h2>
+<h2>Doxygen configuration<a class="headerlink" href="#doxygen-configuration" title="Permalink to this heading">¶</a></h2>
 <p>Setting up: <a class="reference external" href="https://www.doxygen.nl/manual/starting.html">https://www.doxygen.nl/manual/starting.html</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen -g</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen<span class="w"> </span>-g</span>
 </pre></div></div><p>This creates a file called <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>.  We need to make a few edits to it:</p>
 <ul>
 <li><p>We want to change <code class="docutils literal notranslate"><span class="pre">PROJECT_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">C++</span> <span class="pre">Array</span></code></p></li>
@@ -340,13 +342,13 @@ for it by default.</p>
 </div>
 </section>
 <section id="annotating-our-code">
-<h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Permalink to this headline">¶</a></h2>
+<h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Permalink to this heading">¶</a></h2>
 <p>Doxygen uses <code class="docutils literal notranslate"><span class="pre">///</span></code> as the <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html#specialblock">documentation comment style</a> for C++.
 So we would do:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">///</span>
 <span class="c1">/// a function to add two numbers</span>
 <span class="c1">///</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Note that we have an empty <code class="docutils literal notranslate"><span class="pre">///</span></code> before and after the documentation.</p>
@@ -357,10 +359,10 @@ some documentation comments.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
 <span class="cp">#define ARRAY_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
 
 <span class="c1">///</span>
 <span class="c1">/// a contiguous 2-d array</span>
@@ -368,29 +370,29 @@ some documentation comments.</p>
 <span class="c1">/// managed as a vector.  We overload () to allow us to index this as</span>
 <span class="c1">/// a(irow, icol)</span>
 <span class="c1">///</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_rows</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">_cols</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_rows</span><span class="p">{</span><span class="n">rows</span><span class="p">},</span>
+<span class="w">          </span><span class="n">_cols</span><span class="p">{</span><span class="n">cols</span><span class="p">},</span>
+<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// we do the asserts here after the initialization of _data</span>
 <span class="w">        </span><span class="c1">// in the initialization list, but if the size is zero, we&#39;ll</span>
 <span class="w">        </span><span class="c1">// abort here anyway.</span>
 
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">rows</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// note the &quot;const&quot; after the argument list here -- this means</span>
 <span class="w">    </span><span class="c1">// that this can be called on a const Array, while the first</span>
@@ -399,81 +401,81 @@ some documentation comments.</p>
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// get the number of columns</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_cols</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// get the number of rows</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_rows</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_rows</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_cols</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="o">*</span><span class="n">_cols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return a flattened view of the data region -- this can be used with</span>
 <span class="w">    </span><span class="c1">/// a range-for loop, e.g. `for (auto &amp;e : a.flat()) {...}`</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">flat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">flat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// set the array element i in the flattened index space</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">flat</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">flat</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the global minimum of the array</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">current_min</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">current_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current_min</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">current_min</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">current_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current_min</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="c1">/// return the global maximum of the array</span>
 <span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">();</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">current_max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="n">current_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current_max</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">current_max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">current_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">current_max</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
 
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
 <span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -484,11 +486,11 @@ some documentation comments.</p>
 <p>Add <code class="docutils literal notranslate"><span class="pre">array.H</span></code> to your git repo and commit.</p>
 </div>
 <section id="trying-it-out-locally">
-<h3>Trying it out locally<a class="headerlink" href="#trying-it-out-locally" title="Permalink to this headline">¶</a></h3>
+<h3>Trying it out locally<a class="headerlink" href="#trying-it-out-locally" title="Permalink to this heading">¶</a></h3>
 <p>We can test out Doxygen locally by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen Doxyfile</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen<span class="w"> </span>Doxyfile</span>
 </pre></div></div><p>The HTML will then be in the <code class="docutils literal notranslate"><span class="pre">docs/html/</span></code> directory, and we can view the page as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome docs/html/index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome<span class="w"> </span>docs/html/index.html</span>
 </pre></div></div><div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The default Doxygen generated pages look a little bland.  There are
@@ -498,44 +500,44 @@ a lot nicer.</p>
 </section>
 </section>
 <section id="setting-up-a-github-action">
-<h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this headline">¶</a></h2>
+<h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this heading">¶</a></h2>
 <p>Now create a file: <code class="docutils literal notranslate"><span class="pre">.github/workflows/gh-pages.yml</span></code> with the following content:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github pages</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github pages</span>
 
-<span class="nt">on</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
 
-<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install pandoc and doxygen</span><span class="w"></span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">          </span><span class="no">sudo apt install pandoc doxygen</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install pandoc and doxygen</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">sudo apt install pandoc doxygen</span>
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup python</span><span class="w"></span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span><span class="w"></span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup python</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span>
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3 -m pip install -r ./requirements.txt</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3 -m pip install -r ./requirements.txt</span>
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Doxygen</span><span class="w"></span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">             </span><span class="no">mkdir -p docs</span><span class="w"></span>
-<span class="w">             </span><span class="no">doxygen Doxyfile</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Doxygen</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">             </span><span class="no">mkdir -p docs</span>
+<span class="w">             </span><span class="no">doxygen Doxyfile</span>
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
-<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docs</span><span class="w"></span>
-<span class="w">          </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docs</span>
+<span class="w">          </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>This does a little more than we need for now, as it gets us prepped
@@ -553,7 +555,7 @@ with the following content:</p>
 </div>
 </section>
 <section id="one-last-thing">
-<h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Permalink to this headline">¶</a></h2>
+<h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Permalink to this heading">¶</a></h2>
 <p>We need to go back to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> and now link to the Doxygen docs from our <code class="docutils literal notranslate"><span class="pre">index.html</span></code>.</p>
 <p>We can do that with the following addition to <code class="docutils literal notranslate"><span class="pre">index.html</span></code>:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;html/index.html&quot;</span><span class="p">&gt;</span>Doxygen documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>

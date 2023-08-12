@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sphinx &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -223,7 +225,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Sphinx</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/sphinx.rst.txt" rel="nofollow"> View page source</a>
@@ -235,7 +237,7 @@
            <div itemprop="articleBody">
              
   <section id="sphinx">
-<h1>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h1>
+<h1>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> is a documentation
 tool that is commonly used for writing code documentation (especially
 for python projects).  It uses <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">restructured text</a>
@@ -249,13 +251,13 @@ LaTeX/PDF, …  It can also highlight code syntax.</p>
 allow for nice looking sphinx documentation to provide the C++ documentation
 Doxygen generates.</p>
 <section id="setting-it-up">
-<h2>Setting It Up<a class="headerlink" href="#setting-it-up" title="Permalink to this headline">¶</a></h2>
+<h2>Setting It Up<a class="headerlink" href="#setting-it-up" title="Permalink to this heading">¶</a></h2>
 <p>We can install Sphinx locally via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">pip3 install sphinx sphinx_rtd_theme breathe --user</span>
+</style><span class="prompt1">pip3<span class="w"> </span>install<span class="w"> </span>sphinx<span class="w"> </span>sphinx_rtd_theme<span class="w"> </span>breathe<span class="w"> </span>--user</span>
 </pre></div></div><div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>On the MathLab machines, python 2 is the default, which is why we are
@@ -265,13 +267,13 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 <p class="admonition-title">Tip</p>
 <p>For some reason, the MathLab machines don’t include
 <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> in your Unix path, so we need to manually add it via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>~/.local/bin:<span class="nv">$PATH</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>~/.local/bin:<span class="nv">$PATH</span></span>
 </pre></div></div></div>
 <p>Now we want to change our code documentation from our handwritten
 <code class="docutils literal notranslate"><span class="pre">index.html</span></code> to a site generated by Sphinx.  We’ll take over the
 <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> docs/</span>
-<span class="prompt1">rm index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span><span class="w"> </span>docs/</span>
+<span class="prompt1">rm<span class="w"> </span>index.html</span>
 </pre></div></div><p>Then, in the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">sphinx-quickstart</span>
 </pre></div></div><p>Answer the following:</p>
@@ -291,19 +293,19 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 </div>
 <p>you can delete <code class="docutils literal notranslate"><span class="pre">make.bat</span></code>.</p>
 <p>To test things out, do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make<span class="w"> </span>html</span>
 </pre></div></div><p>Then you can view the default page via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome build/html/index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome<span class="w"> </span>build/html/index.html</span>
 </pre></div></div></section>
 <section id="customizing-our-page">
-<h2>Customizing our page<a class="headerlink" href="#customizing-our-page" title="Permalink to this headline">¶</a></h2>
+<h2>Customizing our page<a class="headerlink" href="#customizing-our-page" title="Permalink to this heading">¶</a></h2>
 <p>There are two important files in <code class="docutils literal notranslate"><span class="pre">source/</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conf.py</span></code> : this controls the configuration of Sphinx</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> : this is the ReST file that will become <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p></li>
 </ul>
 <section id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h3>
 <p>Let’s start by changing the configuration a bit:</p>
 <ul>
 <li><p>in the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> section, change it to read:</p>
@@ -319,7 +321,7 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 </ul>
 </section>
 <section id="index">
-<h3>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h3>
+<h3>Index<a class="headerlink" href="#index" title="Permalink to this heading">¶</a></h3>
 <p>Let’s have the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> page link to a page showing how the library works.</p>
 <p>Create a file <code class="docutils literal notranslate"><span class="pre">using.rst</span></code> with the following content:</p>
 <div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="gh">***********</span>
@@ -330,38 +332,38 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 
 <span class="p">..</span> <span class="ow">code</span><span class="p">::</span> <span class="k">c++</span>
 
-   <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+   <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-   <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span><span class="cp"></span>
+   <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
 
-   <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+   <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
    <span class="w">    </span><span class="c1">// create a 10x10 array</span>
 
-   <span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+   <span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
 
-   <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-   <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-   <span class="w">            </span><span class="n">x</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">row</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="o">*</span><span class="n">col</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
-   <span class="w">        </span><span class="p">}</span><span class="w"></span>
-   <span class="w">    </span><span class="p">}</span><span class="w"></span>
+   <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">nrows</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+   <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">ncols</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+   <span class="w">            </span><span class="n">x</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">row</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">100</span><span class="o">*</span><span class="n">col</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">13</span><span class="p">);</span>
+   <span class="w">        </span><span class="p">}</span>
+   <span class="w">    </span><span class="p">}</span>
 
-   <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+   <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-   <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x.min() = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+   <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x.min() = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
    <span class="w">    </span><span class="c1">// create a 4x3 array but fill it by looping over a flattened</span>
    <span class="w">    </span><span class="c1">// view</span>
 
-   <span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+   <span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 
-   <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-   <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">flat</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-   <span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
-   <span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-   <span class="w">    </span><span class="p">}</span><span class="w"></span>
+   <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+   <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">flat</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+   <span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+   <span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+   <span class="w">    </span><span class="p">}</span>
 
-   <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+   <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Then add to <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> just after the contents <code class="docutils literal notranslate"><span class="pre">using</span></code>, so it reads like:</p>
@@ -373,39 +375,39 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 </pre></div>
 </div>
 <p>Let’s add what we’ve do so far to our git:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add Makefile source/conf.py source/index.rst source/using.rst</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>Makefile<span class="w"> </span>source/conf.py<span class="w"> </span>source/index.rst<span class="w"> </span>source/using.rst</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>We now need to change our GitHub action to build this new site and
 copy it over to the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">.github/workflows/gh-pages.yml</span></code> file, change the sections:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Doxygen</span><span class="w"></span>
-<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">       </span><span class="no">mkdir docs</span><span class="w"></span>
-<span class="w">       </span><span class="no">doxygen Doxyfile</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Doxygen</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">       </span><span class="no">mkdir docs</span>
+<span class="w">       </span><span class="no">doxygen Doxyfile</span>
 
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
-<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
-<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
-<span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docs</span><span class="w"></span>
-<span class="w">    </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./docs</span>
+<span class="w">    </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>to</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Sphinx</span><span class="w"></span>
-<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
-<span class="w">       </span><span class="no">cd docs</span><span class="w"></span>
-<span class="w">       </span><span class="no">make html</span><span class="w"></span>
-<span class="w">       </span><span class="no">cd ..</span><span class="w"></span>
-<span class="w">       </span><span class="no">mkdir -p out</span><span class="w"></span>
-<span class="w">       </span><span class="no">mv docs/build/html/* out/</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Sphinx</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">       </span><span class="no">cd docs</span>
+<span class="w">       </span><span class="no">make html</span>
+<span class="w">       </span><span class="no">cd ..</span>
+<span class="w">       </span><span class="no">mkdir -p out</span>
+<span class="w">       </span><span class="no">mv docs/build/html/* out/</span>
 
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
-<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
-<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
-<span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./out</span><span class="w"></span>
-<span class="w">    </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./out</span>
+<span class="w">    </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <p>This does 3 things:</p>
@@ -422,7 +424,7 @@ be regenerated to reflect the Sphinx layout.</p>
 </section>
 </section>
 <section id="using-doxygen-with-sphinx">
-<h2>Using Doxygen with Sphinx<a class="headerlink" href="#using-doxygen-with-sphinx" title="Permalink to this headline">¶</a></h2>
+<h2>Using Doxygen with Sphinx<a class="headerlink" href="#using-doxygen-with-sphinx" title="Permalink to this heading">¶</a></h2>
 <p>Now we’ll try to combine Doxygen and Sphinx.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>

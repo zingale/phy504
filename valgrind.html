@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Valgrind &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -218,7 +220,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Valgrind</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/valgrind.rst.txt" rel="nofollow"> View page source</a>
@@ -230,7 +232,7 @@
            <div itemprop="articleBody">
              
   <section id="valgrind">
-<h1>Valgrind<a class="headerlink" href="#valgrind" title="Permalink to this headline">¶</a></h1>
+<h1>Valgrind<a class="headerlink" href="#valgrind" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://valgrind.org/">Valgrind</a> is a tool that can detect memory
 leaks, using uninitialized variables, In essence, valgrind translates
 the executable to an intermediate, architecture-independent form, and
@@ -245,29 +247,29 @@ modern C++ really makes it rare that we need to), so this greatly
 reduces our chance of memory leaks.  But if we did, valgrind would be
 able to tell us if we didn’t free up any memory.</p>
 <section id="uninitialized-variables">
-<h2>Uninitialized variables<a class="headerlink" href="#uninitialized-variables" title="Permalink to this headline">¶</a></h2>
+<h2>Uninitialized variables<a class="headerlink" href="#uninitialized-variables" title="Permalink to this heading">¶</a></h2>
 <p>Consider the following example:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 63 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">uninitialized.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">   </span><span class="c1">// uninitialized</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -298,7 +300,7 @@ where the problem first arises:</p>
 span.prompt2:before {
   content: "$ ";
 }
-</style><span class="prompt2">valgrind --track-origins<span class="o">=</span>yes ./uninitialized</span>
+</style><span class="prompt2">valgrind<span class="w"> </span>--track-origins<span class="o">=</span>yes<span class="w"> </span>./uninitialized</span>
 </pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==</span><span class="mi">1457650</span><span class="o">==</span> <span class="n">Conditional</span> <span class="n">jump</span> <span class="ow">or</span> <span class="n">move</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">uninitialised</span> <span class="n">value</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="o">==</span><span class="mi">1457650</span><span class="o">==</span>    <span class="n">at</span> <span class="mh">0x4BDC2C8</span><span class="p">:</span> <span class="n">__printf_fp_l</span> <span class="p">(</span><span class="n">printf_fp</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">397</span><span class="p">)</span>
 <span class="o">==</span><span class="mi">1457650</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x4BF5FF7</span><span class="p">:</span> <span class="n">__vfprintf_internal</span> <span class="p">(</span><span class="n">vfprintf</span><span class="o">-</span><span class="n">internal</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1646</span><span class="p">)</span>
@@ -316,27 +318,27 @@ span.prompt2:before {
 variable.</p>
 </section>
 <section id="bounds-checking">
-<h2>Bounds checking<a class="headerlink" href="#bounds-checking" title="Permalink to this headline">¶</a></h2>
+<h2>Bounds checking<a class="headerlink" href="#bounds-checking" title="Permalink to this heading">¶</a></h2>
 <p>Consider the following code:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 64 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">bounds.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <p>Here, we are accessing the <code class="docutils literal notranslate"><span class="pre">vector</span> <span class="pre">a</span></code> out of bounds.  When we just run it on the command line, it works fine.</p>
 <p>When we run it through valgrind, we see:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt2">g++ -g -o bounds bounds.cpp</span>
-<span class="prompt2">valgrind ./bounds</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt2">g++<span class="w"> </span>-g<span class="w"> </span>-o<span class="w"> </span>bounds<span class="w"> </span>bounds.cpp</span>
+<span class="prompt2">valgrind<span class="w"> </span>./bounds</span>
 </pre></div></div><p>we see:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==</span><span class="mi">1458835</span><span class="o">==</span> <span class="n">Invalid</span> <span class="n">read</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">4</span>
 <span class="o">==</span><span class="mi">1458835</span><span class="o">==</span>    <span class="n">at</span> <span class="mh">0x401281</span><span class="p">:</span> <span class="n">main</span> <span class="p">(</span><span class="n">bounds</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>

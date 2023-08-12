@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MPI Send and Receive &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -220,7 +222,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">MPI Send and Receive</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/mpi-sendrecv.rst.txt" rel="nofollow"> View page source</a>
@@ -232,7 +234,7 @@
            <div itemprop="articleBody">
              
   <section id="mpi-send-and-receive">
-<h1>MPI Send and Receive<a class="headerlink" href="#mpi-send-and-receive" title="Permalink to this headline">¶</a></h1>
+<h1>MPI Send and Receive<a class="headerlink" href="#mpi-send-and-receive" title="Permalink to this heading">¶</a></h1>
 <p>The main concept in MPI is sending messages between processes.  Two
 basic functions: <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> provide this
 functionality.  You provide a buffer that contains the data you want
@@ -247,7 +249,7 @@ the buffer.</p></li>
 doing its own communication.  There are non-blocking sends that we can use
 in this case.</p>
 <section id="basic-example">
-<h2>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this heading">¶</a></h2>
 <p>Here’s a basic example that mimics the <em>ghost cell filling</em> process used
 in hydrodynamics codes.</p>
 <ol class="arabic simple">
@@ -267,58 +269,58 @@ element from the neighboring processors.</p></li>
 <p>Here’s the implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 107 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mype</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mype</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mype</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mype</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_procs</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num_procs</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_procs</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num_procs</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// fill the interior 3 data elements</span>
 
-<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// send to the left</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;</span><span class="w">  </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;</span><span class="w">  </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// send to the right</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;PE: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; data: &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;PE: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; data: &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -327,61 +329,61 @@ processor 0, there is no left, and for processor <span class="math notranslate n
 no right).</p>
 </section>
 <section id="mpi-sendrecv">
-<h2>MPI_Sendrecv<a class="headerlink" href="#mpi-sendrecv" title="Permalink to this headline">¶</a></h2>
+<h2>MPI_Sendrecv<a class="headerlink" href="#mpi-sendrecv" title="Permalink to this heading">¶</a></h2>
 <p>Good communication performance often requires staggering the
 communication.  A combined <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code> can help with this.  We
 can use <code class="docutils literal notranslate"><span class="pre">MPI_PROC_NULL</span></code> when there is no destination.</p>
 <p>Here’s the same example as above, but now using this single funciton.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 108 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_single.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mype</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mype</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mype</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mype</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_procs</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num_procs</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_procs</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num_procs</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// fill the interior 3 data elements</span>
 
-<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// send to the left and receive from the right</span>
 <span class="w">    </span><span class="c1">//</span>
 <span class="w">    </span><span class="c1">// send:    mype -&gt; mype - 1</span>
 <span class="w">    </span><span class="c1">// receive: mype &lt;- mype + 1</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sendto</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sendto</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">MPI_Sendrecv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">sendto</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Sendrecv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">sendto</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                 </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
 
 
 <span class="w">    </span><span class="c1">// send to the right and receive from the left</span>
@@ -389,30 +391,30 @@ can use <code class="docutils literal notranslate"><span class="pre">MPI_PROC_NU
 <span class="w">    </span><span class="c1">// send:    mype -&gt; mype+1</span>
 <span class="w">    </span><span class="c1">// receive: mype &lt;- mype-1</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">num_procs</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mype</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_PROC_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mype</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">MPI_Sendrecv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">sendto</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Sendrecv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">sendto</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                 </span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;PE: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; data: &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;PE: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mype</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; data: &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

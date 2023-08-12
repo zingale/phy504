@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Operators &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -220,7 +222,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Operators</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/operators.rst.txt" rel="nofollow"> View page source</a>
@@ -232,13 +234,13 @@
            <div itemprop="articleBody">
              
   <section id="operators">
-<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 3.19</p>
 </div>
 <section id="lvalue-vs-rvalue">
-<h2>lvalue vs. rvalue<a class="headerlink" href="#lvalue-vs-rvalue" title="Permalink to this headline">¶</a></h2>
+<h2>lvalue vs. rvalue<a class="headerlink" href="#lvalue-vs-rvalue" title="Permalink to this heading">¶</a></h2>
 <p>We will often see <em>lvalue</em> and <em>rvalue</em> used:</p>
 <ul class="simple">
 <li><p>lvalue: an object that can be assigned to – i.e., it can be put on
@@ -249,9 +251,9 @@ operator – it acts as a value.</p></li>
 <p>see, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Value_(computer_science)#Assignment:_l-values_and_r-values">Assignment: l-values and r-values</a>.</p>
 </section>
 <section id="precedence">
-<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
+<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this heading">¶</a></h2>
 <p>What happens when we have an expression like:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The language defines the order that operators are considered, called
@@ -266,20 +268,20 @@ evaluated first, and then the addition is done.</p>
 </div>
 </section>
 <section id="prefix-and-postfix-operators">
-<h2>Prefix and postfix operators<a class="headerlink" href="#prefix-and-postfix-operators" title="Permalink to this headline">¶</a></h2>
+<h2>Prefix and postfix operators<a class="headerlink" href="#prefix-and-postfix-operators" title="Permalink to this heading">¶</a></h2>
 <p>We haven’t yet discussed the difference between <code class="docutils literal notranslate"><span class="pre">++a</span></code> and <code class="docutils literal notranslate"><span class="pre">a++</span></code>.  These are the prefix
 and postfix increment operators.  Let’s do that now.</p>
 <p>The prefix operator is:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">a</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The prefix increment operator first increments the value of the object
 and then returns a reference to the result.
 So in the above example, the result would be <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
 <p>Now consider the postfix operator:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">d</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
-<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">d</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here, a copy of <code class="docutils literal notranslate"><span class="pre">c</span></code> is made, then <code class="docutils literal notranslate"><span class="pre">c</span></code> is incremented, and finally the copy is returned.
@@ -288,8 +290,8 @@ So in the above example, the result would be <code class="docutils literal notra
 <p class="admonition-title">Tip</p>
 <p>The behavior of the prefix and postfix operator is essentially the same when it is
 on its own line.  Also in the <code class="docutils literal notranslate"><span class="pre">for</span></code> construction:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
 </pre></div>
 </div>
 <p>it doesn’t matter much which version you use – although you will
@@ -298,7 +300,7 @@ and therefore can be faster.</p>
 </div>
 </section>
 <section id="associativity">
-<h2>Associativity<a class="headerlink" href="#associativity" title="Permalink to this headline">¶</a></h2>
+<h2>Associativity<a class="headerlink" href="#associativity" title="Permalink to this heading">¶</a></h2>
 <p>When an expression has two operators at the same precedence, <a class="reference external" href="https://en.wikipedia.org/wiki/Operator_associativity">operator
 associativity rules</a> come into
 play.  Most operators in C++ are <em>left associative</em> – that is, they
@@ -306,7 +308,7 @@ are grouped from the left, but some are right associative (like the
 unary operators and assignment) meaning that they are grouped from the
 right.</p>
 <p>Consider assignment:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span>
 </pre></div>
 </div>
 <p>Since <code class="docutils literal notranslate"><span class="pre">=</span></code> has right associativity, we interpret this as <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">(b</span> <span class="pre">=</span> <span class="pre">c)</span></code>, which can further
@@ -316,7 +318,7 @@ be thought of as <code class="docutils literal notranslate"><span class="pre">b<
 <p>In C++, assignment evaluates to the left value.</p>
 </div>
 <p>In the expression:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span>
 </pre></div>
 </div>
 <p>Both <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> have the same precedence, and these are

@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unit Testing &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -221,7 +223,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Unit Testing</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-unit-tests.rst.txt" rel="nofollow"> View page source</a>
@@ -233,9 +235,9 @@
            <div itemprop="articleBody">
              
   <section id="unit-testing">
-<h1>Unit Testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h1>
+<h1>Unit Testing<a class="headerlink" href="#unit-testing" title="Permalink to this heading">¶</a></h1>
 <section id="unit-tests-for-vector2d">
-<h2>Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code><a class="headerlink" href="#unit-tests-for-vector2d" title="Permalink to this headline">¶</a></h2>
+<h2>Unit tests for <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code><a class="headerlink" href="#unit-tests-for-vector2d" title="Permalink to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There are a lot of unit testing frameworks for C++ programs (for
@@ -252,7 +254,7 @@ passing.</p>
 </div>
 <p>We’ll do this with our <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class.</p>
 <p>The basic structure we will use is:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">// create some vectors v1 and v2</span>
 
@@ -260,20 +262,20 @@ passing.</p>
 
 <span class="w">    </span><span class="c1">// assert the result</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Ideally, we’d like to be able to capture the success of our test in a
 Bash script, so let’s start by checking what the return value of a
 program that failed an <code class="docutils literal notranslate"><span class="pre">assert</span></code> is</p>
 <p>Consider the following:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">   </span><span class="n">assert</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">assert</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Let’s build and run that, and then check the return code via:</p>
@@ -281,23 +283,23 @@ program that failed an <code class="docutils literal notranslate"><span class="p
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1"><span class="nb">echo</span> <span class="nv">$?</span></span>
+</style><span class="prompt1"><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span></span>
 </pre></div></div><p>On my machine, I get <code class="docutils literal notranslate"><span class="pre">134</span></code>, but the actual code may vary depending
 on the compiler and OS.  The key however is that it is non-zero.  This
 means that we can test for a non-zero return in a script.</p>
 </section>
 <section id="comparing-vectors">
-<h2>Comparing vectors<a class="headerlink" href="#comparing-vectors" title="Permalink to this headline">¶</a></h2>
+<h2>Comparing vectors<a class="headerlink" href="#comparing-vectors" title="Permalink to this heading">¶</a></h2>
 <p>To make life easier, we’d like to be able to check if two vectors are
 equal, using <code class="docutils literal notranslate"><span class="pre">==</span></code>, and not equal, using <code class="docutils literal notranslate"><span class="pre">!=</span></code>.</p>
 <p>So we want to overload those operators and add them to our class:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">const</span></code> after the argument list allows these to be used on a
@@ -305,53 +307,53 @@ equal, using <code class="docutils literal notranslate"><span class="pre">==</sp
 <p>These should be added directly to the class in <code class="docutils literal notranslate"><span class="pre">vector2d.H</span></code>.</p>
 </section>
 <section id="writing-tests">
-<h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Writing tests<a class="headerlink" href="#writing-tests" title="Permalink to this heading">¶</a></h2>
 <p>Let’s write some basic tests:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 60 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// test addition</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing addition&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing addition&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">));</span>
 
 <span class="w">    </span><span class="c1">// test subtraction</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing subraction&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing subraction&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">-3</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">-3</span><span class="p">));</span>
 
 <span class="w">    </span><span class="c1">// test unary minus</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing unary minus&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing unary minus&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="o">-</span><span class="n">v1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">-4</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="o">-</span><span class="n">v1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">(</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">-4</span><span class="p">));</span>
 
 <span class="w">    </span><span class="c1">// test not equal</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing inequality&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing inequality&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">v2</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// test the setters and the default constructor</span>
 
-<span class="w">    </span><span class="n">v1</span><span class="p">.</span><span class="n">set_x</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">v1</span><span class="p">.</span><span class="n">set_y</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">v1</span><span class="p">.</span><span class="n">set_x</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">v1</span><span class="p">.</span><span class="n">set_y</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing setters&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;testing setters&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Vector2d</span><span class="p">());</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;all tests passed&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;all tests passed&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -359,7 +361,7 @@ equal, using <code class="docutils literal notranslate"><span class="pre">==</sp
 in <code class="docutils literal notranslate"><span class="pre">vector2d.H</span></code>.  As written, they should all pass.</p>
 </section>
 <section id="automating-with-make">
-<h2>Automating with make<a class="headerlink" href="#automating-with-make" title="Permalink to this headline">¶</a></h2>
+<h2>Automating with make<a class="headerlink" href="#automating-with-make" title="Permalink to this heading">¶</a></h2>
 <p>We’d like to provide a way to automate these tests.  Our first method
 will be via <code class="docutils literal notranslate"><span class="pre">make</span></code> that we can run on our own computer.</p>
 <p>Let’s start with the general <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> we developed in our
@@ -371,9 +373,9 @@ that looks like it might work, but that actually expands the command
 and then tries to execute the output.</p>
 </div>
 <p>Here’s what the rule would look like:</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">testing</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
-     ./unit_test_vector2d &gt; /dev/null
-     @if <span class="o">[</span> <span class="nv">$$</span>? <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;tests passed&quot;</span><span class="p">;</span> <span class="k">fi</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">testing</span><span class="o">:</span><span class="w"> </span><span class="n">unit_test_vector</span>2<span class="n">d</span>
+<span class="w">     </span>./unit_test_vector2d<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="w">     </span>@if<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$$</span>?<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;tests passed&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
 </pre></div>
 </div>
 <p>After we run our command (we redirect <code class="docutils literal notranslate"><span class="pre">stdout</span></code> to <code class="docutils literal notranslate"><span class="pre">/dev/null</span></code> to
@@ -387,32 +389,32 @@ print the command itself to the screen, just the output.</p>
 <span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
 <span class="c"># name, it is just commonly used).</span>
 
-<span class="nf">ALL</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
+<span class="nf">ALL</span><span class="o">:</span><span class="w"> </span><span class="n">unit_test_vector</span>2<span class="n">d</span>
 
 <span class="c"># find all of the source files and header files</span>
 
-<span class="nv">SOURCES</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.cpp<span class="k">)</span>
-<span class="nv">HEADERS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard *.H<span class="k">)</span>
+<span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
+<span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
 
 <span class="c"># create a list of object files by replacing .cpp with .o</span>
 
-<span class="nv">OBJECTS</span> <span class="o">:=</span> <span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+<span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
 
 <span class="c"># a recipe for making an object file from a .cpp file</span>
 <span class="c"># Note: this makes every header file a dependency of every object file,</span>
 <span class="c"># which is not ideal, but it is safe.</span>
 
-<span class="nf">%.o </span><span class="o">:</span> %.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
-	g++ -c $&lt;
+<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
+<span class="w">	</span>g++<span class="w"> </span>-c<span class="w"> </span>$&lt;
 
 <span class="c"># explicitly write the rule for linking together the executable</span>
 
-<span class="nf">unit_test_vector2d</span><span class="o">:</span> ${<span class="n">OBJECTS</span>}
-	g++ -o <span class="nv">$@</span> <span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
+<span class="nf">unit_test_vector2d</span><span class="o">:</span><span class="w"> </span>${<span class="n">OBJECTS</span>}
+<span class="w">	</span>g++<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span><span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span>
 
-<span class="nf">testing</span><span class="o">:</span> <span class="n">unit_test_vector</span>2<span class="n">d</span>
-	./unit_test_vector2d &gt; /dev/null
-	@if <span class="o">[</span> <span class="nv">$$</span>? -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;tests passed&quot;</span><span class="p">;</span> <span class="k">fi</span>
+<span class="nf">testing</span><span class="o">:</span><span class="w"> </span><span class="n">unit_test_vector</span>2<span class="n">d</span>
+<span class="w">	</span>./unit_test_vector2d<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="w">	</span>@if<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$$</span>?<span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;tests passed&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
 </pre></div>
 </div>
 </div>
@@ -422,7 +424,7 @@ print the command itself to the screen, just the output.</p>
 </div>
 </section>
 <section id="continuous-integration-and-github">
-<h2>Continuous integration and github<a class="headerlink" href="#continuous-integration-and-github" title="Permalink to this headline">¶</a></h2>
+<h2>Continuous integration and github<a class="headerlink" href="#continuous-integration-and-github" title="Permalink to this heading">¶</a></h2>
 <p>For a large project, with multiple developers, we often want to ensure
 that any changes that they make to the code still pass all of the
 tests before we merge it into the <code class="docutils literal notranslate"><span class="pre">main</span></code> git branch.  This is called

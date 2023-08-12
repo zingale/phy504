@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Github Pages &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -217,7 +219,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Github Pages</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/github-pages.rst.txt" rel="nofollow"> View page source</a>
@@ -229,7 +231,7 @@
            <div itemprop="articleBody">
              
   <section id="github-pages">
-<h1>Github Pages<a class="headerlink" href="#github-pages" title="Permalink to this headline">¶</a></h1>
+<h1>Github Pages<a class="headerlink" href="#github-pages" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://pages.github.com/">Github Pages</a> allows us to host a webpage
 directly on github.  Often we do this in our project repo itself, so
 we keep the code and documentation / webpage all in one place.</p>
@@ -254,7 +256,7 @@ under the “code” button:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">git clone git@github.com:&lt;username&gt;/cxx-array.git</span>
+</style><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:&lt;username&gt;/cxx-array.git</span>
 </pre></div></div><p>(where you replace <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> with your github username to get your
 repo.</p>
 <p>Now go to the <em>settings</em> for this repo and go to the <em>Pages</em> settings
@@ -264,11 +266,11 @@ click <em>save</em>.</p>
 <a class="reference internal image-reference" href="_images/github-pages.png"><img alt="_images/github-pages.png" src="_images/github-pages.png" style="width: 90%;" /></a>
 </figure>
 <section id="creating-our-page">
-<h2>Creating our page<a class="headerlink" href="#creating-our-page" title="Permalink to this headline">¶</a></h2>
+<h2>Creating our page<a class="headerlink" href="#creating-our-page" title="Permalink to this heading">¶</a></h2>
 <p>Now in our cloned repository, we need to create the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory
 and put our initial page there.  In your <code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code> create the <code class="docutils literal notranslate"><span class="pre">docs/</span></code>
 directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">mkdir docs/</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">mkdir<span class="w"> </span>docs/</span>
 </pre></div></div><p>Now let’s add the following <code class="docutils literal notranslate"><span class="pre">index.html</span></code> there:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
@@ -289,16 +291,16 @@ directory:</p>
 </pre></div>
 </div>
 <p>and finally add it.  From within <code class="docutils literal notranslate"><span class="pre">cxx-array/docs</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add index.html</span>
-<span class="prompt1">git commit -m <span class="s2">&quot;first webpage&quot;</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>index.html</span>
+<span class="prompt1">git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;first webpage&quot;</span></span>
 </pre></div></div><p>There is one more thing we need to do.  By default, Github Pages looks for
 a website in <a class="reference external" href="https://github.com/jekyll/jekyll">Jekyll format</a>.  We can
 disable this by adding a <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file in our top level directory (<code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch .nojekyll</span>
-<span class="prompt1">git add .nojekyll</span>
-<span class="prompt1">git commit -m <span class="s2">&quot;add nojekyll&quot;</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">touch<span class="w"> </span>.nojekyll</span>
+<span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>.nojekyll</span>
+<span class="prompt1">git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add nojekyll&quot;</span></span>
 </pre></div></div><p>Now we can push to github:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push</span>
 </pre></div></div><p>After a minute or two, we can view our page at:
 <code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/cxx-array/</span></code>, where you replace
 <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code> with your github username.</p>
@@ -306,8 +308,8 @@ disable this by adding a <code class="docutils literal notranslate"><span class=
 <p class="admonition-title">Tip</p>
 <p>Our page has an error – there are 2 <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> tags – the last should be <code class="docutils literal notranslate"><span class="pre">&lt;/body&gt;</span></code>.
 We can use a tool to catch errors like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip3 install html5validator --user</span>
-<span class="prompt1">html5validator index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip3<span class="w"> </span>install<span class="w"> </span>html5validator<span class="w"> </span>--user</span>
+<span class="prompt1">html5validator<span class="w"> </span>index.html</span>
 </pre></div></div></div>
 </section>
 </section>

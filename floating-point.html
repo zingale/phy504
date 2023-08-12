@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Floating Point &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -232,7 +234,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Floating Point</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/floating-point.rst.txt" rel="nofollow"> View page source</a>
@@ -244,13 +246,13 @@
            <div itemprop="articleBody">
              
   <section id="floating-point">
-<h1>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h1>
+<h1>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p><a class="reference external" href="https://dl.acm.org/doi/10.1145/103162.103163">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
 </div>
 <section id="storage-overview">
-<h2>Storage overview<a class="headerlink" href="#storage-overview" title="Permalink to this headline">¶</a></h2>
+<h2>Storage overview<a class="headerlink" href="#storage-overview" title="Permalink to this heading">¶</a></h2>
 <p>We can think of a floating point number as having the form:</p>
 <div class="math notranslate nohighlight">
 \[\mbox{significand} \times 10^\mbox{exponent}\]</div>
@@ -274,21 +276,21 @@ are split between the signifcand and exponent as well as a single bit for the si
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">0.1</span></code> cannot be exactly represented in floating point:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_roundoff.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <section id="precision">
-<h3>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h3>
+<h3>Precision<a class="headerlink" href="#precision" title="Permalink to this heading">¶</a></h3>
 <p>With 52 bits for the significand, the smallest number compared to <code class="docutils literal notranslate"><span class="pre">1</span></code> we can represent is</p>
 <div class="math notranslate nohighlight">
 \[2^{-52} \approx 2.22\times 10^{-16}\]</div>
@@ -300,7 +302,7 @@ machine epsilon is</p>
 \[2^{-53} \approx 1.11\times 10^{-16}\]</div>
 <p>We already saw how to access the limits of the data type via
 <code class="docutils literal notranslate"><span class="pre">std::numeric_limits</span></code>. When we looked at <em>machine epsilon</em>, we saw that for a
-<code class="docutils literal notranslate"><span class="pre">double</span></code> it was about <span class="math notranslate nohighlight">\(1.1\times 10^{-16}\)</span>.</p>
+<code class="docutils literal notranslate"><span class="pre">double</span></code> it was about <span class="math notranslate nohighlight">\(1.1\times 10^{-16}`\)</span>.</p>
 <p>Note that this is a relative error, so for a number like <code class="docutils literal notranslate"><span class="pre">1000</span></code> we could only add
 <code class="docutils literal notranslate"><span class="pre">1.1e-13</span></code> to it before it became indistinguishable from <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p>
 <div class="math notranslate nohighlight">
@@ -309,7 +311,7 @@ machine epsilon is</p>
 <p>Note that there are <a class="reference external" href="https://en.wikipedia.org/wiki/Machine_epsilon#Variant_definitions">varying definitions of machine epsilon</a> which differ by a factor of 2.</p>
 </section>
 <section id="range">
-<h3>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h3>
+<h3>Range<a class="headerlink" href="#range" title="Permalink to this heading">¶</a></h3>
 <p>Now consider the exponent, we use 11 bits to store it in double
 precision.  Two are reserved for special numbers, so out of the 2048
 possible exponent values, one is 0, and 2 are reserved, leaving 2045
@@ -321,29 +323,29 @@ to split between positive and negative exponents.  These are set as:</p>
 \[\sim 10^{-308} \mbox{ to } \sim 10^{308}\]</div>
 </section>
 <section id="reporting-values">
-<h3>Reporting values<a class="headerlink" href="#reporting-values" title="Permalink to this headline">¶</a></h3>
+<h3>Reporting values<a class="headerlink" href="#reporting-values" title="Permalink to this heading">¶</a></h3>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">std::numeric_limits&lt;double&gt;</span></code> to query these floating point properties:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">limits.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;maximum double = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;maximum double base-10 exponent = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max_exponent10</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;smallest (abs) double = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;minimim double base-10 exponent = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">min_exponent10</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;machine epsilon (double) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;maximum double = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;maximum double base-10 exponent = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max_exponent10</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;smallest (abs) double = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;minimim double base-10 exponent = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">min_exponent10</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;machine epsilon (double) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </section>
 </section>
 <section id="roundoff-vs-truncation-error">
-<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this headline">¶</a></h2>
+<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Permalink to this heading">¶</a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = f(x_0 + \Delta x) = f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \Delta x + \mathcal{O}(\Delta x^2)\]</div>
@@ -356,53 +358,53 @@ to split between positive and negative exponents.  These are set as:</p>
 to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">dfdx_true</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">dfdx_true</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">point</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">point</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">epsilon</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="n">point</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">point</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
 
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dfdx_approx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">dfdx_approx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dfdx_true</span><span class="p">(</span><span class="n">x0</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">dfdx_approx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">dfdx_approx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dfdx_true</span><span class="p">(</span><span class="n">x0</span><span class="p">));</span>
 
-<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">err</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">err</span><span class="p">;</span>
 
-<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">scientific</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">scientific</span><span class="p">;</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">err</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -427,7 +429,7 @@ machine epsilon.</p></li>
 </ul>
 </section>
 <section id="testing-for-equality">
-<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this headline">¶</a></h2>
+<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Permalink to this heading">¶</a></h2>
 <p>Because of roundoff error, we should never exactly compare two floating point numbers,
 but instead ask they they agree within some tolerance, e.g., test equality as:</p>
 <div class="math notranslate nohighlight">
@@ -435,27 +437,27 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 <p>For example:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">{</span><span class="mf">0.01</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="p">{</span><span class="mf">0.01</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sum == 1:        &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;|sum - 1| &lt; tol: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sum == 1:        &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;|sum - 1| &lt; tol: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="minimizing-roundoff">
-<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this headline">¶</a></h2>
+<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Permalink to this heading">¶</a></h2>
 <p>Consider subtracting the square of two numbers – taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
 <p>Instead of doing:</p>
 <div class="math notranslate nohighlight">
@@ -468,26 +470,26 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 <p>Here’s an example:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">1.000001e15</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">1.0000e15</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">1.000001e15</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">1.0000e15</span><span class="p">};</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x^2 - y^2 :      &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;(x - y)(x + y) : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x^2 - y^2 :      &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;(x - y)(x + y) : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">{</span><span class="mf">1.000001e15</span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">n</span><span class="p">{</span><span class="mf">1.0000e15</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">{</span><span class="mf">1.000001e15</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">n</span><span class="p">{</span><span class="mf">1.0000e15</span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;double precision value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;double precision value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<p>As another example, consider computing <a class="footnote-reference brackets" href="#f1" id="id1">1</a>:</p>
+<p>As another example, consider computing <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[\sqrt{x + 1} - \sqrt{x}\]</div>
 <p>We can alternately rewrite this to avoid the subtraction of two close numbers:</p>
@@ -502,36 +504,36 @@ precision literal suffix, e.g., <code class="docutils literal notranslate"><span
 single-precision constant.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">squareroots.cpp</span></code></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">201010.0f</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">201010.0f</span><span class="p">};</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;r1 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; r2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;r1 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; r2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w"> </span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xd</span><span class="p">{</span><span class="mf">201010.0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xd</span><span class="p">{</span><span class="mf">201010.0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xd</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;d = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;d = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <p>Notice that we get several more significant digits correct when we compute it with
 the second formulation compared to the original form.</p>
 <section id="summation-algorithms">
-<h3>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Permalink to this headline">¶</a></h3>
+<h3>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Permalink to this heading">¶</a></h3>
 <p>Summing a sequence of numbers is a common place where roundoff error
 comes into play, especially if the numbers all vary in magnitude and
 you do not attempt to add them in a sorted fashion.  There are a
@@ -540,7 +542,7 @@ due to roundoff and compensate the sum, for example <a class="reference external
 </section>
 </section>
 <section id="special-numbers">
-<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this headline">¶</a></h2>
+<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Permalink to this heading">¶</a></h2>
 <p>IEEE 754 defines a few special quantities:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) is the result of <code class="docutils literal notranslate"><span class="pre">0.0/0.0</span></code> or <code class="docutils literal notranslate"><span class="pre">std::sqrt(-1.0)</span></code></p></li>
@@ -549,30 +551,30 @@ due to roundoff and compensate the sum, for example <a class="reference external
 </ul>
 </section>
 <section id="trapping-floating-point-exceptions">
-<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this headline">¶</a></h2>
+<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Permalink to this heading">¶</a></h2>
 <p>What happens when we do something bad?  Consider this example:</p>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-number">Listing 58 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined.cpp</span></code></span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trouble</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trouble</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="w"> </span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -590,12 +592,12 @@ or compilers might have slightly different headers or functionality.</p>
 </div>
 <p>There are a few parts to trapping a floating point exception (FPE).  First we need
 to enable exception trapping via:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>That catches 3 different types of floating point exceptions – invalid, divide-by-zero, and overflows.</p>
 <p>Next we need to add a handler to deal with the exception:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">SIGFPE</span></code> is the standard name for a floating point exception,
@@ -607,49 +609,49 @@ arrays here.</p>
 <p>Here’s the new version of our code:</p>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-number">Listing 59 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined_trap.cpp</span></code></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cfenv&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;execinfo.h&gt;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cfenv&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;execinfo.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">fpe_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;floating point exception, signal &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">fpe_handler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;floating point exception, signal &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nbuf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span><span class="w">                                                                                                  </span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">bt_buffer</span><span class="p">[</span><span class="n">nbuf</span><span class="p">];</span><span class="w">                                                                                                </span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nentries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backtrace</span><span class="p">(</span><span class="n">bt_buffer</span><span class="p">,</span><span class="w"> </span><span class="n">nbuf</span><span class="p">);</span><span class="w"> </span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backtrace_symbols</span><span class="p">(</span><span class="n">bt_buffer</span><span class="p">,</span><span class="w"> </span><span class="n">nentries</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backtrace_symbols</span><span class="p">(</span><span class="n">bt_buffer</span><span class="p">,</span><span class="w"> </span><span class="n">nentries</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nentries</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nentries</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">abort</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">abort</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">trouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
 
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trouble</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trouble</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="w"> </span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -659,7 +661,7 @@ symbols in the code – this allows us to understand where problems arise:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">g++ -g -o undefined_trap undefined_trap.cpp</span>
+</style><span class="prompt1">g++<span class="w"> </span>-g<span class="w"> </span>-o<span class="w"> </span>undefined_trap<span class="w"> </span>undefined_trap.cpp</span>
 </pre></div></div><p>Now when we run this, the program aborts and we see:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">floating</span> <span class="n">point</span> <span class="n">exception</span><span class="p">,</span> <span class="n">signal</span> <span class="mi">8</span>
 <span class="mi">0</span><span class="p">:</span> <span class="o">./</span><span class="n">undefined_trap</span><span class="p">()</span> <span class="p">[</span><span class="mh">0x401261</span><span class="p">]</span>
@@ -678,14 +680,14 @@ the program where the execution was when the FPE occurred.  These are ordered
 such that the calling function is below the function where the execution is.
 So it usually is best to look at the addresses near the top.</p>
 <p>We can turn those into line numbers using <code class="docutils literal notranslate"><span class="pre">addr2line</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line  -e undefined_trap 0x4012ff</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line<span class="w">  </span>-e<span class="w"> </span>undefined_trap<span class="w"> </span>0x4012ff</span>
 </pre></div></div><p>gives:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">floating_point</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
 </pre></div>
 </div>
 <p>and that line is precisely where the <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> is!</p>
 <p>We can get slightly nicer output (including the function name) by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line  -C -f -i -p -e undefined_trap 0x4012ff</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line<span class="w">  </span>-C<span class="w"> </span>-f<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span>undefined_trap<span class="w"> </span>0x4012ff</span>
 </pre></div></div><p>which gives:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trouble</span><span class="p">(</span><span class="n">double</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">floating_point</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
 </pre></div>
@@ -705,13 +707,14 @@ So it usually is best to look at the addresses near the top.</p>
 </pre></div>
 </div>
 <p>and we need to use that offset instead with <code class="docutils literal notranslate"><span class="pre">addr2line</span></code>, like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line -a -f -e ./undefined_trap +0xcd5</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line<span class="w"> </span>-a<span class="w"> </span>-f<span class="w"> </span>-e<span class="w"> </span>./undefined_trap<span class="w"> </span>+0xcd5</span>
 </pre></div></div></div>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>this example is based on Yakowitz &amp; Szidarovszky</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>this example is based on Yakowitz &amp; Szidarovszky</p>
+</aside>
+</aside>
 </section>
 </section>
 

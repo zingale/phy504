@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Editors &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -220,7 +222,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Editors</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/editors.rst.txt" rel="nofollow"> View page source</a>
@@ -232,7 +234,7 @@
            <div itemprop="articleBody">
              
   <section id="editors">
-<h1>Editors<a class="headerlink" href="#editors" title="Permalink to this headline">¶</a></h1>
+<h1>Editors<a class="headerlink" href="#editors" title="Permalink to this heading">¶</a></h1>
 <p>We already looked at <code class="docutils literal notranslate"><span class="pre">nano</span></code> to edit files.  An editor not only allows us to write our source
 code, but it can also help us by:</p>
 <ul class="simple">
@@ -250,7 +252,7 @@ code, but it can also help us by:</p>
 </figcaption>
 </figure>
 <section id="nano">
-<h2>nano<a class="headerlink" href="#nano" title="Permalink to this headline">¶</a></h2>
+<h2>nano<a class="headerlink" href="#nano" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">nano</span></code> is a pretty basic editor and very easy to use.  We already saw that when we saved our
 <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> it recognized it as C++ code and highlighted it in different colors.</p>
 <p>There are some basic customizations you can make by creating a <code class="docutils literal notranslate"><span class="pre">~/.nanorc</span></code> file,
@@ -259,14 +261,14 @@ some of which are listed here: <a class="reference external" href="https://timna
 editor.  However you are encouraged to explore alternatives.</p>
 </section>
 <section id="emacs">
-<h2>emacs<a class="headerlink" href="#emacs" title="Permalink to this headline">¶</a></h2>
+<h2>emacs<a class="headerlink" href="#emacs" title="Permalink to this heading">¶</a></h2>
 <p>Emacs is a powerful editor that has a large number of extensions.</p>
 <p>You can run emacs in a terminal (instead of a separate window), by doing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">emacs -nw</span>
+</style><span class="prompt1">emacs<span class="w"> </span>-nw</span>
 </pre></div></div><p>This is useful for remote connections.</p>
 <p>Some basic commands with emacs:</p>
 <ul class="simple">
@@ -281,12 +283,12 @@ span.prompt1:before {
 <p>Here’s my <a class="reference external" href="https://github.com/zingale/mysystem/blob/master/.emacs">emacs config file</a> file.</p>
 </section>
 <section id="vim-vi">
-<h2>vim/vi<a class="headerlink" href="#vim-vi" title="Permalink to this headline">¶</a></h2>
+<h2>vim/vi<a class="headerlink" href="#vim-vi" title="Permalink to this heading">¶</a></h2>
 <p>vi or vim has two modes: <em>command mode</em> where you enter commands like save,
 delete, cut / paste, etc. and <em>insert mode</em> where you enter text into
 the editor.</p>
 <p>You can open a file for editing by:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">vi file.txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">vi<span class="w"> </span>file.txt</span>
 </pre></div></div><p>by default you are in command mode.</p>
 <ul class="simple">
 <li><p>To get into insert type <code class="docutils literal notranslate"><span class="pre">i</span></code></p></li>
@@ -296,7 +298,7 @@ the editor.</p>
 <p>To save the file and exit you enter command mode and type <code class="docutils literal notranslate"><span class="pre">:wq</span></code></p>
 </section>
 <section id="vs-code">
-<h2>VS Code<a class="headerlink" href="#vs-code" title="Permalink to this headline">¶</a></h2>
+<h2>VS Code<a class="headerlink" href="#vs-code" title="Permalink to this heading">¶</a></h2>
 <p>VS Code is a graphical editor that is extremely popular today.  It has
 a large number of extensions.  One of the most popular extensions is
 the “remote - ssh” extension that allows you to run VS Code on your

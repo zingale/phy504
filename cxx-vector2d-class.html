@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: Mathematical Vectors &mdash; PHY 504 Spring 2022 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-dropdown.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.min.css" type="text/css" />
       <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
@@ -36,14 +34,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PHY 504
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
           </a>
               <div class="version">
                 Spring 2022
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -216,7 +218,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Example: Mathematical Vectors</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-vector2d-class.rst.txt" rel="nofollow"> View page source</a>
@@ -228,7 +230,7 @@
            <div itemprop="articleBody">
              
   <section id="example-mathematical-vectors">
-<span id="sec-vector2d"></span><h1>Example: Mathematical Vectors<a class="headerlink" href="#example-mathematical-vectors" title="Permalink to this headline">¶</a></h1>
+<span id="sec-vector2d"></span><h1>Example: Mathematical Vectors<a class="headerlink" href="#example-mathematical-vectors" title="Permalink to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 3.16</p>
@@ -250,9 +252,9 @@ scalar, and do operations like dot and cross products.</p>
 and <code class="docutils literal notranslate"><span class="pre">y</span></code> value of a two-dimensional vector.  What are some things
 we’d like to be able to do with a vector?</p>
 <p>We’d like to be able to output it:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>we already saw that this is controlled by the <code class="docutils literal notranslate"><span class="pre">std::ostream</span>
@@ -260,11 +262,11 @@ we’d like to be able to do with a vector?</p>
 overloading.  In this case, we want to make <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> understand our
 <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class.</p>
 <p>We’d also like to be able to add and subtract:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span><span class="w"></span>
-<span class="n">Vector2d</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span>
+<span class="n">Vector2d</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
 
-<span class="k">auto</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span><span class="w"></span>
-<span class="k">auto</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>In this case, the <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> operations will return a new <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code>.</p>
@@ -277,76 +279,76 @@ So we will create <em>setters</em> that allow us to change these values.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef VECTOR_2D_H</span>
 <span class="cp">#define VECTOR_2D_H</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Vector2d</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vector2d</span><span class="w"> </span><span class="p">{</span>
 
-<span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="k">private</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// our member data</span>
 
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span>
 
 <span class="w">    </span><span class="c1">// default constructor</span>
 
-<span class="w">    </span><span class="n">Vector2d</span><span class="p">()</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">0.0</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="p">()</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mf">0.0</span><span class="p">}</span>
+<span class="w">    </span><span class="p">{}</span>
 
 <span class="w">    </span><span class="c1">// another constructor</span>
 
-<span class="w">    </span><span class="n">Vector2d</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="n">_x</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="n">_y</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="n">_x</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="n">_y</span><span class="p">}</span>
+<span class="w">    </span><span class="p">{}</span>
 
 <span class="w">    </span><span class="c1">// setters</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;}</span><span class="w"></span>
+<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="c1">// operators</span>
 
 <span class="w">    </span><span class="c1">// add two vectors</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// subtract two vectors</span>
 
-<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// unary minus</span>
 
-<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="n">v_out</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v_out</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// &lt;&lt; is not a class member, but needs access to the member data</span>
 
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+<span class="p">};</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="cp">#endif</span>
 </pre></div>
@@ -359,8 +361,8 @@ So we will create <em>setters</em> that allow us to change these values.</p>
 constructor</em>.  These both have the same name – that’s fine, C++
 will call which ever one matches the argument list you use.</p></li>
 <li><p>We have 2 <em>setter</em> functions to modify the underlying vector data:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;}</span><span class="w"></span>
-<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_x</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_x</span><span class="p">;}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_y</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">_y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_y</span><span class="p">;}</span>
 </pre></div>
 </div>
 <p>These are marked <code class="docutils literal notranslate"><span class="pre">inline</span></code>, which is a hint to the compiler that
@@ -369,7 +371,7 @@ it is needed.  This gives us better performance.</p>
 </li>
 <li><p>We have 3 operators that are member functions: <code class="docutils literal notranslate"><span class="pre">+</span></code>, and two implementations of <code class="docutils literal notranslate"><span class="pre">-</span></code>.
 The second <code class="docutils literal notranslate"><span class="pre">-</span></code> has the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>This is the <em>unary minus</em>, and is invoked when we do <code class="docutils literal notranslate"><span class="pre">-v</span></code> for a <code class="docutils literal notranslate"><span class="pre">Vector2d</span> <span class="pre">v</span></code>.</p>
@@ -384,7 +386,7 @@ functions to our class to get the private data.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>In the operator-overload function</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w">  </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span><span class="w">  </span><span class="p">{}</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">vec</span></code> is a second <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object that we are going to
@@ -402,8 +404,8 @@ on a class-basis, not an object-basis.</p>
 the left of the operator.</p>
 <p>Imagine that it did make sense to add a <code class="docutils literal notranslate"><span class="pre">double</span></code> to a
 <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code>, then we could imagine 2 different additions:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w"></span>
-<span class="n">Vector2d</span><span class="w"> </span><span class="n">vec</span><span class="p">{};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span>
+<span class="n">Vector2d</span><span class="w"> </span><span class="n">vec</span><span class="p">{};</span>
 
 <span class="k">auto</span><span class="w"> </span><span class="n">new_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span><span class="w">   </span><span class="c1">// our class is on the right -- this is not a member func</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">new2_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">  </span><span class="c1">// our class is on the left -- this is a member func</span>
@@ -412,7 +414,7 @@ the left of the operator.</p>
 <p>When we write a member function, we don’t include the object itself
 in the argument list, so for the second case, <code class="docutils literal notranslate"><span class="pre">vec</span> <span class="pre">+</span> <span class="pre">a</span></code>, we would
 use the function signature:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The current <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object is implicitly part of the function,
@@ -452,43 +454,43 @@ then you should define all three.</p>
 <p>Now let’s test this out.  Here’s a test driver:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 44 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_vectors.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span><span class="cp"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">// create 2 vectors</span>
 
-<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// output our vectors</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// output their sum</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// create a new vector from subracting our two vectors</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// create a copy</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v3</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// change the data in the original</span>
-<span class="w">    </span><span class="n">v3</span><span class="p">.</span><span class="n">set_x</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">v3</span><span class="p">.</span><span class="n">set_y</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">v3</span><span class="p">.</span><span class="n">set_x</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">v3</span><span class="p">.</span><span class="n">set_y</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// did both change? or just the original?</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -498,9 +500,9 @@ of them in our homework.</p>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>Try overloading <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> so we can read directly into a <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> object, e.g.,</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
 
-<span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+<span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Your function should look like:</p>
