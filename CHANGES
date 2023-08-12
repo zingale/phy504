@@ -6,6 +6,15 @@ Content:
 
   e.g., ``return {v1, v2, v3}``
 
+* Add an example of std::filesystem::path, e.g., to separate the filename out from a full path:
+
+  ``std::filesystem::path(pltfile).filename().string()``
+
+  also show how to remove trailing `/`:
+
+   if (pltfile.back() == '/') {
+       pltfile.pop_back();
+   }
 
 Homework:
 
@@ -20,4 +29,3 @@ Homework:
 
 * Solutions will be posted 1 week after the due date.  Any changes
   after that will not be accepted.
-
