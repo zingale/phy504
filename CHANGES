@@ -16,6 +16,8 @@ Content:
        pltfile.pop_back();
    }
 
+* Add some libraries, like xtensor: https://xtensor.readthedocs.io/en/latest/
+
 Homework:
 
 * Make a driver in the assignment itself, and the students need to write
@@ -29,3 +31,4 @@ Homework:
 
 * Solutions will be posted 1 week after the due date.  Any changes
   after that will not be accepted.
+
