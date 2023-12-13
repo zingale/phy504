@@ -4,13 +4,13 @@
 int main() {
 
     const int size(10);
-    
+
     // new way to allocate
 
     auto data = std::make_unique<double []>(size);
 
     for (int i = 0; i < size; ++i) {
-        data.get()[i] = 1.0;
+        data[i] = 1.0;
     }
 
     // old C++ way

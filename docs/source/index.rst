@@ -197,14 +197,6 @@ Spring 2022
    :maxdepth: 1
    :caption: Homework
 
-   homework/homework1
-   homework/homework2
-   homework/homework3
-   homework/homework4
-   homework/homework5
-   homework/homework6
-   homework/homework7
-
 .. toctree::
    :maxdepth: 1
    :caption: Project

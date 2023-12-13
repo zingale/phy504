@@ -16,8 +16,12 @@ Content:
        pltfile.pop_back();
    }
 
+<<<<<<< HEAD
 * dictionary using std::map(std::string, std::any)
 
+=======
+* Add some libraries, like xtensor: https://xtensor.readthedocs.io/en/latest/
+>>>>>>> bfff7f0ca30d56289f8324b50dd402640a63f9b2
 
 Homework:
 
@@ -32,3 +36,4 @@ Homework:
 
 * Solutions will be posted 1 week after the due date.  Any changes
   after that will not be accepted.
+
