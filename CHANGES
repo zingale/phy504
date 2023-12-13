@@ -16,6 +16,9 @@ Content:
        pltfile.pop_back();
    }
 
+* dictionary using std::map(std::string, std::any)
+
+
 Homework:
 
 * Make a driver in the assignment itself, and the students need to write
