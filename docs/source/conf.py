@@ -69,7 +69,7 @@ main_doc = 'index'
 
 # General information about the project.
 project = 'PHY 504'
-copyright = '2022, Michael Zingale'
+copyright = '2022-2024, Michael Zingale'
 author = 'Michael Zingale'
 
 #html_logo = "castro_logo_hot_200.png"
@@ -79,7 +79,7 @@ author = 'Michael Zingale'
 # built documents.
 #
 # The short X.Y version.
-version = "Spring 2022"
+version = "Spring 2024"
 # The full version, including alpha/beta/rc tags.
 release = version
 
