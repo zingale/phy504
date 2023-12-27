@@ -2,7 +2,7 @@
 PHY 504: Computational Methods in Physics and Astrophysics I
 ************************************************************
 
-Spring 2022
+Spring 2024
 ===========
 
     An introduction to procedural and object-oriented programming in a
