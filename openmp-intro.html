@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -231,7 +231,7 @@
            <div itemprop="articleBody">
              
   <section id="openmp">
-<h1>OpenMP<a class="headerlink" href="#openmp" title="Permalink to this heading">¶</a></h1>
+<h1>OpenMP<a class="headerlink" href="#openmp" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.openmp.org/">OpenMP</a> provides a <em>directive-based</em>
 approach to marking regions of code for parallelism.  It supports
 shared-memory parallelism and offloading to accelerators.</p>
@@ -243,14 +243,14 @@ Interface Examples document</a>.</p>
 a quick overview of the different syntax in OpenMP.</p>
 </div>
 <section id="compiler-support">
-<h2>Compiler support<a class="headerlink" href="#compiler-support" title="Permalink to this heading">¶</a></h2>
+<h2>Compiler support<a class="headerlink" href="#compiler-support" title="Link to this heading">¶</a></h2>
 <p>In order to build an OpenMP application, you need a compiler that
 supports it.  Fortunately, most recent compilers support OpenMP.  For
 g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 <p>See this table for <a class="reference external" href="https://www.openmp.org/resources/openmp-compilers-tools/">compiler support for OpenMP</a>.</p>
 </section>
 <section id="threads">
-<h2>Threads<a class="headerlink" href="#threads" title="Permalink to this heading">¶</a></h2>
+<h2>Threads<a class="headerlink" href="#threads" title="Link to this heading">¶</a></h2>
 <p>In an OpenMP application, threads are spawned as needed.</p>
 <ul class="simple">
 <li><p>When you start the program, there is one thread – the master thread</p></li>
@@ -260,17 +260,17 @@ g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 <figure class="align-center" id="id2">
 <img alt="_images/1280px-Fork_join.svg.png" src="_images/1280px-Fork_join.svg.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text">(A1 / Wikipedia)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">(A1 / Wikipedia)</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="hello-world">
-<h2>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this heading">¶</a></h2>
+<h2>Hello, World<a class="headerlink" href="#hello-world" title="Link to this heading">¶</a></h2>
 <p>Here’s a simple “Hello, World” in OpenMP.  We print out the number of
 threads and then enter a parallel region where each thread prints its
 id separately:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -300,12 +300,12 @@ a different ordering.</p></li>
 </ul>
 </section>
 <section id="critical-regions">
-<h2>Critical regions<a class="headerlink" href="#critical-regions" title="Permalink to this heading">¶</a></h2>
+<h2>Critical regions<a class="headerlink" href="#critical-regions" title="Link to this heading">¶</a></h2>
 <p>We can use a <em>critical region</em> in an OpenMP parallel region to force
 the threads to operate one at a time.  For example, in the above
 <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>, we can get the prints to be done one at a time as:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 99 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 99 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -324,7 +324,7 @@ the threads to operate one at a time.  For example, in the above
 </div>
 </section>
 <section id="controlling-the-number-of-threads">
-<h2>Controlling the number of threads<a class="headerlink" href="#controlling-the-number-of-threads" title="Permalink to this heading">¶</a></h2>
+<h2>Controlling the number of threads<a class="headerlink" href="#controlling-the-number-of-threads" title="Link to this heading">¶</a></h2>
 <p>The easiest way to control the number of threads an OpenMP application
 uses is to set the <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> environment variable.  For
 instance, you can set it globally in your shell as:</p>
@@ -344,10 +344,10 @@ this hardware threading.</p>
 </div>
 </section>
 <section id="parallelizing-loops">
-<h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Permalink to this heading">¶</a></h2>
+<h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Link to this heading">¶</a></h2>
 <p>Here’s a matrix-vector multiply:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 100 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 100 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
@@ -421,7 +421,7 @@ cores – if you double the number of cores, does the code run twice as
 fast?</p>
 </section>
 <section id="reductions">
-<h2>Reductions<a class="headerlink" href="#reductions" title="Permalink to this heading">¶</a></h2>
+<h2>Reductions<a class="headerlink" href="#reductions" title="Link to this heading">¶</a></h2>
 <p>Reductions (e.g., summing, min/max) are trickier, since each thread
 will be updating its local sum or min/max, but then at the end of the
 parallel region, a reduction over the threads needs to be done.</p>
@@ -449,7 +449,7 @@ and include:</p>
 because of different roundoff behavior.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 101 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 101 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>

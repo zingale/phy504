@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -228,7 +228,7 @@
            <div itemprop="articleBody">
              
   <section id="debugging">
-<h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading">¶</a></h1>
+<h1>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">¶</a></h1>
 <blockquote>
 <div><p><em>Every code has at least one bug and one extra line.  Apply recursively.</em></p>
 </div></blockquote>
@@ -238,7 +238,7 @@ the code is not producing the results you expect.</p>
 <p>We’ll look at two ways to debug.  One on the command line using <code class="docutils literal notranslate"><span class="pre">gdb</span></code>
 and the other in VS Code directly.</p>
 <section id="example-integrating-a-function">
-<h2>Example: integrating a function<a class="headerlink" href="#example-integrating-a-function" title="Permalink to this heading">¶</a></h2>
+<h2>Example: integrating a function<a class="headerlink" href="#example-integrating-a-function" title="Link to this heading">¶</a></h2>
 <p>Let’s consider writing a program to compute the integral of a function:</p>
 <div class="math notranslate nohighlight">
 \[I = \int_a^b f(x) dx\]</div>
@@ -272,13 +272,13 @@ and has the integral:</p>
 <p>This is called the <em>compound trapezoid rule</em></p>
 </section>
 <section id="bugs">
-<h2>bugs!<a class="headerlink" href="#bugs" title="Permalink to this heading">¶</a></h2>
+<h2>bugs!<a class="headerlink" href="#bugs" title="Link to this heading">¶</a></h2>
 <p>Here’s a buggy implementation of integrating</p>
 <div class="math notranslate nohighlight">
 \[I = \int_0^{2\pi} \sin^2(x) dx\]</div>
 <p>We know that the answer is <span class="math notranslate nohighlight">\(I = \pi\)</span>.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 65 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">integrate.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 65 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">integrate.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
@@ -342,7 +342,7 @@ and has the integral:</p>
 <p>We want to learn how to use a debugger to help us locate any issues.</p>
 </section>
 <section id="gdb">
-<h2>gdb<a class="headerlink" href="#gdb" title="Permalink to this heading">¶</a></h2>
+<h2>gdb<a class="headerlink" href="#gdb" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://www.sourceware.org/gdb/documentation/">gdb</a> is the GNU debugger.  This runs on the command line and
 let’s us:</p>
 <ul class="simple">
@@ -387,7 +387,7 @@ span.prompt2:before {
 there are any other bugs…</p>
 </section>
 <section id="vs-code">
-<h2>VS Code<a class="headerlink" href="#vs-code" title="Permalink to this heading">¶</a></h2>
+<h2>VS Code<a class="headerlink" href="#vs-code" title="Link to this heading">¶</a></h2>
 <p>We can <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging">debug directly in VS code</a>.  The same concepts
 described above apply.  Let’s work our way through this.</p>
 </section>

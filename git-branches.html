@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -230,14 +230,14 @@
            <div itemprop="articleBody">
              
   <section id="git-branches">
-<h1>Git Branches<a class="headerlink" href="#git-branches" title="Permalink to this heading">¶</a></h1>
+<h1>Git Branches<a class="headerlink" href="#git-branches" title="Link to this heading">¶</a></h1>
 <p>When we develop as a team, we often use <em>branches</em> to organize our
 changes.  Here we walk through an example of branches.</p>
 <p>To get more practice, we’ll start a new project and initialize it.</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="https://imgs.xkcd.com/comics/git.png"><img alt="xkcd comic on git" src="https://imgs.xkcd.com/comics/git.png" style="width: 75%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">from XKCD</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">from XKCD</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <ol class="arabic">
@@ -315,7 +315,7 @@ by <code class="docutils literal notranslate"><span class="pre">git</span> <span
 </li>
 </ol>
 <section id="a-feature-branch">
-<h2>A Feature Branch<a class="headerlink" href="#a-feature-branch" title="Permalink to this heading">¶</a></h2>
+<h2>A Feature Branch<a class="headerlink" href="#a-feature-branch" title="Link to this heading">¶</a></h2>
 <p>Now let’s imagine that our project is mature and we don’t want to break it as
 we test out some new ideas.  This is where <em>branches</em> come into play.</p>
 <p>Let’s create a new branch called <code class="docutils literal notranslate"><span class="pre">feature</span></code> that we can work on without
@@ -405,7 +405,7 @@ are at the same hash, and it also calls that commit <code class="docutils litera
 add it to your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> and commit that change.</p>
 </div>
 <section id="switching-branches">
-<h3>Switching Branches<a class="headerlink" href="#switching-branches" title="Permalink to this heading">¶</a></h3>
+<h3>Switching Branches<a class="headerlink" href="#switching-branches" title="Link to this heading">¶</a></h3>
 <p>Let’s go back to <code class="docutils literal notranslate"><span class="pre">main</span></code>.  The <code class="docutils literal notranslate"><span class="pre">checkout</span></code> command does this for us:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>main</span>
 </pre></div></div><p>Now notice that if you do <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you don’t see <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>!  That
@@ -429,7 +429,7 @@ we can use</p>
 <p>Switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 </section>
 <section id="visualizing-branches">
-<h3>Visualizing Branches<a class="headerlink" href="#visualizing-branches" title="Permalink to this heading">¶</a></h3>
+<h3>Visualizing Branches<a class="headerlink" href="#visualizing-branches" title="Link to this heading">¶</a></h3>
 <p>We can visualize the <em>graph</em> of changes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>log<span class="w"> </span>--graph<span class="w"> </span>--all<span class="w"> </span>--oneline</span>
 </pre></div></div><p>When we do this, we’ll see something like this:</p>
@@ -446,7 +446,7 @@ we can use</p>
 from <code class="docutils literal notranslate"><span class="pre">main</span></code>, and we see what the latest commit is on each branch.</p>
 </section>
 <section id="diff">
-<h3>Diff<a class="headerlink" href="#diff" title="Permalink to this heading">¶</a></h3>
+<h3>Diff<a class="headerlink" href="#diff" title="Link to this heading">¶</a></h3>
 <p>Let’s look at the differences between our branches.  Since we’re on
 <code class="docutils literal notranslate"><span class="pre">main</span></code>, we can ask git what the difference between our current code
 and the code in <code class="docutils literal notranslate"><span class="pre">feature</span></code> is via:</p>
@@ -454,7 +454,7 @@ and the code in <code class="docutils literal notranslate"><span class="pre">fea
 </pre></div></div><p>As you use git more and more, you’ll see that <code class="docutils literal notranslate"><span class="pre">diff</span></code> is very handy.</p>
 </section>
 <section id="merging">
-<h3>Merging<a class="headerlink" href="#merging" title="Permalink to this heading">¶</a></h3>
+<h3>Merging<a class="headerlink" href="#merging" title="Link to this heading">¶</a></h3>
 <p>Now we’re happy with the changes we made on <code class="docutils literal notranslate"><span class="pre">feature</span></code> and we want to
 incorporate them into <code class="docutils literal notranslate"><span class="pre">main</span></code> – this is called <em>merging</em>, we
 accomplish this by doing</p>
@@ -481,7 +481,7 @@ both branches.</p>
 </section>
 </section>
 <section id="going-back-in-time">
-<h2>Going back in time…<a class="headerlink" href="#going-back-in-time" title="Permalink to this heading">¶</a></h2>
+<h2>Going back in time…<a class="headerlink" href="#going-back-in-time" title="Link to this heading">¶</a></h2>
 <p>If we look at our project history so far:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>log</span>

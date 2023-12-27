@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -224,7 +224,7 @@
            <div itemprop="articleBody">
              
   <section id="compiling">
-<h1>Compiling<a class="headerlink" href="#compiling" title="Permalink to this heading">¶</a></h1>
+<h1>Compiling<a class="headerlink" href="#compiling" title="Link to this heading">¶</a></h1>
 <p>When we write C++ code, there are a few concepts we need to understand:</p>
 <ul>
 <li><p><em>source code</em> : this is the C++ instructions we directly write.  We
@@ -245,14 +245,14 @@ Windows, you will often see the extension <code class="docutils literal notransl
 </li>
 </ul>
 <section id="online-compilers">
-<h2>Online Compilers<a class="headerlink" href="#online-compilers" title="Permalink to this heading">¶</a></h2>
+<h2>Online Compilers<a class="headerlink" href="#online-compilers" title="Link to this heading">¶</a></h2>
 <p>We can compile this using an online compiler.  Let’s try <a class="reference external" href="https://godbolt.org/">https://godbolt.org/</a></p>
 <p>This will show us the assembly instructions it generated for our code
 and by checking “Execute the code” in the “Output” dropdown, it will
 run the code for us.</p>
 </section>
 <section id="compiling-on-the-command-line">
-<h2>Compiling on the Command Line<a class="headerlink" href="#compiling-on-the-command-line" title="Permalink to this heading">¶</a></h2>
+<h2>Compiling on the Command Line<a class="headerlink" href="#compiling-on-the-command-line" title="Link to this heading">¶</a></h2>
 <p>Now let’s see how to invoke <code class="docutils literal notranslate"><span class="pre">g++</span></code> on the command line.</p>
 <p>With your editor, create a file <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code> with the above source code in it.</p>
 <p>Then we build our executable (compiling and linking all in a single command) via:</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -228,14 +228,14 @@
            <div itemprop="articleBody">
              
   <section id="stuff-we-didn-t-cover">
-<h1>Stuff We Didn’t Cover<a class="headerlink" href="#stuff-we-didn-t-cover" title="Permalink to this heading">¶</a></h1>
+<h1>Stuff We Didn’t Cover<a class="headerlink" href="#stuff-we-didn-t-cover" title="Link to this heading">¶</a></h1>
 <section id="std-map">
-<h2><code class="docutils literal notranslate"><span class="pre">std::map</span></code><a class="headerlink" href="#std-map" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">std::map</span></code><a class="headerlink" href="#std-map" title="Link to this heading">¶</a></h2>
 <p>With a <code class="docutils literal notranslate"><span class="pre">std::map</span></code> you can create an object that looks like a python
 dictionary.  And C++17 offers an easy way to iterate over keys and
 values:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 109 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">map_test.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 109 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">map_test.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
@@ -257,7 +257,7 @@ values:</p>
 </div>
 </section>
 <section id="if-constexpr">
-<h2><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code><a class="headerlink" href="#if-constexpr" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code><a class="headerlink" href="#if-constexpr" title="Link to this heading">¶</a></h2>
 <p>An <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code> is a compile-time if-test.  It essentially allows
 you to template a general function and have the compiler write
 specific versions based on the template paramters.  One way this is
@@ -266,7 +266,7 @@ them, while still being able to write just a single implementation
 that handles the general case.</p>
 <p>Here’s a trivial example:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 110 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">constexpr_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 110 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">constexpr_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
@@ -295,27 +295,27 @@ that handles the general case.</p>
 </div>
 </section>
 <section id="static-member-data">
-<h2><code class="docutils literal notranslate"><span class="pre">static</span></code> member data<a class="headerlink" href="#static-member-data" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">static</span></code> member data<a class="headerlink" href="#static-member-data" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">static</span></code> members of a class are not associated with objects that are instances of the class
 but instead there is one value for all instances of the class.  In this sense, they act as
 global data in the class’s namespace.</p>
 </section>
 <section id="memory-management">
-<h2>Memory management<a class="headerlink" href="#memory-management" title="Permalink to this heading">¶</a></h2>
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
 <p>We’ve been relying mainly on objects that manage their own memory
 internally (like <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>).  We saw one instance of allocating memory
 on our own using <code class="docutils literal notranslate"><span class="pre">new</span></code> or by <code class="docutils literal notranslate"><span class="pre">make_unique</span></code>.  The latter is the safest way
 to deal with allocating memory.</p>
 </section>
 <section id="regular-expressions">
-<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this heading">¶</a></h2>
+<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Link to this heading">¶</a></h2>
 <p>Regular expressions are a powerful way to search for patterns and
 extract substrings out of strings.  The C++ <a class="reference external" href="https://en.cppreference.com/w/cpp/regex">regular expressions
 library</a> provides all the
 capability needed to work with regular expressions.</p>
 </section>
 <section id="profiling">
-<h2>Profiling<a class="headerlink" href="#profiling" title="Permalink to this heading">¶</a></h2>
+<h2>Profiling<a class="headerlink" href="#profiling" title="Link to this heading">¶</a></h2>
 <p>A profiler will allow you to time independent functions or even lines
 of code and generate a report telling you where your code spends most
 of its time.</p>

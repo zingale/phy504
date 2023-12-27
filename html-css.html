@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -229,7 +229,7 @@
            <div itemprop="articleBody">
              
   <section id="html-css">
-<h1>HTML + CSS<a class="headerlink" href="#html-css" title="Permalink to this heading">¶</a></h1>
+<h1>HTML + CSS<a class="headerlink" href="#html-css" title="Link to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <ul class="simple">
@@ -252,10 +252,10 @@ but hopefully we’ll learn enough so that we can use templates that
 others have written to write our own pages.</p>
 </div>
 <section id="basic-html-structure">
-<h2>Basic HTML structure<a class="headerlink" href="#basic-html-structure" title="Permalink to this heading">¶</a></h2>
+<h2>Basic HTML structure<a class="headerlink" href="#basic-html-structure" title="Link to this heading">¶</a></h2>
 <p>A basic HTML page has the following format:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 
@@ -301,14 +301,14 @@ span.prompt1:before {
 </div>
 </section>
 <section id="separating-content">
-<h2>Separating content<a class="headerlink" href="#separating-content" title="Permalink to this heading">¶</a></h2>
+<h2>Separating content<a class="headerlink" href="#separating-content" title="Link to this heading">¶</a></h2>
 <p>HTML using <a class="reference external" href="https://www.w3schools.com/html/html_headings.asp">headings</a>
 to break the content of a page into sections.  The headings are
 indicated by <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/h1&gt;</span></code> down through <code class="docutils literal notranslate"><span class="pre">&lt;h6&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/h6&gt;</span></code>.</p>
 <p>We can also denote paragraphs by wrapping them in <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/p&gt;</span></code>.</p>
 <p>Here’s an example:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 
@@ -331,7 +331,7 @@ indicated by <code class="docutils literal notranslate"><span class="pre">&lt;h1
 </div>
 </section>
 <section id="adding-css">
-<h2>Adding CSS<a class="headerlink" href="#adding-css" title="Permalink to this heading">¶</a></h2>
+<h2>Adding CSS<a class="headerlink" href="#adding-css" title="Link to this heading">¶</a></h2>
 <p>CSS means <a class="reference external" href="https://en.wikipedia.org/wiki/CSS">cascading style sheets</a>.
 CSS files provide a set of styling rules for different HTML elements.
 “Cascading” here means that the rules on a element have a hierarchy
@@ -340,7 +340,7 @@ that is followed if more than one rule tries to modify an element.</p>
 extension.</p>
 <p>For example, we can style the body of our page with a <em>stylesheet</em>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">orange</span><span class="p">;}</span>
 </pre></div>
 </div>
@@ -352,7 +352,7 @@ extension.</p>
 <p>to the <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span> <span class="pre">..</span> <span class="pre">&lt;/head&gt;</span></code> block in our HTML file to load this sheet.</p>
 </section>
 <section id="divs">
-<h2>divs<a class="headerlink" href="#divs" title="Permalink to this heading">¶</a></h2>
+<h2>divs<a class="headerlink" href="#divs" title="Link to this heading">¶</a></h2>
 <p>A useful HTML element for grouping styles is the <a class="reference external" href="https://www.w3schools.com/tags/tag_div.asp">div tag</a>, <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code>.  We can put
 any content in a <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span> <span class="pre">...</span> <span class="pre">&lt;/div&gt;</span></code> region and specify the styling
 for that region using.</p>
@@ -378,7 +378,7 @@ and we style as:</p>
 <p class="admonition-title">try it…</p>
 <p>Let’s wrap our “Hello World” in a div and try to style it:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 82 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 82 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">index.html</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 
@@ -414,15 +414,15 @@ element) to give the content a <code class="docutils literal notranslate"><span 
 <li><p>change the background color of the div region</p></li>
 <li><p>add a border</p></li>
 </ul>
-<details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
-solution<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 83 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 83 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">style.css</span></code></span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">container</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#aaaaaa</span><span class="p">;</span>
 <span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
@@ -438,21 +438,21 @@ solution<div class="summary-down docutils">
 </details></div>
 </section>
 <section id="inspector">
-<h2>Inspector<a class="headerlink" href="#inspector" title="Permalink to this heading">¶</a></h2>
+<h2>Inspector<a class="headerlink" href="#inspector" title="Link to this heading">¶</a></h2>
 <p>Most web browsers have an <em>inspector</em> that let’s you look at the styling
 on a page.  In Chrome, you open the inspector by doing “F12”.</p>
 <p>We can see what styling is taking effect on the different elements and
 also adjust the styling right in the browser to see how it takes effect.</p>
 </section>
 <section id="images">
-<h2>Images<a class="headerlink" href="#images" title="Permalink to this heading">¶</a></h2>
+<h2>Images<a class="headerlink" href="#images" title="Link to this heading">¶</a></h2>
 <p>Images in HTML are included via the <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> tag.  Here’s an example
 image:</p>
 <blockquote>
 <div><figure class="align-center" id="id6">
 <a class="reference internal image-reference" href="_images/luna_bw.png"><img alt="_images/luna_bw.png" src="_images/luna_bw.png" style="width: 40%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">luna_bw.png</span></code></span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">luna_bw.png</span></code></span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </div></blockquote>
@@ -473,7 +473,7 @@ image for screen readers.</p>
 </div>
 </section>
 <section id="responsive-pages">
-<h2>Responsive pages<a class="headerlink" href="#responsive-pages" title="Permalink to this heading">¶</a></h2>
+<h2>Responsive pages<a class="headerlink" href="#responsive-pages" title="Link to this heading">¶</a></h2>
 <p>A <em>responsive</em> page changes the styling based on the device / screen
 size.  Usually this is triggered by the <code class="docutils literal notranslate"><span class="pre">&#64;media</span></code> rule:
 <a class="reference external" href="https://www.w3schools.com/cssref/css3_pr_mediaquery.asp">https://www.w3schools.com/cssref/css3_pr_mediaquery.asp</a></p>

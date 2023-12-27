@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -234,7 +234,7 @@
            <div itemprop="articleBody">
              
   <section id="doxygen">
-<h1>Doxygen<a class="headerlink" href="#doxygen" title="Permalink to this heading">¶</a></h1>
+<h1>Doxygen<a class="headerlink" href="#doxygen" title="Link to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.doxygen.nl/index.html">Doxygen</a> is a standard tool for
 documenting C++ code.  It works off of comments added to the code to
 build documentation (including web pages) describing the structure of
@@ -243,7 +243,7 @@ a code and its classes and functions.</p>
 But to help automate things, we need to make a change to how the
 webpage is stored.</p>
 <section id="using-gh-pages">
-<h2>Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code><a class="headerlink" href="#using-gh-pages" title="Permalink to this heading">¶</a></h2>
+<h2>Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code><a class="headerlink" href="#using-gh-pages" title="Link to this heading">¶</a></h2>
 <p>Our goal is to have GitHub automatically generate our website.  When
 we do this, it is best to have the actual web page on a separate branch
 so we don’t have to keep merging with the regenerating web page
@@ -251,7 +251,7 @@ every time we make changes.  This is the purpose of the <code class="docutils li
 branch.  It is an <em>orphaned branch</em>, so it doesn’t have any connection
 to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 <section id="creating-the-gh-pages-branch">
-<h3>Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch<a class="headerlink" href="#creating-the-gh-pages-branch" title="Permalink to this heading">¶</a></h3>
+<h3>Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch<a class="headerlink" href="#creating-the-gh-pages-branch" title="Link to this heading">¶</a></h3>
 <p>We’ll follow <a class="reference external" href="https://jiafulow.github.io/blog/2020/07/09/create-gh-pages-branch-in-existing-repo/">these instructions</a>
 for creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p>
 <p>Here’s the procedure.  In <code class="docutils literal notranslate"><span class="pre">cxx-array/</span></code>, make sure you don’t have any
@@ -291,7 +291,7 @@ span.prompt1:before {
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>gh-pages</span>
 </pre></div></div></section>
 <section id="updating-the-web-location-on-github">
-<h3>Updating the web location on GitHub<a class="headerlink" href="#updating-the-web-location-on-github" title="Permalink to this heading">¶</a></h3>
+<h3>Updating the web location on GitHub<a class="headerlink" href="#updating-the-web-location-on-github" title="Link to this heading">¶</a></h3>
 <p>Now we need to go back to the GitHub page for our repo and go to
 settings and “Pages” and change the “Source” to be “Branch: gh-pages”
 and “/ (root)” and save.</p>
@@ -307,7 +307,7 @@ to be on the <code class="docutils literal notranslate"><span class="pre">gh-pag
 </pre></div></div></section>
 </section>
 <section id="doxygen-configuration">
-<h2>Doxygen configuration<a class="headerlink" href="#doxygen-configuration" title="Permalink to this heading">¶</a></h2>
+<h2>Doxygen configuration<a class="headerlink" href="#doxygen-configuration" title="Link to this heading">¶</a></h2>
 <p>Setting up: <a class="reference external" href="https://www.doxygen.nl/manual/starting.html">https://www.doxygen.nl/manual/starting.html</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen<span class="w"> </span>-g</span>
 </pre></div></div><p>This creates a file called <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code>.  We need to make a few edits to it:</p>
@@ -334,7 +334,7 @@ for it by default.</p>
 </div>
 </section>
 <section id="annotating-our-code">
-<h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Permalink to this heading">¶</a></h2>
+<h2>Annotating our code<a class="headerlink" href="#annotating-our-code" title="Link to this heading">¶</a></h2>
 <p>Doxygen uses <code class="docutils literal notranslate"><span class="pre">///</span></code> as the <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html#specialblock">documentation comment style</a> for C++.
 So we would do:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">///</span>
@@ -347,7 +347,7 @@ So we would do:</p>
 <p>Now we can annotate our C++ <code class="docutils literal notranslate"><span class="pre">Array</span></code> class code.  Here’s a version of <code class="docutils literal notranslate"><span class="pre">array.H</span></code> that we developed in class with
 some documentation comments.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 84 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 84 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
 <span class="cp">#define ARRAY_H</span>
 
@@ -478,7 +478,7 @@ some documentation comments.</p>
 <p>Add <code class="docutils literal notranslate"><span class="pre">array.H</span></code> to your git repo and commit.</p>
 </div>
 <section id="trying-it-out-locally">
-<h3>Trying it out locally<a class="headerlink" href="#trying-it-out-locally" title="Permalink to this heading">¶</a></h3>
+<h3>Trying it out locally<a class="headerlink" href="#trying-it-out-locally" title="Link to this heading">¶</a></h3>
 <p>We can test out Doxygen locally by doing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">doxygen<span class="w"> </span>Doxyfile</span>
 </pre></div></div><p>The HTML will then be in the <code class="docutils literal notranslate"><span class="pre">docs/html/</span></code> directory, and we can view the page as:</p>
@@ -492,7 +492,7 @@ a lot nicer.</p>
 </section>
 </section>
 <section id="setting-up-a-github-action">
-<h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Permalink to this heading">¶</a></h2>
+<h2>Setting up a GitHub action<a class="headerlink" href="#setting-up-a-github-action" title="Link to this heading">¶</a></h2>
 <p>Now create a file: <code class="docutils literal notranslate"><span class="pre">.github/workflows/gh-pages.yml</span></code> with the following content:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github pages</span>
 
@@ -547,7 +547,7 @@ with the following content:</p>
 </div>
 </section>
 <section id="one-last-thing">
-<h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Permalink to this heading">¶</a></h2>
+<h2>One last thing…<a class="headerlink" href="#one-last-thing" title="Link to this heading">¶</a></h2>
 <p>We need to go back to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> and now link to the Doxygen docs from our <code class="docutils literal notranslate"><span class="pre">index.html</span></code>.</p>
 <p>We can do that with the following addition to <code class="docutils literal notranslate"><span class="pre">index.html</span></code>:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;html/index.html&quot;</span><span class="p">&gt;</span>Doxygen documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>

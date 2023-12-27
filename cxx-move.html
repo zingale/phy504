@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -223,7 +223,7 @@
            <div itemprop="articleBody">
              
   <section id="move-semantics">
-<h1>Move Semantics<a class="headerlink" href="#move-semantics" title="Permalink to this heading">¶</a></h1>
+<h1>Move Semantics<a class="headerlink" href="#move-semantics" title="Link to this heading">¶</a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 4.5</p>
@@ -251,7 +251,7 @@ constructor, (5) move assignment operator.  If we write any one of
 these, we should write all 5.</p>
 </div>
 <section id="right-value-references">
-<h2>Right-value references<a class="headerlink" href="#right-value-references" title="Permalink to this heading">¶</a></h2>
+<h2>Right-value references<a class="headerlink" href="#right-value-references" title="Link to this heading">¶</a></h2>
 <p>To allow for move operations, C++11 introduced <em>right-value
 references</em> or <em>rvalue references</em>.  These use <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and as the name
 suggests, they can appear to the right of the assignment operator,
@@ -267,7 +267,7 @@ This is sometimes called a <em>destructive read</em></p>
 <p>We can convert an object into an rvalue reference (indicating that it can be moved) via <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/move">std::move</a>.</p>
 <p>Here’s an example where we use the <em>move constructor</em> of a string to steal the data of the input string:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">move_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 73 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">move_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 

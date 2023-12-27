@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -8,8 +8,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css?v=995e94df" />
-      <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.min.css?v=21c0b90a" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
@@ -17,11 +16,12 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="_static/documentation_options.js?v=0f2e487a"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
         <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -231,11 +231,11 @@
            <div itemprop="articleBody">
              
   <section id="monte-carlo-methods">
-<h1>Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Permalink to this heading">¶</a></h1>
+<h1>Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Link to this heading">¶</a></h1>
 <p>Monte Carlo methods involve using random numbers to produce different
 realizations of a system and then building up statistics.</p>
 <section id="pseudo-random-numbers">
-<h2>Pseudo-random numbers<a class="headerlink" href="#pseudo-random-numbers" title="Permalink to this heading">¶</a></h2>
+<h2>Pseudo-random numbers<a class="headerlink" href="#pseudo-random-numbers" title="Link to this heading">¶</a></h2>
 <p>Generally, producing truly random numbers is hard and we most often
 use <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudo-random numbers</a>.
 These should have the following properties:</p>
@@ -258,10 +258,10 @@ random numbers.  It is more complicated to code up.</p></li>
 <p>The C++ standard library has these methods and more for us to use in the
 <a class="reference external" href="https://www.cplusplus.com/reference/random/">random</a> library.</p>
 <section id="uniform-distribution">
-<h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">¶</a></h3>
+<h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Link to this heading">¶</a></h3>
 <p>Here’s a simple example of a uniform random number distribution:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 91 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 91 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 
@@ -298,7 +298,7 @@ as the starting point for our pseudo-random number generator.</p></li>
 <p>Notice that each time we run it we get a different sequence of random numbers.</p>
 </section>
 <section id="other-distributions">
-<h3>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this heading">¶</a></h3>
+<h3>Other distributions<a class="headerlink" href="#other-distributions" title="Link to this heading">¶</a></h3>
 <p>We can create other distributions.  Imagine that <span class="math notranslate nohighlight">\(q(z)\)</span> is the probably of getting
 a number between <span class="math notranslate nohighlight">\(z\)</span> and <span class="math notranslate nohighlight">\(z +dz\)</span>.  For the uniform distribution, <span class="math notranslate nohighlight">\(q(z) = 1\)</span>.
 We want to find an <span class="math notranslate nohighlight">\(x(z)\)</span> that maps the uniformly-distributed numbers into another distribution.
@@ -314,7 +314,7 @@ that also introduces <code class="docutils literal notranslate"><span class="pre
 </div>
 </section>
 <section id="seeding">
-<h3>Seeding<a class="headerlink" href="#seeding" title="Permalink to this heading">¶</a></h3>
+<h3>Seeding<a class="headerlink" href="#seeding" title="Link to this heading">¶</a></h3>
 <p>Sometimes we want reproducible random numbers – i.e. we want the sequence of numbers we
 get to be random but we want to get the same sequence each time we run.  To accomplish
 this, we can explicitly feed a seed into our random generator:</p>
@@ -338,7 +338,7 @@ reproducibility, and is good for testing.</p>
 </section>
 </section>
 <section id="example-computing-pi">
-<span id="sec-computing-pi"></span><h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Permalink to this heading">¶</a></h2>
+<span id="sec-computing-pi"></span><h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Link to this heading">¶</a></h2>
 <p>A fun way to compute <span class="math notranslate nohighlight">\(\pi\)</span> is to pick pairs of random numbers in
 the range <span class="math notranslate nohighlight">\([0, 1)\)</span> – these will all fall inside a unit square,
 but we also check to see if they fall inside a circle of diameter
@@ -356,7 +356,7 @@ approximate <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
 \[\pi \approx 4 \frac{N_\mathrm{circ}}{N}\]</div>
 <p>Here’s an implementation of our computing <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 92 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 92 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
