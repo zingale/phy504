@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -227,7 +229,7 @@
            <div itemprop="articleBody">
              
   <section id="mpi">
-<h1>MPI<a class="headerlink" href="#mpi" title="Link to this heading">¶</a></h1>
+<h1>MPI<a class="headerlink" href="#mpi" title="Link to this heading"></a></h1>
 <p>In contrast to OpenMP, MPI does not use directives / pragmas to
 specify the parallelism, but instead we call functions.  The <a class="reference external" href="https://www.mpi-forum.org/">MPI
 standard</a> is big, but we only actually
@@ -242,7 +244,7 @@ pointers and not references, so we need to pass the address of the
 data we are using.</p>
 </div>
 <section id="hello-world">
-<h2>Hello, World<a class="headerlink" href="#hello-world" title="Link to this heading">¶</a></h2>
+<h2>Hello, World<a class="headerlink" href="#hello-world" title="Link to this heading"></a></h2>
 <p>Here’s a “Hello, World!” with MPI.  Every MPI application begins with
 <code class="docutils literal notranslate"><span class="pre">MPI_Initialize()</span></code> and end with <code class="docutils literal notranslate"><span class="pre">MPI_Finalize()</span></code>.  Note that
 <code class="docutils literal notranslate"><span class="pre">MPI_Initialize()</span></code> can take 2 arguments that are the command line
@@ -255,7 +257,7 @@ parameters passed into the code.  Since we are not using this, we pass
 program represents out of the total number used by MPI.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 105 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 105 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
 
@@ -298,7 +300,7 @@ span.prompt1:before {
 use this the same way we’ve been using <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
 </section>
 <section id="integrating-pi">
-<h2>Integrating <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#integrating-pi" title="Link to this heading">¶</a></h2>
+<h2>Integrating <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#integrating-pi" title="Link to this heading"></a></h2>
 <p>Here we want to construct the integral:</p>
 <div class="math notranslate nohighlight">
 \[\pi = 4 \int_0^1 \frac{1}{1 + x^2} dx\]</div>
@@ -315,7 +317,7 @@ sums from each processor into the total.  In our case, we only add them
 up on processor <code class="docutils literal notranslate"><span class="pre">0</span></code>, since that’s out I/O processor.</p></li>
 </ul>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 106 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 106 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 
@@ -377,7 +379,7 @@ up on processor <code class="docutils literal notranslate"><span class="pre">0</
 </div>
 </section>
 <section id="mpi-concepts">
-<h2>MPI Concepts<a class="headerlink" href="#mpi-concepts" title="Link to this heading">¶</a></h2>
+<h2>MPI Concepts<a class="headerlink" href="#mpi-concepts" title="Link to this heading"></a></h2>
 <p>With MPI, a separate instance of your program is run on each processor
 – these are the MPI processes.  We don’t need to worry about
 thread-safety is not an issue here, since each instance of the program

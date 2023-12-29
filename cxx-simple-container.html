@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -226,7 +228,7 @@
            <div itemprop="articleBody">
              
   <section id="example-a-simple-container">
-<h1>Example: A Simple Container<a class="headerlink" href="#example-a-simple-container" title="Link to this heading">¶</a></h1>
+<h1>Example: A Simple Container<a class="headerlink" href="#example-a-simple-container" title="Link to this heading"></a></h1>
 <p>We want to combine what we learned about allocating memory and move semantics
 into a class that exercises both.</p>
 <div class="admonition note">
@@ -235,7 +237,7 @@ into a class that exercises both.</p>
 but here we do something simpler.</p>
 </div>
 <section id="a-simple-container-attempt-i">
-<h2>A simple container: attempt I<a class="headerlink" href="#a-simple-container-attempt-i" title="Link to this heading">¶</a></h2>
+<h2>A simple container: attempt I<a class="headerlink" href="#a-simple-container-attempt-i" title="Link to this heading"></a></h2>
 <p>Here’s a simple container that manages its own memory (dynamic allocation on the heap),
 via a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> – this is a pointer that the compiler will automatically clean up
 after once it goes out of scope.</p>
@@ -246,7 +248,7 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 </div>
 <p>First the class:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 75 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container_basic.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 75 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container_basic.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -316,7 +318,7 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 </div>
 <p>Now a simple driver that creates a <code class="docutils literal notranslate"><span class="pre">Container</span></code> and then creates a new one via copying:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 76 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span>
@@ -366,7 +368,7 @@ In file included from /usr/include/c++/11/memory:76,
 copy constructor would not be correct, so it doesn’t create one.  Therefore we need to explicitly write one.</p>
 </section>
 <section id="a-simple-container-attempt-ii">
-<h2>A simple container: attempt II<a class="headerlink" href="#a-simple-container-attempt-ii" title="Link to this heading">¶</a></h2>
+<h2>A simple container: attempt II<a class="headerlink" href="#a-simple-container-attempt-ii" title="Link to this heading"></a></h2>
 <p>What if we try to implement the copy constructor as:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">_data</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="p">{}</span>
@@ -394,7 +396,7 @@ destructor was called at the very end, it tried to free the data
 pointer twice.</p>
 </section>
 <section id="a-simple-container-attempt-iii">
-<h2>A simple container: attempt III<a class="headerlink" href="#a-simple-container-attempt-iii" title="Link to this heading">¶</a></h2>
+<h2>A simple container: attempt III<a class="headerlink" href="#a-simple-container-attempt-iii" title="Link to this heading"></a></h2>
 <p>We want the copy constructor to do a <em>deep copy</em> – it should create
 its own memory space and copy the data, element-by-element from the
 input <code class="docutils literal notranslate"><span class="pre">Container</span></code> to the new one.</p>
@@ -403,7 +405,7 @@ copy from one buffer to another.  We’ll use that.</p>
 <p>Here’s a final implementation of the class.  This also implements the
 move operations, which we’ll talk about in a minute.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -557,7 +559,7 @@ that we don’t try to do a copy when if we try something like:</p>
 </div>
 </section>
 <section id="moving">
-<h2>Moving<a class="headerlink" href="#moving" title="Link to this heading">¶</a></h2>
+<h2>Moving<a class="headerlink" href="#moving" title="Link to this heading"></a></h2>
 <p>The latest iteration of the class also implements the move constructor:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Container</span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">_data</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span>
@@ -579,7 +581,7 @@ ours and also does a swap on the pointers.</p>
 <p>The move assignment works in a similar fashion.</p>
 <p>Here’s a driver that exercises all of these functions:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 

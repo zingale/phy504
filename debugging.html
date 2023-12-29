@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -228,7 +230,7 @@
            <div itemprop="articleBody">
              
   <section id="debugging">
-<h1>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">¶</a></h1>
+<h1>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h1>
 <blockquote>
 <div><p><em>Every code has at least one bug and one extra line.  Apply recursively.</em></p>
 </div></blockquote>
@@ -238,7 +240,7 @@ the code is not producing the results you expect.</p>
 <p>We’ll look at two ways to debug.  One on the command line using <code class="docutils literal notranslate"><span class="pre">gdb</span></code>
 and the other in VS Code directly.</p>
 <section id="example-integrating-a-function">
-<h2>Example: integrating a function<a class="headerlink" href="#example-integrating-a-function" title="Link to this heading">¶</a></h2>
+<h2>Example: integrating a function<a class="headerlink" href="#example-integrating-a-function" title="Link to this heading"></a></h2>
 <p>Let’s consider writing a program to compute the integral of a function:</p>
 <div class="math notranslate nohighlight">
 \[I = \int_a^b f(x) dx\]</div>
@@ -272,13 +274,13 @@ and has the integral:</p>
 <p>This is called the <em>compound trapezoid rule</em></p>
 </section>
 <section id="bugs">
-<h2>bugs!<a class="headerlink" href="#bugs" title="Link to this heading">¶</a></h2>
+<h2>bugs!<a class="headerlink" href="#bugs" title="Link to this heading"></a></h2>
 <p>Here’s a buggy implementation of integrating</p>
 <div class="math notranslate nohighlight">
 \[I = \int_0^{2\pi} \sin^2(x) dx\]</div>
 <p>We know that the answer is <span class="math notranslate nohighlight">\(I = \pi\)</span>.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 65 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">integrate.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 65 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">integrate.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
@@ -342,7 +344,7 @@ and has the integral:</p>
 <p>We want to learn how to use a debugger to help us locate any issues.</p>
 </section>
 <section id="gdb">
-<h2>gdb<a class="headerlink" href="#gdb" title="Link to this heading">¶</a></h2>
+<h2>gdb<a class="headerlink" href="#gdb" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://www.sourceware.org/gdb/documentation/">gdb</a> is the GNU debugger.  This runs on the command line and
 let’s us:</p>
 <ul class="simple">
@@ -387,7 +389,7 @@ span.prompt2:before {
 there are any other bugs…</p>
 </section>
 <section id="vs-code">
-<h2>VS Code<a class="headerlink" href="#vs-code" title="Link to this heading">¶</a></h2>
+<h2>VS Code<a class="headerlink" href="#vs-code" title="Link to this heading"></a></h2>
 <p>We can <a class="reference external" href="https://code.visualstudio.com/docs/editor/debugging">debug directly in VS code</a>.  The same concepts
 described above apply.  Let’s work our way through this.</p>
 </section>

@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -224,7 +226,7 @@
            <div itemprop="articleBody">
              
   <section id="function-objects">
-<h1>Function Objects<a class="headerlink" href="#function-objects" title="Link to this heading">¶</a></h1>
+<h1>Function Objects<a class="headerlink" href="#function-objects" title="Link to this heading"></a></h1>
 <p>Often we want to write numerical algorithms to be general, so we’d like to be able to
 pass a function as an argument for the algorithm to operate on.  <code class="docutils literal notranslate"><span class="pre">std::function</span></code> provides
 the mechanism for us to pass a function to a function.  It has the form:</p>
@@ -236,12 +238,12 @@ and the type of any arguments that the function takes (as
 <code class="docutils literal notranslate"><span class="pre">arg1_type</span></code> and <code class="docutils literal notranslate"><span class="pre">arg2_type</span></code> above, for a function with 2
 arguments).</p>
 <section id="first-example">
-<h2>First example<a class="headerlink" href="#first-example" title="Link to this heading">¶</a></h2>
+<h2>First example<a class="headerlink" href="#first-example" title="Link to this heading"></a></h2>
 <p>Here we write a function <code class="docutils literal notranslate"><span class="pre">doit()</span></code> that takes a value and a function
 that operates on that value and it just prints out some information
 before and after calling the passed-in function.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 88 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_function.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 88 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_function.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
 
@@ -266,7 +268,7 @@ before and after calling the passed-in function.</p>
 </div>
 </section>
 <section id="templated-example">
-<h2>Templated example<a class="headerlink" href="#templated-example" title="Link to this heading">¶</a></h2>
+<h2>Templated example<a class="headerlink" href="#templated-example" title="Link to this heading"></a></h2>
 <p>Here’s a more complicated example that performs an operator on an
 input vector, where the operation is determined by a function passed
 into our <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> function.</p>
@@ -281,7 +283,7 @@ implementation.)</p>
 </div>
 <p>to the elements of the vector.  We assume that the order of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> doesn’t matter.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 89 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">functional_reduce.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 89 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">functional_reduce.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>

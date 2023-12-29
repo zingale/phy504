@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -222,7 +224,7 @@
            <div itemprop="articleBody">
              
   <section id="openmp-monte-carlo-pi">
-<h1>OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#openmp-monte-carlo-pi" title="Link to this heading">¶</a></h1>
+<h1>OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#openmp-monte-carlo-pi" title="Link to this heading"></a></h1>
 <p>Let’s parallelize our <a class="reference internal" href="monte-carlo.html#sec-computing-pi"><span class="std std-ref">Monte Carlo example of computing pi</span></a>.</p>
 <p>We now want each thread to have independent random numbers.  We do
 this by creating a random number generator separately on each thread.
@@ -232,7 +234,7 @@ on each thread.</p>
 The only thing we need to do is mark the sum for a reduction at the
 end of the parallel region.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 104 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 104 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 

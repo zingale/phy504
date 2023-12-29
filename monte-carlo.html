@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -231,11 +233,11 @@
            <div itemprop="articleBody">
              
   <section id="monte-carlo-methods">
-<h1>Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Link to this heading">¶</a></h1>
+<h1>Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Link to this heading"></a></h1>
 <p>Monte Carlo methods involve using random numbers to produce different
 realizations of a system and then building up statistics.</p>
 <section id="pseudo-random-numbers">
-<h2>Pseudo-random numbers<a class="headerlink" href="#pseudo-random-numbers" title="Link to this heading">¶</a></h2>
+<h2>Pseudo-random numbers<a class="headerlink" href="#pseudo-random-numbers" title="Link to this heading"></a></h2>
 <p>Generally, producing truly random numbers is hard and we most often
 use <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudo-random numbers</a>.
 These should have the following properties:</p>
@@ -258,10 +260,10 @@ random numbers.  It is more complicated to code up.</p></li>
 <p>The C++ standard library has these methods and more for us to use in the
 <a class="reference external" href="https://www.cplusplus.com/reference/random/">random</a> library.</p>
 <section id="uniform-distribution">
-<h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Link to this heading">¶</a></h3>
+<h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Link to this heading"></a></h3>
 <p>Here’s a simple example of a uniform random number distribution:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 91 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 91 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 
@@ -298,7 +300,7 @@ as the starting point for our pseudo-random number generator.</p></li>
 <p>Notice that each time we run it we get a different sequence of random numbers.</p>
 </section>
 <section id="other-distributions">
-<h3>Other distributions<a class="headerlink" href="#other-distributions" title="Link to this heading">¶</a></h3>
+<h3>Other distributions<a class="headerlink" href="#other-distributions" title="Link to this heading"></a></h3>
 <p>We can create other distributions.  Imagine that <span class="math notranslate nohighlight">\(q(z)\)</span> is the probably of getting
 a number between <span class="math notranslate nohighlight">\(z\)</span> and <span class="math notranslate nohighlight">\(z +dz\)</span>.  For the uniform distribution, <span class="math notranslate nohighlight">\(q(z) = 1\)</span>.
 We want to find an <span class="math notranslate nohighlight">\(x(z)\)</span> that maps the uniformly-distributed numbers into another distribution.
@@ -314,7 +316,7 @@ that also introduces <code class="docutils literal notranslate"><span class="pre
 </div>
 </section>
 <section id="seeding">
-<h3>Seeding<a class="headerlink" href="#seeding" title="Link to this heading">¶</a></h3>
+<h3>Seeding<a class="headerlink" href="#seeding" title="Link to this heading"></a></h3>
 <p>Sometimes we want reproducible random numbers – i.e. we want the sequence of numbers we
 get to be random but we want to get the same sequence each time we run.  To accomplish
 this, we can explicitly feed a seed into our random generator:</p>
@@ -338,7 +340,7 @@ reproducibility, and is good for testing.</p>
 </section>
 </section>
 <section id="example-computing-pi">
-<span id="sec-computing-pi"></span><h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Link to this heading">¶</a></h2>
+<span id="sec-computing-pi"></span><h2>Example: computing <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#example-computing-pi" title="Link to this heading"></a></h2>
 <p>A fun way to compute <span class="math notranslate nohighlight">\(\pi\)</span> is to pick pairs of random numbers in
 the range <span class="math notranslate nohighlight">\([0, 1)\)</span> – these will all fall inside a unit square,
 but we also check to see if they fall inside a circle of diameter
@@ -356,7 +358,7 @@ approximate <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
 \[\pi \approx 4 \frac{N_\mathrm{circ}}{N}\]</div>
 <p>Here’s an implementation of our computing <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 92 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 92 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>

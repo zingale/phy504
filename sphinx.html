@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -229,7 +231,7 @@
            <div itemprop="articleBody">
              
   <section id="sphinx">
-<h1>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading">¶</a></h1>
+<h1>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> is a documentation
 tool that is commonly used for writing code documentation (especially
 for python projects).  It uses <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">restructured text</a>
@@ -243,7 +245,7 @@ LaTeX/PDF, …  It can also highlight code syntax.</p>
 allow for nice looking sphinx documentation to provide the C++ documentation
 Doxygen generates.</p>
 <section id="setting-it-up">
-<h2>Setting It Up<a class="headerlink" href="#setting-it-up" title="Link to this heading">¶</a></h2>
+<h2>Setting It Up<a class="headerlink" href="#setting-it-up" title="Link to this heading"></a></h2>
 <p>We can install Sphinx locally via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -290,14 +292,14 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">google-chrome<span class="w"> </span>build/html/index.html</span>
 </pre></div></div></section>
 <section id="customizing-our-page">
-<h2>Customizing our page<a class="headerlink" href="#customizing-our-page" title="Link to this heading">¶</a></h2>
+<h2>Customizing our page<a class="headerlink" href="#customizing-our-page" title="Link to this heading"></a></h2>
 <p>There are two important files in <code class="docutils literal notranslate"><span class="pre">source/</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conf.py</span></code> : this controls the configuration of Sphinx</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> : this is the ReST file that will become <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p></li>
 </ul>
 <section id="configuration">
-<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h3>
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
 <p>Let’s start by changing the configuration a bit:</p>
 <ul>
 <li><p>in the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> section, change it to read:</p>
@@ -313,7 +315,7 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 </ul>
 </section>
 <section id="index">
-<h3>Index<a class="headerlink" href="#index" title="Link to this heading">¶</a></h3>
+<h3>Index<a class="headerlink" href="#index" title="Link to this heading"></a></h3>
 <p>Let’s have the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> page link to a page showing how the library works.</p>
 <p>Create a file <code class="docutils literal notranslate"><span class="pre">using.rst</span></code> with the following content:</p>
 <div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="gh">***********</span>
@@ -416,7 +418,7 @@ be regenerated to reflect the Sphinx layout.</p>
 </section>
 </section>
 <section id="using-doxygen-with-sphinx">
-<h2>Using Doxygen with Sphinx<a class="headerlink" href="#using-doxygen-with-sphinx" title="Link to this heading">¶</a></h2>
+<h2>Using Doxygen with Sphinx<a class="headerlink" href="#using-doxygen-with-sphinx" title="Link to this heading"></a></h2>
 <p>Now we’ll try to combine Doxygen and Sphinx.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>

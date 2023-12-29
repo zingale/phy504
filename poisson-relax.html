@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -230,7 +232,7 @@
            <div itemprop="articleBody">
              
   <section id="poisson-equation-and-relaxation">
-<h1>Poisson Equation and Relaxation<a class="headerlink" href="#poisson-equation-and-relaxation" title="Link to this heading">¶</a></h1>
+<h1>Poisson Equation and Relaxation<a class="headerlink" href="#poisson-equation-and-relaxation" title="Link to this heading"></a></h1>
 <p>We want to solve the Poisson equation:</p>
 <div class="math notranslate nohighlight">
 \[\nabla^2 \phi = f\]</div>
@@ -239,12 +241,12 @@
 \[\frac{d^2 \phi}{dx^2} = f\]</div>
 <p>on a domain <span class="math notranslate nohighlight">\([a, b]\)</span>.</p>
 <section id="discretization">
-<h2>Discretization<a class="headerlink" href="#discretization" title="Link to this heading">¶</a></h2>
+<h2>Discretization<a class="headerlink" href="#discretization" title="Link to this heading"></a></h2>
 <p>We will represent <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(f\)</span> on a 1-d uniform grid:</p>
 <figure class="align-center" id="id1">
 <img alt="_images/fd_grid_bnd.png" src="_images/fd_grid_bnd.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Our 1-d finite difference grid</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Our 1-d finite difference grid</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Here we represent the discrete value of <span class="math notranslate nohighlight">\(\phi\)</span> with a subscript:</p>
@@ -276,7 +278,7 @@ then write the discrete Poisson equation as:</p>
 update the points <span class="math notranslate nohighlight">\(1 \ldots N-2\)</span> using this expression.</p>
 </section>
 <section id="relaxation">
-<h2>Relaxation<a class="headerlink" href="#relaxation" title="Link to this heading">¶</a></h2>
+<h2>Relaxation<a class="headerlink" href="#relaxation" title="Link to this heading"></a></h2>
 <p>We can solve for the update for a single zone:</p>
 <div class="math notranslate nohighlight">
 \[\phi_i = \frac{1}{2} (\phi_{i+1} + \phi_{i-1} - \Delta x^2 f_i)\]</div>
@@ -287,7 +289,7 @@ use the new information immediately as it becomes available is called
 <em>Gauss-Seidel relaxation</em>.</p>
 </section>
 <section id="stopping">
-<h2>Stopping<a class="headerlink" href="#stopping" title="Link to this heading">¶</a></h2>
+<h2>Stopping<a class="headerlink" href="#stopping" title="Link to this heading"></a></h2>
 <p>We need a measure to determine when we should stop relaxing the solution.  We define
 the <em>residual</em>, <span class="math notranslate nohighlight">\(r\)</span>, as:</p>
 <div class="math notranslate nohighlight">
@@ -304,10 +306,10 @@ can do with the number of points we are using in the discretization.</p>
 \[\| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}\]</div>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
 <p>Here’s a class that implements smoothing:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 93 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 93 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef POISSON_H</span>
 <span class="cp">#define POISSON_H</span>
 
@@ -502,7 +504,7 @@ can do with the number of points we are using in the discretization.</p>
 \[\phi(x) = -\sin(x)  + (1 + \sin(1)) x\]</div>
 <p>Here’s the driver that implements this problem:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 94 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 94 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;poisson.H&quot;</span>
 
 <span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span>
@@ -525,7 +527,7 @@ can do with the number of points we are using in the discretization.</p>
 </div>
 </section>
 <section id="convergence">
-<h2>Convergence<a class="headerlink" href="#convergence" title="Link to this heading">¶</a></h2>
+<h2>Convergence<a class="headerlink" href="#convergence" title="Link to this heading"></a></h2>
 <p>This method should converge as second-order – i.e., if we double the number of points, the
 error should go down by a factor of 4.</p>
 <div class="admonition-try-it admonition">
@@ -537,7 +539,7 @@ provides the analytic solution and returns the norm of the error
 </div>
 </section>
 <section id="d-implementation">
-<h2>2D implementation<a class="headerlink" href="#d-implementation" title="Link to this heading">¶</a></h2>
+<h2>2D implementation<a class="headerlink" href="#d-implementation" title="Link to this heading"></a></h2>
 <p>Here’s a 2D implementation:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -548,7 +550,7 @@ provides the analytic solution and returns the norm of the error
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Header:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 95 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson2d.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 95 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson2d.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef POISSON_H</span>
 <span class="cp">#define POISSON_H</span>
 
@@ -812,7 +814,7 @@ in this case is:</p>
 \[\phi(x, y) = (x^2 - x^4) (y^4 - y^2)\]</div>
 <p>Here’s the driver:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 96 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 96 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;poisson2d.H&quot;</span>
 
 <span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">TOL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="n">e</span><span class="mi">-10</span><span class="p">;</span>

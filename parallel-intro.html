@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -236,18 +238,18 @@
            <div itemprop="articleBody">
              
   <section id="introduction-to-parallel-programming">
-<h1>Introduction to Parallel Programming<a class="headerlink" href="#introduction-to-parallel-programming" title="Link to this heading">¶</a></h1>
+<h1>Introduction to Parallel Programming<a class="headerlink" href="#introduction-to-parallel-programming" title="Link to this heading"></a></h1>
 <p>Modern computers have multiple CPU cores.  So far, we’ve only been
 doing work on a single core, but a lot of computational physics
 numerical work can be spread across multiple CPUs.</p>
 <section id="moore-s-law">
-<h2>Moore’s law<a class="headerlink" href="#moore-s-law" title="Link to this heading">¶</a></h2>
+<h2>Moore’s law<a class="headerlink" href="#moore-s-law" title="Link to this heading"></a></h2>
 <p>Moore observed that over time, the number of transistors that can be
 packed into a chip doubled roughly every two years.</p>
 <figure class="align-center" id="id2">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Moore%27s_Law_Transistor_Count_1970-2020.png/1024px-Moore%27s_Law_Transistor_Count_1970-2020.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Moore%27s_Law_Transistor_Count_1970-2020.png/1024px-Moore%27s_Law_Transistor_Count_1970-2020.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text">(Max Roser, Hannah Ritchie, Our World In Data, Wikipedia)</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">(Max Roser, Hannah Ritchie, Our World In Data, Wikipedia)</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>These extra transistors can go into additional logic (vector units,
@@ -259,7 +261,7 @@ considerably (especially if you consider GPUs too).</p>
 <figure class="align-center" id="id3">
 <img alt="_images/50-years-processor-trend.png" src="_images/50-years-processor-trend.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Figure from <a class="reference external" href="https://github.com/karlrupp/microprocessor-trend-data">https://github.com/karlrupp/microprocessor-trend-data</a></span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Figure from <a class="reference external" href="https://github.com/karlrupp/microprocessor-trend-data">https://github.com/karlrupp/microprocessor-trend-data</a></span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>This means that to effectively take advantage of new processors, we
@@ -268,7 +270,7 @@ need to put these additional cores to work.</p>
 the fastest computers are changing.</p>
 </section>
 <section id="memory-architecture">
-<h2>Memory architecture<a class="headerlink" href="#memory-architecture" title="Link to this heading">¶</a></h2>
+<h2>Memory architecture<a class="headerlink" href="#memory-architecture" title="Link to this heading"></a></h2>
 <p>A lot of the considerations in parallel program involve how we access
 the memory where the data is stored.  There are generally two
 approaches:</p>
@@ -297,7 +299,7 @@ the algorithm we are using.  We’ll see an example of this shortly.</p>
 </div>
 </section>
 <section id="amdahl-s-law">
-<h2>Amdahl’s law<a class="headerlink" href="#amdahl-s-law" title="Link to this heading">¶</a></h2>
+<h2>Amdahl’s law<a class="headerlink" href="#amdahl-s-law" title="Link to this heading"></a></h2>
 <p>In a typical application, you’ll have sections of code that adapt
 easily to parallelism and stuff that does not, and remains serial.</p>
 <ul class="simple">
@@ -378,7 +380,7 @@ descreases.</p></li>
 </ul>
 </section>
 <section id="types-of-parallelism">
-<h2>Types of parallelism<a class="headerlink" href="#types-of-parallelism" title="Link to this heading">¶</a></h2>
+<h2>Types of parallelism<a class="headerlink" href="#types-of-parallelism" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Flynn%27s_taxonomy">Flynn’s taxonomy</a> categorizes the different types
 of parallelism.</p>
 <p>4 classifications: single/multiple data; single/multiple instruction:</p>
@@ -408,7 +410,7 @@ of parallelism.</p>
 </ul>
 </section>
 <section id="mimd">
-<h2>MIMD<a class="headerlink" href="#mimd" title="Link to this heading">¶</a></h2>
+<h2>MIMD<a class="headerlink" href="#mimd" title="Link to this heading"></a></h2>
 <p>We can do MIMD different ways:</p>
 <ul class="simple">
 <li><p>Single program, multiple data:</p>
@@ -422,7 +424,7 @@ of parallelism.</p>
 </ul>
 </section>
 <section id="trivially-parallel">
-<h2>Trivially parallel<a class="headerlink" href="#trivially-parallel" title="Link to this heading">¶</a></h2>
+<h2>Trivially parallel<a class="headerlink" href="#trivially-parallel" title="Link to this heading"></a></h2>
 <p>Sometimes no communication is needed between processes – this is <em>trivially parallel</em></p>
 <p>Examples:</p>
 <ul class="simple">
@@ -442,26 +444,26 @@ multiple pipelines each on a separate file.</p></li>
 </ul>
 </section>
 <section id="making-your-code-parallel">
-<h2>Making your code parallel<a class="headerlink" href="#making-your-code-parallel" title="Link to this heading">¶</a></h2>
+<h2>Making your code parallel<a class="headerlink" href="#making-your-code-parallel" title="Link to this heading"></a></h2>
 <p>There is no magic compiler flag that makes your code run in parallel.
 So your approach really depends on what you are doing and where you
 intend to run.</p>
 <section id="runtime-dominated-by-one-task">
-<h3>Runtime dominated by one task<a class="headerlink" href="#runtime-dominated-by-one-task" title="Link to this heading">¶</a></h3>
+<h3>Runtime dominated by one task<a class="headerlink" href="#runtime-dominated-by-one-task" title="Link to this heading"></a></h3>
 <p>Imagine that the majority of your runtime is dominated by a single
 task (like linear algebra).  You can get a good speed up just by
 switching to a library that does the linear algebra in parallel.  This
 requires minimal code changes.</p>
 </section>
 <section id="shared-memory">
-<h3>Shared memory<a class="headerlink" href="#shared-memory" title="Link to this heading">¶</a></h3>
+<h3>Shared memory<a class="headerlink" href="#shared-memory" title="Link to this heading"></a></h3>
 <p>Imagine that we want to run on a single computer that has one CPU (one
 socket on the motherboard) with multiple cores.  Each of these cores
 will have direct access to the same pool of memory:</p>
 <figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="_images/shared_memory.png"><img alt="_images/shared_memory.png" src="_images/shared_memory.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text">A single 4-core chip and its pool of memory</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">A single 4-core chip and its pool of memory</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>In this situation, the parallelism is straightforward:</p>
@@ -485,7 +487,7 @@ could slow you down.</p>
 </div>
 </section>
 <section id="distributed-memory">
-<h3>Distributed memory<a class="headerlink" href="#distributed-memory" title="Link to this heading">¶</a></h3>
+<h3>Distributed memory<a class="headerlink" href="#distributed-memory" title="Link to this heading"></a></h3>
 <p>With distributed memory, we run on a collection of computers, connected by a high-speed network.</p>
 <ul class="simple">
 <li><p>Each task cannot directly see the memory for the other tasks</p></li>

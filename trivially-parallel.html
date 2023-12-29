@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -223,7 +225,7 @@
            <div itemprop="articleBody">
              
   <section id="trivially-parallel-bash">
-<h1>Trivially Parallel + BASH<a class="headerlink" href="#trivially-parallel-bash" title="Link to this heading">¶</a></h1>
+<h1>Trivially Parallel + BASH<a class="headerlink" href="#trivially-parallel-bash" title="Link to this heading"></a></h1>
 <p>Sometimes we have to run an analysis tool on a large number of files,
 but each analysis is completely independent of the others.  This is a
 <em>trivially parallel</em> application.</p>
@@ -241,7 +243,7 @@ CPUs and starts up jobs as resources become free.</p>
 </ul>
 <p>Here’s an implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 97 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 97 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># run a bunch of single-processor analysis jobs in parallel.  Lock</span>
@@ -340,7 +342,7 @@ tool on them (for this simple example, it is just <code class="docutils literal 
 control the number of processors that are used at the top of the
 script.</p>
 <section id="alternatives">
-<h2>Alternatives<a class="headerlink" href="#alternatives" title="Link to this heading">¶</a></h2>
+<h2>Alternatives<a class="headerlink" href="#alternatives" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://www.gnu.org/software/parallel/">GNU parallel</a> is a similar
 tool that can be used for trivially parallel jobs.</p>
 </section>

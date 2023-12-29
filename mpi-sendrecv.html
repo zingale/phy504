@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -226,7 +228,7 @@
            <div itemprop="articleBody">
              
   <section id="mpi-send-and-receive">
-<h1>MPI Send and Receive<a class="headerlink" href="#mpi-send-and-receive" title="Link to this heading">¶</a></h1>
+<h1>MPI Send and Receive<a class="headerlink" href="#mpi-send-and-receive" title="Link to this heading"></a></h1>
 <p>The main concept in MPI is sending messages between processes.  Two
 basic functions: <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code> and <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code> provide this
 functionality.  You provide a buffer that contains the data you want
@@ -241,7 +243,7 @@ the buffer.</p></li>
 doing its own communication.  There are non-blocking sends that we can use
 in this case.</p>
 <section id="basic-example">
-<h2>Basic example<a class="headerlink" href="#basic-example" title="Link to this heading">¶</a></h2>
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
 <p>Here’s a basic example that mimics the <em>ghost cell filling</em> process used
 in hydrodynamics codes.</p>
 <ol class="arabic simple">
@@ -255,12 +257,12 @@ element from the neighboring processors.</p></li>
 <figure class="align-center" id="id1">
 <img alt="_images/send_recv_diagram.png" src="_images/send_recv_diagram.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Sharing data at the boundary of our vectors</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Sharing data at the boundary of our vectors</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Here’s the implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 107 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 107 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -321,13 +323,13 @@ processor 0, there is no left, and for processor <span class="math notranslate n
 no right).</p>
 </section>
 <section id="mpi-sendrecv">
-<h2>MPI_Sendrecv<a class="headerlink" href="#mpi-sendrecv" title="Link to this heading">¶</a></h2>
+<h2>MPI_Sendrecv<a class="headerlink" href="#mpi-sendrecv" title="Link to this heading"></a></h2>
 <p>Good communication performance often requires staggering the
 communication.  A combined <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code> can help with this.  We
 can use <code class="docutils literal notranslate"><span class="pre">MPI_PROC_NULL</span></code> when there is no destination.</p>
 <p>Here’s the same example as above, but now using this single funciton.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 108 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_single.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 108 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_single.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 

@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -226,13 +228,13 @@
            <div itemprop="articleBody">
              
   <section id="operators">
-<h1>Operators<a class="headerlink" href="#operators" title="Link to this heading">¶</a></h1>
+<h1>Operators<a class="headerlink" href="#operators" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 3.19</p>
 </div>
 <section id="lvalue-vs-rvalue">
-<h2>lvalue vs. rvalue<a class="headerlink" href="#lvalue-vs-rvalue" title="Link to this heading">¶</a></h2>
+<h2>lvalue vs. rvalue<a class="headerlink" href="#lvalue-vs-rvalue" title="Link to this heading"></a></h2>
 <p>We will often see <em>lvalue</em> and <em>rvalue</em> used:</p>
 <ul class="simple">
 <li><p>lvalue: an object that can be assigned to – i.e., it can be put on
@@ -243,7 +245,7 @@ operator – it acts as a value.</p></li>
 <p>see, e.g., <a class="reference external" href="https://en.wikipedia.org/wiki/Value_(computer_science)#Assignment:_l-values_and_r-values">Assignment: l-values and r-values</a>.</p>
 </section>
 <section id="precedence">
-<h2>Precedence<a class="headerlink" href="#precedence" title="Link to this heading">¶</a></h2>
+<h2>Precedence<a class="headerlink" href="#precedence" title="Link to this heading"></a></h2>
 <p>What happens when we have an expression like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
 </pre></div>
@@ -260,7 +262,7 @@ evaluated first, and then the addition is done.</p>
 </div>
 </section>
 <section id="prefix-and-postfix-operators">
-<h2>Prefix and postfix operators<a class="headerlink" href="#prefix-and-postfix-operators" title="Link to this heading">¶</a></h2>
+<h2>Prefix and postfix operators<a class="headerlink" href="#prefix-and-postfix-operators" title="Link to this heading"></a></h2>
 <p>We haven’t yet discussed the difference between <code class="docutils literal notranslate"><span class="pre">++a</span></code> and <code class="docutils literal notranslate"><span class="pre">a++</span></code>.  These are the prefix
 and postfix increment operators.  Let’s do that now.</p>
 <p>The prefix operator is:</p>
@@ -292,7 +294,7 @@ and therefore can be faster.</p>
 </div>
 </section>
 <section id="associativity">
-<h2>Associativity<a class="headerlink" href="#associativity" title="Link to this heading">¶</a></h2>
+<h2>Associativity<a class="headerlink" href="#associativity" title="Link to this heading"></a></h2>
 <p>When an expression has two operators at the same precedence, <a class="reference external" href="https://en.wikipedia.org/wiki/Operator_associativity">operator
 associativity rules</a> come into
 play.  Most operators in C++ are <em>left associative</em> – that is, they

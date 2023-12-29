@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -220,7 +222,7 @@
            <div itemprop="articleBody">
              
   <section id="this">
-<h1><code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#this" title="Link to this heading">¶</a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#this" title="Link to this heading"></a></h1>
 <p>All C++ classes have a pointer called <code class="docutils literal notranslate"><span class="pre">this</span></code> that refers to the
 current object.  This is useful, since some functions, as we will see,
 need to return a reference to the object we are working on.</p>
@@ -228,7 +230,7 @@ need to return a reference to the object we are working on.</p>
 string and then defines a member function, <code class="docutils literal notranslate"><span class="pre">get_ref()</span></code>, that returns
 a reference to itself (by returning <code class="docutils literal notranslate"><span class="pre">*this</span></code> as a reference).</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 68 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">this_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 68 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">this_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Example</span><span class="w"> </span><span class="p">{</span>

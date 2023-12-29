@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -227,7 +229,7 @@
            <div itemprop="articleBody">
              
   <section id="root-finding">
-<h1>Root finding<a class="headerlink" href="#root-finding" title="Link to this heading">¶</a></h1>
+<h1>Root finding<a class="headerlink" href="#root-finding" title="Link to this heading"></a></h1>
 <p>Given a function <span class="math notranslate nohighlight">\(f(x)\)</span>, the <em>root-finding</em> problem is to find
 all of the <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
 <p>Root finding algorithms often need a range that bracket the root,
@@ -239,7 +241,7 @@ so often we will check that <span class="math notranslate nohighlight">\(f(x_l) 
 </figure>
 <p>There are a large number of <a class="reference external" href="https://en.wikipedia.org/wiki/Root-finding_algorithms">root finding algorithms</a>.</p>
 <section id="bisection">
-<h2>Bisection<a class="headerlink" href="#bisection" title="Link to this heading">¶</a></h2>
+<h2>Bisection<a class="headerlink" href="#bisection" title="Link to this heading"></a></h2>
 <p>Bisection works by iteratively cutting the range where the root is located in half.
 The basic idea is as follows:</p>
 <ul class="simple">
@@ -260,7 +262,7 @@ otherwise set <span class="math notranslate nohighlight">\(x_l = x_m\)</span></p
 </div>
 </section>
 <section id="newton-s-method">
-<h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Link to this heading">¶</a></h2>
+<h2>Newton’s method<a class="headerlink" href="#newton-s-method" title="Link to this heading"></a></h2>
 <p>For <a class="reference external" href="https://en.wikipedia.org/wiki/Newton's_method">Newton’s method</a>, we start by Taylor
 expanding the function about some initial guess for the root,
 <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
@@ -295,12 +297,12 @@ finite-differences.   This can give rise to the <a class="reference external" hr
 </div>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
 <p>We want to write a function that takes as input the function we want to zero, so we’ll
 use <code class="docutils literal notranslate"><span class="pre">std::function</span></code> to define the function as an argument.</p>
 <p>Here’s the header that implements both bisection and Newton’s method:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 90 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">roots.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 90 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">roots.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ROOTS_H</span>
 <span class="cp">#define ROOTS_H</span>
 

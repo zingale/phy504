@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -225,7 +227,7 @@
            <div itemprop="articleBody">
              
   <section id="inheritance-and-access">
-<h1>Inheritance and Access<a class="headerlink" href="#inheritance-and-access" title="Link to this heading">¶</a></h1>
+<h1>Inheritance and Access<a class="headerlink" href="#inheritance-and-access" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Cyganek section 4.3</p>
@@ -244,7 +246,7 @@ the base class and can extend it.</p>
 </ul>
 </div>
 <section id="access">
-<h2>Access<a class="headerlink" href="#access" title="Link to this heading">¶</a></h2>
+<h2>Access<a class="headerlink" href="#access" title="Link to this heading"></a></h2>
 <p>There are different modes of access that come into play.  First within the base
 class, we expand <em>private</em> and <em>public</em> to include <em>protected</em>:</p>
 <ul class="simple">
@@ -268,7 +270,7 @@ We could alternately use <code class="docutils literal notranslate"><span class=
 the access to the inherited data.</p>
 </section>
 <section id="constructor">
-<h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading">¶</a></h2>
+<h2>Constructor<a class="headerlink" href="#constructor" title="Link to this heading"></a></h2>
 <p>How do we write the constructor of the sub class?</p>
 <p>For our <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> example, we might think that we could
 just use a member initialization list to initialize the data,
@@ -291,11 +293,11 @@ given in the <a class="reference external" href="https://www.learncpp.com/cpp-tu
 </div>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Here’s an example of the base <code class="docutils literal notranslate"><span class="pre">Quadrilateral</span></code> class and the
 <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> class that inherits from it.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 66 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">shapes.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 66 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">shapes.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef SHAPES_H</span>
 <span class="cp">#define SHAPES_H</span>
 
@@ -353,7 +355,7 @@ initialization is needed.</p></li>
 </ul>
 <p>Here’s a test driver:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 67 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_shapes.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 67 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_shapes.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;shapes.H&quot;</span>

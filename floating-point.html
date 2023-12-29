@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -238,13 +240,13 @@
            <div itemprop="articleBody">
              
   <section id="floating-point">
-<h1>Floating Point<a class="headerlink" href="#floating-point" title="Link to this heading">¶</a></h1>
+<h1>Floating Point<a class="headerlink" href="#floating-point" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p><a class="reference external" href="https://dl.acm.org/doi/10.1145/103162.103163">What Every Computer Scientist Should Know About Floating-Point Arithmetic</a></p>
 </div>
 <section id="storage-overview">
-<h2>Storage overview<a class="headerlink" href="#storage-overview" title="Link to this heading">¶</a></h2>
+<h2>Storage overview<a class="headerlink" href="#storage-overview" title="Link to this heading"></a></h2>
 <p>We can think of a floating point number as having the form:</p>
 <div class="math notranslate nohighlight">
 \[\mbox{significand} \times 10^\mbox{exponent}\]</div>
@@ -254,7 +256,7 @@ are split between the signifcand and exponent as well as a single bit for the si
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png"><img alt="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" src="_images/1024px-IEEE_754_Double_Floating_Point_Format.svg.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">(source: wikipedia)</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">(source: wikipedia)</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Since the number is stored in binary, we can think about expanding a number in powers of 2:</p>
@@ -267,7 +269,7 @@ are split between the signifcand and exponent as well as a single bit for the si
           1 \cdot 2^{-5} + \ldots) \times 2^{-4}\]</div>
 <p>In fact, <code class="docutils literal notranslate"><span class="pre">0.1</span></code> cannot be exactly represented in floating point:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_roundoff.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 52 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_roundoff.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 
@@ -282,7 +284,7 @@ are split between the signifcand and exponent as well as a single bit for the si
 </div>
 </div>
 <section id="precision">
-<h3>Precision<a class="headerlink" href="#precision" title="Link to this heading">¶</a></h3>
+<h3>Precision<a class="headerlink" href="#precision" title="Link to this heading"></a></h3>
 <p>With 52 bits for the significand, the smallest number compared to <code class="docutils literal notranslate"><span class="pre">1</span></code> we can represent is</p>
 <div class="math notranslate nohighlight">
 \[2^{-52} \approx 2.22\times 10^{-16}\]</div>
@@ -303,7 +305,7 @@ machine epsilon is</p>
 <p>Note that there are <a class="reference external" href="https://en.wikipedia.org/wiki/Machine_epsilon#Variant_definitions">varying definitions of machine epsilon</a> which differ by a factor of 2.</p>
 </section>
 <section id="range">
-<h3>Range<a class="headerlink" href="#range" title="Link to this heading">¶</a></h3>
+<h3>Range<a class="headerlink" href="#range" title="Link to this heading"></a></h3>
 <p>Now consider the exponent, we use 11 bits to store it in double
 precision.  Two are reserved for special numbers, so out of the 2048
 possible exponent values, one is 0, and 2 are reserved, leaving 2045
@@ -315,10 +317,10 @@ to split between positive and negative exponents.  These are set as:</p>
 \[\sim 10^{-308} \mbox{ to } \sim 10^{308}\]</div>
 </section>
 <section id="reporting-values">
-<h3>Reporting values<a class="headerlink" href="#reporting-values" title="Link to this heading">¶</a></h3>
+<h3>Reporting values<a class="headerlink" href="#reporting-values" title="Link to this heading"></a></h3>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">std::numeric_limits&lt;double&gt;</span></code> to query these floating point properties:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">limits.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 53 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">limits.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
 
@@ -337,7 +339,7 @@ to split between positive and negative exponents.  These are set as:</p>
 </section>
 </section>
 <section id="roundoff-vs-truncation-error">
-<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Link to this heading">¶</a></h2>
+<h2>Roundoff vs. truncation error<a class="headerlink" href="#roundoff-vs-truncation-error" title="Link to this heading"></a></h2>
 <p>Consider the Taylor expansion of <span class="math notranslate nohighlight">\(f(x)\)</span> about some point <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = f(x_0 + \Delta x) = f(x_0) + \left . \frac{df}{dx} \right |_{x_0} \Delta x + \mathcal{O}(\Delta x^2)\]</div>
@@ -349,7 +351,7 @@ to split between positive and negative exponents.  These are set as:</p>
 <p>We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">truncation_vs_roundoff.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
@@ -421,14 +423,14 @@ machine epsilon.</p></li>
 </ul>
 </section>
 <section id="testing-for-equality">
-<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Link to this heading">¶</a></h2>
+<h2>Testing for equality<a class="headerlink" href="#testing-for-equality" title="Link to this heading"></a></h2>
 <p>Because of roundoff error, we should never exactly compare two floating point numbers,
 but instead ask they they agree within some tolerance, e.g., test equality as:</p>
 <div class="math notranslate nohighlight">
 \[| x - y | &lt; \epsilon\]</div>
 <p>For example:</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 55 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">comparing.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -449,7 +451,7 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 </div>
 </section>
 <section id="minimizing-roundoff">
-<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Link to this heading">¶</a></h2>
+<h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Link to this heading"></a></h2>
 <p>Consider subtracting the square of two numbers – taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
 <p>Instead of doing:</p>
 <div class="math notranslate nohighlight">
@@ -461,7 +463,7 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 <p>We can see this directly by doing this with single precision (<cite>float</cite>) and comparing to an answer computed via double precious (<cite>double</cite>)</p>
 <p>Here’s an example:</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">subtraction.cpp</span></code></span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -495,7 +497,7 @@ single-precision version of the <code class="docutils literal notranslate"><span
 precision literal suffix, e.g., <code class="docutils literal notranslate"><span class="pre">1.0f</span></code> tells the compiler that this is a
 single-precision constant.</p>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">squareroots.cpp</span></code></span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">squareroots.cpp</span></code></span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 
@@ -525,7 +527,7 @@ single-precision constant.</p>
 <p>Notice that we get several more significant digits correct when we compute it with
 the second formulation compared to the original form.</p>
 <section id="summation-algorithms">
-<h3>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Link to this heading">¶</a></h3>
+<h3>Summation algorithms<a class="headerlink" href="#summation-algorithms" title="Link to this heading"></a></h3>
 <p>Summing a sequence of numbers is a common place where roundoff error
 comes into play, especially if the numbers all vary in magnitude and
 you do not attempt to add them in a sorted fashion.  There are a
@@ -534,7 +536,7 @@ due to roundoff and compensate the sum, for example <a class="reference external
 </section>
 </section>
 <section id="special-numbers">
-<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Link to this heading">¶</a></h2>
+<h2>Special numbers<a class="headerlink" href="#special-numbers" title="Link to this heading"></a></h2>
 <p>IEEE 754 defines a few special quantities:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) is the result of <code class="docutils literal notranslate"><span class="pre">0.0/0.0</span></code> or <code class="docutils literal notranslate"><span class="pre">std::sqrt(-1.0)</span></code></p></li>
@@ -543,10 +545,10 @@ due to roundoff and compensate the sum, for example <a class="reference external
 </ul>
 </section>
 <section id="trapping-floating-point-exceptions">
-<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Link to this heading">¶</a></h2>
+<h2>Trapping floating point exceptions<a class="headerlink" href="#trapping-floating-point-exceptions" title="Link to this heading"></a></h2>
 <p>What happens when we do something bad?  Consider this example:</p>
 <div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-number">Listing 58 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined.cpp</span></code></span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 58 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined.cpp</span></code></span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
@@ -600,7 +602,7 @@ of our program execution.  This is really a C-function, so we need to use C-styl
 arrays here.</p>
 <p>Here’s the new version of our code:</p>
 <div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-number">Listing 59 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined_trap.cpp</span></code></span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 59 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">undefined_trap.cpp</span></code></span><a class="headerlink" href="#id10" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;csignal&gt;</span>

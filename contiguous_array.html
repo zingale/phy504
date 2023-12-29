@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -228,7 +230,7 @@
            <div itemprop="articleBody">
              
   <section id="example-multidimensional-contiguous-array">
-<h1>Example: Multidimensional Contiguous Array<a class="headerlink" href="#example-multidimensional-contiguous-array" title="Link to this heading">¶</a></h1>
+<h1>Example: Multidimensional Contiguous Array<a class="headerlink" href="#example-multidimensional-contiguous-array" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Your text does an example of a multi-dimensional array that is a
@@ -238,7 +240,7 @@ to be fully contiguous, so we will create a 1-d memory space and create
 operators to index into it.</p>
 </div>
 <section id="vector-of-vector-s">
-<h2><code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s<a class="headerlink" href="#vector-of-vector-s" title="Link to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s<a class="headerlink" href="#vector-of-vector-s" title="Link to this heading"></a></h2>
 <p>If we consider:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">array_2d</span><span class="p">;</span>
 </pre></div>
@@ -253,12 +255,12 @@ and can be in very disparate positions in memory.</p>
 <a class="reference internal image-reference" href="_images/vector_of_vectors.png"><img alt="_images/vector_of_vectors.png" src="_images/vector_of_vectors.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 10 </span><span class="caption-text">Illustration of a <code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>’s for a <span class="math notranslate nohighlight">\(4\times
-3\)</span> array.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+3\)</span> array.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="contiguous-multi-dimensional-array">
-<h2>Contiguous multi-dimensional array<a class="headerlink" href="#contiguous-multi-dimensional-array" title="Link to this heading">¶</a></h2>
+<h2>Contiguous multi-dimensional array<a class="headerlink" href="#contiguous-multi-dimensional-array" title="Link to this heading"></a></h2>
 <p>Our goal now is to create a contiguous memory space that stores all the
 elements of the 2-d array.</p>
 <p>To make a contiguous vector, we will use a single <code class="docutils literal notranslate"><span class="pre">vector</span></code>
@@ -272,15 +274,15 @@ into this one-dimensional buffer as <code class="docutils literal notranslate"><
 <a class="reference internal image-reference" href="_images/struct_array.png"><img alt="_images/struct_array.png" src="_images/struct_array.png" style="width: 90%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Illustration of a one-dimensional <code class="docutils literal notranslate"><span class="pre">vector</span></code> wrapped in a <code class="docutils literal notranslate"><span class="pre">struct</span></code> that can be
-indexed as a two-dimensional array.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+indexed as a two-dimensional array.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
 <p>We will implement the main <code class="docutils literal notranslate"><span class="pre">struct</span></code> in a header so we can reuse this</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 45 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 45 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
 <span class="cp">#define ARRAY_H</span>
 
@@ -366,7 +368,7 @@ case of a non-<code class="docutils literal notranslate"><span class="pre">const
 <p>Here’s a test program for the <code class="docutils literal notranslate"><span class="pre">Array</span></code> object.  Notice that we gain
 access to the <code class="docutils literal notranslate"><span class="pre">Array</span></code> class via <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;array.H&quot;</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 46 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_array.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
@@ -420,7 +422,7 @@ this.</p></li>
 <p>Here’s a makefile that builds this test program + a few others that
 we’ll compare with.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id5" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 47 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># get all the sources and the headers</span>
 <span class="nv">SOURCE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
 <span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
@@ -508,7 +510,7 @@ solution<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">new <code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id6" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 48 </span><span class="caption-text">new <code class="docutils literal notranslate"><span class="pre">array.H</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ARRAY_H</span>
 <span class="cp">#define ARRAY_H</span>
 
@@ -606,7 +608,7 @@ instead of a <code class="docutils literal notranslate"><span class="pre">struct
 </div>
 </section>
 <section id="performance">
-<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading">¶</a></h2>
+<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading"></a></h2>
 <p>Let’s see how the speed of this compares to doing</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="o">&gt;</span>
 </pre></div>
@@ -623,7 +625,7 @@ timing to remove any offset in the time returned by <code class="docutils litera
 convert to seconds using <code class="docutils literal notranslate"><span class="pre">CLOCKS_PER_SEC</span></code>.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">timing.cpp</span></code></span><a class="headerlink" href="#id7" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 49 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">timing.cpp</span></code></span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
@@ -717,7 +719,7 @@ optimization level, asserts enabled, etc.?</p>
 </div>
 <p>Finally, we can compare to a Fortran implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-number">Listing 50 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fortran_array.f90</span></code></span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 50 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fortran_array.f90</span></code></span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">main</span>
 
 <span class="w">  </span><span class="k">implicit none</span>

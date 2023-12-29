@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -223,7 +225,7 @@
            <div itemprop="articleBody">
              
   <section id="working-with-multiple-files">
-<h1>Working with Multiple Files<a class="headerlink" href="#working-with-multiple-files" title="Link to this heading">¶</a></h1>
+<h1>Working with Multiple Files<a class="headerlink" href="#working-with-multiple-files" title="Link to this heading"></a></h1>
 <p id="sec-multiplefiles">As our projects grow in size, it becomes beneficial to spread our code
 over multiple files.  This has several benefits:</p>
 <ul class="simple">
@@ -253,7 +255,7 @@ and of course the <code class="docutils literal notranslate"><span class="pre">m
 <p>We’ll start with a header file defining our <code class="docutils literal notranslate"><span class="pre">struct</span></code> and the operator
 declaration:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 31 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 31 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef PLANET_H</span>
 <span class="cp">#define PLANET_H</span>
 
@@ -292,7 +294,7 @@ throughout this course.</p>
 </div>
 <p>Now we’ll create a source file that implements the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> operator:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 32 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 32 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 
@@ -326,7 +328,7 @@ in the default system locations for the headers.</p>
 </ul>
 <p>Finally, we’ll put the <code class="docutils literal notranslate"><span class="pre">main()</span></code> in a third file:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet_sort_split.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 33 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet_sort_split.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -356,7 +358,7 @@ in the default system locations for the headers.</p>
 </div>
 </div>
 <section id="compiling">
-<h2>Compiling<a class="headerlink" href="#compiling" title="Link to this heading">¶</a></h2>
+<h2>Compiling<a class="headerlink" href="#compiling" title="Link to this heading"></a></h2>
 <p>To produce an executable, we need to compile each of the <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> files first
 and then link them all together.  Here are the steps:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">

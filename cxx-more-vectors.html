@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -229,10 +231,10 @@
            <div itemprop="articleBody">
              
   <section id="more-vectors">
-<h1>More Vectors<a class="headerlink" href="#more-vectors" title="Link to this heading">¶</a></h1>
+<h1>More Vectors<a class="headerlink" href="#more-vectors" title="Link to this heading"></a></h1>
 <p>Let’s look at some more ways we can work with vectors.</p>
 <section id="initializing">
-<h2>Initializing<a class="headerlink" href="#initializing" title="Link to this heading">¶</a></h2>
+<h2>Initializing<a class="headerlink" href="#initializing" title="Link to this heading"></a></h2>
 <p>We can initialize a vector when we declare it.  The following creates a vector with 5 elements, all initialized to 0:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
 </pre></div>
@@ -246,7 +248,7 @@ initialization (the constructor).</p>
 </div>
 </section>
 <section id="size">
-<h2>Size<a class="headerlink" href="#size" title="Link to this heading">¶</a></h2>
+<h2>Size<a class="headerlink" href="#size" title="Link to this heading"></a></h2>
 <p>We can always get the number of elements in a vector via the <code class="docutils literal notranslate"><span class="pre">size()</span></code> function:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">int_vec</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
 
@@ -260,7 +262,7 @@ access the vector out of bounds?</p>
 </div>
 </section>
 <section id="bounds-iterators-and-pointers">
-<h2>Bounds, iterators, and pointers<a class="headerlink" href="#bounds-iterators-and-pointers" title="Link to this heading">¶</a></h2>
+<h2>Bounds, iterators, and pointers<a class="headerlink" href="#bounds-iterators-and-pointers" title="Link to this heading"></a></h2>
 <p>There are 2 ways to access the beginning and end of a <code class="docutils literal notranslate"><span class="pre">vector</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code>, <code class="docutils literal notranslate"><span class="pre">.begin()</span></code> : these will give you an interator that
@@ -289,7 +291,7 @@ pointing to, then we need to <em>dereference</em> it – this is done with the
 <p>These can also be used in some powerful algorithms provided by the
 <code class="docutils literal notranslate"><span class="pre">algorithms</span></code> header.  Here’s an example of using <code class="docutils literal notranslate"><span class="pre">find</span></code> on a vector:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">find_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">find_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -322,7 +324,7 @@ Library Algorithms</a></p>
 </div>
 </section>
 <section id="inserting">
-<h2>Inserting<a class="headerlink" href="#inserting" title="Link to this heading">¶</a></h2>
+<h2>Inserting<a class="headerlink" href="#inserting" title="Link to this heading"></a></h2>
 <p>We saw that <code class="docutils literal notranslate"><span class="pre">.push_back()</span></code> is used to add an element to the end of a
 vector.  To insert in the middle of the vector, we use
 <code class="docutils literal notranslate"><span class="pre">.insert(it_pos)</span></code>, where <code class="docutils literal notranslate"><span class="pre">it_pos</span></code> is an iterator pointing to the
@@ -333,7 +335,7 @@ specifying an additional argument.)</p>
 <code class="docutils literal notranslate"><span class="pre">300</span></code> and then use <code class="docutils literal notranslate"><span class="pre">insert()</span></code> to put <code class="docutils literal notranslate"><span class="pre">150</span></code> in between <code class="docutils literal notranslate"><span class="pre">100</span></code>
 and <code class="docutils literal notranslate"><span class="pre">200</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">insert_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">insert_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -356,7 +358,7 @@ and <code class="docutils literal notranslate"><span class="pre">200</span></cod
 </div>
 </section>
 <section id="erasing">
-<h2>Erasing<a class="headerlink" href="#erasing" title="Link to this heading">¶</a></h2>
+<h2>Erasing<a class="headerlink" href="#erasing" title="Link to this heading"></a></h2>
 <p>Erasing works similar to inserting.  We give an iterator pointing to
 the start and end of the range we want to erase, and all elements up
 to, but not including the end, are erased.</p>
@@ -367,7 +369,7 @@ the vector.</p>
 <p>What happens if we try to remove past the end?  To be save, we should
 always add a check on whether our end is past <code class="docutils literal notranslate"><span class="pre">.end()</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">vector_erase.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">vector_erase.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -404,13 +406,13 @@ provides read-only access to the elements through the iterator.</p>
 </div>
 </section>
 <section id="resize-and-clear">
-<h2>Resize and clear<a class="headerlink" href="#resize-and-clear" title="Link to this heading">¶</a></h2>
+<h2>Resize and clear<a class="headerlink" href="#resize-and-clear" title="Link to this heading"></a></h2>
 <p>If we have an existing vector we can resize it with <code class="docutils literal notranslate"><span class="pre">.resize(num,</span>
 <span class="pre">init)</span></code> where <code class="docutils literal notranslate"><span class="pre">num</span></code> is the number of new elements and (optionally) <code class="docutils literal notranslate"><span class="pre">init</span></code> is
 their initial value.</p>
 <p>We can remove everything from the vector using <code class="docutils literal notranslate"><span class="pre">.clear()</span></code>.  Here’s an example:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">resize_example.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">resize_example.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -452,7 +454,7 @@ their initial value.</p>
 </div>
 </section>
 <section id="sorting">
-<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading">¶</a></h2>
+<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading"></a></h2>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
 <p>Let’s try to understand how the <code class="docutils literal notranslate"><span class="pre">sort</span></code> function works.

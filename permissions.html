@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -226,7 +228,7 @@
            <div itemprop="articleBody">
              
   <section id="file-permissions">
-<h1>File Permissions<a class="headerlink" href="#file-permissions" title="Link to this heading">¶</a></h1>
+<h1>File Permissions<a class="headerlink" href="#file-permissions" title="Link to this heading"></a></h1>
 <p>Let’s look at the full directory listing in our <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/</span></code> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -279,7 +281,7 @@ fall into the first 2 categories can do with the file</p></li>
 permissions, while members of the same group and anyone else only have
 read permissions for the file.</p>
 <section id="modifying-permissions">
-<h2>Modifying permissions<a class="headerlink" href="#modifying-permissions" title="Link to this heading">¶</a></h2>
+<h2>Modifying permissions<a class="headerlink" href="#modifying-permissions" title="Link to this heading"></a></h2>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">chmod</span></code> command to change permissions on a file.</p>
 <p>For example, to remove the group’s write permission on <code class="docutils literal notranslate"><span class="pre">solar.pdf</span></code>, we would do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">chmod<span class="w"> </span>g-w<span class="w"> </span>solar.pdf</span>
@@ -301,7 +303,7 @@ execute permission on that directory.</p>
 <span class="prompt1"><span class="nb">cd</span><span class="w"> </span>creatures</span>
 </pre></div></div></div>
 <section id="executable-scripts">
-<h3>Executable scripts<a class="headerlink" href="#executable-scripts" title="Link to this heading">¶</a></h3>
+<h3>Executable scripts<a class="headerlink" href="#executable-scripts" title="Link to this heading"></a></h3>
 <p>Let’s create a simple script that just does <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> for us.  But
 we’ll look to see how to make it executable on its own.  Put the
 following into a file <code class="docutils literal notranslate"><span class="pre">myscript.sh</span></code> (the <code class="docutils literal notranslate"><span class="pre">.sh</span></code> extension isn’t

@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -224,7 +226,7 @@
            <div itemprop="articleBody">
              
   <section id="vectors">
-<h1>Vectors<a class="headerlink" href="#vectors" title="Link to this heading">¶</a></h1>
+<h1>Vectors<a class="headerlink" href="#vectors" title="Link to this heading"></a></h1>
 <p>C++ has the <em>standard template library</em> or STL which adds an immense
 amount of functionality to the language.  Let’s look at
 <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.  A <code class="docutils literal notranslate"><span class="pre">vector</span></code> is a container that can hold data of
@@ -249,7 +251,7 @@ and then computing an average.  We’ll write our own version.</p>
 <p>First lets see how to create a vector and add some data to it.</p>
 <p>Here’s a simple example:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_vector.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_vector.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -277,7 +279,7 @@ are using the <code class="docutils literal notranslate"><span class="pre">.</sp
 indices start at 0.</p></li>
 </ul>
 <section id="looping">
-<h2>Looping<a class="headerlink" href="#looping" title="Link to this heading">¶</a></h2>
+<h2>Looping<a class="headerlink" href="#looping" title="Link to this heading"></a></h2>
 <p>Often we will want to loop over the elements contained in a vector,
 and C++ provides a <a class="reference external" href="https://en.cppreference.com/w/cpp/language/range-for">range-based loop</a> for this
 purpose.  For example to loop over all elements and output them to the
@@ -314,7 +316,7 @@ data type.</p>
 </div>
 </section>
 <section id="example-averaging-grades">
-<h2>Example: averaging grades<a class="headerlink" href="#example-averaging-grades" title="Link to this heading">¶</a></h2>
+<h2>Example: averaging grades<a class="headerlink" href="#example-averaging-grades" title="Link to this heading"></a></h2>
 <p>You text has an example of reading and averaging student grades.  It
 uses a few more bits of C++ syntax (like conditional statements) that
 we’ll see in detail shortly.  Let’s look over that code:</p>

@@ -16,6 +16,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=60df5cae"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -226,7 +228,7 @@
            <div itemprop="articleBody">
              
   <section id="example-planetary-orbit">
-<h1>Example: Planetary Orbit<a class="headerlink" href="#example-planetary-orbit" title="Link to this heading">¶</a></h1>
+<h1>Example: Planetary Orbit<a class="headerlink" href="#example-planetary-orbit" title="Link to this heading"></a></h1>
 <p>Let’s consider an example of integrating the orbit of Earth around the
 Sun (we’ll consider the mass of the Earth to be tiny compared to the
 Sun so we can neglect the Sun’s motion around the center of mass).</p>
@@ -245,7 +247,7 @@ units of solar masses, astronomical units, and years, then this becomes:</p>
 \[\dot{\bf v} = - \frac{G M_\star {\bf r}}{r^3}\]</div>
 <p>where <span class="math notranslate nohighlight">\({\bf r} = (x, y)\)</span> and <span class="math notranslate nohighlight">\({\bf v} = (v_x, v_y)\)</span>.</p>
 <section id="euler-s-method">
-<h2>Euler’s Method<a class="headerlink" href="#euler-s-method" title="Link to this heading">¶</a></h2>
+<h2>Euler’s Method<a class="headerlink" href="#euler-s-method" title="Link to this heading"></a></h2>
 <p>The simplest method to advance the solution begins with a first-order accurate difference approximation
 to the derivative:</p>
 <div class="math notranslate nohighlight">
@@ -267,12 +269,12 @@ error will be <span class="math notranslate nohighlight">\(\mathcal{O}(\tau)\)</
 <a class="reference internal image-reference" href="_images/rk2_Euler.png"><img alt="_images/rk2_Euler.png" src="_images/rk2_Euler.png" style="width: 90%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 9 </span><span class="caption-text">Euler’s method: we evaluate the slope at the start of the timestep and then follow
-this through to the new time.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+this through to the new time.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
 <p>We’ll store the state of the solution at a single instance in time in a <code class="docutils literal notranslate"><span class="pre">struct</span></code>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">OrbitState</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
@@ -323,7 +325,7 @@ solution<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 27 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">orbit_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 27 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">orbit_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
