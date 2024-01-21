@@ -72,7 +72,7 @@ Some notes:
 
 * We explicitly mark the member data as private and the functions are public
 
-* We have 2 contructors: the *default constructor* and a *parametric
+* We have 2 constructors: the *default constructor* and a *parametric
   constructor*.  These both have the same name -- that's fine, C++
   will call which ever one matches the argument list you use.
 

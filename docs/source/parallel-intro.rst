@@ -59,7 +59,7 @@ Often we will do a little of each -- shared memory parallelism inside
 a compute node and distributed memory parallelism across nodes.
 
 There is another type of parallelism -- using accelerators, like GPUs,
-that dominates high performace computing now.  Here we can use OpenMP,
+that dominates high performance computing now.  Here we can use OpenMP,
 OpenACC, or a vendor-specific library like CUDA or HIP to do the
 offloading.
 
@@ -121,7 +121,7 @@ Does this mean that we have no hope of using machines with 100,000's of cores?  
 
 * Larger computers mean bigger problems are possible -- as you increase
   the problem size, the fraction of the code that is serial likely
-  descreases.
+  decreases.
 
 
 Types of parallelism
@@ -177,7 +177,7 @@ Examples:
 
 * Ray tracing or Monte Carlo:
 
-  * Each realization can do its work indpendently
+  * Each realization can do its work independently
 
   * At the end, maybe we need to do some simple processing of all of the results
 

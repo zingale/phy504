@@ -34,7 +34,7 @@ The *arithmetic logic unit* (ALU) performs the basic instructions on
 the data.  The commands that it executes are processor-specific, and
 if we wanted to code them directly, we'd write our code in *assembly
 language*.  Luckily we don't need to do that -- instead we'll code in
-C++ and use a *complier* to translate our code into the
+C++ and use a *compiler* to translate our code into the
 machine-specific instructions.
 
 Data moves through a memory hierarchy, typically something like

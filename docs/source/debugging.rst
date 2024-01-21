@@ -41,7 +41,7 @@ and the integral would be:
 
    I \approx f(a)(b-a)
 
-We can do slighly better by connecting the two endpoints:
+We can do slightly better by connecting the two endpoints:
 
 .. figure:: trapezoid_N1.png
    :align: center

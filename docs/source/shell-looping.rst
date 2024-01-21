@@ -72,7 +72,7 @@ We can see what basename does by looking at the man page:
 
 The backtick is a special syntax in a shell command.  Essentially it means:
 
-* first execute any commands inside the openning \` and closing \`
+* first execute any commands inside the opening \` and closing \`
 
 * substitute the output of the command in place and then use do the rest of the script
 
