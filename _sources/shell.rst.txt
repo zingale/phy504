@@ -80,7 +80,7 @@ First walkthrough
 =================
 
 Let's walkthrough the `Navigating Files and Directories
-<https://swcarpentry.github.io/shell-novice/02-filedir/index.html>`_
+<https://swcarpentry.github.io/shell-novice/02-filedir.html>`_
 lesson together.  You are also encouraged to work through it on your
 own outside of class.
 

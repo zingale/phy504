@@ -5,7 +5,7 @@ Redirection and Pipes
 .. admonition:: reading
 
    We will loosely follow the Software Carpentry `Pipes and Filters
-   <https://swcarpentry.github.io/shell-novice/04-pipefilter/index.html>`_
+   <https://swcarpentry.github.io/shell-novice/04-pipefilter.html>`_
    lesson from `The Unix Shell
    <https://swcarpentry.github.io/shell-novice/>`_
 

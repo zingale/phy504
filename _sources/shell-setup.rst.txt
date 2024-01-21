@@ -92,7 +92,7 @@ but for now we'll use ``nano``.
 
    git config --global core.editor "nano -w"
 
-see https://swcarpentry.github.io/git-novice/02-setup/index.html#line-endings for other options.
+see https://swcarpentry.github.io/git-novice/02-setup.html#line-endings for other options.
 
 Now, we want to ensure that this file is linked to our home directory when we log in:
 
