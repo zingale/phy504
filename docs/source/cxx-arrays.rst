@@ -82,7 +82,7 @@ We'll cover references next.
       double x[10];
       int p[10][20];
 
-   For a nice discussion of the differences between C-arrays and ``std::array`` see:
-   `https://coders-corner.net/2018/06/16/stdarray-vs-c-style-array/ <https://coders-corner.net/2018/06/16/stdarray-vs-c-style-array/>`_
+   The ``std::array`` is a more modern wrapper for these&mdash;it has the
+   advantage that it knows the size of the array.
 
 

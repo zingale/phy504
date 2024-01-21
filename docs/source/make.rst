@@ -145,7 +145,7 @@ Going further
 
 There are more things we can do to generalize our makefile.
 
-* We can use `g++ to automatically determine dependencies <https://stackoverflow.com/questions/11855386/using-g-with-mmd-in-makefile-to-automatically-generate-dependencies>`_.  Also see the `GNU make automatic prerequisites <../examples/functions/algorithms_functions_lambda>`_.
+* We can use `g++ to automatically determine dependencies <https://stackoverflow.com/questions/11855386/using-g-with-mmd-in-makefile-to-automatically-generate-dependencies>`_.  Also see the `GNU make automatic prerequisites <https://www.gnu.org/software/make/manual/html_node/Automatic-Prerequisites.html>`_.
 
 * We can have the makefile create code at build time, for instance, writing
   a function that contains the current git hash of the code

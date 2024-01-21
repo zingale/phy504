@@ -79,7 +79,7 @@ easily to parallelism and stuff that does not, and remains serial.
 * E.g., initialization might be serial but computation is parallel
 
 `Amdahl's law
-<https://en.wikipedia.org/wiki/Amdahl%27s_law#:~:text=In%20computer%20architecture%2C%20Amdahl's%20law,system%20whose%20resources%20are%20improved.>`_
+<https://en.wikipedia.org/wiki/Amdahl%27s_law>`_
 gives the theoretical speed up of a code when running on :math:`N`
 processors, given the fraction of the code that is parallel, `P`:
 

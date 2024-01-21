@@ -33,7 +33,7 @@ Flowcharts can also have loops, like this example for a code that appears as:
    :align: center
    :width: 50%
 
-   `(Paweł Zdziarski (faxe)/Wikipedia) <https://en.wikipedia.org/wiki/Flowchart#/media/File:For-loop-diagram.png>`_
+   (Paweł Zdziarski (faxe)/Wikipedia)
 
 
 An alternative to flowcharts is to write out the algorithm in
