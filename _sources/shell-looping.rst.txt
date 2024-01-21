@@ -5,7 +5,7 @@ Looping on the Command Line
 .. admonition:: reading
 
    We will loosely follow the Software Carpentry `Loops
-   <https://swcarpentry.github.io/shell-novice/05-loop/index.html>`_
+   <https://swcarpentry.github.io/shell-novice/05-loop.html>`_
    lesson from `The Unix Shell
    <https://swcarpentry.github.io/shell-novice/>`_
 

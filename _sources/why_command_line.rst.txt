@@ -6,7 +6,7 @@ We are all used to the point-and-click graphical user interfaces of modern compu
 
 There are a few reasons (and see the excellent discussion that is part
 of the `Software Carpentry Unix shell notes
-<https://swcarpentry.github.io/shell-novice/guide/index.html>`_):
+<https://swcarpentry.github.io/shell-novice/instructor/instructor-notes>`_):
 
 * Scientific computing often involves automating workflows and repetitive tasks.
 

@@ -26,7 +26,7 @@ An example architecture is shown here:
    :align: center
    :width: 70%
 
-   (`Lambtron / Wikipedia <https://en.wikipedia.org/wiki/Central_processing_unit#/media/File:ABasicComputer.gif>`_)
+   (`Lambtron / Wikipedia <https://commons.wikimedia.org/wiki/File:ABasicComputer.gif>`_)
 
 Our program and the data it operates on is stored in the main memory of the system.  We need to move that from the main memory into the processor.
 
