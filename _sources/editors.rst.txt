@@ -86,7 +86,7 @@ by default you are in command mode.
 
 * To get into insert type ``i``
 
-* To return to comamnd mode hit the *ESC* key
+* To return to command mode hit the *ESC* key
 
 Documentation is available here: https://www.vim.org/docs.php
 

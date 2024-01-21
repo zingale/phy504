@@ -50,7 +50,7 @@ their orbital period using Kepler's third law:
 
 Some notes:
 
-* We put the defintion of ``Planet`` outside of the ``main()`` function.
+* We put the definition of ``Planet`` outside of the ``main()`` function.
 
 * In the initialization of the ``planets`` vector, we use
   list-initialization for each of the planets in its own set of

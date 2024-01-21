@@ -45,7 +45,7 @@ Bounds, iterators, and pointers
 
 There are 2 ways to access the beginning and end of a ``vector``:
 
-* ``.cbegin()``, ``.begin()`` : these will give you an interator that
+* ``.cbegin()``, ``.begin()`` : these will give you an *iterator* that
   points to the first element.  The difference is that accessing with
   ``.cbegin()`` will not allow you to modify the vector (the ``c`` is
   for ``const``).  You can increment an *iterator* loop over the

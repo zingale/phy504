@@ -50,7 +50,7 @@ Some notes:
 
 * In C++ ``<random>``, the generator and distribution are separate
   concepts.  Here we pick the Mersenne Twister ``std::mt19937``
-  generator and use it with the uniform distrbution
+  generator and use it with the uniform distribution
   ``std::uniform_real_distribution``.
 
 * To initialize the generator, we use ``std::random_device`` -- this is a true

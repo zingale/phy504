@@ -113,6 +113,6 @@ MPI has many types of operations, including:
 On supercomputers, system vendors will often provide their own MPI
 implementation that is tuned to their hardware / network.  On your own
 machine, `MPICH <https://www.mpich.org/>`_ is a popular
-implemetation.
+implementation.
 
 

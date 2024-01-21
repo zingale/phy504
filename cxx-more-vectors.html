@@ -265,7 +265,7 @@ access the vector out of bounds?</p>
 <h2>Bounds, iterators, and pointers<a class="headerlink" href="#bounds-iterators-and-pointers" title="Link to this heading"></a></h2>
 <p>There are 2 ways to access the beginning and end of a <code class="docutils literal notranslate"><span class="pre">vector</span></code>:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code>, <code class="docutils literal notranslate"><span class="pre">.begin()</span></code> : these will give you an interator that
+<li><p><code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code>, <code class="docutils literal notranslate"><span class="pre">.begin()</span></code> : these will give you an <em>iterator</em> that
 points to the first element.  The difference is that accessing with
 <code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code> will not allow you to modify the vector (the <code class="docutils literal notranslate"><span class="pre">c</span></code> is
 for <code class="docutils literal notranslate"><span class="pre">const</span></code>).  You can increment an <em>iterator</em> loop over the

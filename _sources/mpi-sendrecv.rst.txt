@@ -56,7 +56,7 @@ Good communication performance often requires staggering the
 communication.  A combined ``MPI_Sendrecv`` can help with this.  We
 can use ``MPI_PROC_NULL`` when there is no destination.
 
-Here's the same example as above, but now using this single funciton.
+Here's the same example as above, but now using this single function.
 
 .. literalinclude:: ../../examples/parallel/mpi/sendrecv_single.cpp
    :language: c++
