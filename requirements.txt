@@ -11,3 +11,4 @@ jupyter
 sphinx-copybutton
 sphinx-prompt
 sphinx-design
+codespell
