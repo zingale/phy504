@@ -22,8 +22,8 @@ compared to how a normal Linux system will behave.
 
    If the computer is asleep when you arrive, you can wake it by doing:
 
-   | ctrl+alt+F1
-   | ctrl+alt+F2
+   | ctrl + alt + F2
+   | ctrl + alt + F1
 
 .. warning::
 
