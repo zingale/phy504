@@ -25,7 +25,7 @@ compared to how a normal Linux system will behave.
    | ctrl+alt+F1
    | ctrl+alt+F2
 
-.. important::
+.. warning::
 
    Your home directory is wiped clean every 48 hours.  This means
    that we cannot rely on storing configuration files on our system.
@@ -35,6 +35,15 @@ presented a terminal prompt for your password a second time to mount
 your Stony Brook `MySBfiles
 <https://it.stonybrook.edu/services/mysbfiles>`_ directory.  This is where
 you will want to store your data.
+
+.. tip::
+
+   If for some reason the MySBfiles doesn't mount, then you can rerun
+   it by typing:
+
+   .. prompt:: bash
+
+      myfile
 
 .. warning::
 
@@ -74,6 +83,10 @@ Using the MathLab remotely
 There are 2 special machines that you can log onto remotely via ssh.
 If you are using Windows, then I would recommend the `PuTTY SSH client
 <https://www.putty.org/>`_.  
+
+.. note::
+
+   These machines appear to be unreliable this semester.
 
 With ssh you can connect to:
 
