@@ -113,11 +113,9 @@ That means everything is working.
    Since your home directory is not shared across the MathLab machines, you
    will need to do this each time you sit down on a different machine.
 
-   Also, in case our directory gets purged (which hasn't happened yet...)
+   Also, in case our directory gets purged,
    we would need to regenerate a key and update github.
 
-   We'll deal with that as it arises.  I will also explore whether it is
-   wise to link these from our shared MySBFiles drive.
 
 
 Working remotely

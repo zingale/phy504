@@ -16,10 +16,19 @@ In class
 
 The computers in class are running Ubuntu 18.04 and have all of the
 software needed for this course installed.  There are a few quicks
-compared to how a normal Linux system will behave.  Most importantly
-**your home directory is wiped clean every 48 hours**.  This means
-that we cannot rely on storing configuration files on our system (but
-there is a workaround that we will see later).
+compared to how a normal Linux system will behave.
+
+.. tip::
+
+   If the computer is asleep when you arrive, you can wake it by doing:
+
+   | ctrl+alt+F1
+   | ctrl+alt+F2
+
+.. important::
+
+   Your home directory is wiped clean every 48 hours.  This means
+   that we cannot rely on storing configuration files on our system.
 
 You will log in with your NetID and password and then you will be
 presented a terminal prompt for your password a second time to mount
