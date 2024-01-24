@@ -14,7 +14,7 @@ class to reflect what we covered.
 In class
 ========
 
-The computers in class are running Ubuntu 18.04 and have all of the
+The computers in class are running Ubuntu 20.04 and have all of the
 software needed for this course installed.  There are a few quicks
 compared to how a normal Linux system will behave.
 
@@ -35,6 +35,13 @@ presented a terminal prompt for your password a second time to mount
 your Stony Brook `MySBfiles
 <https://it.stonybrook.edu/services/mysbfiles>`_ directory.  This is where
 you will want to store your data.
+
+.. tip::
+
+   After you enter your username, a small "settings" icon will appear
+   in the bottom right of the screen.  You can use this to select your
+   default desktop.  Choose "MATE" to have your display appear like the
+   instructor's desktop / what's displayed on the projector.
 
 .. tip::
 
