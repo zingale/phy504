@@ -2,7 +2,7 @@
 Homework 1
 **********
 
-.. admonition:: due: 2022-02-09
+.. admonition:: due: 2024-02-09
 
    While you are free to talk with your classmates and ask me / others
    questions on slack, you are expected to do your own work for these
