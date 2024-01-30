@@ -155,17 +155,17 @@ the process that we will experiment with.  Usually one of the main
 developers of a large project will have already implemented the
 testing.
 
-We'll use this repository: https://github.com/phy504-sbu/unit_tests
+We'll use this repository: https://github.com/phy504-sbu-s24/unit_tests
 
 There are a few places to look:
 
 * The github action itself is a `YAML <https://en.wikipedia.org/wiki/YAML>`_ file:
-  https://github.com/phy504-sbu/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml
+  https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml
 
   This is placed in the repository in the ``.github/workflows/`` directory
 
 * The action runs on all pull requests.  You can see the status of all actions
-  that have run here: https://github.com/phy504-sbu/unit_tests/actions
+  that have run here: https://github.com/phy504-sbu-s24/unit_tests/actions
 
 .. admonition:: try it...
 

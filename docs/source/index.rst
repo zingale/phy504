@@ -197,6 +197,8 @@ Spring 2024
    :maxdepth: 1
    :caption: Homework
 
+   homework/homework1
+
 .. toctree::
    :maxdepth: 1
    :caption: Project
