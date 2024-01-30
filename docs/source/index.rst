@@ -135,6 +135,7 @@ Spring 2024
    cxx-convergence-tests
    valgrind
    debugging
+   clang-tidy
 
 .. toctree::
    :maxdepth: 1
