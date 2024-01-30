@@ -2,14 +2,14 @@
 Homework 1
 **********
 
-.. admonition:: due: 2022-02-11
+.. admonition:: due: 2022-02-09
 
    While you are free to talk with your classmates and ask me / others
    questions on slack, you are expected to do your own work for these
    assignments.
 
 #. In class we showed how to clone the repo
-   https://github.com/phy504-sbu/test-repo, make a fork, and push to
+   https://github.com/phy504-sbu-s24/test-repo, make a fork, and push to
    our fork, and then do a pull-request to ask for your changes to be
    made to the original repo.
 
@@ -39,7 +39,8 @@ Homework 1
 
    Now add a second commit, with a ``.gitignore`` telling git to ignore an executable named ``hello``.
 
-   Push this all back to your github repo.  Your repo should show 2 commits with descriptive git log messages.
+   Push this all back to your github repo.  Your repo should show 2
+   commits with descriptive git log messages.
 
-   For your solution, simply give me the URL of your repo.
+   For your solution, simply e-mail me the URL of your repo.
 

@@ -189,9 +189,9 @@ around pulls.
 
 How do we contribute to a project that we don't own?
 
-Here's a github *organization* for our class: https://github.com/phy504-sbu
+Here's a github *organization* for our class: https://github.com/phy504-sbu-s24
 
-and here's a simple repo in this organization: https://github.com/phy504-sbu/test-repo
+and here's a simple repo in this organization: https://github.com/phy504-sbu-s24/test-repo
 
 An organization is meant to be used by a collection of developers who
 can all have different access permissions.  It provides tools for
@@ -201,7 +201,7 @@ Let's clone this repo:
 
 .. prompt:: bash
 
-   git clone git@github.com:phy504-sbu/test-repo.git
+   git clone git@github.com:phy504-sbu-s24/test-repo.git
    cd test-repo
 
 Now, let's each try to add a file of the form *username.txt* containing

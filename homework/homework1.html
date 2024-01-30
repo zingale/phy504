@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homework 1 &mdash; PHY 504 Spring 2022 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/sphinx-dropdown.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/panels-bootstrap.min.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <title>Homework 1 &mdash; PHY 504 Spring 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=851f9797" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=60df5cae"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 2" href="homework2.html" />
+    <link rel="next" title="Final Project" href="../project.html" />
     <link rel="prev" title="Stuff We Didn’t Cover" href="../didnt_cover.html" /> 
 </head>
 
@@ -39,7 +43,7 @@
             PHY 504
           </a>
               <div class="version">
-                Spring 2022
+                Spring 2024
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -191,12 +195,6 @@
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Homework 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework2.html">Homework 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework3.html">Homework 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework4.html">Homework 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework5.html">Homework 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework6.html">Homework 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework7.html">Homework 7</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -228,16 +226,16 @@
            <div itemprop="articleBody">
              
   <section id="homework-1">
-<h1>Homework 1<a class="headerlink" href="#homework-1" title="Permalink to this heading">¶</a></h1>
-<div class="admonition-due-2022-02-11 admonition">
-<p class="admonition-title">due: 2022-02-11</p>
+<h1>Homework 1<a class="headerlink" href="#homework-1" title="Link to this heading"></a></h1>
+<div class="admonition-due-2022-02-09 admonition">
+<p class="admonition-title">due: 2022-02-09</p>
 <p>While you are free to talk with your classmates and ask me / others
 questions on slack, you are expected to do your own work for these
 assignments.</p>
 </div>
 <ol class="arabic">
 <li><p>In class we showed how to clone the repo
-<a class="reference external" href="https://github.com/phy504-sbu/test-repo">https://github.com/phy504-sbu/test-repo</a>, make a fork, and push to
+<a class="reference external" href="https://github.com/phy504-sbu-s24/test-repo">https://github.com/phy504-sbu-s24/test-repo</a>, make a fork, and push to
 our fork, and then do a pull-request to ask for your changes to be
 made to the original repo.</p>
 <p>Add a file of the form <code class="docutils literal notranslate"><span class="pre">username.txt</span></code> containing your name
@@ -260,8 +258,9 @@ hello.cpp with the following content:</p>
 </div>
 <p>and commit this to your repo.</p>
 <p>Now add a second commit, with a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> telling git to ignore an executable named <code class="docutils literal notranslate"><span class="pre">hello</span></code>.</p>
-<p>Push this all back to your github repo.  Your repo should show 2 commits with descriptive git log messages.</p>
-<p>For your solution, simply give me the URL of your repo.</p>
+<p>Push this all back to your github repo.  Your repo should show 2
+commits with descriptive git log messages.</p>
+<p>For your solution, simply e-mail me the URL of your repo.</p>
 </li>
 </ol>
 </section>
@@ -271,13 +270,13 @@ hello.cpp with the following content:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../didnt_cover.html" class="btn btn-neutral float-left" title="Stuff We Didn’t Cover" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="homework2.html" class="btn btn-neutral float-right" title="Homework 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../project.html" class="btn btn-neutral float-right" title="Final Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Michael Zingale.</p>
+    <p>&#169; Copyright 2022-2024, Michael Zingale.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
