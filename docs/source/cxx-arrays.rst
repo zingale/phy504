@@ -82,7 +82,7 @@ We'll cover references next.
       double x[10];
       int p[10][20];
 
-   The ``std::array`` is a more modern wrapper for these&mdash;it has the
+   The ``std::array`` is a more modern wrapper for these--it has the
    advantage that it knows the size of the array.
 
 
