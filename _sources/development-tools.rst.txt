@@ -7,7 +7,7 @@ Software Development Tools
    Cyganek section 2.2
 
 
-There are a number of tools that we will use in the software development process:
+There are a number of tools / concepts that we will use in the software development process:
 
 * Editors / integrated development environments
 
@@ -56,19 +56,31 @@ There are a number of tools that we will use in the software development process
   are run before each change is merged into the ``main`` branch of our
   code repo.
 
-* Debugging
+* Debuggers
 
-  When our code is not giving us the expected result, a debugger (like
-  ``gdb``) allows us to step through the execution of the code
-  bit-by-bit and inspect the variables to understand where it is going
-  wrong.
+  When our code is not giving us the expected result, a `debugger
+  <https://en.wikipedia.org/wiki/Debugger>`_ (like ``gdb``) allows us
+  to step through the execution of the code bit-by-bit and inspect the
+  variables to understand where it is going wrong.
 
 * Profiler
 
-  One our code is working, we can think about performance.  A profiler
+  One our code is working, we can think about performance.  A
+  `profiler
+  <https://en.wikipedia.org/wiki/Profiling_(computer_programming)>`_
   (like ``gprof``) will give use a report of which functions or even
   lines in our code are taking the most time.  This helps us identify
   where to spend our time optimizing the code to perform better.
+
+* Static analysis tools
+
+  A static analysis tool looks through your code and identifies
+  problematic expressions (things like buffer overflows, using memory
+  that has been freed, ...).  They can also sometimes tell you how to
+  write code more efficiently, to use modern C++ constructs, etc.
+
+  There are a `large number of static code analysis tools <https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis>`_.
+  We'll mostly look at `clang-tidy <https://clang.llvm.org/extra/clang-tidy/>`_.
 
 * Documentation
 

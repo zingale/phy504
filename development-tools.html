@@ -232,7 +232,7 @@
 <p class="admonition-title">reading</p>
 <p>Cyganek section 2.2</p>
 </div>
-<p>There are a number of tools that we will use in the software development process:</p>
+<p>There are a number of tools / concepts that we will use in the software development process:</p>
 <ul>
 <li><p>Editors / integrated development environments</p>
 <p>Beyond just letting us type in text, these can check syntax,
@@ -272,17 +272,25 @@ allows us to do this via <em>continuous integration</em>, where the tests
 are run before each change is merged into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of our
 code repo.</p>
 </li>
-<li><p>Debugging</p>
-<p>When our code is not giving us the expected result, a debugger (like
-<code class="docutils literal notranslate"><span class="pre">gdb</span></code>) allows us to step through the execution of the code
-bit-by-bit and inspect the variables to understand where it is going
-wrong.</p>
+<li><p>Debuggers</p>
+<p>When our code is not giving us the expected result, a <a class="reference external" href="https://en.wikipedia.org/wiki/Debugger">debugger</a> (like <code class="docutils literal notranslate"><span class="pre">gdb</span></code>) allows us
+to step through the execution of the code bit-by-bit and inspect the
+variables to understand where it is going wrong.</p>
 </li>
 <li><p>Profiler</p>
-<p>One our code is working, we can think about performance.  A profiler
+<p>One our code is working, we can think about performance.  A
+<a class="reference external" href="https://en.wikipedia.org/wiki/Profiling_(computer_programming)">profiler</a>
 (like <code class="docutils literal notranslate"><span class="pre">gprof</span></code>) will give use a report of which functions or even
 lines in our code are taking the most time.  This helps us identify
 where to spend our time optimizing the code to perform better.</p>
+</li>
+<li><p>Static analysis tools</p>
+<p>A static analysis tool looks through your code and identifies
+problematic expressions (things like buffer overflows, using memory
+that has been freed, …).  They can also sometimes tell you how to
+write code more efficiently, to use modern C++ constructs, etc.</p>
+<p>There are a <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis">large number of static code analysis tools</a>.
+We’ll mostly look at <a class="reference external" href="https://clang.llvm.org/extra/clang-tidy/">clang-tidy</a>.</p>
 </li>
 <li><p>Documentation</p>
 <p>Ultimately, when we make our code available, we would like to have
