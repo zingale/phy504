@@ -81,8 +81,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#readme-md-is-special"><code class="docutils literal notranslate"><span class="pre">README.md</span></code> is special</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#pull-requests">Pull requests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#our-class-notes-github">Our class notes github</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +183,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="roots.html">Root finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roots.html">Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
@@ -354,71 +352,6 @@ documentation builds (we’ll talk about those later in class).</p>
 <p>Here’s an example of what you can do in a <code class="docutils literal notranslate"><span class="pre">README.md</span></code> from one of my
 projects: <a class="reference external" href="https://github.com/pynucastro/pynucastro">https://github.com/pynucastro/pynucastro</a></p>
 </section>
-</section>
-<section id="pull-requests">
-<h2>Pull requests<a class="headerlink" href="#pull-requests" title="Link to this heading"></a></h2>
-<p>Github allows you to give permissions to users to contribute to a
-repository (read, write, or admin access).  But the best type of workflow
-is one where users don’t push directly to the git repo.  Instead it is based
-around pulls.</p>
-<p>How do we contribute to a project that we don’t own?</p>
-<p>Here’s a github <em>organization</em> for our class: <a class="reference external" href="https://github.com/phy504-sbu-s24">https://github.com/phy504-sbu-s24</a></p>
-<p>and here’s a simple repo in this organization: <a class="reference external" href="https://github.com/phy504-sbu-s24/test-repo">https://github.com/phy504-sbu-s24/test-repo</a></p>
-<p>An organization is meant to be used by a collection of developers who
-can all have different access permissions.  It provides tools for
-managing who can do different things to the repos under its control.</p>
-<p>Let’s clone this repo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:phy504-sbu-s24/test-repo.git</span>
-<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>test-repo</span>
-</pre></div></div><p>Now, let’s each try to add a file of the form <em>username.txt</em> containing
-your full name.  Ex:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">echo</span><span class="w"> </span>Michael<span class="w"> </span>Zingale<span class="w"> </span>&gt;<span class="w"> </span>zingale.txt</span>
-<span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>zingale.txt</span>
-<span class="prompt1">git<span class="w"> </span>commit</span>
-</pre></div></div><p>Now try to push it to the repo we clone:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push</span>
-</pre></div></div><p>what happened?</p>
-<p>The issue is that you don’t have <em>write</em> permission to that repo,
-since I own it.  So you are denied access.</p>
-<p>This is okay.  The workflow that github emphasizes is one based around
-<em>pulls</em> not <em>pushes</em>, so let’s see how we do that.</p>
-<p>First, we need to <em>fork</em> the repo – this creates a clone under our
-control that we can do with as we please.  Click on the “fork” button.</p>
-<img alt="_images/github-fork.png" class="align-center" src="_images/github-fork.png" />
-<p>It may ask you where you want the fork to life – you want it to live
-under your profile / username.</p>
-<p>This will bring you to a new github page, displaying the fork, with a
-URL that should look something like: <a class="reference external" href="https://github.com/zingale/test-repo">https://github.com/zingale/test-repo</a></p>
-<p>Now click on the <em>code</em> button and copy the SSH location.</p>
-<p>We want to add this fork as a new remote:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>myfork<span class="w"> </span>git@github.com:zingale/test-repo.git</span>
-</pre></div></div><p>(again, make sure you replace that with the link to your repo).</p>
-<p>Now you can do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>myfork</span>
-</pre></div></div><p>If you reload your github page, you should see your change there.</p>
-<p>Now we can do all <em>pull-request</em>.  Select “pull requests”</p>
-<img alt="_images/github-pr.png" class="align-center" src="_images/github-pr.png" />
-<p>Then click on the “New pull request” button, and you’ll see something like:</p>
-<img alt="_images/github-pr2.png" src="_images/github-pr2.png" />
-<p>This is showing that you are asking to merge the changes in your fork into the
-class <code class="docutils literal notranslate"><span class="pre">test-repo</span></code> repository.</p>
-<p>Click on <em>create pull request</em>, type in a comment about what this does, and then click
-on the <em>create pull request</em> button again.</p>
-<p>Now it is out of your hands.</p>
-<p>The owner of the class repo (me) will get a notification that you want
-to incorporate your changes into the class repo, and I can merge them
-via the github web tools.</p>
-<p>The overall workflow that we did: fork, push to our fork, issue a PR, looks like:</p>
-<a class="reference internal image-reference" href="_images/github-workflow.png"><img alt="_images/github-workflow.png" class="align-center" src="_images/github-workflow.png" style="width: 80%;" /></a>
-</section>
-<section id="our-class-notes-github">
-<h2>Our class notes github<a class="headerlink" href="#our-class-notes-github" title="Link to this heading"></a></h2>
-<p>Let’s take a tour of our class notes on github: <a class="reference external" href="https://github.com/zingale/phy504">https://github.com/zingale/phy504</a></p>
-<p>There are a lot of other features that github provides that we will explore later in the semester, including:</p>
-<ul class="simple">
-<li><p>github actions : automating some workflows (like testing) on our code</p></li>
-<li><p>github pages : building and hosting web pages for our project</p></li>
-</ul>
 </section>
 </section>
 

@@ -46,6 +46,7 @@ Spring 2024
    git-branches
    git-remotes
    github
+   pull-requests
 
 .. toctree::
    :maxdepth: 1
