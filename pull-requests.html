@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Object-Oriented Design &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Pull Requests &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Inheritance and Access" href="inheritance-and-access.html" />
-    <link rel="prev" title="clang-tidy" href="clang-tidy.html" /> 
+    <link rel="next" title="Looping on the Command Line" href="shell-looping.html" />
+    <link rel="prev" title="github" href="github.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,14 +68,17 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pull-requests.html">Pull Requests</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pull Requests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#our-class-notes-github">Our class notes github</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
 <ul>
@@ -150,8 +153,8 @@
 <li class="toctree-l1"><a class="reference internal" href="clang-tidy.html">clang-tidy</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Object-Oriented Design</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
@@ -217,9 +220,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Object-Oriented Design</li>
+      <li class="breadcrumb-item active">Pull Requests</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/object-oriented.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/pull-requests.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -227,67 +230,82 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="object-oriented-design">
-<h1>Object-Oriented Design<a class="headerlink" href="#object-oriented-design" title="Link to this heading"></a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>Cyganek section 4.1</p>
-</div>
-<p>The use of classes to organize concepts into reusable software objects
-containing data and functions is the hallmark of <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented
-programming</a>.</p>
-<p>Core concepts in OO programming are listed below.  It’s hard to find
-precise definitions of these, and they often seem to overlap a bit
-in what they mean.</p>
-<ul>
-<li><p><em>encapsulation</em> : this means we hide how the data in the class is
-stored.  For example, by making the member data <code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
-<p>There may be <em>setters</em> and <em>getters</em> to access some information, but
-the types of objects that are used are hidden from a user of the
-class.  This allows us to change how we store the data (refactor the
-code) without affecting users of the class.</p>
-</li>
-<li><p><em>inheritance</em> : this means that we can use a class as the <em>base class</em>
-(or <em>superclass</em>) to define new classes.  These new classes <em>inherit</em> all
-of the data and functions of the base, but can also change its behavior as
-needed to work in a new way, specific to the new class.</p></li>
-<li><p><em>abstraction</em> : this works at the level of the interfaces of the
-member functions of the class.  Similar to encapsulation, it hides
-implementation details from the user.</p>
-<p>For example, operator overloading the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator to work with
-our vectors is an example of abstraction.  We used something
-familiar to ourself to work on our vectors without having to know
-how it is implemented in the class.</p>
-<p>Another example comes into play with inheritance, where a base class
-implements the interface that all of the child classes will then
-define for their specific data.</p>
-</li>
-<li><p><em>polymorphism</em> : this is another type of abstraction, and means
-“many forms”.  This typically means that we have functions that know
-how to operate with different types.  Overloading functions and
-operators with the same name is an example of polymorphism.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>your text discusses the <a class="reference external" href="https://en.wikipedia.org/wiki/SOLID">SOLID software engineering strategy</a> – we won’t discuss that
-here.</p>
-</div>
-<p>Nice discussion about the difference between abstraction and encapsulation is given in this <a class="reference external" href="https://stackoverflow.com/questions/742341/difference-between-abstraction-and-encapsulation">Difference between abstraction and encapsulation? Stack Overflow question</a>.</p>
-<p>Concisely, it says:</p>
+  <section id="pull-requests">
+<h1>Pull Requests<a class="headerlink" href="#pull-requests" title="Link to this heading"></a></h1>
+<p>Github allows you to give permissions to users to contribute to a
+repository (read, write, or admin access).  But the best type of workflow
+is one where users don’t push directly to the git repo.  Instead it is based
+around pulls.</p>
+<p>How do we contribute to a project that we don’t own?</p>
+<p>Here’s a github <em>organization</em> for our class: <a class="reference external" href="https://github.com/phy504-sbu-s24">https://github.com/phy504-sbu-s24</a></p>
+<p>and here’s a simple repo in this organization: <a class="reference external" href="https://github.com/phy504-sbu-s24/test-repo">https://github.com/phy504-sbu-s24/test-repo</a></p>
+<p>An organization is meant to be used by a collection of developers who
+can all have different access permissions.  It provides tools for
+managing who can do different things to the repos under its control.</p>
+<p>Let’s clone this repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:phy504-sbu-s24/test-repo.git</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>test-repo</span>
+</pre></div></div><p>Now, let’s each try to add a file of the form <em>username.txt</em> containing
+your full name.  Ex:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">echo</span><span class="w"> </span>Michael<span class="w"> </span>Zingale<span class="w"> </span>&gt;<span class="w"> </span>zingale.txt</span>
+<span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>zingale.txt</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
+</pre></div></div><p>Now try to push it to the repo we clone:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push</span>
+</pre></div></div><p>what happened?</p>
+<p>The issue is that you don’t have <em>write</em> permission to that repo,
+since I own it.  So you are denied access.</p>
+<p>This is okay.  The workflow that github emphasizes is one based around
+<em>pulls</em> not <em>pushes</em>, so let’s see how we do that.</p>
+<p>First, we need to <em>fork</em> the repo – this creates a clone under our
+control that we can do with as we please.  Click on the “fork” button.</p>
+<img alt="_images/github-fork.png" class="align-center" src="_images/github-fork.png" />
+<p>It may ask you where you want the fork to life – you want it to live
+under your profile / username.</p>
+<p>This will bring you to a new github page, displaying the fork, with a
+URL that should look something like: <a class="reference external" href="https://github.com/zingale/test-repo">https://github.com/zingale/test-repo</a></p>
+<p>Now click on the <em>code</em> button and copy the SSH location.</p>
+<p>We want to add this fork as a new remote:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>myfork<span class="w"> </span>git@github.com:zingale/test-repo.git</span>
+</pre></div></div><p>(again, make sure you replace that with the link to your repo).</p>
+<p>Now you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>myfork</span>
+</pre></div></div><p>If you reload your github page, you should see your change there.</p>
+<p>Now we can do all <em>pull-request</em>.  Select “pull requests”</p>
+<img alt="_images/github-pr.png" class="align-center" src="_images/github-pr.png" />
+<p>Then click on the “New pull request” button, and you’ll see something like:</p>
+<img alt="_images/github-pr2.png" src="_images/github-pr2.png" />
+<p>This is showing that you are asking to merge the changes in your fork into the
+class <code class="docutils literal notranslate"><span class="pre">test-repo</span></code> repository.</p>
+<p>Click on <em>create pull request</em>, type in a comment about what this does, and then click
+on the <em>create pull request</em> button again.</p>
+<p>Now it is out of your hands.</p>
+<p>The owner of the class repo (me) will get a notification that you want
+to incorporate your changes into the class repo, and I can merge them
+via the github web tools.</p>
+<p>The overall workflow that we did: fork, push to our fork, issue a PR, looks like:</p>
+<a class="reference internal image-reference" href="_images/github-workflow.png"><img alt="_images/github-workflow.png" class="align-center" src="_images/github-workflow.png" style="width: 80%;" /></a>
+<section id="our-class-notes-github">
+<h2>Our class notes github<a class="headerlink" href="#our-class-notes-github" title="Link to this heading"></a></h2>
+<p>Let’s take a tour of our class notes on github: <a class="reference external" href="https://github.com/zingale/phy504">https://github.com/zingale/phy504</a></p>
+<p>There are a lot of other features that github provides that we will explore later in the semester, including:</p>
 <ul class="simple">
-<li><p>encapsulation means <em>information hiding</em></p></li>
-<li><p>abstraction means <em>implementation hiding</em></p></li>
+<li><p>github actions : automating some workflows (like testing) on our code</p></li>
+<li><p>github pages : building and hosting web pages for our project</p></li>
 </ul>
-<p>We’ve already been practicing both of these, even if we didn’t
-explicitly point it out.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="clang-tidy.html" class="btn btn-neutral float-left" title="clang-tidy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="inheritance-and-access.html" class="btn btn-neutral float-right" title="Inheritance and Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="github.html" class="btn btn-neutral float-left" title="github" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shell-looping.html" class="btn btn-neutral float-right" title="Looping on the Command Line" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
