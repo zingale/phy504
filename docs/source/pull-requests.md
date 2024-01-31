@@ -1,5 +1,5 @@
 *************
-Pull requests
+Pull Requests
 *************
 
 Github allows you to give permissions to users to contribute to a

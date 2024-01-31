@@ -1,5 +1,5 @@
 ************
-Root finding
+Root Finding
 ************
 
 Given a function :math:`f(x)`, the *root-finding* problem is to find
