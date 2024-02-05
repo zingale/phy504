@@ -5,7 +5,7 @@ Shell Scripts
 .. admonition:: reading
 
    We will loosely follow the Software Carpentry `Shell Scripts
-   <https://swcarpentry.github.io/shell-novice/06-script/index.html>`_
+   <https://swcarpentry.github.io/shell-novice/06-script.html>`_
    lesson from `The Unix Shell
    <https://swcarpentry.github.io/shell-novice/>`_
 
