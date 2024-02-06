@@ -29,27 +29,6 @@ provided for most of the topics.
 Our focus will be to look at examples in class to learn how to apply the ideas.
 
 
-Some websites to help understand the concepts we will encounter include:
-
-* cplusplus.com: https://cplusplus.com/
-
-  This provides details on all of the features and library functions
-  of C++.
-
-  It also `includes a tutorial <https://cplusplus.com/doc/tutorial/>`_.
-
-* cppreference.com: https://en.cppreference.com/w/
-
-  Another site that provides extensive documentation on all of
-  the language and library features.
-
-* codeguru: https://www.codeguru.com/cplusplus/
-
-  This has some nice tutorials on specific C++ features
-
-* stackoverflow: https://stackoverflow.com/
-
-  This is a platform where users can pose and answer questions
 
 .. important::
 
