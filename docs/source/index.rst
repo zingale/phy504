@@ -68,13 +68,7 @@ Spring 2024
    tools
    compiling
    first_project
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Tools
-
    editors
-   random-tools
 
 .. toctree::
    :maxdepth: 1
