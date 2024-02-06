@@ -70,7 +70,7 @@ Using your own machine
 You are encouraged to also work on your own personal laptop.  The
 easiest way to do so would be to install a Linux virtual machine (for
 example, `using Ubuntu
-<https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview>`_).
+<https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox>`_)
 Other options include the `Windows Subsystem for Linux
 <https://docs.microsoft.com/en-us/windows/wsl/install>`_.
 
