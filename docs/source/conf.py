@@ -43,6 +43,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
               'sphinxcontrib.bibtex',
               'sphinx.ext.autosummary',
+              'sphinx_math_dollar',
               'sphinx_design',
               'sphinx.ext.githubpages',
               'sphinx_copybutton',
@@ -104,7 +105,16 @@ todo_include_todos = False
 
 
 # -- Options for MathJax
-mathjax3_config = {'tex': {'macros': {}}}
+# -- Options for MathJax
+# for sphinx-math-dollar
+mathjax3_config = {}
+
+mathjax3_config["tex"] = {
+    "inlineMath": [['\\(', '\\)']],
+    "displayMath": [["\\[", "\\]"]],
+  }
+
+mathjax3_config["tex"]["macros"] = {}
 
 with open('mathsymbols.tex', 'r') as f:
     for line in f:
