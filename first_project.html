@@ -24,7 +24,7 @@
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
         <script src="_static/design-tabs.js?v=36754332"></script>
-        <script>window.MathJax = {"tex": {"macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -95,7 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools / Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">A First C++ Project</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#compound-interest">Compound interest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kepler-s-third-law">Kepler’s third law</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#letter-histogram">Letter histogram</a></li>
 </ul>
 </li>
@@ -232,26 +232,23 @@
 <h1>A First C++ Project<a class="headerlink" href="#a-first-c-project" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 2.5</p>
+<p>Cyganek section 2.5 has a different first project (an interest calculator)
+than we do here.</p>
 </div>
-<section id="compound-interest">
-<h2>Compound interest<a class="headerlink" href="#compound-interest" title="Link to this heading"></a></h2>
-<p>We want to write a program that calculates compound interest.  The general expression for this is:</p>
+<section id="kepler-s-third-law">
+<h2>Kepler’s third law<a class="headerlink" href="#kepler-s-third-law" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion">Kepler’s third law</a>
+relates the period of a planet’s orbit, <span class="math notranslate nohighlight">\(P\)</span>, to its semi-major axis, <span class="math notranslate nohighlight">\(a\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[A = P \left ( 1 + \frac{r}{n} \right )^{nt}\]</div>
-<p>where</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P\)</span> is the principal</p></li>
-<li><p><span class="math notranslate nohighlight">\(r\)</span> is the interest rate on an annual basis (in units of 1 / year)</p></li>
-<li><p><span class="math notranslate nohighlight">\(n\)</span> is the compounding frequency (in units of 1 / year)</p></li>
-<li><p><span class="math notranslate nohighlight">\(t\)</span> is the investment time (in units of years)</p></li>
-<li><p><span class="math notranslate nohighlight">\(A\)</span> is the final amount</p></li>
-</ul>
+\[P^2 = a^3\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>I am expressing this differently than you text, which seems to use
-somewhat non-standard notation.</p>
+<p>This version has <span class="math notranslate nohighlight">\(P\)</span> in years and <span class="math notranslate nohighlight">\(a\)</span> in astronomical units and the
+mass of the Sun in solar masses.  In those units, the gravitational
+constant is <span class="math notranslate nohighlight">\(G = 4 \pi^2\)</span>.</p>
 </div>
+<p>We want to write a program that allows us to specify either <span class="math notranslate nohighlight">\(P\)</span> or <span class="math notranslate nohighlight">\(a\)</span>
+and print the other quantity.</p>
 <p>Looking at this expression, we need to learn how to raise something to
 a power.  In C++, this is done by the <code class="docutils literal notranslate"><span class="pre">std::pow()</span></code> function, which
 is part of <code class="docutils literal notranslate"><span class="pre">cmath</span></code>.</p>
@@ -297,8 +294,8 @@ a more compact way of initializing later).</p>
 <p>Now we will look at the complete code.  We shouldn’t be expected to be
 able to write something like this yet, but this will show us some of
 the C++ constructs that we will learn in the next weeks.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">interest.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">interest.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 

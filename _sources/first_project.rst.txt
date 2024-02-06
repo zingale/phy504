@@ -4,33 +4,28 @@ A First C++ Project
 
 .. admonition:: reading
 
-   Cyganek section 2.5
+   Cyganek section 2.5 has a different first project (an interest calculator)
+   than we do here.
 
-Compound interest
-=================
+Kepler's third law
+==================
 
-We want to write a program that calculates compound interest.  The general expression for this is:
+`Kepler's third law <https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion>`_ 
+relates the period of a planet's orbit, $P$, to its semi-major axis, $a$:
 
 .. math::
 
-   A = P \left ( 1 + \frac{r}{n} \right )^{nt}
-
-where
-
-* :math:`P` is the principal
-
-* :math:`r` is the interest rate on an annual basis (in units of 1 / year)
-
-* :math:`n` is the compounding frequency (in units of 1 / year)
-
-* :math:`t` is the investment time (in units of years)
-
-* :math:`A` is the final amount
+   P^2 = a^3
 
 .. note::
 
-   I am expressing this differently than you text, which seems to use
-   somewhat non-standard notation.
+   This version has $P$ in years and $a$ in astronomical units and the
+   mass of the Sun in solar masses.  In those units, the gravitational
+   constant is $G = 4 \pi^2$.
+
+We want to write a program that allows us to specify either $P$ or $a$
+and print the other quantity.
+
 
 Looking at this expression, we need to learn how to raise something to
 a power.  In C++, this is done by the ``std::pow()`` function, which
