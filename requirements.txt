@@ -12,3 +12,4 @@ sphinx-copybutton
 sphinx-prompt
 sphinx-design
 codespell
+sphinx-math-dollar
