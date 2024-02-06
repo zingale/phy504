@@ -19,7 +19,7 @@ When we write C++ code, there are a few concepts we need to understand:
 * *executable* : this is the name of the program output by the
   compiler that is able to be run by the operating system.
 
-  Tradiationally it will not have an extension on Unix (so
+  Traditionally it will not have an extension on Unix (so
   ``hello.cpp`` will produce an executable named ``hello``), while on
   Windows, you will often see the extension ``.exe``.
 

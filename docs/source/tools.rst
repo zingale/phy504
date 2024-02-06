@@ -2,6 +2,28 @@
 Helpful C++ Tools / Resources
 *****************************
 
+References
+==========
+
+Some websites to help understand the concepts we will encounter include:
+
+* cplusplus.com: https://cplusplus.com/
+
+  This provides details on all of the features and library functions
+  of C++.
+
+  It also `includes a tutorial <https://cplusplus.com/doc/tutorial/>`_.
+
+* cppreference.com: https://en.cppreference.com/w/
+
+  Another site that provides extensive documentation on all of
+  the language and library features.
+
+* stackoverflow: https://stackoverflow.com/
+
+  This is a platform where users can pose and answer questions
+
+
 Tutorials / Cheat Sheets
 ========================
 
@@ -9,6 +31,10 @@ Tutorials / Cheat Sheets
 
   This has a wonderful collection of "cheat sheets" showing how a lot
   of the different parts of the C++ standard library work.
+
+* codeguru: https://www.codeguru.com/cplusplus/
+
+  This has some nice tutorials on specific C++ features
 
 Tools
 =====
