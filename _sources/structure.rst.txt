@@ -4,7 +4,8 @@ Structure of a C++ Program
 
 .. admonition:: reading
 
-   Cyganek section 2.4
+   * Cyganek section 2.4
+   * `Structure of a program <https://cplusplus.com/doc/tutorial/program_structure/>`_ from cplusplus.com
 
 Flowcharts
 ==========
