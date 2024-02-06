@@ -85,6 +85,7 @@ Now we will look at the complete code.  We shouldn't be expected to be
 able to write something like this yet, but this will show us some of
 the C++ constructs that we will learn in the next weeks.
 
-.. literalinclude:: ../../examples/interest/interest.cpp
+.. literalinclude:: ../../examples/kepler/kepler.cpp
    :language: c++
-   :caption: ``interest.cpp``
+   :caption: ``kepler.cpp``
+
