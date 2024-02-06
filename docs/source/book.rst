@@ -2,29 +2,46 @@
 C++ Textbook
 ************
 
-The recommended text for the class is *Introduction to Programming with C++ for
-Engineers* by Boguslaw Cyganek.
-
-The companion website is here: https://home.agh.edu.pl/~cyganek/BookCpp.htm
-
-And the code examples are all available on github: https://github.com/BogCyg/BookCpp
-
 .. note::
+
+   The recommended text for the class is *Introduction to Programming with C++ for
+   Engineers* by Boguslaw Cyganek.
+
+   * The companion website is here: https://home.agh.edu.pl/~cyganek/BookCpp.htm
+
+   * The code examples are all available on github: https://github.com/BogCyg/BookCpp
+
+   The author suggests that this text can be used for 3 semesters of
+   C++, so we will likely only get through 1/3rd of it.  But that will
+   cover the major features, with the remaining chapters diving deeper
+   into details.
+
+.. tip::
 
    We will follow the order that material is presented in the text
    relatively closely, but our examples will differ in many places.
 
 I will note the reading for each section on our course pages, and
 present a summary of the core ideas, but I will not repeat all the
-content that is in the text, so reading is important.  We will instead
-look at examples in class to learn how to apply the ideas.
+content that is in the text.  Alternate readings from the web will be
+provided for most of the topics.
 
-One thing to note: the author suggests that this text can be used for
-3 semesters of C++, so we will likely only get through 1/3rd of it.
-But that will cover the major features, with the remaining chapters
-diving deeper into details.
+Our focus will be to look at examples in class to learn how to apply the ideas.
+
 
 Some websites to help understand the concepts we will encounter include:
+
+* cplusplus.com: https://cplusplus.com/
+
+  This provides details on all of the features and library functions
+  of C++.
+
+  It also `includes a tutorial <https://cplusplus.com/doc/tutorial/>`_.
+
+* cppreference.com: https://en.cppreference.com/w/
+
+  Another site that provides extensive documentation on all of
+  the language and library features.
 
 * codeguru: https://www.codeguru.com/cplusplus/
 
