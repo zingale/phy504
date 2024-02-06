@@ -43,7 +43,7 @@ same protocol we used for connecting to the portal MathLab machines.
 
 There is some nice documentation describing key pairs in the Software
 Carpentry `Create an SSH key pair
-<https://swcarpentry.github.io/git-novice/07-github/index.html#3-ssh-background-and-setup>`_
+<https://swcarpentry.github.io/git-novice/07-github.html#ssh-background-and-setup>`_
 section.
 
 Here's how we will set things up:
