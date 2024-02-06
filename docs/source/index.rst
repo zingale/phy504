@@ -64,7 +64,6 @@ Spring 2024
    book
    hardware
    development-tools
-   development-cycle
    structure
    tools
    compiling
