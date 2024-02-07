@@ -127,7 +127,7 @@ We can solve for the derivative to find an approximation for the first derivativ
 
    \left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)
 
-This shows that this approximation for the derivative is first-order accurate in :math:`\Delta x` -- that is the truncation error of the approximation.
+This shows that this approximation for the derivative is first-order accurate in :math:`\Delta x`---that is the truncation error of the approximation.
 
 We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of :math:`\Delta x`:
@@ -183,7 +183,7 @@ For example:
 Minimizing roundoff
 ===================
 
-Consider subtracting the square of two numbers -- taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.
+Consider subtracting the square of two numbers---taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.
 
 Instead of doing:
 
@@ -266,7 +266,7 @@ What happens when we do something bad?  Consider this example:
    :caption: ``undefined.cpp``
 
 Here, we pass ``-1`` to ``trouble()`` which then takes the square root
-of it -- this results in a NaN.  But if we run the code, it goes
+of it---this results in a NaN.  But if we run the code, it goes
 merrily about its way, using that result in the later computations.
 
 Unix uses `signals <https://en.wikipedia.org/wiki/Signal_(IPC)>`_ to
@@ -286,7 +286,7 @@ to enable exception trapping via:
 
    feenableexcept(FE_INVALID|FE_DIVBYZERO|FE_OVERFLOW);
 
-That catches 3 different types of floating point exceptions -- invalid, divide-by-zero, and overflows.
+That catches 3 different types of floating point exceptions---invalid, divide-by-zero, and overflows.
 
 Next we need to add a handler to deal with the exception:
 
@@ -309,7 +309,7 @@ Here's the new version of our code:
    :caption: ``undefined_trap.cpp``
 
 When we compile the code, we want to add the ``-g`` option to store the
-symbols in the code -- this allows us to understand where problems arise:
+symbols in the code---this allows us to understand where problems arise:
 
 .. prompt:: bash
 

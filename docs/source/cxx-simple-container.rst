@@ -15,7 +15,7 @@ A simple container: attempt I
 =============================
 
 Here's a simple container that manages its own memory (dynamic allocation on the heap),
-via a ``unique_ptr`` -- this is a pointer that the compiler will automatically clean up
+via a ``unique_ptr``---this is a pointer that the compiler will automatically clean up
 after once it goes out of scope.
 
 .. tip::
@@ -69,7 +69,7 @@ What if we try to implement the copy constructor as:
        : _size(c._size), _data(c._data.get()) {}
 
 Here we are using member list initialization to set ``_data`` to be the
-same pointer as ``c._data`` -- the ``.get()`` function on a
+same pointer as ``c._data``---the ``.get()`` function on a
 ``unique_ptr`` returns the underlying pointer to the data.
 
 If we add this, and run with it, we will see:
@@ -96,7 +96,7 @@ pointer twice.
 A simple container: attempt III
 ===============================
 
-We want the copy constructor to do a *deep copy* -- it should create
+We want the copy constructor to do a *deep copy*---it should create
 its own memory space and copy the data, element-by-element from the
 input ``Container`` to the new one.
 

@@ -31,7 +31,7 @@ Threads
 
 In an OpenMP application, threads are spawned as needed.
 
-* When you start the program, there is one thread -- the master thread
+* When you start the program, there is one thread---the master thread
 
 * When you enter a parallel region, multiple threads run concurrently
 
@@ -159,7 +159,7 @@ Here's a matrix-vector multiply:
       }
 
 One thing we want is for the performance to scale with the number of
-cores -- if you double the number of cores, does the code run twice as
+cores---if you double the number of cores, does the code run twice as
 fast?
 
 Reductions

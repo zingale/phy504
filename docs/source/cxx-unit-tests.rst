@@ -150,7 +150,7 @@ tests before we merge it into the ``main`` git branch.  This is called
 <https://docs.github.com/en/actions>`_ that allow us to set up simple
 scripts that run on all pull requests.
 
-We'll look at how this can work -- this is a high level overview of
+We'll look at how this can work---this is a high level overview of
 the process that we will experiment with.  Usually one of the main
 developers of a large project will have already implemented the
 testing.

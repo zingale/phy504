@@ -257,7 +257,7 @@ Now we'll try to combine Doxygen and Sphinx.
 
    * change ``INPUT`` to ``../``
 
-   * Turn off HTML and turn on XML -- Breathe works off of the XML output.
+   * Turn off HTML and turn on XML---Breathe works off of the XML output.
 
 2. Update our ``conf.py`` to include Breathe and also run Doxygen for us.  Here's
    the updated ``conf.py``:

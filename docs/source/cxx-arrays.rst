@@ -12,7 +12,7 @@ Arrays have many similarities to vectors, but there are some key differences:
   In contrast, arrays are fixed-size.
 
 * Arrays also are allocated in a different part of memory by default
-  (the stack rather than the heap -- more on this later).
+  (the stack rather than the heap---more on this later).
 
 * Arrays do not initialize their elements by default when declared.
 
@@ -23,7 +23,7 @@ Here's a simple example:
    :language: c++
    :caption: ``simple_array.cpp``
 
-Declaring the array takes 2 arguments in the ``<>`` -- the datatype and the number of elements.
+Declaring the array takes 2 arguments in the ``<>``---the datatype and the number of elements.
 
 Notice that when we look over the elements, they are uninitialized.
 
@@ -82,7 +82,7 @@ We'll cover references next.
       double x[10];
       int p[10][20];
 
-   The ``std::array`` is a more modern wrapper for these--it has the
+   The ``std::array`` is a more modern wrapper for these---it has the
    advantage that it knows the size of the array.
 
 

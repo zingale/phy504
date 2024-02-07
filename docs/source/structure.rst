@@ -64,7 +64,7 @@ example to computes the square root of an input number).
       std::cout << "Hello World!" << std::endl;
    }
 
-A nice breakdown of a "Hello, World" program is shown here: https://www.cplusplus.com/doc/tutorial/program_structure/ -- let's walk through that.
+A nice breakdown of a "Hello, World" program is shown here: https://www.cplusplus.com/doc/tutorial/program_structure/ ---let's walk through that.
 
 A few important bits:
 

@@ -38,7 +38,7 @@ Copy and paste the following into that file:
 
 We'll discuss loops and if-tests in the shell later, but there is one
 other new command we will note here: ``ln``.  ``ln -s`` creates a
-*symbolic link* to a file -- it makes it appear as if these files are
+*symbolic link* to a file---it makes it appear as if these files are
 in our home directory ``~/`` when they actually live elsewhere in our
 path.
 
@@ -74,7 +74,7 @@ Git configuration
 Before we start using git we need to configure it.  This will
 create a file ``~/.gitconfig`` with global settings for using git.
 
-First we need to tell git our name and email -- this will be used in
+First we need to tell git our name and email---this will be used in
 the log files when we make changes so other users know who made the
 changes.
 
@@ -100,7 +100,7 @@ Now, we want to ensure that this file is linked to our home directory when we lo
 
    mv .gitconfig MySBFiles/dotfiles/
 
-Note: you might get a warning that it cannot preserve access times -- that is okay.
+Note: you might get a warning that it cannot preserve access times---that is okay.
 
 To test this, open up a new terminal and do
 

@@ -12,7 +12,7 @@ efficiently.
 
 .. note::
 
-   There is no separate C++ interface to the MPI library -- we use the
+   There is no separate C++ interface to the MPI library---we use the
    C interface.  This means that the functions accept arguments as
    pointers and not references, so we need to pass the address of the
    data we are using.
@@ -87,8 +87,8 @@ We have 2 communications here.
 MPI Concepts
 ============
 
-With MPI, a separate instance of your program is run on each processor
--- these are the MPI processes.  We don't need to worry about
+With MPI, a separate instance of your program is run on each
+processor---these are the MPI processes.  We don't need to worry about
 thread-safety is not an issue here, since each instance of the program
 is isolated from the others.
 

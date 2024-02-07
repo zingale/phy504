@@ -54,9 +54,9 @@ There are 2 ways to access the beginning and end of a ``vector``:
 * ``.cend()``, ``.end()`` : these will return an iterator that points
   *to one past the last element*.
 
-An iterator can be thought of as a special type of *pointer* -- a
+An iterator can be thought of as a special type of *pointer*---a
 topic that we will discuss much more later.  Iterators have
-restrictions on their use, depending on the container -- this makes
+restrictions on their use, depending on the container---this makes
 them more safe to use.
 
 If we think about an iterator like:
@@ -68,7 +68,7 @@ If we think about an iterator like:
 Then we can access the next element in ``container`` by incrementing the iterator, ``it++``.
 
 If we want to see the value in ``container`` that the iterator is
-pointing to, then we need to *dereference* it -- this is done with the
+pointing to, then we need to *dereference* it---this is done with the
 ``*`` operator:
 
 .. code:: c++
@@ -134,7 +134,7 @@ always add a check on whether our end is past ``.end()``.
    What happens if you use ``.cbegin()`` and/or ``.cend()`` instead
    ``.begin()`` and ``.end()``?
 
-   Remember that the ``c`` in those functions is for ``const`` -- it
+   Remember that the ``c`` in those functions is for ``const``---it
    provides read-only access to the elements through the iterator.
 
 Resize and clear

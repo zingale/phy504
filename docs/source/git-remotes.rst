@@ -73,7 +73,7 @@ Now's let's make a change
 
    add the new user's name to ``authors.txt`` and commit the change.
 
-Now we can share our changes with our remote -- the bare repo by doing a *push*.
+Now we can share our changes with our remote---the bare repo by doing a *push*.
 
 .. prompt::
 

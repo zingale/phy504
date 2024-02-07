@@ -34,12 +34,12 @@ Some comments:
 * When we ``push_back()`` onto the matrix, we are adding a whole new row.
 
 * When we loop over elements, we first loop over rows (outer loop) and
-  then we loop over the columns in that row -- that data is
+  then we loop over the columns in that row---that data is
   contiguous, so this looping will make the best use of memory cache.
 
 * We do nothing here to enforce that every row has the same number of
-  elements -- this can potentially be unsafe if we try to access
+  elements---this can potentially be unsafe if we try to access
   beyond the limits of a row.  We'll fix this later.
 
-* Both of our operations involve sums over elements -- we are careful
+* Both of our operations involve sums over elements---we are careful
   to first initialize the sum to ``0`` before adding to it.

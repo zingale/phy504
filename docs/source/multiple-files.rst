@@ -107,13 +107,13 @@ and then link them all together.  Here are the steps:
 The first two commands are the compilation step.  The take the source file
 and produce an object file (e.g., ``planet.cpp`` → ``planet.o``).
 
-The final command is the link step -- notice that we use the same command,
+The final command is the link step---notice that we use the same command,
 ``g++``, as the compiler and linker.  In this case, we tell it the name
 for our executable and then give it the list of all object files that it
 needs to link together.
 
 Notice that we don't explicitly do anything with the header file,
-``planet.H`` -- the preprocessor includes this as part of the
+``planet.H``---the preprocessor includes this as part of the
 compilation step.
 
 .. admonition:: try it...

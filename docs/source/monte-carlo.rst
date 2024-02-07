@@ -53,7 +53,7 @@ Some notes:
   generator and use it with the uniform distribution
   ``std::uniform_real_distribution``.
 
-* To initialize the generator, we use ``std::random_device`` -- this is a true
+* To initialize the generator, we use ``std::random_device``---this is a true
   random number generator (depending on system support) and will provide a seed
   as the starting point for our pseudo-random number generator.
 
@@ -82,7 +82,7 @@ this allows us to map the uniform distribution to other distributions.
 Seeding
 -------
 
-Sometimes we want reproducible random numbers -- i.e. we want the sequence of numbers we
+Sometimes we want reproducible random numbers---i.e. we want the sequence of numbers we
 get to be random but we want to get the same sequence each time we run.  To accomplish
 this, we can explicitly feed a seed into our random generator:
 
@@ -113,7 +113,7 @@ Example: computing :math:`\pi`
 ==============================
 
 A fun way to compute :math:`\pi` is to pick pairs of random numbers in
-the range :math:`[0, 1)` -- these will all fall inside a unit square,
+the range :math:`[0, 1)`---these will all fall inside a unit square,
 but we also check to see if they fall inside a circle of diameter
 ``1`` inscribed inside the unit square.
 

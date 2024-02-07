@@ -160,7 +160,7 @@ Here's the driver that implements this problem:
 Convergence
 ===========
 
-This method should converge as second-order -- i.e., if we double the number of points, the
+This method should converge as second-order---i.e., if we double the number of points, the
 error should go down by a factor of 4.
 
 .. admonition:: try it...

@@ -111,7 +111,7 @@ To get more practice, we'll start a new project and initialize it.
       nothing added to commit but untracked files present (use "git add" to track)
 
    It is telling us that it is not keeping track of ``script.out``.
-   But we don't want it to -- that is the output from running out
+   But we don't want it to---that is the output from running out
    script, and generally we don't keep the output of our codes in
    version control.
 
@@ -299,7 +299,7 @@ Note that this is on ``main``.  If you switch to ``feature`` you won't see it:
 
       git checkout -
 
-   to switch back to the previous branch we were on -- in this case, ``main``
+   to switch back to the previous branch we were on---in this case, ``main``
 
 Switch back to ``main``.
 
@@ -349,7 +349,7 @@ Merging
 -------
 
 Now we're happy with the changes we made on ``feature`` and we want to
-incorporate them into ``main`` -- this is called *merging*, we
+incorporate them into ``main``---this is called *merging*, we
 accomplish this by doing
 
 .. prompt:: bash
@@ -446,7 +446,7 @@ previous commit:
 
       git checkout 69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a
 
-Note that you don't need to type out the entire hash -- you only need the starting bits,
+Note that you don't need to type out the entire hash---you only need the starting bits,
 as long as it is unique.
 
 This command puts you in a detached branch, but you could make it a named branch by using

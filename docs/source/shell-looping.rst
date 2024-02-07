@@ -61,8 +61,9 @@ we can understand what it is doing:
       fi;
    done
 
-Notice that you can put the ``then`` on the same line as ``if`` if you separate with a ``;``.
-There is still one new command here, ``basename`` and one new piece of syntax -- using the backticks, \`.
+Notice that you can put the ``then`` on the same line as ``if`` if you
+separate with a ``;``.  There is still one new command here,
+``basename`` and one new piece of syntax---using the backticks, \`.
 
 We can see what basename does by looking at the man page:
 

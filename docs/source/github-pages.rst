@@ -110,7 +110,7 @@ After a minute or two, we can view our page at:
 
 .. tip::
 
-   Our page has an error -- there are 2 ``<body>`` tags -- the last should be ``</body>``.
+   Our page has an error---there are 2 ``<body>`` tags---the last should be ``</body>``.
    We can use a tool to catch errors like this:
 
    .. prompt:: bash

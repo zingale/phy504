@@ -11,7 +11,7 @@ several advantages:
 
 * We can reuse the functionality provided by a function easily
 
-* It becomes easier to test the code -- we can test each function
+* It becomes easier to test the code---we can test each function
   separately (unit tests)
 
 * We can use the functions in other codes
@@ -68,7 +68,7 @@ Some things to note here:
         return x + y;
      }
 
-* The function has its own scope -- inside of the function, ``x`` and ``y`` are
+* The function has its own scope---inside of the function, ``x`` and ``y`` are
   in scope and visible, but they are not available outside of the function.
 
 * We use ``return`` to explicitly return a value to the caller of the function.
@@ -80,16 +80,16 @@ Some things to note here:
 .. admonition:: try it...
 
    #. Move the function definition to be after ``main`` and remove the
-      forward declaration -- does the code still compile?
+      forward declaration---does the code still compile?
 
    #. Now instead leave in the forward declaration, but remove the
-      function definition -- what happens when you compile now?
+      function definition---what happens when you compile now?
 
 
 Void
 ====
 
-It is possible to have a function that doesn't return anything -- in
+It is possible to have a function that doesn't return anything---in
 that case we mark it as ``void``.
 
 Also, we can have a function that doesn't take any arguments.  Here's
@@ -177,7 +177,7 @@ We looked at some of the `algorithms that work on standard C++
 containers <https://en.cppreference.com/w/cpp/algorithm>`_ (like
 vectors) previously.  Now we can look at some more.  
 
-Consider ``std::sort()`` -- you can provide a function to ``sort``
+Consider ``std::sort()``---you can provide a function to ``sort``
 that tells it how to do the comparison.
 
 Here's an example that sorts some strings using the default comparison

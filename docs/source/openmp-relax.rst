@@ -6,7 +6,7 @@ Let's extend our 2d implementation of the Poisson solver to work with
 OpenMP.  Most of the work is in the smoothing / relaxation routine, so
 we will tackle that first.
 
-We did Gauss-Seidel relaxation -- this means that we use the new
+We did Gauss-Seidel relaxation---this means that we use the new
 values of :math:`\phi_{i,j}` as soon as they become available.  If we
 parallelize the loops using OpenMP, then there is a risk that while we
 are updating a point on one thread another thread will be reading it
@@ -40,7 +40,7 @@ as a checkerboard:
 
 The update of the red points depends only on the black points and vice
 versa.  This means that we can split the update into two separate
-passed -- first updating the red points and then the black.  This is
+passed---first updating the red points and then the black.  This is
 called *red-black Gauss-Seidel*.
 
 Here's what this code looks like:

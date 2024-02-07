@@ -7,9 +7,9 @@ Structures
    Cyganek section 3.9
 
 A structure (or ``struct``) is a compound datatype that can hold a mix
-of data.  In C++, a ``struct`` shares many similarities to a ``class``
--- both hold data as well as functions that work on the data (called
-*members*).
+of data.  In C++, a ``struct`` shares many similarities to a
+``class``---both hold data as well as functions that work on the data
+(called *members*).
 
 .. _sec:structplanet:
 
