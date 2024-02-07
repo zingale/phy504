@@ -38,7 +38,7 @@ into our ``reduce()`` function.
 
 To make it more general, we template everything, so our ``reduce()``
 can operate on a vector of any type.  (Note: there are routines in the
-C++ STL that already do this, but here we can see a simple
+C++ SL that already do this, but here we can see a simple
 implementation.)
 
 We will apply a function of the form:

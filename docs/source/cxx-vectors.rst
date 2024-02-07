@@ -2,12 +2,18 @@
 Vectors
 *******
 
-C++ has the *standard template library* or STL which adds an immense
-amount of functionality to the language.  Let's look at
-``std::vector``.  A ``vector`` is a container that can hold data of
-the same type (e.g., ``double``).  It differs from an array that you
-might have used in other languages in that it is not a fixed size --
-it can grow as needed to hold more data.
+C++ has the `standard library
+<https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library>`_ or SL
+which adds an immense amount of functionality to the language.  Let's
+look at ``std::vector``.  A ``vector`` is a container that can hold
+data of the same type (e.g., ``double``).  It differs from an array
+that you might have used in other languages in that it is not a fixed
+size -- it can grow as needed to hold more data.
+
+.. note::
+
+   There are many other types of containers in the SL that have different
+   properties.
 
 Vectors are very useful to store data and loop over it, etc.
 
