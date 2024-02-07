@@ -110,6 +110,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-pointers.html">Pointers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-statements.html">Loops and If-Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-maps.html">Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
@@ -273,7 +274,7 @@ g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 threads and then enter a parallel region where each thread prints its
 id separately:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 98 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 99 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -308,7 +309,7 @@ a different ordering.</p></li>
 the threads to operate one at a time.  For example, in the above
 <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>, we can get the prints to be done one at a time as:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 99 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 100 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -350,7 +351,7 @@ this hardware threading.</p>
 <h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Link to this heading"></a></h2>
 <p>Here’s a matrix-vector multiply:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 100 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 101 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
@@ -452,7 +453,7 @@ and include:</p>
 because of different roundoff behavior.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 101 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 102 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>

@@ -85,6 +85,7 @@ Spring 2024
    cxx-references
    cxx-pointers
    cxx-statements
+   cxx-maps
    cxx-io
 
 .. toctree::
