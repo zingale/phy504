@@ -170,8 +170,8 @@ Here's an example of different ways to pass data into a function:
 .. ==============
 
 
-STL Algorithms
-==============
+SL Algorithms
+=============
 
 We looked at some of the `algorithms that work on standard C++
 containers <https://en.cppreference.com/w/cpp/algorithm>`_ (like

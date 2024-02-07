@@ -4,9 +4,10 @@ C++ Datatypes
 
 .. admonition:: reading
 
-   Cyganek section 3.1 
+   * Cyganek section 3.1
+   * `Fundamental types <https://en.cppreference.com/w/cpp/language/types>`_ from cppreference.com
 
-Data is stored in computer memory.  We'll refer to the data in memory as an *object*.
+Data is stored in computer memory.  We'll refer to the data in memory as an `object <https://en.wikipedia.org/wiki/Object_(computer_science)>`_.
 
 We can access this data:
 
@@ -16,11 +17,13 @@ We can access this data:
 
 Data stored in the object can be:
 
-* *mutable* : we can change it -- these are variables
+* *mutable* : we can change it---these are `variables <https://en.wikipedia.org/wiki/Variable_(computer_science)>`_
 
-* *immutable* : it cannot be changed -- these are constants
+* *immutable* : it cannot be changed---these are `constants <https://en.wikipedia.org/wiki/Constant_(computer_programming)>`_
 
 There are several basic types of data:
+
+* ``bool`` : a 1-bit true or false
 
 * ``char`` : a 1 byte character (like ``'a'``)
 
@@ -32,18 +35,19 @@ There are several basic types of data:
 
 .. note::
 
-   A *floating point number* is any number with a decimal point, like ``2.0`` or ``1.e-20``.
+   A `floating point number
+   <https://en.wikipedia.org/wiki/Floating-point_arithmetic>`_ is any
+   number with a decimal point, like ``2.0`` or ``1.e-20``.
 
    Generally, floating point numbers cannot be exactly represented on
    a computer, since there are infinite numbers on the number line
    between :math:`[0, 1]`, but the computer only has a finite amount
    of memory.
 
-   Single and double precision refer to how much memory (and therefore
+   *Single* and *double* precision refer to how much memory (and therefore
    how much precision) is used to store the numbers.  Usually single
    precision uses 32 bits and double precision uses 64 bits.
-
-   More on this later.
+   More on this later...
 
 There are also modifiers that can be used with many of these like: ``short``, ``unsigned``, ``long``.
 
@@ -64,16 +68,18 @@ We can initialize a define a variable as:
 
    C++ variable names are case-sensitive, so ``x`` and ``X`` are distinct.
 
+.. warning::
+
    Variable names can include letters, numbers, and ``_``, but cannot
-   begin with a number.
+   begin with a number.  Additionally, there are some reserved
+   keywords (like ``int``) that cannot be used as variable names.
 
-   There are some reserved keywords (like ``int``) that cannot be used
-   as variable names.
+.. danger::
 
-It is always a good idea to initialize a variable with a starting
-value.  Otherwise, most compilers will leave it undefined and you can
-run into problems if you try to use it without first remembering to
-initialize it.
+   It is always a good idea to initialize a variable with a starting
+   value.  Otherwise, most compilers will leave it undefined and you
+   can run into problems if you try to use it without first
+   remembering to initialize it.
 
 There are a few ways to initialize.  Here are the two we'll see the most:
 
@@ -94,13 +100,6 @@ Objects defined with ``const`` cannot be changed, so you are required to initial
 
    const double G = 6.67e-8;
 
-.. tip::
-
-   We can use ``'`` to separate thousands in a number -- this is called a digit separator.  For example:
-
-   .. code:: c++
-
-      int a{1'234'567'890};
 
 Mixing types
 ============
@@ -110,7 +109,7 @@ implicitly *cast* objects to the more general type, sometimes with
 unexpected consequences.  Later we'll see how to explicitly cast data
 if needed.
 
-Try the following (you'll need to put this in a ``main()`` function and compile it.
+Try the following (you'll need to put this in a ``main()`` function and compile it).
 
 .. code:: c++
 
@@ -136,7 +135,7 @@ the sizes of the different data types.
    C++ guarantees a minimum size of the different types, but different
    compilers or processors may have different defaults.
 
-But we can explicitly determine this with a C++ program using ``sizeof()`` -- that returns the number of *bytes*
+But we can explicitly determine this with a C++ program using ``sizeof()``---that returns the number of *bytes*
 
 .. code:: c++
 
@@ -146,7 +145,7 @@ The following is guaranteed:
 
 .. code:: c++
 
-   sizeof(char) == 1  <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)
+   sizeof(char) == 1 <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)
 
 We can find out a lot about the range and precision of numbers that can be stored with a given type by using
 `std::numeric_limits <https://en.cppreference.com/w/cpp/types/numeric_limits>`_:
@@ -155,7 +154,7 @@ We can find out a lot about the range and precision of numbers that can be store
    :language: c++
    :caption: ``limits_test.cpp``
 
-Notice that there is a new pattern here, the use of ``<>`` -- this is
+Notice that there is a new pattern here, the use of ``<>``---this is
 used in template functions, a topic we will talk a lot about later.
 
 What happens if we exceed the limits of a data type?
@@ -165,9 +164,10 @@ What happens if we exceed the limits of a data type?
 
    (`xkcd <https://imgs.xkcd.com/comics/cant_sleep.png>`_)
 
+.. admonition:: try it...
 
-Let's try this.
-
+   Create a program that initializes a ``short`` integer and through
+   addition triggers an overflow.
 
 Precision is also important with floating point.  Consider the following: what do you expect?
 
@@ -183,8 +183,4 @@ Precision is also important with floating point.  Consider the following: what d
 With floating point, the associate property of addition does not hold.
 
 
-.. admonition:: try it...
-
-   Create a program that initializes a ``short`` integer and through
-   addition triggers an overflow.
 

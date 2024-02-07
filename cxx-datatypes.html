@@ -233,9 +233,12 @@
 <h1>C++ Datatypes<a class="headerlink" href="#c-datatypes" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 3.1</p>
+<ul class="simple">
+<li><p>Cyganek section 3.1</p></li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/language/types">Fundamental types</a> from cppreference.com</p></li>
+</ul>
 </div>
-<p>Data is stored in computer memory.  We’ll refer to the data in memory as an <em>object</em>.</p>
+<p>Data is stored in computer memory.  We’ll refer to the data in memory as an <a class="reference external" href="https://en.wikipedia.org/wiki/Object_(computer_science)">object</a>.</p>
 <p>We can access this data:</p>
 <ul class="simple">
 <li><p>directly: using a descriptive object name</p></li>
@@ -243,11 +246,12 @@
 </ul>
 <p>Data stored in the object can be:</p>
 <ul class="simple">
-<li><p><em>mutable</em> : we can change it – these are variables</p></li>
-<li><p><em>immutable</em> : it cannot be changed – these are constants</p></li>
+<li><p><em>mutable</em> : we can change it—these are <a class="reference external" href="https://en.wikipedia.org/wiki/Variable_(computer_science)">variables</a></p></li>
+<li><p><em>immutable</em> : it cannot be changed—these are <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_(computer_programming)">constants</a></p></li>
 </ul>
 <p>There are several basic types of data:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code> : a 1-bit true or false</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">char</span></code> : a 1 byte character (like <code class="docutils literal notranslate"><span class="pre">'a'</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">int</span></code> : an integer</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> : a single precision floating point number</p></li>
@@ -255,15 +259,16 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>A <em>floating point number</em> is any number with a decimal point, like <code class="docutils literal notranslate"><span class="pre">2.0</span></code> or <code class="docutils literal notranslate"><span class="pre">1.e-20</span></code>.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">floating point number</a> is any
+number with a decimal point, like <code class="docutils literal notranslate"><span class="pre">2.0</span></code> or <code class="docutils literal notranslate"><span class="pre">1.e-20</span></code>.</p>
 <p>Generally, floating point numbers cannot be exactly represented on
 a computer, since there are infinite numbers on the number line
 between <span class="math notranslate nohighlight">\([0, 1]\)</span>, but the computer only has a finite amount
 of memory.</p>
-<p>Single and double precision refer to how much memory (and therefore
+<p><em>Single</em> and <em>double</em> precision refer to how much memory (and therefore
 how much precision) is used to store the numbers.  Usually single
-precision uses 32 bits and double precision uses 64 bits.</p>
-<p>More on this later.</p>
+precision uses 32 bits and double precision uses 64 bits.
+More on this later…</p>
 </div>
 <p>There are also modifiers that can be used with many of these like: <code class="docutils literal notranslate"><span class="pre">short</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span></code>.</p>
 <p>A table of C++ datatypes is provided in the <a class="reference external" href="https://www.cplusplus.com/doc/tutorial/variables/">CPlusPlus tutorial variables section</a></p>
@@ -278,15 +283,20 @@ precision uses 32 bits and double precision uses 64 bits.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>C++ variable names are case-sensitive, so <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">X</span></code> are distinct.</p>
-<p>Variable names can include letters, numbers, and <code class="docutils literal notranslate"><span class="pre">_</span></code>, but cannot
-begin with a number.</p>
-<p>There are some reserved keywords (like <code class="docutils literal notranslate"><span class="pre">int</span></code>) that cannot be used
-as variable names.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Variable names can include letters, numbers, and <code class="docutils literal notranslate"><span class="pre">_</span></code>, but cannot
+begin with a number.  Additionally, there are some reserved
+keywords (like <code class="docutils literal notranslate"><span class="pre">int</span></code>) that cannot be used as variable names.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
 <p>It is always a good idea to initialize a variable with a starting
-value.  Otherwise, most compilers will leave it undefined and you can
-run into problems if you try to use it without first remembering to
-initialize it.</p>
+value.  Otherwise, most compilers will leave it undefined and you
+can run into problems if you try to use it without first
+remembering to initialize it.</p>
+</div>
 <p>There are a few ways to initialize.  Here are the two we’ll see the most:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{};</span>
@@ -300,13 +310,6 @@ objects that we will encounter later.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.67e-8</span><span class="p">;</span>
 </pre></div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>We can use <code class="docutils literal notranslate"><span class="pre">'</span></code> to separate thousands in a number – this is called a digit separator.  For example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">1&#39;234&#39;567&#39;890</span><span class="p">};</span>
-</pre></div>
-</div>
-</div>
 </section>
 <section id="mixing-types">
 <h2>Mixing types<a class="headerlink" href="#mixing-types" title="Link to this heading"></a></h2>
@@ -314,7 +317,7 @@ objects that we will encounter later.</p>
 implicitly <em>cast</em> objects to the more general type, sometimes with
 unexpected consequences.  Later we’ll see how to explicitly cast data
 if needed.</p>
-<p>Try the following (you’ll need to put this in a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function and compile it.</p>
+<p>Try the following (you’ll need to put this in a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function and compile it).</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// convert from Fahrenheit to Celsius</span>
 
 <span class="kt">double</span><span class="w"> </span><span class="n">T_F</span><span class="w"> </span><span class="p">{</span><span class="mf">100.0</span><span class="p">};</span>
@@ -334,12 +337,12 @@ the sizes of the different data types.</p>
 <p>C++ guarantees a minimum size of the different types, but different
 compilers or processors may have different defaults.</p>
 </div>
-<p>But we can explicitly determine this with a C++ program using <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code> – that returns the number of <em>bytes</em></p>
+<p>But we can explicitly determine this with a C++ program using <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>—that returns the number of <em>bytes</em></p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The following is guaranteed:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We can find out a lot about the range and precision of numbers that can be stored with a given type by using
@@ -371,7 +374,7 @@ compilers or processors may have different defaults.</p>
 </pre></div>
 </div>
 </div>
-<p>Notice that there is a new pattern here, the use of <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> – this is
+<p>Notice that there is a new pattern here, the use of <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>—this is
 used in template functions, a topic we will talk a lot about later.</p>
 <p>What happens if we exceed the limits of a data type?</p>
 <figure class="align-center" id="id2">
@@ -380,7 +383,11 @@ used in template functions, a topic we will talk a lot about later.</p>
 <p><span class="caption-number">Fig. 6 </span><span class="caption-text">(<a class="reference external" href="https://imgs.xkcd.com/comics/cant_sleep.png">xkcd</a>)</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>Let’s try this.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Create a program that initializes a <code class="docutils literal notranslate"><span class="pre">short</span></code> integer and through
+addition triggers an overflow.</p>
+</div>
 <p>Precision is also important with floating point.  Consider the following: what do you expect?</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
 <span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
@@ -391,11 +398,6 @@ used in template functions, a topic we will talk a lot about later.</p>
 </pre></div>
 </div>
 <p>With floating point, the associate property of addition does not hold.</p>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>Create a program that initializes a <code class="docutils literal notranslate"><span class="pre">short</span></code> integer and through
-addition triggers an overflow.</p>
-</div>
 </section>
 </section>
 
