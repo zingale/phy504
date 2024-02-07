@@ -19,8 +19,8 @@ end of the parallel region.
 
 .. tip::
 
-   There is one further trick here -- all of the OpenMP stuff is
-   wrapped in ``#ifdef _OPENMP`` -- the ``_OPENMP`` preprocessor
+   There is one further trick here---all of the OpenMP stuff is
+   wrapped in ``#ifdef _OPENMP``---the ``_OPENMP`` preprocessor
    variable is defined by the standard if we are building with OpenMP.
    By wrapping those features, this allows the code to be compiled
    without OpenMP if we desire.

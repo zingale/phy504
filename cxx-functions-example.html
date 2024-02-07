@@ -243,7 +243,7 @@
 </pre></div>
 </div>
 <p>that we need to make a copy.  But C++ instead provides <em>move
-semantics</em> – this means that instead of copying the entire contents
+semantics</em>—this means that instead of copying the entire contents
 of the local <code class="docutils literal notranslate"><span class="pre">v_out</span></code> to the vector in the caller <code class="docutils literal notranslate"><span class="pre">v_new</span></code> it simply
 moves the data by setting the pointer to the data region in <code class="docutils literal notranslate"><span class="pre">v_new</span></code>
 to the data region in <code class="docutils literal notranslate"><span class="pre">v_out</span></code> before <code class="docutils literal notranslate"><span class="pre">v_out</span></code> is destroyed.</p>
@@ -278,7 +278,7 @@ to the data region in <code class="docutils literal notranslate"><span class="pr
 </div>
 <p>The problem here is that <code class="docutils literal notranslate"><span class="pre">v_out</span></code> is destroyed at the end of the function
 <code class="docutils literal notranslate"><span class="pre">f</span></code>, so the reference will be to something that no longer exists.
-This is not allowed – we cannot return a reference to a local
+This is not allowed—we cannot return a reference to a local
 variable.</p>
 </div>
 <p>Let’s play with this:</p>

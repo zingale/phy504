@@ -2,9 +2,9 @@
 Allocating Memory
 *****************
 
-In C++ we can allocate memory using ``new`` and then explicitly free it up with ``delete``.
-But this can be dangerous -- a very frequent bug is forgetting to free up memory that you
-manually allocated.
+In C++ we can allocate memory using ``new`` and then explicitly free
+it up with ``delete``.  But this can be dangerous---a very frequent
+bug is forgetting to free up memory that you manually allocated.
 
 Instead, we'd like to be able to have the memory freed automatically for us
 when the object managing it goes out of scope.  This is where a unique pointer

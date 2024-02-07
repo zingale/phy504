@@ -47,13 +47,13 @@ since I own it.  So you are denied access.
 This is okay.  The workflow that github emphasizes is one based around
 *pulls* not *pushes*, so let's see how we do that.
 
-First, we need to *fork* the repo -- this creates a clone under our
+First, we need to *fork* the repo---this creates a clone under our
 control that we can do with as we please.  Click on the "fork" button.
 
 .. image:: github-fork.png
    :align: center
 
-It may ask you where you want the fork to life -- you want it to live
+It may ask you where you want the fork to life---you want it to live
 under your profile / username.
 
 This will bring you to a new github page, displaying the fork, with a

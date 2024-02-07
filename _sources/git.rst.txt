@@ -186,7 +186,7 @@ project.
 
       git commit
 
-   Notice that we didn't specify the file here -- all the changes that
+   Notice that we didn't specify the file here---all the changes that
    were staged were part of that commit.
 
    If we now do ``git log``, we'll see that there is a second commit

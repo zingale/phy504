@@ -14,7 +14,7 @@ Classes are objects that hold both data and functions that know how to operate o
    In C++, both ``struct`` and ``class`` create a class, with the difference being
    whether the data is publicly accessible by default.
 
-We'll start by doing a ``struct`` with a *constructor* -- this will
+We'll start by doing a ``struct`` with a *constructor*---this will
 behave like a class, except by default all of the data will be
 publicly available.
 
@@ -42,7 +42,7 @@ initialization / setup that the class requires.
 
    The constructor always has the same name as the class/struct.
 
-Here's a concrete example -- we'll build on our vector of planets, but making a class/struct
+Here's a concrete example---we'll build on our vector of planets, but making a class/struct
 that holds the data and member functions that know how to operate on that data.
 
 First well define the ``struct`` called ``SolarSystem`` and write the constructor:
@@ -68,7 +68,7 @@ Some notes:
   this is called the *initialization list*.  Any member data specified in that (comma-separated)
   list is initialized when an object is created as an instance of the class.
 
-* In the constructor body we have an ``assert()`` statement -- this
+* In the constructor body we have an ``assert()`` statement---this
   will abort the code if it is false.  This is a way to add runtime
   checking to the code to ensure that it is being used properly /
   matching your assumptions.

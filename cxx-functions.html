@@ -239,7 +239,7 @@
 several advantages:</p>
 <ul class="simple">
 <li><p>We can reuse the functionality provided by a function easily</p></li>
-<li><p>It becomes easier to test the code – we can test each function
+<li><p>It becomes easier to test the code—we can test each function
 separately (unit tests)</p></li>
 <li><p>We can use the functions in other codes</p></li>
 <li><p>The design process becomes easier if we think of our code in terms
@@ -299,7 +299,7 @@ For our <code class="docutils literal notranslate"><span class="pre">add</span><
 </pre></div>
 </div>
 </li>
-<li><p>The function has its own scope – inside of the function, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
+<li><p>The function has its own scope—inside of the function, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are
 in scope and visible, but they are not available outside of the function.</p></li>
 <li><p>We use <code class="docutils literal notranslate"><span class="pre">return</span></code> to explicitly return a value to the caller of the function.</p>
 <p>Only one return will ever be executed in a function, but the
@@ -311,15 +311,15 @@ depending on conditions inside the function itself.</p>
 <p class="admonition-title">try it…</p>
 <ol class="arabic simple">
 <li><p>Move the function definition to be after <code class="docutils literal notranslate"><span class="pre">main</span></code> and remove the
-forward declaration – does the code still compile?</p></li>
+forward declaration—does the code still compile?</p></li>
 <li><p>Now instead leave in the forward declaration, but remove the
-function definition – what happens when you compile now?</p></li>
+function definition—what happens when you compile now?</p></li>
 </ol>
 </div>
 </section>
 <section id="void">
 <h2>Void<a class="headerlink" href="#void" title="Link to this heading"></a></h2>
-<p>It is possible to have a function that doesn’t return anything – in
+<p>It is possible to have a function that doesn’t return anything—in
 that case we mark it as <code class="docutils literal notranslate"><span class="pre">void</span></code>.</p>
 <p>Also, we can have a function that doesn’t take any arguments.  Here’s
 an example:</p>
@@ -417,7 +417,7 @@ const, like:</p>
 <p>We looked at some of the <a class="reference external" href="https://en.cppreference.com/w/cpp/algorithm">algorithms that work on standard C++
 containers</a> (like
 vectors) previously.  Now we can look at some more.</p>
-<p>Consider <code class="docutils literal notranslate"><span class="pre">std::sort()</span></code> – you can provide a function to <code class="docutils literal notranslate"><span class="pre">sort</span></code>
+<p>Consider <code class="docutils literal notranslate"><span class="pre">std::sort()</span></code>—you can provide a function to <code class="docutils literal notranslate"><span class="pre">sort</span></code>
 that tells it how to do the comparison.</p>
 <p>Here’s an example that sorts some strings using the default comparison
 (alphabetically) and then again with a custom comparison function that

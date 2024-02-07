@@ -288,9 +288,9 @@ computers (nodes) connected via a high-speed network.</p>
 <p>MPI is a popular approach here.</p>
 </li>
 </ul>
-<p>Often we will do a little of each – shared memory parallelism inside
+<p>Often we will do a little of each—shared memory parallelism inside
 a compute node and distributed memory parallelism across nodes.</p>
-<p>There is another type of parallelism – using accelerators, like GPUs,
+<p>There is another type of parallelism—using accelerators, like GPUs,
 that dominates high performance computing now.  Here we can use OpenMP,
 OpenACC, or a vendor-specific library like CUDA or HIP to do the
 offloading.</p>
@@ -376,7 +376,7 @@ processors, given the fraction of the code that is parallel, <cite>P</cite>:</p>
 <p>Does this mean that we have no hope of using machines with 100,000’s of cores?  No:</p>
 <ul class="simple">
 <li><p>New algorithms have been designed to exploit massive parallelism</p></li>
-<li><p>Larger computers mean bigger problems are possible – as you increase
+<li><p>Larger computers mean bigger problems are possible—as you increase
 the problem size, the fraction of the code that is serial likely
 decreases.</p></li>
 </ul>
@@ -427,7 +427,7 @@ of parallelism.</p>
 </section>
 <section id="trivially-parallel">
 <h2>Trivially parallel<a class="headerlink" href="#trivially-parallel" title="Link to this heading"></a></h2>
-<p>Sometimes no communication is needed between processes – this is <em>trivially parallel</em></p>
+<p>Sometimes no communication is needed between processes—this is <em>trivially parallel</em></p>
 <p>Examples:</p>
 <ul class="simple">
 <li><p>Ray tracing or Monte Carlo:</p>
@@ -438,7 +438,7 @@ of parallelism.</p>
 </li>
 <li><p>Analyzing a large collection of data files</p>
 <ul>
-<li><p>We have a pipeline that works on a single file – we can run
+<li><p>We have a pipeline that works on a single file—we can run
 multiple pipelines each on a separate file.</p></li>
 <li><p>Each file is processed on a single core.</p></li>
 </ul>
@@ -482,7 +482,7 @@ will have direct access to the same pool of memory:</p>
 <p>OpenMP is the standard here.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Some machines are more complex – multiple chips each with their own pool of local memory.
+<p>Some machines are more complex—multiple chips each with their own pool of local memory.
 The chips can talk to one another through a slower connection, so accessing memory “off chip”
 could slow you down.</p>
 <p>Best performance requires knowing your machine’s architecture.</p>

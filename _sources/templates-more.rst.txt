@@ -5,14 +5,14 @@ More On Templates
 ``static_assert``
 =================
 
-Notice that we can create an ``Array<std::string>`` -- but that's really not our intent,
+Notice that we can create an ``Array<std::string>``---but that's really not our intent,
 and we are likely going to do things that only make sense with numbers.
 
 .. code:: c++
 
    Array<std::string> x(5, 5, "x");
 
-We can add a ``static_assert`` to disallow this -- a static assert is evaluated at compile time.
+We can add a ``static_assert`` to disallow this---a static assert is evaluated at compile time.
 Just instead of our ``Array`` constructor, we just add:
 
 .. code:: c++

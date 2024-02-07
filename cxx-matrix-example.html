@@ -296,12 +296,12 @@ holds row <code class="docutils literal notranslate"><span class="pre">r</span><
 <code class="docutils literal notranslate"><span class="pre">[c]</span></code> to get the position corresponding to the column we want.</p></li>
 <li><p>When we <code class="docutils literal notranslate"><span class="pre">push_back()</span></code> onto the matrix, we are adding a whole new row.</p></li>
 <li><p>When we loop over elements, we first loop over rows (outer loop) and
-then we loop over the columns in that row – that data is
+then we loop over the columns in that row—that data is
 contiguous, so this looping will make the best use of memory cache.</p></li>
 <li><p>We do nothing here to enforce that every row has the same number of
-elements – this can potentially be unsafe if we try to access
+elements—this can potentially be unsafe if we try to access
 beyond the limits of a row.  We’ll fix this later.</p></li>
-<li><p>Both of our operations involve sums over elements – we are careful
+<li><p>Both of our operations involve sums over elements—we are careful
 to first initialize the sum to <code class="docutils literal notranslate"><span class="pre">0</span></code> before adding to it.</p></li>
 </ul>
 </section>

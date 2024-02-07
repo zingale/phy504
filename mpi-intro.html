@@ -240,7 +240,7 @@ However, the additional capabilities allow us to do things more
 efficiently.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There is no separate C++ interface to the MPI library – we use the
+<p>There is no separate C++ interface to the MPI library—we use the
 C interface.  This means that the functions accept arguments as
 pointers and not references, so we need to pass the address of the
 data we are using.</p>
@@ -382,8 +382,8 @@ up on processor <code class="docutils literal notranslate"><span class="pre">0</
 </section>
 <section id="mpi-concepts">
 <h2>MPI Concepts<a class="headerlink" href="#mpi-concepts" title="Link to this heading"></a></h2>
-<p>With MPI, a separate instance of your program is run on each processor
-– these are the MPI processes.  We don’t need to worry about
+<p>With MPI, a separate instance of your program is run on each
+processor—these are the MPI processes.  We don’t need to worry about
 thread-safety is not an issue here, since each instance of the program
 is isolated from the others.</p>
 <p>A few considerations:</p>

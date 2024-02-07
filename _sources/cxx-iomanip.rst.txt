@@ -34,8 +34,8 @@ To output in columns, we can use:
 
 .. note::
 
-   Most of these are persistent -- once you set them, the format will remain in place until
-   it is reset.  The one exception is ``std::setw()`` -- this needs to be set before each
+   Most of these are persistent---once you set them, the format will remain in place until
+   it is reset.  The one exception is ``std::setw()``---this needs to be set before each
    output.
 
 Here's an example using these different formats:

@@ -230,7 +230,7 @@
 <p>Let’s extend our 2d implementation of the Poisson solver to work with
 OpenMP.  Most of the work is in the smoothing / relaxation routine, so
 we will tackle that first.</p>
-<p>We did Gauss-Seidel relaxation – this means that we use the new
+<p>We did Gauss-Seidel relaxation—this means that we use the new
 values of <span class="math notranslate nohighlight">\(\phi_{i,j}\)</span> as soon as they become available.  If we
 parallelize the loops using OpenMP, then there is a risk that while we
 are updating a point on one thread another thread will be reading it
@@ -254,7 +254,7 @@ as a checkerboard:</p>
 </figure>
 <p>The update of the red points depends only on the black points and vice
 versa.  This means that we can split the update into two separate
-passed – first updating the red points and then the black.  This is
+passed—first updating the red points and then the black.  This is
 called <em>red-black Gauss-Seidel</em>.</p>
 <p>Here’s what this code looks like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">fac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>

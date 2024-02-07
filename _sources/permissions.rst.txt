@@ -26,7 +26,7 @@ Let's talk about the fields / columns that we see the listing:
 * The first field (e.g. ``drwxrwxr-x``) are the permissions of the file / directory.  They
   control who can read, write, and execute the file.
 
-* We'll skip the second column -- we rarely need to worry about this
+* We'll skip the second column---we rarely need to worry about this
 
 * The third field, ``mzingale`` in my case, is the username of the owner of the file
 

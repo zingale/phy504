@@ -5,9 +5,9 @@ Example: Multidimensional Contiguous Array
 .. admonition:: reading
 
    Your text does an example of a multi-dimensional array that is a
-   ``vector`` of ``vector`` s.
+   ``vector`` of ``vector``.
 
-   We are doing something different here -- we want the memory space
+   We are doing something different here---we want the memory space
    to be fully contiguous, so we will create a 1-d memory space and create
    operators to index into it.
 
@@ -76,7 +76,7 @@ Some comments on this implementation:
   they appear as member data in the class.
 
 * We include the ``_data`` vector in the initialization-list without
-  worrying about if its size is zero -- the ``asserts``'s in the
+  worrying about if its size is zero---the ``assert`` in the
   function body do that for us.
 
 * We have two methods for the ``()`` operator.  The first is for the
@@ -98,10 +98,10 @@ Notice a few things:
   of an ``unsigned int``).
 
 * For ``Array y``, we use a range-for loop over the elements of
-  ``_data`` directly -- this is the one-dimensional representation of
+  ``_data`` directly---this is the one-dimensional representation of
   our array.  We can do this because the data is stored contiguously.
 
-  Note though -- this breaks the idea of encapsulation in a class, since
+  Note though---this breaks the idea of encapsulation in a class, since
   we are accessing this data directly.
 
 * When we try to index out of bounds, the ``assert`` statements catch

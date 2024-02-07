@@ -21,7 +21,7 @@ We use curly braces, ``{}`` to denote blocks of code.  These are used in a numbe
 
 * to group statements that are part of another statement, as with an ``if`` or ``for`` loop.
 
-One thing to keep in mind with these blocks is *scope* -- this means whether we have access to the value held by an object.
+One thing to keep in mind with these blocks is *scope*---this means whether we have access to the value held by an object.
 
 A general rule is that we can access objects that are defined outside of our current scope.
 
@@ -33,7 +33,7 @@ Let's look at the solution from our homework 3:
 
 Inside of the ``main()`` function, we create a ``vector`` called
 ``fib`` and an integer ``n``.  Both of these are in scope inside of
-``main`` -- that means that we can use them and access them as needed.
+``main``---that means that we can use them and access them as needed.
 
 One of the nice things about the standard types like ``vector`` is
 that C++ automatically cleans up their memory when they go out of
@@ -131,7 +131,7 @@ We've already been using if-tests quite a bit.  So let's look a little more at t
       if (condition)
           statement;
 
-   This is potentially dangerous -- if someone later edits the code
+   This is potentially dangerous---if someone later edits the code
    and decides that they want to add another statement to that
    condition, they might do:
 
@@ -239,7 +239,7 @@ or with an iterator, like:
 .. note::
 
    Just like with ``if``, there is a single-statement form of ``for``
-   that doesn't use brackets for the loop body -- this should be
+   that doesn't use brackets for the loop body---this should be
    avoided.
 
 We also saw the range-for loop that works with a variety of containers.  For example:

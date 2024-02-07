@@ -55,10 +55,10 @@ approaches:
 
   MPI is a popular approach here.
 
-Often we will do a little of each -- shared memory parallelism inside
+Often we will do a little of each---shared memory parallelism inside
 a compute node and distributed memory parallelism across nodes.
 
-There is another type of parallelism -- using accelerators, like GPUs,
+There is another type of parallelism---using accelerators, like GPUs,
 that dominates high performance computing now.  Here we can use OpenMP,
 OpenACC, or a vendor-specific library like CUDA or HIP to do the
 offloading.
@@ -119,7 +119,7 @@ Does this mean that we have no hope of using machines with 100,000's of cores?  
 
 * New algorithms have been designed to exploit massive parallelism
 
-* Larger computers mean bigger problems are possible -- as you increase
+* Larger computers mean bigger problems are possible---as you increase
   the problem size, the fraction of the code that is serial likely
   decreases.
 
@@ -171,7 +171,7 @@ We can do MIMD different ways:
 Trivially parallel
 ==================
 
-Sometimes no communication is needed between processes -- this is *trivially parallel*
+Sometimes no communication is needed between processes---this is *trivially parallel*
 
 Examples:
 
@@ -183,7 +183,7 @@ Examples:
 
 * Analyzing a large collection of data files
 
-  * We have a pipeline that works on a single file -- we can run
+  * We have a pipeline that works on a single file---we can run
     multiple pipelines each on a separate file.
 
   * Each file is processed on a single core.
@@ -232,7 +232,7 @@ OpenMP is the standard here.
 
 .. note::
 
-   Some machines are more complex -- multiple chips each with their own pool of local memory.
+   Some machines are more complex---multiple chips each with their own pool of local memory.
    The chips can talk to one another through a slower connection, so accessing memory "off chip"
    could slow you down.
 

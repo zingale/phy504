@@ -50,7 +50,7 @@ in what they mean.
 .. note::
 
    your text discusses the `SOLID software engineering strategy
-   <https://en.wikipedia.org/wiki/SOLID>`_ -- we won't discuss that
+   <https://en.wikipedia.org/wiki/SOLID>`_---we won't discuss that
    here.
 
 

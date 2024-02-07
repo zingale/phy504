@@ -303,7 +303,7 @@ new branch called <code class="docutils literal notranslate"><span class="pre">m
 </pre></div>
 </div>
 <p>It is telling us that it is not keeping track of <code class="docutils literal notranslate"><span class="pre">script.out</span></code>.
-But we don’t want it to – that is the output from running out
+But we don’t want it to—that is the output from running out
 script, and generally we don’t keep the output of our codes in
 version control.</p>
 <p>So we’d like to tell git to ignore that file.  The way to do this is to
@@ -428,7 +428,7 @@ appear.</p>
 <p>Just like we can use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> to switch to the previous directory we were on,
 we can use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>-</span>
-</pre></div></div><p>to switch back to the previous branch we were on – in this case, <code class="docutils literal notranslate"><span class="pre">main</span></code></p>
+</pre></div></div><p>to switch back to the previous branch we were on—in this case, <code class="docutils literal notranslate"><span class="pre">main</span></code></p>
 </div>
 <p>Switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 </section>
@@ -460,7 +460,7 @@ and the code in <code class="docutils literal notranslate"><span class="pre">fea
 <section id="merging">
 <h3>Merging<a class="headerlink" href="#merging" title="Link to this heading"></a></h3>
 <p>Now we’re happy with the changes we made on <code class="docutils literal notranslate"><span class="pre">feature</span></code> and we want to
-incorporate them into <code class="docutils literal notranslate"><span class="pre">main</span></code> – this is called <em>merging</em>, we
+incorporate them into <code class="docutils literal notranslate"><span class="pre">main</span></code>—this is called <em>merging</em>, we
 accomplish this by doing</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>feature</span>
 </pre></div></div><p>This is a special type of commit, and your editor will pop up with a
@@ -546,7 +546,7 @@ previous commit:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>69eb3bf482bd78c3bf63e890f52b9aac33d5ee2a</span>
 </pre></div></div></div></blockquote>
-<p>Note that you don’t need to type out the entire hash – you only need the starting bits,
+<p>Note that you don’t need to type out the entire hash—you only need the starting bits,
 as long as it is unique.</p>
 <p>This command puts you in a detached branch, but you could make it a named branch by using
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">name</span></code>.</p>

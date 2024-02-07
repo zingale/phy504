@@ -225,9 +225,9 @@
              
   <section id="allocating-memory">
 <h1>Allocating Memory<a class="headerlink" href="#allocating-memory" title="Link to this heading"></a></h1>
-<p>In C++ we can allocate memory using <code class="docutils literal notranslate"><span class="pre">new</span></code> and then explicitly free it up with <code class="docutils literal notranslate"><span class="pre">delete</span></code>.
-But this can be dangerous – a very frequent bug is forgetting to free up memory that you
-manually allocated.</p>
+<p>In C++ we can allocate memory using <code class="docutils literal notranslate"><span class="pre">new</span></code> and then explicitly free
+it up with <code class="docutils literal notranslate"><span class="pre">delete</span></code>.  But this can be dangerous—a very frequent
+bug is forgetting to free up memory that you manually allocated.</p>
 <p>Instead, we’d like to be able to have the memory freed automatically for us
 when the object managing it goes out of scope.  This is where a unique pointer
 comes into play.</p>

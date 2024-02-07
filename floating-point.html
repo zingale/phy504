@@ -349,7 +349,7 @@ to split between positive and negative exponents.  These are set as:</p>
 <p>We can solve for the derivative to find an approximation for the first derivative:</p>
 <div class="math notranslate nohighlight">
 \[\left . \frac{df}{dx} \right |_{x_0} = \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} + \mathcal{O}(\Delta x)\]</div>
-<p>This shows that this approximation for the derivative is first-order accurate in <span class="math notranslate nohighlight">\(\Delta x\)</span> – that is the truncation error of the approximation.</p>
+<p>This shows that this approximation for the derivative is first-order accurate in <span class="math notranslate nohighlight">\(\Delta x\)</span>—that is the truncation error of the approximation.</p>
 <p>We can see the relative size of roundoff and truncation error by using this approximation
 to compute a derivative for different values of <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
@@ -454,7 +454,7 @@ but instead ask they they agree within some tolerance, e.g., test equality as:</
 </section>
 <section id="minimizing-roundoff">
 <h2>Minimizing roundoff<a class="headerlink" href="#minimizing-roundoff" title="Link to this heading"></a></h2>
-<p>Consider subtracting the square of two numbers – taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
+<p>Consider subtracting the square of two numbers—taking the difference of two very close-in-value numbers is a prime place where roundoff can come into play.</p>
 <p>Instead of doing:</p>
 <div class="math notranslate nohighlight">
 \[x^2 - y^2\]</div>
@@ -575,7 +575,7 @@ due to roundoff and compensate the sum, for example <a class="reference external
 </div>
 </div>
 <p>Here, we pass <code class="docutils literal notranslate"><span class="pre">-1</span></code> to <code class="docutils literal notranslate"><span class="pre">trouble()</span></code> which then takes the square root
-of it – this results in a NaN.  But if we run the code, it goes
+of it—this results in a NaN.  But if we run the code, it goes
 merrily about its way, using that result in the later computations.</p>
 <p>Unix uses <a class="reference external" href="https://en.wikipedia.org/wiki/Signal_(IPC)">signals</a> to
 indicate that a problem has happened during the code execution.  If a
@@ -591,7 +591,7 @@ to enable exception trapping via:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">feenableexcept</span><span class="p">(</span><span class="n">FE_INVALID</span><span class="o">|</span><span class="n">FE_DIVBYZERO</span><span class="o">|</span><span class="n">FE_OVERFLOW</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>That catches 3 different types of floating point exceptions – invalid, divide-by-zero, and overflows.</p>
+<p>That catches 3 different types of floating point exceptions—invalid, divide-by-zero, and overflows.</p>
 <p>Next we need to add a handler to deal with the exception:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="p">(</span><span class="n">SIGFPE</span><span class="p">,</span><span class="w"> </span><span class="n">fpe_handler</span><span class="p">);</span>
 </pre></div>
@@ -652,7 +652,7 @@ arrays here.</p>
 </div>
 </div>
 <p>When we compile the code, we want to add the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option to store the
-symbols in the code – this allows us to understand where problems arise:</p>
+symbols in the code—this allows us to understand where problems arise:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
   content: "$ ";

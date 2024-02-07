@@ -342,7 +342,7 @@ and has the integral:</p>
 <p class="admonition-title">Tip</p>
 <p>There is <em>more than one bug</em>.</p>
 </div>
-<p>When we run this with 10 intervals, we get a result of <code class="docutils literal notranslate"><span class="pre">0</span></code> – that’s clearly not correct!</p>
+<p>When we run this with 10 intervals, we get a result of <code class="docutils literal notranslate"><span class="pre">0</span></code>—that’s clearly not correct!</p>
 <p>We want to learn how to use a debugger to help us locate any issues.</p>
 </section>
 <section id="gdb">
@@ -375,7 +375,7 @@ span.prompt1:before {
 </style><span class="prompt1">g++<span class="w"> </span>-g<span class="w"> </span>-o<span class="w"> </span>integrate<span class="w"> </span>integrate.cpp</span>
 </pre></div></div><p>then we run it though <code class="docutils literal notranslate"><span class="pre">gdb</span></code> as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">gdb<span class="w"> </span>./integrate</span>
-</pre></div></div><p>Let’s set a breakpoint at line <code class="docutils literal notranslate"><span class="pre">21</span></code> – that’s the start of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in the <code class="docutils literal notranslate"><span class="pre">integrate()</span></code> function.
+</pre></div></div><p>Let’s set a breakpoint at line <code class="docutils literal notranslate"><span class="pre">21</span></code>—that’s the start of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in the <code class="docutils literal notranslate"><span class="pre">integrate()</span></code> function.
 And then let’s run the code up to then:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt2:before {

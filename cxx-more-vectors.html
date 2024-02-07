@@ -275,9 +275,9 @@ contents of the vector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.cend()</span></code>, <code class="docutils literal notranslate"><span class="pre">.end()</span></code> : these will return an iterator that points
 <em>to one past the last element</em>.</p></li>
 </ul>
-<p>An iterator can be thought of as a special type of <em>pointer</em> – a
+<p>An iterator can be thought of as a special type of <em>pointer</em>—a
 topic that we will discuss much more later.  Iterators have
-restrictions on their use, depending on the container – this makes
+restrictions on their use, depending on the container—this makes
 them more safe to use.</p>
 <p>If we think about an iterator like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span>
@@ -285,7 +285,7 @@ them more safe to use.</p>
 </div>
 <p>Then we can access the next element in <code class="docutils literal notranslate"><span class="pre">container</span></code> by incrementing the iterator, <code class="docutils literal notranslate"><span class="pre">it++</span></code>.</p>
 <p>If we want to see the value in <code class="docutils literal notranslate"><span class="pre">container</span></code> that the iterator is
-pointing to, then we need to <em>dereference</em> it – this is done with the
+pointing to, then we need to <em>dereference</em> it—this is done with the
 <code class="docutils literal notranslate"><span class="pre">*</span></code> operator:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;cbegin is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </pre></div>
@@ -403,7 +403,7 @@ always add a check on whether our end is past <code class="docutils literal notr
 <p class="admonition-title">try it…</p>
 <p>What happens if you use <code class="docutils literal notranslate"><span class="pre">.cbegin()</span></code> and/or <code class="docutils literal notranslate"><span class="pre">.cend()</span></code> instead
 <code class="docutils literal notranslate"><span class="pre">.begin()</span></code> and <code class="docutils literal notranslate"><span class="pre">.end()</span></code>?</p>
-<p>Remember that the <code class="docutils literal notranslate"><span class="pre">c</span></code> in those functions is for <code class="docutils literal notranslate"><span class="pre">const</span></code> – it
+<p>Remember that the <code class="docutils literal notranslate"><span class="pre">c</span></code> in those functions is for <code class="docutils literal notranslate"><span class="pre">const</span></code>—it
 provides read-only access to the elements through the iterator.</p>
 </div>
 </section>

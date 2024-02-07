@@ -251,7 +251,7 @@ time to understand some of the nuances of these statements.</p>
 <li><p>to define the members of a <code class="docutils literal notranslate"><span class="pre">struct</span></code>, <code class="docutils literal notranslate"><span class="pre">enum</span></code>, or as we’ll soon see, a <code class="docutils literal notranslate"><span class="pre">namespace</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p></li>
 <li><p>to group statements that are part of another statement, as with an <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
 </ul>
-<p>One thing to keep in mind with these blocks is <em>scope</em> – this means whether we have access to the value held by an object.</p>
+<p>One thing to keep in mind with these blocks is <em>scope</em>—this means whether we have access to the value held by an object.</p>
 <p>A general rule is that we can access objects that are defined outside of our current scope.</p>
 <p>Let’s look at the solution from our homework 3:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
@@ -289,7 +289,7 @@ time to understand some of the nuances of these statements.</p>
 </div>
 <p>Inside of the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function, we create a <code class="docutils literal notranslate"><span class="pre">vector</span></code> called
 <code class="docutils literal notranslate"><span class="pre">fib</span></code> and an integer <code class="docutils literal notranslate"><span class="pre">n</span></code>.  Both of these are in scope inside of
-<code class="docutils literal notranslate"><span class="pre">main</span></code> – that means that we can use them and access them as needed.</p>
+<code class="docutils literal notranslate"><span class="pre">main</span></code>—that means that we can use them and access them as needed.</p>
 <p>One of the nice things about the standard types like <code class="docutils literal notranslate"><span class="pre">vector</span></code> is
 that C++ automatically cleans up their memory when they go out of
 scope.  This occurs at the last <code class="docutils literal notranslate"><span class="pre">}</span></code> of <code class="docutils literal notranslate"><span class="pre">main()</span></code>.  At that point,
@@ -368,7 +368,7 @@ there is only a single statement to execute:</p>
 <span class="w">    </span><span class="n">statement</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>This is potentially dangerous – if someone later edits the code
+<p>This is potentially dangerous—if someone later edits the code
 and decides that they want to add another statement to that
 condition, they might do:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
@@ -459,7 +459,7 @@ cases that can take different actions.  For example:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Just like with <code class="docutils literal notranslate"><span class="pre">if</span></code>, there is a single-statement form of <code class="docutils literal notranslate"><span class="pre">for</span></code>
-that doesn’t use brackets for the loop body – this should be
+that doesn’t use brackets for the loop body—this should be
 avoided.</p>
 </div>
 <p>We also saw the range-for loop that works with a variety of containers.  For example:</p>

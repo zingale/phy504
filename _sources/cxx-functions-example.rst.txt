@@ -27,7 +27,7 @@ This looks like it is returning ``v_out`` by value and that when we do:
    auto v_new = f(v_old);
 
 that we need to make a copy.  But C++ instead provides *move
-semantics* -- this means that instead of copying the entire contents
+semantics*---this means that instead of copying the entire contents
 of the local ``v_out`` to the vector in the caller ``v_new`` it simply
 moves the data by setting the pointer to the data region in ``v_new``
 to the data region in ``v_out`` before ``v_out`` is destroyed.
@@ -71,7 +71,7 @@ Then we can do:
 
    The problem here is that ``v_out`` is destroyed at the end of the function
    ``f``, so the reference will be to something that no longer exists.
-   This is not allowed -- we cannot return a reference to a local
+   This is not allowed---we cannot return a reference to a local
    variable.
 
 

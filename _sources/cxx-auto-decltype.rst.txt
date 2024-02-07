@@ -57,7 +57,7 @@ decltype
 
 ``decltype`` is in some ways the opposite of ``auto``.  Imagine that
 we want to declare a new variable to be of the same type as an
-existing one -- this is where ``decltype`` comes into play.
+existing one---this is where ``decltype`` comes into play.
 
 Here's an example:
 

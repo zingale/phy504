@@ -18,10 +18,10 @@ Limitations
 
 Computers have a finite amount of memory and we want our answers in a
 reasonable amount of time.  This means that we will need to make
-approximations in a lot of our work -- a great example is storing real
+approximations in a lot of our work---a great example is storing real
 numbers.  You cannot store the infinite real numbers in [0, 1] with a
 finite amount of memory.  So computers will approximate how real
-numbers are stored -- we will learn about this format shortly.
+numbers are stored---we will learn about this format shortly.
 
 Languages
 =========
@@ -88,7 +88,7 @@ C++ is:
 
 * versatile
 
-* widely used outside of academic research environments -- this means
+* widely used outside of academic research environments---this means
   that you can take your C++ skills to industry jobs if desired
 
 

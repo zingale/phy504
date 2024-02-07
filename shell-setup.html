@@ -256,7 +256,7 @@ to be safe:</p>
 </div>
 <p>We’ll discuss loops and if-tests in the shell later, but there is one
 other new command we will note here: <code class="docutils literal notranslate"><span class="pre">ln</span></code>.  <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span></code> creates a
-<em>symbolic link</em> to a file – it makes it appear as if these files are
+<em>symbolic link</em> to a file—it makes it appear as if these files are
 in our home directory <code class="docutils literal notranslate"><span class="pre">~/</span></code> when they actually live elsewhere in our
 path.</p>
 <div class="admonition tip">
@@ -280,7 +280,7 @@ git.</p>
 <h2>Git configuration<a class="headerlink" href="#git-configuration" title="Link to this heading"></a></h2>
 <p>Before we start using git we need to configure it.  This will
 create a file <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> with global settings for using git.</p>
-<p>First we need to tell git our name and email – this will be used in
+<p>First we need to tell git our name and email—this will be used in
 the log files when we make changes so other users know who made the
 changes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;name&quot;</span></span>
@@ -292,7 +292,7 @@ but for now we’ll use <code class="docutils literal notranslate"><span class="
 </pre></div></div><p>see <a class="reference external" href="https://swcarpentry.github.io/git-novice/02-setup.html#line-endings">https://swcarpentry.github.io/git-novice/02-setup.html#line-endings</a> for other options.</p>
 <p>Now, we want to ensure that this file is linked to our home directory when we log in:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">mv<span class="w"> </span>.gitconfig<span class="w"> </span>MySBFiles/dotfiles/</span>
-</pre></div></div><p>Note: you might get a warning that it cannot preserve access times – that is okay.</p>
+</pre></div></div><p>Note: you might get a warning that it cannot preserve access times—that is okay.</p>
 <p>To test this, open up a new terminal and do</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls<span class="w"> </span>-al</span>
 </pre></div></div><p>and make sure you see the <code class="docutils literal notranslate"><span class="pre">.gitconfig</span></code> file.  It might look something like:</p>

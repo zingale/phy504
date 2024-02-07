@@ -237,7 +237,7 @@
 <li><p>Vectors can grow in size as needed to accommodate additional data.
 In contrast, arrays are fixed-size.</p></li>
 <li><p>Arrays also are allocated in a different part of memory by default
-(the stack rather than the heap – more on this later).</p></li>
+(the stack rather than the heap—more on this later).</p></li>
 <li><p>Arrays do not initialize their elements by default when declared.</p></li>
 </ul>
 <p>Here’s a simple example:</p>
@@ -257,7 +257,7 @@ In contrast, arrays are fixed-size.</p></li>
 </pre></div>
 </div>
 </div>
-<p>Declaring the array takes 2 arguments in the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> – the datatype and the number of elements.</p>
+<p>Declaring the array takes 2 arguments in the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>—the datatype and the number of elements.</p>
 <p>Notice that when we look over the elements, they are uninitialized.</p>
 <p>We can use an initializer list to give initial values, like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="o">&gt;</span><span class="w"> </span><span class="n">int_arr</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
@@ -329,7 +329,7 @@ needing to make a copy.</p></li>
 <span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">20</span><span class="p">];</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">std::array</span></code> is a more modern wrapper for these–it has the
+<p>The <code class="docutils literal notranslate"><span class="pre">std::array</span></code> is a more modern wrapper for these—it has the
 advantage that it knows the size of the array.</p>
 </div>
 </section>

@@ -87,7 +87,7 @@ We know that the answer is :math:`I = \pi`.
 
    There is *more than one bug*.
 
-When we run this with 10 intervals, we get a result of ``0`` -- that's clearly not correct!
+When we run this with 10 intervals, we get a result of ``0``---that's clearly not correct!
 
 
 We want to learn how to use a debugger to help us locate any issues.
@@ -138,7 +138,7 @@ then we run it though ``gdb`` as:
 
    gdb ./integrate
 
-Let's set a breakpoint at line ``21`` -- that's the start of the ``for`` loop in the ``integrate()`` function.
+Let's set a breakpoint at line ``21``---that's the start of the ``for`` loop in the ``integrate()`` function.
 And then let's run the code up to then:
 
 .. prompt::

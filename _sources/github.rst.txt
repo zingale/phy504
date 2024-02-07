@@ -21,9 +21,9 @@ Now we give the repository a name.  Let's use our initials, followed
 by ``_class_repo``, so for me, it will be ``mz_class_repo``.  
 
 By default the repo will be public, which means anyone on the internet
-can see the contents -- that's what we want.
+can see the contents---that's what we want.
 
-Finally, check the box to add a ``README`` file -- this means that our repository will
+Finally, check the box to add a ``README`` file---this means that our repository will
 not be empty initially.
 
 .. image:: github-create.png
@@ -56,7 +56,7 @@ Here's how we will set things up:
 
    The ``-t`` option picks a secure encryption method.
 
-   It will ask you for a passpharse -- just hit "Enter" to keep it
+   It will ask you for a passpharse---just hit "Enter" to keep it
    empty (if other people had access to your account, the you would
    want to pick a passphrase).
 
@@ -98,7 +98,7 @@ Here's how we will set things up:
 
       ssh -T git@github.com
 
-   It will ask you if we want to save the *fingerprint* -- say "yes", and then
+   It will ask you if we want to save the *fingerprint*---say "yes", and then
    it should report:
 
    .. code::

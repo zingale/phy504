@@ -97,7 +97,7 @@ Examples: git, mercurial
 
 * Each copy is a backup of the whole history of the project
 
-* Easy to "fork" -- just clone and go.
+* Easy to "fork"---just clone and go.
 
 .. tip::
 

@@ -37,7 +37,7 @@ Here's an animation of bisection finding a root:
    :align: center
 
 
-Bisection is slow to converge -- it only reduces the error by a factor of 2 each iteration.
+Bisection is slow to converge---it only reduces the error by a factor of 2 each iteration.
 
 .. note::
 
@@ -79,7 +79,7 @@ Here's an animation showing the method converging:
 
 There are a few things to note here:
 
-* The initial guess needs to be good -- if it is not, then the higher
+* The initial guess needs to be good---if it is not, then the higher
   order terms, which start with :math:`\delta x^2` are not small, and
   we should not have neglected them.
 

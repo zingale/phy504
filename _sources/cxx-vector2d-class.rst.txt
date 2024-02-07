@@ -73,7 +73,7 @@ Some notes:
 * We explicitly mark the member data as private and the functions are public
 
 * We have 2 constructors: the *default constructor* and a *parametric
-  constructor*.  These both have the same name -- that's fine, C++
+  constructor*.  These both have the same name---that's fine, C++
   will call which ever one matches the argument list you use.
 
 * We have 2 *setter* functions to modify the underlying vector data:
@@ -177,7 +177,7 @@ the copy constructor for us, and in most cases, it will work fine.  Only
 if we have complicated member data (like pointers) would we need to explicitly write
 the copy.
 
-There is another special function that we haven't talked about -- the
+There is another special function that we haven't talked about---the
 `destructor <https://en.cppreference.com/w/cpp/language/destructor>`_.
 This cleans up an objects resources when it goes out of scope, the
 program ends, or an object is explicitly deleted.  For our class, the

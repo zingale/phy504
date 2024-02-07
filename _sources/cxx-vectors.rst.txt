@@ -8,7 +8,7 @@ which adds an immense amount of functionality to the language.  Let's
 look at ``std::vector``.  A ``vector`` is a container that can hold
 data of the same type (e.g., ``double``).  It differs from an array
 that you might have used in other languages in that it is not a fixed
-size -- it can grow as needed to hold more data.
+size---it can grow as needed to hold more data.
 
 .. note::
 
@@ -26,7 +26,7 @@ From that description, we see that vectors:
 * store the data contiguously in memory
 
 * can grow as needed (but occasionally, this means creating a new
-  vector of larger size and copying data into it -- a slow operation)
+  vector of larger size and copying data into it---a slow operation)
 
 * have a lot of functions that can work on them
 

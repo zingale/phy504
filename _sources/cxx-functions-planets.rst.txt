@@ -7,7 +7,7 @@ Example: Sorting Planets
 Let's use our new understanding of lambda functions to enable ``std::sort()``
 to sort our planets vector based on eccentricity.
 
-And, let's add one more trick -- we'll create a function that tells C++
+And, let's add one more trick---we'll create a function that tells C++
 how to output our ``Planet`` object directly.
 
 Recall, that our ``Planet`` is a ``struct`` of the form:
@@ -49,7 +49,7 @@ Here's how this function looks:
 
    Previously we saw that we could not write a function that returns a
    reference to a local object.  But here, the return value, ``os``, is
-   not local -- we pass a reference to it via the argument list.
+   not local---we pass a reference to it via the argument list.
 
    This construction is what allows us to string ``<<`` together.
 

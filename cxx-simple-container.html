@@ -241,7 +241,7 @@ but here we do something simpler.</p>
 <section id="a-simple-container-attempt-i">
 <h2>A simple container: attempt I<a class="headerlink" href="#a-simple-container-attempt-i" title="Link to this heading"></a></h2>
 <p>Here’s a simple container that manages its own memory (dynamic allocation on the heap),
-via a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> – this is a pointer that the compiler will automatically clean up
+via a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code>—this is a pointer that the compiler will automatically clean up
 after once it goes out of scope.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -377,7 +377,7 @@ copy constructor would not be correct, so it doesn’t create one.  Therefore we
 </pre></div>
 </div>
 <p>Here we are using member list initialization to set <code class="docutils literal notranslate"><span class="pre">_data</span></code> to be the
-same pointer as <code class="docutils literal notranslate"><span class="pre">c._data</span></code> – the <code class="docutils literal notranslate"><span class="pre">.get()</span></code> function on a
+same pointer as <code class="docutils literal notranslate"><span class="pre">c._data</span></code>—the <code class="docutils literal notranslate"><span class="pre">.get()</span></code> function on a
 <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> returns the underlying pointer to the data.</p>
 <p>If we add this, and run with it, we will see:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ow">in</span> <span class="n">parametric</span> <span class="n">constructor</span>
@@ -399,7 +399,7 @@ pointer twice.</p>
 </section>
 <section id="a-simple-container-attempt-iii">
 <h2>A simple container: attempt III<a class="headerlink" href="#a-simple-container-attempt-iii" title="Link to this heading"></a></h2>
-<p>We want the copy constructor to do a <em>deep copy</em> – it should create
+<p>We want the copy constructor to do a <em>deep copy</em>—it should create
 its own memory space and copy the data, element-by-element from the
 input <code class="docutils literal notranslate"><span class="pre">Container</span></code> to the new one.</p>
 <p>C++ provides a <a class="reference external" href="https://www.cplusplus.com/reference/cstring/memcpy/">memcpy function</a> to

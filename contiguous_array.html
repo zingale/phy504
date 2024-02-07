@@ -236,8 +236,8 @@
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
 <p>Your text does an example of a multi-dimensional array that is a
-<code class="docutils literal notranslate"><span class="pre">vector</span></code> of <code class="docutils literal notranslate"><span class="pre">vector</span></code> s.</p>
-<p>We are doing something different here – we want the memory space
+<code class="docutils literal notranslate"><span class="pre">vector</span></code> of <code class="docutils literal notranslate"><span class="pre">vector</span></code>.</p>
+<p>We are doing something different here—we want the memory space
 to be fully contiguous, so we will create a 1-d memory space and create
 operators to index into it.</p>
 </div>
@@ -361,7 +361,7 @@ indexed as a two-dimensional array.</span><a class="headerlink" href="#id2" titl
 <li><p>We need to order things in the initialization-list in the same order
 they appear as member data in the class.</p></li>
 <li><p>We include the <code class="docutils literal notranslate"><span class="pre">_data</span></code> vector in the initialization-list without
-worrying about if its size is zero – the <code class="docutils literal notranslate"><span class="pre">asserts</span></code>’s in the
+worrying about if its size is zero—the <code class="docutils literal notranslate"><span class="pre">assert</span></code> in the
 function body do that for us.</p></li>
 <li><p>We have two methods for the <code class="docutils literal notranslate"><span class="pre">()</span></code> operator.  The first is for the
 case of a non-<code class="docutils literal notranslate"><span class="pre">const</span></code> declared <code class="docutils literal notranslate"><span class="pre">Array</span></code> and the second is for a
@@ -413,9 +413,9 @@ rows via <code class="docutils literal notranslate"><span class="pre">.nrows()</
 Technically these are of type <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> (which is some form
 of an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>).</p></li>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">Array</span> <span class="pre">y</span></code>, we use a range-for loop over the elements of
-<code class="docutils literal notranslate"><span class="pre">_data</span></code> directly – this is the one-dimensional representation of
+<code class="docutils literal notranslate"><span class="pre">_data</span></code> directly—this is the one-dimensional representation of
 our array.  We can do this because the data is stored contiguously.</p>
-<p>Note though – this breaks the idea of encapsulation in a class, since
+<p>Note though—this breaks the idea of encapsulation in a class, since
 we are accessing this data directly.</p>
 </li>
 <li><p>When we try to index out of bounds, the <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements catch
