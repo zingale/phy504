@@ -104,13 +104,3 @@ For example, to loop from 0 to 9, we could do:
 
    Try out the loop above, printing out the value of ``i`` each iteration.
 
-
-Example: averaging grades
-=========================
-
-You text has an example of reading and averaging student grades.  It
-uses a few more bits of C++ syntax (like conditional statements) that
-we'll see in detail shortly.  Let's look over that code:
-
-https://github.com/BogCyg/BookCpp/blob/master/Grades/src/main.cpp
-
