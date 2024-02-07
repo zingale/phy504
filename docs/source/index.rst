@@ -67,8 +67,8 @@ Spring 2024
    structure
    tools
    compiling
-   first_project
    editors
+   first_project
 
 .. toctree::
    :maxdepth: 1
