@@ -1,31 +1,24 @@
 #include <iostream>
 #include <vector>
 
-// a type alias -- we can now use RealVec to mean a vector of doubles
-
-using RealVec = std::vector<double>;
-
-// a RealMatrix is a vector of vectors of doubles
-
-using RealMatrix = std::vector<RealVec>;
+using real_vec_t = std::vector<double>;
+using real_mat_t = std::vector<real_vec_t>;
 
 int main() {
 
-    RealMatrix M = {
-                     {  1.0, 25.0, 0.0,  4.1},
-                     { -1.0,  2.0, 4.5, -3.1},
-                     { 10.0, -6.0, 3.2,  4.0}
-                    };
+    real_mat_t M = {{1.0, 2.0, 3.0, 4.0},
+                    {5.0, 6.0, 7.0, 8.0},
+                    {9.0, 10.0, 11.0, 12.0}};
 
     // add another row
 
-    M.push_back({ 20.0, 2.0, 0.0, 5.0});
+    M.push_back({13.0, 14.0, 15.0, 16.0});
 
     // let's compute the trace (sum over the diagonal)
 
-    double trace = 0.0;
+    double trace{};
 
-    for (int i = 0; i < M.size(); ++i) {
+    for (std::size_t i = 0; i < M.size(); ++i) {
         trace += M[i][i];
     }
 
@@ -33,12 +26,12 @@ int main() {
 
     // now the sum of all the off-diagonal terms
 
-    double off_diag_sum = 0.0;
+    double off_diag_sum{};
 
-    for (int r = 0; r < M.size(); ++r) {
-        for (int c = 0; c < M[r].size(); ++c) {
-            if (r != c) {
-                off_diag_sum += M[r][c];
+    for (std::size_t irow = 0; irow < M.size(); ++irow) {
+        for (std::size_t jcol = 0; jcol < M[irow].size(); ++jcol) {
+            if (irow != jcol) {
+                off_diag_sum += M[irow][jcol];
             }
         }
     }
