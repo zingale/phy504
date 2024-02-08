@@ -33,7 +33,7 @@ moves the data by setting the pointer to the data region in ``v_new``
 to the data region in ``v_out`` before ``v_out`` is destroyed.
 
 
-A second method if to pass it through the argument list as a reference:
+A second method is to pass it through the argument list as a reference:
 
 .. code:: c++
 

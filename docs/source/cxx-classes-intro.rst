@@ -103,7 +103,7 @@ Notes:
   and scope operator, ``::``, to reference the class that they belong
   to.
 
-* Our ``add_planet()`` method checks to see if a planet already exists.
+* Our ``add_planet()`` member function checks to see if a planet already exists.
 
 Finally, we can use our ``SolarSystem`` class.  Here's a ``main()`` function:
 

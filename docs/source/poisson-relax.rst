@@ -165,7 +165,7 @@ error should go down by a factor of 4.
 
 .. admonition:: try it...
 
-   Let's add a method to our class that accepts a function that
+   Let's add a member function to our class that accepts a function that
    provides the analytic solution and returns the norm of the error
    (solution compared to analytic solution).
 
