@@ -103,10 +103,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#initializing">Initializing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#size">Size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bounds-iterators-and-pointers">Bounds, iterators, and pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#inserting">Inserting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#erasing">Erasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#algorithms">Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#finding-an-element">Finding an element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inserting">Inserting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erasing">Erasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorting">Sorting</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#resize-and-clear">Resize and clear</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sorting">Sorting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
@@ -297,11 +301,41 @@ pointing to, then we need to <em>dereference</em> it—this is done with the
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;cbegin is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>These can also be used in some powerful algorithms provided by the
-<code class="docutils literal notranslate"><span class="pre">algorithms</span></code> header.  Here’s an example of using <code class="docutils literal notranslate"><span class="pre">find</span></code> on a vector
-(using <a class="reference external" href="https://en.cppreference.com/w/cpp/algorithm/find">std::find</a>:</p>
+<p>Here’s an example of looping over an entire vector using iterators:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">find_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">iterator_loop.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">container</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">cend</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading"></a></h2>
+<p>These can also be used in some powerful algorithms provided by the
+<code class="docutils literal notranslate"><span class="pre">algorithms</span></code> header.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A nice overview of the different algorithms that work on the
+standard C++ containers is provided by “hacking C++”: <a class="reference external" href="https://hackingcpp.com/cpp/std/algorithms.png">C++ Standard
+Library Algorithms</a></p>
+</div>
+<section id="finding-an-element">
+<h3>Finding an element<a class="headerlink" href="#finding-an-element" title="Link to this heading"></a></h3>
+<p>Here’s an example of using <code class="docutils literal notranslate"><span class="pre">find</span></code> on a vector
+(using <a class="reference external" href="https://en.cppreference.com/w/cpp/algorithm/find">std::find</a>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">find_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -328,8 +362,8 @@ pointing to, then we need to <em>dereference</em> it—this is done with the
 </div>
 <p>If we want to know the index of the element we found, we could use
 <a class="reference external" href="https://en.cppreference.com/w/cpp/iterator/distance">std::distance()</a></p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">distance_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">distance_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -353,15 +387,9 @@ pointing to, then we need to <em>dereference</em> it—this is done with the
 </pre></div>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A nice overview of the different algorithms that work on the
-standard C++ containers is provided by “hacking C++”: <a class="reference external" href="https://hackingcpp.com/cpp/std/algorithms.png">C++ Standard
-Library Algorithms</a></p>
-</div>
 </section>
 <section id="inserting">
-<h2>Inserting<a class="headerlink" href="#inserting" title="Link to this heading"></a></h2>
+<h3>Inserting<a class="headerlink" href="#inserting" title="Link to this heading"></a></h3>
 <p>We saw that <code class="docutils literal notranslate"><span class="pre">.push_back()</span></code> is used to add an element to the end of a
 vector.  To insert in the middle of the vector, we use
 <code class="docutils literal notranslate"><span class="pre">.insert(it_pos)</span></code>, where <code class="docutils literal notranslate"><span class="pre">it_pos</span></code> is an iterator pointing to the
@@ -371,8 +399,8 @@ specifying an additional argument.)</p>
 <p>Here’s an example: we start with a vector with the elements <code class="docutils literal notranslate"><span class="pre">100</span></code>, <code class="docutils literal notranslate"><span class="pre">200</span></code>,
 <code class="docutils literal notranslate"><span class="pre">300</span></code> and then use <code class="docutils literal notranslate"><span class="pre">insert()</span></code> to put <code class="docutils literal notranslate"><span class="pre">150</span></code> in between <code class="docutils literal notranslate"><span class="pre">100</span></code>
 and <code class="docutils literal notranslate"><span class="pre">200</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">insert_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">insert_example.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
@@ -395,7 +423,7 @@ and <code class="docutils literal notranslate"><span class="pre">200</span></cod
 </div>
 </section>
 <section id="erasing">
-<h2>Erasing<a class="headerlink" href="#erasing" title="Link to this heading"></a></h2>
+<h3>Erasing<a class="headerlink" href="#erasing" title="Link to this heading"></a></h3>
 <p>Erasing works similar to inserting.  We give an iterator pointing to
 the start and end of the range we want to erase, and all elements up
 to, but not including the end, are erased.</p>
@@ -405,8 +433,8 @@ the vector.</p>
 <p>Here’s an example that removes the first 4 elements of a vector.</p>
 <p>What happens if we try to remove past the end?  To be save, we should
 always add a check on whether our end is past <code class="docutils literal notranslate"><span class="pre">.end()</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">vector_erase.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">vector_erase.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -442,14 +470,23 @@ always add a check on whether our end is past <code class="docutils literal notr
 provides read-only access to the elements through the iterator.</p>
 </div>
 </section>
+<section id="sorting">
+<h3>Sorting<a class="headerlink" href="#sorting" title="Link to this heading"></a></h3>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s try to understand how the <code class="docutils literal notranslate"><span class="pre">sort</span></code> function works.
+<a class="reference external" href="https://www.cplusplus.com/reference/algorithm/sort/">https://www.cplusplus.com/reference/algorithm/sort/</a></p>
+</div>
+</section>
+</section>
 <section id="resize-and-clear">
 <h2>Resize and clear<a class="headerlink" href="#resize-and-clear" title="Link to this heading"></a></h2>
 <p>If we have an existing vector we can resize it with <code class="docutils literal notranslate"><span class="pre">.resize(num,</span>
 <span class="pre">init)</span></code> where <code class="docutils literal notranslate"><span class="pre">num</span></code> is the number of new elements and (optionally) <code class="docutils literal notranslate"><span class="pre">init</span></code> is
 their initial value.</p>
 <p>We can remove everything from the vector using <code class="docutils literal notranslate"><span class="pre">.clear()</span></code>.  Here’s an example:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">resize_example.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">resize_example.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -488,14 +525,6 @@ their initial value.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</section>
-<section id="sorting">
-<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading"></a></h2>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>Let’s try to understand how the <code class="docutils literal notranslate"><span class="pre">sort</span></code> function works.
-<a class="reference external" href="https://www.cplusplus.com/reference/algorithm/sort/">https://www.cplusplus.com/reference/algorithm/sort/</a></p>
 </div>
 </section>
 </section>
