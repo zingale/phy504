@@ -106,7 +106,7 @@ Finding an element
 ------------------
 
 Here's an example of using ``find`` on a vector
-(using `std::find <https://en.cppreference.com/w/cpp/algorithm/find>`_:
+(using `std::find <https://en.cppreference.com/w/cpp/algorithm/find>`_):
 
 .. literalinclude:: ../../examples/vectors/find_example.cpp
    :language: c++
