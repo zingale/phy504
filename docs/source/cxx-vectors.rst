@@ -89,7 +89,7 @@ C++ requires that we declare the data type of
 use the ``auto`` keyword to have the compiler automatically deduce the
 data type.
 
-.. admonition:: try it
+.. admonition:: try it...
 
    Let's add a loop to our code and compute the average of the elements
    in the vector.

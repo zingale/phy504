@@ -9,6 +9,6 @@ int main() {
     std::cout << "capacity of the vector = " << int_vec.capacity() << std::endl;
     std::cout << "maximum possible size = " << int_vec.max_size() << std::endl;
 
-    std::cout << int_vec[7];
+    std::cout << int_vec[7] << std::endl;
 
 }
