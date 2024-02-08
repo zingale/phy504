@@ -26,7 +26,8 @@ Here we instead initialize a vector by telling it the values of each of the elem
 Size
 ====
 
-We can always get the number of elements in a vector via the ``size()`` function:
+As we saw earlier, we can always get the number of elements in a
+vector via the ``size()`` function:
 
 .. code:: c++
 
@@ -34,6 +35,12 @@ We can always get the number of elements in a vector via the ``size()`` function
 
    int nlen = int_vec.size();
 
+
+.. note::
+
+   ``size()`` technically returns a value of type ``std::size_t``, and
+   here we implicitly *cast* it to an ``int``.  We learn more about
+   casting later.
 
 .. admonition:: try it...
 
@@ -77,11 +84,19 @@ pointing to, then we need to *dereference* it---this is done with the
 
 
 These can also be used in some powerful algorithms provided by the
-``algorithms`` header.  Here's an example of using ``find`` on a vector:
+``algorithms`` header.  Here's an example of using ``find`` on a vector
+(using `std::find <https://en.cppreference.com/w/cpp/algorithm/find>`_:
 
 .. literalinclude:: ../../examples/vectors/find_example.cpp
    :language: c++
    :caption: ``find_example.cpp``
+
+If we want to know the index of the element we found, we could use
+`std::distance() <https://en.cppreference.com/w/cpp/iterator/distance>`_
+
+.. literalinclude:: ../../examples/vectors/distance_example.cpp
+   :language: c++
+   :caption: ``distance_example.cpp``
 
 .. note::
 
@@ -89,6 +104,7 @@ These can also be used in some powerful algorithms provided by the
    standard C++ containers is provided by "hacking C++": `C++ Standard
    Library Algorithms
    <https://hackingcpp.com/cpp/std/algorithms.png>`_
+
 
 
 Inserting
