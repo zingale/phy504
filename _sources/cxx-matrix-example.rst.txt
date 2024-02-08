@@ -14,11 +14,14 @@ We'll write our own version of what the text does.
 
 .. tip::
 
-   Notice that we use some type aliases to make it easy to reuse this datatype.
+   Notice that we use some type aliases to make it easy to reuse this datatype:
 
+   .. code:: c++
+
+      using real_vec_t = std::vector<double>;
+      using real_mat_t = std::vector<real_vec_t>;
 
 Some comments:
-
 
 * For our matrix ``M``, ``M[0]`` is the first row.  It is a vector,
   and the columns in that row are all stored together in that vector.
@@ -26,10 +29,10 @@ Some comments:
   <https://en.wikipedia.org/wiki/Row-_and_column-major_order>`_ of the
   data.
 
-* To access an element at row ``r`` and column ``c``, we do:
-  ``M[r][c]``.  The first indexing, ``M[r]`` gives us the vector that
-  holds row ``r`` 's data.  Then we just index that vector with
-  ``[c]`` to get the position corresponding to the column we want.
+* To access an element at row ``irow`` and column ``jcol``, we do:
+  ``M[irow][jcol]``.  The first indexing, ``M[irow]`` gives us the vector that
+  holds the row ``irow`` data.  Then we just index that vector with
+  ``[jcol]`` to get the position corresponding to the column we want.
 
 * When we ``push_back()`` onto the matrix, we are adding a whole new row.
 
@@ -37,9 +40,13 @@ Some comments:
   then we loop over the columns in that row---that data is
   contiguous, so this looping will make the best use of memory cache.
 
-* We do nothing here to enforce that every row has the same number of
-  elements---this can potentially be unsafe if we try to access
-  beyond the limits of a row.  We'll fix this later.
-
 * Both of our operations involve sums over elements---we are careful
   to first initialize the sum to ``0`` before adding to it.
+
+
+.. danger::
+
+   We do nothing here to enforce that every row has the same number of
+   elements---this can potentially be unsafe if we try to access
+   beyond the limits of a row.  We'll fix this later.
+
