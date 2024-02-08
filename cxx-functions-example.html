@@ -247,7 +247,7 @@ semantics</em>—this means that instead of copying the entire contents
 of the local <code class="docutils literal notranslate"><span class="pre">v_out</span></code> to the vector in the caller <code class="docutils literal notranslate"><span class="pre">v_new</span></code> it simply
 moves the data by setting the pointer to the data region in <code class="docutils literal notranslate"><span class="pre">v_new</span></code>
 to the data region in <code class="docutils literal notranslate"><span class="pre">v_out</span></code> before <code class="docutils literal notranslate"><span class="pre">v_out</span></code> is destroyed.</p>
-<p>A second method if to pass it through the argument list as a reference:</p>
+<p>A second method is to pass it through the argument list as a reference:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">v_in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">v_out</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="c1">// fill v_out based on v_in</span>

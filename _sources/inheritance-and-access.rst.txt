@@ -7,7 +7,7 @@ Inheritance and Access
    Cyganek section 4.3
 
 
-With inheritance, we create a *base class* that has methods that
+With inheritance, we create a *base class* that has member functions that
 should be generally applicable to any class that we build off of the
 base.  We then create a *sub class* that inherits the functionality of
 the base class and can extend it.

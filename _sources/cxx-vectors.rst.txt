@@ -22,11 +22,9 @@ size---it can grow as needed to hold more data.
    different properties.
 
 Vectors are very useful to store data and loop over it, etc.
-
 Information on the properties of C++ vectors can be found at the
 `CPlusPlus vector page
 <https://www.cplusplus.com/reference/vector/vector/>`_.
-
 From that description, we see that vectors:
 
 * store the data contiguously in memory
@@ -63,6 +61,9 @@ Notice the following:
 * We access elements of a vector using ``[]`` with an index, and that
   indices start at 0.
 
+* We can use the ``.size()`` `member function <https://en.wikipedia.org/wiki/C%2B%2B_classes#Member_functions>`_
+  to get the number of elements in the vector.
+
 Looping
 =======
 
@@ -84,11 +85,14 @@ Here we see a new keyword, ``auto``.  Each pass through this loop,
 
 C++ requires that we declare the data type of
 ``e``.  In this case, the compiler knows that it will have to be a
-``double``, since the ``vector`` is a vector of ``double`` s, so we can
+``double``, since the ``vector`` is a vector of ``double``, so we can
 use the ``auto`` keyword to have the compiler automatically deduce the
 data type.
 
-Let's try this in our code.
+.. admonition:: try it
+
+   Let's add a loop to our code and compute the average of the elements
+   in the vector.
 
 There is another more classic type of loop in C++ that takes the form:
 

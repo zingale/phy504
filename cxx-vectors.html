@@ -245,10 +245,10 @@ and for modern C++ we refer to the C++ <em>standard library</em>.</p>
 <p>There are many other types of containers in the C++ SL that have
 different properties.</p>
 </div>
-<p>Vectors are very useful to store data and loop over it, etc.</p>
-<p>Information on the properties of C++ vectors can be found at the
-<a class="reference external" href="https://www.cplusplus.com/reference/vector/vector/">CPlusPlus vector page</a>.</p>
-<p>From that description, we see that vectors:</p>
+<p>Vectors are very useful to store data and loop over it, etc.
+Information on the properties of C++ vectors can be found at the
+<a class="reference external" href="https://www.cplusplus.com/reference/vector/vector/">CPlusPlus vector page</a>.
+From that description, we see that vectors:</p>
 <ul class="simple">
 <li><p>store the data contiguously in memory</p></li>
 <li><p>can grow as needed (but occasionally, this means creating a new
@@ -276,6 +276,7 @@ and then computing an average.  We’ll write our own version.</p>
 <span class="w">    </span><span class="n">container</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">3.14159</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">container</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;the vector has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; elements&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="p">}</span>
 </pre></div>
@@ -289,6 +290,8 @@ are using the <code class="docutils literal notranslate"><span class="pre">.</sp
 <code class="docutils literal notranslate"><span class="pre">push_back</span></code> on the vector <code class="docutils literal notranslate"><span class="pre">container</span></code> that we created.</p></li>
 <li><p>We access elements of a vector using <code class="docutils literal notranslate"><span class="pre">[]</span></code> with an index, and that
 indices start at 0.</p></li>
+<li><p>We can use the <code class="docutils literal notranslate"><span class="pre">.size()</span></code> <a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B_classes#Member_functions">member function</a>
+to get the number of elements in the vector.</p></li>
 </ul>
 <section id="looping">
 <h2>Looping<a class="headerlink" href="#looping" title="Link to this heading"></a></h2>
@@ -306,10 +309,14 @@ terminal, we could do:</p>
 <code class="docutils literal notranslate"><span class="pre">container</span></code>.  The body of the loop is contained in the <code class="docutils literal notranslate"><span class="pre">{...}</span></code>.</p>
 <p>C++ requires that we declare the data type of
 <code class="docutils literal notranslate"><span class="pre">e</span></code>.  In this case, the compiler knows that it will have to be a
-<code class="docutils literal notranslate"><span class="pre">double</span></code>, since the <code class="docutils literal notranslate"><span class="pre">vector</span></code> is a vector of <code class="docutils literal notranslate"><span class="pre">double</span></code> s, so we can
+<code class="docutils literal notranslate"><span class="pre">double</span></code>, since the <code class="docutils literal notranslate"><span class="pre">vector</span></code> is a vector of <code class="docutils literal notranslate"><span class="pre">double</span></code>, so we can
 use the <code class="docutils literal notranslate"><span class="pre">auto</span></code> keyword to have the compiler automatically deduce the
 data type.</p>
-<p>Let’s try this in our code.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it</p>
+<p>Let’s add a loop to our code and compute the average of the elements
+in the vector.</p>
+</div>
 <p>There is another more classic type of loop in C++ that takes the form:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">start</span><span class="p">;</span><span class="w"> </span><span class="n">end</span><span class="p">;</span><span class="w"> </span><span class="n">incremement</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// do stuff</span>
