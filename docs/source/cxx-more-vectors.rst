@@ -82,9 +82,30 @@ pointing to, then we need to *dereference* it---this is done with the
 
    std::cout << "cbegin is " << *it << std::endl;
 
+Here's an example of looping over an entire vector using iterators:
+
+.. literalinclude:: ../../examples/vectors/iterator_loop.cpp
+   :language: c++
+   :caption: ``iterator_loop.cpp``
+
+
+Algorithms
+==========
 
 These can also be used in some powerful algorithms provided by the
-``algorithms`` header.  Here's an example of using ``find`` on a vector
+``algorithms`` header.
+
+.. tip::
+
+   A nice overview of the different algorithms that work on the
+   standard C++ containers is provided by "hacking C++": `C++ Standard
+   Library Algorithms
+   <https://hackingcpp.com/cpp/std/algorithms.png>`_
+
+Finding an element
+------------------
+
+Here's an example of using ``find`` on a vector
 (using `std::find <https://en.cppreference.com/w/cpp/algorithm/find>`_:
 
 .. literalinclude:: ../../examples/vectors/find_example.cpp
@@ -98,17 +119,11 @@ If we want to know the index of the element we found, we could use
    :language: c++
    :caption: ``distance_example.cpp``
 
-.. note::
-
-   A nice overview of the different algorithms that work on the
-   standard C++ containers is provided by "hacking C++": `C++ Standard
-   Library Algorithms
-   <https://hackingcpp.com/cpp/std/algorithms.png>`_
 
 
 
 Inserting
-=========
+---------
 
 We saw that ``.push_back()`` is used to add an element to the end of a
 vector.  To insert in the middle of the vector, we use
@@ -126,7 +141,7 @@ and ``200``.
    :caption: ``insert_example.cpp``
 
 Erasing
-=======
+-------
 
 Erasing works similar to inserting.  We give an iterator pointing to
 the start and end of the range we want to erase, and all elements up
@@ -153,6 +168,15 @@ always add a check on whether our end is past ``.end()``.
    Remember that the ``c`` in those functions is for ``const``---it
    provides read-only access to the elements through the iterator.
 
+Sorting
+-------
+
+.. admonition:: try it...
+
+   Let's try to understand how the ``sort`` function works.
+   https://www.cplusplus.com/reference/algorithm/sort/
+
+
 Resize and clear
 ================
 
@@ -165,13 +189,5 @@ We can remove everything from the vector using ``.clear()``.  Here's an example:
 .. literalinclude:: ../../examples/vectors/resize_example.cpp
    :language: c++
    :caption: ``resize_example.cpp``
-
-Sorting
-=======
-
-.. admonition:: try it...
-
-   Let's try to understand how the ``sort`` function works.
-   https://www.cplusplus.com/reference/algorithm/sort/
 
 
