@@ -346,6 +346,11 @@ compilers or processors may have different defaults.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to guarantee a size for an <code class="docutils literal notranslate"><span class="pre">int</span></code>, there are datatypes that explicitly
+require a fixed width, like <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>: <a class="reference external" href="https://en.cppreference.com/w/cpp/types/integer">https://en.cppreference.com/w/cpp/types/integer</a></p>
+</div>
 <p>We can find out a lot about the range and precision of numbers that can be stored with a given type by using
 <a class="reference external" href="https://en.cppreference.com/w/cpp/types/numeric_limits">std::numeric_limits</a>:</p>
 <div class="literal-block-wrapper docutils container" id="id1">

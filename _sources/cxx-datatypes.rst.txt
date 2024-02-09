@@ -147,6 +147,11 @@ The following is guaranteed:
 
    sizeof(char) == 1 <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)
 
+.. tip::
+
+   If you want to guarantee a size for an ``int``, there are datatypes that explicitly
+   require a fixed width, like ``int32_t``: https://en.cppreference.com/w/cpp/types/integer
+
 We can find out a lot about the range and precision of numbers that can be stored with a given type by using
 `std::numeric_limits <https://en.cppreference.com/w/cpp/types/numeric_limits>`_:
 
