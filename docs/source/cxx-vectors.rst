@@ -3,7 +3,7 @@ Vectors
 *******
 
 C++ has the `standard library
-<https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library>`_ or SL
+<https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library>`_ (C++ SL)
 which adds an immense amount of functionality to the language.  Let's
 look at ``std::vector``.  A ``vector`` is a container that can hold
 data of the same type (e.g., ``double``).  It differs from an array
@@ -12,15 +12,19 @@ size---it can grow as needed to hold more data.
 
 .. note::
 
-   There are many other types of containers in the SL that have different
-   properties.
+   The C++ standard library was inspired by an earlier project called
+   the C++ *standard template library* or STL.  These are distinct,
+   and for modern C++ we refer to the C++ *standard library*.
+
+.. note::
+
+   There are many other types of containers in the C++ SL that have
+   different properties.
 
 Vectors are very useful to store data and loop over it, etc.
-
 Information on the properties of C++ vectors can be found at the
 `CPlusPlus vector page
 <https://www.cplusplus.com/reference/vector/vector/>`_.
-
 From that description, we see that vectors:
 
 * store the data contiguously in memory
@@ -57,6 +61,9 @@ Notice the following:
 * We access elements of a vector using ``[]`` with an index, and that
   indices start at 0.
 
+* We can use the ``.size()`` `member function <https://en.wikipedia.org/wiki/C%2B%2B_classes#Member_functions>`_
+  to get the number of elements in the vector.
+
 Looping
 =======
 
@@ -78,11 +85,14 @@ Here we see a new keyword, ``auto``.  Each pass through this loop,
 
 C++ requires that we declare the data type of
 ``e``.  In this case, the compiler knows that it will have to be a
-``double``, since the ``vector`` is a vector of ``double`` s, so we can
+``double``, since the ``vector`` is a vector of ``double``, so we can
 use the ``auto`` keyword to have the compiler automatically deduce the
 data type.
 
-Let's try this in our code.
+.. admonition:: try it...
+
+   Let's add a loop to our code and compute the average of the elements
+   in the vector.
 
 There is another more classic type of loop in C++ that takes the form:
 

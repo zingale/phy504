@@ -79,7 +79,7 @@ Some comments on this implementation:
   worrying about if its size is zero---the ``assert`` in the
   function body do that for us.
 
-* We have two methods for the ``()`` operator.  The first is for the
+* We have two member functions for the ``()`` operator.  The first is for the
   case of a non-``const`` declared ``Array`` and the second is for a
   ``const`` declared ``Array``.
 

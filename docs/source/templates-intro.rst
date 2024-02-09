@@ -35,7 +35,7 @@ that works with each of the types.
 
    https://stackoverflow.com/questions/2023977/difference-of-keywords-typename-and-class-in-templates
 
-We can call this with ``double`` s as:
+We can call this with ``double`` as:
 
 .. code:: c++
 

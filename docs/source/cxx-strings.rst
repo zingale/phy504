@@ -59,7 +59,7 @@ Note that ``'-'`` is a ``char`` and not a string.
 Find and Replace
 ================
 
-``string`` s have find and replace methods.  Here's an example of
+``string`` has find and replace member functions.  Here's an example of
 extracting the basename of a file from a path and then replacing the
 extension.
 
