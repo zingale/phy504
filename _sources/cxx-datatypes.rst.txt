@@ -162,7 +162,13 @@ We can find out a lot about the range and precision of numbers that can be store
 Notice that there is a new pattern here, the use of ``<>``---this is
 used in template functions, a topic we will talk a lot about later.
 
+
+
 What happens if we exceed the limits of a data type?
+For floating point, we don't abruptly transition to ``0.`` (for underflow)
+but instead start losing digits of precision as `subnormal numbers <https://en.wikipedia.org/wiki/Subnormal_number>`_.
+
+For integers, it is more fun:
 
 .. figure:: https://imgs.xkcd.com/comics/cant_sleep.png
    :align: center

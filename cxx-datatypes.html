@@ -376,7 +376,10 @@ require a fixed width, like <code class="docutils literal notranslate"><span cla
 </div>
 <p>Notice that there is a new pattern here, the use of <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>—this is
 used in template functions, a topic we will talk a lot about later.</p>
-<p>What happens if we exceed the limits of a data type?</p>
+<p>What happens if we exceed the limits of a data type?
+For floating point, we don’t abruptly transition to <code class="docutils literal notranslate"><span class="pre">0.</span></code> (for underflow)
+but instead start losing digits of precision as <a class="reference external" href="https://en.wikipedia.org/wiki/Subnormal_number">subnormal numbers</a>.</p>
+<p>For integers, it is more fun:</p>
 <figure class="align-center" id="id2">
 <img alt="https://imgs.xkcd.com/comics/cant_sleep.png" src="https://imgs.xkcd.com/comics/cant_sleep.png" />
 <figcaption>
