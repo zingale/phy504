@@ -250,7 +250,7 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 </div>
 <p>First the class:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 77 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container_basic.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container_basic.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -320,7 +320,7 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 </div>
 <p>Now a simple driver that creates a <code class="docutils literal notranslate"><span class="pre">Container</span></code> and then creates a new one via copying:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 78 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_copy.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;container.H&quot;</span>
@@ -407,7 +407,7 @@ copy from one buffer to another.  We’ll use that.</p>
 <p>Here’s a final implementation of the class.  This also implements the
 move operations, which we’ll talk about in a minute.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">container.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef CONTAINER_H</span>
 <span class="cp">#define CONTAINER_H</span>
 
@@ -583,7 +583,7 @@ ours and also does a swap on the pointers.</p>
 <p>The move assignment works in a similar fashion.</p>
 <p>Here’s a driver that exercises all of these functions:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 80 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 81 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_container.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 

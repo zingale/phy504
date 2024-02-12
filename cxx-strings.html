@@ -231,7 +231,10 @@
 <h1>Strings<a class="headerlink" href="#strings" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 3.6</p>
+<ul class="simple">
+<li><p>Cyganek section 3.6</p></li>
+<li><p><a class="reference external" href="https://cplusplus.com/reference/string/string/">std::string</a> on cplusplus.com</p></li>
+</ul>
 </div>
 <p>A C++ <code class="docutils literal notranslate"><span class="pre">std::string</span></code> has many similarities to a vector (in
 particular, you could imagine doing <code class="docutils literal notranslate"><span class="pre">std::vector&lt;char&gt;</span></code>.  But it is
@@ -255,8 +258,8 @@ while strings are enclosed in double quotes, e.g. <code class="docutils literal 
 <p>When working with strings, we include the <code class="docutils literal notranslate"><span class="pre">&lt;string&gt;</span></code> header.</p>
 <p>Here’s a first example.  We’ll create a string and we’ll concatenate
 another string onto it using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">string_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">string_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 
@@ -272,16 +275,22 @@ another string onto it using the <code class="docutils literal notranslate"><spa
 </pre></div>
 </div>
 </div>
-<p>Note that in this example, the strings that we add to our initial
+<p>In this example, the strings that we add to our initial
 string are actually C-style strings, but <code class="docutils literal notranslate"><span class="pre">std::string</span></code> knows how to
 work with them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We used an <a class="reference external" href="https://en.cppreference.com/w/cpp/language/escape">escape sequence</a> here, <code class="docutils literal notranslate"><span class="pre">\n</span></code>,
+to create a newline.  <code class="docutils literal notranslate"><span class="pre">\n</span></code> is slightly different than
+<code class="docutils literal notranslate"><span class="pre">std::endl:</span></code>—the latter also flushes the output buffer.</p>
+</div>
 <p>Just like with vectors, we can use a constructor to create an initial
 string filled with a character repeated many times.  For instance,
 here’s an 80-character line:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">line</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">'-'</span></code> is a <code class="docutils literal notranslate"><span class="pre">char</span></code> and not a string.</p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">'-'</span></code> is a <code class="docutils literal notranslate"><span class="pre">char</span></code> and not a string.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A nice overview of working with C++ strings is provided by “hacking C++”:
@@ -292,10 +301,10 @@ here’s an 80-character line:</p>
 <p><code class="docutils literal notranslate"><span class="pre">string</span></code> has find and replace member functions.  Here’s an example of
 extracting the basename of a file from a path and then replacing the
 extension.</p>
-<p>Note: there are a lot of different ways we can do a replace:
+<p>There are a lot of different ways we can do a replace:
 <a class="reference external" href="https://www.cplusplus.com/reference/string/string/replace/">std::string::replace calls</a> .</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">string_replace.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">string_replace.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 

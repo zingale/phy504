@@ -61,6 +61,6 @@ existing one---this is where ``decltype`` comes into play.
 
 Here's an example:
 
-.. literalinclude:: ../../examples/vectors/vector-decltype.cpp
+.. literalinclude:: ../../examples/vectors/vector_decltype.cpp
    :language: c++
-   :caption: ``vector-decltype.cpp``
+   :caption: ``vector_decltype.cpp``
