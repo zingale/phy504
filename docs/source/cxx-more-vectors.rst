@@ -11,7 +11,7 @@ We can initialize a vector when we declare it.  The following creates a vector w
 
 .. code:: c++
 
-   vector<double> container(5, 0.0);
+   std::vector<double> container(5, 0.0);
 
 Notice that we are using ``()`` here instead of ``{}``.  As we'll see
 later, this means that we are calling a function here to do the
@@ -21,7 +21,7 @@ Here we instead initialize a vector by telling it the values of each of the elem
 
 .. code:: c++
 
-   vector<double> container2{10.0, 20.0, 30.0};
+   std::vector<double> container2{10.0, 20.0, 30.0};
 
 Size
 ====
@@ -31,7 +31,7 @@ vector via the ``size()`` function:
 
 .. code:: c++
 
-   vector<int> int_vec{1, 2, 3, 4, 5};
+   std::vector<int> int_vec{1, 2, 3, 4, 5};
 
    int nlen = int_vec.size();
 
