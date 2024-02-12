@@ -4,7 +4,8 @@ Strings
 
 .. admonition:: reading
 
-   Cyganek section 3.6
+   * Cyganek section 3.6
+   * `std::string <https://cplusplus.com/reference/string/string/>`_ on cplusplus.com
 
 A C++ ``std::string`` has many similarities to a vector (in
 particular, you could imagine doing ``std::vector<char>``.  But it is
@@ -37,9 +38,16 @@ another string onto it using the ``+`` operator:
    :language: c++
    :caption: ``string_example.cpp``
 
-Note that in this example, the strings that we add to our initial
+In this example, the strings that we add to our initial
 string are actually C-style strings, but ``std::string`` knows how to
 work with them.
+
+.. note::
+
+   We used an `escape sequence
+   <https://en.cppreference.com/w/cpp/language/escape>`_ here, ``\n``,
+   to create a newline.  ``\n`` is slightly different than
+   ``std::endl:``---the latter also flushes the output buffer.
 
 Just like with vectors, we can use a constructor to create an initial
 string filled with a character repeated many times.  For instance,
@@ -49,7 +57,7 @@ here's an 80-character line:
 
    std::string line(80, '-');
 
-Note that ``'-'`` is a ``char`` and not a string.
+Here, ``'-'`` is a ``char`` and not a string.
 
 .. note::
 
@@ -63,7 +71,7 @@ Find and Replace
 extracting the basename of a file from a path and then replacing the
 extension.
 
-Note: there are a lot of different ways we can do a replace:
+There are a lot of different ways we can do a replace:
 `std::string::replace calls
 <https://www.cplusplus.com/reference/string/string/replace/>`_ .
 
