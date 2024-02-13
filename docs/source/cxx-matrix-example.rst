@@ -50,3 +50,28 @@ Some comments:
    elements---this can potentially be unsafe if we try to access
    beyond the limits of a row.  We'll fix this later.
 
+
+Looping over elements
+=====================
+
+We can loop over elements using range-based loops by first looping
+over rows and then looping over the columns in the row:
+
+.. code:: c++
+
+    for (auto row : M) {
+        for (auto e : row) {
+            std::cout << e << " ";
+        }
+        std::cout << std::endl;
+    }
+
+Here, the first ``for`` loop results in ``row`` being a ``real_vec_t``
+in each iteration, looping over the rows.  Then the second ``for``
+loop gives us a single element in that row (it is a loop over the
+columns of that row).
+
+This way of looping also demonstrates how the data is stored in the
+matrix---this is called `row-major ordering
+<https://en.wikipedia.org/wiki/Row-_and_column-major_order#:~:text=In%20row%2Dmajor%20order%2C%20the,column%20in%20column%2Dmajor%20order.>`_.
+We'll discuss this more shortly.
