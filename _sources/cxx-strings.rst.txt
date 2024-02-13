@@ -12,10 +12,17 @@ particular, you could imagine doing ``std::vector<char>``.  But it is
 specific to strings, and as such, has many useful functions that
 operate on strings.
 
+When working with strings, we include the ``<string>`` header.
+
+.. note::
+
+   In C++, single characters (``char``) are enclosed in single-quotes, e.g., ``'A'``,
+   while strings are enclosed in double quotes, e.g. ``"string"``.
+
 .. warning::
 
    C++ can also use older C-style strings, which are essentially a
-   null-terminated array of characters, e.g.,
+   `null-terminated <https://en.wikipedia.org/wiki/Null-terminated_string>`_ array of characters, e.g.,
 
    .. code:: c++
 
@@ -23,13 +30,6 @@ operate on strings.
 
    These are quite inflexible and can lead to coding errors if you are
    not careful, and we will avoid them as much as possible.
-
-.. note::
-
-   In C++, single characters (``char``) are enclosed in single-quotes, e.g., ``'A'``,
-   while strings are enclosed in double quotes, e.g. ``"string"``.
-
-When working with strings, we include the ``<string>`` header.
 
 Here's a first example.  We'll create a string and we'll concatenate
 another string onto it using the ``+`` operator:
@@ -78,6 +78,13 @@ There are a lot of different ways we can do a replace:
 .. literalinclude:: ../../examples/strings/string_replace.cpp
    :language: c++
    :caption: ``string_replace.cpp``
+
+.. tip::
+
+   C++17 introduced the ``filesystem`` library that includes a `stem
+   function <https://en.cppreference.com/w/cpp/filesystem/path/stem>`_
+   that can do this as well.  We'll look at the filesystem library
+   later.
 
 Other Functions
 ===============

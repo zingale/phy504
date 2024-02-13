@@ -241,22 +241,22 @@
 particular, you could imagine doing <code class="docutils literal notranslate"><span class="pre">std::vector&lt;char&gt;</span></code>.  But it is
 specific to strings, and as such, has many useful functions that
 operate on strings.</p>
+<p>When working with strings, we include the <code class="docutils literal notranslate"><span class="pre">&lt;string&gt;</span></code> header.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In C++, single characters (<code class="docutils literal notranslate"><span class="pre">char</span></code>) are enclosed in single-quotes, e.g., <code class="docutils literal notranslate"><span class="pre">'A'</span></code>,
+while strings are enclosed in double quotes, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code>.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>C++ can also use older C-style strings, which are essentially a
-null-terminated array of characters, e.g.,</p>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Null-terminated_string">null-terminated</a> array of characters, e.g.,</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">c_string</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;this is my string&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>These are quite inflexible and can lead to coding errors if you are
 not careful, and we will avoid them as much as possible.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In C++, single characters (<code class="docutils literal notranslate"><span class="pre">char</span></code>) are enclosed in single-quotes, e.g., <code class="docutils literal notranslate"><span class="pre">'A'</span></code>,
-while strings are enclosed in double quotes, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code>.</p>
-</div>
-<p>When working with strings, we include the <code class="docutils literal notranslate"><span class="pre">&lt;string&gt;</span></code> header.</p>
 <p>Here’s a first example.  We’ll create a string and we’ll concatenate
 another string onto it using the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
@@ -342,6 +342,13 @@ extension.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>C++17 introduced the <code class="docutils literal notranslate"><span class="pre">filesystem</span></code> library that includes a <a class="reference external" href="https://en.cppreference.com/w/cpp/filesystem/path/stem">stem
+function</a>
+that can do this as well.  We’ll look at the filesystem library
+later.</p>
 </div>
 </section>
 <section id="other-functions">
