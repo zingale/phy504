@@ -118,6 +118,7 @@ Spring 2024
    :caption: Some Random Bits...
 
    cxx-iomanip
+   cxx-filesystem
    operators
    floating-point
 
