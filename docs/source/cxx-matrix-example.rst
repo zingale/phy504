@@ -73,5 +73,5 @@ columns of that row).
 
 This way of looping also demonstrates how the data is stored in the
 matrix---this is called `row-major ordering
-<https://en.wikipedia.org/wiki/Row-_and_column-major_order#:~:text=In%20row%2Dmajor%20order%2C%20the,column%20in%20column%2Dmajor%20order.>`_.
+<https://en.wikipedia.org/wiki/Row-_and_column-major_order>`_.
 We'll discuss this more shortly.
