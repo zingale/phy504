@@ -100,7 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Matrix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#looping-over-elements">Looping over elements</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
@@ -228,8 +231,8 @@
 <h1>Example: Matrix<a class="headerlink" href="#example-matrix" title="Link to this heading"></a></h1>
 <p id="sec-cxx-matrix">Let’s look at an example from your text that create a very simple matrix container as a vector-of-vectors.</p>
 <p>We’ll write our own version of what the text does.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_matrix.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_matrix.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -305,6 +308,26 @@ to first initialize the sum to <code class="docutils literal notranslate"><span 
 elements—this can potentially be unsafe if we try to access
 beyond the limits of a row.  We’ll fix this later.</p>
 </div>
+<section id="looping-over-elements">
+<h2>Looping over elements<a class="headerlink" href="#looping-over-elements" title="Link to this heading"></a></h2>
+<p>We can loop over elements using range-based loops by first looping
+over rows and then looping over the columns in the row:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here, the first <code class="docutils literal notranslate"><span class="pre">for</span></code> loop results in <code class="docutils literal notranslate"><span class="pre">row</span></code> being a <code class="docutils literal notranslate"><span class="pre">real_vec_t</span></code>
+in each iteration, looping over the rows.  Then the second <code class="docutils literal notranslate"><span class="pre">for</span></code>
+loop gives us a single element in that row (it is a loop over the
+columns of that row).</p>
+<p>This way of looping also demonstrates how the data is stored in the
+matrix—this is called <a class="reference external" href="https://en.wikipedia.org/wiki/Row-_and_column-major_order#:~:text=In%20row%2Dmajor%20order%2C%20the,column%20in%20column%2Dmajor%20order.">row-major ordering</a>.
+We’ll discuss this more shortly.</p>
+</section>
 </section>
 
 
