@@ -318,7 +318,7 @@ extension.</p>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ipos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filename</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="sc">&#39;/&#39;</span><span class="p">);</span>
 
 <span class="w">    </span><span class="c1">// create a substring containing just the base name</span>
-<span class="w">    </span><span class="c1">// if we don&#39;t provide a lenght, substr goes to the end</span>
+<span class="w">    </span><span class="c1">// if we don&#39;t provide a length, substr goes to the end</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">basename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filename</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">ipos</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
 
@@ -328,10 +328,10 @@ extension.</p>
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ipos_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">basename</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// there are many forms of replace -- here&#39;s well use iterators that mark</span>
-<span class="w">    </span><span class="c1">// the start and end of the original string and those of the string we want</span>
-<span class="w">    </span><span class="c1">// to substitute</span>
-<span class="w">    </span>
+<span class="w">    </span><span class="c1">// there are many forms of replace -- here&#39;s well use iterators</span>
+<span class="w">    </span><span class="c1">// that mark the start and end of the original string and those of</span>
+<span class="w">    </span><span class="c1">// the string we want to substitute</span>
+
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">new_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.txt&quot;</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">basename</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">basename</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">ipos_ext</span><span class="p">,</span><span class="w"> </span><span class="n">basename</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
