@@ -4,7 +4,9 @@ Arrays
 
 .. admonition:: reading
 
-   Cyganek section 3.10
+   * Cyganek section 3.10
+
+   * `std::array at cppreference.com <https://en.cppreference.com/w/cpp/container/array>`_
 
 Arrays have many similarities to vectors, but there are some key differences:
 

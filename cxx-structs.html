@@ -231,7 +231,10 @@
 <h1>Structures<a class="headerlink" href="#structures" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 3.9</p>
+<ul class="simple">
+<li><p>Cyganek section 3.9</p></li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/c/language/struct">structures discussion at cppreference.com</a></p></li>
+</ul>
 </div>
 <p>A structure (or <code class="docutils literal notranslate"><span class="pre">struct</span></code>) is a compound datatype that can hold a mix
 of data.  In C++, a <code class="docutils literal notranslate"><span class="pre">struct</span></code> shares many similarities to a
@@ -246,14 +249,14 @@ of data.  In C++, a <code class="docutils literal notranslate"><span class="pre"
 <span class="p">};</span>
 </pre></div>
 </div>
+<p>This is a structure that can describe some basic properties of a planet, including its
+name, semi-major axis, and eccentricity of the orbit.</p>
 <p>If we create <code class="docutils literal notranslate"><span class="pre">Planet</span></code> object via:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Planet</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Then we can access the different members of the <code class="docutils literal notranslate"><span class="pre">struct</span></code> using the “<code class="docutils literal notranslate"><span class="pre">.</span></code>” operator,
 e.g. <code class="docutils literal notranslate"><span class="pre">p.name</span></code>, <code class="docutils literal notranslate"><span class="pre">p.a</span></code>, and <code class="docutils literal notranslate"><span class="pre">p.e</span></code>.</p>
-<p>This is a structure that can describe some basic properties of a planet, including its
-name, semi-major axis, and eccentricity of the orbit.</p>
 <p>Let’s look at a program that stores the basic properties for the
 planets in our solar system and then loops over them and computes
 their orbital period using Kepler’s third law:</p>
@@ -283,7 +286,9 @@ their orbital period using Kepler’s third law:</p>
 <span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Uranus&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">19.189</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0473</span><span class="p">},</span>
 <span class="w">                                       </span><span class="p">{</span><span class="s">&quot;Neptune&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">30.070</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0086</span><span class="p">}};</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">planets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has a period of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; years&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; has a period of &quot;</span>
+<span class="w">		  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span>
+<span class="w">		  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; years&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">}</span>

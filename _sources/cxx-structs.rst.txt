@@ -4,7 +4,9 @@ Structures
 
 .. admonition:: reading
 
-   Cyganek section 3.9
+   * Cyganek section 3.9
+
+   * `structures discussion at cppreference.com <https://en.cppreference.com/w/c/language/struct>`_
 
 A structure (or ``struct``) is a compound datatype that can hold a mix
 of data.  In C++, a ``struct`` shares many similarities to a
@@ -24,6 +26,9 @@ Consider the following:
        double e{};            // eccentricity
    };
 
+This is a structure that can describe some basic properties of a planet, including its
+name, semi-major axis, and eccentricity of the orbit.
+
 If we create ``Planet`` object via:
 
 .. code:: c++
@@ -32,9 +37,6 @@ If we create ``Planet`` object via:
 
 Then we can access the different members of the ``struct`` using the "``.``" operator,
 e.g. ``p.name``, ``p.a``, and ``p.e``.
-
-This is a structure that can describe some basic properties of a planet, including its
-name, semi-major axis, and eccentricity of the orbit.
 
 Let's look at a program that stores the basic properties for the
 planets in our solar system and then loops over them and computes
