@@ -268,6 +268,8 @@ another string onto it using the <code class="docutils literal notranslate"><spa
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">example</span><span class="p">{</span><span class="s">&quot;This is PHY 504&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;original string: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">example</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot;:</span><span class="se">\n</span><span class="s"> Computational Methods in Physics and Astrophysics I</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="n">example</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot;Spring 2022&quot;</span><span class="p">;</span>
@@ -284,7 +286,7 @@ work with them.</p>
 <p class="admonition-title">Note</p>
 <p>We used an <a class="reference external" href="https://en.cppreference.com/w/cpp/language/escape">escape sequence</a> here, <code class="docutils literal notranslate"><span class="pre">\n</span></code>,
 to create a newline.  <code class="docutils literal notranslate"><span class="pre">\n</span></code> is slightly different than
-<code class="docutils literal notranslate"><span class="pre">std::endl:</span></code>—the latter also flushes the output buffer.</p>
+<code class="docutils literal notranslate"><span class="pre">std::endl</span></code>—the latter also flushes the output buffer.</p>
 </div>
 <p>Just like with vectors, we can use a constructor to create an initial
 string filled with a character repeated many times.  For instance,
@@ -313,6 +315,7 @@ extension.</p>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="p">{</span><span class="s">&quot;~/classes/test.cpp&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;filename: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// let&#39;s find just the base file name -- reverse find for &#39;/&#39;</span>
 

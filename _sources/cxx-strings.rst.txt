@@ -47,7 +47,7 @@ work with them.
    We used an `escape sequence
    <https://en.cppreference.com/w/cpp/language/escape>`_ here, ``\n``,
    to create a newline.  ``\n`` is slightly different than
-   ``std::endl:``---the latter also flushes the output buffer.
+   ``std::endl``---the latter also flushes the output buffer.
 
 Just like with vectors, we can use a constructor to create an initial
 string filled with a character repeated many times.  For instance,
