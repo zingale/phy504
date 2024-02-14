@@ -4,6 +4,7 @@
 int main() {
 
     std::string filename{"~/classes/test.cpp"};
+    std::cout << "filename: " << filename << std::endl;
 
     // let's find just the base file name -- reverse find for '/'
 

@@ -4,7 +4,25 @@ Example: Matrix
 
 .. _sec:cxx_matrix:
 
-Let's look at an example from your text that create a very simple matrix container as a vector-of-vectors.
+Let's look at an example from your text that create a very simple
+matrix container as a vector-of-vectors.  The idea is to do something like:
+
+.. code:: c++
+
+   std::vector<std::vector<double>> a;
+
+Visually, this will look like:
+
+.. figure:: vector_of_vectors.png
+   :align: center
+   :width: 80%
+
+   Illustration of a ``vector``-of-``vector``'s for a :math:`4\times
+   3` array.
+
+Each row in our matrix is actually a ``std::vector<double>``.  To access an
+individual element, we need to index the first vector to get the row and then
+index the row to get the column in that row, which will look like: ``a[irow][jcol]``.
 
 We'll write our own version of what the text does.
 
