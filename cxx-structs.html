@@ -251,7 +251,11 @@ of data.  In C++, a <code class="docutils literal notranslate"><span class="pre"
 </div>
 <p>This is a structure that can describe some basic properties of a planet, including its
 name, semi-major axis, and eccentricity of the orbit.</p>
-<p>If we create <code class="docutils literal notranslate"><span class="pre">Planet</span></code> object via:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A common mistake is to forget the <code class="docutils literal notranslate"><span class="pre">;</span></code> after the definition of the <code class="docutils literal notranslate"><span class="pre">struct</span></code>.</p>
+</div>
+<p>We can create a <code class="docutils literal notranslate"><span class="pre">Planet</span></code> object via:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Planet</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -304,10 +308,6 @@ list-initialization for each of the planets in its own set of
 <li><p>Notice that our vector <code class="docutils literal notranslate"><span class="pre">planets</span></code> is <code class="docutils literal notranslate"><span class="pre">const</span></code>.  This means that we
 cannot add to it (e.g., via <code class="docutils literal notranslate"><span class="pre">.push_back()</span></code>).</p></li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>A common mistake is to forget the <code class="docutils literal notranslate"><span class="pre">;</span></code> after the definition of the <code class="docutils literal notranslate"><span class="pre">struct</span></code>.</p>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As mentioned above, a <code class="docutils literal notranslate"><span class="pre">class</span></code> is very similar to a <code class="docutils literal notranslate"><span class="pre">struct</span></code> in
