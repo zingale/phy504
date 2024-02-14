@@ -29,7 +29,12 @@ Consider the following:
 This is a structure that can describe some basic properties of a planet, including its
 name, semi-major axis, and eccentricity of the orbit.
 
-If we create ``Planet`` object via:
+.. tip::
+
+   A common mistake is to forget the ``;`` after the definition of the ``struct``.
+
+
+We can create a ``Planet`` object via:
 
 .. code:: c++
 
@@ -61,10 +66,6 @@ Some notes:
 * Notice that our vector ``planets`` is ``const``.  This means that we
   cannot add to it (e.g., via ``.push_back()``).
 
-
-.. tip::
-
-   A common mistake is to forget the ``;`` after the definition of the ``struct``.
 
 .. note::
 
