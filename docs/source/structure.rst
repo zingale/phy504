@@ -4,50 +4,9 @@ Structure of a C++ Program
 
 .. admonition:: reading
 
-   * Cyganek section 2.4
    * `Structure of a program <https://cplusplus.com/doc/tutorial/program_structure/>`_ from cplusplus.com
 
-Flowcharts
-==========
-
-We can represent algorithms using flowcharts.  There are some
-`standard symbols
-<https://en.wikipedia.org/wiki/Flowchart#Common_symbols>`_ used in
-programming flowcharts that you should be familiar with.
-
-Here's an example of a flowchart of the thought process in debugging a broken lamp:
-
-.. figure:: 750px-LampFlowchart.svg.png
-   :align: center
-   :width: 50%
-
-   `(Booyabazooka/Wikipedia) <https://commons.wikimedia.org/wiki/File:LampFlowchart.svg>`_
-
-Flowcharts can also have loops, like this example for a code that appears as:
-
-.. code:: c++
-
-   for (A; B; C)
-       D;
-
-.. figure:: For-loop-diagram.png
-   :align: center
-   :width: 50%
-
-   (Paweł Zdziarski (faxe)/Wikipedia)
-
-
-An alternative to flowcharts is to write out the algorithm in
-`pseudocode <https://en.wikipedia.org/wiki/Pseudocode>`_
-
-Both of these concepts help you layout the organization of your
-program before you start writing the code.
-
-Hello, World
-============
-
-Let's look at a simple "Hello, World" program (your text has an
-example to computes the square root of an input number).
+Let's look at a simple "Hello, World" program:
 
 .. important::
 
