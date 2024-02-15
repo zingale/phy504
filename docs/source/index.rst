@@ -78,6 +78,7 @@ Spring 2024
    cxx-vectors
    cxx-more-vectors
    cxx-matrix-example
+   cxx-sequence-containers
    cxx-strings
    cxx-auto-decltype
    cxx-structs
