@@ -117,6 +117,7 @@ Spring 2024
    :maxdepth: 1
    :caption: Some Random Bits...
 
+   cxx-mdspan
    cxx-iomanip
    cxx-filesystem
    operators

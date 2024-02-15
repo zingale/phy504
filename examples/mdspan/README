@@ -1,0 +1,14 @@
+Currently, this works with clang17 on Fedora 39.  I need to install
+
+libcxx
+libcxx-devel
+
+and maybe
+
+libcxxabi
+libcxxabi-devel
+libcxx-static
+
+then compile as:
+
+clang++ -std=c++23 -stdlib=libc++ -o mdspan mdspan.cpp
