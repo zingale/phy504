@@ -3,7 +3,7 @@ Preview: C++23 mdspan
 *********************
 
 C++23 introduces `mdspan
-<https://en.cppreference.com/w/cpp/container/mdspan>`, a
+<https://en.cppreference.com/w/cpp/container/mdspan>`_, a
 multidimensional view into a contiguous memory space.  It also allows
 us to use the ``,`` operator in subscripts.  This allows us to more
 easily create a multidimensional array.  Here's an example:
