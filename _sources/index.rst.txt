@@ -119,6 +119,7 @@ Spring 2024
 
    cxx-mdspan
    cxx-iomanip
+   cxx-print
    cxx-filesystem
    operators
    floating-point

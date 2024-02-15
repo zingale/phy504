@@ -24,4 +24,8 @@ easily create a multidimensional array.  Here's an example:
    On my machine (Fedora 39), I needed to install the ``libcxx`` and
    ``libcxx-devel`` packages to get everything I need.
 
+.. tip::
+
+   You can see the status of C++23 support here:
+   `compiler / library support for C++23 <https://en.cppreference.com/w/cpp/compiler_support/23>`_
 

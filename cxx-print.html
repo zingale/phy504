@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Templates &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Print &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Example: Templated Array" href="cxx-template-array.html" />
-    <link rel="prev" title="Sphinx" href="sphinx.html" /> 
+    <link rel="next" title="Filesystem Library" href="cxx-filesystem.html" />
+    <link rel="prev" title="I/O Manipulators" href="cxx-iomanip.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -131,10 +131,10 @@
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-print.html">Print</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Print</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
@@ -167,8 +167,8 @@
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Templates</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Templates</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
@@ -217,9 +217,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Templates</li>
+      <li class="breadcrumb-item active">Print</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/templates-intro.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-print.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -227,90 +227,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="templates">
-<h1>Templates<a class="headerlink" href="#templates" title="Link to this heading"></a></h1>
-<p>C++ templates are a form of <a class="reference external" href="https://en.wikipedia.org/wiki/Generic_programming">generic programming</a>.  They allow us
-to write functions that work on a variety of data types.</p>
-<p>The main advantage is that is saves on development time, since we don’t need to maintain
-specialized functions for each datatype that we may want to use.</p>
-<p>We’ve been using templates all throughout the semester— basically
-whenever you see the <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span></code>.  For example, <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> is a
-template-class and we tell it what type of vector we wish to create
-through the type parameter, e.g., <code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code></p>
-<p>Here’s a simple example of a function template:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-<span class="n">T</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+  <section id="print">
+<h1>Print<a class="headerlink" href="#print" title="Link to this heading"></a></h1>
+<p>C++23 introduced <code class="docutils literal notranslate"><span class="pre">std::print()</span></code> and <code class="docutils literal notranslate"><span class="pre">std::println()</span></code> as an easier way to output
+formatting strings to the console.</p>
+<p>Here’s a Hello, World:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 56 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">print_hello.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">);</span>
+
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Here <code class="docutils literal notranslate"><span class="pre">T</span></code> stands in for the data type that we will use when calling
-this function.  The compiler will determine which data types are used
-with <code class="docutils literal notranslate"><span class="pre">add</span></code> and it will create and compile a version of the function
-that works with each of the types.</p>
+</div>
+<p>The only difference between <code class="docutils literal notranslate"><span class="pre">print()</span></code> and <code class="docutils literal notranslate"><span class="pre">println()</span></code> is that the
+latter adds a newline.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>We can use either <code class="docutils literal notranslate"><span class="pre">typename</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code> for the template parameters.  Only
-in rare instances is the difference important.</p>
-<p><a class="reference external" href="https://stackoverflow.com/questions/2023977/difference-of-keywords-typename-and-class-in-templates">https://stackoverflow.com/questions/2023977/difference-of-keywords-typename-and-class-in-templates</a></p>
-</div>
-<p>We can call this with <code class="docutils literal notranslate"><span class="pre">double</span></code> as:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">3</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mi">4</span><span class="p">};</span>
-<span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>But in this case, the compiler can infer the type <code class="docutils literal notranslate"><span class="pre">T</span></code> from the
-inputs, so we don’t need to include <code class="docutils literal notranslate"><span class="pre">&lt;double&gt;</span></code>, and can instead simply do:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Here’s an example illustrating all of this:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 92 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_templates.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-<span class="n">T</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="mi">2</span><span class="p">};</span>
-
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">-2</span><span class="p">},</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="mi">4</span><span class="p">};</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>Make the function take two potentially different types,</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
-<span class="n">T</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">U</span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Notice that the return type is the same as the first argument.</p>
-<p>What happens if you call it with <code class="docutils literal notranslate"><span class="pre">int,</span> <span class="pre">double</span></code> compared to
-<code class="docutils literal notranslate"><span class="pre">double,</span> <span class="pre">int</span></code>—is it still commutative?</p>
-</div>
+<p>Just like with our <code class="docutils literal notranslate"><span class="pre">mdspan</span></code> example, we need to use a compiler and library
+that support C++23.  We can compile, for example, as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">clang++<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-stdlib<span class="o">=</span>libc++<span class="w">  </span>-o<span class="w"> </span>print_example<span class="w"> </span>print_example.cpp</span>
+</pre></div></div></div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="sphinx.html" class="btn btn-neutral float-left" title="Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-template-array.html" class="btn btn-neutral float-right" title="Example: Templated Array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-iomanip.html" class="btn btn-neutral float-left" title="I/O Manipulators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-filesystem.html" class="btn btn-neutral float-right" title="Filesystem Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

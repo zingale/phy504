@@ -136,6 +136,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-print.html">Print</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
@@ -297,7 +298,7 @@ we have a reduction there, but we can handle this in the same way we
 did previously.</p>
 <p>Here’s the full implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 108 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson2d.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 109 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson2d.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef POISSON_H</span>
 <span class="cp">#define POISSON_H</span>
 
@@ -590,7 +591,7 @@ did previously.</p>
 </div>
 <p>and a driver:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 109 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 110 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
 

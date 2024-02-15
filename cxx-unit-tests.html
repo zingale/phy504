@@ -134,6 +134,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-print.html">Print</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
@@ -309,7 +310,7 @@ equal, using <code class="docutils literal notranslate"><span class="pre">==</sp
 <h2>Writing tests<a class="headerlink" href="#writing-tests" title="Link to this heading"></a></h2>
 <p>Let’s write some basic tests:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 66 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 67 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 
@@ -383,7 +384,7 @@ Note the <code class="docutils literal notranslate"><span class="pre">&#64;</spa
 print the command itself to the screen, just the output.</p>
 <p>Here’s the full version:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 67 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 68 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># by default, make will try to build the first target it encounters.</span>
 <span class="c"># here we make up a dummy name &quot;ALL&quot; (note: this is not a special make</span>
 <span class="c"># name, it is just commonly used).</span>
