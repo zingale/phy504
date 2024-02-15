@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Print &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Preview: C++23 Print &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -134,7 +134,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Print</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Preview: C++23 Print</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#formatting">Formatting</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
@@ -217,7 +220,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Print</li>
+      <li class="breadcrumb-item active">Preview: C++23 Print</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cxx-print.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -227,8 +230,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="print">
-<h1>Print<a class="headerlink" href="#print" title="Link to this heading"></a></h1>
+  <section id="preview-c-23-print">
+<h1>Preview: C++23 Print<a class="headerlink" href="#preview-c-23-print" title="Link to this heading"></a></h1>
 <p>C++23 introduced <code class="docutils literal notranslate"><span class="pre">std::print()</span></code> and <code class="docutils literal notranslate"><span class="pre">std::println()</span></code> as an easier way to output
 formatting strings to the console.</p>
 <p>Here’s a Hello, World:</p>
@@ -256,6 +259,33 @@ span.prompt1:before {
 }
 </style><span class="prompt1">clang++<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-stdlib<span class="o">=</span>libc++<span class="w">  </span>-o<span class="w"> </span>print_example<span class="w"> </span>print_example.cpp</span>
 </pre></div></div></div>
+<section id="formatting">
+<h2>Formatting<a class="headerlink" href="#formatting" title="Link to this heading"></a></h2>
+<p>The strings that are passed into <code class="docutils literal notranslate"><span class="pre">print()</span></code> or <code class="docutils literal notranslate"><span class="pre">println()</span></code> are
+actually <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/format/basic_format_string">std::format_string</a>
+and can specify where to insert variables and their formatting:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 57 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">formatting_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">{</span><span class="mi">2</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="s">&quot;example&quot;</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x = {}, i = {}, a = {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x = {:5.2f}, i = {:03d}, a = {:^20}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The format codes are described here:
+<a class="reference external" href="https://en.cppreference.com/w/cpp/utility/format/spec">https://en.cppreference.com/w/cpp/utility/format/spec</a></p>
+</section>
 </section>
 
 
