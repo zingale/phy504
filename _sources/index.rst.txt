@@ -118,6 +118,7 @@ Spring 2024
    :caption: Some Random Bits...
 
    cxx-mdspan
+   cxx-casting
    cxx-iomanip
    cxx-print
    cxx-filesystem
