@@ -41,7 +41,10 @@ performance attributes:
   * random access: not supported
   * insertion / removal anywhere: $\mathcal{O}(1)$
 
-* ``std::forward_list`` : this is a singly-linked list.  You can only walk through in one direction.
+* `std::forward_list
+  <https://en.cppreference.com/w/cpp/container/forward_list>`_ : this
+  is a singly-linked list.  You can only walk through in one
+  direction.
 
   Complexity:
 
