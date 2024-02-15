@@ -253,6 +253,16 @@ which is interpreted at compile time.</p>
 </div>
 </div>
 <p>We use <code class="docutils literal notranslate"><span class="pre">static_cast&lt;double&gt;</span></code> to promote an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">double</span></code> before doing the division.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Older C-style casts still work.  These take the form:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>but these are not recommended, as the compiler can’t always check if
+the conversion is allowed.</p>
+</div>
 </section>
 
 

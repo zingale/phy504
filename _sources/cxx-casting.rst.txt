@@ -13,3 +13,15 @@ Here's an example:
    :caption: ``cast_example.cpp``
 
 We use ``static_cast<double>`` to promote an ``int`` to a ``double`` before doing the division.
+
+.. note::
+
+   Older C-style casts still work.  These take the form:
+
+   .. code:: c++
+
+      int x{1};
+      double y = (double) x;
+
+   but these are not recommended, as the compiler can't always check if
+   the conversion is allowed.
