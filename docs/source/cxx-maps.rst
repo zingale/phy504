@@ -18,3 +18,6 @@ Here's an example:
    :language: c++
    :caption: ``map_example.cpp``
 
+We use a `structured binding
+<https://en.cppreference.com/w/cpp/language/structured_binding>`_ to
+unpack the key and value into separate variables.
