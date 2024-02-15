@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Navigating the Filesystem &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Aside: Sequence Containers &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -24,11 +24,13 @@
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
         <script src="_static/design-tabs.js?v=36754332"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Create Files and Directories" href="shell-2.html" />
-    <link rel="prev" title="Why Use the Command Line?" href="why_command_line.html" /> 
+    <link rel="next" title="Strings" href="cxx-strings.html" />
+    <link rel="prev" title="Example: Matrix" href="cxx-matrix-example.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,17 +63,9 @@
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Navigating the Filesystem</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-shell">The shell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#which-shell">Which shell?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setting-up">Setting up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#first-walkthrough">First walkthrough</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#filesystem-terminology">Filesystem terminology</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
@@ -104,12 +98,12 @@
 <li class="toctree-l1"><a class="reference internal" href="first_project.html">A First C++ Project</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-sequence-containers.html">Aside: Sequence Containers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Aside: Sequence Containers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
@@ -227,9 +221,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Navigating the Filesystem</li>
+      <li class="breadcrumb-item active">Aside: Sequence Containers</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/shell.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-sequence-containers.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -237,118 +231,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="navigating-the-filesystem">
-<h1>Navigating the Filesystem<a class="headerlink" href="#navigating-the-filesystem" title="Link to this heading"></a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>We will loosely follow the Software Carpentry lesson on <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">The Unix Shell</a></p>
-</div>
-<section id="the-shell">
-<h2>The shell<a class="headerlink" href="#the-shell" title="Link to this heading"></a></h2>
-<p>The <em>shell</em> is your interface to the operator system.  It implements a <em>REPL</em> interface:
-Read, Execute, Print, Loop.  This means it:</p>
+  <section id="aside-sequence-containers">
+<h1>Aside: Sequence Containers<a class="headerlink" href="#aside-sequence-containers" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">std::vector</span></code> is one example of a <a class="reference external" href="https://en.wikipedia.org/wiki/Sequence_container_(C%2B%2B)#Vector">sequence container</a>
+in C++.  There are 5 such containers that each offer different
+performance attributes:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/container/array">std::array</a> : fixed size contiguous storage.</p>
+<p>Complexity:</p>
 <ul class="simple">
-<li><p>Reads the input (commands) you type</p></li>
-<li><p>Executes the command</p></li>
-<li><p>Prints the result of the command</p></li>
-<li><p>Loops back to the start, waiting to read a new command</p></li>
+<li><p>random access: <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
+<li><p>insertion: not supported</p></li>
 </ul>
-<p>The power of the shell is that we can easily combine different tools
-together to create powerful commands to manipulate files on the
-computer.</p>
-<p>To access the shell, we need to open a terminal on the computer.</p>
-<p>Here’s a quick demonstration: the <code class="docutils literal notranslate"><span class="pre">echo</span></code> command simply prints anything following
-it to the terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1"><span class="nb">echo</span><span class="w"> </span>Hello,<span class="w"> </span>World</span>
-</pre></div></div></section>
-<section id="which-shell">
-<h2>Which shell?<a class="headerlink" href="#which-shell" title="Link to this heading"></a></h2>
-<p>There are a wide variety of shells that are used today.  The default
-on many systems is <a class="reference external" href="https://www.gnu.org/software/bash/">BASH</a>.  Others
-that you might commonly encounter are <a class="reference external" href="https://www.zsh.org/">zsh</a> and
-<a class="reference external" href="https://fishshell.com/">fish</a>.</p>
-<p>We’ll focus on BASH, and most of what we learn here will apply
-directly to the other shells.</p>
-<p>Some online shell documentation:</p>
+</li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/container/vector">std::vector</a> : automatically resizing array (as needed).</p>
+<p>Complexity:</p>
 <ul class="simple">
-<li><p>The <a class="reference external" href="https://swcarpentry.github.io/shell-novice/">Software Carpentry Unix Shell</a> lesson</p></li>
-<li><p>The official <a class="reference external" href="https://www.gnu.org/software/bash/manual/html_node/index.html">Bash Reference Manual</a></p></li>
+<li><p>random access: <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
+<li><p>insertion at end: amortized constant <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
+<li><p>insertion / removal elsewhere: <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> (actually depends on distance to the end)</p></li>
 </ul>
-<p>A basic “cheat sheet” is available here: <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/7/79/Unix_command_cheatsheet.pdf">Unix/Linux Command Reference</a>.</p>
-</section>
-<section id="setting-up">
-<h2>Setting up<a class="headerlink" href="#setting-up" title="Link to this heading"></a></h2>
-<p>To help us understand some basic shell operations, we will all work
-with a collection of files and directories.  Type the following
-commands (we’ll explain their meaning later) to get the files we
-need</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">curl<span class="w"> </span>https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip<span class="w"> </span>--output<span class="w"> </span>shell-lesson-data.zip</span>
-<span class="prompt1">unzip<span class="w"> </span>shell-lesson-data.zip</span>
-</pre></div></div><p>This data set comes from the Software Carpentry project.</p>
-<p>This creates a directory on the filesystem named <code class="docutils literal notranslate"><span class="pre">shell-lesson-data/</span></code>.  To begin, we want to
-“change directory” into that directory, using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span><span class="w"> </span>shell-lesson-data</span>
-</pre></div></div></section>
-<section id="first-walkthrough">
-<h2>First walkthrough<a class="headerlink" href="#first-walkthrough" title="Link to this heading"></a></h2>
-<p>Let’s walkthrough the <a class="reference external" href="https://swcarpentry.github.io/shell-novice/02-filedir.html">Navigating Files and Directories</a>
-lesson together.  You are also encouraged to work through it on your
-own outside of class.</p>
-</section>
-<section id="filesystem-terminology">
-<h2>Filesystem terminology<a class="headerlink" href="#filesystem-terminology" title="Link to this heading"></a></h2>
-<p>We’ll use the following terms throughout here:</p>
+</li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/container/deque">std::deque</a> :
+a double-ended queue—this means that it is easy to add elements to
+either end.  Data is not stored contiguously in memory.</p>
+<p>Complexity:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">system</span></code> : the collection (and organization) of all of the files stored on your computer</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code> : a single unit containing a collection of data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">directory</span></code> :  (also known as a folder) a collection of files and directories</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">home</span> <span class="pre">directory</span></code> : your default directory.  When you first open a shell on your computer,
-this is where you are.</p></li>
+<li><p>random access: <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
+<li><p>insertion / removal at beginning or end: <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
+<li><p>insertion / removal elsewhere: <span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span></p></li>
 </ul>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
-<p>We learned the following commands:</p>
+</li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/container/list">std::list</a> : this is a doubly-linked list.  It is an easy
+operation to insert an element, but there is not random access to a
+particular element, instead you must walk through the list.</p>
+<p>Complexity:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> : print working directory (where you currently are in the file system)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ls</span></code> : list the contents of a directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> : change directory</p></li>
+<li><p>random access: not supported</p></li>
+<li><p>insertion / removal anywhere: <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
 </ul>
-<p>There are a few special directories that always exist the help us navigate:</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::forward_list</span></code> : this is a singly-linked list.  You can only walk through in one direction.</p>
+<p>Complexity:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code> : the current directory</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code> : one directory above us</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code> : our home directory</p></li>
+<li><p>random access: not supported</p></li>
+<li><p>insertion / removal anywhere: <span class="math notranslate nohighlight">\(\mathcal{O}(1)\)</span></p></li>
 </ul>
-<p>The <code class="docutils literal notranslate"><span class="pre">/</span></code> character has 2 roles:</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">/</span></code> directory is the <em>root</em> of the filesystem</p></li>
-<li><p>A path uses <code class="docutils literal notranslate"><span class="pre">/</span></code> to separate directory names</p></li>
+</li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The Unix shell uses tab-completion to make it easier to type.
-Start typing a path (or command) and then press the <em>Tab</em> key and
-it will either complete it (if there is a unique file / command) or
-display the possible completions.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can navigate through your history of commands using the up and down arrows.</p>
-</div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="why_command_line.html" class="btn btn-neutral float-left" title="Why Use the Command Line?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="shell-2.html" class="btn btn-neutral float-right" title="Create Files and Directories" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-matrix-example.html" class="btn btn-neutral float-left" title="Example: Matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-strings.html" class="btn btn-neutral float-right" title="Strings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
