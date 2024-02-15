@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Move Semantics &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Preview: C++23 mdspan &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Allocating Memory" href="cxx-allocating.html" />
-    <link rel="prev" title="Compound Assignment Operators" href="compound-operators.html" /> 
+    <link rel="next" title="I/O Manipulators" href="cxx-iomanip.html" />
+    <link rel="prev" title="Example: Multidimensional Contiguous Array" href="contiguous_array.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -131,8 +131,8 @@
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
@@ -148,16 +148,13 @@
 <li class="toctree-l1"><a class="reference internal" href="clang-tidy.html">clang-tidy</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Move Semantics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#right-value-references">Right-value references</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-move.html">Move Semantics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-allocating.html">Allocating Memory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-simple-container.html">Example: A Simple Container</a></li>
 </ul>
@@ -219,9 +216,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Move Semantics</li>
+      <li class="breadcrumb-item active">Preview: C++23 mdspan</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-move.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-mdspan.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -229,75 +226,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="move-semantics">
-<h1>Move Semantics<a class="headerlink" href="#move-semantics" title="Link to this heading"></a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>Cyganek section 4.5</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/C%2B%2B11#Rvalue_references_and_move_constructors">Rvalue references and move constructors</a></p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>We are discussing this for completeness, but move semantics can be complicated.
-I’ll show a “simple” example of a class that manages its own memory and implements
-move semantics.</p>
-</div>
-<p>C++11 introduced move semantics, which make it possible for objects to
-take the data region from one another, instead of having to copy.  We
-first saw this when we did our orbit integrator and returned a
-<code class="docutils literal notranslate"><span class="pre">std::vector</span></code> from our function (see <a class="reference internal" href="cxx-functions-example.html#sec-more-functions"><span class="std std-ref">More Functions</span></a>).</p>
-<p>For objects that store large data regions, move is much faster than a
-copy.  The C++ compiler will know when it can use a move and
-automatically do it for you.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is where the <a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of 3</a>
-becomes the <em>Rule of 5</em>: now we consider the (1) copy
-constructor, (2) assignment operator, (3) destructor, (4) move
-constructor, (5) move assignment operator.  If we write any one of
-these, we should write all 5.</p>
-</div>
-<section id="right-value-references">
-<h2>Right-value references<a class="headerlink" href="#right-value-references" title="Link to this heading"></a></h2>
-<p>To allow for move operations, C++11 introduced <em>right-value
-references</em> or <em>rvalue references</em>.  These use <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and as the name
-suggests, they can appear to the right of the assignment operator,
-<code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> here does not mean “reference-to-a-reference”, it is just the
-syntax that was chosen for an rvalue reference.</p>
-</div>
-<p>The object that an rvalue reference is a temporary object and it is assumed that
-it will never be used again, therefore we are free to steal its data.
-This is sometimes called a <em>destructive read</em></p>
-<p>We can convert an object into an rvalue reference (indicating that it can be moved) via <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/move">std::move</a>.</p>
-<p>Here’s an example where we use the <em>move constructor</em> of a string to steal the data of the input string:</p>
+  <section id="preview-c-23-mdspan">
+<h1>Preview: C++23 mdspan<a class="headerlink" href="#preview-c-23-mdspan" title="Link to this heading"></a></h1>
+<p>C++23 introduces <cite>mdspan
+&lt;https://en.cppreference.com/w/cpp/container/mdspan&gt;</cite>, a
+multidimensional view into a contiguous memory space.  It also allows
+us to use the <code class="docutils literal notranslate"><span class="pre">,</span></code> operator in subscripts.  This allows us to more
+easily create a multidimensional array.  Here’s an example:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 79 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">move_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 54 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">mdspan.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mdspan&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="s">&quot;test&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// create a vector with 12 elements</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_v</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">steal</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// create a 2-d view (4 rows x 3 columns) into it</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">mdspan</span><span class="p">(</span><span class="n">_v</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;steal = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">steal</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// loop over rows and columns and fill the matrix</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">extent</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">extent</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	    </span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// output</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">extent</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">.</span><span class="n">extent</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-</section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need a <em>very</em> recent compiler for this to work.  I am using
+LLVM/clang++ 17 and build as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">clang++<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-stdlib<span class="o">=</span>libc++<span class="w"> </span>-o<span class="w"> </span>mdspan<span class="w"> </span>mdspan.cpp</span>
+</pre></div></div><p>On my machine (Fedora 39), I needed to install the <code class="docutils literal notranslate"><span class="pre">libcxx</span></code> and
+<code class="docutils literal notranslate"><span class="pre">libcxx-devel</span></code> packages to get everything I need.</p>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="compound-operators.html" class="btn btn-neutral float-left" title="Compound Assignment Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-allocating.html" class="btn btn-neutral float-right" title="Allocating Memory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="contiguous_array.html" class="btn btn-neutral float-left" title="Example: Multidimensional Contiguous Array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-iomanip.html" class="btn btn-neutral float-right" title="I/O Manipulators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
