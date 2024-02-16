@@ -120,6 +120,7 @@ Spring 2024
    :caption: Some Random Bits...
 
    cxx-mdspan
+   cxx-enum
    cxx-casting
    cxx-iomanip
    cxx-print
