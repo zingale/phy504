@@ -8,7 +8,11 @@ Arrays
 
    * `std::array at cppreference.com <https://en.cppreference.com/w/cpp/container/array>`_
 
-Arrays have many similarities to vectors, but there are some key differences:
+Arrays have many similarities to vectors.  In particular, both arrays and vectors
+store the data contiguously in memory.  This means you get good cache performance
+when looping over elements.
+
+But there are some key differences:
 
 * Vectors can grow in size as needed to accommodate additional data.
   In contrast, arrays are fixed-size.
@@ -63,11 +67,16 @@ Here's an example:
    :language: c++
    :caption: ``multid_array.cpp``
 
+Notice that we need to explicitly set the size of both the
+``row_arr_t`` and the ``fixed_mat_t``.  While this solves the issue we had
+with our ``std::vector<std::vector<double>>`` where we could have rows
+of varying length, it is less flexible in that we need to know the
+size ahead of time.
+
 There are a few features here that we have not yet seen.
 
-* An ``enum`` is a set of constant integers (that can be initialized
-  in a sequence).  They are contained in a namespace allowing us to
-  access them using the scope operator (``::``).
+* We use ``std::setw()`` to set the width (number of characters) to
+  use when writing out our numbers.  This makes them line up nicely.
 
 * We access the information in the arrays using a reference (with the
   ``&`` operator).  This gives us direct access to the memory without
