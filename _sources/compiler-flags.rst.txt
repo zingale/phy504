@@ -5,7 +5,13 @@ Making the Compiler Do the Work
 Compilers have lots of options that affect the compilation.  So far,
 with ``g++`` we've just been using ``-o`` to name the executable.  But
 we can also have the compiler warn us about problematic C++ code we may
-have written.  Two options that are useful are:
+have written.  A useful set of options is:
+
+.. prompt:: bash
+
+   g++ -Wall -Wextra -Wpedantic
+
+Here's a brief summary:
 
 * ``-Wall`` : this turns on options that warn about things most users deem problematic.  For my version, it enables:
 

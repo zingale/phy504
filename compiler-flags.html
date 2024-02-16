@@ -235,7 +235,13 @@
 <p>Compilers have lots of options that affect the compilation.  So far,
 with <code class="docutils literal notranslate"><span class="pre">g++</span></code> we’ve just been using <code class="docutils literal notranslate"><span class="pre">-o</span></code> to name the executable.  But
 we can also have the compiler warn us about problematic C++ code we may
-have written.  Two options that are useful are:</p>
+have written.  A useful set of options is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wpedantic</span>
+</pre></div></div><p>Here’s a brief summary:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-Wall</span></code> : this turns on options that warn about things most users deem problematic.  For my version, it enables:</p>
 <ul>
