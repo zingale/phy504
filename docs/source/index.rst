@@ -103,6 +103,7 @@ Spring 2024
    :maxdepth: 1
    :caption: Elements of Software Engineering
 
+   compiler-flags
    multiple-files
    make
 
