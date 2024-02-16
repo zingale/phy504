@@ -2,16 +2,12 @@
 #include <array>
 #include <iomanip>
 
-enum ArrayDims {kcols = 4,
-                krows = 3};
-
-using RowArray = std::array<double, ArrayDims::kcols>;
-
-using FixedSizedMatrix = std::array<RowArray, ArrayDims::krows>;
+using row_arr_t = std::array<double, 4>;
+using fixed_mat_t = std::array<row_arr_t, 3>;
 
 int main() {
 
-    FixedSizedMatrix M{0.0};
+    fixed_mat_t M{0.0};
 
     double val{0.0};
     for (auto &r : M) {
