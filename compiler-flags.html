@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pointers &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Making the Compiler Do the Work &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Loops and If-Tests" href="cxx-statements.html" />
-    <link rel="prev" title="References" href="cxx-references.html" /> 
+    <link rel="next" title="Working with Multiple Files" href="multiple-files.html" />
+    <link rel="prev" title="Example: Sorting Planets" href="cxx-functions-planets.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -96,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="first_project.html">A First C++ Project</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
@@ -107,7 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-arrays.html">Arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-references.html">References</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-pointers.html">Pointers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-statements.html">Loops and If-Tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-maps.html">Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
@@ -121,8 +121,8 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-planets.html">Example: Sorting Planets</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="compiler-flags.html">Making the Compiler Do the Work</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Making the Compiler Do the Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 </ul>
@@ -220,9 +220,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Pointers</li>
+      <li class="breadcrumb-item active">Making the Compiler Do the Work</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-pointers.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/compiler-flags.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -230,116 +230,102 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pointers">
-<h1>Pointers<a class="headerlink" href="#pointers" title="Link to this heading"></a></h1>
-<div class="admonition-reading admonition">
-<p class="admonition-title">reading</p>
-<p>Cyganek section 3.12</p>
-</div>
-<p>Pointers are similar to references in that they provide indirect access to an object’s data.
-However, in C++, references are much more widely used than pointers.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>References and pointers can provide similar functionality.  In
-general, pointers are more general but also more error-prone.
-Here’s a summary of the <a class="reference external" href="https://en.wikipedia.org/wiki/Reference_(C%2B%2B)#Relationship_to_pointers">differences between references and
-pointers</a></p>
-</div>
-<p>Here’s a simple example:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-
-<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>This has the pointer <code class="docutils literal notranslate"><span class="pre">a</span></code> point to the memory location of <code class="docutils literal notranslate"><span class="pre">b</span></code> (we
-use the <em>address operator</em> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> here).  Visually, this appears as:</p>
-<figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/692px-Pointers.svg.png"><img alt="_images/692px-Pointers.svg.png" src="_images/692px-Pointers.svg.png" style="width: 70%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">A pointer, <code class="docutils literal notranslate"><span class="pre">a</span></code> that points to the memory location of variable <code class="docutils literal notranslate"><span class="pre">b</span></code>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
-<div class="legend">
-<p>(Wikipedia/Sven)</p>
-</div>
-</figcaption>
-</figure>
-<p>We can access the data pointed to by the pointer by using the <em>dereference operator</em>, <code class="docutils literal notranslate"><span class="pre">*</span></code>.
-Here’s an example:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pointers_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">2.0</span><span class="p">};</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">x_ptr</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// we can access x through the reference x_ref</span>
-
-<span class="w">    </span><span class="n">x_ref</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x_ref = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x_ref</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// now let&#39;s associate x_ptr with x</span>
-
-<span class="w">    </span><span class="n">x_ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// to access the data pointed to by x_ptr, we need to</span>
-<span class="w">    </span><span class="c1">// dereference it</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x_ptr = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x_ptr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;*x_ptr = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">x_ptr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// likewise, to modify its value</span>
-
-<span class="w">    </span><span class="o">*</span><span class="n">x_ptr</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x_ref = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x_ref</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We will not use pointers directly much in this class, but they are
-useful for managing memory.  Later (if there is time) we’ll see
-that there are <em>smart pointers</em> in C++ that handle a lot of the
-memory management for us.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>It is a good idea to initialize all pointers (just like we do for
-all other object types).  C++ provides <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> for this reason:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>This then allows us to use the pointer in a conditional, like:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// do stuff</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>What happens if we compare two pointers with <code class="docutils literal notranslate"><span class="pre">==</span></code>?</p>
-</div>
+  <section id="making-the-compiler-do-the-work">
+<h1>Making the Compiler Do the Work<a class="headerlink" href="#making-the-compiler-do-the-work" title="Link to this heading"></a></h1>
+<p>Compilers have lots of options that affect the compilation.  So far,
+with <code class="docutils literal notranslate"><span class="pre">g++</span></code> we’ve just been using <code class="docutils literal notranslate"><span class="pre">-o</span></code> to name the executable.  But
+we can also have the compiler warn us about problematic C++ code we may
+have written.  Two options that are useful are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wall</span></code> : this turns on options that warn about things most users deem problematic.  For my version, it enables:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Waddress</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Warray-bounds=1</span></code> (only with -O2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Warray-compare</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wbool-compare</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wbool-operation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wc++11-compat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wc++14-compat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wcatch-value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wchar-subscripts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wcomment</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wdangling-pointer=2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wformat</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wformat-overflow</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wformat-truncation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wint-in-bool-context</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Winit-self</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wlogical-not-parentheses</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmaybe-uninitialized</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmemset-elt-size</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmemset-transposed-args</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmisleading-indentation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmismatched-dealloc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmismatched-new-delete</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmissing-attributes</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmultistatement-macros</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wnarrowing</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wnonnull</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wnonnull-compare</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wopenmp-simd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wparentheses</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wpessimizing-move</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wpointer-sign</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wrange-loop-construct</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wreorder</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wrestrict</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wreturn-type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wself-move</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wsequence-point</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wsign-compare</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wsizeof-array-div</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wsizeof-pointer-div</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wsizeof-pointer-memaccess</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wstrict-aliasing</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wstrict-overflow=1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wswitch</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wtautological-compare</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wtrigraphs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wuninitialized</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunknown-pragmas</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-function</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-label</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-variable</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wuse-after-free=2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wvolatile-register-var</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wzero-length-bounds</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wextra</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wclobbered</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wcast-function-type</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wdangling-reference</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wdeprecated-copy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wempty-body</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wignored-qualifiers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wimplicit-fallthrough=3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wmissing-field-initializers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Woverride-init</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wstring-compare</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wredundant-move</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wtype-limits</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wuninitialized</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wshift-negative-value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-parameter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-but-set-parameter</span></code></p></li>
+</ul>
+</li>
+</ul>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-references.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-statements.html" class="btn btn-neutral float-right" title="Loops and If-Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-functions-planets.html" class="btn btn-neutral float-left" title="Example: Sorting Planets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multiple-files.html" class="btn btn-neutral float-right" title="Working with Multiple Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
