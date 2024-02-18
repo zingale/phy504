@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>clang-tidy &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Some C++ programming terms &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Object-Oriented Design" href="object-oriented.html" />
-    <link rel="prev" title="Debugging" href="debugging.html" /> 
+    <link rel="next" title="Homework 1" href="homework/homework1.html" />
+    <link rel="prev" title="Coming in C++23" href="cxx23.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -144,13 +144,13 @@
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Testing</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Unit Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="valgrind.html">Valgrind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">clang-tidy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clang-tidy.html">clang-tidy</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
 <ul>
@@ -194,11 +194,11 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="didnt_cover.html">Stuff We Didn’t Cover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx20.html">Coming in C++20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx23.html">Coming in C++23</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-glossary.html">Some C++ programming terms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Some C++ programming terms</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -224,9 +224,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">clang-tidy</li>
+      <li class="breadcrumb-item active">Some C++ programming terms</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/clang-tidy.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-glossary.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -234,25 +234,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="clang-tidy">
-<h1>clang-tidy<a class="headerlink" href="#clang-tidy" title="Link to this heading"></a></h1>
-<p><a class="reference external" href="https://clang.llvm.org/extra/clang-tidy/">clang-tidy</a> is part of
-the <a class="reference external" href="https://llvm.org/">LLVM project</a>, and can identify programming
-errors and suggest improvements to code.</p>
-<p>Here’s an example using it on our array code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">clang-tidy<span class="w"> </span>test_array.cpp<span class="w">  </span>-checks<span class="o">=</span>-*,bugprone-*,modernize-*,readibility-*<span class="w"> </span>--<span class="w"> </span>test_array.cpp</span>
-</pre></div></div></section>
+  <section id="some-c-programming-terms">
+<h1>Some C++ programming terms<a class="headerlink" href="#some-c-programming-terms" title="Link to this heading"></a></h1>
+<p>See <a class="reference external" href="https://en.cppreference.com/w/cpp/language/acronyms">https://en.cppreference.com/w/cpp/language/acronyms</a> for a longer list</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/One_Definition_Rule">ODR</a> :
+one definition rule</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">RAII</a> :
+resource acquisition is iniitalization</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Substitution_failure_is_not_an_error">SFINAE</a> :
+substitution failure is not an error</p></li>
+</ul>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="debugging.html" class="btn btn-neutral float-left" title="Debugging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="object-oriented.html" class="btn btn-neutral float-right" title="Object-Oriented Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx23.html" class="btn btn-neutral float-left" title="Coming in C++23" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="homework/homework1.html" class="btn btn-neutral float-right" title="Homework 1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

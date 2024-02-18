@@ -198,6 +198,7 @@
 <li class="toctree-l1"><a class="reference internal" href="didnt_cover.html">Stuff We Didn’t Cover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx20.html">Coming in C++20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx23.html">Coming in C++23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-glossary.html">Some C++ programming terms</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul>
@@ -237,7 +238,10 @@
 <h1>Pointers<a class="headerlink" href="#pointers" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 3.12</p>
+<ul class="simple">
+<li><p>Cyganek section 3.12</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">pointers</a> from Wikipedia</p></li>
+</ul>
 </div>
 <p>Pointers are similar to references in that they provide indirect access to an object’s data.
 However, in C++, references are much more widely used than pointers.</p>
@@ -257,10 +261,10 @@ pointers</a></p>
 </div>
 <p>This has the pointer <code class="docutils literal notranslate"><span class="pre">a</span></code> point to the memory location of <code class="docutils literal notranslate"><span class="pre">b</span></code> (we
 use the <em>address operator</em> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> here).  Visually, this appears as:</p>
-<figure class="align-center" id="id1">
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/692px-Pointers.svg.png"><img alt="_images/692px-Pointers.svg.png" src="_images/692px-Pointers.svg.png" style="width: 70%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">A pointer, <code class="docutils literal notranslate"><span class="pre">a</span></code> that points to the memory location of variable <code class="docutils literal notranslate"><span class="pre">b</span></code>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">A pointer, <code class="docutils literal notranslate"><span class="pre">a</span></code> that points to the memory location of variable <code class="docutils literal notranslate"><span class="pre">b</span></code>.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 <div class="legend">
 <p>(Wikipedia/Sven)</p>
 </div>
@@ -268,8 +272,8 @@ use the <em>address operator</em> <code class="docutils literal notranslate"><sp
 </figure>
 <p>We can access the data pointed to by the pointer by using the <em>dereference operator</em>, <code class="docutils literal notranslate"><span class="pre">*</span></code>.
 Here’s an example:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pointers_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 18 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pointers_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
