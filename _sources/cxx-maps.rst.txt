@@ -21,3 +21,14 @@ Here's an example:
 We use a `structured binding
 <https://en.cppreference.com/w/cpp/language/structured_binding>`_ to
 unpack the key and value into separate variables.
+
+In C++20, the ``contains()`` member function was added to maps:
+
+.. literalinclude:: ../../examples/map/map_contains.cpp
+   :language: c++
+   :caption: ``map_contains.cpp``
+
+.. tip::
+
+   To compile this, you likely need to add ``-std=c++20`` to the compilation
+   line.
