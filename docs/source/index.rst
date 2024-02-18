@@ -197,6 +197,7 @@ Spring 2024
    didnt_cover
    cxx20
    cxx23
+   cxx-glossary
 
 .. toctree::
    :maxdepth: 1

@@ -4,8 +4,8 @@ References
 
 .. admonition:: reading
 
-   Cyganek section 3.11
-
+   * Cyganek section 3.11
+   * `C++ references <https://en.wikipedia.org/wiki/Reference_(C%2B%2B)#>`_ from Wikipedia
 
 *References* in C++ provide access to an object indirectly.  It
 essentially becomes another name for the object and allows you to

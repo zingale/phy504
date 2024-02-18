@@ -4,7 +4,8 @@ Pointers
 
 .. admonition:: reading
 
-   Cyganek section 3.12
+   * Cyganek section 3.12
+   * `pointers <https://en.wikipedia.org/wiki/Pointer_(computer_programming)>`_ from Wikipedia
 
 Pointers are similar to references in that they provide indirect access to an object's data.
 However, in C++, references are much more widely used than pointers.
