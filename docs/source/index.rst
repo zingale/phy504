@@ -195,6 +195,9 @@ Spring 2024
    :caption: To Be Continued...
 
    didnt_cover
+   cxx20
+   cxx23
+   cxx-glossary
 
 .. toctree::
    :maxdepth: 1

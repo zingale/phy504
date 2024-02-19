@@ -3,16 +3,8 @@ Stuff We Didn't Cover
 *********************
 
 
-``std::map``
-============
-
-With a ``std::map`` you can create an object that looks like a python
-dictionary.  And C++17 offers an easy way to iterate over keys and
-values:
-
-.. literalinclude:: ../../examples/map/map_test.cpp
-   :language: c++
-   :caption: ``map_test.cpp``
+``constexpr``
+=============
 
 
 ``if constexpr``
