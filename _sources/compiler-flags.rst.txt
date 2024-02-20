@@ -32,3 +32,9 @@ Here's an example of catching unused variables:
 .. literalinclude:: ../../examples/compiler-warnings/unused.cpp
    :language: c++
    :caption: ``unused.cpp`
+
+Here's an example of catching a fallthrough in a ``switch`` statement:
+
+.. literalinclude:: ../../examples/compiler-warnings/fallthrough.cpp
+   :language: c++
+   :caption: ``fallthrough.cpp`
