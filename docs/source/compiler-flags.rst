@@ -16,7 +16,7 @@ Here's a brief summary:
 * ``-Wall`` : this turns on options that warn about things most users deem problematic.
 
 * ``-Wextra`` : enabled additional warnings that most people think are good to check
-   for.
+  for.
 
 * ``-Wpedantic`` : makes sure that you conform to the language standard and not rely
   on any extensions that the compiler might support.
