@@ -247,87 +247,46 @@ span.prompt1:before {
 </style><span class="prompt1">g++<span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wpedantic</span>
 </pre></div></div><p>Here’s a brief summary:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wall</span></code> : this turns on options that warn about things most users deem problematic.  For my version, it enables:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Waddress</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Warray-bounds=1</span></code> (only with -O2)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Warray-compare</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wbool-compare</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wbool-operation</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wc++11-compat</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wc++14-compat</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wcatch-value</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wchar-subscripts</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wcomment</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wdangling-pointer=2</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wformat</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wformat-overflow</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wformat-truncation</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wint-in-bool-context</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Winit-self</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wlogical-not-parentheses</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmaybe-uninitialized</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmemset-elt-size</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmemset-transposed-args</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmisleading-indentation</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmismatched-dealloc</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmismatched-new-delete</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmissing-attributes</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmultistatement-macros</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wnarrowing</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wnonnull</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wnonnull-compare</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wopenmp-simd</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wparentheses</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wpessimizing-move</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wpointer-sign</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wrange-loop-construct</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wreorder</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wrestrict</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wreturn-type</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wself-move</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wsequence-point</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wsign-compare</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wsizeof-array-div</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wsizeof-pointer-div</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wsizeof-pointer-memaccess</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wstrict-aliasing</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wstrict-overflow=1</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wswitch</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wtautological-compare</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wtrigraphs</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wuninitialized</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunknown-pragmas</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-function</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-label</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-value</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-variable</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wuse-after-free=2</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wvolatile-register-var</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wzero-length-bounds</span></code></p></li>
-</ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wall</span></code> : this turns on options that warn about things most users deem problematic.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-Wextra</span></code><span class="classifier">enabled additional warnings that most people think are good to check</span></dt><dd><p>for.</p>
+</dd>
+</dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wextra</span></code>:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wclobbered</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wcast-function-type</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wdangling-reference</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wdeprecated-copy</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wempty-body</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wignored-qualifiers</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wimplicit-fallthrough=3</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wmissing-field-initializers</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Woverride-init</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wstring-compare</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wredundant-move</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wtype-limits</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wuninitialized</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wshift-negative-value</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-parameter</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-Wunused-but-set-parameter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Wpedantic</span></code> : makes sure that you conform to the language standard and not rely
+on any extensions that the compiler might support.</p></li>
 </ul>
-</li>
-</ul>
+<p>Here’s an example of a case of using the wrong type in a loop that can be caught with these flags:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 35 </span><span class="caption-text"><a href="#id1"><span class="problematic" id="id2">``</span></a>types.cpp`</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Here’s an example of catching unused variables:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 36 </span><span class="caption-text"><a href="#id3"><span class="problematic" id="id4">``</span></a>unused.cpp`</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </section>
 
 
