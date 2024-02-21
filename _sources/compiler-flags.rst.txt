@@ -25,16 +25,17 @@ Here's an example of a case of using the wrong type in a loop that can be caught
 
 .. literalinclude:: ../../examples/compiler-warnings/types.cpp
    :language: c++
-   :caption: ``types.cpp`
+   :caption: ``types.cpp``
 
 Here's an example of catching unused variables:
 
 .. literalinclude:: ../../examples/compiler-warnings/unused.cpp
    :language: c++
-   :caption: ``unused.cpp`
+   :caption: ``unused.cpp``
 
 Here's an example of catching a fallthrough in a ``switch`` statement:
 
 .. literalinclude:: ../../examples/compiler-warnings/fallthrough.cpp
    :language: c++
-   :caption: ``fallthrough.cpp`
+   :caption: ``fallthrough.cpp``
+
