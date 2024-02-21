@@ -157,3 +157,15 @@ There are more things we can do to generalize our makefile.
 .. http://make.mad-scientist.net/papers/advanced-auto-dependency-generation/
 
 .. https://stackoverflow.com/questions/66118766/what-is-include-in-gnu-make-and-how-it-works
+
+.. admonition:: try it...
+
+   Modify the ``GNUmakefile`` to add the warning flags we discussed earlier to
+   the compilation of each source.
+
+.. tip::
+
+   A common target in makefiles is ``clean``, which will delete the intermediate
+   ``*.o`` files and the executable.
+
+
