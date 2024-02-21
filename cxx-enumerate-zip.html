@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming in C++23 &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Preview: C++23 enumerate and zip &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Some C++ programming terms" href="cxx-glossary.html" />
-    <link rel="prev" title="Coming in C++20" href="cxx20.html" /> 
+    <link rel="next" title="enum" href="cxx-enum.html" />
+    <link rel="prev" title="Preview: C++23 mdspan" href="cxx-mdspan.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -133,9 +133,13 @@
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-enumerate-zip.html">Preview: C++23 enumerate and zip</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Preview: C++23 enumerate and zip</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zip"><code class="docutils literal notranslate"><span class="pre">zip</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-enum.html">enum</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-casting.html">Casting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
@@ -195,15 +199,10 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="didnt_cover.html">Stuff We Didn’t Cover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx20.html">Coming in C++20</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Coming in C++23</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#mdspan-and-multi-d-subscript-operator"><code class="docutils literal notranslate"><span class="pre">&lt;mdspan&gt;</span></code> and Multi-d Subscript Operator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#print"><code class="docutils literal notranslate"><span class="pre">&lt;print&gt;</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stacktrace"><code class="docutils literal notranslate"><span class="pre">&lt;stacktrace&gt;</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cxx23.html">Coming in C++23</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-glossary.html">Some C++ programming terms</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
@@ -230,9 +229,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Coming in C++23</li>
+      <li class="breadcrumb-item active">Preview: C++23 enumerate and zip</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx23.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-enumerate-zip.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -240,22 +239,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="coming-in-c-23">
-<h1>Coming in C++23<a class="headerlink" href="#coming-in-c-23" title="Link to this heading"></a></h1>
-<p>The main features in C++23 of interest to scientific computing are:</p>
-<section id="mdspan-and-multi-d-subscript-operator">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;mdspan&gt;</span></code> and Multi-d Subscript Operator<a class="headerlink" href="#mdspan-and-multi-d-subscript-operator" title="Link to this heading"></a></h2>
+  <section id="preview-c-23-enumerate-and-zip">
+<h1>Preview: C++23 enumerate and zip<a class="headerlink" href="#preview-c-23-enumerate-and-zip" title="Link to this heading"></a></h1>
+<p>Two useful <em>views</em> for iterating over containers and <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> and <code class="docutils literal notranslate"><span class="pre">zip</span></code>.  These
+were introduced in C++23 and are defined in the <code class="docutils literal notranslate"><span class="pre">&lt;ranges&gt;</span></code> header.</p>
+<section id="enumerate">
+<h2><code class="docutils literal notranslate"><span class="pre">enumerate</span></code><a class="headerlink" href="#enumerate" title="Link to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 60 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">enumerate_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">powers</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">views</span><span class="o">::</span><span class="n">enumerate</span><span class="p">(</span><span class="n">powers</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> returns a reference to the data even if you add <code class="docutils literal notranslate"><span class="pre">const</span></code> before
+the <code class="docutils literal notranslate"><span class="pre">auto</span></code>.</p>
 </section>
-<section id="print">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;print&gt;</span></code><a class="headerlink" href="#print" title="Link to this heading"></a></h2>
-</section>
-<section id="stacktrace">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;stacktrace&gt;</span></code><a class="headerlink" href="#stacktrace" title="Link to this heading"></a></h2>
-<p>The <a class="reference external" href="https://en.cppreference.com/w/cpp/header/stacktrace">stacktrace</a> header provides
-functions that allow us to dump out the call stack from within a C++ program.  This
-is helpful for debugging.</p>
-<p>See the example here for how to use it:
-<a class="reference external" href="https://en.cppreference.com/w/cpp/utility/basic_stacktrace">https://en.cppreference.com/w/cpp/utility/basic_stacktrace</a></p>
+<section id="zip">
+<h2><code class="docutils literal notranslate"><span class="pre">zip</span></code><a class="headerlink" href="#zip" title="Link to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 61 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">zip_example.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">names</span><span class="p">{</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;D&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">values</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">views</span><span class="o">::</span><span class="n">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>In this example, the two containers are not the same length, so the looping ends when
+the first container runs out of objects.</p>
 </section>
 </section>
 
@@ -263,8 +296,8 @@ is helpful for debugging.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx20.html" class="btn btn-neutral float-left" title="Coming in C++20" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-glossary.html" class="btn btn-neutral float-right" title="Some C++ programming terms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-mdspan.html" class="btn btn-neutral float-left" title="Preview: C++23 mdspan" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-enum.html" class="btn btn-neutral float-right" title="enum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
