@@ -53,7 +53,7 @@ Inside of the ``main()`` function, we create a ``vector`` called
    <https://en.wikipedia.org/wiki/Automatic_variable>`_.
 
 Automatic variables are allocated in a special part of memory called
-the `*stack* <https://en.wikipedia.org/wiki/Stack-based_memory_allocation>`_.  When you enter a function, all of the automatic
+the `stack <https://en.wikipedia.org/wiki/Stack-based_memory_allocation>`_.  When you enter a function, all of the automatic
 variables are *pushed down* onto the stack and are available as long
 as they stay in scope.  When you exit the function, the variables are
 *popped* off the stack and the memory is automatically freed.
