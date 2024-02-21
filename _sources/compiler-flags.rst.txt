@@ -9,7 +9,7 @@ have written.  A useful set of options is:
 
 .. prompt:: bash
 
-   g++ -Wall -Wextra -Wpedantic
+   g++ -Wall -Wextra -Wshadow -Wpedantic
 
 Here's a brief summary:
 
