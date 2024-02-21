@@ -168,4 +168,7 @@ There are more things we can do to generalize our makefile.
    A common target in makefiles is ``clean``, which will delete the intermediate
    ``*.o`` files and the executable.
 
+.. tip::
 
+   Here's a `Makefile <https://github.com/zingale/phy504/blob/main/examples/vectors/Makefile>`_
+   I use with some of the in-class examples to build several executables in the same directory.
