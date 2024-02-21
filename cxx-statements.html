@@ -516,6 +516,26 @@ other form puts the <code class="docutils literal notranslate"><span class="pre"
 </pre></div>
 </div>
 <p>In this case, all of the statements in the loop body are executed at least once.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">{}</span> <span class="pre">while</span> <span class="pre">(condition)</span></code> form is discouraged.</p>
+<p><a class="reference external" href="https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/avoid-do-while.html">https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/avoid-do-while.html</a></p>
+</div>
+<p>Finally, you can loop over a range simply by using an initialization list:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 20 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">list_loop.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="mi">2020</span><span class="p">,</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span><span class="w"> </span><span class="mi">2023</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;the year is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 <section id="continue-and-break">
@@ -538,8 +558,8 @@ loop block if some conditions is met.  This is where <code class="docutils liter
 <p>In this case, we will want a way to bail out.  Here’s an (silly)
 example of asking for a word from a user and telling them how many
 letters it contains.  But if they enter “0”, we exit:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 20 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">infinite_loop.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 21 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">infinite_loop.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 
@@ -566,8 +586,8 @@ letters it contains.  But if they enter “0”, we exit:</p>
 <p><code class="docutils literal notranslate"><span class="pre">continue</span></code> is used to skip to the next iteration.  Here’s an example
 that loops over elements of a vector but only operates on them if they
 are even numbers, in which case, it negates them.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 21 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">continue_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 22 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">continue_example.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 

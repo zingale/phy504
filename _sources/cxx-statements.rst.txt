@@ -297,6 +297,20 @@ other form puts the ``while`` at the end:
 
 In this case, all of the statements in the loop body are executed at least once.
 
+.. note::
+
+   The ``do {} while (condition)`` form is discouraged.
+
+   https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/avoid-do-while.html
+
+
+Finally, you can loop over a range simply by using an initialization list:
+
+.. literalinclude:: ../../examples/statements/list_loop.cpp
+   :language: c++
+   :caption: ``list_loop.cpp``
+
+
 ``continue`` and ``break``
 ==========================
 
