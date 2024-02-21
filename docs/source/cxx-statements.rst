@@ -19,8 +19,8 @@ in a number of contexts:
 * to define the body of a function (so far we've only seen ``main()``,
   but this applies to any function).
 
-* to define the members of a ``struct``, ``enum``, or as we'll soon
-  see, a ``namespace`` or ``class``.
+* to define the members of a ``struct``, or as we'll soon
+  see, a ``namespace``, ``enum``, or ``class``.
 
 * to group statements that are part of another statement, as with an
   ``if`` or ``for`` loop.
