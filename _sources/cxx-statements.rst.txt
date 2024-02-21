@@ -41,11 +41,16 @@ Inside of the ``main()`` function, we create a ``vector`` called
 ``fib`` and an integer ``n``.  Both of these are in scope inside of
 ``main``---that means that we can use them and access them as needed.
 
-One of the nice things about the standard types like ``vector`` is
-that C++ automatically cleans up their memory when they go out of
-scope.  This occurs at the last ``}`` of ``main()``.  At that point,
-``fib`` is destroyed and its memory is freed.  The same happens with ``n``.
-This behavior is called an `automatic variable <https://en.wikipedia.org/wiki/Automatic_variable>`_.
+.. note::
+
+   One of the nice things about the standard types like ``vector`` is
+   that C++ automatically cleans up their memory when they go out of
+   scope.  This occurs at the last ``}`` of ``main()``.  At that
+   point, ``fib`` is destroyed and its memory is freed.  The same
+   happens with ``n``.
+
+   This behavior is called an `automatic variable
+   <https://en.wikipedia.org/wiki/Automatic_variable>`_.
 
 Automatic variables are allocated in a special part of memory called
 the `*stack* <https://en.wikipedia.org/wiki/Stack-based_memory_allocation>`_.  When you enter a function, all of the automatic
