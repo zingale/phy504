@@ -256,15 +256,21 @@
 time to understand some of the nuances of these statements.</p>
 <section id="statement-blocks">
 <h2>Statement Blocks<a class="headerlink" href="#statement-blocks" title="Link to this heading"></a></h2>
-<p>We use curly braces, <code class="docutils literal notranslate"><span class="pre">{}</span></code> to denote blocks of code.  These are used in a number of contexts:</p>
+<p>We use curly braces, <code class="docutils literal notranslate"><span class="pre">{}</span></code> to denote blocks of code.  These are used
+in a number of contexts:</p>
 <ul class="simple">
-<li><p>to define the body of a function (so far we’ve only seen <code class="docutils literal notranslate"><span class="pre">main()</span></code>, but this applies to any function).</p></li>
-<li><p>to define the members of a <code class="docutils literal notranslate"><span class="pre">struct</span></code>, <code class="docutils literal notranslate"><span class="pre">enum</span></code>, or as we’ll soon see, a <code class="docutils literal notranslate"><span class="pre">namespace</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p></li>
-<li><p>to group statements that are part of another statement, as with an <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
+<li><p>to define the body of a function (so far we’ve only seen <code class="docutils literal notranslate"><span class="pre">main()</span></code>,
+but this applies to any function).</p></li>
+<li><p>to define the members of a <code class="docutils literal notranslate"><span class="pre">struct</span></code>, <code class="docutils literal notranslate"><span class="pre">enum</span></code>, or as we’ll soon
+see, a <code class="docutils literal notranslate"><span class="pre">namespace</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p></li>
+<li><p>to group statements that are part of another statement, as with an
+<code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
 </ul>
-<p>One thing to keep in mind with these blocks is <em>scope</em>—this means whether we have access to the value held by an object.</p>
-<p>A general rule is that we can access objects that are defined outside of our current scope.</p>
-<p>Let’s look at the solution from our homework 3:</p>
+<p>One thing to keep in mind with these blocks is <em>scope</em>—this means
+whether we have access to the value held by an object.</p>
+<p>A general rule is that we can access objects that are defined outside
+of our current scope.</p>
+<p>Let’s look at a Fibonacci example:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 19 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">fibonacci.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>

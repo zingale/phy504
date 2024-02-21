@@ -13,19 +13,25 @@ time to understand some of the nuances of these statements.
 Statement Blocks
 ================
 
-We use curly braces, ``{}`` to denote blocks of code.  These are used in a number of contexts:
+We use curly braces, ``{}`` to denote blocks of code.  These are used
+in a number of contexts:
 
-* to define the body of a function (so far we've only seen ``main()``, but this applies to any function).
+* to define the body of a function (so far we've only seen ``main()``,
+  but this applies to any function).
 
-* to define the members of a ``struct``, ``enum``, or as we'll soon see, a ``namespace`` or ``class``.
+* to define the members of a ``struct``, ``enum``, or as we'll soon
+  see, a ``namespace`` or ``class``.
 
-* to group statements that are part of another statement, as with an ``if`` or ``for`` loop.
+* to group statements that are part of another statement, as with an
+  ``if`` or ``for`` loop.
 
-One thing to keep in mind with these blocks is *scope*---this means whether we have access to the value held by an object.
+One thing to keep in mind with these blocks is *scope*---this means
+whether we have access to the value held by an object.
 
-A general rule is that we can access objects that are defined outside of our current scope.
+A general rule is that we can access objects that are defined outside
+of our current scope.
 
-Let's look at the solution from our homework 3:
+Let's look at a Fibonacci example:
 
 .. literalinclude:: ../../examples/statements/fibonacci.cpp
    :language: c++
