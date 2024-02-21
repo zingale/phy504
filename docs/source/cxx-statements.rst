@@ -299,9 +299,7 @@ In this case, all of the statements in the loop body are executed at least once.
 
 .. note::
 
-   The ``do {} while (condition)`` form is discouraged.
-
-   https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/avoid-do-while.html
+   The ``do {} while (condition)`` form `is discouraged <https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/avoid-do-while.html>`_.
 
 
 Finally, you can loop over a range simply by using an initialization list:
