@@ -206,6 +206,7 @@ Spring 2024
 
    homework/homework1
    homework/homework2
+   homework/homework3
 
 .. toctree::
    :maxdepth: 1
