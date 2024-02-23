@@ -271,7 +271,20 @@
 </div>
 <p>We use a <a class="reference external" href="https://en.cppreference.com/w/cpp/language/structured_binding">structured binding</a> to
 unpack the key and value into separate variables.</p>
-<p>In C++20, the <code class="docutils literal notranslate"><span class="pre">contains()</span></code> member function was added to maps:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If we instead loop over our map, <code class="docutils literal notranslate"><span class="pre">a</span></code>, as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then <code class="docutils literal notranslate"><span class="pre">e</span></code> will be a <code class="docutils literal notranslate"><span class="pre">std::pair</span></code> object inside the loop.  We would then
+use <code class="docutils literal notranslate"><span class="pre">e.first</span></code> and <code class="docutils literal notranslate"><span class="pre">e.second</span></code> to access the key and value.</p>
+</div>
+<p>Notice that we can freely add to the <code class="docutils literal notranslate"><span class="pre">map</span></code> simply by using a new key.</p>
+<p>In C++20, the <code class="docutils literal notranslate"><span class="pre">contains()</span></code> member function was added to maps to test
+if a key is part of a map:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 24 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">map_contains.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -300,6 +313,7 @@ unpack the key and value into separate variables.</p>
 <p class="admonition-title">Tip</p>
 <p>To compile this, you likely need to add <code class="docutils literal notranslate"><span class="pre">-std=c++20</span></code> to the compilation
 line.</p>
+<p>For older versions of <code class="docutils literal notranslate"><span class="pre">g++</span></code>, you may instead need <code class="docutils literal notranslate"><span class="pre">-std=c++2a</span></code>.</p>
 </div>
 </section>
 
