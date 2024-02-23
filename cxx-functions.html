@@ -246,7 +246,10 @@
 <h1>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 3.14</p>
+<ul class="simple">
+<li><p>Cyganek section 3.14</p></li>
+<li><p><a class="reference external" href="https://cplusplus.com/doc/tutorial/functions/">Functions</a> from cplusplus.com</p></li>
+</ul>
 </div>
 <p>As we write increasingly complex code, it becomes helpful to split it apart into functions.  This has
 several advantages:</p>
@@ -265,8 +268,8 @@ now we’ll work all within a single file.</p>
 <section id="basic-example">
 <h2>Basic Example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
 <p>Let’s start with a simple example, and then we’ll talk about the structure:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 28 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_function.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 28 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple_function.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
@@ -360,6 +363,12 @@ an example:</p>
 <p>The value of <code class="docutils literal notranslate"><span class="pre">z</span></code> in our caller is copied into the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> in
 the function <code class="docutils literal notranslate"><span class="pre">f()</span></code>.  This is a <em>pass-by-value</em> argument (sometimes
 called <em>value semantics</em>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C++ uses pass-by-value by default <em>except</em> for C-style arrays, which are
+passed as a pointer to the first element.  This is another reason why you
+should use <code class="docutils literal notranslate"><span class="pre">std::array</span></code> for arrays, since it will be clearer in function.</p>
+</div>
 <p>Inside of <code class="docutils literal notranslate"><span class="pre">f()</span></code> any changes we do to <code class="docutils literal notranslate"><span class="pre">x</span></code> will not be reflected
 back to the caller, so <code class="docutils literal notranslate"><span class="pre">z</span></code> will be unmodified by anything that
 happens in the function.</p>
@@ -388,8 +397,8 @@ const, like:</p>
 </div>
 </div>
 <p>Here’s an example of different ways to pass data into a function:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 29 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">function_value_reference.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 29 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">function_value_reference.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
@@ -435,8 +444,8 @@ that tells it how to do the comparison.</p>
 <p>Here’s an example that sorts some strings using the default comparison
 (alphabetically) and then again with a custom comparison function that
 sorts by string length:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 30 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">algorithms_functions.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 30 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">algorithms_functions.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>

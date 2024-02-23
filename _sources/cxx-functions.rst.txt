@@ -4,7 +4,10 @@ Functions
 
 .. admonition:: reading
 
-   Cyganek section 3.14
+   * Cyganek section 3.14
+
+   * `Functions <https://cplusplus.com/doc/tutorial/functions/>`_ from cplusplus.com
+
 
 As we write increasingly complex code, it becomes helpful to split it apart into functions.  This has
 several advantages:
@@ -125,6 +128,12 @@ and then call it as:
 The value of ``z`` in our caller is copied into the value of ``x`` in
 the function ``f()``.  This is a *pass-by-value* argument (sometimes
 called *value semantics*).
+
+.. note::
+
+   C++ uses pass-by-value by default *except* for C-style arrays, which are
+   passed as a pointer to the first element.  This is another reason why you
+   should use ``std::array`` for arrays, since it will be clearer in function.
 
 Inside of ``f()`` any changes we do to ``x`` will not be reflected
 back to the caller, so ``z`` will be unmodified by anything that
