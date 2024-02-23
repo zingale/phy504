@@ -15,9 +15,7 @@ int main() {
 
     std::vector<Planet> planets;
 
-    std::ifstream data_file;
-
-    data_file.open("planets.txt");
+    std::ifstream data_file("planets.txt");
 
     if (! data_file.is_open()) {
         std::cout << "Error opening the file" << std::endl;
@@ -37,7 +35,9 @@ int main() {
     data_file.close();
 
     for (auto p : planets) {
-        std::cout << std::setw(12) << p.name << std::setw(12) << p.a << std::setw(12) << p.e << std::endl;
+        std::cout << std::setw(12) << p.name
+                  << std::setw(12) << p.a
+                   << std::setw(12) << p.e << std::endl;
     }
 
 }
