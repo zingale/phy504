@@ -13,6 +13,12 @@ Concepts
 ========
 
 
+Range Adaptors
+==============
+
+https://learn.microsoft.com/en-us/cpp/standard-library/range-adaptors?view=msvc-170
+
+
 3-way Comparison
 ================
 
