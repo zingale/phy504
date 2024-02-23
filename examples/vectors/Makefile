@@ -4,7 +4,7 @@ EXES = $(SOURCES:.cpp=)
 
 ALL: $(EXES)
 
-CXXFLAGS := -std=c++17 -Wall -Wextra
+CXXFLAGS := -std=c++17 -Wall -Wextra -Wshadow -Wpedantic
 
 %: %.cpp
 	g++ ${CXXFLAGS} -o $@ $<
