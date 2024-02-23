@@ -86,7 +86,7 @@ as ``false`` in a conditional.
 
 .. admonition:: try it...
 
-   A file stream object was an ``.eof()`` member that is ``true`` when
+   A file stream object has an ``.eof()`` member that is ``true`` when
    we reach the end of a file.  However, it is only set after a failed
    read from the file.
 
