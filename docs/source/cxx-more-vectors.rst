@@ -88,6 +88,15 @@ Here's an example of looping over an entire vector using iterators:
    :language: c++
    :caption: ``iterator_loop.cpp``
 
+Reverse iterators
+=================
+
+We can use ``std::rbegin()`` / ``std::rend()`` to iterate through a container
+in reverse.
+
+.. literalinclude:: ../../examples/vectors/vector_reverse.cpp
+   :language: c++
+   :caption: ``vector_reverse.cpp``
 
 Algorithms
 ==========
