@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In-Class Example: Euler Integrator Class &mdash; PHY 504 Spring 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=60df5cae"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PHY 504
+          </a>
+              <div class="version">
+                Spring 2024
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pull-requests.html">Pull Requests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">File Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development-tools.html">Software Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Structure of a C++ Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Helpful C++ Tools / Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editors.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_project.html">A First C++ Project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-matrix-example.html">Example: Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-sequence-containers.html">Aside: Sequence Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-structs.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-pointers.html">Pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-statements.html">Loops and If-Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-orbit-example.html">Example: Planetary Orbit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-lambdas.html">Lambda Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions-planets.html">Example: Sorting Planets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="compiler-flags.html">Making the Compiler Do the Work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-enumerate-zip.html">Preview: C++23 enumerate and zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-enum.html">enum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-casting.html">Casting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-print.html">Preview: C++23 Print</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="valgrind.html">Valgrind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clang-tidy.html">clang-tidy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-move.html">Move Semantics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-allocating.html">Allocating Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-simple-container.html">Example: A Simple Container</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documenting Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="html-css.html">HTML + CSS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github-pages.html">Github Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doxygen.html">Doxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Templates</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roots.html">Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trivially-parallel.html">Trivially Parallel + BASH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openmp-intro.html">OpenMP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openmp-relax.html">OpenMP Poisson Relaxation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi-intro.html">MPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="didnt_cover.html">Stuff We Didn’t Cover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx20.html">Coming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx23.html">Coming in C++23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-glossary.html">Some C++ programming terms</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework1.html">Homework 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework2.html">Homework 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework3.html">Homework 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Final Project</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHY 504</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">In-Class Example: Euler Integrator Class</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/inclass-euler-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="in-class-example-euler-integrator-class">
+<h1>In-Class Example: Euler Integrator Class<a class="headerlink" href="#in-class-example-euler-integrator-class" title="Link to this heading"></a></h1>
+<p>Let’s go back to our <a class="reference internal" href="cxx-orbit-example.html#planetary-orbit"><span class="std std-ref">Example: Planetary Orbit</span></a> example and make the <code class="docutils literal notranslate"><span class="pre">OrbitState</span></code>
+a class and define the ability to add <code class="docutils literal notranslate"><span class="pre">OrbitState</span></code> objects together and
+multiply them by a scalar.  This would allow us to do something like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span><span class="w"> </span><span class="n">orbit</span><span class="p">{};</span>
+<span class="n">OrbitState</span><span class="w"> </span><span class="n">dodt</span><span class="p">{};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">{};</span>
+
+<span class="p">...</span>
+
+<span class="n">orbit</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dodt</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>and make our evolution code look simpler as a result.</p>
+<p>The addition will look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span> <span class="n">operator</span><span class="o">+</span><span class="p">(</span><span class="n">const</span> <span class="n">OrbitState</span><span class="o">&amp;</span> <span class="n">orbit</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We will need to define two multiplications, one for the case where our class
+is to the left of the <code class="docutils literal notranslate"><span class="pre">*</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">orbit</span> <span class="pre">*</span> <span class="pre">dt</span></code> and one for the case where our
+class is on the right of the <code class="docutils literal notranslate"><span class="pre">*</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">dt</span> <span class="pre">*</span> <span class="pre">orbit</span></code>.</p>
+<p>The first case can be a class member and will have the signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span> <span class="n">operator</span><span class="o">*</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The second will be a friend, and have the signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">friend</span> <span class="n">OrbitState</span> <span class="n">operator</span><span class="o">*</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">const</span> <span class="n">OrbitState</span><span class="o">&amp;</span> <span class="n">orbit</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Michael Zingale.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+
+</body>
+</html>
