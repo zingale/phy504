@@ -1,3 +1,5 @@
+.. _planetary_orbit:
+
 ************************
 Example: Planetary Orbit
 ************************
