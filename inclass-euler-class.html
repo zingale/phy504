@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Example: Mathematical Vectors" href="cxx-vector2d-class.html" />
-    <link rel="prev" title="Introduction to Classes" href="cxx-classes-intro.html" /> 
+    <link rel="next" title="Example: Multidimensional Contiguous Array" href="contiguous_array.html" />
+    <link rel="prev" title="Example: Mathematical Vectors" href="cxx-vector2d-class.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -130,8 +130,8 @@
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">In-Class Example: Euler Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">In-Class Example: Euler Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
@@ -249,13 +249,18 @@ multiply them by a scalar.  This would allow us to do something like:</p>
 
 <span class="p">...</span>
 
-<span class="n">orbit</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dodt</span><span class="p">;</span>
+<span class="n">orbit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orbit</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dodt</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>and make our evolution code look simpler as a result.</p>
 <p>The addition will look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span> <span class="n">operator</span><span class="o">+</span><span class="p">(</span><span class="n">const</span> <span class="n">OrbitState</span><span class="o">&amp;</span> <span class="n">orbit</span><span class="p">);</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">+=</span></code> operator is a different operator, and we’d need to
+write a separate function for it.  We’ll look at this later.</p>
 </div>
 <p>We will need to define two multiplications, one for the case where our class
 is to the left of the <code class="docutils literal notranslate"><span class="pre">*</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">orbit</span> <span class="pre">*</span> <span class="pre">dt</span></code> and one for the case where our
@@ -274,8 +279,8 @@ class is on the right of the <code class="docutils literal notranslate"><span cl
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-classes-intro.html" class="btn btn-neutral float-left" title="Introduction to Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-vector2d-class.html" class="btn btn-neutral float-right" title="Example: Mathematical Vectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-vector2d-class.html" class="btn btn-neutral float-left" title="Example: Mathematical Vectors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contiguous_array.html" class="btn btn-neutral float-right" title="Example: Multidimensional Contiguous Array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
