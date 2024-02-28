@@ -96,6 +96,7 @@ Spring 2024
    cxx-functions
    cxx-functions-example
    cxx-orbit-example
+   inclass-rk2-orbit
    cxx-lambdas
    cxx-functions-planets
 
