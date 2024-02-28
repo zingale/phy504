@@ -16,7 +16,16 @@ Concepts
 Range Adaptors
 ==============
 
-https://learn.microsoft.com/en-us/cpp/standard-library/range-adaptors?view=msvc-170
+Range adaptors look like pipes that we saw when discussing Bash (see:
+https://learn.microsoft.com/en-us/cpp/standard-library/range-adaptors?view=msvc-170)
+
+Here's an example of using an adaptor to reverse the iteration through a vector using
+a range-based for loop:
+
+.. literalinclude:: ../../examples/range_adaptors/reverse_adaptor.cpp
+   :language: c++
+   :caption: ``reverse_adaptor.cpp``
+
 
 
 3-way Comparison
