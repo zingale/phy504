@@ -21,14 +21,14 @@ int main() {
                                        {"Uranus",  19.189,  0.0473},
                                        {"Neptune", 30.070,  0.0086}};
 
-    std::ofstream of;
-
-    of.open("planets.txt");
+    std::ofstream of("planets.txt");
 
     for (auto p : planets) {
-        of << std::setw(12) << p.name << std::setw(12) << p.a << std::setw(12) << p.e << std::endl;
+        of << std::setw(12) << p.name
+	   << std::setw(12) << p.a
+	   << std::setw(12) << p.e << std::endl;
     }
 
     of.close();
-    
+
 }

@@ -120,6 +120,7 @@ Spring 2024
    :caption: Some Random Bits...
 
    cxx-mdspan
+   cxx-enumerate-zip
    cxx-enum
    cxx-casting
    cxx-iomanip
@@ -205,6 +206,7 @@ Spring 2024
 
    homework/homework1
    homework/homework2
+   homework/homework3
 
 .. toctree::
    :maxdepth: 1

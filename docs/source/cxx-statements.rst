@@ -13,19 +13,25 @@ time to understand some of the nuances of these statements.
 Statement Blocks
 ================
 
-We use curly braces, ``{}`` to denote blocks of code.  These are used in a number of contexts:
+We use curly braces, ``{}`` to denote blocks of code.  These are used
+in a number of contexts:
 
-* to define the body of a function (so far we've only seen ``main()``, but this applies to any function).
+* to define the body of a function (so far we've only seen ``main()``,
+  but this applies to any function).
 
-* to define the members of a ``struct``, ``enum``, or as we'll soon see, a ``namespace`` or ``class``.
+* to define the members of a ``struct``, or as we'll soon
+  see, a ``namespace``, ``enum``, or ``class``.
 
-* to group statements that are part of another statement, as with an ``if`` or ``for`` loop.
+* to group statements that are part of another statement, as with an
+  ``if`` or ``for`` loop.
 
-One thing to keep in mind with these blocks is *scope*---this means whether we have access to the value held by an object.
+One thing to keep in mind with these blocks is *scope*---this means
+whether we have access to the value held by an object.
 
-A general rule is that we can access objects that are defined outside of our current scope.
+A general rule is that we can access objects that are defined outside
+of our current scope.
 
-Let's look at the solution from our homework 3:
+Let's look at a Fibonacci example:
 
 .. literalinclude:: ../../examples/statements/fibonacci.cpp
    :language: c++
@@ -35,14 +41,19 @@ Inside of the ``main()`` function, we create a ``vector`` called
 ``fib`` and an integer ``n``.  Both of these are in scope inside of
 ``main``---that means that we can use them and access them as needed.
 
-One of the nice things about the standard types like ``vector`` is
-that C++ automatically cleans up their memory when they go out of
-scope.  This occurs at the last ``}`` of ``main()``.  At that point,
-``fib`` is destroyed and its memory is freed.  The same happens with ``n``.
-This behavior is called an `automatic variable <https://en.wikipedia.org/wiki/Automatic_variable>`_.
+.. note::
+
+   One of the nice things about the standard types like ``vector`` is
+   that C++ automatically cleans up their memory when they go out of
+   scope.  This occurs at the last ``}`` of ``main()``.  At that
+   point, ``fib`` is destroyed and its memory is freed.  The same
+   happens with ``n``.
+
+   This behavior is called an `automatic variable
+   <https://en.wikipedia.org/wiki/Automatic_variable>`_.
 
 Automatic variables are allocated in a special part of memory called
-the `*stack* <https://en.wikipedia.org/wiki/Stack-based_memory_allocation>`_.  When you enter a function, all of the automatic
+the `stack <https://en.wikipedia.org/wiki/Stack-based_memory_allocation>`_.  When you enter a function, all of the automatic
 variables are *pushed down* onto the stack and are available as long
 as they stay in scope.  When you exit the function, the variables are
 *popped* off the stack and the memory is automatically freed.
@@ -285,6 +296,18 @@ other form puts the ``while`` at the end:
    } while (condition);
 
 In this case, all of the statements in the loop body are executed at least once.
+
+.. note::
+
+   The ``do {} while (condition)`` form `is discouraged <https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/avoid-do-while.html>`_.
+
+
+Finally, you can loop over a range simply by using an initialization list:
+
+.. literalinclude:: ../../examples/statements/list_loop.cpp
+   :language: c++
+   :caption: ``list_loop.cpp``
+
 
 ``continue`` and ``break``
 ==========================

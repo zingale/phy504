@@ -19,26 +19,30 @@ int main() {
     unsigned int char_count{0};
     unsigned int word_count{0};
 
-    bool was_space = true;
+    bool was_space = false;
 
     while (std::getline(input_file, line)) {
 
+        // by design, getline drops the newline, so add it back here
+	// so we can accurate capture line breaks and get the words right
+	line += "\n";
+
         for (auto c : line) {
-            bool test = c == ' ';
-            if (test and !was_space) {
-                was_space = true;
-            } else if (test) {
-                was_space = true;
-            } else if (was_space) {
-                word_count += 1;
-            }
+            bool test = (c == ' ' || c == '\n');
+            if (test) {
+		// if the previous character was a space too, then
+		// just skip, otherwise, increment the word counter
+		// and set it as a space
+		if (!was_space) {
+		    word_count += 1;
+		    was_space = true;
+		}
+            } else {
+		was_space = false;
+	    }
 
             char_count += 1;
         }
-
-        // by design, getline drops the newline, so we need to add 1 to the char
-        // count if we care about the newline character
-        char_count +=1;
 
         line_count += 1;
 

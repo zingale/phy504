@@ -57,7 +57,7 @@ There are 2 approaches we can take:
 
      std::ifstream infile{"file.txt");
 
-     infile >> x >> y >> x;
+     infile >> x >> y >> z;
 
 * Read the file line-by-line into a string and then treat that string
   as a stream and read from it.
@@ -67,7 +67,7 @@ There are 2 approaches we can take:
   .. code:: c++
 
      std::string line{};
-     std::getline(of, line);
+     std::getline(infile, line);
 
   To interpret the string as a stream, we can use ``std::stringstream``:
 
@@ -86,7 +86,7 @@ as ``false`` in a conditional.
 
 .. admonition:: try it...
 
-   A file stream object was an ``.eof()`` member that is ``true`` when
+   A file stream object has an ``.eof()`` member that is ``true`` when
    we reach the end of a file.  However, it is only set after a failed
    read from the file.
 
