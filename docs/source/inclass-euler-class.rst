@@ -14,7 +14,7 @@ multiply them by a scalar.  This would allow us to do something like:
 
    ...
 
-   orbit += dt * dodt;
+   orbit = orbit + dt * dodt;
 
 and make our evolution code look simpler as a result.
 
@@ -23,6 +23,11 @@ The addition will look like:
 .. code::
 
    OrbitState operator+(const OrbitState& orbit);
+
+.. note::
+
+   The ``+=`` operator is a different operator, and we'd need to
+   write a separate function for it.  We'll look at this later.
 
 We will need to define two multiplications, one for the case where our class
 is to the left of the ``*``, e.g., ``orbit * dt`` and one for the case where our
