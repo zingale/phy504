@@ -113,7 +113,7 @@ Spring 2024
    :caption: Classes
 
    cxx-classes-intro
-   inclass-orbit-class
+   inclass-euler-class
    cxx-vector2d-class
    contiguous_array
 
