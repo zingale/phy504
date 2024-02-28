@@ -53,7 +53,7 @@ First we take a half step and we evaluate the slope at the midpoint:
 
    The predictor part of RK2 integration.
 
-.. figure:: rk2_Euler.png
+.. figure:: rk2_final.png
    :align: center
    :width: 90%
 
