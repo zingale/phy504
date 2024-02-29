@@ -3,13 +3,14 @@ Introduction to Classes
 
 .. admonition:: reading
 
-   Cyganek section 3.15
+   * `C++ classes <https://en.wikipedia.org/wiki/C%2B%2B_classes>`_ from Wikipedia
 
+   * Cyganek section 3.15
 
+Classes are a fundamental part of the `object-oriented programming <https://en.wikipedia.org/wiki/Object-oriented_programming>`_ paradigm.
+A class is an objects that holds both data and functions that know how to operate on the data.
 
-Classes are objects that hold both data and functions that know how to operate on the data.
-
-.. note::
+.. tip::
 
    In C++, both ``struct`` and ``class`` create a class, with the difference being
    whether the data is publicly accessible by default.
