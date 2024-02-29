@@ -130,6 +130,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
@@ -405,6 +406,8 @@ compilation step.</p>
 <p>An important concept when working with multiple files is the
 <a class="reference external" href="https://en.wikipedia.org/wiki/One_Definition_Rule">One Definition Rule</a>
 (ODR).</p>
+<p>A consequence of the ODR is that if you put a function entirely in
+a header, then you need to make it <a class="reference external" href="https://en.cppreference.com/w/cpp/language/inline">inline</a>.</p>
 </section>
 </section>
 

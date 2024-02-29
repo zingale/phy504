@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>In-Class Example: Splitting Up Our Orbit Code &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -24,8 +25,10 @@
         <script src="_static/copybutton.js?v=f281be69"></script>
         <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to Classes" href="cxx-classes-intro.html" />
+    <link rel="prev" title="Makefiles" href="make.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -119,11 +122,11 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-planets.html">Example: Sorting Planets</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="compiler-flags.html">Making the Compiler Do the Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
@@ -226,8 +229,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">In-Class Example: Splitting Up Our Orbit Code</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/inclass-split-orbit.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -235,17 +239,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
+  <section id="in-class-example-splitting-up-our-orbit-code">
+<h1>In-Class Example: Splitting Up Our Orbit Code<a class="headerlink" href="#in-class-example-splitting-up-our-orbit-code" title="Link to this heading"></a></h1>
+<p>Let’s go back to our <a class="reference internal" href="cxx-orbit-example.html#planetary-orbit"><span class="std std-ref">Example: Planetary Orbit</span></a> code and split it up into
+a header and a <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file.</p>
+<p>The header should define the <code class="docutils literal notranslate"><span class="pre">OrbitState</span></code> struct and have all of the
+forward declarations of the functions.</p>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="make.html" class="btn btn-neutral float-left" title="Makefiles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-classes-intro.html" class="btn btn-neutral float-right" title="Introduction to Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

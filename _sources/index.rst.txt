@@ -107,6 +107,7 @@ Spring 2024
    compiler-flags
    multiple-files
    make
+   inclass-split-orbit
 
 .. toctree::
    :maxdepth: 1
