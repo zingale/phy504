@@ -473,7 +473,9 @@ data, the columns to use for x and y axes, and any styling (like <code class="do
 span.prompt2:before {
   content: "gnuplot> ";
 }
-</style><span class="prompt2">plot &#39;orbit.dat&#39; using 2:3 w  l</span>
+</style><span class="prompt2">plot &#39;orbit.dat&#39; using 2:3 w l</span>
+<span class="prompt2">set size square</span>
+<span class="prompt2">replot</span>
 </pre></div></div><p>You can save the plot as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt2">set term png</span>
 <span class="prompt2">set output &quot;orbit.png&quot;</span>
