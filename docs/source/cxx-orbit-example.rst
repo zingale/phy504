@@ -162,7 +162,9 @@ To make our code flexible, we'll write the following functions:
    .. prompt::
       :prompts: gnuplot>
 
-      plot 'orbit.dat' using 2:3 w  l
+      plot 'orbit.dat' using 2:3 w l
+      set size square
+      replot
 
    You can save the plot as:
 
