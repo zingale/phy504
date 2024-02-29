@@ -50,3 +50,12 @@ Here's an implementation of that using a lambda function:
 .. literalinclude:: ../../examples/functions/algorithms_functions_lambda.cpp
    :language: c++
    :caption: ``algorithms_functions_lambda.cpp``
+
+.. admonition:: try it...
+
+   We can change the sort to alphabetically by the last letter in the title 
+   by doing:
+
+   .. code:: c++
+
+      [] (const std::string& a, const std::string& b) {return a.back() < b.back();}
