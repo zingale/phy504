@@ -166,6 +166,12 @@ To make our code flexible, we'll write the following functions:
       set size square
       replot
 
+   This will make something like:
+
+   .. figure:: orbit.png
+     :align: center
+     :width: 80%
+
    You can save the plot as:
 
    .. prompt::
@@ -175,11 +181,6 @@ To make our code flexible, we'll write the following functions:
       set output "orbit.png" 
       replot
 
-   This will make something like:
-
-   .. figure:: orbit.png
-     :align: center
-     :width: 80%
 
    For more info, see: http://www.gnuplot.info/
  
