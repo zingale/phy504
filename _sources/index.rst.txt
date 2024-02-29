@@ -114,6 +114,7 @@ Spring 2024
    :caption: Classes
 
    cxx-classes-intro
+   cxx-classes-glossary
    cxx-vector2d-class
    inclass-euler-class
    contiguous_array
