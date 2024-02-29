@@ -43,6 +43,10 @@ initialization / setup that the class requires.
 
    The constructor always has the same name as the class/struct.
 
+.. tip::
+
+   There can be more than 1 constructor---each can take different arguments.
+
 Here's a concrete example---we'll build on our vector of planets, but making a class/struct
 that holds the data and member functions that know how to operate on that data.
 
@@ -131,7 +135,7 @@ The second new feature is the addition of some compilation flags:
 
 .. code:: make
 
-   CFLAGS := -Wall -Wextra -Wpedantic -Wshadow
+   CFLAGS := -Wall -Wextra -Wpedantic -Wshadow -g
 
 These are specific to the GNU compilers, and turn on some warnings
 that help spot code mistakes.  See `GCC warning options

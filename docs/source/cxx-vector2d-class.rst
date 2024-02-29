@@ -4,14 +4,7 @@
 Example: Mathematical Vectors
 *****************************
 
-.. admonition:: reading
-
-   Cyganek section 3.16
-
-   Once again, we are doing a different example than your text, but
-   the emphasis here remains on encapsulation.
-
-Consider a two-dimension vector:
+Consider a two-dimension mathematical vector:
 
 .. math::
 
@@ -196,8 +189,7 @@ Now let's test this out.  Here's a test driver:
    :caption: ``test_vectors.cpp``
 
 There are a wide range of other capabilities we could imagine adding
-to this class to make it easier to work with vectors.  We'll explore some
-of them in our homework.
+to this class to make it easier to work with vectors. 
 
 .. admonition:: try it...
 
