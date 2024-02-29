@@ -63,3 +63,35 @@ Notice how the final step (the red line) is parallel to the slope we
 computed at $t^{n+1/2}$.  Also note that the solution at $t^{n+1}$ is
 much closer to the analytic solution than in the figure from Euler's
 method.
+
+To implement this, it would be nice to have a function that updates
+the state based on the derivatives, like:
+
+.. code:: c++
+
+   OrbitState update_state(const OrbitState& state, const double dt, const OrbitState& state_derivs);
+
+This way we can easily do the update both times as needed via a simple function call.
+
+.. tip::
+
+   Later we'll learn how to use operator overloading to do something like:
+
+   .. code:: c++
+
+      OrbitState state{};
+      double dt{};
+      OrbitState state_derivs{};
+
+      ...
+
+      auto state_new = state + dt * state_derivs;
+
+
+Here's a solution:
+
+.. dropdown:: solution
+
+   .. literalinclude:: ../../examples/functions/orbit_rk2_example.cpp
+      :language: c++
+      :caption: ``orbit_rk2_example.cpp``
