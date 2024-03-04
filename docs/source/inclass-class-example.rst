@@ -20,5 +20,5 @@ We can then write functions to:
 
 * Compute the norm of a vector on our grid, e.g., the L2 norm:
 
-  $$\|e\|_2 = \left ( \Delta x \sum_i |e_i|^2 \right )^{1/2}$$
+  $$\|e\|_2  = \left ( \Delta x \sum_i | e_i | {}^2 \right )^{1/2} $$
 
