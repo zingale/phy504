@@ -24,6 +24,8 @@
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
         <script src="_static/design-tabs.js?v=36754332"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -256,7 +258,9 @@ to represent data for solving PDEs via finite-difference methods.</p>
 <li><p>Output the solution to the screen or file (as <code class="docutils literal notranslate"><span class="pre">x[i]</span></code> <code class="docutils literal notranslate"><span class="pre">phi[i]</span></code> in
 columns)</p></li>
 <li><p>Compute the norm of a vector on our grid, e.g., the L2 norm:</p>
-<p>$$|e|_2 = left ( Delta x sum_i <a href="#id1"><span class="problematic" id="id2">|</span></a>e_i|^2 right )^{1/2}$$</p>
+<p><div class="math notranslate nohighlight">
+\[\|e\|_2  = \left ( \Delta x \sum_i | e_i | {}^2 \right )^{1/2} \]</div>
+</p>
 </li>
 </ul>
 </section>
