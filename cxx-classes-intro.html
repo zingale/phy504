@@ -646,6 +646,13 @@ solar system object, we can return an iterator using <code class="docutils liter
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Then we can do a check like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_planet</span><span class="p">(</span><span class="s">&quot;mars&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">planets</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// planet already exists</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <p>In this simple example, we really did not need to use an initialization list, but there
 are situations when it is desired or even required:</p>
