@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Inheritance and Access" href="inheritance-and-access.html" />
-    <link rel="prev" title="clang-tidy" href="clang-tidy.html" /> 
+    <link rel="next" title="In-Class Example: A Simple Grid" href="inclass-class-example.html" />
+    <link rel="prev" title="Introduction to Classes" href="cxx-classes-intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -129,9 +129,10 @@
 <li class="toctree-l1"><a class="reference internal" href="inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-classes-glossary.html">Class glossary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Object-Oriented Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inclass-class-example.html">In-Class Example: A Simple Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-euler-class.html">In-Class Example: Euler Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
@@ -244,26 +245,47 @@
 <h1>Object-Oriented Design<a class="headerlink" href="#object-oriented-design" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 4.1</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object-oriented programming</a></p></li>
+<li><p>Cyganek section 4.1</p></li>
+</ul>
 </div>
 <p>The use of classes to organize concepts into reusable software objects
 containing data and functions is the hallmark of <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented
 programming</a>.</p>
+<p>Some basic concepts when working with classes:</p>
+<ul>
+<li><p>Instance / object: A <code class="docutils literal notranslate"><span class="pre">class</span></code> provides the definitions of the
+member data and function that work together to describe a concept.
+We create an <em>instance</em> of a class, resulting in an <code class="docutils literal notranslate"><span class="pre">object</span></code>.
+This is something that is defined in our system’s memory.  We can
+have multiple objects of the same class, each with their own memory.</p></li>
+<li><p>Constructor / destructor: a constructor is a function that is called
+when we create an instance of a class.  Its job is to allocate any
+memory and initialize values of the member data.</p>
+<p>A destructor is a function that is called when we destroy our
+object—usually by letting it go out of scope.  Its job is to free
+any memory we allocated and do any other needed clean-up.</p>
+</li>
+</ul>
 <p>Core concepts in OO programming are listed below.  It’s hard to find
 precise definitions of these, and they often seem to overlap a bit
 in what they mean.</p>
 <ul>
-<li><p><em>encapsulation</em> : this means we hide how the data in the class is
-stored.  For example, by making the member data <code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)">Encapsulation</a>:
+: this means we hide how the data in the class is stored.  For
+example, by making the member data <code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
 <p>There may be <em>setters</em> and <em>getters</em> to access some information, but
 the types of objects that are used are hidden from a user of the
 class.  This allows us to change how we store the data (refactor the
 code) without affecting users of the class.</p>
 </li>
-<li><p><em>inheritance</em> : this means that we can use a class as the <em>base class</em>
-(or <em>superclass</em>) to define new classes.  These new classes <em>inherit</em> all
-of the data and functions of the base, but can also change its behavior as
-needed to work in a new way, specific to the new class.</p></li>
+<li><p><a href="#id2"><span class="problematic" id="id3">``</span></a>Inheritance
+&lt;<a class="reference external" href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)</a>&gt;`_:
+this means that we can use a class as the <em>base class</em> (or
+<em>superclass</em>) to define new classes.  These new classes <em>inherit</em>
+all of the data and functions of the base, but can also change its
+behavior as needed to work in a new way, specific to the new class.</p></li>
 <li><p><em>abstraction</em> : this works at the level of the interfaces of the
 member functions of the class.  Similar to encapsulation, it hides
 implementation details from the user.</p>
@@ -280,27 +302,20 @@ define for their specific data.</p>
 how to operate with different types.  Overloading functions and
 operators with the same name is an example of polymorphism.</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>your text discusses the <a class="reference external" href="https://en.wikipedia.org/wiki/SOLID">SOLID software engineering strategy</a>—we won’t discuss that
-here.</p>
-</div>
-<p>Nice discussion about the difference between abstraction and encapsulation is given in this <a class="reference external" href="https://stackoverflow.com/questions/742341/difference-between-abstraction-and-encapsulation">Difference between abstraction and encapsulation? Stack Overflow question</a>.</p>
+<p>A nice discussion about the difference between abstraction and encapsulation is given in this <a class="reference external" href="https://stackoverflow.com/questions/742341/difference-between-abstraction-and-encapsulation">Difference between abstraction and encapsulation? Stack Overflow question</a>.</p>
 <p>Concisely, it says:</p>
 <ul class="simple">
 <li><p>encapsulation means <em>information hiding</em></p></li>
 <li><p>abstraction means <em>implementation hiding</em></p></li>
 </ul>
-<p>We’ve already been practicing both of these, even if we didn’t
-explicitly point it out.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="clang-tidy.html" class="btn btn-neutral float-left" title="clang-tidy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="inheritance-and-access.html" class="btn btn-neutral float-right" title="Inheritance and Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-classes-intro.html" class="btn btn-neutral float-left" title="Introduction to Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inclass-class-example.html" class="btn btn-neutral float-right" title="In-Class Example: A Simple Grid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

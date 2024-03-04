@@ -114,7 +114,8 @@ Spring 2024
    :caption: Classes
 
    cxx-classes-intro
-   cxx-classes-glossary
+   object-oriented
+   inclass-class-example
    cxx-vector2d-class
    inclass-euler-class
    contiguous_array
