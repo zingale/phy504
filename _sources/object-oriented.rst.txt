@@ -44,7 +44,7 @@ in what they mean.
   class.  This allows us to change how we store the data (refactor the
   code) without affecting users of the class.
 
-* ``Inheritance
+* `Inheritance
   <https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)>`_:
   this means that we can use a class as the *base class* (or
   *superclass*) to define new classes.  These new classes *inherit*
