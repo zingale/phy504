@@ -252,6 +252,14 @@ to represent data for solving PDEs via finite-difference methods.</p>
 <li><p>The coordinate vector, <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
 <li><p>A solution vector, <code class="docutils literal notranslate"><span class="pre">phi</span></code></p></li>
 </ul>
+<p>We can then write functions to:</p>
+<ul>
+<li><p>Output the solution to the screen or file (as <code class="docutils literal notranslate"><span class="pre">x[i]</span></code> <code class="docutils literal notranslate"><span class="pre">phi[i]</span></code> in
+columns)</p></li>
+<li><p>Compute the norm of a vector on our grid, e.g., the L2 norm:</p>
+<p>$$|e|_2 = left ( Delta x sum_i <a href="#id1"><span class="problematic" id="id2">|</span></a>e_i|^2 right )^{1/2}$$</p>
+</li>
+</ul>
 </section>
 
 
