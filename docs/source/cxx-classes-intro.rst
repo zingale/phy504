@@ -215,6 +215,14 @@ to interact with the data.
           return it;
       }
 
+   Then we can do a check like:
+
+   .. code:: c++
+
+      auto it = find_planet("mars");
+      if (it != planets.end()) {
+          // planet already exists
+      }
 
 In this simple example, we really did not need to use an initialization list, but there
 are situations when it is desired or even required:
