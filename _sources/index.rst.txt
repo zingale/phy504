@@ -149,7 +149,6 @@ Spring 2024
    :maxdepth: 1
    :caption: Digging Deeper into C++ Classes
 
-   object-oriented
    inheritance-and-access
    this-class
    copy_and_assignment
