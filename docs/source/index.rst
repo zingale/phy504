@@ -117,7 +117,7 @@ Spring 2024
    object-oriented
    inclass-class-example
    cxx-vector2d-class
-   inclass-euler-class
+   inclass-orbit-class
    contiguous_array
 
 .. toctree::

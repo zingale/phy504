@@ -1,5 +1,5 @@
 ****************************************
-In-Class Example: Euler Integrator Class
+In-Class Example: Orbit Integrator Class
 ****************************************
 
 Let's go back to our :ref:`planetary_orbit` example and make the ``OrbitState``
@@ -44,3 +44,12 @@ The second will be a friend, and have the signature:
 .. code::
 
    friend OrbitState operator*(double a, const OrbitState& orbit);
+
+
+Here's the version of the code split up into files---we'll use this as
+the starting point:
+
+* :download:`orbit.H <../../examples/orbits/orbit_split/orbit.H>`
+* :download:`orbit_integrator.cpp <../../examples/orbits/orbit_split/orbit_integrator.cpp>`
+* :download:`test_orbit.cpp <../../examples/orbits/orbit_split/test_orbit.cpp>`
+* :download:`GNUmakefile <../../examples/orbits/orbit_split/GNUmakefile>`
