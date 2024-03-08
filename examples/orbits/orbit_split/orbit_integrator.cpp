@@ -82,12 +82,12 @@ std::vector<OrbitState> integrate(const double a, const double tmax, const doubl
         // get the derivatives
         auto state_derivs = rhs(state);
 
-	// get the derivatives at the midpoint in time
-	auto state_star = update_state(state, 0.5 * dt, state_derivs);
-	state_derivs = rhs(state_star);
+        // get the derivatives at the midpoint in time
+        auto state_star = update_state(state, 0.5 * dt, state_derivs);
+        state_derivs = rhs(state_star);
 
         // update the state
-	state = update_state(state, dt, state_derivs);
+        state = update_state(state, dt, state_derivs);
 
         orbit_history.push_back(state);
     }

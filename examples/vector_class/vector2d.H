@@ -35,7 +35,7 @@ public:
     // operators
 
     // add two vectors
-    
+
     Vector2d operator+(const Vector2d& vec) {
         Vector2d v_out;
         v_out.x = x + vec.x;
@@ -66,6 +66,7 @@ public:
     friend std::ostream& operator<< (std::ostream& os, const Vector2d& v);
 };
 
+inline
 std::ostream& operator<< (std::ostream& os, const Vector2d& v)
 {
     os << "(" << v.x << ", " << v.y << ")";
