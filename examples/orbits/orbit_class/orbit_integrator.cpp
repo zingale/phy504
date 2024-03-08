@@ -75,12 +75,12 @@ integrate(const double a, const double tmax, const double dt_in) {
         // get the derivatives
         auto state_derivs = rhs(state);
 
-	// get the derivatives at the midpoint in time
-	auto state_star = state + 0.5 * dt * state_derivs;
-	state_derivs = rhs(state_star);
+        // get the derivatives at the midpoint in time
+        auto state_star = state + 0.5 * dt * state_derivs;
+        state_derivs = rhs(state_star);
 
         // update the state
-	state = state + dt * state_derivs;
+        state = state + dt * state_derivs;
 
         orbit_history.push_back(state);
     }
