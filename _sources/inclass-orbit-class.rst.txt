@@ -53,7 +53,7 @@ The second will be a friend, and have the signature:
    our operators will act on it.  Since the output of ``rhs()`` is just the time-derivative
    of the state, we can just set ``dodt.t = 1`` in  the output, since $d/dt (t) = 1$.
 
-Here's the version of the code split up into files---we'll use this as
+Here's the version of the code split up into files (we did this in :ref:`orbit_split`---we'll use this as
 the starting point:
 
 * :download:`orbit.H <../../examples/orbits/orbit_split/orbit.H>`
