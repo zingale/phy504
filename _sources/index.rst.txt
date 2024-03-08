@@ -153,6 +153,7 @@ Spring 2024
    this-class
    copy_and_assignment
    compound-operators
+   inclass-orbit-compound
    cxx-move
    cxx-allocating
    cxx-simple-container
