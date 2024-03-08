@@ -153,7 +153,7 @@ Some notes:
 
 What happens when we do:
 
-.. code::
+.. code:: c++
 
    Vector2d v1(1.0, 2.0);
 
@@ -161,7 +161,7 @@ What happens when we do:
 
 This invokes the *copy constructor*, which should look like:
 
-.. code::
+.. code:: c++
 
    Vector2d (const Vector2d &v);
 
@@ -203,7 +203,7 @@ to this class to make it easier to work with vectors.
 
    Your function should look like:
 
-   .. code::
+   .. code:: c++
 
       friend std::istream& operator>>(std::istream& is, Vector2d &v);
 

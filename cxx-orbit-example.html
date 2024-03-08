@@ -326,7 +326,7 @@ returning the derivative of that state with respect to time.</p>
 <p>We can adapt this as desired to write to the screen or a file.</p>
 </li>
 <li><p>An integration function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span> <span class="n">integrate</span><span class="p">(</span><span class="n">const</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">const</span> <span class="n">double</span> <span class="n">tmax</span><span class="p">,</span> <span class="n">const</span> <span class="n">double</span> <span class="n">dt</span><span class="p">);</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">OrbitState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">integrate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tmax</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This manages the time-stepping, implementing Euler’s method and
