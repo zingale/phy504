@@ -46,6 +46,13 @@ The second will be a friend, and have the signature:
    friend OrbitState operator*(double a, const OrbitState& orbit);
 
 
+.. note::
+
+   Our ``OrbitState`` contains position, velocity, and time.  Previously we were
+   not defining the time in the output from ``rhs()``, but now we will need to, since
+   our operators will act on it.  Since the output of ``rhs()`` is just the time-derivative
+   of the state, we can just set ``dodt.t = 1`` in  the output, since $d/dt (t) = 1$.
+
 Here's the version of the code split up into files---we'll use this as
 the starting point:
 
