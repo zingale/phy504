@@ -430,12 +430,12 @@ solution<div class="sd-summary-down docutils">
 <span class="w">        </span><span class="c1">// get the derivatives</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">state_derivs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
 
-<span class="w">	</span><span class="c1">// get the derivatives at the midpoint in time</span>
-<span class="w">	</span><span class="k">auto</span><span class="w"> </span><span class="n">state_star</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">update_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">);</span>
-<span class="w">	</span><span class="n">state_derivs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="p">(</span><span class="n">state_star</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// get the derivatives at the midpoint in time</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">state_star</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">update_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">);</span>
+<span class="w">        </span><span class="n">state_derivs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="p">(</span><span class="n">state_star</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// update the state</span>
-<span class="w">	</span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">update_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">);</span>
+<span class="w">        </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">update_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">state_derivs</span><span class="p">);</span>
 
 <span class="w">        </span><span class="n">orbit_history</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
