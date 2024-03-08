@@ -121,7 +121,7 @@ To make our code flexible, we'll write the following functions:
 
 * An integration function:
 
-  .. code::
+  .. code:: c++
 
      std::vector<OrbitState> integrate(const double a, const double tmax, const double dt);
 

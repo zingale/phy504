@@ -20,7 +20,7 @@ and make our evolution code look simpler as a result.
 
 The addition will look like:
 
-.. code::
+.. code:: c++
 
    OrbitState operator+(const OrbitState& orbit);
 
@@ -35,13 +35,13 @@ class is on the right of the ``*``, e.g., ``dt * orbit``.
 
 The first case can be a class member and will have the signature:
 
-.. code::
+.. code:: c++
 
    OrbitState operator*(double a);
 
 The second will be a friend, and have the signature:
 
-.. code::
+.. code:: c++
 
    friend OrbitState operator*(double a, const OrbitState& orbit);
 

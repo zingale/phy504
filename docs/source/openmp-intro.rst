@@ -152,7 +152,7 @@ Here's a matrix-vector multiply:
 
    and not
 
-   .. code::
+   .. code:: c++
 
       #pragma omp parallel {
         ...
