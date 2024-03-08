@@ -7,33 +7,40 @@
 #include <cmath>
 
 struct OrbitState {
+    double t;
     double x;
     double y;
     double vx;
     double vy;
 
+    // we have 2 constructors
+
     OrbitState()
-        : x{0.0}, y{0.0}, vx{0.0}, vy{0.0}
+        : t{0.0}, x{0.0}, y{0.0}, vx{0.0}, vy{0.0}
     {}
 
-    OrbitState(double _x, double _y, double _vx, double _vy)
-        : x{_x}, y{_y}, vx{_vx}, vy{_vy}
+    OrbitState(double _t, double _x, double _y, double _vx, double _vy)
+        : t{_t}, x{_x}, y{_y}, vx{_vx}, vy{_vy}
     {}
+
+    // operators
 
     OrbitState operator+(const OrbitState& orbit) {
-        OrbitState orbit_new(x + orbit.x, y + orbit.y,
+        OrbitState orbit_new(t + orbit.t, 
+			     x + orbit.x, y + orbit.y,
                              vx + orbit.vx, vy + orbit.vy);
         return orbit_new;
     }
 
     OrbitState operator-(const OrbitState& orbit) {
-        OrbitState orbit_new(x - orbit.x, y - orbit.y,
+        OrbitState orbit_new(t - orbit.t,
+			     x - orbit.x, y - orbit.y,
                              vx - orbit.vx, vy - orbit.vy);
         return orbit_new;
     }
 
     OrbitState operator*(double a) {
-        OrbitState orbit_new(x * a, y * a, vx * a, vy * a);
+        OrbitState orbit_new(t * a, x * a, y * a, vx * a, vy * a);
         return orbit_new;
     }
 
@@ -44,7 +51,8 @@ struct OrbitState {
 inline
 OrbitState operator*(double a, const OrbitState& orbit) {
 
-    OrbitState orbit_new(orbit.x * a, orbit.y * a,
+    OrbitState orbit_new(orbit.t * a,
+			 orbit.x * a, orbit.y * a,
                          orbit.vx * a, orbit.vy * a);
     return orbit_new;
 
@@ -52,13 +60,11 @@ OrbitState operator*(double a, const OrbitState& orbit) {
 
 OrbitState rhs(const OrbitState& state);
 
-void write_history(const std::vector<double> times,
-                   const std::vector<OrbitState>& history);
+void write_history(const std::vector<OrbitState>& history);
 
-void integrate(const double a,
-               const double tmax, const double dt_in,
-               std::vector<double>& times,
-               std::vector<OrbitState>& orbit_history);
+std::vector<OrbitState>
+integrate(const double a,
+	  const double tmax, const double dt_in);
 
 const double GM = 4.0 * M_PI * M_PI;   // G * Mass in AU, year, solar mass units
 
