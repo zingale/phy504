@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dotfiles and the Mathlab &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>In-Class Example: Orbit Integrator Class &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A Git Walkthrough" href="git.html" />
-    <link rel="prev" title="Version Control" href="version_control.html" /> 
+    <link rel="next" title="Example: Multidimensional Contiguous Array" href="contiguous_array.html" />
+    <link rel="prev" title="Example: Mathematical Vectors" href="cxx-vector2d-class.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,12 +68,9 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Dotfiles and the Mathlab</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#git-configuration">Git configuration</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
@@ -132,12 +129,12 @@
 <li class="toctree-l1"><a class="reference internal" href="inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-class-example.html">In-Class Example: A Simple Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inclass-orbit-class.html">In-Class Example: Orbit Integrator Class</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">In-Class Example: Orbit Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
@@ -233,9 +230,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Dotfiles and the Mathlab</li>
+      <li class="breadcrumb-item active">In-Class Example: Orbit Integrator Class</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/shell-setup.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/inclass-orbit-class.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -243,90 +240,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="dotfiles-and-the-mathlab">
-<h1>Dotfiles and the Mathlab<a class="headerlink" href="#dotfiles-and-the-mathlab" title="Link to this heading"></a></h1>
-<p>Unix programs often store configuration options in a <em>dot-file</em> in
-your home directory (e.g., <code class="docutils literal notranslate"><span class="pre">.emacs</span></code>).</p>
-<p>A quirk of the MathLab computers is that our home directory is erased
-every 48 hours.  However, the machines are setup to run a script
-<code class="docutils literal notranslate"><span class="pre">~/MySBFiles/mybashrc</span></code> each time you login, so we can use that to
-work around the home directory limitation.</p>
-<p>Create a directory called <code class="docutils literal notranslate"><span class="pre">dotfiles/</span></code> in your shared <code class="docutils literal notranslate"><span class="pre">MySBFiles/</span></code> directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">mkdir<span class="w"> </span>~/MySBFiles/dotfiles</span>
-</pre></div></div><p>Create a file called <code class="docutils literal notranslate"><span class="pre">mybashrc</span></code> in your <code class="docutils literal notranslate"><span class="pre">MySBFiles/</span></code> directory
-that will link the dotfiles into your home directory each time you log
-in.  We’ll create this file in our home directory and then move it there,
-to be safe:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">nano<span class="w"> </span>~/mybashrc</span>
-</pre></div></div><p>Copy and paste the following into that file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>dotfile<span class="w"> </span><span class="k">in</span><span class="w"> </span>~/MySBFiles/dotfiles/.*
-<span class="k">do</span>
-<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-f<span class="w"> </span>~/<span class="sb">`</span>basename<span class="w"> </span><span class="nv">$dotfile</span><span class="sb">`</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">      </span>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$dotfile</span><span class="w"> </span>~/<span class="p">;</span>
-<span class="w">   </span><span class="k">fi</span><span class="p">;</span>
-<span class="k">done</span>
+  <section id="in-class-example-orbit-integrator-class">
+<h1>In-Class Example: Orbit Integrator Class<a class="headerlink" href="#in-class-example-orbit-integrator-class" title="Link to this heading"></a></h1>
+<p>Let’s go back to our <a class="reference internal" href="cxx-orbit-example.html#planetary-orbit"><span class="std std-ref">Example: Planetary Orbit</span></a> example and make the <code class="docutils literal notranslate"><span class="pre">OrbitState</span></code>
+a class and define the ability to add <code class="docutils literal notranslate"><span class="pre">OrbitState</span></code> objects together and
+multiply them by a scalar.  This would allow us to do something like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span><span class="w"> </span><span class="n">orbit</span><span class="p">{};</span>
+<span class="n">OrbitState</span><span class="w"> </span><span class="n">dodt</span><span class="p">{};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">{};</span>
+
+<span class="p">...</span>
+
+<span class="n">orbit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orbit</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dodt</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>We’ll discuss loops and if-tests in the shell later, but there is one
-other new command we will note here: <code class="docutils literal notranslate"><span class="pre">ln</span></code>.  <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span></code> creates a
-<em>symbolic link</em> to a file—it makes it appear as if these files are
-in our home directory <code class="docutils literal notranslate"><span class="pre">~/</span></code> when they actually live elsewhere in our
-path.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can add other shortcuts or <code class="docutils literal notranslate"><span class="pre">alias</span></code> -es to you <code class="docutils literal notranslate"><span class="pre">mybashrc</span></code> file.
-A good thing to do is to also add:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">rm</span><span class="o">=</span><span class="s1">&#39;rm -i&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">cp</span><span class="o">=</span><span class="s1">&#39;cp -i&#39;</span>
-<span class="nb">alias</span><span class="w"> </span><span class="nv">mv</span><span class="o">=</span><span class="s1">&#39;mv -i&#39;</span>
+<p>and make our evolution code look simpler as a result.</p>
+<p>The addition will look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span> <span class="n">operator</span><span class="o">+</span><span class="p">(</span><span class="n">const</span> <span class="n">OrbitState</span><span class="o">&amp;</span> <span class="n">orbit</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>This will force those commands to ask before overwriting or deleting a file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">+=</span></code> operator is a different operator, and we’d need to
+write a separate function for it.  We’ll look at this later.</p>
 </div>
-<p>Now save and move it to <code class="docutils literal notranslate"><span class="pre">~/MySBFiles/</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">mv<span class="w"> </span>-i<span class="w"> </span>mybashrc<span class="w"> </span>~/MySBFiles/</span>
-</pre></div></div><p>Now you should be able to put any configuration files into
-<code class="docutils literal notranslate"><span class="pre">~/MySBFiles/dotfiles/</span></code> and then will be linked to your home
-directory when you log in.  We’ll need this later when we work with
-git.</p>
-<section id="git-configuration">
-<h2>Git configuration<a class="headerlink" href="#git-configuration" title="Link to this heading"></a></h2>
-<p>Before we start using git we need to configure it.  This will
-create a file <code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> with global settings for using git.</p>
-<p>First we need to tell git our name and email—this will be used in
-the log files when we make changes so other users know who made the
-changes.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;name&quot;</span></span>
-<span class="prompt1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;email&quot;</span></span>
-</pre></div></div><p>where you replace <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code> with your name and <code class="docutils literal notranslate"><span class="pre">&quot;email&quot;</span></code> with your email address.</p>
-<p>Next we need to tell git which editor we are going to use.  We’ll look at editors more later,
-but for now we’ll use <code class="docutils literal notranslate"><span class="pre">nano</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span><span class="s2">&quot;nano -w&quot;</span></span>
-</pre></div></div><p>see <a class="reference external" href="https://swcarpentry.github.io/git-novice/02-setup.html#line-endings">https://swcarpentry.github.io/git-novice/02-setup.html#line-endings</a> for other options.</p>
-<p>Now, we want to ensure that this file is linked to our home directory when we log in:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">mv<span class="w"> </span>.gitconfig<span class="w"> </span>MySBFiles/dotfiles/</span>
-</pre></div></div><p>Note: you might get a warning that it cannot preserve access times—that is okay.</p>
-<p>To test this, open up a new terminal and do</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls<span class="w"> </span>-al</span>
-</pre></div></div><p>and make sure you see the <code class="docutils literal notranslate"><span class="pre">.gitconfig</span></code> file.  It might look something like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lrwxrwxrwx</span>  <span class="mi">1</span> <span class="n">mzingale</span> <span class="n">domain</span> <span class="n">users</span>   <span class="mi">66</span> <span class="n">Jan</span> <span class="mi">30</span> <span class="mi">10</span><span class="p">:</span><span class="mi">19</span> <span class="o">.</span><span class="n">gitconfig</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">campus</span><span class="o">.</span><span class="n">stonybrook</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">mzingale</span><span class="o">/</span><span class="n">MySBFiles</span><span class="o">/</span><span class="n">dotfiles</span><span class="o">/.</span><span class="n">gitconfig</span>
+<p>We will need to define two multiplications, one for the case where our class
+is to the left of the <code class="docutils literal notranslate"><span class="pre">*</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">orbit</span> <span class="pre">*</span> <span class="pre">dt</span></code> and one for the case where our
+class is on the right of the <code class="docutils literal notranslate"><span class="pre">*</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">dt</span> <span class="pre">*</span> <span class="pre">orbit</span></code>.</p>
+<p>The first case can be a class member and will have the signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrbitState</span> <span class="n">operator</span><span class="o">*</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> in the name shows that it is a link to the actual file
-stored in our <code class="docutils literal notranslate"><span class="pre">MySBFiles/</span></code> directory.</p>
-</section>
+<p>The second will be a friend, and have the signature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">friend</span> <span class="n">OrbitState</span> <span class="n">operator</span><span class="o">*</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">const</span> <span class="n">OrbitState</span><span class="o">&amp;</span> <span class="n">orbit</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Here’s the version of the code split up into files—we’ll use this as
+the starting point:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/8aa31182c3665808ecb36f208e26574c/orbit.H"><code class="xref download docutils literal notranslate"><span class="pre">orbit.H</span></code></a></p></li>
+<li><p><code class="xref download docutils literal notranslate"><span class="pre">orbit_integrator.cpp</span></code></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/48592a20a4402f67c9922eb7738122a6/test_orbit.cpp"><code class="xref download docutils literal notranslate"><span class="pre">test_orbit.cpp</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/434146c7dcac885aa75c733a48c2646b/GNUmakefile"><code class="xref download docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a></p></li>
+</ul>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="version_control.html" class="btn btn-neutral float-left" title="Version Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="git.html" class="btn btn-neutral float-right" title="A Git Walkthrough" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-vector2d-class.html" class="btn btn-neutral float-left" title="Example: Mathematical Vectors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contiguous_array.html" class="btn btn-neutral float-right" title="Example: Multidimensional Contiguous Array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
