@@ -77,11 +77,11 @@ If we add this, and run with it, we will see:
 ::
 
     in parametric constructor
-    0 1 2 3 4 5 6 7 8 9 
+    0 1 2 3 4 5 6 7 8 9
 
-    0 0 0 0 0 0 0 0 0 0 
+    0 0 0 0 0 0 0 0 0 0
 
-    0 0 0 0 0 0 0 0 0 0 
+    0 0 0 0 0 0 0 0 0 0
 
     free(): double free detected in tcache 2
     Aborted (core dumped)

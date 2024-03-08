@@ -25,7 +25,7 @@ int main() {
     }
 
     std::cout << y << std::endl;
-    
+
     // this will fail the assertion
     //std::cout << x(11, 9);
 

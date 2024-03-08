@@ -33,5 +33,5 @@ int main() {
 
     std::cout << "x = " << x << std::endl;
     std::cout << "x_ref = " << x_ref << std::endl;
-    
+
 }

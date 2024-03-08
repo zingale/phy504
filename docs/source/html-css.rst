@@ -130,7 +130,7 @@ HTML elements (including divs) can have either a *class* name or and
 
      #name {}
 
-* ``<div class="name">`` is used when we might want to have multiple 
+* ``<div class="name">`` is used when we might want to have multiple
   divs on the page with the same styling.  This is called a *class selector*
   and we style as:
 
@@ -228,5 +228,5 @@ https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
 .. tip::
 
    Instead of writing your own page from scratch, start with a template
-   from a site like: https://html5up.net/ 
+   from a site like: https://html5up.net/
 

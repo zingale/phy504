@@ -9,7 +9,7 @@ int main() {
 
     std::vector<double> numbers{M_PI, 0.001, 9.569299999e-6, 1234.5678, 1.25689354e10, 6.74e5};
     std::vector<std::string> words{"may", "the", "force", "be", "with", "you"};
-    
+
     // save the current I/O flags
 
     std::ios cout_state(nullptr);
@@ -20,7 +20,7 @@ int main() {
     std::cout << "default I/O" << std::endl;
 
     for (auto &e : numbers) {
-        std::cout << e << " "; 
+        std::cout << e << " ";
     }
     std::cout << std::endl << std::endl;
 
@@ -28,9 +28,9 @@ int main() {
 
     std::cout << "scientific" << std::endl;
 
-    std::cout << std::scientific; 
+    std::cout << std::scientific;
     for (auto &e : numbers) {
-        std::cout << e << " "; 
+        std::cout << e << " ";
     }
     std::cout << std::endl << std::endl;
 
@@ -38,9 +38,9 @@ int main() {
 
     std::cout << "fixed" << std::endl;
 
-    std::cout << std::fixed; 
+    std::cout << std::fixed;
     for (auto &e : numbers) {
-        std::cout << e << " "; 
+        std::cout << e << " ";
     }
     std::cout << std::endl << std::endl;
 
@@ -50,7 +50,7 @@ int main() {
 
     std::cout << std::defaultfloat;
     for (auto &e : numbers) {
-        std::cout << e << " "; 
+        std::cout << e << " ";
     }
     std::cout << std::endl << std::endl;
 
@@ -83,7 +83,7 @@ int main() {
     std::cout.copyfmt(cout_state);
 
     for (auto &e : numbers) {
-        std::cout << e << " "; 
+        std::cout << e << " ";
     }
     std::cout << std::endl << std::endl;
 

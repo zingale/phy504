@@ -89,7 +89,7 @@ and "/ (root)" and save.
 After a minute or so, the page should be regenerated and appear at the
 same URL as before.
 
-.. note:: 
+.. note::
 
    From now on, when we want to manually make changes to our web page, we need
    to be on the ``gh-pages`` branch.

@@ -35,7 +35,7 @@ public:
     // operators
 
     // add two vectors
-    
+
     Vector2d operator+(const Vector2d& vec) {
         Vector2d v_out;
         v_out.x = x + vec.x;

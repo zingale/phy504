@@ -18,7 +18,7 @@ on your github home page and click on the "+" icon and select "New repository":
    :align: center
 
 Now we give the repository a name.  Let's use our initials, followed
-by ``_class_repo``, so for me, it will be ``mz_class_repo``.  
+by ``_class_repo``, so for me, it will be ``mz_class_repo``.
 
 By default the repo will be public, which means anyone on the internet
 can see the contents---that's what we want.

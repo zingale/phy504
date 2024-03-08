@@ -6,10 +6,10 @@
 
 void fpe_handler(int s) {
     std::cout << "floating point exception, signal " << s << std::endl;
-    
-    const int nbuf = 64;                                                                                                  
-    void *bt_buffer[nbuf];                                                                                                
-    int nentries = backtrace(bt_buffer, nbuf); 
+
+    const int nbuf = 64;
+    void *bt_buffer[nbuf];
+    int nentries = backtrace(bt_buffer, nbuf);
     char **strings = backtrace_symbols(bt_buffer, nentries);
 
     for (int i = 0; i < nentries; ++i) {
@@ -33,7 +33,7 @@ int main() {
     double x{-1};
 
     double y = trouble(x);
- 
+
     for (int i = 0; i < 10; ++i) {
         y += std::pow(x, i);
     }

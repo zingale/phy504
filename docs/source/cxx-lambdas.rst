@@ -53,7 +53,7 @@ Here's an implementation of that using a lambda function:
 
 .. admonition:: try it...
 
-   We can change the sort to alphabetically by the last letter in the title 
+   We can change the sort to alphabetically by the last letter in the title
    by doing:
 
    .. code:: c++

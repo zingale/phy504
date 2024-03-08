@@ -26,5 +26,5 @@ int main() {
     for (auto p : planets) {
         std::cout << p.P << std::endl;
     }
-    
+
 }

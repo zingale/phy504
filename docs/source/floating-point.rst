@@ -144,7 +144,7 @@ It is easier to see the behavior if we make a plot of the output:
 
 Let's discuss the trends:
 
-* Starting with the largest value of :math:`\Delta x`, as 
+* Starting with the largest value of :math:`\Delta x`, as
   we make :math:`\Delta x` smaller, we see that the error decreases.
   This is following the expected behavior of the truncation error
   derived above.
