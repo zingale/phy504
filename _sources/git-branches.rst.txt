@@ -322,7 +322,7 @@ When we do this, we'll see something like this:
    * c8904ec (HEAD -> main) add authors
    | * bb38a3d (feature) don't track executable
    | * 22e1d58 add hello world
-   |/  
+   |/
    * 69eb3bf add an ignore file
    * 9b0ae62 add my first script
    * 9625926 start of our new project
@@ -364,11 +364,11 @@ If you look at the graph of changes, you'll see something like:
 .. code::
 
    *   42596ac (HEAD -> main) Merge branch 'feature' into main
-   |\  
+   |\
    | * bb38a3d (feature) don't track executable
    | * 22e1d58 add hello world
    * | c8904ec add authors
-   |/  
+   |/
    * 69eb3bf add an ignore file
    * 9b0ae62 add my first script
    * 9625926 start of our new project

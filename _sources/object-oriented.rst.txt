@@ -67,7 +67,7 @@ in what they mean.
 * *polymorphism* : this is another type of abstraction, and means
   "many forms".  This typically means that we have functions that know
   how to operate with different types.  Overloading functions and
-  operators with the same name is an example of polymorphism. 
+  operators with the same name is an example of polymorphism.
 
 
 A nice discussion about the difference between abstraction and encapsulation is given in this `Difference between abstraction and encapsulation? Stack Overflow question <https://stackoverflow.com/questions/742341/difference-between-abstraction-and-encapsulation>`_.

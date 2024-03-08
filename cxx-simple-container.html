@@ -300,7 +300,7 @@ Here’s a discussion on <a class="reference external" href="https://stackoverfl
 <span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="c1">// allocate a 1-d array with size elements</span>
 <span class="w">        </span><span class="c1">// this is placed on the heap and managed by</span>
 <span class="w">        </span><span class="c1">// a unique pointer</span>
@@ -457,7 +457,7 @@ move operations, which we’ll talk about in a minute.</p>
 <span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="c1">// allocate a 1-d array with size elements</span>
 <span class="w">        </span><span class="c1">// this is placed on the heap and managed by</span>
 <span class="w">        </span><span class="c1">// a unique pointer</span>
@@ -535,7 +535,7 @@ move operations, which we’ll talk about in a minute.</p>
 <span class="w">    </span><span class="n">Container</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;in move assignment&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">_size</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// swap the data pointers</span>

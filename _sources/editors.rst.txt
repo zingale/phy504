@@ -82,7 +82,7 @@ You can open a file for editing by:
 
    vi file.txt
 
-by default you are in command mode.  
+by default you are in command mode.
 
 * To get into insert type ``i``
 
