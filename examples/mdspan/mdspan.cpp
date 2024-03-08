@@ -12,17 +12,17 @@ int main() {
 
     // loop over rows and columns and fill the matrix
     for (std::size_t i = 0; i < M.extent(0); ++i) {
-	for (std::size_t j = 0; j < M.extent(1); ++j) {
-	    M[i, j] = static_cast<double>(100*i + j);
-	}
+        for (std::size_t j = 0; j < M.extent(1); ++j) {
+            M[i, j] = static_cast<double>(100*i + j);
+        }
     }
 
     // output
     for (std::size_t i = 0; i < M.extent(0); ++i) {
-	for (std::size_t j = 0; j < M.extent(1); ++j) {
-	    std::cout << M[i, j] << " ";
-	}
-	std::cout << std::endl;
+        for (std::size_t j = 0; j < M.extent(1); ++j) {
+            std::cout << M[i, j] << " ";
+        }
+        std::cout << std::endl;
     }
 
 }
