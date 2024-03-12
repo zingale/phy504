@@ -6,6 +6,7 @@
 #include <cassert>
 
 // a contiguous 2-d array
+
 // here the data is stored in row-major order in a 1-d memory space
 // managed as a vector.  We overload () to allow us to index this as
 // a(irow, icol)
@@ -52,6 +53,7 @@ struct Array {
 
 // the << operator is not part of the of the class, so it is not a member
 
+inline
 std::ostream& operator<< (std::ostream& os, const Array& a) {
 
     for (std::size_t row=0; row < a.nrows(); ++row) {

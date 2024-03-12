@@ -5,7 +5,7 @@ program main
   integer, parameter :: MAX_SIZE = 10000
 
   double precision, allocatable :: a(:,:)
-  real :: start, end
+  double precision :: start, end
   integer :: irow, icol
 
   allocate(a(MAX_SIZE, MAX_SIZE))

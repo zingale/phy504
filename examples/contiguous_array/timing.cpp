@@ -51,6 +51,9 @@ int main() {
 
     std::array<std::array<double, MAX_SIZE>, MAX_SIZE> c;
 
+    std::cout << c.size() << std::endl;
+    std::cout << c[0].size() << std::endl;
+
     start = clock();
 
     for (std::size_t irow = 0; irow < c.size(); ++irow) {
@@ -64,5 +67,6 @@ int main() {
     std::cout << "fixed-sized std::array<std::array>>: " <<
         static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
 #endif
+
 
 }
