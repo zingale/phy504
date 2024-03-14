@@ -63,5 +63,4 @@ int main() {
 
     std::cout << "fixed-sized std::array<std::array>>: " <<
         static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
-
 }
