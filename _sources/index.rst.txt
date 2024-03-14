@@ -174,6 +174,7 @@ Spring 2024
    templates-intro
    cxx-template-array
    templates-more
+   cxx-constexpr
    functionals
 
 .. toctree::

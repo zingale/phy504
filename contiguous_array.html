@@ -189,6 +189,7 @@
 <li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-constexpr.html"><code class="docutils literal notranslate"><span class="pre">constexpr</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
@@ -714,7 +715,6 @@ convert to seconds using <code class="docutils literal notranslate"><span class=
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;fixed-sized std::array&lt;std::array&gt;&gt;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
 <span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -758,7 +758,7 @@ optimization level, asserts enabled, etc.?</p>
 
 <span class="w">  </span><span class="k">do </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span>
 <span class="w">     </span><span class="k">do </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_SIZE</span>
-<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dble</span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">irow</span><span class="p">,</span><span class="w"> </span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">dble</span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 <span class="w">     </span><span class="k">end do</span>
 <span class="k">  end do</span>
 
