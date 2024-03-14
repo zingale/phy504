@@ -3,27 +3,6 @@ Stuff We Didn't Cover
 *********************
 
 
-``constexpr``
-=============
-
-
-``if constexpr``
-================
-
-An ``if constexpr`` is a compile-time if-test.  It essentially allows
-you to template a general function and have the compiler write
-specific versions based on the template parameters.  One way this is
-used is to cut out expensive computations if we know we won't need
-them, while still being able to write just a single implementation
-that handles the general case.
-
-Here's a trivial example:
-
-.. literalinclude:: ../../examples/constexpr-if/constexpr_example.cpp
-   :language: c++
-   :caption: ``constexpr_example.cpp``
-
-
 .. Virtual functions
 .. =================
 

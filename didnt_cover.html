@@ -203,8 +203,6 @@
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Stuff We Didn’t Cover</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#constexpr"><code class="docutils literal notranslate"><span class="pre">constexpr</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#if-constexpr"><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#static-member-data"><code class="docutils literal notranslate"><span class="pre">static</span></code> member data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-management">Memory management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#regular-expressions">Regular expressions</a></li>
@@ -252,47 +250,6 @@
              
   <section id="stuff-we-didn-t-cover">
 <h1>Stuff We Didn’t Cover<a class="headerlink" href="#stuff-we-didn-t-cover" title="Link to this heading"></a></h1>
-<section id="constexpr">
-<h2><code class="docutils literal notranslate"><span class="pre">constexpr</span></code><a class="headerlink" href="#constexpr" title="Link to this heading"></a></h2>
-</section>
-<section id="if-constexpr">
-<h2><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code><a class="headerlink" href="#if-constexpr" title="Link to this heading"></a></h2>
-<p>An <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">constexpr</span></code> is a compile-time if-test.  It essentially allows
-you to template a general function and have the compiler write
-specific versions based on the template parameters.  One way this is
-used is to cut out expensive computations if we know we won’t need
-them, while still being able to write just a single implementation
-that handles the general case.</p>
-<p>Here’s a trivial example:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 129 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">constexpr_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
-
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="o">&gt;</span>
-<span class="kt">double</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">func</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">func</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</section>
 <section id="static-member-data">
 <h2><code class="docutils literal notranslate"><span class="pre">static</span></code> member data<a class="headerlink" href="#static-member-data" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">static</span></code> members of a class are not associated with objects that are instances of the class
