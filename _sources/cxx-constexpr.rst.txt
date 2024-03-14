@@ -37,4 +37,4 @@ computes integer powers, which can be faster than using
 
 .. literalinclude:: ../../examples/constexpr/powers.cpp
    :language: c++
-   :caption: ``powers.cpp`
+   :caption: ``powers.cpp``
