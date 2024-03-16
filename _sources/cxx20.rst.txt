@@ -12,6 +12,17 @@ Modules
 Concepts
 ========
 
+Views
+=====
+
+C++ 20 introduces the `ranges library <https://en.cppreference.com/w/cpp/ranges>`_.  This allows us to more easily consider views into our containers.
+
+Here's an example of using a range-based for loop over a set of integers:
+
+.. literalinclude:: ../../examples/views/iota_loop.cpp
+   :language: c++
+   :caption: ``iota_loop.cpp``
+
 
 Range Adaptors
 ==============
