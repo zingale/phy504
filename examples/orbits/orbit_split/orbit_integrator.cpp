@@ -25,7 +25,8 @@ OrbitState rhs(const OrbitState& state) {
 
 }
 
-OrbitState update_state(const OrbitState& state, const double dt, const OrbitState& state_derivs) {
+OrbitState update_state(const OrbitState& state, const double dt,
+                        const OrbitState& state_derivs) {
 
     OrbitState state_new{};
 

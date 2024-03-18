@@ -73,7 +73,7 @@ So in the above example, the result would be ``d = 0``.
 
 .. tip::
 
-   The behavior of the prefix and postfix operator is essentially the same when it is 
+   The behavior of the prefix and postfix operator is essentially the same when it is
    on its own line.  Also in the ``for`` construction:
 
    .. code:: c++
@@ -106,7 +106,7 @@ Consider assignment:
 Since ``=`` has right associativity, we interpret this as ``a = (b = c)``, which can further
 be thought of as ``b = c; a = c``.
 
-.. note:: 
+.. note::
 
    In C++, assignment evaluates to the left value.
 

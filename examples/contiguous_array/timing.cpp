@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <chrono>
 #include <array>
 
@@ -17,7 +18,7 @@ int main() {
 
     for (std::size_t irow = 0; irow < a.nrows(); ++irow) {
         for (std::size_t icol = 0; icol < a.ncols(); ++icol) {
-            a(irow, icol) = static_cast<double> (irow + icol + 1);
+            a(irow, icol) = std::sqrt(static_cast<double> (irow + icol + 1));
         }
     }
 
@@ -34,7 +35,7 @@ int main() {
 
     for (std::size_t icol = 0; icol < b.ncols(); ++icol) {
         for (std::size_t irow = 0; irow < b.nrows(); ++irow) {
-            b(irow, icol) = static_cast<double> (irow + icol + 1);
+            b(irow, icol) = std::sqrt(static_cast<double> (irow + icol + 1));
         }
     }
 
@@ -43,7 +44,6 @@ int main() {
     std::cout << "Array timing (col-major loop): " <<
         static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
 
-#if 0
     // fixed-size array
     // Note: this is allocated on the stack and the code crashes
     // on my machine if MAX_SIZE >~ 1000
@@ -55,7 +55,7 @@ int main() {
 
     for (std::size_t irow = 0; irow < c.size(); ++irow) {
         for (std::size_t icol = 0; icol < c[irow].size(); ++icol) {
-            c[irow][icol] = static_cast<double> (irow + icol + 1);
+            c[irow][icol] = std::sqrt(static_cast<double> (irow + icol + 1));
         }
     }
 
@@ -63,6 +63,4 @@ int main() {
 
     std::cout << "fixed-sized std::array<std::array>>: " <<
         static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
-#endif
-
 }

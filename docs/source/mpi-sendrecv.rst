@@ -21,7 +21,7 @@ in this case.
 Basic example
 =============
 
-Here's a basic example that mimics the *ghost cell filling* process used 
+Here's a basic example that mimics the *ghost cell filling* process used
 in hydrodynamics codes.
 
 #. On each processor we allocate an integer vector of 5 elements

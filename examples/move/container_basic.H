@@ -29,7 +29,7 @@ public:
     Container(int size)
         : _size(size)
     {
-        
+
         // allocate a 1-d array with size elements
         // this is placed on the heap and managed by
         // a unique pointer

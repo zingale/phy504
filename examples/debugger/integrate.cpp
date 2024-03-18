@@ -46,7 +46,7 @@ int main() {
     double xmax{2.0*M_PI};
 
     integrate(N, xmin, xmax, I);
-    
+
     std::cout << "integral is " << std::setprecision(15) << I << std::endl;
 
 }

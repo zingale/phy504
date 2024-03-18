@@ -26,7 +26,7 @@ struct OrbitState {
     // operators
 
     OrbitState operator+(const OrbitState& orbit) {
-        OrbitState orbit_new(t + orbit.t, 
+        OrbitState orbit_new(t + orbit.t,
                              x + orbit.x, y + orbit.y,
                              vx + orbit.vx, vy + orbit.vy);
         return orbit_new;
@@ -66,7 +66,8 @@ std::vector<OrbitState>
 integrate(const double a,
           const double tmax, const double dt_in);
 
-const double GM = 4.0 * M_PI * M_PI;   // G * Mass in AU, year, solar mass units
+// G * Mass in AU, year, solar mass units
+const double GM = 4.0 * M_PI * M_PI;
 
 
 #endif

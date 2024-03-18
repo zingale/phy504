@@ -19,7 +19,7 @@ public:
     // function that returns a reference -- just for demostration
 
     Example& get_ref() {return *this;}
-    
+
 };
 
 int main() {

@@ -189,7 +189,7 @@ Now let's test this out.  Here's a test driver:
    :caption: ``test_vectors.cpp``
 
 There are a wide range of other capabilities we could imagine adding
-to this class to make it easier to work with vectors. 
+to this class to make it easier to work with vectors.
 
 .. admonition:: try it...
 

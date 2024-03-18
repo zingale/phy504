@@ -89,7 +89,7 @@ Using the MathLab remotely
 
 There are 2 special machines that you can log onto remotely via ssh.
 If you are using Windows, then I would recommend the `PuTTY SSH client
-<https://www.chiark.greenend.org.uk/~sgtatham/putty/>`_.  
+<https://www.chiark.greenend.org.uk/~sgtatham/putty/>`_.
 
 .. note::
 

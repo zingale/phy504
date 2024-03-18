@@ -61,7 +61,7 @@ public:
     // operators
 
     // add two vectors
-    
+
     Vector2d operator+ (const Vector2d& vec) {
         Vector2d vec_out(x + vec.x, y + vec.y);
         return vec_out;
@@ -118,7 +118,7 @@ public:
     double dot(const Vector2d& vec) {
         return x * vec.x + y * vec.y;
     }
-    
+
     // << and >> are not class members, but need access to the member data
 
     friend std::ostream& operator<< (std::ostream& os, const Vector2d& v);

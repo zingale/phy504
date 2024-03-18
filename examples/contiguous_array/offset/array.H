@@ -13,7 +13,7 @@
 /// a(irow, icol)
 ///
 /// the array index does not need to start at 0 here, instead a constructor
-/// is provided that takes the starting index and ending index in each 
+/// is provided that takes the starting index and ending index in each
 /// dimension
 ///
 class Array {
@@ -74,11 +74,11 @@ public:
     /// get the lower x index
     ///
     inline int xlo() const { return _xoffset;}
-    
+
     ///
     /// get the lower y index
     ///
-    inline int ylo() const { return _yoffset;}    
+    inline int ylo() const { return _yoffset;}
 
     ///
     /// get the upper x index
@@ -88,7 +88,7 @@ public:
     ///
     /// get the upper y index
     ///
-    inline int yhi() const { return _yoffset + _ny - 1;}    
+    inline int yhi() const { return _yoffset + _ny - 1;}
 
     inline double& operator()(int i, int j) {
         int row = i - _xoffset;

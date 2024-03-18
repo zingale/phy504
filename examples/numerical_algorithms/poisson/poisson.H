@@ -25,7 +25,7 @@ private:
     std::vector<double> x;
     std::vector<double> phi;
     std::vector<double> f;
-    
+
     double dx;
 
 public:
@@ -60,7 +60,7 @@ public:
     /// set the source term, f, in L phi = f
     ///
     void set_source(std::function<double(double)> func) {
-    
+
         for (int i = 0; i < N; ++i) {
             f[i] = func(x[i]);
         }

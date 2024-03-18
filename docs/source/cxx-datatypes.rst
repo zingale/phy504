@@ -130,7 +130,7 @@ Sizes
 The link above as well as your text tells you how the standard defines
 the sizes of the different data types.
 
-.. important:: 
+.. important::
 
    C++ guarantees a minimum size of the different types, but different
    compilers or processors may have different defaults.

@@ -10,7 +10,7 @@ A First C++ Project
 Kepler's third law
 ==================
 
-`Kepler's third law <https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion>`_ 
+`Kepler's third law <https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion>`_
 relates the period of a planet's orbit, $P$, to its semi-major axis, $a$:
 
 .. math::

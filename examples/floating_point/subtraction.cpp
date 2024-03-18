@@ -4,7 +4,7 @@ int main() {
 
     float x{1.000001e15};
     float y{1.0000e15};
-    
+
     std::cout << "x^2 - y^2 :      " << x*x - y*y << std::endl;
     std::cout << "(x - y)(x + y) : " << (x - y) * (x + y) << std::endl;
 

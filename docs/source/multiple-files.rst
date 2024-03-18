@@ -124,9 +124,9 @@ compilation step.
 One Definition Rule
 ===================
 
-An important concept when working with multiple files is the 
+An important concept when working with multiple files is the
 `One Definition Rule <https://en.wikipedia.org/wiki/One_Definition_Rule>`_
-(ODR).  
+(ODR).
 
 A consequence of the ODR is that if you put a function entirely in
 a header, then you need to make it `inline <https://en.cppreference.com/w/cpp/language/inline>`_.
