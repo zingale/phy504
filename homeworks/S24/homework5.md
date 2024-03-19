@@ -91,3 +91,14 @@
      ```
      Vector3d operator/ (double a);
      ```
+
+   * The ability to test if two vectors are the same (via logical
+     equality operator, `==`).  This will have the form:
+
+     ```
+     bool operator== (const Vector3d& v);
+     ```
+
+   The included `test_vector.cpp` will exercise these new functions
+   via asserts.
+
