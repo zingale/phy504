@@ -8,9 +8,27 @@
 
 > Note: using ChatGPT or similar AI tools to write your code is not allowed.
 
-1. In a header file, create a simple class called
+1. In a header file, create a simple class called `ellipse` (not a
+   `struct`!).  Have the constructor take the semi-major axis `a`
+   and eccentricity, `e`.
 
+   Write *member functions* to compute:
 
+   * semi-minor axis: $b = a (1 - e^2)^{1/2}$
+
+   * area: $A = \pi a b$
+
+   * radial distance from the focus:
+
+     $r(\theta) = \frac{a (1 - e^2)}{1 - e \cos\theta}$
+
+     where $\theta$ is the angle from the +x axis.
+
+   * create an `ostream` operator for `<<` that outputs the
+     ellipse as "(a, e)".
+
+   Write a `main()` function that exercises this class and each of the
+   functions.
 
 
 2. Create a class called `Vector3d` based on the `Vector2d` class from lecture:
