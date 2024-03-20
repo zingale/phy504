@@ -176,6 +176,13 @@ This needs the size known at compile time, and the array in this case
 is allocated on the *stack* instead of the *heap*.  This means that it
 is likely we will have a stack overflow if we make the array too big.
 
+We'll also compare to a ``vector``-of-``vector``, initialized as
+
+.. code:: c++
+
+   std::vector<std::vector<double>> d(nrows, std::vector<double>(ncols, 0.0));
+
+
 .. tip::
 
    Here we access a simple clock via ``<chrono>`` by calling
@@ -217,6 +224,12 @@ Some things to consider:
 
    How does the performance change with array size, compiler
    optimization level, asserts enabled, etc.?
+
+.. tip::
+
+   In our ``GNUmakefile``, we have one additional feature---we are compiling
+   with optimization via ``-O3``.  Look to see how the performance changes
+   if we do not optimize.
 
 Finally, we can compare to a Fortran implementation:
 

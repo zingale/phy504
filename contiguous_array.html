@@ -641,6 +641,10 @@ instead of a <code class="docutils literal notranslate"><span class="pre">struct
 <p>This needs the size known at compile time, and the array in this case
 is allocated on the <em>stack</em> instead of the <em>heap</em>.  This means that it
 is likely we will have a stack overflow if we make the array too big.</p>
+<p>We’ll also compare to a <code class="docutils literal notranslate"><span class="pre">vector</span></code>-of-<code class="docutils literal notranslate"><span class="pre">vector</span></code>, initialized as</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">));</span>
+</pre></div>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Here we access a simple clock via <code class="docutils literal notranslate"><span class="pre">&lt;chrono&gt;</span></code> by calling
@@ -716,6 +720,25 @@ convert to seconds using <code class="docutils literal notranslate"><span class=
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;fixed-sized std::array&lt;std::array&gt;&gt;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
 <span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="c1">// vector of vectors</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">MAX_SIZE</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">irow</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">irow</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="n">irow</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">icol</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">d</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">icol</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">irow</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">icol</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clock</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;std::vector&lt;std::vector&gt;&gt;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">        </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLOCKS_PER_SEC</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -739,6 +762,12 @@ holds the data on the heap.</p></li>
 <p class="admonition-title">try it…</p>
 <p>How does the performance change with array size, compiler
 optimization level, asserts enabled, etc.?</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In our <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>, we have one additional feature—we are compiling
+with optimization via <code class="docutils literal notranslate"><span class="pre">-O3</span></code>.  Look to see how the performance changes
+if we do not optimize.</p>
 </div>
 <p>Finally, we can compare to a Fortran implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id8">
