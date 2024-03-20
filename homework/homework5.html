@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homework 5 &mdash; PHY 504 Spring 2022 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/sphinx-dropdown.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/panels-bootstrap.min.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <title>Homework 5 &mdash; PHY 504 Spring 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=851f9797" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=d5db98f4"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=60df5cae"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 6" href="homework6.html" />
+    <link rel="next" title="Final Project" href="../project.html" />
     <link rel="prev" title="Homework 4" href="homework4.html" /> 
 </head>
 
@@ -39,7 +43,7 @@
             PHY 504
           </a>
               <div class="version">
-                Spring 2022
+                Spring 2024
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -71,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../git-branches.html">Git Branches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git-remotes.html">Git Remotes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../github.html">github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pull-requests.html">Pull Requests</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
 <ul>
@@ -84,16 +89,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../book.html">C++ Textbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hardware.html">Computer Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development-tools.html">Software Development Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../development-cycle.html">Software Development Cycle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../structure.html">Structure of a C++ Program</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tools.html">Helpful C++ Tools / Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../compiling.html">Compiling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../first_project.html">A First C++ Project</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Tools</span></p>
-<ul>
 <li class="toctree-l1"><a class="reference internal" href="../editors.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../random-tools.html">Some Random Unix Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../first_project.html">A First C++ Project</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
 <ul>
@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-more-vectors.html">More Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-matrix-example.html">Example: Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-sequence-containers.html">Aside: Sequence Containers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-auto-decltype.html"><code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">decltype</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-structs.html">Structures</a></li>
@@ -108,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../cxx-references.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-pointers.html">Pointers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-statements.html">Loops and If-Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-maps.html">Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-io.html">File I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
@@ -115,23 +117,35 @@
 <li class="toctree-l1"><a class="reference internal" href="../cxx-functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-functions-example.html">More Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-orbit-example.html">Example: Planetary Orbit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inclass-rk2-orbit.html">In Class: 2nd Order Runge-Kutta Orbit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-lambdas.html">Lambda Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-functions-planets.html">Example: Sorting Planets</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../compiler-flags.html">Making the Compiler Do the Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../make.html">Makefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-classes-intro.html">Introduction to Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object-oriented.html">Object-Oriented Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inclass-class-example.html">In-Class Example: A Simple Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inclass-orbit-class.html">In-Class Example: Orbit Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-mdspan.html">Preview: C++23 mdspan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-enumerate-zip.html">Preview: C++23 enumerate and zip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-enum.html">enum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-casting.html">Casting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-iomanip.html">I/O Manipulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-print.html">Preview: C++23 Print</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-filesystem.html">Filesystem Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operators.html">Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../floating-point.html">Floating Point</a></li>
 </ul>
@@ -142,14 +156,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../cxx-convergence-tests.html">Convergence Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../valgrind.html">Valgrind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clang-tidy.html">clang-tidy</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../inheritance-and-access.html">Inheritance and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../compound-operators.html">Compound Assignment Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inclass-orbit-compound.html">In-Class Example: Orbit Integrator Compound Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-move.html">Move Semantics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-allocating.html">Allocating Memory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-simple-container.html">Example: A Simple Container</a></li>
@@ -166,11 +181,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../templates-intro.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cxx-template-array.html">Example: Templated Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../templates-more.html">More On Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-constexpr.html"><code class="docutils literal notranslate"><span class="pre">constexpr</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functionals.html">Function Objects</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../roots.html">Root finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roots.html">Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../monte-carlo.html">Monte Carlo Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
@@ -187,6 +203,9 @@
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../didnt_cover.html">Stuff We Didn’t Cover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx20.html">Coming in C++20</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx23.html">Coming in C++23</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cxx-glossary.html">Some C++ programming terms</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="current">
@@ -195,8 +214,6 @@
 <li class="toctree-l1"><a class="reference internal" href="homework3.html">Homework 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework4.html">Homework 4</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Homework 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework6.html">Homework 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="homework7.html">Homework 7</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Project</span></p>
 <ul>
@@ -228,9 +245,11 @@
            <div itemprop="articleBody">
              
   <section id="homework-5">
-<h1>Homework 5<a class="headerlink" href="#homework-5" title="Permalink to this heading">¶</a></h1>
-<p>Homework 5 is distributed via github classroom using the following template repo:
-<a class="reference external" href="https://github.com/phy504-sbu/homework5">https://github.com/phy504-sbu/homework5</a></p>
+<h1>Homework 5<a class="headerlink" href="#homework-5" title="Link to this heading"></a></h1>
+<p>Homework #5 can be found here:
+<a class="reference external" href="https://github.com/phy504-sbu-s24/homework5">https://github.com/phy504-sbu-s24/homework5</a></p>
+<p>You should follow the link in the Brightspace assignment which will
+create a github repo for you automatically with the assignment files.</p>
 </section>
 
 
@@ -238,13 +257,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="homework4.html" class="btn btn-neutral float-left" title="Homework 4" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="homework6.html" class="btn btn-neutral float-right" title="Homework 6" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../project.html" class="btn btn-neutral float-right" title="Final Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Michael Zingale.</p>
+    <p>&#169; Copyright 2022-2024, Michael Zingale.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
