@@ -63,4 +63,23 @@ int main() {
 
     std::cout << "fixed-sized std::array<std::array>>: " <<
         static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
+
+
+    // vector of vectors
+
+    std::vector<std::vector<double>> d(MAX_SIZE, std::vector<double>(MAX_SIZE, 0.0));
+
+    start = clock();
+
+    for (std::size_t irow = 0; irow < d.size(); ++irow) {
+        for (std::size_t icol = 0; icol < d[irow].size(); ++icol) {
+            d[irow][icol] = std::sqrt(static_cast<double> (irow + icol + 1));
+        }
+    }
+
+    end = clock();
+
+    std::cout << "std::vector<std::vector>>: " <<
+        static_cast<double>(end - start) / CLOCKS_PER_SEC << std::endl;
+
 }
