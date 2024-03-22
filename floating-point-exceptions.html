@@ -385,9 +385,15 @@ span.prompt1:before {
 </pre></div>
 </div>
 <p>This is the call stack for our program.  In the brackets are the address in
-the program where the execution was when the FPE occurred.  These are ordered
-such that the calling function is below the function where the execution is.
-So it usually is best to look at the addresses near the top.</p>
+the program where the execution was when the FPE occurred.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The addresses you see might be different, and they will depend on the compiler
+and OS.</p>
+</div>
+<p>These lines are ordered such that the calling function is below the function
+where the execution is.  So it usually is best to look at the
+addresses near the top.</p>
 <p>We can turn those into line numbers using <code class="docutils literal notranslate"><span class="pre">addr2line</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line<span class="w">  </span>-e<span class="w"> </span>undefined_trap<span class="w"> </span>0x4012ff</span>
 </pre></div></div><p>gives:</p>
@@ -396,7 +402,7 @@ So it usually is best to look at the addresses near the top.</p>
 </div>
 <p>and that line is precisely where the <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> is!</p>
 <p>We can get slightly nicer output (including the function name) by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line<span class="w">  </span>-C<span class="w"> </span>-f<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span>undefined_trap<span class="w"> </span>0x4012ff</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">addr2line<span class="w">  </span>-C<span class="w"> </span>-f<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span>undefined_trap<span class="w"> </span>0x4012ff</span>
 </pre></div></div><p>which gives:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trouble</span><span class="p">(</span><span class="n">double</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">zingale</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">phy504</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">floating_point</span><span class="o">/</span><span class="n">undefined_trap</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">23</span>
 </pre></div>
