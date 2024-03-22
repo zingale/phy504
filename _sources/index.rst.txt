@@ -133,6 +133,7 @@ Spring 2024
    cxx-filesystem
    operators
    floating-point
+   floating-point-exceptions
 
 .. toctree::
    :maxdepth: 1
