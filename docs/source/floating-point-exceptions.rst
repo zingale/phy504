@@ -86,9 +86,16 @@ Now when we run this, the program aborts and we see:
     Aborted (core dumped)
 
 This is the call stack for our program.  In the brackets are the address in
-the program where the execution was when the FPE occurred.  These are ordered
-such that the calling function is below the function where the execution is.
-So it usually is best to look at the addresses near the top.
+the program where the execution was when the FPE occurred.
+
+.. note::
+
+   The addresses you see might be different, and they will depend on the compiler
+   and OS.
+
+These lines are ordered such that the calling function is below the function
+where the execution is.  So it usually is best to look at the
+addresses near the top.
 
 We can turn those into line numbers using ``addr2line``:
 
@@ -108,7 +115,7 @@ We can get slightly nicer output (including the function name) by doing:
 
 .. prompt:: bash
 
-   addr2line  -C -f -i -p -e undefined_trap 0x4012ff
+   addr2line  -C -f -p -e undefined_trap 0x4012ff
 
 which gives:
 
