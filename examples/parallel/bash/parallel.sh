@@ -38,8 +38,8 @@ function process_files
         ${analysis} $1   #>> /dev/null
 
         # this sleep line is not necessary if the analysis takes any
-	    # measurable amount of time
-	    sleep 30
+        # measurable amount of time
+        sleep 30
 
     fi   # end test of whether datafile is a file (as it should be)
 

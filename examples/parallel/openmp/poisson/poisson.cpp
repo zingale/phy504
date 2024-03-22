@@ -27,11 +27,11 @@ int main() {
     std::cout << "error = "
         << p.true_error([] (double x, double y)
                         {return (x*x - x*x*x*x) * (y*y*y*y - y*y);}) << std::endl;
-    
+
 
     auto end = std::chrono::system_clock::now();
 
-    std::cout << "time to solution: " << 
+    std::cout << "time to solution: " <<
         std::chrono::duration_cast<std::chrono::milliseconds>(end -start).count() / 1000.0 << " s" << std::endl;
 
 

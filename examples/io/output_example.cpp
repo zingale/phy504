@@ -25,8 +25,8 @@ int main() {
 
     for (auto p : planets) {
         of << std::setw(12) << p.name
-	   << std::setw(12) << p.a
-	   << std::setw(12) << p.e << std::endl;
+           << std::setw(12) << p.a
+           << std::setw(12) << p.e << std::endl;
     }
 
     of.close();

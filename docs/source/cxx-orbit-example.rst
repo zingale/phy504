@@ -14,7 +14,7 @@ Kepler's third law tells us:
 
    4\pi^2 a^3 = G M_\star P^2
 
-where :math:`a` is the semi-major axis and :math:`P` is the period of the orbit.  If we work in 
+where :math:`a` is the semi-major axis and :math:`P` is the period of the orbit.  If we work in
 units of solar masses, astronomical units, and years, then this becomes:
 
 .. math::
@@ -121,7 +121,7 @@ To make our code flexible, we'll write the following functions:
 
 * An integration function:
 
-  .. code::
+  .. code:: c++
 
      std::vector<OrbitState> integrate(const double a, const double tmax, const double dt);
 
@@ -156,7 +156,7 @@ To make our code flexible, we'll write the following functions:
 
       gnuplot
 
-   A simple plot in ``gnuplot`` is made using the ``plot`` command, specifying the file with the 
+   A simple plot in ``gnuplot`` is made using the ``plot`` command, specifying the file with the
    data, the columns to use for x and y axes, and any styling (like ``w l`` for *with-lines*):
 
    .. prompt::
@@ -178,9 +178,9 @@ To make our code flexible, we'll write the following functions:
       :prompts: gnuplot>
 
       set term png
-      set output "orbit.png" 
+      set output "orbit.png"
       replot
 
 
    For more info, see: http://www.gnuplot.info/
- 
+

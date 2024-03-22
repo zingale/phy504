@@ -50,7 +50,7 @@ we see that there are errors.  Here's the first:
     ==1457506==    by 0x49A4B4F: put (locale_facets.h:2458)
     ==1457506==    by 0x49A4B4F: std::ostream& std::ostream::_M_insert<double>(double) (ostream.tcc:73)
     ==1457506==    by 0x401313: main (uninitialized.cpp:16)
-    ==1457506== 
+    ==1457506==
 
 That's where we use the resulting vector, but the tool also tells us to turn on ``--track-origins=yes`` to see
 where the problem first arises:

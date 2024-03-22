@@ -32,8 +32,7 @@ struct Array {
     }
 
     // note the "const" after the argument list here -- this means
-    // that this can be called on a const Array, while the first
-    // "const" refers to the return type
+    // that this can be called on a const Array
 
     inline std::size_t ncols() const { return _cols;}
     inline std::size_t nrows() const { return _rows;}
@@ -70,6 +69,7 @@ struct Array {
 
 // the << operator is not part of the of the class, so it is not a member
 
+inline
 std::ostream& operator<< (std::ostream& os, const Array& a) {
 
     for (std::size_t row=0; row < a.nrows(); ++row) {

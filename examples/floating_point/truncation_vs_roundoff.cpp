@@ -40,7 +40,7 @@ int main() {
     }
 
     std::cout << std::setprecision(8) << std::scientific;
-    
+
     for (auto p : data) {
         std::cout << std::setw(10) << p.dx << std::setw(15) << p.err << std::endl;
     }

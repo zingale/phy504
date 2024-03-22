@@ -24,22 +24,22 @@ int main() {
     while (std::getline(input_file, line)) {
 
         // by design, getline drops the newline, so add it back here
-	// so we can accurate capture line breaks and get the words right
-	line += "\n";
+        // so we can accurate capture line breaks and get the words right
+        line += "\n";
 
         for (auto c : line) {
             bool test = (c == ' ' || c == '\n');
             if (test) {
-		// if the previous character was a space too, then
-		// just skip, otherwise, increment the word counter
-		// and set it as a space
-		if (!was_space) {
-		    word_count += 1;
-		    was_space = true;
-		}
+                // if the previous character was a space too, then
+                // just skip, otherwise, increment the word counter
+                // and set it as a space
+                if (!was_space) {
+                    word_count += 1;
+                    was_space = true;
+                }
             } else {
-		was_space = false;
-	    }
+                was_space = false;
+            }
 
             char_count += 1;
         }

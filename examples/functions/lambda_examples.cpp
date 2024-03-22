@@ -13,5 +13,5 @@ int main() {
     std::cout << g() << " " << g() << " " << g() << std::endl;
 
     std::cout << "x = " << x << std::endl;
-    
+
 }

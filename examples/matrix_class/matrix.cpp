@@ -21,11 +21,11 @@ struct Matrix {
     }
 
     const auto get_ncols() {
-       return data[0].size(); 
+       return data[0].size();
     }
 
     const auto get_nrows() {
-       return data.size(); 
+       return data.size();
     }
 };
 
@@ -34,5 +34,5 @@ int main() {
     Matrix m(10, 10);
 
     std::cout << m.get_ncols() << " " << m.get_nrows() << std::endl;
-    
+
 }

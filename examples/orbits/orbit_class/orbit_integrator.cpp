@@ -10,6 +10,10 @@ OrbitState rhs(const OrbitState& state) {
 
     OrbitState dodt{};
 
+    // dt/dt = 1
+
+    dodt.t = 1;
+
     // dx/dt = vx; dy/dt = vy
 
     dodt.x = state.vx;
@@ -26,24 +30,21 @@ OrbitState rhs(const OrbitState& state) {
 
 }
 
-void write_history(const std::vector<double> times,
-                   const std::vector<OrbitState>& history) {
+void write_history(const std::vector<OrbitState>& history) {
 
-    assert(times.size() == history.size());
-
-    for (int i = 0; i < static_cast<int>(times.size()); ++i) {
-        std::cout << std::setw(14) << times[i]
-                  << std::setw(14) << history[i].x
-                  << std::setw(14) << history[i].y
-                  << std::setw(14) << history[i].vx
-                  << std::setw(14) << history[i].vy << std::endl;
+    for (const auto& o : history) {
+        std::cout << std::setw(14) << o.t
+                  << std::setw(14) << o.x
+                  << std::setw(14) << o.y
+                  << std::setw(14) << o.vx
+                  << std::setw(14) << o.vy << std::endl;
 
     }
 
 }
 
-void integrate(const double a, const double tmax, const double dt_in,
-               std::vector<double>& times, std::vector<OrbitState>& orbit_history) {
+std::vector<OrbitState>
+integrate(const double a, const double tmax, const double dt_in) {
 
     // how the history of the orbit
 
@@ -52,38 +53,37 @@ void integrate(const double a, const double tmax, const double dt_in,
 
     // assume circular orbit on the x-axis, counter-clockwise orbit
 
-    double t = 0.0;
-
+    state.t = 0.0;
     state.x = a;
     state.y = 0.0;
     state.vx = 0.0;
     state.vy = std::sqrt(GM / a);
 
-    times.push_back(t);
+    std::vector<OrbitState> orbit_history;
+
     orbit_history.push_back(state);
 
     double dt = dt_in;
 
     // integration loop
-    while (t < tmax) {
+    while (state.t < tmax) {
 
-        if (t + dt > tmax) {
-            dt = tmax - t;
+        if (state.t + dt > tmax) {
+            dt = tmax - state.t;
         }
 
         // get the derivatives
         auto state_derivs = rhs(state);
 
-	// get the derivatives at the midpoint in time
-	auto state_star = state + 0.5 * dt * state_derivs;
-	state_derivs = rhs(state_star);
+        // get the derivatives at the midpoint in time
+        auto state_star = state + 0.5 * dt * state_derivs;
+        state_derivs = rhs(state_star);
 
         // update the state
-	state = state + dt * state_derivs;
-        t += dt;
+        state = state + dt * state_derivs;
 
-        times.push_back(t);
         orbit_history.push_back(state);
     }
 
+    return orbit_history;
 }

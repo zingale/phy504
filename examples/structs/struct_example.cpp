@@ -21,8 +21,8 @@ int main() {
                                        {"Neptune", 30.070,  0.0086}};
     for (auto p : planets) {
         std::cout << p.name << " has a period of "
-		  << std::sqrt(std::pow(p.a, 3))
-		  << " years" << std::endl;
+                  << std::sqrt(std::pow(p.a, 3))
+                  << " years" << std::endl;
     }
 
 }

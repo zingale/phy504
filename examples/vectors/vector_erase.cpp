@@ -10,7 +10,7 @@ int main() {
         std::cout << e << " ";
     }
     std::cout << std::endl;
-    
+
     auto it = int_vec.begin();
 
     int_vec.erase(it, it+4);

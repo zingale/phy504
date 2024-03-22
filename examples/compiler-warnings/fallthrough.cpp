@@ -14,12 +14,12 @@ int main() {
     switch (sgn) {
 
     case -1:
-	sign = "negative";
+        sign = "negative";
     case 0:
-	sign = "none";
-	break;
+        sign = "none";
+        break;
     default:
-	sign = "positive";
+        sign = "positive";
     }
 
     std::cout << "sign = " << sign << std::endl;

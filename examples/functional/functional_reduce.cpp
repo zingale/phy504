@@ -28,7 +28,7 @@ int main() {
 
     std::cout << "sum a: " <<
         reduce<int>(a, 0, add<int>) << std::endl;
-    
+
     std::cout << "max a: " <<
         reduce<int>(a, std::numeric_limits<int>::min(), max<int>) << std::endl;
 
@@ -36,7 +36,7 @@ int main() {
 
     std::cout << "sum b: " <<
         reduce<double>(b, 0, add<double>) << std::endl;
-    
+
     std::cout << "max b: " <<
         reduce<double>(b, std::numeric_limits<double>::lowest(), max<double>) << std::endl;
 

@@ -22,7 +22,7 @@ int main() {
 
     for (int r = 0; r < N; ++r) {
         RealVec row;
-        for (int c = 0; c < N; ++c) {            
+        for (int c = 0; c < N; ++c) {
             double e = 0.0;
             if (r == c) {
                 e = 1.0;

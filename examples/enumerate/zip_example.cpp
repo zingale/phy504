@@ -9,7 +9,7 @@ int main() {
     std::vector<int> values{1, 2, 3, 4, 5, 6};
 
     for (auto [v, n] : std::views::zip(names, values)) {
-	std::cout << v << " : " << n << std::endl;
+        std::cout << v << " : " << n << std::endl;
     }
 
 }

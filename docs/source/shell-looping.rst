@@ -46,7 +46,7 @@ and have our loop test for that
          echo creature ${creature} does not exist
       fi
    done
- 
+
 
 
 Now, let's look back at the loop we put into our ``mybashrc`` and now

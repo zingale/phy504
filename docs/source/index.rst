@@ -117,7 +117,7 @@ Spring 2024
    object-oriented
    inclass-class-example
    cxx-vector2d-class
-   inclass-euler-class
+   inclass-orbit-class
    contiguous_array
 
 .. toctree::
@@ -154,6 +154,7 @@ Spring 2024
    this-class
    copy_and_assignment
    compound-operators
+   inclass-orbit-compound
    cxx-move
    cxx-allocating
    cxx-simple-container
@@ -174,6 +175,7 @@ Spring 2024
    templates-intro
    cxx-template-array
    templates-more
+   cxx-constexpr
    functionals
 
 .. toctree::
@@ -212,6 +214,8 @@ Spring 2024
    homework/homework1
    homework/homework2
    homework/homework3
+   homework/homework4
+   homework/homework5
 
 .. toctree::
    :maxdepth: 1

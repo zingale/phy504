@@ -5,7 +5,7 @@ program main
   integer, parameter :: MAX_SIZE = 10000
 
   double precision, allocatable :: a(:,:)
-  real :: start, end
+  double precision :: start, end
   integer :: irow, icol
 
   allocate(a(MAX_SIZE, MAX_SIZE))
@@ -14,7 +14,7 @@ program main
 
   do icol = 1, MAX_SIZE
      do irow = 1, MAX_SIZE
-        a(irow, icol) = dble(irow + icol + 1)
+        a(irow, icol) = sqrt(dble(irow + icol + 1))
      end do
   end do
 

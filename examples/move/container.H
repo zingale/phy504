@@ -29,7 +29,7 @@ public:
     Container(int size)
         : _size(size)
     {
-        
+
         // allocate a 1-d array with size elements
         // this is placed on the heap and managed by
         // a unique pointer
@@ -107,7 +107,7 @@ public:
     Container& operator= (Container&& c) noexcept {
 
         std::cout << "in move assignment" << std::endl;
-        
+
         std::swap(_size, c._size);
 
         // swap the data pointers

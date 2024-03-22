@@ -14,7 +14,7 @@ int main() {
 
     for (auto e : int_vec) {
         std::cout << e << " ";
-    }    
+    }
 
     std::cout << std::endl;
 
