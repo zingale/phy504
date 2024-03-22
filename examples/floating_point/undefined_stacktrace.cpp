@@ -2,19 +2,12 @@
 #include <cmath>
 #include <csignal>
 #include <cfenv>
-#include <execinfo.h>
+#include <stacktrace>
 
 void fpe_handler(int s) {
     std::cout << "floating point exception, signal " << s << std::endl;
 
-    const int nbuf = 64;
-    void *bt_buffer[nbuf];
-    int nentries = backtrace(bt_buffer, nbuf);
-    char **strings = backtrace_symbols(bt_buffer, nentries);
-
-    for (int i = 0; i < nentries; ++i) {
-        std::cout << i << ": " << strings[i] << std::endl;
-    }
+    std::cout << std::stacktrace::current() << std::endl;
 
     abort();
 }
