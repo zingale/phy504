@@ -141,6 +141,7 @@ Spring 2024
 
    testing
    cxx-unit-tests
+   github-ci
    cxx-convergence-tests
    valgrind
    debugging
