@@ -6,10 +6,9 @@ For a large project, with multiple developers, we often want to ensure
 that any changes that they make to the code still pass all of the
 tests before we merge it into the ``main`` git branch.  This is part
 of the software development process called
-`continuous integration <https://en.wikipedia.org/wiki/Continuous_integration>`_. 
+`continuous integration <https://en.wikipedia.org/wiki/Continuous_integration>`_.
 
- Github has a feature called `Github actions
-<https://docs.github.com/en/actions>`_ that allow us to set up simple
+Github has a feature called `Github actions <https://docs.github.com/en/actions>`_ that allow us to set up simple
 scripts that run on all pull requests.
 
 We'll look at how this can work---this is a high level overview of
@@ -26,8 +25,9 @@ There are a few places to look:
 
   This is placed in the repository in the ``.github/workflows/`` directory
 
-* The action runs on all pull requests.  You can see the status of all actions
-  that have run here: https://github.com/phy504-sbu-s24/unit_tests/actions
+* The action runs on all pull requests as well as any direct push to
+  the repo.  You can see the status of all actions that have run here:
+  https://github.com/phy504-sbu-s24/unit_tests/actions
 
 .. admonition:: try it...
 
