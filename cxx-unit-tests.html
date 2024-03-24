@@ -27,7 +27,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Convergence Testing" href="cxx-convergence-tests.html" />
+    <link rel="next" title="Continuous integration and github" href="github-ci.html" />
     <link rel="prev" title="Testing" href="testing.html" /> 
 </head>
 
@@ -158,9 +158,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#comparing-vectors">Comparing vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#automating-with-make">Automating with make</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#continuous-integration-and-github">Continuous integration and github</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="github-ci.html">Continuous integration and github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="valgrind.html">Valgrind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
@@ -441,38 +441,6 @@ print the command itself to the screen, just the output.</p>
 <p>Let’s make a test fail in our <code class="docutils literal notranslate"><span class="pre">unit_test_vector2d.cpp</span></code> and make sure that this still works.</p>
 </div>
 </section>
-<section id="continuous-integration-and-github">
-<h2>Continuous integration and github<a class="headerlink" href="#continuous-integration-and-github" title="Link to this heading"></a></h2>
-<p>For a large project, with multiple developers, we often want to ensure
-that any changes that they make to the code still pass all of the
-tests before we merge it into the <code class="docutils literal notranslate"><span class="pre">main</span></code> git branch.  This is called
-<em>continuous integration</em>.  Github has a feature called <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> that allow us to set up simple
-scripts that run on all pull requests.</p>
-<p>We’ll look at how this can work—this is a high level overview of
-the process that we will experiment with.  Usually one of the main
-developers of a large project will have already implemented the
-testing.</p>
-<p>We’ll use this repository: <a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests">https://github.com/phy504-sbu-s24/unit_tests</a></p>
-<p>There are a few places to look:</p>
-<ul>
-<li><p>The github action itself is a <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">YAML</a> file:
-<a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml">https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml</a></p>
-<p>This is placed in the repository in the <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory</p>
-</li>
-<li><p>The action runs on all pull requests.  You can see the status of all actions
-that have run here: <a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/actions">https://github.com/phy504-sbu-s24/unit_tests/actions</a></p></li>
-</ul>
-<div class="admonition-try-it admonition">
-<p class="admonition-title">try it…</p>
-<p>Let’s break the code and issue a pull request to see the action in action…</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>A Github action is used to build this lecture notes from the ReST source
-in the lecture note repo: <a class="reference external" href="https://github.com/zingale/phy504">https://github.com/zingale/phy504</a></p>
-<p>This is that action: <a class="reference external" href="https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml">https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml</a></p>
-</div>
-</section>
 </section>
 
 
@@ -480,7 +448,7 @@ in the lecture note repo: <a class="reference external" href="https://github.com
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="testing.html" class="btn btn-neutral float-left" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-convergence-tests.html" class="btn btn-neutral float-right" title="Convergence Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="github-ci.html" class="btn btn-neutral float-right" title="Continuous integration and github" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

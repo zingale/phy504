@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>this &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Continuous integration and github &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Copy, Assignment, and Destructors" href="copy_and_assignment.html" />
-    <link rel="prev" title="Inheritance and Access" href="inheritance-and-access.html" /> 
+    <link rel="next" title="Convergence Testing" href="cxx-convergence-tests.html" />
+    <link rel="prev" title="Unit Testing" href="cxx-unit-tests.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -151,19 +151,19 @@
 <li class="toctree-l1"><a class="reference internal" href="floating-point-exceptions.html">Floating Point Exceptions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Testing</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Unit Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="github-ci.html">Continuous integration and github</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Continuous integration and github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-convergence-tests.html">Convergence Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="valgrind.html">Valgrind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clang-tidy.html">clang-tidy</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-orbit-compound.html">In-Class Example: Orbit Integrator Compound Operators</a></li>
@@ -236,9 +236,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">this</span></code></li>
+      <li class="breadcrumb-item active">Continuous integration and github</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/this-class.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/github-ci.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -246,62 +246,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="this">
-<h1><code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#this" title="Link to this heading"></a></h1>
-<p>All C++ classes have a pointer called <code class="docutils literal notranslate"><span class="pre">this</span></code> that refers to the
-current object.  This is useful, since some functions, as we will see,
-need to return a reference to the object we are working on.</p>
-<p>Here’s a very simple example that creates a class that only holds a
-string and then defines a member function, <code class="docutils literal notranslate"><span class="pre">get_ref()</span></code>, that returns
-a reference to itself (by returning <code class="docutils literal notranslate"><span class="pre">*this</span></code> as a reference).</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 88 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">this_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">Example</span><span class="w"> </span><span class="p">{</span>
-
-<span class="k">private</span><span class="o">:</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// simple constructor</span>
-
-<span class="k">public</span><span class="o">:</span>
-
-<span class="w">    </span><span class="n">Example</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">input_string</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">{</span><span class="n">input_string</span><span class="p">}</span><span class="w"> </span><span class="p">{};</span>
-
-<span class="w">    </span><span class="c1">// getter</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">;}</span>
-
-<span class="w">    </span><span class="c1">// function that returns a reference -- just for demostration</span>
-
-<span class="w">    </span><span class="n">Example</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">get_ref</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;}</span>
-
-<span class="p">};</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="n">Example</span><span class="w"> </span><span class="n">test</span><span class="p">(</span><span class="s">&quot;this is my test string&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">Example</span><span class="o">&amp;</span><span class="w"> </span><span class="n">new_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">get_ref</span><span class="p">();</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">new_class</span><span class="p">.</span><span class="n">get_data</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+  <section id="continuous-integration-and-github">
+<h1>Continuous integration and github<a class="headerlink" href="#continuous-integration-and-github" title="Link to this heading"></a></h1>
+<p>For a large project, with multiple developers, we often want to ensure
+that any changes that they make to the code still pass all of the
+tests before we merge it into the <code class="docutils literal notranslate"><span class="pre">main</span></code> git branch.  This is part
+of the software development process called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>.</p>
+<blockquote>
+<div><p>Github has a feature called <a href="#id1"><span class="problematic" id="id2">`</span></a>Github actions</p>
+</div></blockquote>
+<p>&lt;<a class="reference external" href="https://docs.github.com/en/actions">https://docs.github.com/en/actions</a>&gt;`_ that allow us to set up simple
+scripts that run on all pull requests.</p>
+<p>We’ll look at how this can work—this is a high level overview of
+the process that we will experiment with.  Usually one of the main
+developers of a large project will have already implemented the
+testing.</p>
+<p>We’ll use this repository: <a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests">https://github.com/phy504-sbu-s24/unit_tests</a></p>
+<p>There are a few places to look:</p>
+<ul>
+<li><p>The github action itself is a <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">YAML</a> file:
+<a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml">https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml</a></p>
+<p>This is placed in the repository in the <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory</p>
+</li>
+<li><p>The action runs on all pull requests.  You can see the status of all actions
+that have run here: <a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/actions">https://github.com/phy504-sbu-s24/unit_tests/actions</a></p></li>
+</ul>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s break the code and issue a pull request to see the action in action…</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A Github action is used to build this lecture notes from the ReST source
+in the lecture note repo: <a class="reference external" href="https://github.com/zingale/phy504">https://github.com/zingale/phy504</a></p>
+<p>This is that action: <a class="reference external" href="https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml">https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml</a></p>
 </div>
-<p>Another way we could use <code class="docutils literal notranslate"><span class="pre">this</span></code> is to access the member data inside of
-the class.  Since <code class="docutils literal notranslate"><span class="pre">this</span></code> is a pointer, we will use the member selection
-operator for pointers, e.g., <code class="docutils literal notranslate"><span class="pre">this-&gt;data</span></code>.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Let’s add a second action that tests for compiler warnings.  We can
+use the compilation flag <code class="docutils literal notranslate"><span class="pre">-Werror</span></code> to turn warnings into errors,
+which should cause the action to fail.</p>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="inheritance-and-access.html" class="btn btn-neutral float-left" title="Inheritance and Access" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="copy_and_assignment.html" class="btn btn-neutral float-right" title="Copy, Assignment, and Destructors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-unit-tests.html" class="btn btn-neutral float-left" title="Unit Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-convergence-tests.html" class="btn btn-neutral float-right" title="Convergence Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
