@@ -253,10 +253,7 @@ that any changes that they make to the code still pass all of the
 tests before we merge it into the <code class="docutils literal notranslate"><span class="pre">main</span></code> git branch.  This is part
 of the software development process called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>.</p>
-<blockquote>
-<div><p>Github has a feature called <a href="#id1"><span class="problematic" id="id2">`</span></a>Github actions</p>
-</div></blockquote>
-<p>&lt;<a class="reference external" href="https://docs.github.com/en/actions">https://docs.github.com/en/actions</a>&gt;`_ that allow us to set up simple
+<p>Github has a feature called <a class="reference external" href="https://docs.github.com/en/actions">Github actions</a> that allow us to set up simple
 scripts that run on all pull requests.</p>
 <p>We’ll look at how this can work—this is a high level overview of
 the process that we will experiment with.  Usually one of the main
@@ -269,8 +266,9 @@ testing.</p>
 <a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml">https://github.com/phy504-sbu-s24/unit_tests/blob/main/.github/workflows/cxx-unit-tests.yml</a></p>
 <p>This is placed in the repository in the <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory</p>
 </li>
-<li><p>The action runs on all pull requests.  You can see the status of all actions
-that have run here: <a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/actions">https://github.com/phy504-sbu-s24/unit_tests/actions</a></p></li>
+<li><p>The action runs on all pull requests as well as any direct push to
+the repo.  You can see the status of all actions that have run here:
+<a class="reference external" href="https://github.com/phy504-sbu-s24/unit_tests/actions">https://github.com/phy504-sbu-s24/unit_tests/actions</a></p></li>
 </ul>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
