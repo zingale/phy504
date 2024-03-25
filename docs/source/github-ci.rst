@@ -33,6 +33,25 @@ There are a few places to look:
 
    Let's break the code and issue a pull request to see the action in action...
 
+.. admonition:: try it...
+
+   Let's add a second action that tests for compiler warnings.  We can
+   use the compilation flag ``-Werror`` to turn warnings into errors,
+   which should cause the action to fail.
+
+
+Some other types of CI
+======================
+
+Some other useful things you can do with Github actions / CI include:
+
+* Spellchecking your source using `codespell <https://github.com/codespell-project/codespell>`_.
+  See this example: https://github.com/AMReX-Astro/Castro/blob/main/.github/workflows/codespell.yml
+
+* Enforcing code style.  Here's an example using `uncrustify <https://github.com/uncrustify/uncrustify>`_:
+  https://github.com/marketplace/actions/c-style-check
+
+
 .. tip::
 
    A Github action is used to build this lecture notes from the ReST source
@@ -40,8 +59,4 @@ There are a few places to look:
 
    This is that action: https://github.com/zingale/phy504/blob/main/.github/workflows/gh-pages.yml
 
-.. admonition:: try it...
-
-   Let's add a second action that tests for compiler warnings.  We can
-   use the compilation flag ``-Werror`` to turn warnings into errors,
-   which should cause the action to fail.
+   We'll learn more about documenting code shortly.
