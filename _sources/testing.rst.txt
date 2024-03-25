@@ -7,7 +7,7 @@ testing to ensure that our changes don't break the functionality.
 
 There are a wide variety of tests for general codes (the Wikipedia
 `software testing <https://en.wikipedia.org/wiki/Software_testing>`_
-page gives a good overview:
+page gives a good overview):
 
 * *unit testing* : for each of your functions, you provide one or more
   tests that exercise that function alone, ensuring that it gives the

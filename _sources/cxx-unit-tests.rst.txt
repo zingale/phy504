@@ -20,7 +20,7 @@ We can use the basic ``assert`` statement together with a makefile target to aut
    that as the return value of ``main``, with ``0`` signifying all tests
    passing.
 
-We'll do this with our ``Vector2d`` class.
+We'll do this with our ``Vector2d`` class from :ref:`sec:vector2d`.
 
 The basic structure we will use is:
 
@@ -85,7 +85,12 @@ So we want to overload those operators and add them to our class:
 The ``const`` after the argument list allows these to be used on a
 ``const Vector2d`` object.
 
-These should be added directly to the class in ``vector2d.H``.
+These should be added directly to the class in ``vector2d.H``.  The updated
+header is:
+
+.. literalinclude:: ../../examples/unit_tests/vector2d.H
+   :language: c++
+   :caption: ``vector2d.H``
 
 
 Writing tests
