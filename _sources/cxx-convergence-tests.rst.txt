@@ -50,14 +50,16 @@ We see that we get the expected convergence for both solvers: when
 cutting ``dt`` in half, the Euler error goes down by :math:`\sim 2`
 and the RK2 error goes down by :math:`\sim 4`.
 
-One key part of getting the convergence correct: roundoff error means that
-our steps with ``dt`` may not exactly end at the final time.  So we need to
-check for this and adjust the last timestep to ensure we hit the correct
-time:
+.. tip::
 
-.. code:: c++
+   One key part of getting the convergence correct: roundoff error means that
+   our steps with ``dt`` may not exactly end at the final time.  So we need to
+   check for this and adjust the last timestep to ensure we hit the correct
+   time:
 
-   if (t + dt > tmax) {
-       dt = tmax - t;
-   }
+   .. code:: c++
+
+      if (t + dt > tmax) {
+          dt = tmax - t;
+      }
 
