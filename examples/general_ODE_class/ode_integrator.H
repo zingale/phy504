@@ -78,6 +78,8 @@ private:
     std::vector<solution<N>> history{};
     rhs_func<N> rhs;
 
+    // do an update of the form y_new = y + dt * dydt
+
     std::array<double, N> update_step(const std::array<double, N>& y0, double dt,
                                       std::array<double, N>& dydt) {
 
@@ -88,6 +90,8 @@ private:
 
         return y_new;
     }
+
+    // do a single step of RK4 given initial y0 and timestep dt
 
     std::array<double, N> rk4_step(const std::array<double, N>& y0, double t0, double dt) {
 
@@ -137,6 +141,10 @@ public:
     {
         history.push_back(solution<N>(t, y_init));
     }
+
+    // integrate the system to tmax.  Here, dt_in is the initial
+    // timestep.  The timestep will be adjusted internally to get a
+    // relative tolerace or rtol.
 
     std::vector<solution<N>>& integrate(double dt_in, double tmax, double rtol=1.e-6) {
 
