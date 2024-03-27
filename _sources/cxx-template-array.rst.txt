@@ -37,3 +37,8 @@ Here's a test driver:
    :language: c++
    :caption: ``test_array.cpp``
 
+.. admonition:: try it...
+
+   Add another constructor to our class that creates a square array.  It will
+   only need to take a single dimension, ``N``, which is then used to set both
+   ``_rows`` and ``_cols``.
