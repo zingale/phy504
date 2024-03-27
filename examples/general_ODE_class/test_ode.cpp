@@ -37,12 +37,16 @@ std::array<double, N> orbit([[maybe_unused]] double t,
 int main() {
 
     double a{1.0};
-    double e{0.6};
+    double e{0.8};
 
     ODE<N> o(orbit, {a * (1.0 - e), 0.0,
                      0.0, std::sqrt(GM / a * (1.0 + e) / (1.0 - e))});
 
-    auto trajectory = o.integrate(0.025, 1.0);
+    double tol{1.e-4};
+    auto trajectory = o.integrate(0.025, 1.0, tol);
+
+    std::cout << "# number of RHS evaluations = " << o.n_rhs << std::endl;
+    std::cout << "# dt range = [" << o.dt_min << ", " << o.dt_max << "]" << std::endl;
 
     for (auto s : trajectory) {
         std::cout << s << std::endl;

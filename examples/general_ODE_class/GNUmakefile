@@ -5,7 +5,7 @@ HEADERS = $(wildcard *.H)
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
-CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic
+CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++23
 
 %.o: %.cpp ${HEADERS}
 	g++ ${CXXFLAGS} -c $<

@@ -3,6 +3,9 @@
 #include <cmath>
 #include <functional>
 #include <iostream>
+#include <iomanip>
+#include <limits>
+#include <ranges>
 #include <vector>
 
 // A 4th-order Runge-Kutta integrator to solve:
@@ -17,6 +20,11 @@
 //
 // std::array<double, N> f(double t, const std::array<double, N>& y)
 //
+
+namespace adaptive_rk4 {
+    constexpr double S1{0.9};
+    constexpr double S2{4.0};
+}
 
 template <int N>
 using rhs_func = std::function<std::array<double, N>(double, const std::array<double, N>&)>;
@@ -44,9 +52,10 @@ struct solution {
 
 template<int N>
 std::ostream& operator<<(std::ostream& os, const solution<N>& s) {
-    os << s.t << " ";
+    os << std::setprecision(4);
+    os << std::setw(10) << s.t << " ";
     for (auto e : s.y) {
-        os << e << " ";
+        os << std::setw(10) << e << " ";
     }
     return os;
 }
@@ -54,12 +63,20 @@ std::ostream& operator<<(std::ostream& os, const solution<N>& s) {
 template<int N>
 class ODE {
 
+public:
+
+    int n_rhs{0};
+    int n_reset{0};
+    double dt_min{std::numeric_limits<double>::max()};
+    double dt_max{std::numeric_limits<double>::lowest()};
+
+private:
+
     double t{0.0};
+
     std::vector<double> y_init;
     std::vector<solution<N>> history{};
     rhs_func<N> rhs;
-
-private:
 
     std::array<double, N> update_step(const std::array<double, N>& y0, double dt,
                                       std::array<double, N>& dydt) {
@@ -72,22 +89,26 @@ private:
         return y_new;
     }
 
-    std::array<double, N> rk4_step(const std::array<double, N>& y0, double dt) {
+    std::array<double, N> rk4_step(const std::array<double, N>& y0, double t0, double dt) {
 
         // get the k1 acceleration
-        auto k1 = rhs(t, y0);
+        auto k1 = rhs(t0, y0);
+        n_rhs++;
 
         // get the k2 acceleration
         auto y_tmp = update_step(y0, 0.5*dt, k1);
-        auto k2 = rhs(t + 0.5*dt, y_tmp);
+        auto k2 = rhs(t0 + 0.5*dt, y_tmp);
+        n_rhs++;
 
         // get the k3 acceleration
         y_tmp = update_step(y0, 0.5*dt, k2);
-        auto k3 = rhs(t + 0.5*dt, y_tmp);
+        auto k3 = rhs(t0 + 0.5*dt, y_tmp);
+        n_rhs++;
 
         // get the k4 acceleration
         y_tmp = update_step(y0, dt, k3);
-        auto k4 = rhs(t + dt, y_tmp);
+        auto k4 = rhs(t0 + dt, y_tmp);
+        n_rhs++;
 
         // compute the final update
         for (auto n = 0ul; n < y0.size(); ++n) {
@@ -117,19 +138,62 @@ public:
         history.push_back(solution<N>(t, y_init));
     }
 
-    std::vector<solution<N>>& integrate(double dt, double tmax) {
+    std::vector<solution<N>>& integrate(double dt_in, double tmax, double rtol=1.e-6) {
+
+        // start with the suggested timestep
+        double dt_new{dt_in};
+        double dt{dt_in};
 
         while (t < tmax) {
 
-            if (t + dt > tmax) {
-                dt = tmax - t;
-            }
-
             const auto & sol_old = history.back();
 
-            auto y_new = rk4_step(sol_old.y, dt);
-            t += dt;
+            // adaptive timestepping loop -- keep trying to take a
+            // step until we achieve our desired error
+            double rel_error{std::numeric_limits<double>::max()};
+            int n_try{};
 
+            std::array<double, N> y_new{};
+
+            while (rel_error > rtol) {
+
+                dt = dt_new;
+                if (t + dt > tmax) {
+                    dt = tmax - t;
+                }
+
+                // take 2 half steps
+
+                auto y_tmp = rk4_step(sol_old.y, t, 0.5*dt);
+                y_new = rk4_step(y_tmp, t + 0.5*dt, 0.5*dt);
+
+                // now take a single step to cover dt
+                auto y_single = rk4_step(sol_old.y, t, dt);
+
+                // y_new should be more accurate, so we'll keep that if
+                // the error is low
+
+                rel_error = 0.0;
+                for (auto [yd, ys] : std::views::zip(y_new, y_single)) {
+                    rel_error = std::max(rel_error, std::abs((yd - ys) / yd));
+                }
+
+                // adaptive timestep algorithm
+                double dt_est = adaptive_rk4::S1 * dt * std::pow(std::abs(rtol / rel_error), 0.2);
+                dt_new = std::clamp(dt_est, dt / adaptive_rk4::S2, adaptive_rk4::S2 * dt);
+
+                n_try++;
+            }
+
+            if (n_try > 1) {
+                // there were resets
+                n_reset += (n_try - 1);
+            }
+
+            dt_min = std::min(dt_min, dt);
+            dt_max = std::max(dt_max, dt);
+
+            t += dt;
             history.push_back(solution<N>(t, y_new));
 
         }
