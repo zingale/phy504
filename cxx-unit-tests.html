@@ -525,6 +525,9 @@ print the command itself to the screen, just the output.</p>
 <span class="nf">testing</span><span class="o">:</span><span class="w"> </span><span class="n">unit_test_vector</span>2<span class="n">d</span>
 <span class="w">	</span>./unit_test_vector2d<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 <span class="w">	</span>@if<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$$</span>?<span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;tests passed&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>*.o<span class="w"> </span>unit_test_vector2d
 </pre></div>
 </div>
 </div>
