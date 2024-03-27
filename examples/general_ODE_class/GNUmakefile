@@ -10,7 +10,7 @@ CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic
 %.o: %.cpp ${HEADERS}
 	g++ ${CXXFLAGS} -c $<
 
-test_orbit: ${OBJECTS} ${HEADERS}
+test_ode: ${OBJECTS} ${HEADERS}
 	g++ -o $@ ${OBJECTS}
 
 clean:
