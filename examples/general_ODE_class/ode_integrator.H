@@ -43,6 +43,15 @@ struct solution {
 };
 
 template<int N>
+std::ostream& operator<<(std::ostream& os, const solution<N>& s) {
+    os << s.t << " ";
+    for (auto e : s.y) {
+        os << e << " ";
+    }
+    return os;
+}
+
+template<int N>
 class ODE {
 
     double t{0.0};

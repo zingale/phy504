@@ -45,10 +45,6 @@ int main() {
     auto trajectory = o.integrate(0.025, 1.0);
 
     for (auto s : trajectory) {
-        std::cout << s.t << " ";
-        for (auto c : s.y) {
-            std::cout << c << " ";
-        }
-        std::cout << "\n";
+        std::cout << s << std::endl;
     }
 }
