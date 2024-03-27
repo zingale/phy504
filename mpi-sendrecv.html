@@ -191,6 +191,7 @@
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roots.html">Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
@@ -287,7 +288,7 @@ element from the neighboring processors.</p></li>
 </figure>
 <p>Here’s the implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 130 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 131 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_pairs.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -354,7 +355,7 @@ communication.  A combined <code class="docutils literal notranslate"><span clas
 can use <code class="docutils literal notranslate"><span class="pre">MPI_PROC_NULL</span></code> when there is no destination.</p>
 <p>Here’s the same example as above, but now using this single function.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 131 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_single.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 132 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_single.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
