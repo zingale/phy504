@@ -29,3 +29,5 @@ testing: unit_test_vector2d
 	./unit_test_vector2d > /dev/null
 	@if [ $$? -eq 0 ]; then echo "tests passed"; fi
 
+clean:
+	rm -f *.o unit_test_vector2d
