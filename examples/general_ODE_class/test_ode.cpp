@@ -13,8 +13,8 @@ enum orbit_comps {
 
 constexpr double GM{4.0 * M_PI * M_PI};   // G * Mass in AU, year, solar mass unit
 
-std::array<double, N> orbit([[maybe_unused]] 
-double t, const std::array<double, N>& y) {
+std::array<double, N> orbit([[maybe_unused]] double t,
+                            const std::array<double, N>& y) {
 
     // order is x, y, u, v
 
@@ -46,8 +46,8 @@ int main() {
 
     for (auto s : trajectory) {
         std::cout << s.t << " ";
-        for (auto e : s.y) {
-            std::cout << e << " ";
+        for (auto c : s.y) {
+            std::cout << c << " ";
         }
         std::cout << "\n";
     }

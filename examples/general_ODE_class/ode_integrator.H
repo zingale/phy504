@@ -5,6 +5,19 @@
 #include <iostream>
 #include <vector>
 
+// A 4th-order Runge-Kutta integrator to solve:
+//
+//   dy/dt = f
+//   y(t=0) = y0
+//
+// where y is a vector of length N.
+// This is templated on the size of the system, N.
+//
+// The signature of the righthand side function, f, is:
+//
+// std::array<double, N> f(double t, const std::array<double, N>& y)
+//
+
 template <int N>
 using rhs_func = std::function<std::array<double, N>(double, const std::array<double, N>&)>;
 
@@ -43,7 +56,7 @@ private:
                                       std::array<double, N>& dydt) {
 
         std::array<double, N> y_new{y0};
-        for (int n = 0; n < y0.size(); ++n) {
+        for (auto n = 0ul; n < y0.size(); ++n) {
             y_new[n] += dt * dydt[n];
         }
 
@@ -68,7 +81,7 @@ private:
         auto k4 = rhs(t + dt, y_tmp);
 
         // compute the final update
-        for (int n = 0; n < y0.size(); ++n) {
+        for (auto n = 0ul; n < y0.size(); ++n) {
             y_tmp[n] = y0[n] + (dt / 6.0) * (k1[n] + 2.0 * k2[n] + 2.0 * k3[n] + k4[n]);
         }
 
