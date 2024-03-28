@@ -83,8 +83,8 @@ private:
                                     std::vector<double>& dydt) {
 
         std::vector<double> y_new{y0};
-        for (auto n = 0ul; n < y0.size(); ++n) {
-            y_new[n] += dt * dydt[n];
+        for (auto [y, ydot] : std::views::zip(y_new, dydt)) {
+            y += dt * ydot;
         }
 
         return y_new;
@@ -131,7 +131,7 @@ public:
     ODE(rhs_func rhs_in, std::vector<double> _y0)
         : neqs(_y0.size()), y_init(_y0), rhs(rhs_in)
     {
-        history.push_back(solution(t, y_init));
+        history.emplace_back(t, y_init);
     }
 
     // constructor that takes an vector with initial conditions
@@ -140,7 +140,7 @@ public:
     ODE(rhs_param_func rhs_in, std::vector<double> _y0, std::vector<double> _p)
         : neqs(_y0.size()), y_init(_y0), params(_p), rhs_param(rhs_in)
     {
-        history.push_back(solution(t, y_init));
+        history.emplace_back(t, y_init);
     }
 
     // integrate the system to tmax.  Here, dt_in is the initial
@@ -183,7 +183,7 @@ public:
                 // the error is low
 
                 rel_error = 0.0;
-                for (auto [yd, ys] : std::views::zip(y_new, y_single)) {
+                for (const auto [yd, ys] : std::views::zip(y_new, y_single)) {
                     rel_error = std::max(rel_error, std::abs((yd - ys) / yd));
                 }
 
@@ -203,7 +203,7 @@ public:
             dt_max = std::max(dt_max, dt);
 
             t += dt;
-            history.push_back(solution(t, y_new));
+            history.emplace_back(t, y_new);
 
         }
         return history;
