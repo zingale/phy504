@@ -48,7 +48,7 @@ int main() {
     std::cout << "# number of RHS evaluations = " << o.n_rhs << std::endl;
     std::cout << "# dt range = [" << o.dt_min << ", " << o.dt_max << "]" << std::endl;
 
-    for (auto s : trajectory) {
+    for (const auto& s : trajectory) {
         std::cout << s << std::endl;
     }
 }

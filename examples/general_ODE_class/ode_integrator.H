@@ -26,7 +26,14 @@ namespace adaptive_rk4 {
     constexpr double S2{4.0};
 }
 
-using rhs_func = std::function<std::vector<double>(double, const std::vector<double>&)>;
+using rhs_func =
+    std::function<std::vector<double>(double,
+                                      const std::vector<double>&)>;
+
+using rhs_param_func =
+    std::function<std::vector<double>(double,
+                                      const std::vector<double>&,
+                                      std::vector<double>&)>;
 
 struct solution {
     double t;
@@ -64,8 +71,11 @@ private:
     double t{0.0};
 
     std::vector<double> y_init;
-    std::vector<solution> history{};
+    std::vector<double> params;
     rhs_func rhs;
+    rhs_param_func rhs_param;
+
+    std::vector<solution> history{};
 
     // do an update of the form y_new = y + dt * dydt
 
@@ -85,22 +95,24 @@ private:
     std::vector<double> rk4_step(const std::vector<double>& y0, double t0, double dt) {
 
         // get the k1 acceleration
-        auto k1 = rhs(t0, y0);
+        auto k1 = params.empty() ? rhs(t0, y0) : rhs_param(t0, y0, params);
         n_rhs++;
+
+        assert(static_cast<int>(k1.size()) == neqs);
 
         // get the k2 acceleration
         auto y_tmp = update_step(y0, 0.5*dt, k1);
-        auto k2 = rhs(t0 + 0.5*dt, y_tmp);
+        auto k2 = params.empty() ? rhs(t0 + 0.5*dt, y_tmp) : rhs_param(t0 + 0.5*dt, y_tmp, params);
         n_rhs++;
 
         // get the k3 acceleration
         y_tmp = update_step(y0, 0.5*dt, k2);
-        auto k3 = rhs(t0 + 0.5*dt, y_tmp);
+        auto k3 = params.empty() ? rhs(t0 + 0.5*dt, y_tmp) : rhs_param(t0 + 0.5*dt, y_tmp, params);
         n_rhs++;
 
         // get the k4 acceleration
         y_tmp = update_step(y0, dt, k3);
-        auto k4 = rhs(t0 + dt, y_tmp);
+        auto k4 = params.empty() ? rhs(t0 + dt, y_tmp) : rhs_param(t0 + dt, y_tmp, params);
         n_rhs++;
 
         // compute the final update
@@ -114,10 +126,19 @@ private:
 
 public:
 
-    // constructor that takes an array with initial conditions
+    // constructor that takes an vector with initial conditions
 
     ODE(rhs_func rhs_in, std::vector<double> _y0)
-        : y_init(_y0), rhs(rhs_in)
+        : neqs(_y0.size()), y_init(_y0), rhs(rhs_in)
+    {
+        history.push_back(solution(t, y_init));
+    }
+
+    // constructor that takes an vector with initial conditions
+    // and another with params that are passed to the RHS function
+
+    ODE(rhs_param_func rhs_in, std::vector<double> _y0, std::vector<double> _p)
+        : neqs(_y0.size()), y_init(_y0), params(_p), rhs_param(rhs_in)
     {
         history.push_back(solution(t, y_init));
     }
