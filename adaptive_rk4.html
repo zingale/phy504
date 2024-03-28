@@ -323,23 +323,23 @@ is the <a class="reference external" href="https://en.wikipedia.org/wiki/Dormand
 </ul>
 <p>We’ll do the first method here, as it is the simplest.  Consider
 integrating a function <span class="math notranslate nohighlight">\(y(t)\)</span> through some timestep <span class="math notranslate nohighlight">\(\tau\)</span>:</p>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="_images/adaptive_timestep.png"><img alt="_images/adaptive_timestep.png" src="_images/adaptive_timestep.png" style="width: 90%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Adaptive timestep comparing <span class="math notranslate nohighlight">\(\tau/2\)</span> steps to a single <span class="math notranslate nohighlight">\(\tau\)</span> step.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Adaptive timestep comparing <span class="math notranslate nohighlight">\(\tau/2\)</span> steps to a single <span class="math notranslate nohighlight">\(\tau\)</span> step.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>The top evolution takes a single step of size <span class="math notranslate nohighlight">\(\tau\)</span> while the bottom
 takes two steps each of <span class="math notranslate nohighlight">\(\tau/2\)</span>.  These two integrations both end at
 <span class="math notranslate nohighlight">\(y(t+\tau)\)</span>, but we expect the one that took 2 half steps to be more
 accurate (since the truncation error is smaller).</p>
-<p>Now, we know that RK4 is _locally_ 5th order accurate, so that means that
+<p>Now, we know that RK4 is <em>locally</em> 5th order accurate, so that means that
 for our single step, the error will be:</p>
 <p><div class="math notranslate nohighlight">
 \[\epsilon \sim \tau^5\]</div>
 </p>
 <p>And imagine that we wanted to achieve an error of
-<span class="math notranslate nohighlight">\(\epsilon_\mathrm{want}\)</span>&amp;mdash; there is a timestep <span class="math notranslate nohighlight">\(\tau\)</span> that would
+<span class="math notranslate nohighlight">\(\epsilon_\mathrm{want}---there is a timestep \)</span>\tau$ that would
 get this:</p>
 <p><div class="math notranslate nohighlight">
 \[\epsilon_\mathrm{want} \sim \tau_\mathrm{est}^5\]</div>
@@ -361,24 +361,29 @@ maintaining our desired accuracy.</p>
 <li><p>Integrate from <span class="math notranslate nohighlight">\(y(t)\)</span> to <span class="math notranslate nohighlight">\(y(t+\tau)\)</span> using two steps of size <span class="math notranslate nohighlight">\(\tau/2\)</span>.</p>
 <p>Call the solution <span class="math notranslate nohighlight">\(y^\mathrm{double}\)</span></p>
 </li>
-<li><p>Compute an estimate of the _relative <a href="#id5"><span class="problematic" id="id6">error_</span></a> in the solution as:</p>
-<p>$$epsilon_mathrm{rel} = left | frac{y^mathrm{double} - y^mathrm{single}}{y^mathrm{double}} right <a href="#id1"><span class="problematic" id="id2">|</span></a>$$</p>
+<li><p>Compute an estimate of the <em>relative error</em> in the solution as:</p>
+<div class="math notranslate nohighlight">
+\[\epsilon_\mathrm{rel} =
+   \left | \frac{y^\mathrm{double} - y^\mathrm{single}}
+                {y^\mathrm{double}} \right |\]</div>
 </li>
-<li><p>Compute the timestep that would give us our desired accuracy, <span class="math notranslate nohighlight">\(\epsilon_\mathrm{want}\)</span>:</p>
+<li><p>Compute the timestep that would give us our desired accuracy,
+<span class="math notranslate nohighlight">\(\epsilon_\mathrm{want}\)</span>:</p>
 <p><div class="math notranslate nohighlight">
 \[\tau_\mathrm{est} = \tau \left (\frac{\epsilon_\mathrm{want}}{\epsilon_\mathrm{rel}} \right)^{1/5}\]</div>
 </p>
 </li>
-<li><p>If <span class="math notranslate nohighlight">\(\epsilon_\mathrm{rel} &lt; \epsilon_\mathrm{want}\)</span> then our timestep
-was good, and store the solution at time <span class="math notranslate nohighlight">\(t + \tau\)</span> as <span class="math notranslate nohighlight">\(y^\mathrm{double}\)</span>.
-Increase the timestep according to <span class="math notranslate nohighlight">\(\tau_\mathrm{est}\)</span> for the next step.</p>
-<p>If <span class="math notranslate nohighlight">\(\epsilon_\mathrm{rel} &gt; \epsilon_\mathrm{want}\)</span> then throw away our
-solution and go back to <span class="math notranslate nohighlight">\(y(t)\)</span> and retry the integration with the new, smaller
-<span class="math notranslate nohighlight">\(\tau_\mathrm{est}\)</span>.</p>
+<li><p>If <span class="math notranslate nohighlight">\(\epsilon_\mathrm{rel} &lt; \epsilon_\mathrm{want}\)</span> then our
+timestep was good, and store the solution at time <span class="math notranslate nohighlight">\(t + \tau\)</span> as
+<span class="math notranslate nohighlight">\(y^\mathrm{double}\)</span>.  Increase the timestep according to
+<span class="math notranslate nohighlight">\(\tau_\mathrm{est}\)</span> for the next step.</p>
+<p>If <span class="math notranslate nohighlight">\(\epsilon_\mathrm{rel} &gt; \epsilon_\mathrm{want}\)</span> then throw away
+our solution and go back to <span class="math notranslate nohighlight">\(y(t)\)</span> and retry the integration with
+the new, smaller <span class="math notranslate nohighlight">\(\tau_\mathrm{est}\)</span>.</p>
 </li>
 </ol>
-<p>In practice, we usually limit the amount that the timestep can change from one
-attempt to the next by a factor of <span class="math notranslate nohighlight">\(\sim 2\)</span> or so.</p>
+<p>In practice, we usually limit the amount that the timestep can change
+from one attempt to the next by a factor of <span class="math notranslate nohighlight">\(\sim 2\)</span> or so.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For a different method, the timestep estimate will likely be
@@ -389,8 +394,8 @@ error with the timestep, <span class="math notranslate nohighlight">\(\tau\)</sp
 <section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
 <p>Here’s the code:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 114 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ode_integrator.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 114 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ode_integrator.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
