@@ -39,15 +39,6 @@ struct solution {
     solution(double t_in, std::array<double, N>& y_in)
         : t(t_in), y(y_in) {}
 
-    // constructor that takes a vector, assumed to be length N
-
-    solution(double t_in, std::vector<double>& y_in)
-        : t(t_in)
-    {
-        assert(y_in.size() == N);
-        std::copy(y_in.begin(), y_in.end(), y.begin());
-    }
-
 };
 
 template<int N>
@@ -74,7 +65,7 @@ private:
 
     double t{0.0};
 
-    std::vector<double> y_init;
+    std::array<double, N> y_init;
     std::vector<solution<N>> history{};
     rhs_func<N> rhs;
 
@@ -137,9 +128,24 @@ public:
     // ODE<N>(rhs, {1.0, 2.0, ...})
 
     ODE(rhs_func<N> rhs_in, std::initializer_list<double> _y0)
-        : y_init(_y0.begin(), _y0.end()), rhs(rhs_in)
+        : rhs(rhs_in)
     {
-        history.push_back(solution<N>(t, y_init));
+
+        // we cannot initialize a std::array from an initialization_list
+        // (or use std::copy).  So we need to copy manually into a
+        // temporary array to call the solution constructor
+
+        assert(_y0.size() == N);
+
+        std::array<double, N> y0_tmp;
+
+        for (auto src_it = _y0.begin(), dest_it = y0_tmp.begin();
+             src_it != _y0.end();
+             ++src_it, ++dest_it) {
+            *dest_it = *src_it;
+        }
+
+        history.push_back(solution<N>(t, y0_tmp));
     }
 
     // integrate the system to tmax.  Here, dt_in is the initial
