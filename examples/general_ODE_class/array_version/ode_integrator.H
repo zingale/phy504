@@ -18,7 +18,7 @@
 //
 // The signature of the righthand side function, f, is:
 //
-// std::vector<double> f(double t, const std::array<double>& y)
+// std::array<double, N> f(double t, const std::array<double, N>& y)
 //
 
 namespace adaptive_rk4 {
@@ -26,20 +26,23 @@ namespace adaptive_rk4 {
     constexpr double S2{4.0};
 }
 
-using rhs_func = std::function<std::vector<double>(double, const std::vector<double>&)>;
+template <int N>
+using rhs_func = std::function<std::array<double, N>(double, const std::array<double, N>&)>;
 
+template<int N>
 struct solution {
     double t;
-    std::vector<double> y{};
+    std::array<double, N> y{};
 
-    // constructor that takes an vector of values
+    // constructor that takes an array of values
 
-    solution(double t_in, std::vector<double>& y_in)
+    solution(double t_in, std::array<double, N>& y_in)
         : t(t_in), y(y_in) {}
 
 };
 
-std::ostream& operator<<(std::ostream& os, const solution& s) {
+template<int N>
+std::ostream& operator<<(std::ostream& os, const solution<N>& s) {
     os << std::setprecision(4);
     os << std::setw(10) << s.t << " ";
     for (auto e : s.y) {
@@ -48,11 +51,10 @@ std::ostream& operator<<(std::ostream& os, const solution& s) {
     return os;
 }
 
+template<int N>
 class ODE {
 
 public:
-
-    int neqs{-1};
 
     int n_rhs{0};
     int n_reset{0};
@@ -63,16 +65,16 @@ private:
 
     double t{0.0};
 
-    std::vector<double> y_init;
-    std::vector<solution> history{};
-    rhs_func rhs;
+    std::array<double, N> y_init;
+    std::vector<solution<N>> history{};
+    rhs_func<N> rhs;
 
     // do an update of the form y_new = y + dt * dydt
 
-    std::vector<double> update_step(const std::vector<double>& y0, double dt,
-                                    std::vector<double>& dydt) {
+    std::array<double, N> update_step(const std::array<double, N>& y0, double dt,
+                                      std::array<double, N>& dydt) {
 
-        std::vector<double> y_new{y0};
+        std::array<double, N> y_new{y0};
         for (auto n = 0ul; n < y0.size(); ++n) {
             y_new[n] += dt * dydt[n];
         }
@@ -82,7 +84,7 @@ private:
 
     // do a single step of RK4 given initial y0 and timestep dt
 
-    std::vector<double> rk4_step(const std::vector<double>& y0, double t0, double dt) {
+    std::array<double, N> rk4_step(const std::array<double, N>& y0, double t0, double dt) {
 
         // get the k1 acceleration
         auto k1 = rhs(t0, y0);
@@ -116,17 +118,41 @@ public:
 
     // constructor that takes an array with initial conditions
 
-    ODE(rhs_func rhs_in, std::vector<double> _y0)
+    ODE(rhs_func<N> rhs_in, std::array<double, N>& _y0)
         : y_init(_y0), rhs(rhs_in)
     {
-        history.push_back(solution(t, y_init));
+        history.push_back(solution<N>(t, y_init));
+    }
+
+    // constructor that allow for an initialization list, e.g.,
+    // ODE<N>(rhs, {1.0, 2.0, ...})
+
+    ODE(rhs_func<N> rhs_in, std::initializer_list<double> _y0)
+        : rhs(rhs_in)
+    {
+
+        // we cannot initialize a std::array from an initialization_list
+        // (or use std::copy).  So we need to copy manually into a
+        // temporary array to call the solution constructor
+
+        assert(_y0.size() == N);
+
+        std::array<double, N> y0_tmp;
+
+        for (auto src_it = _y0.begin(), dest_it = y0_tmp.begin();
+             src_it != _y0.end();
+             ++src_it, ++dest_it) {
+            *dest_it = *src_it;
+        }
+
+        history.push_back(solution<N>(t, y0_tmp));
     }
 
     // integrate the system to tmax.  Here, dt_in is the initial
     // timestep.  The timestep will be adjusted internally to get a
     // relative tolerace or rtol.
 
-    std::vector<solution>& integrate(double dt_in, double tmax, double rtol=1.e-6) {
+    std::vector<solution<N>>& integrate(double dt_in, double tmax, double rtol=1.e-6) {
 
         // start with the suggested timestep
         double dt_new{dt_in};
@@ -141,7 +167,7 @@ public:
             double rel_error{std::numeric_limits<double>::max()};
             int n_try{};
 
-            std::vector<double> y_new{};
+            std::array<double, N> y_new{};
 
             while (rel_error > rtol) {
 
@@ -182,7 +208,7 @@ public:
             dt_max = std::max(dt_max, dt);
 
             t += dt;
-            history.push_back(solution(t, y_new));
+            history.push_back(solution<N>(t, y_new));
 
         }
         return history;

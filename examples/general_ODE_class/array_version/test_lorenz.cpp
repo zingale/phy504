@@ -1,4 +1,4 @@
-#include <vector>
+#include <array>
 #include <iostream>
 
 #include "ode_integrator.H"
@@ -16,10 +16,10 @@ namespace lorenz_params {
     constexpr double beta{8.0/3.0};
 }
 
-std::vector<double> rhs([[maybe_unused]] double t,
-                        const std::vector<double>& y) {
+std::array<double, N> rhs([[maybe_unused]] double t,
+                          const std::array<double, N>& y) {
 
-    std::vector<double> dydt(N, 0.0);
+    std::array<double, N> dydt{};
 
     dydt[ix] = lorenz_params::sigma * (y[iy] - y[ix]);
     dydt[iy] = lorenz_params::rho * y[ix] - y[iy] - y[ix] * y[iz];
@@ -31,7 +31,10 @@ std::vector<double> rhs([[maybe_unused]] double t,
 
 int main() {
 
-    ODE o(rhs, {-10.0, -10.0, -10.0});
+    double a{1.0};
+    double e{0.8};
+
+    ODE<N> o(rhs, {-10.0, -10.0, -10.0});
 
     double tol{1.e-4};
     auto trajectory = o.integrate(0.025, 50.0, tol);

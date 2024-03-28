@@ -14,7 +14,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 MAINS := test_orbit.o test_lorenz.o
 OBJECTS := $(filter-out $(MAINS), $(OBJECTS))
 
-CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++23
+CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++23 -g
 
 %.o: %.cpp ${HEADERS}
 	g++ ${CXXFLAGS} -c $<
