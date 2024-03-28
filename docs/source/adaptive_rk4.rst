@@ -163,3 +163,10 @@ Here's the code:
 .. literalinclude:: ../../examples/general_ODE_class/ode_integrator.H
    :language: c++
    :caption: ``ode_integrator.H``
+
+Here's a driver for integrating orbits
+
+.. literalinclude:: ../../examples/general_ODE_class/test_ode.cpp
+   :language: c++
+   :caption: ``test_ode.cpp``
+
