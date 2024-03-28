@@ -128,7 +128,7 @@ Let's consider doing this with RK4.  Our approach will be:
 
    .. math::
 
-      \epsilon_\mathrm{rel} = 
+      \epsilon_\mathrm{rel} =
          \left | \frac{y^\mathrm{double} - y^\mathrm{single}}
                       {y^\mathrm{double}} \right |
 
@@ -164,9 +164,23 @@ Here's the code:
    :language: c++
    :caption: ``ode_integrator.H``
 
+
+Example: orbits
+===============
+
 Here's a driver for integrating orbits
 
-.. literalinclude:: ../../examples/general_ODE_class/test_ode.cpp
+.. literalinclude:: ../../examples/general_ODE_class/test_orbit.cpp
    :language: c++
-   :caption: ``test_ode.cpp``
+   :caption: ``test_orbit.cpp``
+
+
+Example: Lorenz system
+======================
+
+Here's a driver for integrating the `Lorenz system <https://en.wikipedia.org/wiki/Lorenz_system>`_.
+
+.. literalinclude:: ../../examples/general_ODE_class/test_lorenz.cpp
+   :language: c++
+   :caption: ``test_lorenz.cpp``
 
