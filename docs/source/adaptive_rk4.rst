@@ -93,13 +93,13 @@ takes two steps each of $\tau/2$.  These two integrations both end at
 $y(t+\tau)$, but we expect the one that took 2 half steps to be more
 accurate (since the truncation error is smaller).
 
-Now, we know that RK4 is _locally_ 5th order accurate, so that means that
+Now, we know that RK4 is *locally* 5th order accurate, so that means that
 for our single step, the error will be:
 
 $$\epsilon \sim \tau^5$$
 
 And imagine that we wanted to achieve an error of
-$\epsilon_\mathrm{want}$&mdash; there is a timestep $\tau$ that would
+$\epsilon_\mathrm{want}---there is a timestep $\tau$ that would
 get this:
 
 $$\epsilon_\mathrm{want} \sim \tau_\mathrm{est}^5$$
@@ -124,24 +124,30 @@ Let's consider doing this with RK4.  Our approach will be:
 
    Call the solution $y^\mathrm{double}$
 
-3. Compute an estimate of the _relative error_ in the solution as:
+3. Compute an estimate of the *relative error* in the solution as:
 
-   $$\epsilon_\mathrm{rel} = \left | \frac{y^\mathrm{double} - y^\mathrm{single}}{y^\mathrm{double}} \right |$$
+   .. math::
 
-4. Compute the timestep that would give us our desired accuracy, $\epsilon_\mathrm{want}$:
+      \epsilon_\mathrm{rel} = 
+         \left | \frac{y^\mathrm{double} - y^\mathrm{single}}
+                      {y^\mathrm{double}} \right |
+
+4. Compute the timestep that would give us our desired accuracy,
+   $\epsilon_\mathrm{want}$:
 
    $$\tau_\mathrm{est} = \tau \left (\frac{\epsilon_\mathrm{want}}{\epsilon_\mathrm{rel}} \right)^{1/5}$$
 
-5. If $\epsilon_\mathrm{rel} < \epsilon_\mathrm{want}$ then our timestep
-   was good, and store the solution at time $t + \tau$ as $y^\mathrm{double}$.
-   Increase the timestep according to $\tau_\mathrm{est}$ for the next step.
+5. If $\epsilon_\mathrm{rel} < \epsilon_\mathrm{want}$ then our
+   timestep was good, and store the solution at time $t + \tau$ as
+   $y^\mathrm{double}$.  Increase the timestep according to
+   $\tau_\mathrm{est}$ for the next step.
 
-   If $\epsilon_\mathrm{rel} > \epsilon_\mathrm{want}$ then throw away our
-   solution and go back to $y(t)$ and retry the integration with the new, smaller
-   $\tau_\mathrm{est}$.
+   If $\epsilon_\mathrm{rel} > \epsilon_\mathrm{want}$ then throw away
+   our solution and go back to $y(t)$ and retry the integration with
+   the new, smaller $\tau_\mathrm{est}$.
 
-In practice, we usually limit the amount that the timestep can change from one
-attempt to the next by a factor of $\sim 2$ or so.
+In practice, we usually limit the amount that the timestep can change
+from one attempt to the next by a factor of $\sim 2$ or so.
 
 .. note::
 
