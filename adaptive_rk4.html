@@ -197,6 +197,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-orbits">Example: orbits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-lorenz-system">Example: Lorenz system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-using-a-lambda-function">Example: using a lambda-function</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
@@ -641,7 +642,8 @@ the <code class="docutils literal notranslate"><span class="pre">ODE</span></cod
 </div>
 </li>
 <li><p>A version that allows for a vector of parameters, <span class="math notranslate nohighlight">\(f(t, y, p)\)</span></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">t</span><span class="p">,</span> <span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;&amp;</span> <span class="n">y</span><span class="p">,</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;&amp;</span> <span class="n">params</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
+<span class="w">                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -681,8 +683,6 @@ that the planet’s speed will vary a lot over the orbit.</p>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ode_integrator.H&quot;</span>
-
-<span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">{</span><span class="mi">4</span><span class="p">};</span>
 
 <span class="k">enum</span><span class="w"> </span><span class="nc">orbit_comps</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ix</span><span class="p">,</span>
@@ -748,8 +748,6 @@ that the planet’s speed will vary a lot over the orbit.</p>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ode_integrator.H&quot;</span>
 
-<span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">{</span><span class="mi">3</span><span class="p">};</span>
-
 <span class="k">enum</span><span class="w"> </span><span class="nc">lorenz_comps</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ix</span><span class="p">,</span>
 <span class="w">    </span><span class="n">iy</span><span class="p">,</span>
@@ -759,13 +757,6 @@ that the planet’s speed will vary a lot over the orbit.</p>
 <span class="w">    </span><span class="n">isigma</span><span class="p">,</span>
 <span class="w">    </span><span class="n">irho</span><span class="p">,</span>
 <span class="w">    </span><span class="n">ibeta</span><span class="p">};</span>
-
-<span class="k">namespace</span><span class="w"> </span><span class="nn">lorenz</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sigma</span><span class="p">{</span><span class="mf">10.0</span><span class="p">};</span>
-<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rho</span><span class="p">{</span><span class="mf">28.0</span><span class="p">};</span>
-<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">beta</span><span class="p">{</span><span class="mf">8.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">};</span>
-<span class="p">}</span>
-
 
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rhs</span><span class="p">([[</span><span class="n">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span>
 <span class="w">                        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
@@ -781,11 +772,54 @@ that the planet’s speed will vary a lot over the orbit.</p>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
+<span class="w">    </span><span class="c1">// these are the parameters that Lorenz used</span>
+
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">sigma</span><span class="p">{</span><span class="mf">10.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rho</span><span class="p">{</span><span class="mf">28.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">beta</span><span class="p">{</span><span class="mf">8.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">};</span>
+
 <span class="w">    </span><span class="n">ODE</span><span class="w"> </span><span class="nf">o</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">-10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-10.0</span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="n">lorenz</span><span class="o">::</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">lorenz</span><span class="o">::</span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">lorenz</span><span class="o">::</span><span class="n">beta</span><span class="p">});</span>
+<span class="w">          </span><span class="p">{</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">rho</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">});</span>
 
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">{</span><span class="mf">1.</span><span class="n">e</span><span class="mi">-4</span><span class="p">};</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">trajectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# number of RHS evaluations = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">n_rhs</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# number of rejected steps = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">n_reset</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# dt range = [&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">dt_min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">dt_max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">trajectory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="example-using-a-lambda-function">
+<h2>Example: using a lambda-function<a class="headerlink" href="#example-using-a-lambda-function" title="Link to this heading"></a></h2>
+<p>For a simple system, we can use a lambda-function.  Here we solve:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dy}{dt} = -y\]</div>
+<p>with <span class="math notranslate nohighlight">\(y(0) = 1\)</span>.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 117 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_lambda.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ode_integrator.H&quot;</span>
+
+<span class="c1">// solve dy/dt = -y with y(0) = 1</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span>
+<span class="w">             </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]};};</span>
+
+<span class="w">    </span><span class="n">ODE</span><span class="w"> </span><span class="n">o</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">1.0</span><span class="p">});</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="p">{</span><span class="mf">1.</span><span class="n">e</span><span class="mi">-8</span><span class="p">};</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">trajectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">integrate</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# number of RHS evaluations = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">n_rhs</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# number of rejected steps = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">n_reset</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
