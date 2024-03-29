@@ -191,9 +191,10 @@ Some notes:
 
   * A version that allows for a vector of parameters, $f(t, y, p)$
 
-    .. code::
+    .. code:: c++
 
-       std::vector<double> f(double t, const std::vector<double>& y, std::vector<double>& params)
+       std::vector<double> f(double t, const std::vector<double>& y,
+                             std::vector<double>& params)
 
   The second case allows us to pass a vector of parameters that the
   system may depend on that are not the integration variables.  This
@@ -244,4 +245,20 @@ Here's a driver for integrating the `Lorenz system <https://en.wikipedia.org/wik
 .. literalinclude:: ../../examples/general_ODE_class/test_lorenz.cpp
    :language: c++
    :caption: ``test_lorenz.cpp``
+
+
+Example: using a lambda-function
+================================
+
+For a simple system, we can use a lambda-function.  Here we solve:
+
+.. math::
+
+   \frac{dy}{dt} = -y
+
+with $y(0) = 1$.
+
+.. literalinclude:: ../../examples/general_ODE_class/test_lambda.cpp
+   :language: c++
+   :caption: ``test_lambda.cpp``
 

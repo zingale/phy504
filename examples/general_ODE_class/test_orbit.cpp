@@ -4,8 +4,6 @@
 
 #include "ode_integrator.H"
 
-constexpr int N{4};
-
 enum orbit_comps {
     ix,
     iy,
