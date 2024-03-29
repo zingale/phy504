@@ -26,13 +26,11 @@ std::vector<double> rhs([[maybe_unused]] double t,
                         const std::vector<double>& y,
                         std::vector<double>& params) {
 
-    std::vector<double> dydt(N, 0.0);
+    double dxdt = params[isigma] * (y[iy] - y[ix]);
+    double dydt = params[irho] * y[ix] - y[iy] - y[ix] * y[iz];
+    double dzdt = y[ix] * y[iy] - params[ibeta] * y[iz];
 
-    dydt[ix] = params[isigma] * (y[iy] - y[ix]);
-    dydt[iy] = params[irho] * y[ix] - y[iy] - y[ix] * y[iz];
-    dydt[iz] = y[ix] * y[iy] - params[ibeta]* y[iz];
-
-    return dydt;
+    return {dxdt, dydt, dzdt};
 
 }
 

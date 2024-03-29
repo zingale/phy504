@@ -17,20 +17,17 @@ std::vector<double> orbit([[maybe_unused]] double t,
                           const std::vector<double>& y) {
 
     // order is x, y, u, v
-
-    std::vector<double> dydt(N, 0.0);
-
-    dydt[ix] = y[iu];
-    dydt[iy] = y[iv];
+    double dxdt = y[iu];
+    double dydt = y[iv];
 
     // du/dt = - GMx/r**3; dv/dt = - GMy/r**3
 
     double r = std::sqrt(y[ix] * y[ix] + y[iy] * y[iy]);
 
-    dydt[iu] = - GM * y[ix] / std::pow(r, 3);
-    dydt[iv] = - GM * y[iy] / std::pow(r, 3);
+    double dudt = - GM * y[ix] / std::pow(r, 3);
+    double dvdt = - GM * y[iy] / std::pow(r, 3);
 
-    return dydt;
+    return {dxdt, dydt, dudt, dvdt};
 
 }
 
@@ -39,8 +36,12 @@ int main() {
     double a{1.0};
     double e{0.8};
 
-    ODE o(orbit, {a * (1.0 - e), 0.0,
-                  0.0, std::sqrt(GM / a * (1.0 + e) / (1.0 - e))});
+    // planet is at perihelion initially
+
+    double r_p = a * (1.0 - e);
+    double v_p = std::sqrt(GM / a * (1.0 + e) / (1.0 - e));
+
+    ODE o(orbit, {r_p, 0.0, 0.0, v_p});
 
     double tol{1.e-4};
     auto trajectory = o.integrate(0.025, 1.0, tol);
