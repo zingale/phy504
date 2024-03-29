@@ -160,13 +160,20 @@ Implementation
 
 Here's the code:
 
-.. dropdown::
+:download:`ode_integrator.H <../../examples/general_ODE_class/ode_integrator.H>`
 
-   :download:`ode_integrator.H <../../examples/general_ODE_class/ode_integrator.H>`
+
+.. dropdown:: ``ode_integrator.H``
 
    .. literalinclude:: ../../examples/general_ODE_class/ode_integrator.H
       :language: c++
       :caption: ``ode_integrator.H``
+
+.. note::
+
+   This requires C++23 because of the use of ``std::views::zip()``.
+
+
 
 
 Example: orbits
