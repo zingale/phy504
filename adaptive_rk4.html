@@ -626,6 +626,25 @@ error with the timestep, <span class="math notranslate nohighlight">\(\tau\)</sp
 <p class="admonition-title">Note</p>
 <p>This requires C++23 because of the use of <code class="docutils literal notranslate"><span class="pre">std::views::zip()</span></code>.</p>
 </div>
+<p>Some notes:</p>
+<ul>
+<li><p>We use <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> internally to store the data for the system of ODEs.
+We could have used <code class="docutils literal notranslate"><span class="pre">std::array</span></code>, but that would have required us to template
+the <code class="docutils literal notranslate"><span class="pre">ODE</span></code> class on the number of equations.</p></li>
+<li><p>At each point in time, the state of the system is stored in a <code class="docutils literal notranslate"><span class="pre">struct</span></code> called
+<code class="docutils literal notranslate"><span class="pre">solution</span></code>.  There is a simple constructor that can fill the data.</p></li>
+<li><p>Our righthand side function can have one of 2 signatures:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span> <span class="pre">f(double</span> <span class="pre">t,</span> <span class="pre">const</span> <span class="pre">std::vector&lt;double&gt;&amp;</span> <span class="pre">y)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span> <span class="pre">f(double</span> <span class="pre">t,</span> <span class="pre">const</span> <span class="pre">std::vector&lt;double&gt;&amp;</span> <span class="pre">y,</span> <span class="pre">std::vector&lt;double&gt;&amp;</span> <span class="pre">params)</span></code></p></li>
+</ul>
+<p>The second case allows us to pass a vector of parameters that the
+system may depend on that are not the integration variables.  This
+is a common feature in ODE integrators.</p>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ODE</span></code> class manages the solution.  There are 2 constructors, one for each
+type of righthand side function.</p></li>
+</ul>
 </section>
 <section id="example-orbits">
 <h2>Example: orbits<a class="headerlink" href="#example-orbits" title="Link to this heading"></a></h2>
