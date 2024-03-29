@@ -30,7 +30,7 @@ std::vector<double> rhs([[maybe_unused]] double t,
 
     dydt[ix] = params[isigma] * (y[iy] - y[ix]);
     dydt[iy] = params[irho] * y[ix] - y[iy] - y[ix] * y[iz];
-    dydt[iz] = y[ix] * y[iy] - params[ibeta]* y[iz];
+    dydt[iz] = y[ix] * y[iy] - params[ibeta] * y[iz];
 
     return dydt;
 
