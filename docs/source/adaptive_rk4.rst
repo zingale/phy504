@@ -227,11 +227,24 @@ We can also use an initialization list like:
 Finally, the ``integrate`` member function can optionally take the relative
 tolerance with which to find the solution.
 
-Example: orbits
-===============
+Example: elliptical orbits
+==========================
 
 Here's a driver for integrating orbits.  We pick a high eccentricity which means
 that the planet's speed will vary a lot over the orbit.
+
+The initial conditions put the planet on the +x axis, at perihelion, with a
+counterclockwise orbit.  They are:
+
+.. math::
+
+   \begin{align*}
+     x &= a (1 - e) \\
+     y &= 0 \\
+     u &= 0 \\
+     v &= \sqrt{\frac{GM}{a} \frac{1+e}{1-e}}
+   \end{align*}
+
 
 .. literalinclude:: ../../examples/general_ODE_class/test_orbit.cpp
    :language: c++
