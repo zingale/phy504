@@ -243,11 +243,34 @@ Example: Lorenz system
 ======================
 
 Here's a driver for integrating the `Lorenz system <https://en.wikipedia.org/wiki/Lorenz_system>`_.
+This system appears as:
+
+.. math::
+
+   \begin{align*}
+     \frac{dx}{dt} &= \sigma (y - x) \\
+     \frac{dy}{dt} &= x (\rho - z) - y \\
+     \frac{dz}{dt} &= xy - \beta z
+   \end{align*}
+
+and is a simple model for convection.  Here, $x$ is a measure of the rate of convection,
+$y$ is related to the horizontal temperature variation, and $z$ is related to the vertical
+temperature structure.  There are 3 parameters: $\sigma$ is the Prandtl number, $\rho$
+is the Rayleigh number, and $\beta$ is related to the system size.
+
+Lorenz chose $\sigma = 10$, $\beta = 8/3$, and $\rho = 28$.
 
 .. literalinclude:: ../../examples/general_ODE_class/test_lorenz.cpp
    :language: c++
    :caption: ``test_lorenz.cpp``
 
+The Lorenz system is interesting because it is chaotic---small changes to the initial
+conditions will lead to very large differences in the solution.
+
+.. admonition:: try it...
+
+   Try changing the initial conditions by $1$ part in $10^6$ and compare plots of
+   $x$ vs. $t$.
 
 Example: using a lambda-function
 ================================
