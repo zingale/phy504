@@ -651,12 +651,29 @@ system may depend on that are not the integration variables.  This
 is a common feature in ODE integrators.</p>
 </li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">ODE</span></code> class manages the solution.  There are 2 constructors, one for each
-type of righthand side function.</p></li>
+type of righthand side function.  Each takes the set of initial conditions.</p></li>
 </ul>
+<p>The basic usage is:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y0</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span>
+<span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODE</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">y0</span><span class="p">);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">history</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">tmax</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The integrator will take the number of equations in the system from
+the number of initial conditions, and it will expect that the
+righthand side function, <code class="docutils literal notranslate"><span class="pre">f</span></code> returns a vector of this length (this
+is asserted).</p>
+<p>We can also use an initialization list like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ODE</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">integrate</span></code> member function can optionally take the relative
+tolerance with which to find the solution.</p>
 </section>
 <section id="example-orbits">
 <h2>Example: orbits<a class="headerlink" href="#example-orbits" title="Link to this heading"></a></h2>
-<p>Here’s a driver for integrating orbits</p>
+<p>Here’s a driver for integrating orbits.  We pick a high eccentricity which means
+that the planet’s speed will vary a lot over the orbit.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 115 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_orbit.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
@@ -719,6 +736,7 @@ type of righthand side function.</p></li>
 </pre></div>
 </div>
 </div>
+<p>When run, the output will show the range of timesteps taken.</p>
 </section>
 <section id="example-lorenz-system">
 <h2>Example: Lorenz system<a class="headerlink" href="#example-lorenz-system" title="Link to this heading"></a></h2>

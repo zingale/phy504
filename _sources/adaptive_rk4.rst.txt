@@ -200,17 +200,41 @@ Some notes:
   is a common feature in ODE integrators.
 
 * The ``ODE`` class manages the solution.  There are 2 constructors, one for each
-  type of righthand side function.
+  type of righthand side function.  Each takes the set of initial conditions.
+
+The basic usage is:
+
+.. code:: c++
+
+   std::vector<double> y0(0.0, 1.0, 2.0);
+   o = ODE(f, y0);
+   auto history = o.integrate(dt, tmax);
+
+The integrator will take the number of equations in the system from
+the number of initial conditions, and it will expect that the
+righthand side function, ``f`` returns a vector of this length (this
+is asserted).
+
+We can also use an initialization list like:
+
+.. code:: c++
+
+   o = ODE(f, {0.0, 1.0, 2.0});
+
+Finally, the ``integrate`` member function can optionally take the relative
+tolerance with which to find the solution.
 
 Example: orbits
 ===============
 
-Here's a driver for integrating orbits
+Here's a driver for integrating orbits.  We pick a high eccentricity which means
+that the planet's speed will vary a lot over the orbit.
 
 .. literalinclude:: ../../examples/general_ODE_class/test_orbit.cpp
    :language: c++
    :caption: ``test_orbit.cpp``
 
+When run, the output will show the range of timesteps taken.
 
 Example: Lorenz system
 ======================
