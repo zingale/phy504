@@ -99,7 +99,7 @@ for our single step, the error will be:
 $$\epsilon \sim \tau^5$$
 
 And imagine that we wanted to achieve an error of
-$\epsilon_\mathrm{want}---there is a timestep $\tau$ that would
+$\epsilon_\mathrm{want}$---there is a timestep $\tau$ that would
 get this:
 
 $$\epsilon_\mathrm{want} \sim \tau_\mathrm{est}^5$$
