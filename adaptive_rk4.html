@@ -195,7 +195,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#th-order-rk">4th order RK</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adaptive-timesteps">Adaptive timesteps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-orbits">Example: orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-elliptical-orbits">Example: elliptical orbits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-lorenz-system">Example: Lorenz system</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-using-a-lambda-function">Example: using a lambda-function</a></li>
 </ul>
@@ -674,10 +674,19 @@ is asserted).</p>
 <p>Finally, the <code class="docutils literal notranslate"><span class="pre">integrate</span></code> member function can optionally take the relative
 tolerance with which to find the solution.</p>
 </section>
-<section id="example-orbits">
-<h2>Example: orbits<a class="headerlink" href="#example-orbits" title="Link to this heading"></a></h2>
+<section id="example-elliptical-orbits">
+<h2>Example: elliptical orbits<a class="headerlink" href="#example-elliptical-orbits" title="Link to this heading"></a></h2>
 <p>Here’s a driver for integrating orbits.  We pick a high eccentricity which means
 that the planet’s speed will vary a lot over the orbit.</p>
+<p>The initial conditions put the planet on the +x axis, at perihelion, with a
+counterclockwise orbit.  They are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+  x &amp;= a (1 - e) \\
+  y &amp;= 0 \\
+  u &amp;= 0 \\
+  v &amp;= \sqrt{\frac{GM}{a} \frac{1+e}{1-e}}
+\end{align*}\end{split}\]</div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 115 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_orbit.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
