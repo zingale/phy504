@@ -633,7 +633,9 @@ error with the timestep, <span class="math notranslate nohighlight">\(\tau\)</sp
 We could have used <code class="docutils literal notranslate"><span class="pre">std::array</span></code>, but that would have required us to template
 the <code class="docutils literal notranslate"><span class="pre">ODE</span></code> class on the number of equations.</p></li>
 <li><p>At each point in time, the state of the system is stored in a <code class="docutils literal notranslate"><span class="pre">struct</span></code> called
-<code class="docutils literal notranslate"><span class="pre">solution</span></code>.  There is a simple constructor that can fill the data.</p></li>
+<code class="docutils literal notranslate"><span class="pre">solution</span></code>.  There is a simple constructor that can fill the data.</p>
+<p>We have an overload for the stream operation, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, that works with a <code class="docutils literal notranslate"><span class="pre">solution</span></code> object.</p>
+</li>
 <li><p>Our righthand side function can have one of 2 signatures:</p>
 <ul>
 <li><p>A simple function of the form <span class="math notranslate nohighlight">\(f(t, y)\)</span>:</p>
@@ -641,7 +643,7 @@ the <code class="docutils literal notranslate"><span class="pre">ODE</span></cod
 </pre></div>
 </div>
 </li>
-<li><p>A version that allows for a vector of parameters, <span class="math notranslate nohighlight">\(f(t, y, p)\)</span></p>
+<li><p>A version that allows for a vector of parameters, <span class="math notranslate nohighlight">\(f(t, y, p)\)</span>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
 <span class="w">                      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">)</span>
 </pre></div>

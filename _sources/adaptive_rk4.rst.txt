@@ -181,6 +181,8 @@ Some notes:
 * At each point in time, the state of the system is stored in a ``struct`` called
   ``solution``.  There is a simple constructor that can fill the data.
 
+  We have an overload for the stream operation, ``<<``, that works with a ``solution`` object.
+
 * Our righthand side function can have one of 2 signatures:
 
   * A simple function of the form $f(t, y)$:
@@ -189,7 +191,7 @@ Some notes:
 
        std::vector<double> f(double t, const std::vector<double>& y)
 
-  * A version that allows for a vector of parameters, $f(t, y, p)$
+  * A version that allows for a vector of parameters, $f(t, y, p)$:
 
     .. code:: c++
 
