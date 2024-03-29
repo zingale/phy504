@@ -10,5 +10,5 @@ Here's an example using it on our array code:
 
 .. prompt:: bash
 
-   clang-tidy test_array.cpp  -checks=-*,bugprone-*,modernize-*,readibility-* -- test_array.cpp
+   clang-tidy test_array.cpp  -checks=-*,bugprone-*,misc-*,modernize-*,performance-*,readibility-* -- test_array.cpp
 

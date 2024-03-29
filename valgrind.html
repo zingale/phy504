@@ -301,7 +301,13 @@ span.prompt1:before {
 }
 </style><span class="prompt1">g++ -g -o uninitialized uninitialized.cpp</span>
 <span class="prompt1">valgrind ./uninitialized</span>
-</pre></div></div><p>we see that there are errors.  Here’s the first:</p>
+</pre></div></div><p>we see that there are errors.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When we compile, we added the <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag.  This adds debugging information to
+the executable.</p>
+</div>
+<p>Here’s the first:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">==</span><span class="mi">1457506</span><span class="o">==</span> <span class="n">Conditional</span> <span class="n">jump</span> <span class="ow">or</span> <span class="n">move</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">uninitialised</span> <span class="n">value</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="o">==</span><span class="mi">1457506</span><span class="o">==</span>    <span class="n">at</span> <span class="mh">0x4BDC2C8</span><span class="p">:</span> <span class="n">__printf_fp_l</span> <span class="p">(</span><span class="n">printf_fp</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">397</span><span class="p">)</span>
 <span class="o">==</span><span class="mi">1457506</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x4BF5FF7</span><span class="p">:</span> <span class="n">__vfprintf_internal</span> <span class="p">(</span><span class="n">vfprintf</span><span class="o">-</span><span class="n">internal</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1646</span><span class="p">)</span>
