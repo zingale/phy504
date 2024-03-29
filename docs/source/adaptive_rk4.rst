@@ -183,9 +183,17 @@ Some notes:
 
 * Our righthand side function can have one of 2 signatures:
 
-  * ``std::vector<double> f(double t, const std::vector<double>& y)``
+  * A simple function of the form $f(t, y)$:
 
-  * ``std::vector<double> f(double t, const std::vector<double>& y, std::vector<double>& params)``
+    .. code:: c++
+
+       std::vector<double> f(double t, const std::vector<double>& y)
+
+  * A version that allows for a vector of parameters, $f(t, y, p)$
+
+    .. code::
+
+       std::vector<double> f(double t, const std::vector<double>& y, std::vector<double>& params)
 
   The second case allows us to pass a vector of parameters that the
   system may depend on that are not the integration variables.  This
