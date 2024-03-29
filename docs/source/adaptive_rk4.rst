@@ -162,7 +162,6 @@ Here's the code:
 
 :download:`ode_integrator.H <../../examples/general_ODE_class/ode_integrator.H>`
 
-
 .. dropdown:: ``ode_integrator.H``
 
    .. literalinclude:: ../../examples/general_ODE_class/ode_integrator.H
@@ -173,8 +172,27 @@ Here's the code:
 
    This requires C++23 because of the use of ``std::views::zip()``.
 
+Some notes:
 
+* We use ``std::vector`` internally to store the data for the system of ODEs.
+  We could have used ``std::array``, but that would have required us to template
+  the ``ODE`` class on the number of equations.
 
+* At each point in time, the state of the system is stored in a ``struct`` called
+  ``solution``.  There is a simple constructor that can fill the data.
+
+* Our righthand side function can have one of 2 signatures:
+
+  * ``std::vector<double> f(double t, const std::vector<double>& y)``
+
+  * ``std::vector<double> f(double t, const std::vector<double>& y, std::vector<double>& params)``
+
+  The second case allows us to pass a vector of parameters that the
+  system may depend on that are not the integration variables.  This
+  is a common feature in ODE integrators.
+
+* The ``ODE`` class manages the solution.  There are 2 constructors, one for each
+  type of righthand side function.
 
 Example: orbits
 ===============
