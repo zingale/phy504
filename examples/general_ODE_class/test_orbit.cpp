@@ -46,6 +46,7 @@ int main() {
     auto trajectory = o.integrate(0.025, 1.0, tol);
 
     std::cout << "# number of RHS evaluations = " << o.n_rhs << std::endl;
+    std::cout << "# number of rejected steps = " << o.n_reset << std::endl;
     std::cout << "# dt range = [" << o.dt_min << ", " << o.dt_max << "]" << std::endl;
 
     for (const auto& s : trajectory) {

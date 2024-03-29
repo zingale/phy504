@@ -1,4 +1,4 @@
-ALL: test_orbit test_lorenz
+ALL: test_orbit test_lorenz test_lambda
 
 # get all the sources and the headers
 SOURCES = $(wildcard *.cpp)
@@ -11,7 +11,8 @@ OBJECTS = $(SOURCES:.cpp=.o)
 # we have multiple targets here, which means multiple main()
 # functions.  We need to exclude these from the general list of
 # sources / objects, so we filter them out
-MAINS := test_orbit.o test_lorenz.o
+MAINS := test_orbit.o test_lorenz.o test_lambda.o
+
 OBJECTS := $(filter-out $(MAINS), $(OBJECTS))
 
 CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++23 -g
