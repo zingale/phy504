@@ -742,7 +742,19 @@ that the planet’s speed will vary a lot over the orbit.</p>
 </section>
 <section id="example-lorenz-system">
 <h2>Example: Lorenz system<a class="headerlink" href="#example-lorenz-system" title="Link to this heading"></a></h2>
-<p>Here’s a driver for integrating the <a class="reference external" href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a>.</p>
+<p>Here’s a driver for integrating the <a class="reference external" href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a>.
+This system appears as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+  \frac{dx}{dt} &amp;= \sigma (y - x) \\
+  \frac{dy}{dt} &amp;= x (\rho - z) - y \\
+  \frac{dz}{dt} &amp;= xy - \beta z
+\end{align*}\end{split}\]</div>
+<p>and is a simple model for convection.  Here, <span class="math notranslate nohighlight">\(x\)</span> is a measure of the rate of convection,
+<span class="math notranslate nohighlight">\(y\)</span> is related to the horizontal temperature variation, and <span class="math notranslate nohighlight">\(z\)</span> is related to the vertical
+temperature structure.  There are 3 parameters: <span class="math notranslate nohighlight">\(\sigma\)</span> is the Prandtl number, <span class="math notranslate nohighlight">\(\rho\)</span>
+is the Rayleigh number, and <span class="math notranslate nohighlight">\(\beta\)</span> is related to the system size.</p>
+<p>Lorenz chose <span class="math notranslate nohighlight">\(\sigma = 10\)</span>, <span class="math notranslate nohighlight">\(\beta = 8/3\)</span>, and <span class="math notranslate nohighlight">\(\rho = 28\)</span>.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 116 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_lorenz.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
@@ -796,6 +808,13 @@ that the planet’s speed will vary a lot over the orbit.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<p>The Lorenz system is interesting because it is chaotic—small changes to the initial
+conditions will lead to very large differences in the solution.</p>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>Try changing the initial conditions by <span class="math notranslate nohighlight">\(1\)</span> part in <span class="math notranslate nohighlight">\(10^6\)</span> and compare plots of
+<span class="math notranslate nohighlight">\(x\)</span> vs. <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </div>
 </section>
 <section id="example-using-a-lambda-function">
