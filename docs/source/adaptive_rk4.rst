@@ -160,27 +160,143 @@ Implementation
 
 Here's the code:
 
-.. literalinclude:: ../../examples/general_ODE_class/ode_integrator.H
-   :language: c++
-   :caption: ``ode_integrator.H``
+:download:`ode_integrator.H <../../examples/general_ODE_class/ode_integrator.H>`
 
+.. dropdown:: ``ode_integrator.H``
 
-Example: orbits
-===============
+   .. literalinclude:: ../../examples/general_ODE_class/ode_integrator.H
+      :language: c++
+      :caption: ``ode_integrator.H``
 
-Here's a driver for integrating orbits
+.. note::
+
+   This requires C++23 because of the use of ``std::views::zip()``.
+
+Some notes:
+
+* We use ``std::vector`` internally to store the data for the system of ODEs.
+  We could have used ``std::array``, but that would have required us to template
+  the ``ODE`` class on the number of equations.
+
+* At each point in time, the state of the system is stored in a ``struct`` called
+  ``solution``.  There is a simple constructor that can fill the data.
+
+  We have an overload for the stream operation, ``<<``, that works with a ``solution`` object.
+
+* Our righthand side function can have one of 2 signatures:
+
+  * A simple function of the form $f(t, y)$:
+
+    .. code:: c++
+
+       std::vector<double> f(double t, const std::vector<double>& y)
+
+  * A version that allows for a vector of parameters, $f(t, y, p)$:
+
+    .. code:: c++
+
+       std::vector<double> f(double t, const std::vector<double>& y,
+                             std::vector<double>& params)
+
+  The second case allows us to pass a vector of parameters that the
+  system may depend on that are not the integration variables.  This
+  is a common feature in ODE integrators.
+
+* The ``ODE`` class manages the solution.  There are 2 constructors, one for each
+  type of righthand side function.  Each takes the set of initial conditions.
+
+The basic usage is:
+
+.. code:: c++
+
+   std::vector<double> y0(0.0, 1.0, 2.0);
+   o = ODE(f, y0);
+   auto history = o.integrate(dt, tmax);
+
+The integrator will take the number of equations in the system from
+the number of initial conditions, and it will expect that the
+righthand side function, ``f`` returns a vector of this length (this
+is asserted).
+
+We can also use an initialization list like:
+
+.. code:: c++
+
+   o = ODE(f, {0.0, 1.0, 2.0});
+
+Finally, the ``integrate`` member function can optionally take the relative
+tolerance with which to find the solution.
+
+Example: elliptical orbits
+==========================
+
+Here's a driver for integrating orbits.  We pick a high eccentricity which means
+that the planet's speed will vary a lot over the orbit.
+
+The initial conditions put the planet on the +x axis, at perihelion, with a
+counterclockwise orbit.  They are:
+
+.. math::
+
+   \begin{align*}
+     x &= a (1 - e) \\
+     y &= 0 \\
+     u &= 0 \\
+     v &= \sqrt{\frac{GM}{a} \frac{1+e}{1-e}}
+   \end{align*}
+
 
 .. literalinclude:: ../../examples/general_ODE_class/test_orbit.cpp
    :language: c++
    :caption: ``test_orbit.cpp``
 
+When run, the output will show the range of timesteps taken.
 
 Example: Lorenz system
 ======================
 
 Here's a driver for integrating the `Lorenz system <https://en.wikipedia.org/wiki/Lorenz_system>`_.
+This system appears as:
+
+.. math::
+
+   \begin{align*}
+     \frac{dx}{dt} &= \sigma (y - x) \\
+     \frac{dy}{dt} &= x (\rho - z) - y \\
+     \frac{dz}{dt} &= xy - \beta z
+   \end{align*}
+
+and is a simple model for convection.  Here, $x$ is a measure of the rate of convection,
+$y$ is related to the horizontal temperature variation, and $z$ is related to the vertical
+temperature structure.  There are 3 parameters: $\sigma$ is the Prandtl number, $\rho$
+is the Rayleigh number, and $\beta$ is related to the system size.
+
+Lorenz chose $\sigma = 10$, $\beta = 8/3$, and $\rho = 28$.
 
 .. literalinclude:: ../../examples/general_ODE_class/test_lorenz.cpp
    :language: c++
    :caption: ``test_lorenz.cpp``
+
+The Lorenz system is interesting because it is chaotic---small changes to the initial
+conditions will lead to very large differences in the solution.
+
+.. admonition:: try it...
+
+   Try changing the initial conditions by $1$ part in $10^6$ and compare plots of
+   $x$ vs. $t$.
+
+Example: using a lambda-function
+================================
+
+For a simple system, we can use a lambda-function.  Here we solve:
+
+.. math::
+
+   \frac{dy}{dt} = -y
+
+with $y(0) = 1$.
+
+.. literalinclude:: ../../examples/general_ODE_class/test_lambda.cpp
+   :language: c++
+   :caption: ``test_lambda.cpp``
 
