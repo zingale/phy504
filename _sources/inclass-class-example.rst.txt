@@ -1,4 +1,4 @@
-.. _orbit_class:
+.. _simple_grid_class:
 
 ********************************
 In-Class Example: A Simple Grid
