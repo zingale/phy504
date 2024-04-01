@@ -256,7 +256,10 @@
 <h1>Inheritance and Access<a class="headerlink" href="#inheritance-and-access" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 4.3</p>
+<ul class="simple">
+<li><p>Cyganek section 4.3</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">Inheritance (Wikipedia)</a></p></li>
+</ul>
 </div>
 <p>With inheritance, we create a <em>base class</em> that has member functions that
 should be generally applicable to any class that we build off of the
@@ -303,12 +306,12 @@ just use a member initialization list to initialize the data,
 but this does not work.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>C++ prevents us from initializing inherited member variables in the
+<p>C++ prevents us from initializing <em>inherited</em> member variables in the
 member initialization list of the sub-class constructor.</p>
-</div>
 <p>Instead we can explicitly call the constructor of the base class to
 initialize any data in the base class and then use a member
 initialization list to initialize anything specific to the sub class.</p>
+</div>
 <p>Now, when we create a <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code>, the constructor of the base class
 is first executed and then the remainder of the sub class constructor
 is executed.</p>
