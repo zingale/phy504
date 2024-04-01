@@ -31,8 +31,8 @@ public:
 
     ~Vector2d() {}
 
-    // copy and assignment constructors -- we don't need to define them, but we
-    // explicitly say to use the default
+    // copy and assignment constructors -- we don't need to define
+    // them, but we explicitly say to use the default
 
     //Vector2d(const Vector2d& vec) = default;
     Vector2d(const Vector2d& vec)
