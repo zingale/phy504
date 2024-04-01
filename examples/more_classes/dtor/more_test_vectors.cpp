@@ -24,7 +24,7 @@ int main() {
     auto v5(v1);
 
     std::cout << "doing auto v6{v1}" << std::endl;
-    auto v6(v1);
+    auto v6{v1};
 
     std::cout << v4 << std::endl;
 
