@@ -119,3 +119,20 @@ Here's a driver that exercises them.
    We see that the destructor is called for each of the ``Vector2d`` 's we created
    when the program ends.
 
+.. tip::
+
+   If we want to explicitly provide one of these functions but just do what the
+   compiler would do, we can use ``default``, e.g.:
+
+   .. code:: c++
+
+      Vector2d(const Vector2d& vec) = default;
+
+.. tip::
+
+   If we want to forbid an operation, then we can use ``delete``, e.g.:
+
+   .. code:: c++
+
+      Vector2d(const Vector2d& vec) = delete;
+
