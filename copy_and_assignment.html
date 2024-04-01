@@ -164,7 +164,13 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Copy, Assignment, and Destructors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Copy, Assignment, and Destructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Copy constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Assignment operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#destructor">Destructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="compound-operators.html">Compound Assignment Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-orbit-compound.html">In-Class Example: Orbit Integrator Compound Operators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-move.html">Move Semantics</a></li>
@@ -251,29 +257,47 @@
 <h1>Copy, Assignment, and Destructors<a class="headerlink" href="#copy-assignment-and-destructors" title="Link to this heading"></a></h1>
 <div class="admonition-reading admonition">
 <p class="admonition-title">reading</p>
-<p>Cyganek section 4.4</p>
+<ul class="simple">
+<li><p>Cyganek section 4.4</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Copy_constructor_(C%2B%2B)">Copy constructor</a> and
+<a class="reference external" href="https://en.wikipedia.org/wiki/Assignment_operator_(C%2B%2B)">assignment operator</a> from
+Wikipedia</p></li>
+</ul>
 </div>
 <p>So far, we’ve been relying on the compiler to provide a default
-copy constructor, assignment operator, and destructor.  As long
+<em>copy constructor</em>, <em>assignment operator</em>, and <em>destructor</em>.  As long
 as our data is simple, we can do this, since the compiler will know
 how to work with it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Unless our class is complicated and manages its own memory (e.g.,
+via pointers), we don’t need to write these functions.  The
+compiler will automatically generate them for us.</p>
+<p>This is the <a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of 3</a>
+(or Rule of 5, as we’ll see later) that we previously mentioned.</p>
+</div>
 <p>Here we’ll explicitly write this out anyway, just to understand how
 they would look.</p>
 <p>We’ll use the <a class="reference internal" href="cxx-vector2d-class.html#sec-vector2d"><span class="std std-ref">Example: Mathematical Vectors</span></a> <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class as our example here.</p>
-<p>The copy constructor is invoked when we do something like:</p>
+<section id="id1">
+<h2>Copy constructor<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>The <em>copy constructor</em> is invoked when we do something like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="nf">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
 
 <span class="k">auto</span><span class="w"> </span><span class="n">vec2</span><span class="p">(</span><span class="n">vec</span><span class="p">);</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">vec3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>In both of these cases, we need to create a separate <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> with
+<p>In both of these cases, we need to create a new <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> with
 its own memory and copy the data over.  The copy constructor has
 the function signature:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector2d</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The assignment operator is invoked when we do something like:</p>
+</section>
+<section id="id2">
+<h2>Assignment operator<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>The <em>assignment operator</em> is invoked when we do something like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Vector2d</span><span class="w"> </span><span class="nf">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
 <span class="n">Vector2d</span><span class="w"> </span><span class="n">vec2</span><span class="p">;</span>
 
@@ -292,7 +316,10 @@ allow us to chain assignment, e.g.:</p>
 </pre></div>
 </div>
 </div>
-<p>Finally, the <em>destructor</em> is written as:</p>
+</section>
+<section id="destructor">
+<h2>Destructor<a class="headerlink" href="#destructor" title="Link to this heading"></a></h2>
+<p>The <em>destructor</em> is written as:</p>
 <blockquote>
 <div><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">~</span><span class="n">Vector2d</span><span class="p">()</span>
 </pre></div>
@@ -302,20 +329,15 @@ allow us to chain assignment, e.g.:</p>
 <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class, all the data are automatic variables, so they will
 be deleted when they go out of scope by the stack.  This is the reason
 we really don’t need to write a destructor for this class.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Unless our class is complicated and manages its own memory (e.g.,
-via pointers), we don’t need to write these functions.  The
-compiler will automatically generate them for us.</p>
-<p>This is the <a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of 3</a>
-(or Rule of 5, as we’ll see later) that we previously mentioned.</p>
-</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>Here’s an example of our <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> class that explicitly implements
 the copy constructor, assignment operator, and destructor.
 Additionally, we add a print to stdout in each of these so we can see
 when each of them are called.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 90 </span><span class="caption-text">a newer <code class="docutils literal notranslate"><span class="pre">vector2d.H</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 90 </span><span class="caption-text">a newer <code class="docutils literal notranslate"><span class="pre">vector2d.H</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef VECTOR_2D_H</span>
 <span class="cp">#define VECTOR_2D_H</span>
 
@@ -465,8 +487,8 @@ when each of them are called.</p>
 </div>
 </div>
 <p>Here’s a driver that exercises them.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 91 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_vectors.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 91 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_vectors.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;vector2d.H&quot;</span>
@@ -495,10 +517,12 @@ when each of them are called.</p>
 </pre></div>
 </div>
 </div>
-<p>Some notes:</p>
-<ul class="simple">
-<li><p>We see that the destructor is called for each of the <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> ‘s we created.</p></li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We see that the destructor is called for each of the <code class="docutils literal notranslate"><span class="pre">Vector2d</span></code> ‘s we created
+when the program ends.</p>
+</div>
+</section>
 </section>
 
 
