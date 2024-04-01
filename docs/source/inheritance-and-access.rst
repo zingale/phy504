@@ -4,8 +4,8 @@ Inheritance and Access
 
 .. admonition:: reading
 
-   Cyganek section 4.3
-
+   * Cyganek section 4.3
+   * `Inheritance (Wikipedia) <https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)>`_
 
 With inheritance, we create a *base class* that has member functions that
 should be generally applicable to any class that we build off of the
@@ -64,12 +64,12 @@ but this does not work.
 
 .. note::
 
-   C++ prevents us from initializing inherited member variables in the
+   C++ prevents us from initializing *inherited* member variables in the
    member initialization list of the sub-class constructor.
 
-Instead we can explicitly call the constructor of the base class to
-initialize any data in the base class and then use a member
-initialization list to initialize anything specific to the sub class.
+   Instead we can explicitly call the constructor of the base class to
+   initialize any data in the base class and then use a member
+   initialization list to initialize anything specific to the sub class.
 
 Now, when we create a ``Rectangle``, the constructor of the base class
 is first executed and then the remainder of the sub class constructor
