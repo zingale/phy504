@@ -1,3 +1,5 @@
+.. _orbit_class:
+
 ****************************************
 In-Class Example: Orbit Integrator Class
 ****************************************
