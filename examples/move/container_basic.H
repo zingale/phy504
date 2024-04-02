@@ -45,6 +45,9 @@ public:
 
     int get_size() {return _size;}
 
+    // we use the get() function on the unique_ptr to get the pointer to
+    // the data that it is managing.
+
     double* get_data() {return _data.get();}
 
     // operators
