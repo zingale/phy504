@@ -166,7 +166,7 @@ There are prints in each of the functions so we can see where each comes into pl
       auto c2 = fill_new();
 
    we might expect that the compiler would do a move constructor here, but instead it
-   does return value optimization.  We can disable this with LLVM as:
+   does `return value optimization <https://en.wikipedia.org/wiki/Copy_elision>`_.  We can disable this with LLVM as:
 
    .. prompt:: bash
 

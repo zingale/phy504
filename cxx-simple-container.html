@@ -692,7 +692,7 @@ ours and also does a swap on the pointers.</p>
 </pre></div>
 </div>
 <p>we might expect that the compiler would do a move constructor here, but instead it
-does return value optimization.  We can disable this with LLVM as:</p>
+does <a class="reference external" href="https://en.wikipedia.org/wiki/Copy_elision">return value optimization</a>.  We can disable this with LLVM as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
   content: "$ ";
