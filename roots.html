@@ -466,6 +466,8 @@ error.</p>
     <span class="nb">int</span> <span class="n">ierr</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
     <span class="n">double</span> <span class="n">root</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;trying bisection on f(x) = x^3 + x^2 - 1&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+
     <span class="n">ierr</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span>
                      <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">;},</span> <span class="n">root</span><span class="p">);</span>
 
@@ -474,6 +476,9 @@ error.</p>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;root not found&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;trying bisection on f(x) = x^2&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
 
     <span class="n">ierr</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span>
                      <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="n">root</span><span class="p">);</span>
@@ -483,6 +488,9 @@ error.</p>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;root not found&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;trying Newton&#39;s method on f(x) = x^2&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
 
     <span class="n">ierr</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>
                   <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="p">[]</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">;},</span> <span class="n">root</span><span class="p">);</span>
@@ -492,6 +500,7 @@ error.</p>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;root not found&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="p">}</span>
 </pre></div>
