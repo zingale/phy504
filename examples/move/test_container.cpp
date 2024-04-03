@@ -18,7 +18,7 @@ Container fill_new() {
 
 int main() {
 
-    std::cout << "doing Container c(10)" << std::endl;
+    std::cout << "1. doing Container c(10)" << std::endl;
 
     Container c(10);
 
@@ -33,25 +33,25 @@ int main() {
 
     std::cout << c << std::endl;
 
-    std::cout << "doing c1 = c" << std::endl;
+    std::cout << "2. doing c1 = c" << std::endl;
 
     auto c1 = c;
 
     std::cout << c1 << std::endl;
 
-    std::cout << "doing c1 = fill_new()" << std::endl;
+    std::cout << "3. doing c1 = fill_new()" << std::endl;
 
     c1 = fill_new();
 
     std::cout << c1 << std::endl;
 
-    std::cout << "doing auto c2 = fill_new()" << std::endl;
+    std::cout << "4. doing auto c2 = fill_new()" << std::endl;
 
     auto c2 = fill_new();
 
     std::cout << std::endl;
 
-    std::cout << "doing cvec.push_back(fill_new())" << std::endl;
+    std::cout << "5. doing cvec.push_back(fill_new())" << std::endl;
 
     std::vector<Container> cvec;
     cvec.push_back(fill_new());

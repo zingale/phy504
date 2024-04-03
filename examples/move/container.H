@@ -47,11 +47,11 @@ public:
 
     // copy constructor
 
-    Container(const Container& c) {
+    Container(const Container& c)
+        : _size{c._size}
+    {
 
         std::cout << "in copy constructor" << std::endl;
-
-        _size = c._size;
 
         // reset the data buffer
 
