@@ -272,11 +272,18 @@ so often we will check that <span class="math notranslate nohighlight">\(f(x_l) 
 <p>Bisection works by iteratively cutting the range where the root is located in half.
 The basic idea is as follows:</p>
 <ul class="simple">
+<li><p>Iterate until error is small:</p>
+<ul>
 <li><p>Compute <span class="math notranslate nohighlight">\(f_l = f(x_l)\)</span> and <span class="math notranslate nohighlight">\(f_r = f(x_r)\)</span></p></li>
 <li><p>Define <span class="math notranslate nohighlight">\(x_m = (x_l + x_r) / 2\)</span> and <span class="math notranslate nohighlight">\(f_m = f(x_m)\)</span></p></li>
-<li><p>If <span class="math notranslate nohighlight">\(f_l \cdot f_m &lt; 0\)</span> then the <span class="math notranslate nohighlight">\(x_0 \in [x_l, x_m]\)</span>, so define <span class="math notranslate nohighlight">\(x_r = x_m\)</span>;
-otherwise set <span class="math notranslate nohighlight">\(x_l = x_m\)</span></p></li>
-<li><p>Iterate</p></li>
+<li><dl class="simple">
+<dt>If <span class="math notranslate nohighlight">\(f_l \cdot f_m &lt; 0\)</span> then the <span class="math notranslate nohighlight">\(x_0 \in [x_l, x_m]\)</span>, so define <span class="math notranslate nohighlight">\(x_r = x_m\)</span>;</dt><dd><p>otherwise set <span class="math notranslate nohighlight">\(x_l = x_m\)</span></p>
+</dd>
+</dl>
+</li>
+<li><p>Define the error as <span class="math notranslate nohighlight">\(|x_r - x_l|\)</span></p></li>
+</ul>
+</li>
 </ul>
 <p>Here’s an animation of bisection finding a root:</p>
 <figure class="align-center">
