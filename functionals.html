@@ -193,8 +193,8 @@
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roots.html">Root Finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
@@ -348,21 +348,35 @@ implementation.)</p>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="mf">-1.32</span><span class="p">,</span><span class="w"> </span><span class="n">M_PI</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.</span><span class="n">e3</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)};</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sum b: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
-<span class="w">        </span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;max b: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
 <span class="w">        </span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">(),</span><span class="w"> </span><span class="n">max</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;min b: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
-<span class="w">        </span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">(),</span>
-<span class="w">        </span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);})</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
 
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<p>Notice that this approach works just fine with a lambda function!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In some cases, we can remove the specialization in the <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> call
+if the compiler can infer it from the arguments.  For instance, we can
+do:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sum b: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">   </span><span class="n">reduce</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>But note that this does not work if we write <code class="docutils literal notranslate"><span class="pre">0</span></code> instead of <code class="docutils literal notranslate"><span class="pre">0.0</span></code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can also use a lambda function with the same interface, e.g.,</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;min b: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">  </span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">(),</span>
+<span class="w">  </span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);})</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 

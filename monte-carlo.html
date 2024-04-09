@@ -29,8 +29,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Poisson Equation and Relaxation" href="poisson-relax.html" />
-    <link rel="prev" title="Adaptive Runge-Kutta" href="adaptive_rk4.html" /> 
+    <link rel="next" title="Adaptive Runge-Kutta" href="adaptive_rk4.html" />
+    <link rel="prev" title="Root Finding" href="roots.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -191,7 +191,6 @@
 <p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="roots.html">Root Finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Monte Carlo Methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pseudo-random-numbers">Pseudo-random numbers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#uniform-distribution">Uniform distribution</a></li>
@@ -202,6 +201,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#example-computing-pi">Example: computing <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
@@ -290,7 +290,7 @@ random numbers.  It is more complicated to code up.</p></li>
 <h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Link to this heading"></a></h3>
 <p>Here’s a simple example of a uniform random number distribution:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 118 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 114 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_random.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 
@@ -385,7 +385,7 @@ approximate <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
 \[\pi \approx 4 \frac{N_\mathrm{circ}}{N}\]</div>
 <p>Here’s an implementation of our computing <span class="math notranslate nohighlight">\(\pi\)</span>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 119 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 115 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pi.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;random&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
@@ -424,8 +424,8 @@ approximate <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="adaptive_rk4.html" class="btn btn-neutral float-left" title="Adaptive Runge-Kutta" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="poisson-relax.html" class="btn btn-neutral float-right" title="Poisson Equation and Relaxation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="roots.html" class="btn btn-neutral float-left" title="Root Finding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="adaptive_rk4.html" class="btn btn-neutral float-right" title="Adaptive Runge-Kutta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
