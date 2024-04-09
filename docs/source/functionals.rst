@@ -77,4 +77,4 @@ to the elements of the vector.  We assume that the order of ``x`` and ``y`` does
 
       std::cout << "min b: " <<
         reduce<double>(b, std::numeric_limits<double>::max(),
-        [] (double x, double y) {return std::min(x, y);}) << std::endl;
+                       [] (double x, double y) {return std::min(x, y);}) << std::endl;
