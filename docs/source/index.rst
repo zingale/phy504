@@ -184,8 +184,8 @@ Spring 2024
    :caption: Some Numerical Algorithms
 
    roots
-   adaptive_rk4
    monte-carlo
+   adaptive_rk4
    poisson-relax
 
 .. toctree::

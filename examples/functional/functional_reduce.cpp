@@ -35,14 +35,9 @@ int main() {
     std::vector<double> b{-1.32, M_PI, 20.0, 1.e3, std::sqrt(2.0)};
 
     std::cout << "sum b: " <<
-        reduce<double>(b, 0, add<double>) << std::endl;
+        reduce<double>(b, 0.0, add<double>) << std::endl;
 
     std::cout << "max b: " <<
         reduce<double>(b, std::numeric_limits<double>::lowest(), max<double>) << std::endl;
-
-    std::cout << "min b: " <<
-        reduce<double>(b, std::numeric_limits<double>::max(),
-        [] (double x, double y) {return std::min(x, y);}) << std::endl;
-
 
 }

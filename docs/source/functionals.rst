@@ -55,9 +55,26 @@ to the elements of the vector.  We assume that the order of ``x`` and ``y`` does
    :caption: ``functional_reduce.cpp``
 
 
-Notice that this approach works just fine with a lambda function!
+.. note::
+
+   In some cases, we can remove the specialization in the ``reduce()`` call
+   if the compiler can infer it from the arguments.  For instance, we can
+   do:
+
+   .. code:: c++
+
+      std::cout << "sum b: " <<
+         reduce(b, 0.0, add<double>) << std::endl;
+
+   But note that this does not work if we write ``0`` instead of ``0.0``.
 
 
+.. tip::
 
+   We can also use a lambda function with the same interface, e.g.,
 
+   .. code:: c++
 
+      std::cout << "min b: " <<
+        reduce<double>(b, std::numeric_limits<double>::max(),
+        [] (double x, double y) {return std::min(x, y);}) << std::endl;
