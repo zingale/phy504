@@ -7,6 +7,8 @@ int main() {
     int ierr{0};
     double root{0.0};
 
+    // bisection on f(x) = x^3 + x^2 - 1
+
     std::cout << "trying bisection on f(x) = x^3 + x^2 - 1" << std::endl;
 
     ierr = bisection(-5.0, 5.0,
@@ -19,6 +21,9 @@ int main() {
     }
     std::cout << std::endl;
 
+
+    // bisection on f(x) = x^2
+
     std::cout << "trying bisection on f(x) = x^2" << std::endl;
 
     ierr = bisection(-5.0, 5.0,
@@ -30,6 +35,9 @@ int main() {
         std::cout << "root not found" << std::endl;
     }
     std::cout << std::endl;
+
+
+    // Newton's method on f(x) = x^2
 
     std::cout << "trying Newton's method on f(x) = x^2" << std::endl;
 
