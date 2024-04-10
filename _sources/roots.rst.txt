@@ -29,7 +29,7 @@ The basic idea is as follows:
   * Define :math:`x_m = (x_l + x_r) / 2` and :math:`f_m = f(x_m)`
 
   * If :math:`f_l \cdot f_m < 0` then the :math:`x_0 \in [x_l, x_m]`, so define :math:`x_r = x_m`;
-     otherwise set :math:`x_l = x_m`
+    otherwise set :math:`x_l = x_m`
 
   * Define the error as $|x_r - x_l|$
 
