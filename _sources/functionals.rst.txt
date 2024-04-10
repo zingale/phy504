@@ -71,7 +71,7 @@ to the elements of the vector.  We assume that the order of ``x`` and ``y`` does
 
 .. tip::
 
-   We can also use a lambda function with the same interface, e.g.,
+   We can also use :ref:`lambdafunctions` with the same interface, e.g.,
 
    .. code:: c++
 
