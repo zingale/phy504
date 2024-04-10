@@ -168,6 +168,7 @@ Spring 2024
    github-pages
    doxygen
    sphinx
+   sphinx-doxygen
 
 .. toctree::
    :maxdepth: 1
