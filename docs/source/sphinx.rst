@@ -198,7 +198,7 @@ In the ``.github/workflows/gh-pages.yml`` file, change the sections:
           doxygen Doxyfile
 
    - name: Deploy
-     uses: peaceiris/actions-gh-pages@v3
+     uses: peaceiris/actions-gh-pages@v4
      with:
        github_token: ${{ secrets.GITHUB_TOKEN }}
        publish_dir: ./docs
@@ -217,7 +217,7 @@ to
           mv docs/build/html/* out/
 
    - name: Deploy
-     uses: peaceiris/actions-gh-pages@v3
+     uses: peaceiris/actions-gh-pages@v4
      with:
        github_token: ${{ secrets.GITHUB_TOKEN }}
        publish_dir: ./out

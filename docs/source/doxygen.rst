@@ -217,16 +217,16 @@ Now create a file: ``.github/workflows/gh-pages.yml`` with the following content
      deploy:
        runs-on: ubuntu-latest
        steps:
-         - uses: actions/checkout@v3
+         - uses: actions/checkout@v4
 
          - name: Install pandoc and doxygen
            run: |
              sudo apt install pandoc doxygen
 
          - name: Setup python
-           uses: actions/setup-python@v3
+           uses: actions/setup-python@v5
            with:
-             python-version: '3.9'
+             python-version: '3.12'
 
          - name: Install dependencies
            run: python3 -m pip install -r ./requirements.txt
@@ -237,7 +237,7 @@ Now create a file: ``.github/workflows/gh-pages.yml`` with the following content
                 doxygen Doxyfile
 
          - name: Deploy
-           uses: peaceiris/actions-gh-pages@v3
+           uses: peaceiris/actions-gh-pages@v4
            with:
              github_token: ${{ secrets.GITHUB_TOKEN }}
              publish_dir: ./docs
