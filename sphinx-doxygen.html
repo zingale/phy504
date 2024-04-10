@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casting &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Sphinx + Doxygen &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="I/O Manipulators" href="cxx-iomanip.html" />
-    <link rel="prev" title="enum" href="cxx-enum.html" /> 
+    <link rel="next" title="Templates" href="templates-intro.html" />
+    <link rel="prev" title="Sphinx" href="sphinx.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -138,11 +138,11 @@
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-enumerate-zip.html">Preview: C++23 enumerate and zip</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-enum.html">enum</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Casting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-casting.html">Casting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-iomanip.html">I/O Manipulators</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-print.html">Preview: C++23 Print</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-filesystem.html">Filesystem Library</a></li>
@@ -172,12 +172,12 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-simple-container.html">Example: A Simple Container</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documenting Code</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="html-css.html">HTML + CSS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github-pages.html">Github Pages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doxygen.html">Doxygen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx-doxygen.html">Sphinx + Doxygen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx + Doxygen</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Templates</span></p>
 <ul>
@@ -239,9 +239,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Casting</li>
+      <li class="breadcrumb-item active">Sphinx + Doxygen</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-casting.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/sphinx-doxygen.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -249,49 +249,97 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="casting">
-<h1>Casting<a class="headerlink" href="#casting" title="Link to this heading"></a></h1>
-<p>Sometimes we want to change the data type of an object—this is called <em>casting</em>.
-There are several different types of casts in C++.  We’ll look at <code class="docutils literal notranslate"><span class="pre">static_cast</span></code>,
-which is interpreted at compile time.</p>
-<p>Here’s an example:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 65 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">cast_example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+  <section id="sphinx-doxygen">
+<h1>Sphinx + Doxygen<a class="headerlink" href="#sphinx-doxygen" title="Link to this heading"></a></h1>
+<p>Despite its python origins, <a class="reference external" href="https://leimao.github.io/blog/CPP-Documentation-Using-Sphinx/">sphinx can be used with Doxygen via Breathe</a> to
+allow for nice looking sphinx documentation to provide the C++ documentation
+Doxygen generates.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The Sphinx <em>breathe</em> extension allows us to incorporate Doxygen
+documentation into Sphinx sites.</p>
+</div>
+<p>We’ll start with our existing repo set up for Sphinx and make the following
+changes:</p>
+<ol class="arabic">
+<li><p>Move <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> into <code class="docutils literal notranslate"><span class="pre">docs/</span></code> and change the following:</p>
+<ul class="simple">
+<li><p>change <code class="docutils literal notranslate"><span class="pre">OUTPUT_DIRECTORY</span></code> to <code class="docutils literal notranslate"><span class="pre">doxy_files</span></code></p></li>
+<li><p>change <code class="docutils literal notranslate"><span class="pre">INPUT</span></code> to <code class="docutils literal notranslate"><span class="pre">../</span></code></p></li>
+<li><p>Turn off HTML and turn on XML—Breathe works off of the XML output.</p>
+<ul>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">GENERATE_HTML</span></code> to <code class="docutils literal notranslate"><span class="pre">NO</span></code></p></li>
+<li><p>set <code class="docutils literal notranslate"><span class="pre">GENERATE_XML</span></code> to <code class="docutils literal notranslate"><span class="pre">YES</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Update our <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> to include Breathe and also run Doxygen for us.  Here’s
+the updated <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration file for the Sphinx documentation builder.</span>
+<span class="c1">#</span>
+<span class="c1"># For the full list of built-in configuration values, see the documentation:</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="c1"># -- Project information -----------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="mi">2</span><span class="p">};</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;cd ..; doxygen&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;C++ Array&#39;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2024, PHY 504&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;PHY 504&#39;</span>
 
-<span class="p">}</span>
+<span class="c1"># -- General configuration ---------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span> <span class="s2">&quot;breathe&quot;</span><span class="p">]</span>
+
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+
+<span class="n">breathe_projects</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;cxx_array&quot;</span><span class="p">:</span> <span class="s2">&quot;../doxy_files/xml/&quot;</span> <span class="p">}</span>
+<span class="n">breathe_default_project</span> <span class="o">=</span> <span class="s2">&quot;cxx_array&quot;</span>
 </pre></div>
 </div>
-</div>
-<p>We use <code class="docutils literal notranslate"><span class="pre">static_cast&lt;double&gt;</span></code> to promote an <code class="docutils literal notranslate"><span class="pre">int</span></code> to a <code class="docutils literal notranslate"><span class="pre">double</span></code> before doing the division.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Older C-style casts still work.  These take the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>
-<span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</li>
+<li><p>Create a  <code class="docutils literal notranslate"><span class="pre">doxygen_files.rst</span></code> in <code class="docutils literal notranslate"><span class="pre">source/</span></code> with the following:</p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="gh">Doxygen Files</span>
+<span class="gh">=============</span>
+
+<span class="p">..</span> <span class="ow">doxygenindex</span><span class="p">::</span>
+   <span class="nc">:project:</span> cxx_array
 </pre></div>
 </div>
-<p>but these are not recommended, as the compiler can’t always check if
-the conversion is allowed.</p>
+</li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> by adding the following:</p>
+<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 1
+   <span class="nc">:caption:</span> API
+
+   doxygen_files
+</pre></div>
 </div>
+</li>
+</ol>
+<p>We don’t need to do any changes to our GitHub workflow.  We should be able to just add these new
+files / changes, commit, and push, and the website will be updated.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-enum.html" class="btn btn-neutral float-left" title="enum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-iomanip.html" class="btn btn-neutral float-right" title="I/O Manipulators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sphinx.html" class="btn btn-neutral float-left" title="Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="templates-intro.html" class="btn btn-neutral float-right" title="Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

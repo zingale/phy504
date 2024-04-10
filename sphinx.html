@@ -27,7 +27,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Templates" href="templates-intro.html" />
+    <link rel="next" title="Sphinx + Doxygen" href="sphinx-doxygen.html" />
     <link rel="prev" title="Doxygen" href="doxygen.html" /> 
 </head>
 
@@ -183,9 +183,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#index">Index</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#using-doxygen-with-sphinx">Using Doxygen with Sphinx</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-doxygen.html">Sphinx + Doxygen</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Templates</span></p>
 <ul>
@@ -268,9 +268,6 @@ LaTeX/PDF, …  It can also highlight code syntax.</p>
 <p class="admonition-title">Tip</p>
 <p>These course notes are all written using Sphinx</p>
 </div>
-<p>Despite its python origins, <a class="reference external" href="https://leimao.github.io/blog/CPP-Documentation-Using-Sphinx/">sphinx can be used with Doxygen via Breathe</a> to
-allow for nice looking sphinx documentation to provide the C++ documentation
-Doxygen generates.</p>
 <section id="setting-it-up">
 <h2>Setting It Up<a class="headerlink" href="#setting-it-up" title="Link to this heading"></a></h2>
 <p>We can install Sphinx locally via:</p>
@@ -323,7 +320,7 @@ using <code class="docutils literal notranslate"><span class="pre">pip3</span></
 <p>There are two important files in <code class="docutils literal notranslate"><span class="pre">source/</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conf.py</span></code> : this controls the configuration of Sphinx</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> : this is the ReST file that will become <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index.rst</span></code> : this is the ReST file that will become <code class="docutils literal notranslate"><span class="pre">index.html</span></code>.</p></li>
 </ul>
 <section id="configuration">
 <h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
@@ -444,109 +441,6 @@ be regenerated to reflect the Sphinx layout.</p>
 </div>
 </section>
 </section>
-<section id="using-doxygen-with-sphinx">
-<h2>Using Doxygen with Sphinx<a class="headerlink" href="#using-doxygen-with-sphinx" title="Link to this heading"></a></h2>
-<p>Now we’ll try to combine Doxygen and Sphinx.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The Sphinx <em>breathe</em> extension allows us to incorporate Doxygen
-documentation into Sphinx sites.</p>
-</div>
-<ol class="arabic">
-<li><p>Move <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> into <code class="docutils literal notranslate"><span class="pre">docs/</span></code> and change the following:</p>
-<ul class="simple">
-<li><p>change <code class="docutils literal notranslate"><span class="pre">OUTPUT_DIRECTORY</span></code> to <code class="docutils literal notranslate"><span class="pre">doxy_files</span></code></p></li>
-<li><p>change <code class="docutils literal notranslate"><span class="pre">INPUT</span></code> to <code class="docutils literal notranslate"><span class="pre">../</span></code></p></li>
-<li><p>Turn off HTML and turn on XML—Breathe works off of the XML output.</p></li>
-</ul>
-</li>
-<li><p>Update our <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> to include Breathe and also run Doxygen for us.  Here’s
-the updated <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration file for the Sphinx documentation builder.</span>
-<span class="c1">#</span>
-<span class="c1"># This file only contains a selection of the most common options. For a full</span>
-<span class="c1"># list see the documentation:</span>
-<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html</span>
-
-<span class="c1"># -- Path setup --------------------------------------------------------------</span>
-
-<span class="c1"># If extensions (or modules to document with autodoc) are in another directory,</span>
-<span class="c1"># add these directories to sys.path here. If the directory is relative to the</span>
-<span class="c1"># documentation root, use os.path.abspath to make it absolute, like shown here.</span>
-<span class="c1">#</span>
-<span class="c1"># import os</span>
-<span class="c1"># import sys</span>
-<span class="c1"># sys.path.insert(0, os.path.abspath(&#39;.&#39;))</span>
-
-<span class="kn">import</span> <span class="nn">subprocess</span>
-
-<span class="c1"># run doyxgen</span>
-
-<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;cd ..; doxygen&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># -- Project information -----------------------------------------------------</span>
-
-<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;C++ Array&#39;</span>
-<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2022, PHY 504&#39;</span>
-<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;PHY 504&#39;</span>
-
-
-<span class="c1"># -- General configuration ---------------------------------------------------</span>
-
-<span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
-<span class="c1"># extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom</span>
-<span class="c1"># ones.</span>
-<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span> <span class="s2">&quot;breathe&quot;</span><span class="p">]</span>
-
-<span class="c1"># Add any paths that contain templates here, relative to this directory.</span>
-<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
-
-<span class="c1"># List of patterns, relative to source directory, that match files and</span>
-<span class="c1"># directories to ignore when looking for source files.</span>
-<span class="c1"># This pattern also affects html_static_path and html_extra_path.</span>
-<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[]</span>
-
-
-<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
-
-<span class="c1"># The theme to use for HTML and HTML Help pages.  See the documentation for</span>
-<span class="c1"># a list of builtin themes.</span>
-<span class="c1">#</span>
-<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
-
-<span class="c1"># Add any paths that contain custom static files (such as style sheets) here,</span>
-<span class="c1"># relative to this directory. They are copied after the builtin static files,</span>
-<span class="c1"># so a file named &quot;default.css&quot; will overwrite the builtin &quot;default.css&quot;.</span>
-<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
-
-
-<span class="n">breathe_projects</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;cxx_array&quot;</span><span class="p">:</span> <span class="s2">&quot;../doxy_files/xml/&quot;</span> <span class="p">}</span>
-<span class="n">breathe_default_project</span> <span class="o">=</span> <span class="s2">&quot;cxx_array&quot;</span>
-</pre></div>
-</div>
-</li>
-<li><p>Create a  <code class="docutils literal notranslate"><span class="pre">doxygen_files.rst</span></code> in <code class="docutils literal notranslate"><span class="pre">source/</span></code> with the following:</p>
-<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="gh">Doxygen Files</span>
-<span class="gh">=============</span>
-
-<span class="p">..</span> <span class="ow">doxygenindex</span><span class="p">::</span>
-   <span class="nc">:project:</span> cxx_array
-</pre></div>
-</div>
-</li>
-<li><p>Update <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> by adding the following:</p>
-<div class="highlight-ReST notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
-   <span class="nc">:maxdepth:</span> 1
-   <span class="nc">:caption:</span> API
-
-   doxygen_files
-</pre></div>
-</div>
-</li>
-</ol>
-<p>We don’t need to do any changes to our GitHub workflow.  We should be able to just add these new
-files / changes, commit, and push, and the website will be updated.</p>
-</section>
 </section>
 
 
@@ -554,7 +448,7 @@ files / changes, commit, and push, and the website will be updated.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="doxygen.html" class="btn btn-neutral float-left" title="Doxygen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="templates-intro.html" class="btn btn-neutral float-right" title="Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sphinx-doxygen.html" class="btn btn-neutral float-right" title="Sphinx + Doxygen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
