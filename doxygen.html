@@ -179,6 +179,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#using-gh-pages">Using <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-the-gh-pages-branch">Creating the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#updating-the-web-location-on-github">Updating the web location on GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-permissions">Setting permissions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#doxygen-configuration">Doxygen configuration</a></li>
@@ -334,6 +335,14 @@ to be on the <code class="docutils literal notranslate"><span class="pre">gh-pag
 <p>We can now switch back to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>checkout<span class="w"> </span>main</span>
 </pre></div></div></section>
+<section id="setting-permissions">
+<h3>Setting permissions<a class="headerlink" href="#setting-permissions" title="Link to this heading"></a></h3>
+<p>We also need to update our github repo to grant an action the ability to write to our repo.
+Under the <em>settings</em> menu, go to <em>actions</em> settings in the left pane (and pick <em>general</em>).
+Then navigate to the “workflow permissions” section near the bottom and grant read/write
+permissions like shown below:</p>
+<img alt="_images/github-permissions.png" src="_images/github-permissions.png" />
+</section>
 </section>
 <section id="doxygen-configuration">
 <h2>Doxygen configuration<a class="headerlink" href="#doxygen-configuration" title="Link to this heading"></a></h2>
