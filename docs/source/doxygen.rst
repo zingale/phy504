@@ -101,6 +101,17 @@ We can now switch back to ``main``:
    git checkout main
 
 
+Setting permissions
+-------------------
+
+We also need to update our github repo to grant an action the ability to write to our repo.
+Under the *settings* menu, go to *actions* settings in the left pane (and pick *general*).
+Then navigate to the "workflow permissions" section near the bottom and grant read/write
+permissions like shown below:
+
+.. image:: github-permissions.png
+
+
 Doxygen configuration
 =====================
 
