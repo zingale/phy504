@@ -37,6 +37,11 @@ including:
 The C++ standard library has these methods and more for us to use in the
 `random <https://www.cplusplus.com/reference/random/>`_ library.
 
+.. caution::
+
+   Some (historical) pseudo-random number generators provided by compiler
+   vendors have been "truly horrible", such as the `IBM RANDU generator <https://en.wikipedia.org/wiki/RANDU>`_.
+
 Uniform distribution
 --------------------
 
