@@ -460,6 +460,9 @@ is close to zero then <span class="math notranslate nohighlight">\(\mathrm{ATOL}
 <span class="math notranslate nohighlight">\(x_0\)</span> is large, then <span class="math notranslate nohighlight">\(\mathrm{RTOL}\)</span> use used for the
 error.</p>
 </li>
+<li><p>We have a maximum number of iterations, <code class="docutils literal notranslate"><span class="pre">Roots::MAX_ITER</span></code>, after which
+we exit with an error.  This ensures we don’t get stuck in an infinite
+loop if something goes wrong.</p></li>
 </ul>
 <p>Here’s a test driver for it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
