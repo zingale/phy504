@@ -28,6 +28,6 @@ int main() {
 
     func<1>(x, f, dfdx);
 
-    std::cout << "with template parameter = 0: " << f << " " << dfdx << std::endl;
+    std::cout << "with template parameter = 1: " << f << " " << dfdx << std::endl;
 
 }
