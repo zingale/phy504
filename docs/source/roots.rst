@@ -130,6 +130,9 @@ A few features:
   :math:`x_0` is large, then :math:`\mathrm{RTOL}` use used for the
   error.
 
+* We have a maximum number of iterations, ``Roots::MAX_ITER``, after which
+  we exit with an error.  This ensures we don't get stuck in an infinite
+  loop if something goes wrong.
 
 Here's a test driver for it:
 
