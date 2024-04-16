@@ -2,12 +2,12 @@
 // via mean-value Monte-Carlo integration
 
 #include <iostream>
+#include <iomanip>
 #include <random>
 #include <cmath>
 #include <numbers>
 
-constexpr int D = 10;
-constexpr int N = 1000000;
+constexpr int N_MAX{1000000};
 
 double integrand(std::vector<double> r) {
 
@@ -21,7 +21,7 @@ double integrand(std::vector<double> r) {
 
 }
 
-double analytic() {
+double analytic(const double D) {
 
     return std::pow(std::numbers::pi, D/2.0) / std::tgamma(D/2.0 + 1.0);
 
@@ -29,29 +29,43 @@ double analytic() {
 
 int main() {
 
-    //std::default_random_engine generator();
     std::random_device rd;
     std::mt19937 generator(rd());
 
     std::uniform_real_distribution<double> distribution(-1.0, 1.0);
 
+    double D{-1};
+    std::cout << "Enter dimensionality of the hypersphere: ";
+    std::cin >> D;
+
+    // we'll hold D random numbers, representing {r_0, r_1, ..., r_{D-1}}
+
     std::vector<double> r(D, 0.0);
 
-    double v{0.0};
+    int N = 10;
+    while (N <= N_MAX) {
 
-    for (int n = 0; n < N; ++n) {
+        double V{0.0};
 
-        // get D random numbers between -1 and 1
+        for (int n = 0; n < N; ++n) {
 
-        for (auto &e : r) {
-            e = distribution(generator);
+            // get D random numbers between -1 and 1
+
+            for (auto &e : r) {
+                e = distribution(generator);
+            }
+
+            V += integrand(r);
         }
 
-        v += integrand(r);
+        V *= std::pow(2.0, D);
+
+        std::cout << "samples: " << std::setw(7) << N << "; volume = " << V / N << std::endl;
+
+        N *= 10;
 
     }
-    v *= std::pow(2.0, D);
 
-    std::cout << "volume = " << v / N << " " << analytic() << std::endl;
+    std::cout << "analytic result: " << analytic(D) << std::endl;
 
 }
