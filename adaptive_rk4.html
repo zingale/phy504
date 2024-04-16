@@ -749,6 +749,20 @@ counterclockwise orbit.  They are:</p>
 </pre></div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice that in our RHS function, we don’t explicitly create the <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>
+that we will return, but instead our return looks like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">dxdt</span><span class="p">,</span><span class="w"> </span><span class="n">dydt</span><span class="p">,</span><span class="w"> </span><span class="n">dudt</span><span class="p">,</span><span class="w"> </span><span class="n">dvdt</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>This is an example of using a braced initialization list for the return.</p>
+</div>
+<div class="admonition-try-it admonition">
+<p class="admonition-title">try it…</p>
+<p>How does our solution compare (in terms of accuracy and number of steps) if we
+force the code to use a uniform timestep?</p>
+</div>
 <p>When run, the output will show the range of timesteps taken.</p>
 </section>
 <section id="example-lorenz-system">

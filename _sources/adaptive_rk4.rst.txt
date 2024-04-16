@@ -250,6 +250,22 @@ counterclockwise orbit.  They are:
    :language: c++
    :caption: ``test_orbit.cpp``
 
+.. note::
+
+   Notice that in our RHS function, we don't explicitly create the ``std::vector``
+   that we will return, but instead our return looks like:
+
+   .. code:: c++
+
+      return {dxdt, dydt, dudt, dvdt};
+
+   This is an example of using a braced initialization list for the return.
+
+.. admonition:: try it...
+
+   How does our solution compare (in terms of accuracy and number of steps) if we
+   force the code to use a uniform timestep?
+
 When run, the output will show the range of timesteps taken.
 
 Example: Lorenz system
