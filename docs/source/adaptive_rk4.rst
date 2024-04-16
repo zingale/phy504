@@ -174,6 +174,16 @@ Here's a driver for integrating orbits
    :language: c++
    :caption: ``test_orbit.cpp``
 
+.. note::
+
+   Notice that in our RHS function, we don't explicitly create the ``std::vector``
+   that we will return, but instead our return looks like:
+
+   .. code:: c++
+
+      return {dxdt, dydt, dudt, dvdt};
+
+   This is an example of using a braced initialization list for the return.
 
 Example: Lorenz system
 ======================
