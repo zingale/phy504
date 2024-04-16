@@ -146,7 +146,7 @@ Here's an implementation of our computing :math:`\pi`:
    :caption: ``pi.cpp``
 
 
-Example: Hypersphere Volume
+Example: hypersphere volume
 ===========================
 
 Consider a $d$-dimensional hypersphere with radius 1 defined on a domain $[-1, 1]^d$.
@@ -158,8 +158,10 @@ The volume is:
 
 We can integrate this using Monte Carlo methods.
 
-Mean value integration works by sampling the domain that the function is defined on
-to estimate the mean.  In one-dimension, we know:
+Mean value `Monte Carlo integration
+<https://en.wikipedia.org/wiki/Monte_Carlo_integration>`_ works by
+sampling the domain that the function is defined on to estimate the
+mean.  In one-dimension, we know:
 
 .. math::
 
@@ -211,3 +213,7 @@ Here's the output for $d = 5$:
    samples: 1000000; volume = 5.26419
    analytic result: 5.26379
 
+.. note::
+
+   There are better ways to do Monte Carlo integration, including
+   `importance sampling <https://en.wikipedia.org/wiki/Importance_sampling>`_.
