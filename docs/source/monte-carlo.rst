@@ -144,3 +144,56 @@ Here's an implementation of our computing :math:`\pi`:
 .. literalinclude:: ../../examples/numerical_algorithms/random/pi.cpp
    :language: c++
    :caption: ``pi.cpp``
+
+
+Example: Hypersphere Volume
+===========================
+
+Consider a $d$-dimensional hypersphere with radius 1 defined on a domain $[-1, 1]^d$.
+The volume is:
+
+.. math::
+
+   V_d(R) = \frac{\pi^{d/2}}{\Gamma{\dfrac{d}{2} + 1}} R^d
+
+We can integrate this using Monte Carlo methods.
+
+Mean value integration works by sampling the domain that the function is defined on
+to estimate the mean.  In one-dimension, we know:
+
+.. math::
+
+   \langle f \rangle = \frac{1}{b - a} \int_a^b f(x) dx = \frac{I}{b -a}
+
+where $I$ is the integral we desire:
+
+.. math::
+
+   I = \int_a^b f(x) dx
+
+This means we can approximate $I$ by doing $N$ samples as:
+
+.. math::
+
+   I \approx \frac{b - a}{N} \sum_{i = 1}^{N} f(x_i}
+
+where $x_i$ is a randomly selected point in $[a, b]$.
+
+This extends to an arbitrary dimension easily, as:
+
+.. math::
+
+   I = \int_\omega f(x_0, x_1, \ldots x_{d-1}) dx_0 dx_1, \ldots dx_{d-1} \approx
+         \frac{V}{N} \sum{i = 1}^{N} f({\bf x}_i)
+
+where ${\bf x}_i$ is a randomly-selected point in the $d$-dimensional domain.
+
+For $d > 3$, Monte Carlo integration is usually less computationally-expensive than
+doing the trapezoid rule in each dimension.
+
+Here's an example of computing the volume of the $d$-dimensional hypersphere using
+mean-value Monte Carlo integration:
+
+.. literalinclude:: ../../examples/numerical_algorithms/monte_carlo_integration/hypersphere.cpp
+   :language: c++
+   :caption: ``hypersphere.cpp``
