@@ -18,13 +18,10 @@ double integrand(std::vector<double> r) {
     }
 
     return 0.0;
-
 }
 
 double analytic(const double D) {
-
     return std::pow(std::numbers::pi, D/2.0) / std::tgamma(D/2.0 + 1.0);
-
 }
 
 int main() {
@@ -60,12 +57,12 @@ int main() {
 
         V *= std::pow(2.0, D);
 
-        std::cout << "samples: " << std::setw(7) << N << "; volume = " << V / N << std::endl;
+        std::cout << "samples: " << std::setw(7) << N << "; "
+                  << "volume = " << V / N << std::endl;
 
         N *= 10;
 
     }
 
     std::cout << "analytic result: " << analytic(D) << std::endl;
-
 }

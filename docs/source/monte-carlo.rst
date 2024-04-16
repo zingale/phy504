@@ -154,7 +154,7 @@ The volume is:
 
 .. math::
 
-   V_d(R) = \frac{\pi^{d/2}}{\Gamma{\dfrac{d}{2} + 1}} R^d
+   V_d(R) = \frac{\pi^{d/2}}{\Gamma \left (\tfrac{d}{2} + 1\right )} R^d
 
 We can integrate this using Monte Carlo methods.
 
@@ -175,7 +175,7 @@ This means we can approximate $I$ by doing $N$ samples as:
 
 .. math::
 
-   I \approx \frac{b - a}{N} \sum_{i = 1}^{N} f(x_i}
+   I \approx \frac{b - a}{N} \sum_{i = 1}^{N} f(x_i)
 
 where $x_i$ is a randomly selected point in $[a, b]$.
 
@@ -184,7 +184,7 @@ This extends to an arbitrary dimension easily, as:
 .. math::
 
    I = \int_\omega f(x_0, x_1, \ldots x_{d-1}) dx_0 dx_1, \ldots dx_{d-1} \approx
-         \frac{V}{N} \sum{i = 1}^{N} f({\bf x}_i)
+         \frac{V}{N} \sum_{i = 1}^{N} f({\bf x}_i)
 
 where ${\bf x}_i$ is a randomly-selected point in the $d$-dimensional domain.
 
@@ -197,3 +197,17 @@ mean-value Monte Carlo integration:
 .. literalinclude:: ../../examples/numerical_algorithms/monte_carlo_integration/hypersphere.cpp
    :language: c++
    :caption: ``hypersphere.cpp``
+
+Here's the output for $d = 5$:
+
+::
+
+   Enter dimensionality of the hypersphere: 5
+   samples:      10; volume = 12.8
+   samples:     100; volume = 8.32
+   samples:    1000; volume = 5.504
+   samples:   10000; volume = 5.2416
+   samples:  100000; volume = 5.31168
+   samples: 1000000; volume = 5.26419
+   analytic result: 5.26379
+
