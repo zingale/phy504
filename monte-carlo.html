@@ -200,7 +200,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#example-computing-pi">Example: computing <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-hypersphere-volume">Example: Hypersphere Volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-hypersphere-volume">Example: hypersphere volume</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
@@ -426,14 +426,15 @@ approximate <span class="math notranslate nohighlight">\(\pi\)</span> as:</p>
 </div>
 </section>
 <section id="example-hypersphere-volume">
-<h2>Example: Hypersphere Volume<a class="headerlink" href="#example-hypersphere-volume" title="Link to this heading"></a></h2>
+<h2>Example: hypersphere volume<a class="headerlink" href="#example-hypersphere-volume" title="Link to this heading"></a></h2>
 <p>Consider a <span class="math notranslate nohighlight">\(d\)</span>-dimensional hypersphere with radius 1 defined on a domain <span class="math notranslate nohighlight">\([-1, 1]^d\)</span>.
 The volume is:</p>
 <div class="math notranslate nohighlight">
 \[V_d(R) = \frac{\pi^{d/2}}{\Gamma \left (\tfrac{d}{2} + 1\right )} R^d\]</div>
 <p>We can integrate this using Monte Carlo methods.</p>
-<p>Mean value integration works by sampling the domain that the function is defined on
-to estimate the mean.  In one-dimension, we know:</p>
+<p>Mean value <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_integration">Monte Carlo integration</a> works by
+sampling the domain that the function is defined on to estimate the
+mean.  In one-dimension, we know:</p>
 <div class="math notranslate nohighlight">
 \[\langle f \rangle = \frac{1}{b - a} \int_a^b f(x) dx = \frac{I}{b -a}\]</div>
 <p>where <span class="math notranslate nohighlight">\(I\)</span> is the integral we desire:</p>
@@ -525,6 +526,11 @@ mean-value Monte Carlo integration:</p>
 </pre></div>
 </div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This requires compiling with C++20 support due to the use of the
+<code class="docutils literal notranslate"><span class="pre">&lt;numbers&gt;</span></code> header.</p>
+</div>
 <p>Here’s the output for <span class="math notranslate nohighlight">\(d = 5\)</span>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">dimensionality</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hypersphere</span><span class="p">:</span> <span class="mi">5</span>
 <span class="n">samples</span><span class="p">:</span>      <span class="mi">10</span><span class="p">;</span> <span class="n">volume</span> <span class="o">=</span> <span class="mf">12.8</span>
@@ -535,6 +541,11 @@ mean-value Monte Carlo integration:</p>
 <span class="n">samples</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">;</span> <span class="n">volume</span> <span class="o">=</span> <span class="mf">5.26419</span>
 <span class="n">analytic</span> <span class="n">result</span><span class="p">:</span> <span class="mf">5.26379</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are better ways to do Monte Carlo integration, including
+<a class="reference external" href="https://en.wikipedia.org/wiki/Importance_sampling">importance sampling</a>.</p>
 </div>
 </section>
 </section>
