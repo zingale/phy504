@@ -57,8 +57,8 @@ int main() {
 
         V *= std::pow(2.0, D);
 
-        std::cout << "samples: " << std::setw(7) << N << "; "
-                  << "volume = " << V / N << std::endl;
+        std::cout << "samples: " << std::setw(7) << N << ";  "
+                  << "volume: " << V / N << std::endl;
 
         N *= 10;
 
