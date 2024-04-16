@@ -200,6 +200,11 @@ mean-value Monte Carlo integration:
    :language: c++
    :caption: ``hypersphere.cpp``
 
+.. tip::
+
+   This requires compiling with C++20 support due to the use of the
+   ``<numbers>`` header.
+
 Here's the output for $d = 5$:
 
 ::
