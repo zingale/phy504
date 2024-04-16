@@ -170,5 +170,5 @@ There are more things we can do to generalize our makefile.
 
 .. tip::
 
-   Here's a `Makefile <https://github.com/zingale/phy504/blob/main/examples/vectors/Makefile>`_
+   Here's a `GNUmakefile <https://github.com/zingale/phy504/blob/main/examples/vectors/GNUmakefile>`_
    I use with some of the in-class examples to build several executables in the same directory.

@@ -31,7 +31,8 @@ class Rectangle : public Quadrilateral {
 
 public:
 
-    Rectangle(double width, double height) : Quadrilateral(width, width, height, height) {}
+    Rectangle(double width, double height)
+        : Quadrilateral(width, width, height, height) {}
 
     double area() {
         return sides[0] * sides[2];

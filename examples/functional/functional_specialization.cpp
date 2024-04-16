@@ -24,20 +24,9 @@ T reduce(std::vector<T>&  v, T init, std::function<T(T, T)> f) {
 }
 
 int main() {
-    std::vector<int> a{0, 1, 2, 3, 4, 5};
-
-    std::cout << "sum a: " <<
-        reduce<int>(a, 0, add<int>) << std::endl;
-
-    std::cout << "max a: " <<
-        reduce<int>(a, std::numeric_limits<int>::min(), max<int>) << std::endl;
-
     std::vector<double> b{-1.32, M_PI, 20.0, 1.e3, std::sqrt(2.0)};
 
     std::cout << "sum b: " <<
-        reduce<double>(b, 0.0, add<double>) << std::endl;
-
-    std::cout << "max b: " <<
-        reduce<double>(b, std::numeric_limits<double>::lowest(), max<double>) << std::endl;
+        reduce(b, 0.0, add<double>) << std::endl;
 
 }

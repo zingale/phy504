@@ -168,6 +168,7 @@ Spring 2024
    github-pages
    doxygen
    sphinx
+   sphinx-doxygen
 
 .. toctree::
    :maxdepth: 1
@@ -184,8 +185,8 @@ Spring 2024
    :caption: Some Numerical Algorithms
 
    roots
-   adaptive_rk4
    monte-carlo
+   adaptive_rk4
    poisson-relax
 
 .. toctree::
@@ -218,6 +219,7 @@ Spring 2024
    homework/homework3
    homework/homework4
    homework/homework5
+   homework/homework6
 
 .. toctree::
    :maxdepth: 1

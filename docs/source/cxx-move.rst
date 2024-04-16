@@ -4,10 +4,11 @@ Move Semantics
 
 .. admonition:: reading
 
-   Cyganek section 4.5
+   * Cyganek section 4.5
 
-   `Rvalue references and move constructors <https://en.wikipedia.org/wiki/C%2B%2B11#Rvalue_references_and_move_constructors>`_
+   * `Rvalue references and move constructors <https://en.wikipedia.org/wiki/C%2B%2B11#Rvalue_references_and_move_constructors>`_
 
+   * `What is move semantics? <https://stackoverflow.com/questions/3106110/what-is-move-semantics>`_ from stackoverflow.
 
 .. tip::
 

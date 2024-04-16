@@ -101,6 +101,17 @@ We can now switch back to ``main``:
    git checkout main
 
 
+Setting permissions
+-------------------
+
+We also need to update our github repo to grant an action the ability to write to our repo.
+Under the *settings* menu, go to *actions* settings in the left pane (and pick *general*).
+Then navigate to the "workflow permissions" section near the bottom and grant read/write
+permissions like shown below:
+
+.. image:: github-permissions.png
+
+
 Doxygen configuration
 =====================
 
@@ -206,16 +217,16 @@ Now create a file: ``.github/workflows/gh-pages.yml`` with the following content
      deploy:
        runs-on: ubuntu-latest
        steps:
-         - uses: actions/checkout@v3
+         - uses: actions/checkout@v4
 
          - name: Install pandoc and doxygen
            run: |
              sudo apt install pandoc doxygen
 
          - name: Setup python
-           uses: actions/setup-python@v3
+           uses: actions/setup-python@v5
            with:
-             python-version: '3.9'
+             python-version: '3.12'
 
          - name: Install dependencies
            run: python3 -m pip install -r ./requirements.txt
@@ -226,7 +237,7 @@ Now create a file: ``.github/workflows/gh-pages.yml`` with the following content
                 doxygen Doxyfile
 
          - name: Deploy
-           uses: peaceiris/actions-gh-pages@v3
+           uses: peaceiris/actions-gh-pages@v4
            with:
              github_token: ${{ secrets.GITHUB_TOKEN }}
              publish_dir: ./docs

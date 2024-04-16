@@ -31,17 +31,17 @@ public:
 
     ~Vector2d() {std::cout << "in the destructor" << std::endl;}
 
-    // copy and assignment constructors -- we don't need to define them, but we
-    // explicitly say to use the default
+    // copy and assignment constructors -- we don't need to define
+    // them, but we explicitly say to use the default
 
     //Vector2d(const Vector2d& vec) = default;
     Vector2d(const Vector2d& vec)
         : x(vec.x), y(vec.y)
         {std::cout << "in the copy constructor" << std::endl;}
 
-    // assignment here means that we want to set our current class's values to
-    // those to the right of the = -- that's the Vector2d coming in through the
-    // argument list
+    // assignment here means that we want to set our current class's
+    // values to those to the right of the = -- that's the Vector2d
+    // coming in through the argument list
 
     //Vector2d& operator= (const Vector2d& vec) = default;
     Vector2d& operator= (const Vector2d& vec) {
@@ -125,18 +125,21 @@ public:
     friend std::istream& operator>> (std::istream& is, Vector2d& v);
 };
 
+inline
 std::ostream& operator<< (std::ostream& os, const Vector2d& vec)
 {
     os << "(" << vec.x << ", " << vec.y << ")";
     return os;
 }
 
+inline
 std::istream& operator>> (std::istream& is, Vector2d& vec)
 {
     is >> vec.x >> vec.y;
     return is;
 }
 
+inline
 Vector2d operator*(double a, const Vector2d& vec) {
         Vector2d vec_out(a * vec.x, a * vec.y);
         return vec_out;

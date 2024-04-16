@@ -1,9 +1,8 @@
+#include <cmath>
 #include <vector>
 #include <iostream>
 
 #include "ode_integrator.H"
-
-constexpr int N{4};
 
 enum orbit_comps {
     ix,

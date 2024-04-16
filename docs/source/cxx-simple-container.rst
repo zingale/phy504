@@ -156,3 +156,21 @@ Here's a driver that exercises all of these functions:
    :caption: ``test_container.cpp``
 
 There are prints in each of the functions so we can see where each comes into play.
+
+.. note::
+
+   In case 4,
+
+   .. code:: c++
+
+      auto c2 = fill_new();
+
+   we might expect that the compiler would do a move constructor here, but instead it
+   does `return value optimization <https://en.wikipedia.org/wiki/Copy_elision>`_.  We can disable this with LLVM as:
+
+   .. prompt:: bash
+
+      clang++ -fno-elide-constructors -o test_container test_container.cpp
+
+   to see that it will do a move constructor when it is not allowed to do RVO.
+

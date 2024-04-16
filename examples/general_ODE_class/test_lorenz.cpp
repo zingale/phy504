@@ -3,8 +3,6 @@
 
 #include "ode_integrator.H"
 
-constexpr int N{3};
-
 enum lorenz_comps {
     ix,
     iy,
@@ -14,13 +12,6 @@ enum param_comps {
     isigma,
     irho,
     ibeta};
-
-namespace lorenz {
-    constexpr double sigma{10.0};
-    constexpr double rho{28.0};
-    constexpr double beta{8.0/3.0};
-}
-
 
 std::vector<double> rhs([[maybe_unused]] double t,
                         const std::vector<double>& y,
@@ -36,8 +27,14 @@ std::vector<double> rhs([[maybe_unused]] double t,
 
 int main() {
 
+    // these are the parameters that Lorenz used
+
+    constexpr double sigma{10.0};
+    constexpr double rho{28.0};
+    constexpr double beta{8.0/3.0};
+
     ODE o(rhs, {-10.0, -10.0, -10.0},
-          {lorenz::sigma, lorenz::rho, lorenz::beta});
+          {sigma, rho, beta});
 
     double tol{1.e-4};
     auto trajectory = o.integrate(0.025, 50.0, tol);

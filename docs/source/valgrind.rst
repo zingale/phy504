@@ -37,7 +37,14 @@ the code seems to work.  Now if we instead run it via valgrind:
    g++ -g -o uninitialized uninitialized.cpp
    valgrind ./uninitialized
 
-we see that there are errors.  Here's the first:
+we see that there are errors.
+
+.. note::
+
+   When we compile, we added the ``-g`` flag.  This adds debugging information to
+   the executable.
+
+Here's the first:
 
 ::
 

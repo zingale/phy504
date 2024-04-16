@@ -22,14 +22,16 @@ Bisection
 Bisection works by iteratively cutting the range where the root is located in half.
 The basic idea is as follows:
 
-* Compute :math:`f_l = f(x_l)` and :math:`f_r = f(x_r)`
+* Iterate until error is small:
 
-* Define :math:`x_m = (x_l + x_r) / 2` and :math:`f_m = f(x_m)`
+  * Compute :math:`f_l = f(x_l)` and :math:`f_r = f(x_r)`
 
-* If :math:`f_l \cdot f_m < 0` then the :math:`x_0 \in [x_l, x_m]`, so define :math:`x_r = x_m`;
-  otherwise set :math:`x_l = x_m`
+  * Define :math:`x_m = (x_l + x_r) / 2` and :math:`f_m = f(x_m)`
 
-* Iterate
+  * If :math:`f_l \cdot f_m < 0` then the :math:`x_0 \in [x_l, x_m]`, so define :math:`x_r = x_m`;
+    otherwise set :math:`x_l = x_m`
+
+  * Define the error as $|x_r - x_l|$
 
 Here's an animation of bisection finding a root:
 
@@ -128,6 +130,9 @@ A few features:
   :math:`x_0` is large, then :math:`\mathrm{RTOL}` use used for the
   error.
 
+* We have a maximum number of iterations, ``Roots::MAX_ITER``, after which
+  we exit with an error.  This ensures we don't get stuck in an infinite
+  loop if something goes wrong.
 
 Here's a test driver for it:
 
