@@ -64,6 +64,24 @@ Some notes:
 
 Notice that each time we run it we get a different sequence of random numbers.
 
+.. tip::
+
+   We could alternately use `std::default_random_engine <https://cplusplus.com/reference/random/default_random_engine/>`_
+   by changing the line:
+
+   .. code:: c++
+
+      std::mt19937 generator(rd());
+
+   to
+
+   .. code:: c++
+
+      std::default_random_engine generator(rd());
+
+   However, this is implementation dependent, so you may not be sure what engine it is using.
+
+
 Other distributions
 -------------------
 We can create other distributions.  Imagine that :math:`q(z)` is the probably of getting
