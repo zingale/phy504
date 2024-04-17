@@ -21,6 +21,12 @@ These should have the following properties:
 
 * They uniformly sample the range of interest (usually :math:`[0, 1)`)
 
+.. note::
+
+   `True random number generators <https://en.wikipedia.org/wiki/Hardware_random_number_generator>`_
+   usually use hardware, noise, or some natural source of statistical randomness
+
+
 There are a few popular methods for `generating pseudo-random numbers
 <https://en.wikipedia.org/wiki/Pseudorandom_number_generator>`_,
 including:
