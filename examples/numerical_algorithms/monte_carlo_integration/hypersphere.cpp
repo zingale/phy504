@@ -9,11 +9,12 @@
 
 constexpr int N_MAX{1000000};
 
-double integrand(std::vector<double> r) {
+double integrand(std::vector<double> x) {
 
-    double d = std::sqrt(std::inner_product(r.cbegin(), r.cend(), r.cbegin(), 0.0));
+    // inner_product() here will compute x . x
+    double radius = std::sqrt(std::inner_product(x.cbegin(), x.cend(), x.cbegin(), 0.0));
 
-    if (d <= 1.0) {
+    if (radius <= 1.0) {
         return 1.0;
     }
 
