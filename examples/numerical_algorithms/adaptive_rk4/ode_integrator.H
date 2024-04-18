@@ -83,8 +83,8 @@ private:
                                     std::vector<double>& dydt) {
 
         std::vector<double> y_new{y0};
-        for (auto [y, ydot] : std::views::zip(y_new, dydt)) {
-            y += dt * ydot;
+        for (auto n = 0ul; n < y_new.size(); ++n) {
+            y_new[n] += dt * dydt[n];
         }
 
         return y_new;
