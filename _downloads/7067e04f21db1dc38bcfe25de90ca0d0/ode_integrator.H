@@ -1,3 +1,6 @@
+#ifndef ODE_INTEGRATOR_H
+#define ODE_INTEGRATOR_H
+
 #include <array>
 #include <cassert>
 #include <cmath>
@@ -211,3 +214,5 @@ public:
     }
 
 };
+
+#endif

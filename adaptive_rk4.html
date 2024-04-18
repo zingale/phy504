@@ -438,7 +438,10 @@ error with the timestep, <span class="math notranslate nohighlight">\(\tau\)</sp
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 117 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ode_integrator.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ODE_INTEGRATOR_H</span>
+<span class="cp">#define ODE_INTEGRATOR_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
@@ -651,6 +654,8 @@ error with the timestep, <span class="math notranslate nohighlight">\(\tau\)</sp
 <span class="w">    </span><span class="p">}</span>
 
 <span class="p">};</span>
+
+<span class="cp">#endif</span>
 </pre></div>
 </div>
 </div>
