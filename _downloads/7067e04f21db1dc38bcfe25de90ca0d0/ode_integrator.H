@@ -183,8 +183,9 @@ public:
                 // the error is low
 
                 rel_error = 0.0;
-                for (const auto [yd, ys] : std::views::zip(y_new, y_single)) {
-                    rel_error = std::max(rel_error, std::abs((yd - ys) / yd));
+                for (auto n = 0ul; n < y_new.size(); ++n) {
+                    rel_error = std::max(rel_error,
+                                         std::abs((y_new[n] - y_single[n]) / y_new[n]));
                 }
 
                 // adaptive timestep algorithm

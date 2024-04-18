@@ -170,7 +170,25 @@ Here's the code:
 
 .. note::
 
-   This requires C++23 because of the use of ``std::views::zip()``.
+   With C++23 we can write things a little cleaner using ``std::views::zip()``,
+   for example, replacing:
+
+   .. code:: c++
+
+      rel_error = 0.0;
+      for (auto n = 0ul; n < y_new.size(); ++n) {
+           rel_error = std::max(rel_error,
+                                std::abs((y_new[n] - y_single[n]) / y_new[n]));
+      }
+
+   with:
+
+   .. code:: c++
+
+      rel_error = 0.0;
+      for (const auto [yd, ys] : std::views::zip(y_new, y_single)) {
+           rel_error = std::max(rel_error, std::abs((yd - ys) / yd));
+      }
 
 Some notes:
 
@@ -315,4 +333,3 @@ with $y(0) = 1$.
 .. literalinclude:: ../../examples/general_ODE_class/test_lambda.cpp
    :language: c++
    :caption: ``test_lambda.cpp``
-
