@@ -160,11 +160,11 @@ Implementation
 
 Here's the code:
 
-:download:`ode_integrator.H <../../examples/general_ODE_class/ode_integrator.H>`
+:download:`ode_integrator.H <../../examples/numerical_algorithms/adaptive_rk4/ode_integrator.H>`
 
 .. dropdown:: ``ode_integrator.H``
 
-   .. literalinclude:: ../../examples/general_ODE_class/ode_integrator.H
+   .. literalinclude:: ../../examples/numerical_algorithms/adaptive_rk4/ode_integrator.H
       :language: c++
       :caption: ``ode_integrator.H``
 
@@ -246,7 +246,7 @@ counterclockwise orbit.  They are:
    \end{align*}
 
 
-.. literalinclude:: ../../examples/general_ODE_class/test_orbit.cpp
+.. literalinclude:: ../../examples/numerical_algorithms/adaptive_rk4/test_orbit.cpp
    :language: c++
    :caption: ``test_orbit.cpp``
 
@@ -289,7 +289,7 @@ is the Rayleigh number, and $\beta$ is related to the system size.
 
 Lorenz chose $\sigma = 10$, $\beta = 8/3$, and $\rho = 28$.
 
-.. literalinclude:: ../../examples/general_ODE_class/test_lorenz.cpp
+.. literalinclude:: ../../examples/numerical_algorithms/adaptive_rk4/test_lorenz.cpp
    :language: c++
    :caption: ``test_lorenz.cpp``
 
