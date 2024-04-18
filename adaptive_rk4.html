@@ -275,37 +275,64 @@ error in the solution.</p></li>
 </ul>
 <section id="th-order-rk">
 <h2>4th order RK<a class="headerlink" href="#th-order-rk" title="Link to this heading"></a></h2>
-<p>The advance begins by estimating the derivatives (righthand side or slope) at time <span class="math notranslate nohighlight">\(t^n\)</span>.  We’ll call this <span class="math notranslate nohighlight">\({\bf k}_1\)</span>.</p>
+<p>Fourth-order Runge-Kutta consists of 4 stages and a final update, illustrated below:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Stage 1</label><div class="sd-tab-content docutils">
+<p>The advance begins by estimating the derivatives (righthand side or
+slope) at time <span class="math notranslate nohighlight">\(t^n\)</span>.  We’ll call this <span class="math notranslate nohighlight">\({\bf k}_1\)</span>.</p>
 <p><div class="math notranslate nohighlight">
 \[{\bf k}_1 = {\bf f}(t^n, {\bf y}^n)\]</div>
 </p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/rk4_k1.png"><img alt="_images/rk4_k1.png" src="_images/rk4_k1.png" style="width: 90%;" /></a>
 </figure>
-<p>We then follow the slope <span class="math notranslate nohighlight">\({\bf k}_1\)</span> to the midpoint in time, <span class="math notranslate nohighlight">\(t^{n+1/2}\)</span> and evaluate the slope there.  We call the new slope <span class="math notranslate nohighlight">\({\bf k}_2\)</span>.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Stage 2</label><div class="sd-tab-content docutils">
+<p>We then follow the slope <span class="math notranslate nohighlight">\({\bf k}_1\)</span> to the midpoint in time,
+<span class="math notranslate nohighlight">\(t^{n+1/2}\)</span> and evaluate the slope there.  We call the new slope <span class="math notranslate nohighlight">\({\bf
+k}_2\)</span>.</p>
 <p><div class="math notranslate nohighlight">
 \[{\bf k}_2 = {\bf f}(t^n + \tau/2, {\bf y}^n + (\tau/2) {\bf k}_1)\]</div>
 </p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/rk4_k2.png"><img alt="_images/rk4_k2.png" src="_images/rk4_k2.png" style="width: 90%;" /></a>
 </figure>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Stage 3</label><div class="sd-tab-content docutils">
 <p>We then go back to the start, but this time follow the new slope,
-<span class="math notranslate nohighlight">\({\bf k}_2\)</span> to the midpoint in time, <span class="math notranslate nohighlight">\(t^{n+1/2}\)</span>.  We again evaluate the slope here, and call it <span class="math notranslate nohighlight">\({\bf k}_3\)</span>.</p>
+<span class="math notranslate nohighlight">\({\bf k}_2\)</span> to the midpoint in time, <span class="math notranslate nohighlight">\(t^{n+1/2}\)</span>.  We again evaluate
+the slope here, and call it <span class="math notranslate nohighlight">\({\bf k}_3\)</span>.</p>
 <p><div class="math notranslate nohighlight">
 \[{\bf k}_3 = {\bf f}(t^n + \tau/2, {\bf y}^n + (\tau/2) {\bf k}_2)\]</div>
 </p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/rk4_k3.png"><img alt="_images/rk4_k3.png" src="_images/rk4_k3.png" style="width: 90%;" /></a>
 </figure>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Stage 4</label><div class="sd-tab-content docutils">
 <p>Finally, we go back to the start and follow <span class="math notranslate nohighlight">\({\bf k}_3\)</span> for the full
-timestep, to <span class="math notranslate nohighlight">\(t^{n+1}\)</span> and evaluate the slope there, calling it <span class="math notranslate nohighlight">\({\bf k}_4\)</span>.</p>
+timestep, to <span class="math notranslate nohighlight">\(t^{n+1}\)</span> and evaluate the slope there, calling it <span class="math notranslate nohighlight">\({\bf
+k}_4\)</span>.</p>
 <p><div class="math notranslate nohighlight">
 \[{\bf k}_4 = {\bf f}(t^n + \tau, {\bf y}^n + \tau {\bf k}_3)\]</div>
 </p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/rk4_k4.png"><img alt="_images/rk4_k4.png" src="_images/rk4_k4.png" style="width: 90%;" /></a>
 </figure>
-<p>We then get the updated solution using a linear combination of the 4 slopes:</p>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Final update</label><div class="sd-tab-content docutils">
+<p>We then get the updated solution using a linear combination of the 4
+slopes:</p>
 <p><div class="math notranslate nohighlight">
 \[{\bf y}^{n+1} = {\bf y}^n + \frac{\tau}{6} ({\bf k}_1 + 2 {\bf k}_2 + 2 {\bf k}_3 + {\bf k}_4)\]</div>
 </p>
@@ -313,6 +340,8 @@ timestep, to <span class="math notranslate nohighlight">\(t^{n+1}\)</span> and e
 <a class="reference internal image-reference" href="_images/rk4_final.png"><img alt="_images/rk4_final.png" src="_images/rk4_final.png" style="width: 90%;" /></a>
 </figure>
 <p>Note the similarity of RK4 to Simpson’s rule for integration.</p>
+</div>
+</div>
 </section>
 <section id="adaptive-timesteps">
 <h2>Adaptive timesteps<a class="headerlink" href="#adaptive-timesteps" title="Link to this heading"></a></h2>
