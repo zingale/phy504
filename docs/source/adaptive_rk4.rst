@@ -301,12 +301,22 @@ counterclockwise orbit.  They are:
 
    This is an example of using a braced initialization list for the return.
 
+.. tip::
+
+   When run, the output will show the range of timesteps taken.
+
+Here's a plot of the output, showing the points computed during the solution.  Notice that
+at perihelion they are much more closely spaced than at aphelion.
+
+.. figure:: orbit_adaptive.png
+   :align: center
+   :width: 80%
+
 .. admonition:: try it...
 
    How does our solution compare (in terms of accuracy and number of steps) if we
    force the code to use a uniform timestep?
 
-When run, the output will show the range of timesteps taken.
 
 Example: Lorenz system
 ======================
