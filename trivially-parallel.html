@@ -26,9 +26,7 @@
         <script src="_static/design-tabs.js?v=36754332"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="OpenMP" href="openmp-intro.html" />
-    <link rel="prev" title="Introduction to Parallel Programming" href="parallel-intro.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -195,12 +193,8 @@
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Trivially Parallel + BASH</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#alternatives">Alternatives</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-intro.html">OpenMP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-relax.html">OpenMP Poisson Relaxation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-pi.html">OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span></a></li>
@@ -272,7 +266,7 @@ CPUs and starts up jobs as resources become free.</p>
 </ul>
 <p>Here’s an implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 125 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># run a bunch of single-processor analysis jobs in parallel.  Lock</span>
@@ -380,10 +374,7 @@ tool that can be used for trivially parallel jobs.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="parallel-intro.html" class="btn btn-neutral float-left" title="Introduction to Parallel Programming" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="openmp-intro.html" class="btn btn-neutral float-right" title="OpenMP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

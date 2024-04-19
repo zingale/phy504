@@ -40,7 +40,7 @@ as a checkerboard:
 
 The update of the red points depends only on the black points and vice
 versa.  This means that we can split the update into two separate
-passed---first updating the red points and then the black.  This is
+passes---first updating the red points and then the black.  This is
 called *red-black Gauss-Seidel*.
 
 Here's what this code looks like:
@@ -85,11 +85,18 @@ did previously.
 
 Here's the full implementation:
 
-.. literalinclude:: ../../examples/parallel/openmp/poisson/poisson2d.H
-   :language: c++
-   :caption: ``poisson2d.H``
+:download:`poisson2d.H <../../examples/parallel/openmp/poisson/poisson2d.H>`
 
-and a driver:
+.. dropdown:: ``poisson2d.H``
+
+   .. literalinclude:: ../../examples/parallel/openmp/poisson/poisson2d.H
+      :language: c++
+      :caption: ``poisson2d.H``
+
+This also uses the ``array.H`` class we've been developing throughout the semester:
+:download:`array.H <../../examples/parallel/openmp/poisson/array.H>`
+
+Here's a driver for the Poisson solver:
 
 .. literalinclude:: ../../examples/parallel/openmp/poisson/poisson.cpp
    :language: c++

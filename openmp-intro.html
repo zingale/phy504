@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="OpenMP Poisson Relaxation" href="openmp-relax.html" />
-    <link rel="prev" title="Trivially Parallel + BASH" href="trivially-parallel.html" /> 
+    <link rel="prev" title="Introduction to Parallel Programming" href="parallel-intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -199,7 +199,6 @@
 <p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trivially-parallel.html">Trivially Parallel + BASH</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">OpenMP</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#compiler-support">Compiler support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#threads">Threads</a></li>
@@ -301,7 +300,7 @@ g++, the OpenMP standards are fully supported (up to version 5.0)</p>
 threads and then enter a parallel region where each thread prints its
 id separately:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 126 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 125 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -310,7 +309,9 @@ id separately:</p>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;total number of threads = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_max_threads</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">    </span><span class="cp">#pragma omp parallel</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello from thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello from thread &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">omp_get_thread_num</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -336,7 +337,7 @@ a different ordering.</p></li>
 the threads to operate one at a time.  For example, in the above
 <code class="docutils literal notranslate"><span class="pre">hello.cpp</span></code>, we can get the prints to be done one at a time as:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 127 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 126 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">hello-critical.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 
@@ -378,7 +379,7 @@ this hardware threading.</p>
 <h2>Parallelizing Loops<a class="headerlink" href="#parallelizing-loops" title="Link to this heading"></a></h2>
 <p>Here’s a matrix-vector multiply:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 128 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 127 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">matmul.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
@@ -480,7 +481,7 @@ and include:</p>
 because of different roundoff behavior.</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Listing 129 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 128 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reduce.cpp</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
@@ -519,7 +520,7 @@ because of different roundoff behavior.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="trivially-parallel.html" class="btn btn-neutral float-left" title="Trivially Parallel + BASH" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallel-intro.html" class="btn btn-neutral float-left" title="Introduction to Parallel Programming" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="openmp-relax.html" class="btn btn-neutral float-right" title="OpenMP Poisson Relaxation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
