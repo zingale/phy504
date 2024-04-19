@@ -254,10 +254,12 @@
   <section id="openmp-monte-carlo-pi">
 <h1>OpenMP Monte Carlo <span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#openmp-monte-carlo-pi" title="Link to this heading"></a></h1>
 <p>Let’s parallelize our <a class="reference internal" href="monte-carlo.html#sec-computing-pi"><span class="std std-ref">Monte Carlo example of computing pi</span></a>.</p>
-<p>We now want each thread to have independent random numbers.  We do
-this by creating a random number generator separately on each thread.
-To future ensure that they are independent, we create a different seed
-on each thread.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We want each thread to have <em>independent</em> random numbers.  We do
+this by creating a random number generator separately on each thread with
+different seeds.</p>
+</div>
 <p>Then this calculation can proceed in a trivially parallel fashion.
 The only thing we need to do is mark the sum for a reduction at the
 end of the parallel region.</p>
