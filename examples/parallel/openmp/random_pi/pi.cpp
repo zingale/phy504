@@ -49,7 +49,8 @@ int main() {
 
     }
 
-    std::cout << "pi = " << std::setprecision(10) << 4 * static_cast<double>(N_circle) / N << std::endl;
+    std::cout << "pi = " << std::setprecision(10)
+              << 4 * static_cast<double>(N_circle) / N << std::endl;
 
 #ifdef _OPENMP
     std::cout << "time = " << omp_get_wtime() - start << std::endl;
