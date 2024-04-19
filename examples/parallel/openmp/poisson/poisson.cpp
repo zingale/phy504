@@ -32,7 +32,8 @@ int main() {
     auto end = std::chrono::system_clock::now();
 
     std::cout << "time to solution: " <<
-        std::chrono::duration_cast<std::chrono::milliseconds>(end -start).count() / 1000.0 << " s" << std::endl;
+        std::chrono::duration_cast<std::chrono::milliseconds>(end -start).count() /
+        1000.0 << " s" << std::endl;
 
 
     p.write_solution("poisson.txt");

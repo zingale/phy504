@@ -36,9 +36,17 @@ public:
 
     }
 
+    // copy constructor
+    Array (const Array& src) = default;
+
+    // assignment operator
+    Array& operator= (const Array& src) = default;
+
+    // destructor
+    ~Array() = default;
+
     // note the "const" after the argument list here -- this means
-    // that this can be called on a const Array, while the first
-    // "const" refers to the return type
+    // that this can be called on a const Array
 
     ///
     /// get the number of columns
@@ -49,6 +57,11 @@ public:
     /// get the number of rows
     ///
     inline std::size_t nrows() const { return _rows;}
+
+    ///
+    /// get the total number of elements in the array
+    ///
+    inline std::size_t nelements() const { return _cols * _rows;}
 
     inline double& operator()(int row, int col) {
         assert (row >= 0 && row < _rows);
@@ -69,36 +82,42 @@ public:
     inline std::vector<double>& flat() { return _data; }
 
     ///
-    /// set the array element i in the flattened index space
+    /// set an array element in the flattened index space
     ///
-    inline double& flat(int i) { return _data[i]; }
+    inline double& flat(int element) {
+        assert (element >= 0 && element < _rows * _cols);
+        return _data[element];
+    }
+
+    ///
+    /// get an array element in the flattened index space for
+    /// a const array
+    ///
+    inline const double& flat(int element) const {
+        assert (element >= 0 && element < _rows * _cols);
+        return _data[element];
+    }
 
     ///
     /// return the global minimum of the array
     ///
-    double min() {
-        double current_min = std::numeric_limits<double>::max();
-
-        for (auto e : _data) {
-            if (e < current_min) {
-                current_min = e;
-            }
+    double min() const {
+        double arr_min{std::numeric_limits<double>::max()};
+        for (const double& e : _data) {
+            arr_min = std::min(arr_min, e);
         }
-        return current_min;
+        return arr_min;
     }
 
     ///
     /// return the global maximum of the array
     ///
-    double max() {
-        double current_max = std::numeric_limits<double>::lowest();
-
-        for (auto e : _data) {
-            if (e > current_max) {
-                current_max = e;
-            }
+    double max() const {
+        double arr_max{std::numeric_limits<double>::lowest()};
+        for (const double& e : _data) {
+            arr_max = std::max(arr_max, e);
         }
-        return current_max;
+        return arr_max;
     }
 
     friend std::ostream& operator<< (std::ostream& os, const Array& a);
@@ -107,6 +126,7 @@ public:
 
 // the << operator is not part of the of the class, so it is not a member
 
+inline
 std::ostream& operator<< (std::ostream& os, const Array& a) {
 
     for (std::size_t row=0; row < a.nrows(); ++row) {

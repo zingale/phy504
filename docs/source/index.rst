@@ -194,7 +194,6 @@ Spring 2024
    :caption: Parallel Programming
 
    parallel-intro
-   trivially-parallel
    openmp-intro
    openmp-relax
    openmp-pi
