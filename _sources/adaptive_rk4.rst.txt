@@ -242,6 +242,19 @@ Some notes:
   system may depend on that are not the integration variables.  This
   is a common feature in ODE integrators.
 
+* We use `emplace_back
+  <https://en.cppreference.com/w/cpp/container/vector/emplace_back>`_
+  instead of ``push_back()`` to add a ``solution`` to our history
+  vector.  This eliminates the need to create a temporary ``solution``
+  object to push to the vector (likely through a move), e.g., as:
+
+  .. code:: c++
+
+     history.push_back(solution(t, y));
+
+  instead ``emplace_back`` simply passes the arguments we give it to the constructor
+  and operates directly on the vector.
+
 * The ``ODE`` class manages the solution.  There are 2 constructors, one for each
   type of righthand side function.  Each takes the set of initial conditions.
 

@@ -707,6 +707,16 @@ the <code class="docutils literal notranslate"><span class="pre">ODE</span></cod
 system may depend on that are not the integration variables.  This
 is a common feature in ODE integrators.</p>
 </li>
+<li><p>We use <a class="reference external" href="https://en.cppreference.com/w/cpp/container/vector/emplace_back">emplace_back</a>
+instead of <code class="docutils literal notranslate"><span class="pre">push_back()</span></code> to add a <code class="docutils literal notranslate"><span class="pre">solution</span></code> to our history
+vector.  This eliminates the need to create a temporary <code class="docutils literal notranslate"><span class="pre">solution</span></code>
+object to push to the vector (likely through a move), e.g., as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">history</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>instead <code class="docutils literal notranslate"><span class="pre">emplace_back</span></code> simply passes the arguments we give it to the constructor
+and operates directly on the vector.</p>
+</li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">ODE</span></code> class manages the solution.  There are 2 constructors, one for each
 type of righthand side function.  Each takes the set of initial conditions.</p></li>
 </ul>
