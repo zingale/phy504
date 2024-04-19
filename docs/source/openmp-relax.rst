@@ -106,7 +106,12 @@ We can compile this as:
 
 .. prompt:: bash
 
-   g++ -fopenmp -o poisson poisson.cpp
+   g++ -O2 -fopenmp -o poisson poisson.cpp
+
+.. tip::
+
+   Having the compiler optimize here (via ``-O2``) really helps with the
+   execution.
 
 On my computer (with 8 cores) running with :math:`128^2` gives:
 
@@ -116,8 +121,8 @@ On my computer (with 8 cores) running with :math:`128^2` gives:
    ===================  ========
    ``OMP_NUM_THREADS``  time (s)
    ===================  ========
-   1                     20.710
-   2                     10.421
-   4                      5.709
-   8                      2.951
+   1                     1.804
+   2                     0.939
+   4                     0.524
+   8                     0.318
    ===================  ========
