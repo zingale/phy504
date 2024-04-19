@@ -6,7 +6,7 @@ Previously we looked at the simple Euler and 2nd-order Runge-Kutta
 methods for integration.  Now we will look at 4th order Runge-Kutta.
 We will also:
 
-* Write our integrator as a templated class that works with any
+* Write our integrator as a class that works with any
   ODE system of the form:
 
   .. math::
@@ -121,7 +121,7 @@ for our single step, the error will be:
 $$\epsilon \sim \tau^5$$
 
 And imagine that we wanted to achieve an error of
-$\epsilon_\mathrm{want}$---there is a timestep $\tau$ that would
+$\epsilon_\mathrm{want}$---there is a timestep $\tau_\mathrm{est}$ that would
 get this:
 
 $$\epsilon_\mathrm{want} \sim \tau_\mathrm{est}^5$$
@@ -169,7 +169,7 @@ Let's consider doing this with RK4.  Our approach will be:
    the new, smaller $\tau_\mathrm{est}$.
 
 In practice, we usually limit the amount that the timestep can change
-from one attempt to the next by a factor of $\sim 2$ or so.
+from one attempt to the next by a factor of $\sim 4$ or so.
 
 .. note::
 
@@ -375,6 +375,6 @@ For a simple system, we can use a lambda-function.  Here we solve:
 
 with $y(0) = 1$.
 
-.. literalinclude:: ../../examples/general_ODE_class/test_lambda.cpp
+.. literalinclude:: ../../examples/numerical_algorithms/adaptive_rk4/test_lambda.cpp
    :language: c++
    :caption: ``test_lambda.cpp``
