@@ -28,6 +28,8 @@ private:
 
     double dx;
 
+    int n_smooth_taken{0};
+
 public:
 
     Poisson(double xmin_in, double xmax_in, int N_in)
@@ -72,6 +74,11 @@ public:
     int npts() {return N;}
 
     ///
+    /// return the number of smoothing iterations taken
+    ///
+    int n_smooth() {return n_smooth_taken;}
+
+    ///
     /// return the coordinate vector
     ///
     const std::vector<double>& xc() {return x;}
@@ -79,16 +86,12 @@ public:
     ///
     /// return the source vector
     ///
-    std::vector<double>& get_source() {
-        return f;
-    }
+    std::vector<double>& get_source() {return f;}
 
     ///
     /// return the solution vector
     ///
-    std::vector<double>& get_phi() {
-        return phi;
-    }
+    std::vector<double>& get_phi() {return phi;}
 
     ///
     /// do Gauss-Seidel smoothing for n_smooth iterations
@@ -99,11 +102,12 @@ public:
 
         // we only operate on the interior nodes
 
-        for (int i = 0; i < n_smooth; ++i) {
+        for (int n = 0; n < n_smooth; ++n) {
 
-            for (int j = 1; j < N-1; ++j) {
-                phi[j] = 0.5 * (phi[j-1] + phi[j+1] - dx * dx * f[j]);
+            for (int i = 1; i < N-1; ++i) {
+                phi[i] = 0.5 * (phi[i-1] + phi[i+1] - dx * dx * f[i]);
             }
+            n_smooth_taken++;
         }
     }
 
@@ -111,7 +115,7 @@ public:
     /// solve the Poisson problem via relaxation until the residual
     /// norm is tol compared to the source norm
     ///
-    void solve(double tol) {
+    void solve(double tol = 1.e-10) {
 
         double err = std::numeric_limits<double>::max();
 
@@ -149,16 +153,14 @@ public:
     ///
     /// given a vector e on our grid, return the L2 norm
     ///
-    double norm(const std::vector<double>& e) {
+    double norm(const std::vector<double>& evec) {
         double l2{0.0};
 
-        for (int i = 0; i < N; ++i) {
-            l2 += e[i] * e[i];
+        for (auto e : evec) {
+            l2 += e * e;
         }
 
-        l2 = std::sqrt(dx * l2);
-
-        return l2;
+        return std::sqrt(dx * l2);
     }
 
     ///
