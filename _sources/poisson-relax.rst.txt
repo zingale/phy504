@@ -16,10 +16,22 @@ We'll do it in 1-d, writing our equation as:
 
 on a domain :math:`[a, b]`.
 
+This is a second-order PDE, so we need 2 boundary conditions.  We'll
+use Dirichlet boundary conditions:
+
+.. math::
+
+   \phi(a) = A
+
+.. math::
+
+   \phi(b) = B
+
 Discretization
 ==============
 
-We will represent :math:`\phi` and :math:`f` on a 1-d uniform grid:
+We will represent :math:`\phi` and :math:`f` on a 1-d uniform grid, with $N$ points
+ranging from $0, \ldots, N-1$:
 
 .. figure:: fd_grid_bnd.png
    :align: center
@@ -38,11 +50,11 @@ Notice that with this grid we have a point on each boundary.  We will set these 
 
 .. math::
 
-   \phi(a) = A
+   \phi_0 = A
 
 .. math::
 
-   \phi(b) = B
+   \phi_{N-1} = B
 
 
 We now discretize the Poisson equation.  Let's start with the Taylor
@@ -75,6 +87,30 @@ then write the discrete Poisson equation as:
 
 Since the boundary values are fixed, for a grid of :math:`N` points, we need to
 update the points :math:`1 \ldots N-2` using this expression.
+
+.. note::
+
+   Neumann boundary conditions are more complicated.  If we want $\phi^\prime(a) = 0$,
+   then we use a second-order approximation to the derivative and a *ghost point*
+   just outside the domain:
+
+   .. math::
+
+      \frac{\phi_1 - \phi_{-1}}{2\Delta x} = 0
+
+   we also know from the Poisson equation:
+
+   .. math::
+
+      \frac{\phi_1 - 2\phi_0 + \phi_{-1}}{\Delta x^2} = f_0
+
+   Together these can be used to eliminate $\phi_{-1}$ and give us
+   an expression to use for $\phi_0$:
+
+   .. math::
+
+      \phi_0 = \phi_1 - \frac{\Delta x^2}{2} f_0
+
 
 Relaxation
 ==========
