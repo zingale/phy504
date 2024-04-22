@@ -160,9 +160,11 @@ Implementation
 
 Here's a class that implements smoothing:
 
-.. literalinclude:: ../../examples/numerical_algorithms/poisson/poisson.H
-   :language: c++
-   :caption: ``poisson.H``
+.. dropdown:: ``poisson.H``
+
+   .. literalinclude:: ../../examples/numerical_algorithms/poisson/poisson.H
+      :language: c++
+      :caption: ``poisson.H``
 
 Let's try it on the problem:
 
