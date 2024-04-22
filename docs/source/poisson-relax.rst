@@ -16,8 +16,11 @@ We'll do it in 1-d, writing our equation as:
 
 on a domain :math:`[a, b]`.
 
-This is a second-order PDE, so we need 2 boundary conditions.  We'll
-use Dirichlet boundary conditions:
+.. note::
+
+   This is a second-order PDE, so we need 2 boundary conditions.
+
+We'll use `Dirichlet boundary conditions <https://en.wikipedia.org/wiki/Dirichlet_boundary_condition>`_:
 
 .. math::
 
@@ -86,11 +89,11 @@ then write the discrete Poisson equation as:
    \frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2} = f_i
 
 Since the boundary values are fixed, for a grid of :math:`N` points, we need to
-update the points :math:`1 \ldots N-2` using this expression.
+update the points :math:`1, \ldots, N-2` using this expression.
 
 .. note::
 
-   Neumann boundary conditions are more complicated.  If we want $\phi^\prime(a) = 0$,
+   `Neumann boundary conditions <https://en.wikipedia.org/wiki/Neumann_boundary_condition>`_ are more complicated.  If we want $\phi^\prime(a) = 0$,
    then we use a second-order approximation to the derivative and a *ghost point*
    just outside the domain:
 
@@ -123,9 +126,9 @@ We can solve for the update for a single zone:
 
 Our solution procedure is to iteratively apply this, updating the
 values :math:`\phi_i` as we go along.  This process is called
-*relaxation* or *smoothing*, and the approach we will use, where we
+*relaxation* or *smoothing* and the approach we will use, where we
 use the new information immediately as it becomes available is called
-*Gauss-Seidel relaxation*.
+`Gauss-Seidel relaxation <https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method>`_.
 
 Stopping
 ========
@@ -154,6 +157,13 @@ This requires us to define a vector norm.  We'll use the L2 norm:
 .. math::
 
    \| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}
+
+.. note::
+
+   The residual is telling us how well we solve the *discrete form* of the Poisson equation.
+   It does not tell us if the discretization we chose to solve is good enough for our problem.
+   For that, we would need to do convergence testing and/or comparisons to problems with known
+   solutions.
 
 Implementation
 ==============
