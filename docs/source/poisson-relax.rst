@@ -223,6 +223,40 @@ error should go down by a factor of 4.
 2D implementation
 =================
 
+The 2D Poisson equation is:
+
+.. math::
+
+   \phi_{xx} + \phi_{yy} = f
+
+and now needs 4 boundary conditions (2 on $x$ and 2 on $y$).
+
+The discrete form of this is:
+
+.. math::
+
+   \frac{\phi_{i+1,j} - 2 \phi_{i,j} + \phi_{i-1,j}}{\Delta x^2} +
+   \frac{\phi_{i,j+1} - 2 \phi_{i,j} + \phi_{i,j-1}}{\Delta y^2} = f_{i,j}
+
+Solving for $\phi_{i,j}$, we see that the update has the form:
+
+.. math::
+
+   \phi_{i,j} = \frac{1}{2} \frac{\Delta x^2 \Delta y^2}{\Delta x^2 + \Delta y^2}
+            \left [ \frac{1}{\Delta x^2} (\phi_{i-1,j} + \phi_{i+1,j} ) +
+                    \frac{1}{\Delta y^2} (\phi_{i,j-1} + \phi_{i,j+1} ) - f_{i,j} \right ]
+
+
+If :math:`\Delta x = \Delta y`, then this simplifies to:
+
+.. math::
+
+   \phi_{i,j} = \frac{1}{4}
+            \left [ \phi_{i-1,j} + \phi_{i+1,j} +
+                    \phi_{i,j-1} + \phi_{i,j+1} - \Delta x^2 f_{i,j} \right ]
+
+
+
 Here's a 2D implementation:
 
 .. dropdown:: 2D Poisson solver
