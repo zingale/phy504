@@ -168,7 +168,9 @@ public:
         auto of = std::ofstream(fname);
 
         for (int i = 0; i < N; ++i) {
-            of << std::setw(20) << x[i] << " " << std::setw(20) << phi[i] << std::setw(20) << f[i] << std::endl;
+            of << std::setw(20) << x[i] << " "
+               << std::setw(20) << phi[i] << " "
+               << std::setw(20) << f[i] << std::endl;
         }
 
     }
