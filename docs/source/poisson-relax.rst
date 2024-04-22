@@ -259,7 +259,7 @@ If :math:`\Delta x = \Delta y`, then this simplifies to:
 
 Our class for solving the 2D Poisson equation is very similar to the previous
 1D version.  The main difference is that we will store the solution using our
-``Array`` class developed previously and most loops will now be over $x$ and
+``Array`` class developed previously (:download:`array.H <../../examples/doxygen/array.H>`) and most loops will now be over $x$ and
 $y$ directions.
 
 Here's a 2D implementation:
