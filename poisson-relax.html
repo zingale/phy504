@@ -634,6 +634,10 @@ provides the analytic solution and returns the norm of the error
 \[\phi_{i,j} = \frac{1}{4}
          \left [ \phi_{i-1,j} + \phi_{i+1,j} +
                  \phi_{i,j-1} + \phi_{i,j+1} - \Delta x^2 f_{i,j} \right ]\]</div>
+<p>Our class for solving the 2D Poisson equation is very similar to the previous
+1D version.  The main difference is that we will store the solution using our
+<code class="docutils literal notranslate"><span class="pre">Array</span></code> class developed previously and most loops will now be over <span class="math notranslate nohighlight">\(x\)</span> and
+<span class="math notranslate nohighlight">\(y\)</span> directions.</p>
 <p>Here’s a 2D implementation:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -642,7 +646,6 @@ provides the analytic solution and returns the norm of the error
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Header:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 123 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">poisson2d.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef POISSON_H</span>
