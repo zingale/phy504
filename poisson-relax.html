@@ -268,8 +268,11 @@
 <div class="math notranslate nohighlight">
 \[\frac{d^2 \phi}{dx^2} = f\]</div>
 <p>on a domain <span class="math notranslate nohighlight">\([a, b]\)</span>.</p>
-<p>This is a second-order PDE, so we need 2 boundary conditions.  We’ll
-use Dirichlet boundary conditions:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a second-order PDE, so we need 2 boundary conditions.</p>
+</div>
+<p>We’ll use <a class="reference external" href="https://en.wikipedia.org/wiki/Dirichlet_boundary_condition">Dirichlet boundary conditions</a>:</p>
 <div class="math notranslate nohighlight">
 \[\phi(a) = A\]</div>
 <div class="math notranslate nohighlight">
@@ -310,10 +313,10 @@ then write the discrete Poisson equation as:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2} = f_i\]</div>
 <p>Since the boundary values are fixed, for a grid of <span class="math notranslate nohighlight">\(N\)</span> points, we need to
-update the points <span class="math notranslate nohighlight">\(1 \ldots N-2\)</span> using this expression.</p>
+update the points <span class="math notranslate nohighlight">\(1, \ldots, N-2\)</span> using this expression.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Neumann boundary conditions are more complicated.  If we want <span class="math notranslate nohighlight">\(\phi^\prime(a) = 0\)</span>,
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Neumann_boundary_condition">Neumann boundary conditions</a> are more complicated.  If we want <span class="math notranslate nohighlight">\(\phi^\prime(a) = 0\)</span>,
 then we use a second-order approximation to the derivative and a <em>ghost point</em>
 just outside the domain:</p>
 <div class="math notranslate nohighlight">
@@ -334,9 +337,9 @@ an expression to use for <span class="math notranslate nohighlight">\(\phi_0\)</
 \[\phi_i = \frac{1}{2} (\phi_{i+1} + \phi_{i-1} - \Delta x^2 f_i)\]</div>
 <p>Our solution procedure is to iteratively apply this, updating the
 values <span class="math notranslate nohighlight">\(\phi_i\)</span> as we go along.  This process is called
-<em>relaxation</em> or <em>smoothing</em>, and the approach we will use, where we
+<em>relaxation</em> or <em>smoothing</em> and the approach we will use, where we
 use the new information immediately as it becomes available is called
-<em>Gauss-Seidel relaxation</em>.</p>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method">Gauss-Seidel relaxation</a>.</p>
 </section>
 <section id="stopping">
 <h2>Stopping<a class="headerlink" href="#stopping" title="Link to this heading"></a></h2>
@@ -354,6 +357,13 @@ can do with the number of points we are using in the discretization.</p>
 <p>This requires us to define a vector norm.  We’ll use the L2 norm:</p>
 <div class="math notranslate nohighlight">
 \[\| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The residual is telling us how well we solve the <em>discrete form</em> of the Poisson equation.
+It does not tell us if the discretization we chose to solve is good enough for our problem.
+For that, we would need to do convergence testing and/or comparisons to problems with known
+solutions.</p>
+</div>
 </section>
 <section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
