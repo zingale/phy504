@@ -616,6 +616,24 @@ provides the analytic solution and returns the norm of the error
 </section>
 <section id="d-implementation">
 <h2>2D implementation<a class="headerlink" href="#d-implementation" title="Link to this heading"></a></h2>
+<p>The 2D Poisson equation is:</p>
+<div class="math notranslate nohighlight">
+\[\phi_{xx} + \phi_{yy} = f\]</div>
+<p>and now needs 4 boundary conditions (2 on <span class="math notranslate nohighlight">\(x\)</span> and 2 on <span class="math notranslate nohighlight">\(y\)</span>).</p>
+<p>The discrete form of this is:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\phi_{i+1,j} - 2 \phi_{i,j} + \phi_{i-1,j}}{\Delta x^2} +
+\frac{\phi_{i,j+1} - 2 \phi_{i,j} + \phi_{i,j-1}}{\Delta y^2} = f_{i,j}\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(\phi_{i,j}\)</span>, we see that the update has the form:</p>
+<div class="math notranslate nohighlight">
+\[\phi_{i,j} = \frac{1}{2} \frac{\Delta x^2 \Delta y^2}{\Delta x^2 + \Delta y^2}
+         \left [ \frac{1}{\Delta x^2} (\phi_{i-1,j} + \phi_{i+1,j} ) +
+                 \frac{1}{\Delta y^2} (\phi_{i,j-1} + \phi_{i,j+1} ) - f_{i,j} \right ]\]</div>
+<p>If <span class="math notranslate nohighlight">\(\Delta x = \Delta y\)</span>, then this simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[\phi_{i,j} = \frac{1}{4}
+         \left [ \phi_{i-1,j} + \phi_{i+1,j} +
+                 \phi_{i,j-1} + \phi_{i,j+1} - \Delta x^2 f_{i,j} \right ]\]</div>
 <p>Here’s a 2D implementation:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">

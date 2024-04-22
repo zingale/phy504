@@ -262,7 +262,7 @@ parallelize the loops using OpenMP, then there is a risk that while we
 are updating a point on one thread another thread will be reading it
 to use it in its update.  This is a <em>race condition</em>.  We need to
 avoid these.</p>
-<p>If we look at the 2-d update, it has the form:</p>
+<p>As we saw previously, the 2D update has the form:</p>
 <div class="math notranslate nohighlight">
 \[\phi_{i,j} = \frac{1}{2} \frac{\Delta x^2 \Delta y^2}{\Delta x^2 + \Delta y^2}
          \left [ \frac{1}{\Delta x^2} (\phi_{i-1,j} + \phi_{i+1,j} ) +
