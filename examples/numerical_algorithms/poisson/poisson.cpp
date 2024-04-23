@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "poisson.H"
 
 const double TOL = 1.e-10;
@@ -12,6 +14,8 @@ int main() {
     p.set_right_bc(1.0);
 
     p.solve(TOL);
+
+    std::cout << "number of smoothing iterations: " << p.n_smooth() << std::endl;
 
     p.write_solution("poisson.txt");
 }

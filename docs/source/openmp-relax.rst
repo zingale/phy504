@@ -13,7 +13,7 @@ are updating a point on one thread another thread will be reading it
 to use it in its update.  This is a *race condition*.  We need to
 avoid these.
 
-If we look at the 2-d update, it has the form:
+As we saw previously, the 2D update has the form:
 
 .. math::
 

@@ -16,10 +16,25 @@ We'll do it in 1-d, writing our equation as:
 
 on a domain :math:`[a, b]`.
 
+.. note::
+
+   This is a second-order PDE, so we need 2 boundary conditions.
+
+We'll use `Dirichlet boundary conditions <https://en.wikipedia.org/wiki/Dirichlet_boundary_condition>`_:
+
+.. math::
+
+   \phi(a) = A
+
+.. math::
+
+   \phi(b) = B
+
 Discretization
 ==============
 
-We will represent :math:`\phi` and :math:`f` on a 1-d uniform grid:
+We will represent :math:`\phi` and :math:`f` on a 1-d uniform grid, with $N$ points
+ranging from $0, \ldots, N-1$:
 
 .. figure:: fd_grid_bnd.png
    :align: center
@@ -38,11 +53,11 @@ Notice that with this grid we have a point on each boundary.  We will set these 
 
 .. math::
 
-   \phi(a) = A
+   \phi_0 = A
 
 .. math::
 
-   \phi(b) = B
+   \phi_{N-1} = B
 
 
 We now discretize the Poisson equation.  Let's start with the Taylor
@@ -74,7 +89,31 @@ then write the discrete Poisson equation as:
    \frac{\phi_{i+1} - 2 \phi_i + \phi_{i-1}}{\Delta x^2} = f_i
 
 Since the boundary values are fixed, for a grid of :math:`N` points, we need to
-update the points :math:`1 \ldots N-2` using this expression.
+update the points :math:`1, \ldots, N-2` using this expression.
+
+.. note::
+
+   `Neumann boundary conditions <https://en.wikipedia.org/wiki/Neumann_boundary_condition>`_ are more complicated.  If we want $\phi^\prime(a) = 0$,
+   then we use a second-order approximation to the derivative and a *ghost point*
+   just outside the domain:
+
+   .. math::
+
+      \frac{\phi_1 - \phi_{-1}}{2\Delta x} = 0
+
+   we also know from the Poisson equation:
+
+   .. math::
+
+      \frac{\phi_1 - 2\phi_0 + \phi_{-1}}{\Delta x^2} = f_0
+
+   Together these can be used to eliminate $\phi_{-1}$ and give us
+   an expression to use for $\phi_0$:
+
+   .. math::
+
+      \phi_0 = \phi_1 - \frac{\Delta x^2}{2} f_0
+
 
 Relaxation
 ==========
@@ -87,9 +126,9 @@ We can solve for the update for a single zone:
 
 Our solution procedure is to iteratively apply this, updating the
 values :math:`\phi_i` as we go along.  This process is called
-*relaxation* or *smoothing*, and the approach we will use, where we
+*relaxation* or *smoothing* and the approach we will use, where we
 use the new information immediately as it becomes available is called
-*Gauss-Seidel relaxation*.
+`Gauss-Seidel relaxation <https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method>`_.
 
 Stopping
 ========
@@ -119,14 +158,23 @@ This requires us to define a vector norm.  We'll use the L2 norm:
 
    \| v \| \equiv \left [ \Delta x \sum_{i=0}^{N-1} |v_i|^2 \right ]^{1/2}
 
+.. note::
+
+   The residual is telling us how well we solve the *discrete form* of the Poisson equation.
+   It does not tell us if the discretization we chose to solve is good enough for our problem.
+   For that, we would need to do convergence testing and/or comparisons to problems with known
+   solutions.
+
 Implementation
 ==============
 
 Here's a class that implements smoothing:
 
-.. literalinclude:: ../../examples/numerical_algorithms/poisson/poisson.H
-   :language: c++
-   :caption: ``poisson.H``
+.. dropdown:: ``poisson.H``
+
+   .. literalinclude:: ../../examples/numerical_algorithms/poisson/poisson.H
+      :language: c++
+      :caption: ``poisson.H``
 
 Let's try it on the problem:
 
@@ -175,11 +223,48 @@ error should go down by a factor of 4.
 2D implementation
 =================
 
+The 2D Poisson equation is:
+
+.. math::
+
+   \phi_{xx} + \phi_{yy} = f
+
+and now needs 4 boundary conditions (2 on $x$ and 2 on $y$).
+
+The discrete form of this is:
+
+.. math::
+
+   \frac{\phi_{i+1,j} - 2 \phi_{i,j} + \phi_{i-1,j}}{\Delta x^2} +
+   \frac{\phi_{i,j+1} - 2 \phi_{i,j} + \phi_{i,j-1}}{\Delta y^2} = f_{i,j}
+
+Solving for $\phi_{i,j}$, we see that the update has the form:
+
+.. math::
+
+   \phi_{i,j} = \frac{1}{2} \frac{\Delta x^2 \Delta y^2}{\Delta x^2 + \Delta y^2}
+            \left [ \frac{1}{\Delta x^2} (\phi_{i-1,j} + \phi_{i+1,j} ) +
+                    \frac{1}{\Delta y^2} (\phi_{i,j-1} + \phi_{i,j+1} ) - f_{i,j} \right ]
+
+
+If :math:`\Delta x = \Delta y`, then this simplifies to:
+
+.. math::
+
+   \phi_{i,j} = \frac{1}{4}
+            \left [ \phi_{i-1,j} + \phi_{i+1,j} +
+                    \phi_{i,j-1} + \phi_{i,j+1} - \Delta x^2 f_{i,j} \right ]
+
+
+
+Our class for solving the 2D Poisson equation is very similar to the previous
+1D version.  The main difference is that we will store the solution using our
+``Array`` class developed previously (:download:`array.H <../../examples/doxygen/array.H>`) and most loops will now be over $x$ and
+$y$ directions.
+
 Here's a 2D implementation:
 
 .. dropdown:: 2D Poisson solver
-
-   Header:
 
    .. literalinclude:: ../../examples/numerical_algorithms/poisson_2d/poisson2d.H
       :language: c++
