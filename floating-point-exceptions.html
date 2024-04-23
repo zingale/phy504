@@ -474,8 +474,10 @@ via the <a class="reference external" href="https://en.cppreference.com/w/cpp/ut
 </pre></div>
 </div>
 </div>
-<p>To build this, we need to load an extra library.  For GCC &gt;= 12, we can do:</p>
+<p>To build this, we need to load an extra library.  For GCC 12 or 13, we can do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-o<span class="w"> </span>undefined_stactrace<span class="w"> </span>undefined_stacktrace.cpp<span class="w"> </span>-lstdc++_libbacktrace</span>
+</pre></div></div><p>For GCC 14, we would do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-o<span class="w"> </span>undefined_stactrace<span class="w"> </span>undefined_stacktrace.cpp<span class="w"> </span>-lstdc++exp</span>
 </pre></div></div></section>
 </section>
 

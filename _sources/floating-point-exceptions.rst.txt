@@ -157,8 +157,14 @@ via the `stacktrace library <https://en.cppreference.com/w/cpp/utility/basic_sta
    :language: c++
    :caption: ``undefined_stacktrace.cpp``
 
-To build this, we need to load an extra library.  For GCC >= 12, we can do:
+To build this, we need to load an extra library.  For GCC 12 or 13, we can do:
 
 .. prompt:: bash
 
    g++ -g -std=c++23 -o undefined_stactrace undefined_stacktrace.cpp -lstdc++_libbacktrace
+
+For GCC 14, we would do:
+
+.. prompt:: bash
+
+   g++ -g -std=c++23 -o undefined_stactrace undefined_stacktrace.cpp -lstdc++exp
