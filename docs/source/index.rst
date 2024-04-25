@@ -202,6 +202,12 @@ Spring 2024
 
 .. toctree::
    :maxdepth: 1
+   :caption: Calling C++ from Python
+
+   cxx-python
+
+.. toctree::
+   :maxdepth: 1
    :caption: To Be Continued...
 
    didnt_cover
