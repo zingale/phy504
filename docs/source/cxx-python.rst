@@ -56,4 +56,11 @@ To compile it, we can use this ``GNUmakefile``:
    :language: make
    :caption: ``GNUmakefile``
 
+We can use this in python as:
+
+.. code:: python
+
+   import simple
+   simple.f(1.0)
+
 
