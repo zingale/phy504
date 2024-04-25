@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>In-Class Example: A Simple Grid &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Returning an Array to Python &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -24,13 +24,11 @@
         <script src="_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="_static/copybutton.js?v=f281be69"></script>
         <script src="_static/design-tabs.js?v=36754332"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Example: Mathematical Vectors" href="cxx-vector2d-class.html" />
-    <link rel="prev" title="Object-Oriented Design" href="object-oriented.html" /> 
+    <link rel="next" title="Stuff We Didn’t Cover" href="didnt_cover.html" />
+    <link rel="prev" title="pybind11" href="cxx-python.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -131,10 +129,10 @@
 <li class="toctree-l1"><a class="reference internal" href="inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">In-Class Example: A Simple Grid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inclass-class-example.html">In-Class Example: A Simple Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vector2d-class.html">Example: Mathematical Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-orbit-class.html">In-Class Example: Orbit Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
@@ -206,9 +204,9 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Calling C++ from Python</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-python.html">pybind11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-python-array.html">Returning an Array to Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Returning an Array to Python</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
 <ul>
@@ -246,9 +244,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">In-Class Example: A Simple Grid</li>
+      <li class="breadcrumb-item active">Returning an Array to Python</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/inclass-class-example.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-python-array.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -256,35 +254,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="in-class-example-a-simple-grid">
-<span id="simple-grid-class"></span><h1>In-Class Example: A Simple Grid<a class="headerlink" href="#in-class-example-a-simple-grid" title="Link to this heading"></a></h1>
-<p>Let’s create a class to represent <a class="reference external" href="https://en.wikipedia.org/wiki/Grid_classification">a structured grid</a> that we can use
-to represent data for solving PDEs via finite-difference methods.</p>
-<p>We want our grid class to store:</p>
-<ul class="simple">
-<li><p>The domain limits, <code class="docutils literal notranslate"><span class="pre">xmin</span></code>, and <code class="docutils literal notranslate"><span class="pre">xmax</span></code></p></li>
-<li><p>The number of points in the discretization, <code class="docutils literal notranslate"><span class="pre">nx</span></code></p></li>
-<li><p>The coordinate vector, <code class="docutils literal notranslate"><span class="pre">x</span></code></p></li>
-<li><p>A solution vector, <code class="docutils literal notranslate"><span class="pre">phi</span></code></p></li>
-</ul>
-<p>We can then write functions to:</p>
-<ul>
-<li><p>Output the solution to the screen or file (as <code class="docutils literal notranslate"><span class="pre">x[i]</span></code> <code class="docutils literal notranslate"><span class="pre">phi[i]</span></code> in
-columns)</p></li>
-<li><p>Compute the norm of a vector on our grid, e.g., the L2 norm:</p>
-<p><div class="math notranslate nohighlight">
-\[\|e\|_2  = \left ( \Delta x \sum_i | e_i | {}^2 \right )^{1/2} \]</div>
-</p>
-</li>
-</ul>
+  <section id="returning-an-array-to-python">
+<h1>Returning an Array to Python<a class="headerlink" href="#returning-an-array-to-python" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pybind11</span></code> allows us to construct a NumPy array in C++ and have it
+returned to python.  To do this, we need to use the <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>
+classes that create a python array.</p>
+<p>Here’s an example that computes a <a class="reference external" href="https://en.wikipedia.org/wiki/Hilbert_matrix">Hilbert matrix</a>
+in C++ and returns it to python.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 138 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">array.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
+
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">py</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">pybind11</span><span class="p">;</span>
+
+<span class="n">py</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hilbert</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// construct the numpy array we will return</span>
+<span class="w">    </span><span class="c1">// we need to specify the strides manually</span>
+
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">elsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]{</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">strides</span><span class="p">[</span><span class="mi">2</span><span class="p">]{</span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">elsize</span><span class="p">,</span><span class="w"> </span><span class="n">elsize</span><span class="p">};</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="w"> </span><span class="n">strides</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">H_view</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H</span><span class="p">.</span><span class="n">mutable_unchecked</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">H</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">H</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">H_view</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">H</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">PYBIND11_MODULE</span><span class="p">(</span><span class="n">array</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">doc</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;simple example of creating a NumPy array (Hilbert matrix) in C++&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;hilbert&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hilbert</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> is essentially the same, but we just need to
+give the name of the library (<code class="docutils literal notranslate"><span class="pre">BASE</span></code> in the <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>):
+<a class="reference download internal" download="" href="_downloads/87b0e6573c4f4b75f5964fa02bdfd4c9/GNUmakefile"><code class="xref download docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a>.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="object-oriented.html" class="btn btn-neutral float-left" title="Object-Oriented Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-vector2d-class.html" class="btn btn-neutral float-right" title="Example: Mathematical Vectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-python.html" class="btn btn-neutral float-left" title="pybind11" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="didnt_cover.html" class="btn btn-neutral float-right" title="Stuff We Didn’t Cover" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

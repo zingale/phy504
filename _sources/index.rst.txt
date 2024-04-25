@@ -205,6 +205,7 @@ Spring 2024
    :caption: Calling C++ from Python
 
    cxx-python
+   cxx-python-array
 
 .. toctree::
    :maxdepth: 1
