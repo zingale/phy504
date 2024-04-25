@@ -10,6 +10,21 @@ Let's parallelize our :ref:`Monte Carlo example of computing pi <sec:computing_p
    this by creating a random number generator separately on each thread with
    different seeds.
 
+   See, e.g., https://stackoverflow.com/questions/37305104/how-to-generate-random-numbers-in-a-thread-safe-way-with-openmp
+
+   There is a worry still---if you are sampling a large fraction of
+   the period of the pseudo-random number generator, than it is
+   possible that the sequences will overlap.  The Merseene twister has
+   a period of $2^{19937}-1$, so it is unlikely for this to be an
+   issue.
+
+   True parallel random number generators exist, where a
+   single thread controls the generator and gives the numbers
+   to each thread as needed.
+
+   See also: `Improved Long-Period Generators Based on Linear Recurrences Modulo 2 <https://www.iro.umontreal.ca/~lecuyer/myftp/papers/lfsr04.pdf>`_
+   by Panneton and L'Ecuyer.
+
 Then this calculation can proceed in a trivially parallel fashion.
 The only thing we need to do is mark the sum for a reduction at the
 end of the parallel region.
