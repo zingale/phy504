@@ -14,9 +14,16 @@ Let's parallelize our :ref:`Monte Carlo example of computing pi <sec:computing_p
 
    There is a worry still---if you are sampling a large fraction of
    the period of the pseudo-random number generator, than it is
-   possible that the sequences will overlap.  The Merseene twister has
-   a period of $2^{19937}-1$, so it is unlikely for this to be an
+   possible that the sequences will overlap.  This is discussed
+   in the `SC08 presentation by Tim Mattson & Larry Meadows <https://www.openmp.org/wp-content/uploads/omp-hands-on-SC08.pdf>`_ (look around slide 130).
+
+.. tip::
+
+   The Merseene twister has
+   a period of $2^{19937}-1$, so it is unlikely for overlap to be an
    issue.
+
+.. note::
 
    True parallel random number generators exist, where a
    single thread controls the generator and gives the numbers
