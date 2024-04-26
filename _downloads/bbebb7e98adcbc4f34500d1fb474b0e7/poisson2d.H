@@ -106,7 +106,7 @@ public:
     ///
     void set_source(std::function<double(double, double)> func) {
 
-        #pragma omp parallel for
+        #pragma omp parallel for collapse(2)
         for (int i = 0; i < nx; ++i) {
             for (int j = 0; j < ny; ++j) {
                 f(i,j) = func(x[i], y[j]);
@@ -217,7 +217,7 @@ public:
     Array residual() {
         Array r(nx, ny, 0);
 
-        #pragma omp parallel for
+        #pragma omp parallel for collapse(2)
         for (int i = 1; i < nx-1; ++i) {
             for (int j = 1; j < ny-1; ++j) {
                 r(i,j) = f(i,j)
@@ -238,7 +238,7 @@ public:
 
         #pragma omp parallel reduction(+:l2)
         {
-            #pragma omp for
+            #pragma omp for collapse(2)
             for (int i = 0; i < nx; ++i) {
                 for (int j = 0; j < ny; ++j) {
                     l2 += e(i,j) * e(i,j);
@@ -257,7 +257,7 @@ public:
     double true_error(std::function<double(double, double)> true_func) {
         Array err(nx, ny);
 
-        #pragma omp parallel for
+        #pragma omp parallel for collapse(2)
         for (int i = 0; i < nx; ++i) {
             for (int j = 0; j < ny; ++j) {
                 err(i, j) = true_func(x[i], y[j]) - phi(i, j);
