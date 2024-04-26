@@ -42,3 +42,10 @@ end of the parallel region.
    without OpenMP if we desire.
 
 
+.. tip::
+
+   Other types of random number generators exist, beyond those in the C++ SL.
+   Here's an example of a header-only library that works on CPUs and GPUs:
+   `random123 <https://github.com/DEShawResearch/random123>`_.
+
+
