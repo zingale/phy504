@@ -337,9 +337,10 @@ use this the same way we’ve been using <code class="docutils literal notransla
 <p>Here we want to construct the integral:</p>
 <div class="math notranslate nohighlight">
 \[\pi = 4 \int_0^1 \frac{1}{1 + x^2} dx\]</div>
-<p>using a simple midpoint method.  We will break the domain <span class="math notranslate nohighlight">\([0,
-1]\)</span> into <span class="math notranslate nohighlight">\(N\)</span> intervals, and spread those over the different MPI
-processes.</p>
+<p>using a simple midpoint method.  We will break the loop over the
+<span class="math notranslate nohighlight">\(N\)</span> intervals in  <span class="math notranslate nohighlight">\([0,
+1]\)</span>  across the different MPI
+processes using a stride.</p>
 <p>We have 2 communications here.</p>
 <ul class="simple">
 <li><p>At the start, one processor (we pick <code class="docutils literal notranslate"><span class="pre">0</span></code> since it will always
