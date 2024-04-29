@@ -72,8 +72,8 @@ int main() {
          // note: this is unstable for C > 0.5 because the update
          // does not see the diagonal upwind cell
 
-         for (int i = g.ilo; i <= g.ihi+1; ++i) {
-             for (int j = g.jlo; j <= g.jhi+1; ++j) {
+         for (int i = g.ilo; i <= g.ihi; ++i) {
+             for (int j = g.jlo; j <= g.jhi; ++j) {
                  anew(i, j) = a(i, j)
                      - dt * simulation::u * (a(i, j) - a(i-1, j)) / g.dx
                      - dt * simulation::v * (a(i, j) - a(i, j-1)) / g.dy;
@@ -82,7 +82,11 @@ int main() {
 
          t += dt;
 
-         a = anew;
+         for (int i = g.ilo; i <= g.ihi; ++i) {
+             for (int j = g.jlo; j <= g.jhi; ++j) {
+                 a(i, j) = anew(i, j);
+             }
+         }
 
      }
 

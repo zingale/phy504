@@ -45,7 +45,7 @@ inline void fill_ghost_cells(const grid& g, Array& a) {
     // first do the periodic fill in the y-direction -- this is all
     // local
 
-    for (int i = g.ilo-g.ng; i <= g.ilo+g.ng; ++i) {
+    for (int i = g.ilo-g.ng; i <= g.ihi+g.ng; ++i) {
         a(i, g.jlo-1) = a(i, g.jhi);
         a(i, g.jhi+1) = a(i, g.jlo);
     }
@@ -81,6 +81,30 @@ inline void fill_ghost_cells(const grid& g, Array& a) {
                      &a(g.ilo-1, g.jlo-g.ng), a.ny(), MPI_DOUBLE, recvfrom, 1,
                      MPI_COMM_WORLD, &status);
     }
+
+#if 0
+    // debugging
+
+    for (int n = 0; n < nprocs; ++n) {
+        if (n == rank) {
+            std::cout << "rank = " << rank << std::endl;
+            std::cout << "left: " << std::endl;
+            for (int j = g.jlo-g.ng; j <= g.jhi+g.ng; ++j) {
+                std::cout << a(g.ilo-1, j) << " ";
+            }
+            std::cout << std::endl;
+            std::cout << "right: " << std::endl;
+            for (int j = g.jlo-g.ng; j <= g.jhi+g.ng; ++j) {
+                std::cout << a(g.ihi+1, j) << " ";
+            }
+            std::cout << std::endl << std::endl;
+        }
+        MPI_Barrier(MPI_COMM_WORLD);
+    }
+
+    std::abort();
+#endif
+
 }
 
 
