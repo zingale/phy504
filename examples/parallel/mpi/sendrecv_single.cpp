@@ -26,18 +26,14 @@ int main() {
     // send:    mype -> mype - 1
     // receive: mype <- mype + 1
 
-    int sendto{-1};
-    int recvfrom{-1};
+    int sendto{MPI_PROC_NULL};
+    int recvfrom{MPI_PROC_NULL};
 
-    if (mype == 0) {
-        sendto = MPI_PROC_NULL;
-    } else {
+    if (mype > 0) {
         sendto = mype-1;
     }
 
-    if (mype == num_procs-1) {
-        recvfrom = MPI_PROC_NULL;
-    } else {
+    if (mype < num_procs-1) {
         recvfrom = mype+1;
     }
 
@@ -53,15 +49,14 @@ int main() {
     // send:    mype -> mype+1
     // receive: mype <- mype-1
 
-    if (mype == num_procs-1) {
-        sendto = MPI_PROC_NULL;
-    } else {
+    sendto = MPI_PROC_NULL;
+    recvfrom = MPI_PROC_NULL;
+
+    if (mype < num_procs-1) {
         sendto = mype+1;
     }
 
-    if (mype == 0) {
-        recvfrom = MPI_PROC_NULL;
-    } else {
+    if (mype > 0) {
         recvfrom = mype-1;
     }
 
@@ -70,8 +65,8 @@ int main() {
                  MPI_COMM_WORLD, &status);
 
     std::cout << "PE: " << mype << " data: ";
-    for (int i = 0; i < data.size(); ++i) {
-        std::cout << data[i] << " ";
+    for (auto e : data) {
+        std::cout << e << " ";
     }
     std::cout << std::endl;
 
