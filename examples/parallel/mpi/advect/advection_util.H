@@ -30,8 +30,63 @@ inline void initialize(const grid& g, Array& a) {
 }
 
 ///
+/// fill ghostcells, assuming doubly periodic
+///
+inline void fill_ghost_cells(const grid& g, Array& a) {
+
+    // we are doing a 1-d domain decomposition in the x-direction
+
+    int rank{-1};
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+    int nprocs{-1};
+    MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
+
+    // first do the periodic fill in the y-direction -- this is all
+    // local
+
+    for (int i = g.ilo-g.ng; i <= g.ilo+g.ng; ++i) {
+        a(i, g.jlo-1) = a(i, g.jhi);
+        a(i, g.jhi+1) = a(i, g.jlo);
+    }
+
+    // now fill the interior ghost cells
+
+    {
+
+        // send the first column of valid data to the left to fill the
+        // left PE's right ghost cells, and receive from the right PE.
+        // Wrap periodically.
+
+        int sendto = rank == 0 ? nprocs - 1 : rank - 1;
+        int recvfrom = rank == nprocs - 1 ? 0 : rank + 1;
+
+        MPI_Status status;
+        MPI_Sendrecv(&a(g.ilo, g.jlo-g.ng), a.ny(), MPI_DOUBLE, sendto, 0,
+                     &a(g.ihi+1, g.jlo-g.ng), a.ny(), MPI_DOUBLE, recvfrom, 0,
+                     MPI_COMM_WORLD, &status);
+    }
+
+    {
+
+        // send the last column of valid data to the right to fill the
+        // right PE's left ghost cells, and receive from the left PE.
+        // Wrap periodically.
+
+        int sendto = rank == nprocs - 1 ? 0 : rank + 1;
+        int recvfrom = rank == 0 ? nprocs - 1 : rank - 1;
+
+        MPI_Status status;
+        MPI_Sendrecv(&a(g.ihi, g.jlo-g.ng), a.ny(), MPI_DOUBLE, sendto, 1,
+                     &a(g.ilo-1, g.jlo-g.ng), a.ny(), MPI_DOUBLE, recvfrom, 1,
+                     MPI_COMM_WORLD, &status);
+    }
+}
+
+
+///
 /// write out the data by copying everything to rank 0
-/// 
+///
 inline void output(const grid& g, double t, const Array& a) {
 
     int rank{-1};
@@ -74,12 +129,7 @@ inline void output(const grid& g, double t, const Array& a) {
                 // now transfer the data -- we'll send everything,
                 // including the ghost cells
 
-                int icount = g.ihi - g.ilo + 1 + 2 * g.ng;
-                int jcount = g.jhi - g.jlo + 1 + 2 * g.ng;
-
-                std::cout << "sending size = " << a.nx() * a.ny() << std::endl;
-
-                MPI_Send(a.data(), icount * jcount, MPI_DOUBLE,
+                MPI_Send(a.data(), a.nx() * a.ny(), MPI_DOUBLE,
                          0, n, MPI_COMM_WORLD);
 
             } else if (rank == 0) {
@@ -91,27 +141,17 @@ inline void output(const grid& g, double t, const Array& a) {
                 int irange[2] = {0, 0};
                 MPI_Recv(irange, 2, MPI_INT, n, n, MPI_COMM_WORLD, &status);
 
-                std::cout << "recieving data from rank " << n << std::endl;
-                std::cout << irange[0] << ", " << irange[1] << std::endl;
-
                 // create a buffer to hold the data we will receive
 
                 Array a_buf(irange[0]-g.ng, irange[1]+g.ng,
                             g.jlo-g.ng, g.jhi+g.ng);
 
-                int icount = irange[1] - irange[0] + 1 + 2 * g.ng;
-                int jcount = g.jhi - g.jlo + 1 + 2 * g.ng;
-
-                std::cout << "buffer size = " << a_buf.nx() * a_buf.ny() << std::endl;
-
-                auto ierr = MPI_Recv(a_buf.data(), icount * jcount, MPI_DOUBLE,
+                auto ierr = MPI_Recv(a_buf.data(), a_buf.nx() * a_buf.ny(), MPI_DOUBLE,
                                      n, n, MPI_COMM_WORLD, &status);
 
                 if (ierr != MPI_SUCCESS) {
                     std::cout << "error in recv: " << ierr << std::endl;
                 }
-
-                std::cout << "outputing the data" << std::endl;
 
                 // output the buffer to the file
                 for (int i = irange[0]; i <= irange[1]; ++i) {
@@ -121,7 +161,6 @@ inline void output(const grid& g, double t, const Array& a) {
                     ofile << std::endl;
                 }
 
-                std::cout << "done" << std::endl;
             }
 
         }
@@ -131,7 +170,7 @@ inline void output(const grid& g, double t, const Array& a) {
     // in testing, before any of the advection was implemented, I needed a barrier here
     // to make sure the execution doesn't end before the file is written.
 
-    MPI_Barrier(MPI_COMM_WORLD);
+    //MPI_Barrier(MPI_COMM_WORLD);
 }
 
 #endif

@@ -6,8 +6,8 @@
 #include "grid.H"
 
 namespace domain {
-    constexpr int nx{512};
-    constexpr int ny{512};
+    constexpr int nx{64};
+    constexpr int ny{64};
     constexpr int ng{1};
 
     constexpr double xmin{0.0};
@@ -18,7 +18,7 @@ namespace domain {
 
 namespace simulation {
     constexpr double C{0.4};
-    constexpr double tmax{1.0};
+    constexpr double tmax{0.333};
     constexpr double u{1.0};
     constexpr double v{1.0};
 }
@@ -65,11 +65,20 @@ int main() {
          }
 
          // fill ghost cells
+         fill_ghost_cells(g, a);
 
          // do the first-order unsplit update
+
          // note: this is unstable for C > 0.5 because the update
          // does not see the diagonal upwind cell
 
+         for (int i = g.ilo; i <= g.ihi+1; ++i) {
+             for (int j = g.jlo; j <= g.jhi+1; ++j) {
+                 anew(i, j) = a(i, j)
+                     - dt * simulation::u * (a(i, j) - a(i-1, j)) / g.dx
+                     - dt * simulation::v * (a(i, j) - a(i, j-1)) / g.dy;
+             }
+         }
 
          t += dt;
 
@@ -77,4 +86,7 @@ int main() {
 
      }
 
+     output(g, t, a);
+
+     MPI_Finalize();
 }
