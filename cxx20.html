@@ -217,8 +217,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#views">Views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#range-adaptors">Range Adaptors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#way-comparison">3-way Comparison</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#numbers"><code class="docutils literal notranslate"><span class="pre">&lt;numbers&gt;</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#format"><code class="docutils literal notranslate"><span class="pre">&lt;format&gt;</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cxx23.html">Coming in C++23</a></li>
@@ -268,6 +266,74 @@
 <p>The main features in C++20 of interest to scientific computing are:</p>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+<p>Modules are source files that are compiled independently of your program that can
+then be imported.  They replace the role of headers in C++20.  Note that compiler
+support is not that great at the moment.</p>
+<p>See <a class="reference external" href="https://learn.microsoft.com/en-us/cpp/cpp/modules-cpp?view=msvc-170">Overview of modules in C++</a></p>
+<p>One of the advantages of modules is that they can greatly speed up compilation times.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Compiler support for modules is not very good at the moment.</p>
+</div>
+<p>Here’s a simple example.  First the module:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 139 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">module</span><span class="p">;</span>
+
+<span class="c1">// includes must be in the &quot;global fragment&quot; and preced the main</span>
+<span class="c1">// purview that&#39;s why we add the `module;` above.</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="n">Example</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Now the main program:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 140 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="n">Example</span><span class="p">;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>and finally, a <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 141 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">MODULEFILES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>example.cpp
+<span class="nv">SOURCEFILES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>main.cpp
+
+<span class="nv">MODULEOBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>MODULEFILES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+<span class="nv">SOURCEOBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCEFILES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>
+<span class="w">	</span>g++<span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>-fmodules-ts<span class="w"> </span>-c<span class="w"> </span>$&lt;
+
+<span class="nf">main</span><span class="o">:</span><span class="w"> </span>${<span class="n">MODULEOBJS</span>} ${<span class="n">SOURCEOBJS</span>}
+<span class="w">	</span>g++<span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>--modules-ts<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span><span class="si">${</span><span class="nv">MODULEOBJS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">SOURCEOBJS</span><span class="si">}</span>
+
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">	</span>rm<span class="w"> </span>-rf<span class="w"> </span>*.o<span class="w"> </span>main<span class="w"> </span>gcm.cache
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This compiles with GCC 11.4, but curiously not with GCC 14…</p>
+</div>
 </section>
 <section id="concepts">
 <h2>Concepts<a class="headerlink" href="#concepts" title="Link to this heading"></a></h2>
@@ -276,8 +342,8 @@
 <h2>Views<a class="headerlink" href="#views" title="Link to this heading"></a></h2>
 <p>C++ 20 introduces the <a class="reference external" href="https://en.cppreference.com/w/cpp/ranges">ranges library</a>.  This allows us to more easily consider views into our containers.</p>
 <p>Here’s an example of using a range-based for loop over a set of integers:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 139 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">iota_loop.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 142 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">iota_loop.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>
 
@@ -298,8 +364,8 @@
 <a class="reference external" href="https://learn.microsoft.com/en-us/cpp/standard-library/range-adaptors?view=msvc-170">https://learn.microsoft.com/en-us/cpp/standard-library/range-adaptors?view=msvc-170</a>)</p>
 <p>Here’s an example of using an adaptor to reverse the iteration through a vector using
 a range-based for loop:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 140 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reverse_adaptor.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 143 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reverse_adaptor.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>
@@ -320,37 +386,6 @@ a range-based for loop:</p>
 </section>
 <section id="way-comparison">
 <h2>3-way Comparison<a class="headerlink" href="#way-comparison" title="Link to this heading"></a></h2>
-</section>
-<section id="numbers">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;numbers&gt;</span></code><a class="headerlink" href="#numbers" title="Link to this heading"></a></h2>
-<p>The <a class="reference external" href="https://en.cppreference.com/w/cpp/numeric/constants">numbers header</a>
-provides mathematical constants.  They are implemented as templates that
-can be defined with whatever type you need:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 141 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">numbers_example.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numbers&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">digits10</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numbers</span><span class="o">::</span><span class="n">e_v</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">digits10</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numbers</span><span class="o">::</span><span class="n">e_v</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">digits10</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numbers</span><span class="o">::</span><span class="n">e_v</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</section>
-<section id="format">
-<h2><code class="docutils literal notranslate"><span class="pre">&lt;format&gt;</span></code><a class="headerlink" href="#format" title="Link to this heading"></a></h2>
-<p>We already saw the new style formatting when we looked at <code class="docutils literal notranslate"><span class="pre">std::print()</span></code>.
-The format is handled by the <a class="reference external" href="https://en.cppreference.com/w/cpp/header/format">format header</a>.</p>
 </section>
 </section>
 

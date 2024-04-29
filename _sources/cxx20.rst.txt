@@ -7,7 +7,39 @@ The main features in C++20 of interest to scientific computing are:
 Modules
 =======
 
+Modules are source files that are compiled independently of your program that can
+then be imported.  They replace the role of headers in C++20.  Note that compiler
+support is not that great at the moment.
 
+See `Overview of modules in C++ <https://learn.microsoft.com/en-us/cpp/cpp/modules-cpp?view=msvc-170>`_
+
+One of the advantages of modules is that they can greatly speed up compilation times.
+
+.. note::
+
+   Compiler support for modules is not very good at the moment.
+
+Here's a simple example.  First the module:
+
+.. literalinclude:: ../../examples/modules/example.cpp
+   :language: c++
+   :caption: ``example.cpp``
+
+Now the main program:
+
+.. literalinclude:: ../../examples/modules/main.cpp
+   :language: c++
+   :caption: ``main.cpp``
+
+and finally, a ``GNUmakefile``:
+
+.. literalinclude:: ../../examples/modules/GNUmakefile
+   :language: make
+   :caption: ``GNUmakefile``
+
+.. note::
+
+   This compiles with GCC 11.4, but curiously not with GCC 14...
 
 Concepts
 ========
@@ -42,22 +74,3 @@ a range-based for loop:
 3-way Comparison
 ================
 
-
-``<numbers>``
-=============
-
-The `numbers header <https://en.cppreference.com/w/cpp/numeric/constants>`_
-provides mathematical constants.  They are implemented as templates that
-can be defined with whatever type you need:
-
-.. literalinclude:: ../../examples/numbers/numbers_example.cpp
-   :language: c++
-   :caption: ``numbers_example.cpp``
-
-
-
-``<format>``
-============
-
-We already saw the new style formatting when we looked at ``std::print()``.
-The format is handled by the `format header <https://en.cppreference.com/w/cpp/header/format>`_.
