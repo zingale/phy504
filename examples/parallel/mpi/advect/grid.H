@@ -53,36 +53,37 @@ public:
     inline void set_decomposition(int rank, int nprocs) {
 
         // each processor will hold a slab with the i coordinates
-        // spanning the entire x-domain, and the j coordinates
-        // spanning their own respective subset.  We will refer to a
+        // spanning ~ 1/nx of the x-domain, and the j coordinates
+        // spanning the entire j range.  We will refer to a
         // global index space of nx x ny.
 
         // note: with this decomposition, the data will be
         // contiguous in memory on each processor
 
-        int jwidth = std::floor(static_cast<double>(ny) /
+        int iwidth = std::floor(static_cast<double>(nx) /
                                 static_cast<double>(nprocs));
 
-        int jextra = ny % nprocs;
+        int iextra = nx % nprocs;
 
         // the first iwidth processors have a width of iwidth+1
-        int mywidth = jwidth;
-        if (rank < jextra) {
+        int mywidth = iwidth;
+        if (rank < iextra) {
             mywidth++;
         }
 
         // current processor's index space
 
-        ilo = 0;
-        ihi = nx-1;
 
-        if (rank < jextra) {
-            jlo = (jwidth+1)*rank;
-            jhi = jlo + mywidth - 1;
+        if (rank < iextra) {
+            ilo = (iwidth+1)*rank;
+            ihi = ilo + mywidth - 1;
         } else {
-            jlo = (jwidth+1)*jextra + jwidth*(rank - jextra);
-            jhi = jlo + mywidth - 1;
+            ilo = (iwidth+1)*iextra + iwidth*(rank - iextra);
+            ihi = ilo + mywidth - 1;
         }
+
+        jlo = 0;
+        jhi = ny-1;
 
     }
 

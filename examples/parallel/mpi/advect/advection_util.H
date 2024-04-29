@@ -48,29 +48,39 @@ inline void output(const grid& g, double t, const Array& a) {
 
     for (int n = 0; n < nprocs; ++n) {
 
-        if (n != 0) {
+        if (n == 0) {
 
-            // we need to copy the data over to rank 0
+            // write out rank 0's data.  No communication needed
+
+            for (int i = g.ilo; i <= g.ihi; ++i) {
+                for (int j = g.jlo; j <= g.jhi; ++j) {
+                    ofile << a(i, j) << std::endl;
+                }
+                ofile << std::endl;
+            }
+
+        } else {
+
+            // we are working on a rank > 0, so we need to copy the
+            // data over to rank 0
 
             if (rank == n) {
 
                 // transfer the index range
 
-                int jrange[2] = {g.jlo, g.jhi};
-                MPI_Send(jrange, 2, MPI_INT, 0, n, MPI_COMM_WORLD);
+                int irange[2] = {g.ilo, g.ihi};
+                MPI_Send(irange, 2, MPI_INT, 0, n, MPI_COMM_WORLD);
 
-                // now transfer the data -- note that we are contiguous
-                // in the j range, but we have ghost cells.  We'll
-
-                // copy the ghostcells over in the i-direction so we
-                // don't need to create a temporary buffer to store
-                // the data
+                // now transfer the data -- we'll send everything,
+                // including the ghost cells
 
                 int icount = g.ihi - g.ilo + 1 + 2 * g.ng;
-                int jcount = g.jhi - g.jlo + 1;
+                int jcount = g.jhi - g.jlo + 1 + 2 * g.ng;
 
-               MPI_Send(&a(0, g.jlo), icount * jcount, MPI_DOUBLE,
-                        0, n, MPI_COMM_WORLD);
+                std::cout << "sending size = " << a.nx() * a.ny() << std::endl;
+
+                MPI_Send(a.data(), icount * jcount, MPI_DOUBLE,
+                         0, n, MPI_COMM_WORLD);
 
             } else if (rank == 0) {
 
@@ -78,48 +88,50 @@ inline void output(const grid& g, double t, const Array& a) {
 
                 MPI_Status status;
 
-                int jrange[2] = {0, 0};
-                MPI_Recv(jrange, 2, MPI_INT, n, n, MPI_COMM_WORLD, &status);
+                int irange[2] = {0, 0};
+                MPI_Recv(irange, 2, MPI_INT, n, n, MPI_COMM_WORLD, &status);
 
                 std::cout << "recieving data from rank " << n << std::endl;
-                std::cout << jrange[0] << ", " << jrange[1] << std::endl;
+                std::cout << irange[0] << ", " << irange[1] << std::endl;
 
                 // create a buffer to hold the data we will receive
 
-                Array a_buf(g.ilo-g.ng, g.ihi+g.ng, jrange[0], jrange[1]);
+                Array a_buf(irange[0]-g.ng, irange[1]+g.ng,
+                            g.jlo-g.ng, g.jhi+g.ng);
 
-                int icount = g.ihi - g.ilo + 1 + 2 * g.ng;
-                int jcount = jrange[1] - jrange[0] + 1;
+                int icount = irange[1] - irange[0] + 1 + 2 * g.ng;
+                int jcount = g.jhi - g.jlo + 1 + 2 * g.ng;
 
-                MPI_Recv(&a_buf(0, jrange[0]), icount * jcount, MPI_DOUBLE,
-                         n, n, MPI_COMM_WORLD, &status);
+                std::cout << "buffer size = " << a_buf.nx() * a_buf.ny() << std::endl;
+
+                auto ierr = MPI_Recv(a_buf.data(), icount * jcount, MPI_DOUBLE,
+                                     n, n, MPI_COMM_WORLD, &status);
+
+                if (ierr != MPI_SUCCESS) {
+                    std::cout << "error in recv: " << ierr << std::endl;
+                }
 
                 std::cout << "outputing the data" << std::endl;
 
                 // output the buffer to the file
-                for (int j = jrange[0]; j <= jrange[1]; ++j) {
-                    for (int i = g.ilo; i <= g.ihi; ++i) {
+                for (int i = irange[0]; i <= irange[1]; ++i) {
+                    for (int j = g.jlo; j <= g.jhi; ++j) {
                         ofile << a_buf(i, j) << std::endl;
                     }
                     ofile << std::endl;
                 }
-            }
 
-        } else {
-
-            // write out rank 0's data.  No communication needed
-
-            for (int j = g.jlo; j <= g.jhi; ++j) {
-                for (int i = g.ilo; i <= g.ihi; ++i) {
-                    ofile << a(i, j) << std::endl;
-                }
-                ofile << std::endl;
+                std::cout << "done" << std::endl;
             }
 
         }
 
     }
 
+    // in testing, before any of the advection was implemented, I needed a barrier here
+    // to make sure the execution doesn't end before the file is written.
+
+    MPI_Barrier(MPI_COMM_WORLD);
 }
 
 #endif

@@ -115,6 +115,14 @@ public:
         return _data[row * _ny + col];
     }
 
+    inline const double* data() const {
+        return _data.data();
+    }
+
+    inline double* data() {
+        return _data.data();
+    }
+
     ///
     /// return a flattened view of the data region -- this can be used with
     /// a range-for loop, e.g. `for (auto &e : a.flat()) {...}`
