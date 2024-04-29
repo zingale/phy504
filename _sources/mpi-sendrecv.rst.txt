@@ -18,11 +18,16 @@ This may cause network contention if the destination process is busy
 doing its own communication.  There are non-blocking sends that we can use
 in this case.
 
+Here's the interface for ``MPI_Send()``: https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Send.html
+
+Here's the interface for ``MPI_Recv()``: https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Recv.html
+
+
 Basic example
 =============
 
 Here's a basic example that mimics the *ghost cell filling* process used
-in hydrodynamics codes.
+in hydrodynamics codes or in the relaxation problem.
 
 #. On each processor we allocate an integer vector of 5 elements
 
@@ -55,6 +60,9 @@ MPI_Sendrecv
 Good communication performance often requires staggering the
 communication.  A combined ``MPI_Sendrecv`` can help with this.  We
 can use ``MPI_PROC_NULL`` when there is no destination.
+
+Here's what the interface to ``MPI_Sendrecv`` looks like:
+https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Sendrecv.html
 
 Here's the same example as above, but now using this single function.
 

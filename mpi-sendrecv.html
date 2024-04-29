@@ -275,10 +275,12 @@ the buffer.</p></li>
 <p>This may cause network contention if the destination process is busy
 doing its own communication.  There are non-blocking sends that we can use
 in this case.</p>
+<p>Here’s the interface for <code class="docutils literal notranslate"><span class="pre">MPI_Send()</span></code>: <a class="reference external" href="https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Send.html">https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Send.html</a></p>
+<p>Here’s the interface for <code class="docutils literal notranslate"><span class="pre">MPI_Recv()</span></code>: <a class="reference external" href="https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Recv.html">https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Recv.html</a></p>
 <section id="basic-example">
 <h2>Basic example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
 <p>Here’s a basic example that mimics the <em>ghost cell filling</em> process used
-in hydrodynamics codes.</p>
+in hydrodynamics codes or in the relaxation problem.</p>
 <ol class="arabic simple">
 <li><p>On each processor we allocate an integer vector of 5 elements</p></li>
 <li><p>We fill the middle 3 element with a sequence based on the processor number.
@@ -360,6 +362,8 @@ no right).</p>
 <p>Good communication performance often requires staggering the
 communication.  A combined <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code> can help with this.  We
 can use <code class="docutils literal notranslate"><span class="pre">MPI_PROC_NULL</span></code> when there is no destination.</p>
+<p>Here’s what the interface to <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code> looks like:
+<a class="reference external" href="https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Sendrecv.html">https://www.mpich.org/static/docs/v3.0.x/www3/MPI_Sendrecv.html</a></p>
 <p>Here’s the same example as above, but now using this single function.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 135 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sendrecv_single.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
