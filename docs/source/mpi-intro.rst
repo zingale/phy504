@@ -38,11 +38,13 @@ There are 2 other function we use here:
    :language: c++
    :caption: ``hello.cpp``
 
-There is one additional bit that we won't explore here.  MPI allows
-you to set up communicators that are subgroups of the total number of
-processors.  This can be useful to divide tasks up between the total
-number of processors.  We'll stick to ``MPI_COMM_WORLD`` which
-represents all processors.
+.. note::
+
+   There is one additional bit that we won't explore here.  MPI allows
+   you to set up communicators that are subgroups of the total number
+   of processors.  This can be useful to divide tasks up between the
+   total number of processors.  We'll stick to ``MPI_COMM_WORLD``
+   which represents all processors.
 
 To compile this, we need to supply the path where the header file is
 located as well as explicitly link in the libraries we use.
@@ -95,11 +97,13 @@ is isolated from the others.
 
 A few considerations:
 
-* You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).
+* You need to tell the library:
 
-  * Together with the address of the buffer specify what is being sent
+  * The datatype of the variable you are communicating and how big it is (the buffer size).
 
-* Processors can be grouped together
+  * The address of the buffer to specify what is being sent
+
+* Processors can be grouped together:
 
   * Communicators label different groups
 
