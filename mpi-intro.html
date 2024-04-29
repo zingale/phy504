@@ -316,11 +316,14 @@ program represents out of the total number used by MPI.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>There is one additional bit that we won’t explore here.  MPI allows
-you to set up communicators that are subgroups of the total number of
-processors.  This can be useful to divide tasks up between the total
-number of processors.  We’ll stick to <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> which
-represents all processors.</p>
+you to set up communicators that are subgroups of the total number
+of processors.  This can be useful to divide tasks up between the
+total number of processors.  We’ll stick to <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>
+which represents all processors.</p>
+</div>
 <p>To compile this, we need to supply the path where the header file is
 located as well as explicitly link in the libraries we use.
 Thankfully, most MPI implementation provide a wrapper for that: <code class="docutils literal notranslate"><span class="pre">mpic++</span></code>:</p>
@@ -420,12 +423,13 @@ thread-safety is not an issue here, since each instance of the program
 is isolated from the others.</p>
 <p>A few considerations:</p>
 <ul class="simple">
-<li><p>You need to tell the library the datatype of the variable you are communicating and how big it is (the buffer size).</p>
+<li><p>You need to tell the library:</p>
 <ul>
-<li><p>Together with the address of the buffer specify what is being sent</p></li>
+<li><p>The datatype of the variable you are communicating and how big it is (the buffer size).</p></li>
+<li><p>The address of the buffer to specify what is being sent</p></li>
 </ul>
 </li>
-<li><p>Processors can be grouped together</p>
+<li><p>Processors can be grouped together:</p>
 <ul>
 <li><p>Communicators label different groups</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> is the default communicator (all processes)</p></li>
