@@ -65,9 +65,10 @@ Here we want to construct the integral:
 
    \pi = 4 \int_0^1 \frac{1}{1 + x^2} dx
 
-using a simple midpoint method.  We will break the domain :math:`[0,
-1]` into :math:`N` intervals, and spread those over the different MPI
-processes.
+using a simple midpoint method.  We will break the loop over the
+$N$ intervals in  :math:`[0,
+1]`  across the different MPI
+processes using a stride.
 
 We have 2 communications here.
 
