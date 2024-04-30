@@ -308,23 +308,23 @@ are due to numerical (truncation) error in our discretization.</p>
 <a class="reference internal image-reference" href="_images/domain-oned.png"><img alt="_images/domain-oned.png" class="align-center" src="_images/domain-oned.png" style="width: 80%;" /></a>
 <p>Each MPI process will manage their own subdomain.  To make things
 easier, we will refer to a global index space on the entire domain.</p>
-<p>For the figure above, the indices of the boxes, (<code class="docutils literal notranslate"><span class="pre">ilo</span></code>, <code class="docutils literal notranslate"><span class="pre">ihi</span></code>, <code class="docutils literal notranslate"><span class="pre">jlo</span></code>, <code class="docutils literal notranslate"><span class="pre">jhi</span></code>) are:</p>
+<p>For the figure above, the indices of the grids, (<code class="docutils literal notranslate"><span class="pre">ilo</span></code>, <code class="docutils literal notranslate"><span class="pre">ihi</span></code>, <code class="docutils literal notranslate"><span class="pre">jlo</span></code>, <code class="docutils literal notranslate"><span class="pre">jhi</span></code>) are:</p>
 <ul class="simple">
-<li><p>left box: (<code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>)</p></li>
-<li><p>middle box: (<code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>)</p></li>
-<li><p>right box: (<code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">14</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>)</p></li>
+<li><p>left grid: (<code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>)</p></li>
+<li><p>middle grid: (<code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>)</p></li>
+<li><p>right grid: (<code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">14</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>)</p></li>
 </ul>
-<p>Each of these boxes will be managed by a separate MPI task.  To deal
-with the boundaries of each box, we will have a perimeter of ghost
-cells, shown as the red outline for the middle box.  We will use MPI
-send/recv to exchange data with the neighboring boxes to fill these
+<p>Each of these grids will be managed by a separate MPI task.  To deal
+with the boundaries of each grid, we will have a perimeter of ghost
+cells, shown as the red outline for the middle grid.  We will use MPI
+send/recv to exchange data with the neighboring grids to fill these
 ghost cells.</p>
 <p>For the physical boundaries, we will assume we are periodic.</p>
 </section>
 <section id="array">
 <h2><code class="docutils literal notranslate"><span class="pre">Array</span></code><a class="headerlink" href="#array" title="Link to this heading"></a></h2>
 <p>We want a version of our <code class="docutils literal notranslate"><span class="pre">Array</span></code> class that can
-start at an arbitrary index, e.g., for the middle box above (excluding ghost cells):</p>
+start at an arbitrary index, e.g., for the middle grid above (excluding ghost cells):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
