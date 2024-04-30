@@ -40,11 +40,7 @@ Here's a similar C++ function, but now we use
    :language: c++
    :caption: ``mutate.cpp``
 
-And again, the same ``GNUmakefile`` (just changing the module name):
-
-.. literalinclude:: ../../examples/pybind11/mutate_from_python/GNUmakefile
-   :language: make
-   :caption: ``GNUmakefile``
+And again, the same ``GNUmakefile`` (just changing the module name): :download:`GNUmakefile <../../examples/pybind11/mutate_from_python/GNUmakefile>`.
 
 Here's how we can use it from python:
 

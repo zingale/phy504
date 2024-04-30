@@ -365,40 +365,10 @@ parameter.</p>
 </pre></div>
 </div>
 </div>
-<p>And again, the same <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> (just changing the module name):</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 149 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
-<span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
-
-<span class="nv">BASE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>mutate
-
-<span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
-
-<span class="nv">PYBIND_INCLUDES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>shell<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pybind11<span class="w"> </span>--includes<span class="k">)</span>
-
-<span class="nv">PYBIND_SUFFIX</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>shell<span class="w"> </span>python3-config<span class="w"> </span>--extension-suffix<span class="k">)</span>
-
-<span class="nv">PYTHON_LIBRARY</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="si">${</span><span class="nv">BASE</span><span class="si">}${</span><span class="nv">PYBIND_SUFFIX</span><span class="si">}</span>
-
-<span class="nf">ALL</span><span class="o">:</span><span class="w"> </span>${<span class="n">PYTHON_LIBRARY</span>}
-
-<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-O3<span class="w">  </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-shared<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-fPIC<span class="w"> </span><span class="si">${</span><span class="nv">PYBIND_INCLUDES</span><span class="si">}</span>
-
-<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>
-<span class="w">	</span>g++<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>-c<span class="w"> </span>$&lt;
-
-<span class="nf">${PYTHON_LIBRARY}</span><span class="o">:</span><span class="w"> </span>${<span class="n">OBJECTS</span>} ${<span class="n">HEADERS</span>}
-<span class="w">	</span>g++<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
-
-
-<span class="nf">print-%</span><span class="o">:</span><span class="w"> </span>; @<span class="n">echo</span> $* <span class="n">is</span> <span class="k">$($</span>*<span class="k">)</span>
-</pre></div>
-</div>
-</div>
+<p>And again, the same <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> (just changing the module name): <a class="reference download internal" download="" href="_downloads/8d53f2299601cce5d1c0e5fc33bdd33d/GNUmakefile"><code class="xref download docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a>.</p>
 <p>Here’s how we can use it from python:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 150 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 149 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">mutate</span> <span class="kn">import</span> <span class="n">update</span>
 
