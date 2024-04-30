@@ -3,7 +3,7 @@
 
 namespace py = pybind11;
 
-double sum(py::array_t<double> a) {
+double sum(py::array_t<double>& a) {
 
     auto a_arr = a.unchecked<2>();
 
