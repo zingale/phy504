@@ -29,7 +29,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Returning an Array to Python" href="cxx-python-array.html" />
+    <link rel="next" title="Passing a NumPy Array into C++" href="cxx-python-sum.html" />
     <link rel="prev" title="MPI Linear Advection Equation" href="mpi-advect.html" /> 
 </head>
 
@@ -212,6 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#simple-function-example">Simple function example</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-python-sum.html">Passing a NumPy Array into C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-array.html">Returning an Array to Python</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
@@ -309,6 +310,8 @@ into python as a module.  This needs to have a specific name, with the suffix gi
 </pre></div>
 </div>
 </div>
+<p>We add a <code class="docutils literal notranslate"><span class="pre">PYBIND11_MODULE</span></code> macro that defines the entry point
+from python—see: <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/reference.html#macros">https://pybind11.readthedocs.io/en/stable/reference.html#macros</a></p>
 <p>To compile it, we can use this <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Listing 145 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
@@ -353,7 +356,7 @@ into python as a module.  This needs to have a specific name, with the suffix gi
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="mpi-advect.html" class="btn btn-neutral float-left" title="MPI Linear Advection Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cxx-python-array.html" class="btn btn-neutral float-right" title="Returning an Array to Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-python-sum.html" class="btn btn-neutral float-right" title="Passing a NumPy Array into C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

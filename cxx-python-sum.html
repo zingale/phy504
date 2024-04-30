@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>github &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Passing a NumPy Array into C++ &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pull Requests" href="pull-requests.html" />
-    <link rel="prev" title="Git Remotes" href="git-remotes.html" /> 
+    <link rel="next" title="Returning an Array to Python" href="cxx-python-array.html" />
+    <link rel="prev" title="pybind11" href="cxx-python.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,21 +68,13 @@
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-branches.html">Git Branches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git-remotes.html">Git Remotes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">github</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-repository-on-github">Creating a repository on github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ssh-interlude">SSH interlude</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#working-remotely">Working remotely</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#readme-md-is-special"><code class="docutils literal notranslate"><span class="pre">README.md</span></code> is special</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pull-requests.html">Pull Requests</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
@@ -213,9 +205,9 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-advect.html">MPI Linear Advection Equation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Calling C++ from Python</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-python.html">pybind11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-python-sum.html">Passing a NumPy Array into C++</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Passing a NumPy Array into C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-array.html">Returning an Array to Python</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
@@ -254,9 +246,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">github</li>
+      <li class="breadcrumb-item active">Passing a NumPy Array into C++</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/github.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-python-sum.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -264,133 +256,85 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="github">
-<h1>github<a class="headerlink" href="#github" title="Link to this heading"></a></h1>
-<p>Github provides a web-based way to interact with git repositories.  At
-its heart it hosts a bare repo that we can push-pull to/from, but it
-also provides features to make it easier for users to request their
-changes be incorporated.</p>
-<section id="creating-a-repository-on-github">
-<h2>Creating a repository on github<a class="headerlink" href="#creating-a-repository-on-github" title="Link to this heading"></a></h2>
-<p>Let’s start by creating a new git repository using github’s web interface.  Start
-on your github home page and click on the “+” icon and select “New repository”:</p>
-<img alt="_images/github-new.png" class="align-center" src="_images/github-new.png" />
-<p>Now we give the repository a name.  Let’s use our initials, followed
-by <code class="docutils literal notranslate"><span class="pre">_class_repo</span></code>, so for me, it will be <code class="docutils literal notranslate"><span class="pre">mz_class_repo</span></code>.</p>
-<p>By default the repo will be public, which means anyone on the internet
-can see the contents—that’s what we want.</p>
-<p>Finally, check the box to add a <code class="docutils literal notranslate"><span class="pre">README</span></code> file—this means that our repository will
-not be empty initially.</p>
-<img alt="_images/github-create.png" class="align-center" src="_images/github-create.png" />
-<p>Our project is now found at: <em>https://github.com/username/reponame/</em>,
-where <em>username</em> is your Github username and <em>reponame</em> is the name of
-the repository you just created.</p>
-</section>
-<section id="ssh-interlude">
-<h2>SSH interlude<a class="headerlink" href="#ssh-interlude" title="Link to this heading"></a></h2>
-<p>Github works best is we communicate via <a class="reference external" href="https://en.wikipedia.org/wiki/Secure_Shell">secure shell</a> or <em>SSH</em>.  This is the
-same protocol we used for connecting to the portal MathLab machines.</p>
-<p>There is some nice documentation describing key pairs in the Software
-Carpentry <a class="reference external" href="https://swcarpentry.github.io/git-novice/07-github.html#ssh-background-and-setup">Create an SSH key pair</a>
-section.</p>
-<p>Here’s how we will set things up:</p>
-<ol class="arabic">
-<li><p>A the bash prompt generate a new key pair:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519</span>
-</pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">-t</span></code> option picks a secure encryption method.</p>
-<p>It will ask you for a passpharse—just hit “Enter” to keep it
-empty (if other people had access to your account, the you would
-want to pick a passphrase).</p>
-<p>If you do</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ls<span class="w"> </span>-l<span class="w"> </span>~/.ssh</span>
-</pre></div></div><p>you’ll see 2 files: <code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code> and <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> this is
-the private and public key for encryption.</p>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>Never share your private key (<code class="docutils literal notranslate"><span class="pre">id_ed25519</span></code>) with anyone.</p>
-<p>Our public key (<code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code>) is meant to be public, and
-we can give it to places we want to communicate with, like github</p>
-</div>
-</li>
-<li><p>Go to you Github profile SSH keys settings: <a class="reference external" href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>
-<p>Click on the <em>New SSH key</em> button and:</p>
-<ul>
-<li><p>give a <em>title</em> which is descriptive of the machine you are using, like
-<code class="docutils literal notranslate"><span class="pre">MathLab</span></code></p></li>
-<li><p>copy and paste the contents of <code class="docutils literal notranslate"><span class="pre">id_ed25519.pub</span></code> into the <em>key</em>
-text box.  You can see the contents by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">cat<span class="w"> </span>~/.ssh/id_ed25519.pub</span>
-</pre></div></div></li>
-<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code></p></li>
-</ul>
-</li>
-<li><p>Test things out:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com</span>
-</pre></div></div><p>It will ask you if we want to save the <em>fingerprint</em>—say “yes”, and then
-it should report:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Hi zingale! You&#39;ve successfully authenticated, but GitHub does
-not provide shell access.
+  <section id="passing-a-numpy-array-into-c">
+<h1>Passing a NumPy Array into C++<a class="headerlink" href="#passing-a-numpy-array-into-c" title="Link to this heading"></a></h1>
+<p>Imagine we want to create a NumPy array in python and pass it into C++ to
+operate on.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 146 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sum.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">py</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">pybind11</span><span class="p">;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">a_arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">unchecked</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">suma</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">suma</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a_arr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">suma</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="n">PYBIND11_MODULE</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">doc</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sum the elements of a 2-dimensional array&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;sum&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</li>
-</ol>
-<p>That means everything is working.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since your home directory is not shared across the MathLab machines, you
-will need to do this each time you sit down on a different machine.</p>
-<p>Also, in case our directory gets purged,
-we would need to regenerate a key and update github.</p>
 </div>
-</section>
-<section id="working-remotely">
-<h2>Working remotely<a class="headerlink" href="#working-remotely" title="Link to this heading"></a></h2>
-<p>Now we can git clone this repo.  From the github project page, click on the
-<em>code</em> button.</p>
-<img alt="_images/github-clone.png" class="align-center" src="_images/github-clone.png" />
-<p>Copy the string in the text box there and then on your command line clone
-the repo as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:zingale/mz_class_repo.git</span>
-</pre></div></div><p>(replacing my repo and username with your own).</p>
-<p>Now we can go into our repo and look around.  Notice that there is a
-<code class="docutils literal notranslate"><span class="pre">.git/</span></code> directory.  Also look at the remotes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>-v</span>
-</pre></div></div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>       <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zingale</span><span class="o">/</span><span class="n">mz_class_repo</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
-<span class="n">origin</span>       <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zingale</span><span class="o">/</span><span class="n">mz_class_repo</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+<p>To compile it, we can essentially the same <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 147 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
+<span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="nv">BASE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>sum
+
+<span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
+
+<span class="nv">PYBIND_INCLUDES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>shell<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pybind11<span class="w"> </span>--includes<span class="k">)</span>
+
+<span class="nv">PYBIND_SUFFIX</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>shell<span class="w"> </span>python3-config<span class="w"> </span>--extension-suffix<span class="k">)</span>
+
+<span class="nv">PYTHON_LIBRARY</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="si">${</span><span class="nv">BASE</span><span class="si">}${</span><span class="nv">PYBIND_SUFFIX</span><span class="si">}</span>
+
+<span class="nf">ALL</span><span class="o">:</span><span class="w"> </span>${<span class="n">PYTHON_LIBRARY</span>}
+
+<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-O3<span class="w">  </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-shared<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-fPIC<span class="w"> </span><span class="si">${</span><span class="nv">PYBIND_INCLUDES</span><span class="si">}</span>
+
+<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>
+<span class="w">	</span>g++<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>-c<span class="w"> </span>$&lt;
+
+<span class="nf">${PYTHON_LIBRARY}</span><span class="o">:</span><span class="w"> </span>${<span class="n">OBJECTS</span>} ${<span class="n">HEADERS</span>}
+<span class="w">	</span>g++<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
+
+
+<span class="nf">print-%</span><span class="o">:</span><span class="w"> </span>; @<span class="n">echo</span> $* <span class="n">is</span> <span class="k">$($</span>*<span class="k">)</span>
 </pre></div>
 </div>
-<p>This is just like the example or remotes we did previously, except now
-github is acting as our remote.</p>
-<p>This means that we call push to github and pull from there.</p>
-<p>As a single user, this will allow you to develop from any computer
-and keep the code base in sync across all of them.</p>
-<p>If the project has multiple developers, this can be where all of the
-developers sync up their projects.</p>
-<section id="readme-md-is-special">
-<h3><code class="docutils literal notranslate"><span class="pre">README.md</span></code> is special<a class="headerlink" href="#readme-md-is-special" title="Link to this heading"></a></h3>
-<p>The web interface that github provides to our repo has a number of features.</p>
-<p>First, the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file is always displayed on the main project
-page.  This is where you can put descriptions of what your project is,
-how people can contribute, even share the status of testing and
-documentation builds (we’ll talk about those later in class).</p>
-<p>This file is in github-flavored <a class="reference external" href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Markdown format</a> (that’s what the
-<code class="docutils literal notranslate"><span class="pre">.md</span></code> extension signifies).  Markdown allows you to do basic formatting.</p>
-<p>Here’s an example of what you can do in a <code class="docutils literal notranslate"><span class="pre">README.md</span></code> from one of my
-projects: <a class="reference external" href="https://github.com/pynucastro/pynucastro">https://github.com/pynucastro/pynucastro</a></p>
-</section>
-</section>
+</div>
+<p>We can use this in python as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="nb">sum</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="git-remotes.html" class="btn btn-neutral float-left" title="Git Remotes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pull-requests.html" class="btn btn-neutral float-right" title="Pull Requests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-python.html" class="btn btn-neutral float-left" title="pybind11" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-python-array.html" class="btn btn-neutral float-right" title="Returning an Array to Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
