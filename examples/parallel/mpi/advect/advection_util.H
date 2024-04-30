@@ -13,7 +13,7 @@
 ///
 /// initialize the solution with a Gaussian
 ///
-inline void initialize(const grid& g, Array& a) {
+inline void initialize(const Grid& g, Array& a) {
 
     double xc = 0.5 * (g.xmin + g.xmax);
     double yc = 0.5 * (g.ymin + g.ymax);
@@ -33,7 +33,7 @@ inline void initialize(const grid& g, Array& a) {
 ///
 /// fill ghostcells, assuming doubly periodic
 ///
-inline void fill_ghost_cells(const grid& g, Array& a) {
+inline void fill_ghost_cells(const Grid& g, Array& a) {
 
     // we are doing a 1-d domain decomposition in the x-direction
 
@@ -89,7 +89,7 @@ inline void fill_ghost_cells(const grid& g, Array& a) {
 ///
 /// write out the data by copying everything to rank 0
 ///
-inline void output(const grid& g, double t, const Array& a) {
+inline void output(const Grid& g, double t, const Array& a) {
 
     int rank{-1};
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);

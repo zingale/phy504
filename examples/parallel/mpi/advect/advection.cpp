@@ -36,7 +36,7 @@ int main() {
 
      // setup the grid
 
-     grid g(domain::nx, domain::ny, domain::ng,
+     Grid g(domain::nx, domain::ny, domain::ng,
             domain::xmin, domain::xmax, domain::ymin, domain::ymax);
 
      g.set_decomposition(rank, nprocs);

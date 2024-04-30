@@ -8,7 +8,7 @@
 
 #include "array.H"
 
-class grid {
+class Grid {
 
 public:
 
@@ -32,7 +32,7 @@ public:
     int jlo{-1};
     int jhi{-1};
 
-    grid(int _nx, int _ny, int _ng,
+    Grid(int _nx, int _ny, int _ng,
          double _xmin, double _xmax, double _ymin, double _ymax)
         : nx(_nx), ny(_ny), ng(_ng),
           xmin(_xmin), xmax(_xmax), ymin(_ymin), ymax(_ymax)
@@ -99,7 +99,7 @@ public:
 };
 
 
-inline std::ostream& operator<< (std::ostream& os, grid g) {
+inline std::ostream& operator<< (std::ostream& os, Grid g) {
     os << std::format("i: ({:3}, {:3}); j: ({:3}, {:3})",
                       g.ilo, g.ihi, g.jlo, g.jhi);
     return os;
