@@ -45,7 +45,6 @@ public:
         // in the initialization list, but if the size is zero, we'll
         // abort here anyway.
 
-        
         myassert (_nx > 0);
         myassert (_ny > 0);
 
@@ -72,12 +71,12 @@ public:
     ///
     /// get x length
     ///
-    inline int nx() const { return _nx;}
+    inline int xsize() const { return _nx;}
 
     ///
     /// get y length
     ///
-    inline int ny() const { return _ny;}
+    inline int ysize() const { return _ny;}
 
     ///
     /// get the lower x index
@@ -121,36 +120,6 @@ public:
 
     inline double* data() {
         return _data.data();
-    }
-
-    ///
-    /// return a flattened view of the data region -- this can be used with
-    /// a range-for loop, e.g. `for (auto &e : a.flat()) {...}`
-    ///
-    inline std::vector<double>& flat() { return _data; }
-
-    ///
-    /// return the global minimum of the array
-    ///
-    inline double min() const {
-        double current_min = std::numeric_limits<double>::max();
-
-        for (auto e : _data) {
-            current_min = std::min(current_min, e);
-        }
-        return current_min;
-    }
-
-    ///
-    /// return the global maximum of the array
-    ///
-    inline double max() const {
-        double current_max = std::numeric_limits<double>::lowest();
-
-        for (auto e : _data) {
-            current_max = std::max(current_max, e);
-        }
-        return current_max;
     }
 
     friend std::ostream& operator<< (std::ostream& os, const Array& a);

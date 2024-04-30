@@ -6,8 +6,8 @@
 #include "grid.H"
 
 namespace domain {
-    constexpr int nx{64};
-    constexpr int ny{64};
+    constexpr int nx{128};
+    constexpr int ny{128};
     constexpr int ng{1};
 
     constexpr double xmin{0.0};
@@ -18,7 +18,7 @@ namespace domain {
 
 namespace simulation {
     constexpr double C{0.4};
-    constexpr double tmax{0.333};
+    constexpr double tmax{1.0};
     constexpr double u{1.0};
     constexpr double v{1.0};
 }
@@ -54,6 +54,8 @@ int main() {
 
      // evolve
 
+     int nstep{0};
+
      while (t < simulation::tmax) {
 
          // get dt
@@ -81,13 +83,13 @@ int main() {
          }
 
          t += dt;
+         nstep++;
 
-         for (int i = g.ilo; i <= g.ihi; ++i) {
-             for (int j = g.jlo; j <= g.jhi; ++j) {
-                 a(i, j) = anew(i, j);
-             }
+         if (rank == 0) {
+             std::println("n = {:4d}; t = {:6.4f}; dt = {:8.4g}", nstep, t, dt);
          }
 
+         a = anew;
      }
 
      output(g, t, a);

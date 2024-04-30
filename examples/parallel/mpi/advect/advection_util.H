@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <fstream>
+#include <format>
 
 #include <mpi.h>
 
@@ -62,8 +63,8 @@ inline void fill_ghost_cells(const grid& g, Array& a) {
         int recvfrom = rank == nprocs - 1 ? 0 : rank + 1;
 
         MPI_Status status;
-        MPI_Sendrecv(&a(g.ilo, g.jlo-g.ng), a.ny(), MPI_DOUBLE, sendto, 0,
-                     &a(g.ihi+1, g.jlo-g.ng), a.ny(), MPI_DOUBLE, recvfrom, 0,
+        MPI_Sendrecv(&a(g.ilo, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, sendto, 0,
+                     &a(g.ihi+1, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, recvfrom, 0,
                      MPI_COMM_WORLD, &status);
     }
 
@@ -77,33 +78,10 @@ inline void fill_ghost_cells(const grid& g, Array& a) {
         int recvfrom = rank == 0 ? nprocs - 1 : rank - 1;
 
         MPI_Status status;
-        MPI_Sendrecv(&a(g.ihi, g.jlo-g.ng), a.ny(), MPI_DOUBLE, sendto, 1,
-                     &a(g.ilo-1, g.jlo-g.ng), a.ny(), MPI_DOUBLE, recvfrom, 1,
+        MPI_Sendrecv(&a(g.ihi, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, sendto, 1,
+                     &a(g.ilo-1, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, recvfrom, 1,
                      MPI_COMM_WORLD, &status);
     }
-
-#if 0
-    // debugging
-
-    for (int n = 0; n < nprocs; ++n) {
-        if (n == rank) {
-            std::cout << "rank = " << rank << std::endl;
-            std::cout << "left: " << std::endl;
-            for (int j = g.jlo-g.ng; j <= g.jhi+g.ng; ++j) {
-                std::cout << a(g.ilo-1, j) << " ";
-            }
-            std::cout << std::endl;
-            std::cout << "right: " << std::endl;
-            for (int j = g.jlo-g.ng; j <= g.jhi+g.ng; ++j) {
-                std::cout << a(g.ihi+1, j) << " ";
-            }
-            std::cout << std::endl << std::endl;
-        }
-        MPI_Barrier(MPI_COMM_WORLD);
-    }
-
-    std::abort();
-#endif
 
 }
 
@@ -121,8 +99,10 @@ inline void output(const grid& g, double t, const Array& a) {
 
     // rank 0 will do all of the writing
     std::ofstream ofile;
+
     if (rank == 0) {
-        ofile.open("advect_mpi.out");
+        auto tstr = std::format("t{:5.3f}", t);
+        ofile.open("advection_" + tstr + "_mpi.out");
     }
 
     for (int n = 0; n < nprocs; ++n) {
@@ -153,7 +133,7 @@ inline void output(const grid& g, double t, const Array& a) {
                 // now transfer the data -- we'll send everything,
                 // including the ghost cells
 
-                MPI_Send(a.data(), a.nx() * a.ny(), MPI_DOUBLE,
+                MPI_Send(a.data(), a.xsize() * a.ysize(), MPI_DOUBLE,
                          0, n, MPI_COMM_WORLD);
 
             } else if (rank == 0) {
@@ -170,7 +150,7 @@ inline void output(const grid& g, double t, const Array& a) {
                 Array a_buf(irange[0]-g.ng, irange[1]+g.ng,
                             g.jlo-g.ng, g.jhi+g.ng);
 
-                auto ierr = MPI_Recv(a_buf.data(), a_buf.nx() * a_buf.ny(), MPI_DOUBLE,
+                auto ierr = MPI_Recv(a_buf.data(), a_buf.xsize() * a_buf.ysize(), MPI_DOUBLE,
                                      n, n, MPI_COMM_WORLD, &status);
 
                 if (ierr != MPI_SUCCESS) {
@@ -191,12 +171,5 @@ inline void output(const grid& g, double t, const Array& a) {
 
     }
 
-    // in testing, before any of the advection was implemented, I needed a barrier here
-    // to make sure the execution doesn't end before the file is written.
-
-    //MPI_Barrier(MPI_COMM_WORLD);
 }
-
 #endif
-
-
