@@ -3,9 +3,11 @@
 
 #include <mpi.h>
 
-#include "advection_util.H"
 #include "grid.H"
 #include "simulation.H"
+#include "initialize.H"
+#include "output.H"
+#include "ghost_fill.H"
 
 int main() {
 
