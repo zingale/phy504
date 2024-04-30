@@ -38,6 +38,11 @@ We'll use periodic boundary conditions and advect for a period, after which
 the solution should be identical to the initial conditions.  Any differences
 are due to numerical (truncation) error in our discretization.
 
+.. tip::
+
+   You can get all the code for this example here:
+   https://github.com/zingale/phy504/tree/main/examples/parallel/mpi/advect
+
 
 Domain decomposition
 ====================
