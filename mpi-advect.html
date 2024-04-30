@@ -430,20 +430,13 @@ start at an arbitrary index, e.g., for the middle box above (excluding ghost cel
 
 <span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nx</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ny</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ng</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ymin</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">ymax</span><span class="p">;</span>
-
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">// for the domain decomposition, we will set the indices of</span>
 <span class="w">    </span><span class="c1">// the valid cells in the domain on the current processor</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ng</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ilo</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ihi</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
@@ -451,24 +444,20 @@ start at an arbitrary index, e.g., for the middle box above (excluding ghost cel
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">jhi</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
 
 <span class="w">    </span><span class="n">Grid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">_nx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_ny</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_ng</span><span class="p">,</span>
-<span class="w">         </span><span class="kt">double</span><span class="w"> </span><span class="n">_xmin</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_xmax</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_ymin</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_ymax</span><span class="p">)</span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">nx</span><span class="p">(</span><span class="n">_nx</span><span class="p">),</span><span class="w"> </span><span class="n">ny</span><span class="p">(</span><span class="n">_ny</span><span class="p">),</span><span class="w"> </span><span class="n">ng</span><span class="p">(</span><span class="n">_ng</span><span class="p">),</span>
-<span class="w">          </span><span class="n">xmin</span><span class="p">(</span><span class="n">_xmin</span><span class="p">),</span><span class="w"> </span><span class="n">xmax</span><span class="p">(</span><span class="n">_xmax</span><span class="p">),</span><span class="w"> </span><span class="n">ymin</span><span class="p">(</span><span class="n">_ymin</span><span class="p">),</span><span class="w"> </span><span class="n">ymax</span><span class="p">(</span><span class="n">_ymax</span><span class="p">)</span>
+<span class="w">         </span><span class="kt">double</span><span class="w"> </span><span class="n">_xmin</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_xmax</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_ymin</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">_ymax</span><span class="p">,</span>
+<span class="w">         </span><span class="kt">int</span><span class="w"> </span><span class="n">_rank</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_nprocs</span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">ng</span><span class="p">(</span><span class="n">_ng</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">xmin</span><span class="p">);</span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">ymax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ymin</span><span class="p">);</span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">nx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">ny</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">_xmax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">_xmin</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">_ymax</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">_ymin</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">_nx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">_ny</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nx</span><span class="p">);</span>
-<span class="w">        </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ymax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ymin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ny</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">        </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_xmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_xmin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_nx</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_ymax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_ymin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_ny</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// compute the domain decomposition and set the </span>
-<span class="w">    </span><span class="c1">/// bounding indices for the grid on processor rank</span>
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">set_decomposition</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nprocs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// compute the domain decomposition and set the bounding</span>
+<span class="w">        </span><span class="c1">// indices for the grid on processor rank</span>
 
 <span class="w">        </span><span class="c1">// each processor will hold a slab with the i coordinates</span>
 <span class="w">        </span><span class="c1">// spanning ~ 1/nx of the x-domain, and the j coordinates</span>
@@ -478,30 +467,30 @@ start at an arbitrary index, e.g., for the middle box above (excluding ghost cel
 <span class="w">        </span><span class="c1">// note: with this decomposition, the data will be</span>
 <span class="w">        </span><span class="c1">// contiguous in memory on each processor</span>
 
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">floor</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="w"> </span><span class="o">/</span>
-<span class="w">                                </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nprocs</span><span class="p">));</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">floor</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_nx</span><span class="p">)</span><span class="w"> </span><span class="o">/</span>
+<span class="w">                                </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_nprocs</span><span class="p">));</span>
 
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iextra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">nprocs</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">iextra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_nx</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">_nprocs</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// the first iwidth processors have a width of iwidth+1</span>
+
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mywidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iwidth</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iextra</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iextra</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">mywidth</span><span class="o">++</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="c1">// current processor&#39;s index space</span>
 
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iextra</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">ilo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">iwidth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">rank</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_rank</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">iextra</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">ilo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">iwidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_rank</span><span class="p">;</span>
 <span class="w">            </span><span class="n">ihi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ilo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mywidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">ilo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">iwidth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">iextra</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">iwidth</span><span class="o">*</span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">iextra</span><span class="p">);</span>
+<span class="w">            </span><span class="n">ilo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">iwidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">iextra</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">iwidth</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">_rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">iextra</span><span class="p">);</span>
 <span class="w">            </span><span class="n">ihi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ilo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mywidth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="n">jlo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="n">jhi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ny</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">jhi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_ny</span><span class="mi">-1</span><span class="p">;</span>
 
 <span class="w">    </span><span class="p">}</span>
 
