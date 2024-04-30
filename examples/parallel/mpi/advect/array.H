@@ -66,13 +66,9 @@ public:
         return _data[row * _ny + col];
     }
 
-    inline const double* data() const {
-        return _data.data();
-    }
+    inline const double* data() const { return _data.data(); }
 
-    inline double* data() {
-        return _data.data();
-    }
+    inline double* data() { return _data.data(); }
 
     friend std::ostream& operator<< (std::ostream& os, const Array& a);
 
