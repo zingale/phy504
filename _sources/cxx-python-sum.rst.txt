@@ -49,5 +49,5 @@ And again, the same ``GNUmakefile`` (just changing the module name):
 Here's how we can use it from python:
 
 .. literalinclude:: ../../examples/pybind11/mutate_from_python/test_mutate.py
-   :language: make
+   :language: python
    :caption: ``test_mutate.py``

@@ -399,14 +399,14 @@ parameter.</p>
 <p>Here’s how we can use it from python:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 150 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="err">import</span><span class="w"> </span><span class="err">numpy</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">np</span>
-<span class="err">from</span><span class="w"> </span><span class="err">mutate</span><span class="w"> </span><span class="err">import</span><span class="w"> </span><span class="err">update</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mutate</span> <span class="kn">import</span> <span class="n">update</span>
 
-<span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.arange<span class="o">(</span><span class="m">12</span>,<span class="w"> </span><span class="nv">dtype</span><span class="o">=</span>np.float64<span class="o">)</span>.reshape<span class="o">(</span><span class="m">4</span>,<span class="w"> </span><span class="m">3</span><span class="o">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<span class="err">update(a)</span>
+<span class="n">update</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
-<span class="err">print(a)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
