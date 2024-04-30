@@ -5,24 +5,7 @@
 
 #include "advection_util.H"
 #include "grid.H"
-
-namespace domain {
-    constexpr int nx{128};
-    constexpr int ny{128};
-    constexpr int ng{1};
-
-    constexpr double xmin{0.0};
-    constexpr double xmax{1.0};
-    constexpr double ymin{0.0};
-    constexpr double ymax{1.0};
-}
-
-namespace simulation {
-    constexpr double C{0.4};
-    constexpr double tmax{1.0};
-    constexpr double u{1.0};
-    constexpr double v{1.0};
-}
+#include "simulation.H"
 
 int main() {
 
@@ -37,9 +20,8 @@ int main() {
      // setup the grid
 
      Grid g(domain::nx, domain::ny, domain::ng,
-            domain::xmin, domain::xmax, domain::ymin, domain::ymax);
-
-     g.set_decomposition(rank, nprocs);
+            domain::xmin, domain::xmax, domain::ymin, domain::ymax,
+            rank, nprocs);
 
      // create the memory for storing the old and new solution
 
