@@ -199,6 +199,7 @@ Spring 2024
    openmp-pi
    mpi-intro
    mpi-sendrecv
+   mpi-advect
 
 .. toctree::
    :maxdepth: 1
