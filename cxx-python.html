@@ -292,7 +292,7 @@ into python as a module.  This needs to have a specific name, with the suffix gi
 <p>Here’s a very simple example.  We will write a C++ function that computes
 <span class="math notranslate nohighlight">\(f(x) = sin(x)\)</span>.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 139 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 142 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simple.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
 
@@ -311,7 +311,7 @@ into python as a module.  This needs to have a specific name, with the suffix gi
 </div>
 <p>To compile it, we can use this <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 140 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 143 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
 <span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
 

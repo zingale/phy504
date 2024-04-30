@@ -31,6 +31,13 @@ This discretization assumes that $u > 0$ and $v > 0$.  In that case, it is *upwi
    the domain decomposition.  For better methods for advection, see
    `my lecture notes on advection <https://zingale.github.io/computational_astrophysics/advection/advection-intro.html>`_.
 
+The solution to the linear advection equation is to take what ever the initial
+$a(x, y)$ is and move it with a speed $(u, v)$ with the shape unchanged.
+
+We'll use periodic boundary conditions and advect for a period, after which
+the solution should be identical to the initial conditions.  Any differences
+are due to numerical (truncation) error in our discretization.
+
 
 Domain decomposition
 ====================
@@ -118,3 +125,29 @@ Here's the code:
 
 There are two places where MPI communication comes into play---the
 ghost cell filling and the outputting.
+
+
+Ghost cell filling
+==================
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/ghost_fill.H
+   :language: c++
+   :caption: ``ghost_fill.H``
+
+
+Outputting
+==========
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/output.H
+   :language: c++
+   :caption: ``output.H``
+
+
+Initialization
+==============
+
+We will do a simple smooth Gaussian as the initial conditions.
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/initialize.H
+   :language: c++
+   :caption: ``initialize.H``

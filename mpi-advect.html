@@ -209,6 +209,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#array"><code class="docutils literal notranslate"><span class="pre">Array</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#main-program-driver">Main program driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ghost-cell-filling">Ghost cell filling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#outputting">Outputting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
 </ul>
 </li>
 </ul>
@@ -288,6 +291,11 @@ is not on the accuracy of the method, but to demonstrate how to do
 the domain decomposition.  For better methods for advection, see
 <a class="reference external" href="https://zingale.github.io/computational_astrophysics/advection/advection-intro.html">my lecture notes on advection</a>.</p>
 </div>
+<p>The solution to the linear advection equation is to take what ever the initial
+<span class="math notranslate nohighlight">\(a(x, y)\)</span> is and move it with a speed <span class="math notranslate nohighlight">\((u, v)\)</span> with the shape unchanged.</p>
+<p>We’ll use periodic boundary conditions and advect for a period, after which
+the solution should be identical to the initial conditions.  Any differences
+are due to numerical (truncation) error in our discretization.</p>
 <section id="domain-decomposition">
 <h2>Domain decomposition<a class="headerlink" href="#domain-decomposition" title="Link to this heading"></a></h2>
 <p>We will divide our domain along the x-direction:</p>
@@ -628,6 +636,228 @@ ghost cells.</p>
 </div>
 <p>There are two places where MPI communication comes into play—the
 ghost cell filling and the outputting.</p>
+</section>
+<section id="ghost-cell-filling">
+<h2>Ghost cell filling<a class="headerlink" href="#ghost-cell-filling" title="Link to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 139 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ghost_fill.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef GHOST_FILL_H</span>
+<span class="cp">#define GHOST_FILL_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;grid.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;simulation.H&quot;</span>
+
+<span class="c1">///</span>
+<span class="c1">/// fill ghostcells, assuming doubly periodic</span>
+<span class="c1">///</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">fill_ghost_cells</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Grid</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// we are doing a 1-d domain decomposition in the x-direction</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nprocs</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nprocs</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// first do the periodic fill in the y-direction -- this is all</span>
+<span class="w">    </span><span class="c1">// local</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="o">+</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="p">);</span>
+<span class="w">        </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// now fill the interior ghost cells</span>
+
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// send the first column of valid data to the left to fill the</span>
+<span class="w">        </span><span class="c1">// left PE&#39;s right ghost cells, and receive from the right PE.</span>
+<span class="w">        </span><span class="c1">// Wrap periodically.</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">nprocs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nprocs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">        </span><span class="n">MPI_Sendrecv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ysize</span><span class="p">(),</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">sendto</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                     </span><span class="o">&amp;</span><span class="n">a</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ysize</span><span class="p">(),</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">{</span>
+
+<span class="w">        </span><span class="c1">// send the last column of valid data to the right to fill the</span>
+<span class="w">        </span><span class="c1">// right PE&#39;s left ghost cells, and receive from the left PE.</span>
+<span class="w">        </span><span class="c1">// Wrap periodically.</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sendto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nprocs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">recvfrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">nprocs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">        </span><span class="n">MPI_Sendrecv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ysize</span><span class="p">(),</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">sendto</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                     </span><span class="o">&amp;</span><span class="n">a</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ysize</span><span class="p">(),</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span><span class="w"> </span><span class="n">recvfrom</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="outputting">
+<h2>Outputting<a class="headerlink" href="#outputting" title="Link to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 140 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">output.H</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef OUTPUT_H</span>
+<span class="cp">#define OUTPUT_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;format&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;grid.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;simulation.H&quot;</span>
+
+
+<span class="c1">///</span>
+<span class="c1">/// write out the data by copying everything to rank 0</span>
+<span class="c1">///</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">output</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Grid</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">nprocs</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nprocs</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// rank 0 will do all of the writing</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">ofile</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">tstr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;t{:5.3f}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ofile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&quot;advection_&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tstr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;_mpi.out&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nprocs</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// write out rank 0&#39;s data.  No communication needed</span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">ofile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">ofile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="c1">// we are working on a rank &gt; 0, so we need to copy the</span>
+<span class="w">            </span><span class="c1">// data over to rank 0</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="c1">// transfer the index range</span>
+
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">irange</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="p">};</span>
+<span class="w">                </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">irange</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// now transfer the data -- we&#39;ll send everything,</span>
+<span class="w">                </span><span class="c1">// including the ghost cells</span>
+
+<span class="w">                </span><span class="n">MPI_Send</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">xsize</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">ysize</span><span class="p">(),</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span>
+<span class="w">                         </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="c1">// receive the index range from rank n</span>
+
+<span class="w">                </span><span class="n">MPI_Status</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">irange</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="w">                </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">irange</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_INT</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// create a buffer to hold the data we will receive</span>
+
+<span class="w">                </span><span class="n">Array</span><span class="w"> </span><span class="n">a_buf</span><span class="p">(</span><span class="n">irange</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">,</span><span class="w"> </span><span class="n">irange</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="o">-</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="o">+</span><span class="n">g</span><span class="p">.</span><span class="n">ng</span><span class="p">);</span>
+
+<span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">ierr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_Recv</span><span class="p">(</span><span class="n">a_buf</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">a_buf</span><span class="p">.</span><span class="n">xsize</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a_buf</span><span class="p">.</span><span class="n">ysize</span><span class="p">(),</span><span class="w"> </span><span class="n">MPI_DOUBLE</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ierr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MPI_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;error in recv: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ierr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="c1">// output the buffer to the file</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">irange</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">irange</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">ofile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a_buf</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">ofile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h2>
+<p>We will do a simple smooth Gaussian as the initial conditions.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 141 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">initialize.H</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INITIALIZE_H</span>
+<span class="cp">#define INITIALIZE_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;array.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;grid.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;simulation.H&quot;</span>
+
+<span class="c1">///</span>
+<span class="c1">/// initialize the solution with a Gaussian</span>
+<span class="c1">///</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Grid</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">xc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">domain</span><span class="o">::</span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">xmax</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">yc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">domain</span><span class="o">::</span><span class="n">ymin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ymax</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">xmin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">dx</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ymin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">dy</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exp</span><span class="p">(</span><span class="mf">-60.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xc</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                                              </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yc</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 
