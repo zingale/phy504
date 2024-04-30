@@ -208,6 +208,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#domain-decomposition">Domain decomposition</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#array"><code class="docutils literal notranslate"><span class="pre">Array</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-program-driver">Main program driver</a></li>
 </ul>
 </li>
 </ul>
@@ -413,7 +414,12 @@ start at an arbitrary index, e.g., for the middle box above (excluding ghost cel
 </section>
 <section id="grid">
 <h3><code class="docutils literal notranslate"><span class="pre">Grid</span></code><a class="headerlink" href="#grid" title="Link to this heading"></a></h3>
-<p>We will manage each processor’s subdomain with a <code class="docutils literal notranslate"><span class="pre">grid</span></code> class:</p>
+<p>We will manage each processor’s subdomain with a <code class="docutils literal notranslate"><span class="pre">grid</span></code> class.  This class
+takes the domain size and number of points as well as each MPI processes rank
+and the total number of MPI processes and computes the domain decomposition
+for each rank.</p>
+<p>It also has a method to generate an array allocated for that rank, including
+ghost cells.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 137 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">grid.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef GRID_H</span>
@@ -516,6 +522,111 @@ start at an arbitrary index, e.g., for the middle box above (excluding ghost cel
 </pre></div>
 </div>
 </div>
+</section>
+<section id="main-program-driver">
+<h3>Main program driver<a class="headerlink" href="#main-program-driver" title="Link to this heading"></a></h3>
+<p>The main program driver is pretty simple:</p>
+<ul class="simple">
+<li><p>Create the grid on each MPI process</p></li>
+<li><p>Set the initial conditions</p></li>
+<li><p>Loop until we reach the final time</p>
+<ul>
+<li><p>Compute the timestep</p></li>
+<li><p>Fill the ghost cells</p></li>
+<li><p>Update <span class="math notranslate nohighlight">\(a\)</span> to the new time solution</p></li>
+</ul>
+</li>
+<li><p>Output the solution</p></li>
+</ul>
+<p>Here’s the code:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 138 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">advection.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;print&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;advection_util.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;grid.H&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;simulation.H&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">     </span><span class="n">MPI_Init</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+
+<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">     </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+
+<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">nprocs</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">     </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nprocs</span><span class="p">);</span>
+
+<span class="w">     </span><span class="c1">// setup the grid</span>
+
+<span class="w">     </span><span class="n">Grid</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="n">domain</span><span class="o">::</span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ny</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ng</span><span class="p">,</span>
+<span class="w">            </span><span class="n">domain</span><span class="o">::</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ymax</span><span class="p">,</span>
+<span class="w">            </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">nprocs</span><span class="p">);</span>
+
+<span class="w">     </span><span class="c1">// create the memory for storing the old and new solution</span>
+
+<span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">scratch_array</span><span class="p">();</span>
+<span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">anew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">scratch_array</span><span class="p">();</span>
+
+<span class="w">     </span><span class="c1">// initialize</span>
+<span class="w">     </span><span class="n">initialize</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="w">     </span><span class="c1">// output</span>
+<span class="w">     </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<span class="w">     </span><span class="n">output</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="w">     </span><span class="c1">// evolve</span>
+
+<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">nstep</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="w">     </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">tmax</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">         </span><span class="c1">// get dt</span>
+
+<span class="w">         </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">C</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">dx</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">u</span><span class="p">,</span>
+<span class="w">                                              </span><span class="n">g</span><span class="p">.</span><span class="n">dy</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">v</span><span class="p">);</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">tmax</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">tmax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+
+<span class="w">         </span><span class="c1">// fill ghost cells</span>
+<span class="w">         </span><span class="n">fill_ghost_cells</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="w">         </span><span class="c1">// do the first-order unsplit update</span>
+
+<span class="w">         </span><span class="c1">// note: this is unstable for C &gt; 0.5 because the update</span>
+<span class="w">         </span><span class="c1">// does not see the diagonal upwind cell</span>
+
+<span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ilo</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">ihi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jlo</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">jhi</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                 </span><span class="n">anew</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">u</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">dx</span>
+<span class="w">                     </span><span class="o">-</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">simulation</span><span class="o">::</span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="mi">-1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">dy</span><span class="p">;</span>
+<span class="w">             </span><span class="p">}</span>
+<span class="w">         </span><span class="p">}</span>
+
+<span class="w">         </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">         </span><span class="n">nstep</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">std</span><span class="o">::</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;n = {:4d}; t = {:6.4f}; dt = {:8.4g}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nstep</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+<span class="w">         </span><span class="p">}</span>
+
+<span class="w">         </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">anew</span><span class="p">;</span>
+<span class="w">     </span><span class="p">}</span>
+
+<span class="w">     </span><span class="n">output</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="w">     </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>There are two places where MPI communication comes into play—the
+ghost cell filling and the outputting.</p>
 </section>
 </section>
 </section>

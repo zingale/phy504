@@ -79,9 +79,42 @@ This is easy to do by adapting our existing ``Array`` class to include an offset
 ``Grid``
 --------
 
-We will manage each processor's subdomain with a ``grid`` class:
+We will manage each processor's subdomain with a ``grid`` class.  This class
+takes the domain size and number of points as well as each MPI processes rank
+and the total number of MPI processes and computes the domain decomposition
+for each rank.
+
+It also has a method to generate an array allocated for that rank, including
+ghost cells.
 
 .. literalinclude:: ../../examples/parallel/mpi/advect/grid.H
    :language: c++
    :caption: ``grid.H``
 
+Main program driver
+-------------------
+
+The main program driver is pretty simple:
+
+* Create the grid on each MPI process
+
+* Set the initial conditions
+
+* Loop until we reach the final time
+
+  * Compute the timestep
+
+  * Fill the ghost cells
+
+  * Update $a$ to the new time solution
+
+* Output the solution
+
+Here's the code:
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/advection.cpp
+   :language: c++
+   :caption: ``advection.cpp``
+
+There are two places where MPI communication comes into play---the
+ghost cell filling and the outputting.
