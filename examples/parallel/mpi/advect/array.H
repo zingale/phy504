@@ -2,17 +2,10 @@
 #define ARRAY_H
 
 #include <vector>
+#include <cassert>
 #include <iostream>
 #include <stacktrace>
 #include <limits>
-
-void myassert(bool test) {
-    if (! test) {
-        std::cout << std::stacktrace::current() << std::endl;
-        abort();
-    }
-}
-
 
 ///
 /// a contiguous 2-d array
@@ -36,81 +29,40 @@ private:
 
 public:
 
-    Array (int nx, int ny, double val=0.0)
-        : _xoffset{0}, _yoffset{0},
-          _nx{nx}, _ny{ny},
-          _data(_nx * _ny, val)
-    {
-        // we do the asserts here after the initialization of _data
-        // in the initialization list, but if the size is zero, we'll
-        // abort here anyway.
-
-        myassert (_nx > 0);
-        myassert (_ny > 0);
-
-    }
-
     Array (int xlo, int xhi, int ylo, int yhi, double val=0.0)
         : _xoffset{xlo}, _yoffset{ylo},
           _nx{xhi - xlo + 1}, _ny{yhi - ylo + 1},
           _data(_nx * _ny, val)
     {
-        // we do the asserts here after the initialization of _data
-        // in the initialization list, but if the size is zero, we'll
-        // abort here anyway.
-
-        myassert (_nx > 0);
-        myassert (_ny > 0);
-
+        assert (_nx > 0);
+        assert (_ny > 0);
     }
 
-    // note the "const" after the argument list here -- this means
-    // that this can be called on a const Array, while the first
-    // "const" refers to the return type
-
-    ///
-    /// get x length
-    ///
     inline int xsize() const { return _nx;}
 
-    ///
-    /// get y length
-    ///
     inline int ysize() const { return _ny;}
 
-    ///
-    /// get the lower x index
-    ///
     inline int xlo() const { return _xoffset;}
 
-    ///
-    /// get the lower y index
-    ///
     inline int ylo() const { return _yoffset;}
 
-    ///
-    /// get the upper x index
-    ///
     inline int xhi() const { return _xoffset + _nx - 1;}
 
-    ///
-    /// get the upper y index
-    ///
     inline int yhi() const { return _yoffset + _ny - 1;}
 
     inline double& operator()(int i, int j) {
         int row = i - _xoffset;
         int col = j - _yoffset;
-        myassert (row >= 0 && row < _nx);
-        myassert (col >= 0 && col < _ny);
+        assert (row >= 0 && row < _nx);
+        assert (col >= 0 && col < _ny);
         return _data[row * _ny + col];
     }
 
     inline const double& operator()(int i, int j) const {
         int row = i - _xoffset;
         int col = j - _yoffset;
-        myassert (row >= 0 && row < _nx);
-        myassert (col >= 0 && col < _ny);
+        assert (row >= 0 && row < _nx);
+        assert (col >= 0 && col < _ny);
         return _data[row * _ny + col];
     }
 
@@ -125,8 +77,6 @@ public:
     friend std::ostream& operator<< (std::ostream& os, const Array& a);
 
 };
-
-// the << operator is not part of the of the class, so it is not a member
 
 inline
 std::ostream& operator<< (std::ostream& os, const Array& a) {
