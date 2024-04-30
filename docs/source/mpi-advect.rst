@@ -130,6 +130,15 @@ ghost cell filling and the outputting.
 Ghost cell filling
 ==================
 
+For the ghost cell filling, each processor has a subdomain in an
+array, ``a``.  We need to fill ``a(ilo-1, :)`` by receiving data from the left, and in exchange, we need to pass ``a(ilo, :)`` to the left to fill the left process's ``a(ihi+1, :)``.
+
+Our domain decomposition is done such that we are continguous in the ``j`` index, that means
+that we can specify the start of the column of data corresponding to ``ilo-1`` as ``a(ilo-1, jlo-ng)``
+and then using the MPI call to send the entire column of elements.
+
+There are two ``MPI_Sendrecv`` calls, one for the left and the other for the right.
+
 .. literalinclude:: ../../examples/parallel/mpi/advect/ghost_fill.H
    :language: c++
    :caption: ``ghost_fill.H``
@@ -137,6 +146,11 @@ Ghost cell filling
 
 Outputting
 ==========
+
+Only rank ``0`` will output, so we need to move the data from all the other
+ranks to rank ``0``.  This is called serial I/O.  We just output the data
+one cell per line, with an empty line between rows.  This can be read into
+``gnuplot`` easily.
 
 .. literalinclude:: ../../examples/parallel/mpi/advect/output.H
    :language: c++
@@ -151,3 +165,30 @@ We will do a simple smooth Gaussian as the initial conditions.
 .. literalinclude:: ../../examples/parallel/mpi/advect/initialize.H
    :language: c++
    :caption: ``initialize.H``
+
+
+Running
+=======
+
+Here's a ``GNUmakefile``:
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/GNUmakefile
+   :language: make
+   :caption: ``GNUmakefile``
+
+.. note::
+
+   I am using C++20 here, because I wanted to use ``std::print()`` and ``std::format()``.
+
+The code can be executed as:
+
+.. prompt:: bash
+
+   mpiexec -n 4 ./advection
+
+To plot the output, we can do:
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/plot.gp
+   :language: gnuplot
+   :caption: ``plot.gp``
+
