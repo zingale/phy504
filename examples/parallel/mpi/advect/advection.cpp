@@ -1,4 +1,5 @@
 #include <iostream>
+#include <print>
 
 #include <mpi.h>
 
