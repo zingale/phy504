@@ -50,6 +50,9 @@ $f(x) = sin(x)$.
    :language: c++
    :caption: ``simple.cpp``
 
+We add a ``PYBIND11_MODULE`` macro that defines the entry point
+from python---see: https://pybind11.readthedocs.io/en/stable/reference.html#macros
+
 To compile it, we can use this ``GNUmakefile``:
 
 .. literalinclude:: ../../examples/pybind11/simple/GNUmakefile

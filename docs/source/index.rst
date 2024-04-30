@@ -206,6 +206,7 @@ Spring 2024
    :caption: Calling C++ from Python
 
    cxx-python
+   cxx-python-sum
    cxx-python-array
 
 .. toctree::
