@@ -24,6 +24,13 @@ This discretization assumes that $u > 0$ and $v > 0$.  In that case, it is *upwi
 
       \mathcal{C} = \max \left \{ \frac{u \Delta t}{\Delta x}, \frac{v \Delta t}{\Delta y} \right \}
 
+.. warning::
+
+   This is a very bad discretization of advection.  Our concern here
+   is not on the accuracy of the method, but to demonstrate how to do
+   the domain decomposition.  For better methods for advection, see
+   `my lecture notes on advection <https://zingale.github.io/computational_astrophysics/advection/advection-intro.html>`_.
+
 
 Domain decomposition
 ====================
