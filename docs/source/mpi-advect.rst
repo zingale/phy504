@@ -56,18 +56,18 @@ We will divide our domain along the x-direction:
 Each MPI process will manage their own subdomain.  To make things
 easier, we will refer to a global index space on the entire domain.
 
-For the figure above, the indices of the boxes, (``ilo``, ``ihi``, ``jlo``, ``jhi``) are:
+For the figure above, the indices of the grids, (``ilo``, ``ihi``, ``jlo``, ``jhi``) are:
 
-* left box: (``0``, ``5``, ``0``, ``9``)
+* left grid: (``0``, ``5``, ``0``, ``9``)
 
-* middle box: (``5``, ``9``, ``0``, ``9``)
+* middle grid: (``5``, ``9``, ``0``, ``9``)
 
-* right box: (``10``, ``14``, ``0``, ``9``)
+* right grid: (``10``, ``14``, ``0``, ``9``)
 
-Each of these boxes will be managed by a separate MPI task.  To deal
-with the boundaries of each box, we will have a perimeter of ghost
-cells, shown as the red outline for the middle box.  We will use MPI
-send/recv to exchange data with the neighboring boxes to fill these
+Each of these grids will be managed by a separate MPI task.  To deal
+with the boundaries of each grid, we will have a perimeter of ghost
+cells, shown as the red outline for the middle grid.  We will use MPI
+send/recv to exchange data with the neighboring grids to fill these
 ghost cells.
 
 For the physical boundaries, we will assume we are periodic.
@@ -76,7 +76,7 @@ For the physical boundaries, we will assume we are periodic.
 =========
 
 We want a version of our ``Array`` class that can
-start at an arbitrary index, e.g., for the middle box above (excluding ghost cells):
+start at an arbitrary index, e.g., for the middle grid above (excluding ghost cells):
 
 .. code:: c++
 
