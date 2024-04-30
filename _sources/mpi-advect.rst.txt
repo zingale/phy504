@@ -61,7 +61,7 @@ ghost cells.
 For the physical boundaries, we will assume we are periodic.
 
 ``Array``
----------
+=========
 
 We want a version of our ``Array`` class that can
 start at an arbitrary index, e.g., for the middle box above (excluding ghost cells):
@@ -77,7 +77,7 @@ This is easy to do by adapting our existing ``Array`` class to include an offset
    :caption: ``array.H``
 
 ``Grid``
---------
+========
 
 We will manage each processor's subdomain with a ``grid`` class.  This class
 takes the domain size and number of points as well as each MPI processes rank
@@ -92,7 +92,7 @@ ghost cells.
    :caption: ``grid.H``
 
 Main program driver
--------------------
+===================
 
 The main program driver is pretty simple:
 
