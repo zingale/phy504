@@ -212,6 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#ghost-cell-filling">Ghost cell filling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#outputting">Outputting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running">Running</a></li>
 </ul>
 </li>
 </ul>
@@ -639,6 +640,12 @@ ghost cell filling and the outputting.</p>
 </section>
 <section id="ghost-cell-filling">
 <h2>Ghost cell filling<a class="headerlink" href="#ghost-cell-filling" title="Link to this heading"></a></h2>
+<p>For the ghost cell filling, each processor has a subdomain in an
+array, <code class="docutils literal notranslate"><span class="pre">a</span></code>.  We need to fill <code class="docutils literal notranslate"><span class="pre">a(ilo-1,</span> <span class="pre">:)</span></code> by receiving data from the left, and in exchange, we need to pass <code class="docutils literal notranslate"><span class="pre">a(ilo,</span> <span class="pre">:)</span></code> to the left to fill the left process’s <code class="docutils literal notranslate"><span class="pre">a(ihi+1,</span> <span class="pre">:)</span></code>.</p>
+<p>Our domain decomposition is done such that we are continguous in the <code class="docutils literal notranslate"><span class="pre">j</span></code> index, that means
+that we can specify the start of the column of data corresponding to <code class="docutils literal notranslate"><span class="pre">ilo-1</span></code> as <code class="docutils literal notranslate"><span class="pre">a(ilo-1,</span> <span class="pre">jlo-ng)</span></code>
+and then using the MPI call to send the entire column of elements.</p>
+<p>There are two <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code> calls, one for the left and the other for the right.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 139 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ghost_fill.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef GHOST_FILL_H</span>
@@ -711,6 +718,10 @@ ghost cell filling and the outputting.</p>
 </section>
 <section id="outputting">
 <h2>Outputting<a class="headerlink" href="#outputting" title="Link to this heading"></a></h2>
+<p>Only rank <code class="docutils literal notranslate"><span class="pre">0</span></code> will output, so we need to move the data from all the other
+ranks to rank <code class="docutils literal notranslate"><span class="pre">0</span></code>.  This is called serial I/O.  We just output the data
+one cell per line, with an empty line between rows.  This can be read into
+<code class="docutils literal notranslate"><span class="pre">gnuplot</span></code> easily.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">Listing 140 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">output.H</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef OUTPUT_H</span>
@@ -855,6 +866,54 @@ ghost cell filling and the outputting.</p>
 <span class="p">}</span>
 
 <span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="running">
+<h2>Running<a class="headerlink" href="#running" title="Link to this heading"></a></h2>
+<p>Here’s a <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 142 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
+<span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
+
+<span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="nf">ALL</span><span class="o">:</span><span class="w"> </span><span class="n">advection</span>
+
+<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wshadow<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-g
+
+<span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
+<span class="w">	</span>mpic++<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>$&lt;
+
+<span class="nf">advection</span><span class="o">:</span><span class="w"> </span>${<span class="n">OBJECTS</span>} ${<span class="n">HEADERS</span>}
+<span class="w">	</span>mpic++<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span><span class="si">${</span><span class="nv">OBJECTS</span><span class="si">}</span><span class="w"> </span>-lstdc++exp
+
+
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>*.o<span class="w"> </span>advection
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I am using C++20 here, because I wanted to use <code class="docutils literal notranslate"><span class="pre">std::print()</span></code> and <code class="docutils literal notranslate"><span class="pre">std::format()</span></code>.</p>
+</div>
+<p>The code can be executed as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">mpiexec<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>./advection</span>
+</pre></div></div><p>To plot the output, we can do:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 143 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">plot.gp</span></code></span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-gnuplot notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span><span class="nb">term</span><span class="w"> </span><span class="n">x11</span><span class="w"> </span><span class="n">persist</span>
+<span class="k">set</span><span class="w"> </span><span class="nb">view</span><span class="w"> </span><span class="n">map</span>
+<span class="k">set</span><span class="w"> </span><span class="nb">size</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="mi">-1</span>
+<span class="k">set</span><span class="w"> </span><span class="nb">autoscale</span><span class="w"> </span><span class="n">fix</span>
+<span class="k">splot</span><span class="w"> </span><span class="s">&#39;advection_t1.000_mpi.out&#39;</span><span class="w"> </span><span class="nb">notitle</span><span class="w"> </span><span class="nb">w</span><span class="w"> </span><span class="n">pm3d</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
