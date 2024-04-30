@@ -269,8 +269,8 @@
 <p>We will do a very simple, first-order accurate discretization:</p>
 <div class="math notranslate nohighlight">
 \[\frac{a^{n+1}_{i,j} - a^n_{i,j}}{\Delta t} =
-        - u \frac{a_{i,j} - a_{i-1,j}}{\Delta x}
-        - v \frac{a_{i,j} - a_{i,j-1}}{\Delta y}\]</div>
+        - u \frac{a^n_{i,j} - a^n_{i-1,j}}{\Delta x}
+        - v \frac{a^n_{i,j} - a^n_{i,j-1}}{\Delta y}\]</div>
 <p>This discretization assumes that <span class="math notranslate nohighlight">\(u &gt; 0\)</span> and <span class="math notranslate nohighlight">\(v &gt; 0\)</span>.  In that case, it is <em>upwinded</em>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -292,17 +292,10 @@ start at an arbitrary index:</p>
 <span class="cp">#define ARRAY_H</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stacktrace&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">myassert</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="w"> </span><span class="n">test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stacktrace</span><span class="o">::</span><span class="n">current</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">        </span><span class="n">abort</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
 
 <span class="c1">///</span>
 <span class="c1">/// a contiguous 2-d array</span>
@@ -326,81 +319,40 @@ start at an arbitrary index:</p>
 
 <span class="k">public</span><span class="o">:</span>
 
-<span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ny</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_xoffset</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="n">_yoffset</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span>
-<span class="w">          </span><span class="n">_nx</span><span class="p">{</span><span class="n">nx</span><span class="p">},</span><span class="w"> </span><span class="n">_ny</span><span class="p">{</span><span class="n">ny</span><span class="p">},</span>
-<span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">_nx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_ny</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// we do the asserts here after the initialization of _data</span>
-<span class="w">        </span><span class="c1">// in the initialization list, but if the size is zero, we&#39;ll</span>
-<span class="w">        </span><span class="c1">// abort here anyway.</span>
-
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">_nx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">_ny</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-
-<span class="w">    </span><span class="p">}</span>
-
 <span class="w">    </span><span class="n">Array</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">xlo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xhi</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ylo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">yhi</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">_xoffset</span><span class="p">{</span><span class="n">xlo</span><span class="p">},</span><span class="w"> </span><span class="n">_yoffset</span><span class="p">{</span><span class="n">ylo</span><span class="p">},</span>
 <span class="w">          </span><span class="n">_nx</span><span class="p">{</span><span class="n">xhi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xlo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="n">_ny</span><span class="p">{</span><span class="n">yhi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ylo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span>
 <span class="w">          </span><span class="n">_data</span><span class="p">(</span><span class="n">_nx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_ny</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// we do the asserts here after the initialization of _data</span>
-<span class="w">        </span><span class="c1">// in the initialization list, but if the size is zero, we&#39;ll</span>
-<span class="w">        </span><span class="c1">// abort here anyway.</span>
-
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">_nx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">_ny</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">_nx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">_ny</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// note the &quot;const&quot; after the argument list here -- this means</span>
-<span class="w">    </span><span class="c1">// that this can be called on a const Array, while the first</span>
-<span class="w">    </span><span class="c1">// &quot;const&quot; refers to the return type</span>
-
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// get x length</span>
-<span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xsize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_nx</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// get y length</span>
-<span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ysize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_ny</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// get the lower x index</span>
-<span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xlo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_xoffset</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// get the lower y index</span>
-<span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ylo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_yoffset</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// get the upper x index</span>
-<span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xhi</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_xoffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">_nx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;}</span>
 
-<span class="w">    </span><span class="c1">///</span>
-<span class="w">    </span><span class="c1">/// get the upper y index</span>
-<span class="w">    </span><span class="c1">///</span>
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">yhi</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_yoffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">_ny</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;}</span>
 
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_xoffset</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_yoffset</span><span class="p">;</span>
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_nx</span><span class="p">);</span>
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_ny</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_nx</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_ny</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_ny</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_xoffset</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_yoffset</span><span class="p">;</span>
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_nx</span><span class="p">);</span>
-<span class="w">        </span><span class="n">myassert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_ny</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_nx</span><span class="p">);</span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_ny</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_data</span><span class="p">[</span><span class="n">row</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_ny</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">col</span><span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -415,8 +367,6 @@ start at an arbitrary index:</p>
 <span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
 
 <span class="p">};</span>
-
-<span class="c1">// the &lt;&lt; operator is not part of the of the class, so it is not a member</span>
 
 <span class="kr">inline</span>
 <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

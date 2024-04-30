@@ -11,8 +11,8 @@ We will do a very simple, first-order accurate discretization:
 .. math::
 
   \frac{a^{n+1}_{i,j} - a^n_{i,j}}{\Delta t} =
-          - u \frac{a_{i,j} - a_{i-1,j}}{\Delta x}
-          - v \frac{a_{i,j} - a_{i,j-1}}{\Delta y}
+          - u \frac{a^n_{i,j} - a^n_{i-1,j}}{\Delta x}
+          - v \frac{a^n_{i,j} - a^n_{i,j-1}}{\Delta y}
 
 This discretization assumes that $u > 0$ and $v > 0$.  In that case, it is *upwinded*.
 
