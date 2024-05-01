@@ -547,6 +547,8 @@ ghost cells.</p>
 <span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">nprocs</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
 <span class="w">     </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nprocs</span><span class="p">);</span>
 
+<span class="w">     </span><span class="kt">double</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MPI_Wtime</span><span class="p">();</span>
+
 <span class="w">     </span><span class="c1">// setup the grid</span>
 
 <span class="w">     </span><span class="n">Grid</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="n">domain</span><span class="o">::</span><span class="n">nx</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ny</span><span class="p">,</span><span class="w"> </span><span class="n">domain</span><span class="o">::</span><span class="n">ng</span><span class="p">,</span>
@@ -563,7 +565,9 @@ ghost cells.</p>
 
 <span class="w">     </span><span class="c1">// output</span>
 <span class="w">     </span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
-<span class="w">     </span><span class="n">output</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">simulation</span><span class="o">::</span><span class="n">do_output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="n">output</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
 
 <span class="w">     </span><span class="c1">// evolve</span>
 
@@ -605,7 +609,13 @@ ghost cells.</p>
 <span class="w">         </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">anew</span><span class="p">;</span>
 <span class="w">     </span><span class="p">}</span>
 
-<span class="w">     </span><span class="n">output</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">simulation</span><span class="o">::</span><span class="n">do_output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="n">output</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;elapsed time: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">MPI_Wtime</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">     </span><span class="p">}</span>
 
 <span class="w">     </span><span class="n">MPI_Finalize</span><span class="p">();</span>
 <span class="p">}</span>
@@ -859,7 +869,7 @@ one cell per line, with an empty line between rows.  This can be read into
 
 <span class="nf">ALL</span><span class="o">:</span><span class="w"> </span><span class="n">advection</span>
 
-<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wshadow<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-g
+<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-Wall<span class="w"> </span>-Wextra<span class="w"> </span>-Wshadow<span class="w"> </span>-std<span class="o">=</span>c++23<span class="w"> </span>-g<span class="w"> </span>-O2
 
 <span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span> ${<span class="n">HEADERS</span>}
 <span class="w">	</span>mpic++<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">CXXFLAGS</span><span class="si">}</span><span class="w"> </span>$&lt;
