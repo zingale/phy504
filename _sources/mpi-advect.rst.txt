@@ -162,14 +162,26 @@ one cell per line, with an empty line between rows.  This can be read into
    :caption: ``output.H``
 
 
-Initialization
-==============
+Initialization and parameters
+=============================
 
 We will do a simple smooth Gaussian as the initial conditions.
 
 .. literalinclude:: ../../examples/parallel/mpi/advect/initialize.H
    :language: c++
    :caption: ``initialize.H``
+
+Finally, there is one additional header that holds the problem
+parameters.
+
+.. note::
+
+   In a real simulation code, these would come via an inputs file that
+   is read at runtime.
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/simulation.H
+   :language: c++
+   :caption: ``simulation.H``
 
 
 Running
@@ -197,3 +209,21 @@ To plot the output, we can do:
    :language: gnuplot
    :caption: ``plot.gp``
 
+Scaling
+=======
+
+Our algorithm is very simple, so there is not much floating point work
+/ zone.  As a result, it is easy for the communication to dominate
+over the computation.  In a real simulation code, we'd do something
+much more complicated to get a better solution, and this would not be
+as much of an issue.
+
+We also have one major serial part in our code---I/O.  Amdahl's law says
+that eventually this will dominate our runtime as we increase the number
+of processors.
+
+.. tip::
+
+   In order to see good scaling, we need to run a reasonable large
+   problem size, like $512^2$ and disable I/O (by changing
+   ``simulation::do_output``)

@@ -211,8 +211,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#main-program-driver">Main program driver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ghost-cell-filling">Ghost cell filling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#outputting">Outputting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialization-and-parameters">Initialization and parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running">Running</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scaling">Scaling</a></li>
 </ul>
 </li>
 </ul>
@@ -816,8 +817,8 @@ one cell per line, with an empty line between rows.  This can be read into
 </div>
 </div>
 </section>
-<section id="initialization">
-<h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h2>
+<section id="initialization-and-parameters">
+<h2>Initialization and parameters<a class="headerlink" href="#initialization-and-parameters" title="Link to this heading"></a></h2>
 <p>We will do a simple smooth Gaussian as the initial conditions.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-number">Listing 141 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">initialize.H</span></code></span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
@@ -856,12 +857,47 @@ one cell per line, with an empty line between rows.  This can be read into
 </pre></div>
 </div>
 </div>
+<p>Finally, there is one additional header that holds the problem
+parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In a real simulation code, these would come via an inputs file that
+is read at runtime.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 142 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">simulation.H</span></code></span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef SIMULATION_H</span>
+<span class="cp">#define SIMULATION_H</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">domain</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nx</span><span class="p">{</span><span class="mi">512</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ny</span><span class="p">{</span><span class="mi">512</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ng</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmin</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xmax</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ymin</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">ymax</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">simulation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">C</span><span class="p">{</span><span class="mf">0.4</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tmax</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">u</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="p">{</span><span class="mf">1.0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">do_output</span><span class="p">{</span><span class="nb">true</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="running">
 <h2>Running<a class="headerlink" href="#running" title="Link to this heading"></a></h2>
 <p>Here’s a <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Listing 142 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 143 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">HEADERS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.H<span class="k">)</span>
 <span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
 
@@ -894,8 +930,8 @@ span.prompt1:before {
 }
 </style><span class="prompt1">mpiexec<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>./advection</span>
 </pre></div></div><p>To plot the output, we can do:</p>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-number">Listing 143 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">plot.gp</span></code></span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">Listing 144 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">plot.gp</span></code></span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
 <div class="highlight-gnuplot notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span><span class="nb">term</span><span class="w"> </span><span class="n">x11</span><span class="w"> </span><span class="n">persist</span>
 <span class="k">set</span><span class="w"> </span><span class="nb">view</span><span class="w"> </span><span class="n">map</span>
 <span class="k">set</span><span class="w"> </span><span class="nb">size</span><span class="w"> </span><span class="n">ratio</span><span class="w"> </span><span class="mi">-1</span>
@@ -903,6 +939,23 @@ span.prompt1:before {
 <span class="k">splot</span><span class="w"> </span><span class="s">&#39;advection_t1.000_mpi.out&#39;</span><span class="w"> </span><span class="nb">notitle</span><span class="w"> </span><span class="nb">w</span><span class="w"> </span><span class="n">pm3d</span>
 </pre></div>
 </div>
+</div>
+</section>
+<section id="scaling">
+<h2>Scaling<a class="headerlink" href="#scaling" title="Link to this heading"></a></h2>
+<p>Our algorithm is very simple, so there is not much floating point work
+/ zone.  As a result, it is easy for the communication to dominate
+over the computation.  In a real simulation code, we’d do something
+much more complicated to get a better solution, and this would not be
+as much of an issue.</p>
+<p>We also have one major serial part in our code—I/O.  Amdahl’s law says
+that eventually this will dominate our runtime as we increase the number
+of processors.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In order to see good scaling, we need to run a reasonable large
+problem size, like <span class="math notranslate nohighlight">\(512^2\)</span> and disable I/O (by changing
+<code class="docutils literal notranslate"><span class="pre">simulation::do_output</span></code>)</p>
 </div>
 </section>
 </section>
