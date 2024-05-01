@@ -40,8 +40,8 @@ inline void fill_ghost_cells(const Grid& g, Array& a) {
         int recvfrom = rank == nprocs - 1 ? 0 : rank + 1;
 
         MPI_Status status;
-        MPI_Sendrecv(&a(g.ilo, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, sendto, 0,
-                     &a(g.ihi+1, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, recvfrom, 0,
+        MPI_Sendrecv(&a(g.ilo, g.jlo-g.ng), a.ny, MPI_DOUBLE, sendto, 0,
+                     &a(g.ihi+1, g.jlo-g.ng), a.ny, MPI_DOUBLE, recvfrom, 0,
                      MPI_COMM_WORLD, &status);
     }
 
@@ -55,8 +55,8 @@ inline void fill_ghost_cells(const Grid& g, Array& a) {
         int recvfrom = rank == 0 ? nprocs - 1 : rank - 1;
 
         MPI_Status status;
-        MPI_Sendrecv(&a(g.ihi, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, sendto, 1,
-                     &a(g.ilo-1, g.jlo-g.ng), a.ysize(), MPI_DOUBLE, recvfrom, 1,
+        MPI_Sendrecv(&a(g.ihi, g.jlo-g.ng), a.ny, MPI_DOUBLE, sendto, 1,
+                     &a(g.ilo-1, g.jlo-g.ng), a.ny, MPI_DOUBLE, recvfrom, 1,
                      MPI_COMM_WORLD, &status);
     }
 

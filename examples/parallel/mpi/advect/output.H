@@ -59,7 +59,7 @@ inline void output(const Grid& g, double t, const Array& a) {
                 // now transfer the data -- we'll send everything,
                 // including the ghost cells
 
-                MPI_Send(a.data(), a.xsize() * a.ysize(), MPI_DOUBLE,
+                MPI_Send(a.data(), a.nx * a.ny, MPI_DOUBLE,
                          0, n, MPI_COMM_WORLD);
 
             } else if (rank == 0) {
@@ -76,7 +76,7 @@ inline void output(const Grid& g, double t, const Array& a) {
                 Array a_buf(irange[0]-g.ng, irange[1]+g.ng,
                             g.jlo-g.ng, g.jhi+g.ng);
 
-                auto ierr = MPI_Recv(a_buf.data(), a_buf.xsize() * a_buf.ysize(), MPI_DOUBLE,
+                auto ierr = MPI_Recv(a_buf.data(), a_buf.nx * a_buf.ny, MPI_DOUBLE,
                                      n, n, MPI_COMM_WORLD, &status);
 
                 if (ierr != MPI_SUCCESS) {

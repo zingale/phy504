@@ -38,9 +38,6 @@ public:
         dx = (_xmax - _xmin) / static_cast<double>(_nx);
         dy = (_ymax - _ymin) / static_cast<double>(_ny);
 
-        // compute the domain decomposition and set the bounding
-        // indices for the grid on processor rank
-
         // each processor will hold a slab with the i coordinates
         // spanning ~ 1/nx of the x-domain, and the j coordinates
         // spanning the entire j range.  We will refer to a
