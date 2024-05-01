@@ -138,7 +138,7 @@ Ghost cell filling
 For the ghost cell filling, each processor has a subdomain in an
 array, ``a``.  We need to fill ``a(ilo-1, :)`` by receiving data from the left, and in exchange, we need to pass ``a(ilo, :)`` to the left to fill the left process's ``a(ihi+1, :)``.
 
-Our domain decomposition is done such that we are continguous in the ``j`` index, that means
+Our domain decomposition is done such that we are contiguous in the ``j`` index, that means
 that we can specify the start of the column of data corresponding to ``ilo-1`` as ``a(ilo-1, jlo-ng)``
 and then using the MPI call to send the entire column of elements.
 
