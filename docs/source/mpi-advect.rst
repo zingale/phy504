@@ -109,6 +109,13 @@ ghost cells.
    :language: c++
    :caption: ``grid.H``
 
+Here's a simple driver that shows how 3 different ranks reproduce
+the domain decomposition in the above figure:
+
+.. literalinclude:: ../../examples/parallel/mpi/advect/test/test.cpp
+   :language: c++
+   :caption: ``test.cpp``
+
 Main program driver
 ===================
 
