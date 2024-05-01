@@ -58,7 +58,7 @@ easier, we will refer to a global index space on the entire domain.
 
 For the figure above, the indices of the grids, (``ilo``, ``ihi``, ``jlo``, ``jhi``) are:
 
-* left grid: (``0``, ``5``, ``0``, ``9``)
+* left grid: (``0``, ``4``, ``0``, ``9``)
 
 * middle grid: (``5``, ``9``, ``0``, ``9``)
 
