@@ -289,7 +289,7 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This is a very bad discretization of advection.  Our concern here
+<p>This is a <em>very bad</em> discretization of advection.  Our concern here
 is not on the accuracy of the method, but to demonstrate how to do
 the domain decomposition.  For better methods for advection, see
 <a class="reference external" href="https://zingale.github.io/computational_astrophysics/advection/advection-intro.html">my lecture notes on advection</a>.</p>
@@ -325,9 +325,13 @@ ghost cells.</p>
 </section>
 <section id="array">
 <h2><code class="docutils literal notranslate"><span class="pre">Array</span></code><a class="headerlink" href="#array" title="Link to this heading"></a></h2>
-<p>We want a version of our <code class="docutils literal notranslate"><span class="pre">Array</span></code> class that can
-start at an arbitrary index, e.g., for the middle grid above (excluding ghost cells):</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
+<p>We want a version of our <code class="docutils literal notranslate"><span class="pre">Array</span></code> class that can start at an
+arbitrary index, so we’d like a constructor like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="n">ilo</span><span class="p">,</span><span class="w"> </span><span class="n">ihi</span><span class="p">,</span><span class="w"> </span><span class="n">jlo</span><span class="p">,</span><span class="w"> </span><span class="n">jhi</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>and then we could initialize the middle grid above (excluding ghost cells) as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Array</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This is easy to do by adapting our existing <code class="docutils literal notranslate"><span class="pre">Array</span></code> class to include an offset:</p>
@@ -406,10 +410,10 @@ start at an arbitrary index, e.g., for the middle grid above (excluding ghost ce
 </section>
 <section id="grid">
 <h2><code class="docutils literal notranslate"><span class="pre">Grid</span></code><a class="headerlink" href="#grid" title="Link to this heading"></a></h2>
-<p>We will manage each processor’s subdomain with a <code class="docutils literal notranslate"><span class="pre">grid</span></code> class.  This class
-takes the domain size and number of points as well as each MPI processes rank
-and the total number of MPI processes and computes the domain decomposition
-for each rank.</p>
+<p>We will manage each processor’s subdomain with a <code class="docutils literal notranslate"><span class="pre">grid</span></code> class.  This
+class takes the domain size and <em>number of points for the entire
+domain</em>, as well as each MPI processes rank and the total number of
+MPI processes and computes the domain decomposition for each rank.</p>
 <p>It also has a method to generate an array allocated for that rank, including
 ghost cells.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
@@ -629,10 +633,17 @@ ghost cell filling and the outputting.</p>
 <section id="ghost-cell-filling">
 <h2>Ghost cell filling<a class="headerlink" href="#ghost-cell-filling" title="Link to this heading"></a></h2>
 <p>For the ghost cell filling, each processor has a subdomain in an
-array, <code class="docutils literal notranslate"><span class="pre">a</span></code>.  We need to fill <code class="docutils literal notranslate"><span class="pre">a(ilo-1,</span> <span class="pre">:)</span></code> by receiving data from the left, and in exchange, we need to pass <code class="docutils literal notranslate"><span class="pre">a(ilo,</span> <span class="pre">:)</span></code> to the left to fill the left process’s <code class="docutils literal notranslate"><span class="pre">a(ihi+1,</span> <span class="pre">:)</span></code>.</p>
-<p>Our domain decomposition is done such that we are contiguous in the <code class="docutils literal notranslate"><span class="pre">j</span></code> index, that means
-that we can specify the start of the column of data corresponding to <code class="docutils literal notranslate"><span class="pre">ilo-1</span></code> as <code class="docutils literal notranslate"><span class="pre">a(ilo-1,</span> <span class="pre">jlo-ng)</span></code>
-and then using the MPI call to send the entire column of elements.</p>
+array, <code class="docutils literal notranslate"><span class="pre">a</span></code>.  We need to fill <code class="docutils literal notranslate"><span class="pre">a(ilo-1,</span> <span class="pre">*)</span></code> by receiving data from
+the left, and in exchange, we need to pass <code class="docutils literal notranslate"><span class="pre">a(ilo,</span> <span class="pre">*)</span></code> to the left
+to fill the left process’s <code class="docutils literal notranslate"><span class="pre">a(ihi+1,</span> <span class="pre">*)</span></code>.  Here, the <code class="docutils literal notranslate"><span class="pre">*</span></code> indicates
+a loop over all the elements in that dimension.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Our domain decomposition is done such that we are contiguous in the
+<code class="docutils literal notranslate"><span class="pre">j</span></code> index, that means that we can specify the start of the column
+of data corresponding to <code class="docutils literal notranslate"><span class="pre">ilo-1</span></code> as <code class="docutils literal notranslate"><span class="pre">a(ilo-1,</span> <span class="pre">jlo-ng)</span></code> and then
+using the MPI call to send the entire column of elements.</p>
+</div>
 <p>There are two <code class="docutils literal notranslate"><span class="pre">MPI_Sendrecv</span></code> calls, one for the left and the other for the right.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-number">Listing 139 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ghost_fill.H</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
@@ -815,6 +826,12 @@ one cell per line, with an empty line between rows.  This can be read into
 <span class="cp">#endif</span>
 </pre></div>
 </div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Modern supercomputers have parallel filesystems, where all of the
+nodes can output directly, and there are various libraries for
+parallel I/O, such as <a class="reference external" href="https://docs.hdfgroup.org/hdf5/develop/_intro_par_h_d_f5.html">HDF5</a>.</p>
 </div>
 </section>
 <section id="initialization-and-parameters">
