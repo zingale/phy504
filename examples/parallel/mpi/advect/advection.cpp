@@ -1,27 +1,13 @@
 #include <iostream>
+#include <print>
 
 #include <mpi.h>
 
-#include "advection_util.H"
 #include "grid.H"
-
-namespace domain {
-    constexpr int nx{64};
-    constexpr int ny{64};
-    constexpr int ng{1};
-
-    constexpr double xmin{0.0};
-    constexpr double xmax{1.0};
-    constexpr double ymin{0.0};
-    constexpr double ymax{1.0};
-}
-
-namespace simulation {
-    constexpr double C{0.4};
-    constexpr double tmax{0.333};
-    constexpr double u{1.0};
-    constexpr double v{1.0};
-}
+#include "simulation.H"
+#include "initialize.H"
+#include "output.H"
+#include "ghost_fill.H"
 
 int main() {
 
@@ -35,10 +21,9 @@ int main() {
 
      // setup the grid
 
-     grid g(domain::nx, domain::ny, domain::ng,
-            domain::xmin, domain::xmax, domain::ymin, domain::ymax);
-
-     g.set_decomposition(rank, nprocs);
+     Grid g(domain::nx, domain::ny, domain::ng,
+            domain::xmin, domain::xmax, domain::ymin, domain::ymax,
+            rank, nprocs);
 
      // create the memory for storing the old and new solution
 
@@ -53,6 +38,8 @@ int main() {
      output(g, t, a);
 
      // evolve
+
+     int nstep{0};
 
      while (t < simulation::tmax) {
 
@@ -81,13 +68,13 @@ int main() {
          }
 
          t += dt;
+         nstep++;
 
-         for (int i = g.ilo; i <= g.ihi; ++i) {
-             for (int j = g.jlo; j <= g.jhi; ++j) {
-                 a(i, j) = anew(i, j);
-             }
+         if (rank == 0) {
+             std::println("n = {:4d}; t = {:6.4f}; dt = {:8.4g}", nstep, t, dt);
          }
 
+         a = anew;
      }
 
      output(g, t, a);

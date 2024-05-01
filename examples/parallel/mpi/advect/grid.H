@@ -8,18 +8,9 @@
 
 #include "array.H"
 
-class grid {
+class Grid {
 
 public:
-
-    int nx;
-    int ny;
-    int ng;
-
-    double xmin;
-    double xmax;
-    double ymin;
-    double ymax;
 
     double dx;
     double dy;
@@ -27,30 +18,25 @@ public:
     // for the domain decomposition, we will set the indices of
     // the valid cells in the domain on the current processor
 
+    int ng;
+
     int ilo{-1};
     int ihi{-1};
     int jlo{-1};
     int jhi{-1};
 
-    grid(int _nx, int _ny, int _ng,
-         double _xmin, double _xmax, double _ymin, double _ymax)
-        : nx(_nx), ny(_ny), ng(_ng),
-          xmin(_xmin), xmax(_xmax), ymin(_ymin), ymax(_ymax)
+    Grid(int _nx, int _ny, int _ng,
+         double _xmin, double _xmax, double _ymin, double _ymax,
+         int _rank, int _nprocs)
+        : ng(_ng)
     {
-        assert (xmax > xmin);
-        assert (ymax > ymin);
-        assert (nx > 0);
-        assert (ny > 0);
+        assert (_xmax > _xmin);
+        assert (_ymax > _ymin);
+        assert (_nx > 0);
+        assert (_ny > 0);
 
-        dx = (xmax - xmin) / static_cast<double>(nx);
-        dy = (ymax - ymin) / static_cast<double>(ny);
-    }
-
-    ///
-    /// compute the domain decomposition and set the 
-    /// bounding indices for the grid on processor rank
-    ///
-    inline void set_decomposition(int rank, int nprocs) {
+        dx = (_xmax - _xmin) / static_cast<double>(_nx);
+        dy = (_ymax - _ymin) / static_cast<double>(_ny);
 
         // each processor will hold a slab with the i coordinates
         // spanning ~ 1/nx of the x-domain, and the j coordinates
@@ -60,30 +46,30 @@ public:
         // note: with this decomposition, the data will be
         // contiguous in memory on each processor
 
-        int iwidth = std::floor(static_cast<double>(nx) /
-                                static_cast<double>(nprocs));
+        int iwidth = std::floor(static_cast<double>(_nx) /
+                                static_cast<double>(_nprocs));
 
-        int iextra = nx % nprocs;
+        int iextra = _nx % _nprocs;
 
         // the first iwidth processors have a width of iwidth+1
+
         int mywidth = iwidth;
-        if (rank < iextra) {
+        if (_rank < iextra) {
             mywidth++;
         }
 
         // current processor's index space
 
-
-        if (rank < iextra) {
-            ilo = (iwidth+1)*rank;
+        if (_rank < iextra) {
+            ilo = (iwidth + 1) * _rank;
             ihi = ilo + mywidth - 1;
         } else {
-            ilo = (iwidth+1)*iextra + iwidth*(rank - iextra);
+            ilo = (iwidth + 1) * iextra + iwidth * (_rank - iextra);
             ihi = ilo + mywidth - 1;
         }
 
         jlo = 0;
-        jhi = ny-1;
+        jhi = _ny-1;
 
     }
 
@@ -99,7 +85,7 @@ public:
 };
 
 
-inline std::ostream& operator<< (std::ostream& os, grid g) {
+inline std::ostream& operator<< (std::ostream& os, Grid g) {
     os << std::format("i: ({:3}, {:3}); j: ({:3}, {:3})",
                       g.ilo, g.ihi, g.jlo, g.jhi);
     return os;

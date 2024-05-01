@@ -199,12 +199,14 @@ Spring 2024
    openmp-pi
    mpi-intro
    mpi-sendrecv
+   mpi-advect
 
 .. toctree::
    :maxdepth: 1
    :caption: Calling C++ from Python
 
    cxx-python
+   cxx-python-sum
    cxx-python-array
 
 .. toctree::
