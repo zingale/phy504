@@ -430,9 +430,6 @@ ghost cells.</p>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">// for the domain decomposition, we will set the indices of</span>
-<span class="w">    </span><span class="c1">// the valid cells in the domain on the current processor</span>
-
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ng</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ilo</span><span class="p">{</span><span class="mi">-1</span><span class="p">};</span>
@@ -454,9 +451,9 @@ ghost cells.</p>
 <span class="w">        </span><span class="n">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_ymax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_ymin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_ny</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// each processor will hold a slab with the i coordinates</span>
-<span class="w">        </span><span class="c1">// spanning ~ 1/nx of the x-domain, and the j coordinates</span>
+<span class="w">        </span><span class="c1">// spanning ~ 1/_nx of the x-domain, and the j coordinates</span>
 <span class="w">        </span><span class="c1">// spanning the entire j range.  We will refer to a</span>
-<span class="w">        </span><span class="c1">// global index space of nx x ny.</span>
+<span class="w">        </span><span class="c1">// global index space of _nx x _ny.</span>
 
 <span class="w">        </span><span class="c1">// note: with this decomposition, the data will be</span>
 <span class="w">        </span><span class="c1">// contiguous in memory on each processor</span>

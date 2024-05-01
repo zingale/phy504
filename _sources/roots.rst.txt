@@ -88,7 +88,7 @@ There are a few things to note here:
 * We need a good estimate of the derivative.  Ideally this means that we
   supply a function that computes the derivative analytically.
 
-* Newton's method can fail in a variety of ways, including `entering a cycle <https://en.wikipedia.org/wiki/Newton's_method#Starting_point_enters_a_cycle>`_.
+* Newton's method can fail in a variety of ways, including `entering a cycle <https://en.wikipedia.org/wiki/Newton's_method#Oscillatory_behavior>`_.
 
 .. note::
 

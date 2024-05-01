@@ -5,7 +5,7 @@ Returning an Array to Python
 returned to python.  To do this, we need to use the ``pybind11``
 classes that create a python array.
 
-In ``pybind11``, the array class is ``pybind11::array_t<>``.  The constructor 
+In ``pybind11``, the array class is ``pybind11::array_t<>``.  The constructor
 
 
 Here's an example that computes a `Hilbert matrix <https://en.wikipedia.org/wiki/Hilbert_matrix>`_
