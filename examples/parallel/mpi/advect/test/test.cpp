@@ -27,6 +27,4 @@ int main() {
     std::cout << gleft << std::endl;
     std::cout << gmiddle << std::endl;
     std::cout << gright << std::endl;
-
-
 }
