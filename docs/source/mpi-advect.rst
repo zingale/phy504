@@ -26,7 +26,7 @@ This discretization assumes that $u > 0$ and $v > 0$.  In that case, it is *upwi
 
 .. warning::
 
-   This is a very bad discretization of advection.  Our concern here
+   This is a *very bad* discretization of advection.  Our concern here
    is not on the accuracy of the method, but to demonstrate how to do
    the domain decomposition.  For better methods for advection, see
    `my lecture notes on advection <https://zingale.github.io/computational_astrophysics/advection/advection-intro.html>`_.
@@ -75,12 +75,18 @@ For the physical boundaries, we will assume we are periodic.
 ``Array``
 =========
 
-We want a version of our ``Array`` class that can
-start at an arbitrary index, e.g., for the middle grid above (excluding ghost cells):
+We want a version of our ``Array`` class that can start at an
+arbitrary index, so we'd like a constructor like:
 
 .. code:: c++
 
-   Array a(5, 9, 0, 9)
+   Array a(ilo, ihi, jlo, jhi);
+
+and then we could initialize the middle grid above (excluding ghost cells) as:
+
+.. code:: c++
+
+   Array a(5, 9, 0, 9);
 
 This is easy to do by adapting our existing ``Array`` class to include an offset:
 
@@ -91,10 +97,10 @@ This is easy to do by adapting our existing ``Array`` class to include an offset
 ``Grid``
 ========
 
-We will manage each processor's subdomain with a ``grid`` class.  This class
-takes the domain size and number of points as well as each MPI processes rank
-and the total number of MPI processes and computes the domain decomposition
-for each rank.
+We will manage each processor's subdomain with a ``grid`` class.  This
+class takes the domain size and *number of points for the entire
+domain*, as well as each MPI processes rank and the total number of
+MPI processes and computes the domain decomposition for each rank.
 
 It also has a method to generate an array allocated for that rank, including
 ghost cells.
@@ -136,11 +142,17 @@ Ghost cell filling
 ==================
 
 For the ghost cell filling, each processor has a subdomain in an
-array, ``a``.  We need to fill ``a(ilo-1, :)`` by receiving data from the left, and in exchange, we need to pass ``a(ilo, :)`` to the left to fill the left process's ``a(ihi+1, :)``.
+array, ``a``.  We need to fill ``a(ilo-1, *)`` by receiving data from
+the left, and in exchange, we need to pass ``a(ilo, *)`` to the left
+to fill the left process's ``a(ihi+1, *)``.  Here, the ``*`` indicates
+a loop over all the elements in that dimension.
 
-Our domain decomposition is done such that we are contiguous in the ``j`` index, that means
-that we can specify the start of the column of data corresponding to ``ilo-1`` as ``a(ilo-1, jlo-ng)``
-and then using the MPI call to send the entire column of elements.
+.. tip::
+
+   Our domain decomposition is done such that we are contiguous in the
+   ``j`` index, that means that we can specify the start of the column
+   of data corresponding to ``ilo-1`` as ``a(ilo-1, jlo-ng)`` and then
+   using the MPI call to send the entire column of elements.
 
 There are two ``MPI_Sendrecv`` calls, one for the left and the other for the right.
 
@@ -161,6 +173,12 @@ one cell per line, with an empty line between rows.  This can be read into
    :language: c++
    :caption: ``output.H``
 
+.. tip::
+
+   Modern supercomputers have parallel filesystems, where all of the
+   nodes can output directly, and there are various libraries for
+   parallel I/O, such as `HDF5
+   <https://docs.hdfgroup.org/hdf5/develop/_intro_par_h_d_f5.html>`_.
 
 Initialization and parameters
 =============================
