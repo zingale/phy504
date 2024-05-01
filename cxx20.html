@@ -279,7 +279,7 @@ support is not that great at the moment.</p>
 </div>
 <p>Here’s a simple example.  First the module:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 152 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 153 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">example.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">module</span><span class="p">;</span>
 
 <span class="c1">// includes must be in the &quot;global fragment&quot; and preced the main</span>
@@ -297,7 +297,7 @@ support is not that great at the moment.</p>
 </div>
 <p>Now the main program:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 153 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 154 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="n">Example</span><span class="p">;</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -314,7 +314,7 @@ support is not that great at the moment.</p>
 </div>
 <p>and finally, a <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 154 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 155 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">MODULEFILES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>example.cpp
 <span class="nv">SOURCEFILES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>main.cpp
 
@@ -345,7 +345,7 @@ support is not that great at the moment.</p>
 <p>C++ 20 introduces the <a class="reference external" href="https://en.cppreference.com/w/cpp/ranges">ranges library</a>.  This allows us to more easily consider views into our containers.</p>
 <p>Here’s an example of using a range-based for loop over a set of integers:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 155 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">iota_loop.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 156 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">iota_loop.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>
 
@@ -367,7 +367,7 @@ support is not that great at the moment.</p>
 <p>Here’s an example of using an adaptor to reverse the iteration through a vector using
 a range-based for loop:</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 156 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reverse_adaptor.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 157 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">reverse_adaptor.cpp</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>

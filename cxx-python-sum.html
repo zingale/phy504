@@ -269,7 +269,7 @@ the array.  To do this, we need to specify the dimensions of the array via the t
 parameter.</p>
 <p>Note that this array is immutable because of the method we used to access its contents.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 147 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sum.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 148 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sum.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
 
@@ -300,7 +300,7 @@ parameter.</p>
 </div>
 <p>To compile it, we can essentially the same <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 148 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 149 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCES</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.cpp<span class="k">)</span>
 <span class="nv">OBJECTS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>SOURCES:.cpp<span class="o">=</span>.o<span class="k">)</span>
 
@@ -340,7 +340,7 @@ parameter.</p>
 <p>Here’s a similar C++ function, but now we use
 <code class="docutils literal notranslate"><span class="pre">mutable_unchecked&lt;DIM&gt;()</span></code> to get our view into the passed array.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 149 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">mutate.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 150 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">mutate.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
 
@@ -368,7 +368,7 @@ parameter.</p>
 <p>And again, the same <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> (just changing the module name): <a class="reference download internal" download="" href="_downloads/8d53f2299601cce5d1c0e5fc33bdd33d/GNUmakefile"><code class="xref download docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a>.</p>
 <p>Here’s how we can use it from python:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 150 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 151 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">mutate</span> <span class="kn">import</span> <span class="n">update</span>
 
