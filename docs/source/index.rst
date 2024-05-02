@@ -207,6 +207,7 @@ Spring 2024
 
    cxx-python
    cxx-python-sum
+   cxx-python-vectorize
    cxx-python-array
 
 .. toctree::
