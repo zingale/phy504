@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example: Sorting Planets &mdash; PHY 504 Spring 2024 documentation</title>
+  <title>Vectoring a C++ Function &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Making the Compiler Do the Work" href="compiler-flags.html" />
-    <link rel="prev" title="Lambda Functions" href="cxx-lambdas.html" /> 
+    <link rel="next" title="Returning an Array to Python" href="cxx-python-array.html" />
+    <link rel="prev" title="Passing a NumPy Array into C++" href="cxx-python-sum.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -113,13 +113,13 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-orbit-example.html">Example: Planetary Orbit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-rk2-orbit.html">In Class: 2nd Order Runge-Kutta Orbit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-lambdas.html">Lambda Functions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Sorting Planets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cxx-functions-planets.html">Example: Sorting Planets</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
 <ul>
@@ -205,10 +205,10 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-advect.html">MPI Linear Advection Equation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Calling C++ from Python</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cxx-python.html">pybind11</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-sum.html">Passing a NumPy Array into C++</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cxx-python-vectorize.html">Vectoring a C++ Function</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Vectoring a C++ Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-array.html">Returning an Array to Python</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
@@ -247,9 +247,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Example: Sorting Planets</li>
+      <li class="breadcrumb-item active">Vectoring a C++ Function</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/cxx-functions-planets.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/cxx-python-vectorize.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -257,103 +257,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="example-sorting-planets">
-<h1>Example: Sorting Planets<a class="headerlink" href="#example-sorting-planets" title="Link to this heading"></a></h1>
-<p id="sec-sorting-planets">Let’s use our new understanding of lambda functions to enable <code class="docutils literal notranslate"><span class="pre">std::sort()</span></code>
-to sort our planets vector based on eccentricity.</p>
-<p>And, let’s add one more trick—we’ll create a function that tells C++
-how to output our <code class="docutils literal notranslate"><span class="pre">Planet</span></code> object directly.</p>
-<p>Recall, that our <code class="docutils literal notranslate"><span class="pre">Planet</span></code> is a <code class="docutils literal notranslate"><span class="pre">struct</span></code> of the form:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">{};</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w">            </span><span class="c1">// semi-major axis</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">{};</span><span class="w">            </span><span class="c1">// eccentricity</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-<p>We’d like to be able to do:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Planet</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>We need to write a function that takes an output stream (<code class="docutils literal notranslate"><span class="pre">std::ostream</span></code>)
-and returns a reference to that same output stream.</p>
-<p>Here’s how this function looks:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Planet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : (&quot;</span>
-<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; , &quot;</span>
-<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Previously we saw that we could not write a function that returns a
-reference to a local object.  But here, the return value, <code class="docutils literal notranslate"><span class="pre">os</span></code>, is
-not local—we pass a reference to it via the argument list.</p>
-<p>This construction is what allows us to string <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> together.</p>
-</div>
-<p>Here’s the full code of initializing our planets, sorting by eccentricity,
-and then outputting them.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 37 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">planet_sort.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
-
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">Planet</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">{};</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">{};</span><span class="w">            </span><span class="c1">// semi-major axis</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">e</span><span class="p">{};</span><span class="w">            </span><span class="c1">// eccentricity</span>
-<span class="p">};</span>
-
-<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Planet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; : (&quot;</span>
-<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; , &quot;</span>
-<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Planet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">planets</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;Mercury&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">0.3871</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2056</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Venus&quot;</span><span class="p">,</span><span class="w">    </span><span class="mf">0.7233</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0068</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Earth&quot;</span><span class="p">,</span><span class="w">    </span><span class="mf">1.0000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0167</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Mars&quot;</span><span class="p">,</span><span class="w">     </span><span class="mf">1.5237</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0934</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Jupiter&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">5.2029</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0484</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Saturn&quot;</span><span class="p">,</span><span class="w">   </span><span class="mf">9.5370</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0539</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Uranus&quot;</span><span class="p">,</span><span class="w">  </span><span class="mf">19.189</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0473</span><span class="p">},</span>
-<span class="w">                                 </span><span class="p">{</span><span class="s">&quot;Neptune&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">30.070</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0086</span><span class="p">}};</span>
-
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">planets</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">planets</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
-<span class="w">              </span><span class="p">[]</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Planet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Planet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">e</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">e</span><span class="p">;});</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">planets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
+  <section id="vectoring-a-c-function">
+<h1>Vectoring a C++ Function<a class="headerlink" href="#vectoring-a-c-function" title="Link to this heading"></a></h1>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> to convert a C++ function that takes scalars
+to work with NumPy arrays as input.  This uses the <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#vectorizing-functions">py::vectorize functionality</a> in <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cxx-lambdas.html" class="btn btn-neutral float-left" title="Lambda Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="compiler-flags.html" class="btn btn-neutral float-right" title="Making the Compiler Do the Work" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cxx-python-sum.html" class="btn btn-neutral float-left" title="Passing a NumPy Array into C++" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cxx-python-array.html" class="btn btn-neutral float-right" title="Returning an Array to Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
