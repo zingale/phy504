@@ -4,7 +4,7 @@ const double TOL = 1.e-10;
 
 int main() {
 
-    auto p = Poisson(0.0, 1.0, 0.0, 1.0, 512, 512);
+    auto p = Poisson(0.0, 1.0, 0.0, 1.0, 128, 128);
 
     p.set_source([] (double x, double y)
                  {return -2.0 * ((1.0 - 6.0 * x * x) * y * y * (1.0 - y * y) +
