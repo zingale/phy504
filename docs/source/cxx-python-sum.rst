@@ -23,12 +23,12 @@ To compile it, we can essentially the same ``GNUmakefile``:
 
 We can use this in python as:
 
-.. code:: python
+.. literalinclude:: ../../examples/pybind11/sum_from_python/test_sum.py
+   :language: python
+   :caption: ``test_sum.py``
 
-   import numpy as np
-   a = np.ones((5, 4), dtype=np.float64)
-   sum.sum(a)
-
+Notice that the creation of the view / proxy into the array fails if we pass
+in an array with the incorrect number of dimensions.
 
 Mutable array
 -------------
@@ -47,3 +47,20 @@ Here's how we can use it from python:
 .. literalinclude:: ../../examples/pybind11/mutate_from_python/test_mutate.py
    :language: python
    :caption: ``test_mutate.py``
+
+.. note::
+
+   It doesn't matter if we declare our function as:
+
+   .. code:: c++
+
+      void update(pybind11::array_t<double>& a)
+
+   or
+
+   .. code:: c++
+
+      void update(pybind11::array_t<double> a)
+
+   The making the ``array_t`` a reference doesn't matter, since ``array_t`` is
+   just a wrapper that has a pointer to a buffer where the data is stored.

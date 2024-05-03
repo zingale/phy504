@@ -1,10 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 
-
-namespace py = pybind11;
-
-py::array_t<double> hilbert(const int N) {
+pybind11::array_t<double> hilbert(const int N) {
 
     // construct the numpy array we will return
     // we need to specify the strides manually
@@ -12,7 +9,7 @@ py::array_t<double> hilbert(const int N) {
     constexpr size_t elsize = sizeof(double);
     size_t shape[2]{N, N};
     size_t strides[2]{N * elsize, elsize};
-    auto H = py::array_t<double>(shape, strides);
+    auto H = pybind11::array_t<double>(shape, strides);
     auto H_view = H.mutable_unchecked<2>();
 
     for (int i = 0; i < H.shape(0); ++i) {
