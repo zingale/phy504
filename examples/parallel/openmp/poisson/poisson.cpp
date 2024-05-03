@@ -3,13 +3,17 @@
 
 #include "poisson2d.H"
 
+#include <omp.h>
+
 const double TOL = 1.e-10;
 
 int main() {
 
+    std::cout << "total number of threads = " << omp_get_max_threads() << std::endl;
+
     auto start = std::chrono::system_clock::now();
 
-    const int N = 128;
+    const int N = 256;
 
     auto p = Poisson(0.0, 1.0, 0.0, 1.0, N, N);
 

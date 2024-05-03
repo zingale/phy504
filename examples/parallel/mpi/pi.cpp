@@ -37,6 +37,9 @@ int main() {
 
     double sum = 0.0;
     for (int i = rank; i < N; i += num_procs) {
+        if (rank == 2) {
+            std::cout << "i = " << i << std::endl;
+        }
         double x = (static_cast<double>(i) + 0.5) * dx;
         sum += f(x);
     }
