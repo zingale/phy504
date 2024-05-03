@@ -17,6 +17,10 @@ OBJECTS := $(filter-out $(MAINS), $(OBJECTS))
 
 CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++23 -g
 
+ifeq (${PROFILE}, TRUE)
+   CXXFLAGS += -pg
+endif
+
 %.o: %.cpp ${HEADERS}
 	g++ ${CXXFLAGS} -c $<
 

@@ -42,7 +42,7 @@ int main() {
 
     ODE o(orbit, {r_p, 0.0, 0.0, v_p});
 
-    double tol{1.e-4};
+    double tol{1.e-8};
     auto trajectory = o.integrate(0.025, 1.0, tol);
 
     std::cout << "# number of RHS evaluations = " << o.n_rhs << std::endl;
