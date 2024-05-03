@@ -54,3 +54,14 @@ Here's an example, using our :ref:`poisson_relax` application.  The ``GNUmakefil
    gprof poisson > gprof.out
 
 We can then look at the ``gprof.out`` file to see where we are spending the most time.
+
+.. tip::
+
+   We need to make sure that the program runtime is long enough that we sample functions
+   many times.  For the Poisson problem, this means using a bigger grid (like $256^2$).
+
+.. tip::
+
+   We should profile the optimized build, e.g., using ``-O2`` or higher and disabling
+   asserts with ``-DNDEBUG``.
+
