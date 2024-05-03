@@ -76,7 +76,7 @@ Note that this is a relative error, so for a number like ``1000`` we could only 
    \mbox{relative roundoff error} = \frac{|\mbox{true number} - \mbox{computer representation} |}
       {|\mbox{true number}|} \le \epsilon
 
-Note that there are `varying definitions of machine epsilon <https://en.wikipedia.org/wiki/Machine_epsilon#Variant_definitions>`_ which differ by a factor of 2.
+Note that there are `varying definitions of machine epsilon <https://en.wikipedia.org/wiki/Machine_epsilon#Mainstream_definition_(Interval_machine_epsilon)>`_ which differ by a factor of 2.
 
 Range
 -----

@@ -19,6 +19,8 @@ int main() {
      int nprocs{-1};
      MPI_Comm_size(MPI_COMM_WORLD, &nprocs);
 
+     double start_time = MPI_Wtime();
+
      // setup the grid
 
      Grid g(domain::nx, domain::ny, domain::ng,
@@ -35,7 +37,9 @@ int main() {
 
      // output
      double t{0.0};
-     output(g, t, a);
+     if (simulation::do_output) {
+         output(g, t, a);
+     }
 
      // evolve
 
@@ -77,7 +81,13 @@ int main() {
          a = anew;
      }
 
-     output(g, t, a);
+     if (simulation::do_output) {
+         output(g, t, a);
+     }
+
+     if (rank == 0) {
+         std::cout << "elapsed time: " << MPI_Wtime() - start_time << std::endl;
+     }
 
      MPI_Finalize();
 }

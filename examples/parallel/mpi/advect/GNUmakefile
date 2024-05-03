@@ -5,7 +5,7 @@ OBJECTS := $(SOURCES:.cpp=.o)
 
 ALL: advection
 
-CXXFLAGS := -Wall -Wextra -Wshadow -std=c++23 -g
+CXXFLAGS := -Wall -Wextra -Wshadow -std=c++23 -g -O2
 
 %.o : %.cpp ${HEADERS}
 	mpic++ -c ${CXXFLAGS} $<

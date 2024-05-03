@@ -15,9 +15,6 @@ public:
     double dx;
     double dy;
 
-    // for the domain decomposition, we will set the indices of
-    // the valid cells in the domain on the current processor
-
     int ng;
 
     int ilo{-1};
@@ -39,9 +36,9 @@ public:
         dy = (_ymax - _ymin) / static_cast<double>(_ny);
 
         // each processor will hold a slab with the i coordinates
-        // spanning ~ 1/nx of the x-domain, and the j coordinates
+        // spanning ~ 1/_nx of the x-domain, and the j coordinates
         // spanning the entire j range.  We will refer to a
-        // global index space of nx x ny.
+        // global index space of _nx x _ny.
 
         // note: with this decomposition, the data will be
         // contiguous in memory on each processor
