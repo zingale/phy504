@@ -261,6 +261,39 @@
 <h1>Vectoring a C++ Function<a class="headerlink" href="#vectoring-a-c-function" title="Link to this heading"></a></h1>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> to convert a C++ function that takes scalars
 to work with NumPy arrays as input.  This uses the <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/advanced/pycpp/numpy.html#vectorizing-functions">py::vectorize functionality</a> in <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>.</p>
+<p>Here’s the same simple function as before, but now we simply pass the function
+into the <code class="docutils literal notranslate"><span class="pre">pybind11</span></code> macros as <code class="docutils literal notranslate"><span class="pre">pybind11::vectorize(f)</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 153 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">vectorize.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">PYBIND11_MODULE</span><span class="p">(</span><span class="n">vectorize</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">doc</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;simple example of creating a function f(x) in C++&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;f&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pybind11</span><span class="o">::</span><span class="n">vectorize</span><span class="p">(</span><span class="n">f</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Here’s a driver:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 154 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_vectorize.py</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">vectorize</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">vectorize</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
 </section>
 
 
