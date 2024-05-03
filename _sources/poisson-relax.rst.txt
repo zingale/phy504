@@ -1,3 +1,5 @@
+.. _poisson_relax:
+
 *******************************
 Poisson Equation and Relaxation
 *******************************

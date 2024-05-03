@@ -41,3 +41,16 @@ of its time.
 `GNU gprof <https://sourceware.org/binutils/docs/gprof/>`_ is the GNU profiler
 than can be used with ``g++``.
 
+We can compile our code to be instrumented for profiling by simply adding the ``-pg``
+flag to the compiler arguments.  Then we run as normal and use ``gprof`` to examine
+the timing.
+
+Here's an example, using our :ref:`poisson_relax` application.  The ``GNUmakefile`` there will compile with profiling if we set ``PROFILE=TRUE``:
+
+.. prompt:: bash
+
+   make PROFILE=TRUE
+   ./poisson
+   gprof poisson > gprof.out
+
+We can then look at the ``gprof.out`` file to see where we are spending the most time.

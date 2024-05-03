@@ -292,6 +292,18 @@ of code and generate a report telling you where your code spends most
 of its time.</p>
 <p><a class="reference external" href="https://sourceware.org/binutils/docs/gprof/">GNU gprof</a> is the GNU profiler
 than can be used with <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p>
+<p>We can compile our code to be instrumented for profiling by simply adding the <code class="docutils literal notranslate"><span class="pre">-pg</span></code>
+flag to the compiler arguments.  Then we run as normal and use <code class="docutils literal notranslate"><span class="pre">gprof</span></code> to examine
+the timing.</p>
+<p>Here’s an example, using our <a class="reference internal" href="poisson-relax.html#poisson-relax"><span class="std std-ref">Poisson Equation and Relaxation</span></a> application.  The <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> there will compile with profiling if we set <code class="docutils literal notranslate"><span class="pre">PROFILE=TRUE</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">make<span class="w"> </span><span class="nv">PROFILE</span><span class="o">=</span>TRUE</span>
+<span class="prompt1">./poisson</span>
+<span class="prompt1">gprof<span class="w"> </span>poisson<span class="w"> </span>&gt;<span class="w"> </span>gprof.out</span>
+</pre></div></div><p>We can then look at the <code class="docutils literal notranslate"><span class="pre">gprof.out</span></code> file to see where we are spending the most time.</p>
 </section>
 </section>
 
