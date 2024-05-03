@@ -44,7 +44,7 @@ Simple function example
 -----------------------
 
 Here's a very simple example.  We will write a C++ function that computes
-$f(x) = sin(x)$.
+$f(x) = \sin(x)$.
 
 .. literalinclude:: ../../examples/pybind11/simple/simple.cpp
    :language: c++
