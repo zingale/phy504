@@ -271,19 +271,19 @@ parameter.</p>
 <p>Note that this array is immutable because of the method we used to access its contents.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 148 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sum.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
 
-<span class="k">namespace</span><span class="w"> </span><span class="nn">py</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">pybind11</span><span class="p">;</span>
-
-<span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">a_arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">unchecked</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">();</span>
 
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">suma</span><span class="p">{</span><span class="mf">0.0</span><span class="p">};</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">suma</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a_arr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -331,28 +331,39 @@ parameter.</p>
 </div>
 </div>
 <p>We can use this in python as:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 150 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_sum.py</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">sum</span>
+
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-<span class="nb">sum</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<p>Notice that the creation of the view / proxy into the array fails if we pass
+in an array with the incorrect number of dimensions.</p>
 <section id="mutable-array">
 <h2>Mutable array<a class="headerlink" href="#mutable-array" title="Link to this heading"></a></h2>
 <p>Here’s a similar C++ function, but now we use
 <code class="docutils literal notranslate"><span class="pre">mutable_unchecked&lt;DIM&gt;()</span></code> to get our view into the passed array.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 150 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">mutate.cpp</span></code></span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 151 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">mutate.cpp</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/pybind11.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pybind11/numpy.h&gt;</span>
 
-<span class="k">namespace</span><span class="w"> </span><span class="nn">py</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">pybind11</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">a_arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">mutable_unchecked</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">();</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a_arr</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">a_arr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -368,8 +379,8 @@ parameter.</p>
 </div>
 <p>And again, the same <code class="docutils literal notranslate"><span class="pre">GNUmakefile</span></code> (just changing the module name): <a class="reference download internal" download="" href="_downloads/8d53f2299601cce5d1c0e5fc33bdd33d/GNUmakefile"><code class="xref download docutils literal notranslate"><span class="pre">GNUmakefile</span></code></a>.</p>
 <p>Here’s how we can use it from python:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 151 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 152 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">test_mutate.py</span></code></span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">mutate</span> <span class="kn">import</span> <span class="n">update</span>
 
@@ -380,6 +391,19 @@ parameter.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It doesn’t matter if we declare our function as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="n">pybind11</span><span class="o">::</span><span class="n">array_t</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The making the <code class="docutils literal notranslate"><span class="pre">array_t</span></code> a reference doesn’t matter, since <code class="docutils literal notranslate"><span class="pre">array_t</span></code> is
+just a wrapper that has a pointer to a buffer where the data is stored.</p>
 </div>
 </section>
 </section>
