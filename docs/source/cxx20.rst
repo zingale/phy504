@@ -74,3 +74,5 @@ a range-based for loop:
 3-way Comparison
 ================
 
+Here's a good discussion:
+https://stackoverflow.com/questions/67284403/why-should-i-use-the-three-way-comparison-operator-instead-of-the-two-way
