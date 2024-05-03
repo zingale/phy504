@@ -15,7 +15,7 @@ MAINS := test_orbit.o test_lorenz.o test_lambda.o
 
 OBJECTS := $(filter-out $(MAINS), $(OBJECTS))
 
-CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++17 -g
+CXXFLAGS := -Wall -Wextra -Wshadow -Wpedantic -std=c++17 -g -O2 -DNDEBUG
 
 ifeq (${PROFILE}, TRUE)
    CXXFLAGS += -pg
