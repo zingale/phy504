@@ -219,6 +219,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#static-member-data"><code class="docutils literal notranslate"><span class="pre">static</span></code> member data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-management">Memory management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#regular-expressions">Regular expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#std-optional"><code class="docutils literal notranslate"><span class="pre">std::optional</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#profiling">Profiling</a></li>
 </ul>
 </li>
@@ -286,6 +287,37 @@ to deal with allocating memory.</p>
 extract substrings out of strings.  The C++ <a class="reference external" href="https://en.cppreference.com/w/cpp/regex">regular expressions
 library</a> provides all the
 capability needed to work with regular expressions.</p>
+</section>
+<section id="std-optional">
+<h2><code class="docutils literal notranslate"><span class="pre">std::optional</span></code><a class="headerlink" href="#std-optional" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> allows a function to return something that may or may not contain a value.
+Here’s a simple example (inspired by reddit ;)</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 156 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">optional.cpp</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;optional&gt;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">valid</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a_in</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a_in</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">nullopt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a_in</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valid</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">value_or</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valid</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">value_or</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="profiling">
 <h2>Profiling<a class="headerlink" href="#profiling" title="Link to this heading"></a></h2>

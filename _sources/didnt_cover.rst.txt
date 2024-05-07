@@ -31,6 +31,18 @@ extract substrings out of strings.  The C++ `regular expressions
 library <https://en.cppreference.com/w/cpp/regex>`_ provides all the
 capability needed to work with regular expressions.
 
+``std::optional``
+=================
+
+``std::optional`` allows a function to return something that may or may not contain a value.
+Here's a simple example (inspired by reddit ;)
+
+.. literalinclude:: ../../examples/optional/optional.cpp
+   :language: c++
+   :caption: ``optional.cpp``
+
+
+
 Profiling
 =========
 
