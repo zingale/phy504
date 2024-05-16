@@ -389,6 +389,13 @@ variable.</p>
 </pre></div>
 </div>
 <p>This shows us that on line 8, we did an invalid read of size 4 (bytes).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For this example, when using GCC and libstdc++, we can use the
+<code class="docutils literal notranslate"><span class="pre">-D_GLIBCXX_DEBUG</span></code> option to <a class="reference external" href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode_using.html">enable libstdc++ debug mode</a></p>
+<p>This means compiling as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt2">g++<span class="w"> </span>-D_GLIBCXX_DEBUG<span class="w"> </span>-o<span class="w"> </span>bounds<span class="w"> </span>bounds.cpp</span>
+</pre></div></div></div>
 </section>
 </section>
 
