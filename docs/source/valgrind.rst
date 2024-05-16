@@ -120,3 +120,14 @@ we see:
 
 This shows us that on line 8, we did an invalid read of size 4 (bytes).
 
+.. note::
+
+   For this example, when using GCC and libstdc++, we can use the
+   ``-D_GLIBCXX_DEBUG`` option to `enable libstdc++ debug mode <https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode_using.html>`_
+
+   This means compiling as:
+
+   .. prompt:: bash
+
+      g++ -D_GLIBCXX_DEBUG -o bounds bounds.cpp
+
