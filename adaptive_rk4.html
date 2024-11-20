@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,26 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adaptive Runge-Kutta &mdash; PHY 504 Spring 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
       <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=60df5cae"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="_static/copybutton.js?v=f281be69"></script>
-        <script src="_static/design-tabs.js?v=36754332"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=60df5cae"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "macros": {"kth": "{{k_\\mathrm{th}}}", "gcc": "{\\mathrm{g~cm^{-3}}}", "cms": "{\\mathrm{cm~s^{-1}}}", "presunit": "{\\mathrm{dyn~cm^{-2}}}", "accelunit": "{\\mathrm{cm~s^{-2}}}", "ergg": "{\\mathrm{erg~g^{-1}}}", "Ab": "{{\\bf A}}", "eb": "{{\\bf e}}", "Fb": "{{\\bf F}}", "gb": "{{\\bf g}}", "Hb": "{{\\bf H}}", "ib": "{{\\bf i}}", "Ib": "{{\\bf I}}", "Kb": "{{\\bf K}}", "lb": "{{\\bf l}}", "Lb": "{{\\bf L}}", "nb": "{{\\bf n}}", "Pb": "{{\\bf P}}", "Qb": "{{\\bf Q}}", "rb": "{{\\bf r}}", "Rb": "{{\\bf R}}", "Sb": "{{\\bf S}}", "ub": "{{\\bf u}}", "Ub": "{{\\bf U}}", "xb": "{{\\bf x}}", "dt": "{\\Delta t}", "omegadot": "{\\dot\\omega}", "inp": "{{\\rm in}}", "outp": "{{\\rm out}}", "sync": "{{\\rm sync}}", "half": "{\\frac{1}{2}}", "myhalf": "{\\half}", "nph": "{{n+\\myhalf}}", "kpp": "{\\ensuremath{\\kappa_{\\mathrm{P}}}}", "kpr": "{\\ensuremath{\\kappa_{\\mathrm{R}}}}", "kpf": "{\\ensuremath{\\kappa_{\\mathrm{F}}}}", "vb": "{\\boldsymbol{v}}", "vbt": "{\\widetilde{\\vb}}", "rbt": "{\\widetilde{\\rb}}", "ob": "{\\boldsymbol{\\omega}}", "nablab": "{\\boldsymbol{\\nabla}}", "avg": ["{{\\left \\langle #1 \\right \\rangle}}", 1]}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,9 +42,6 @@
           <a href="index.html" class="icon icon-home">
             PHY 504
           </a>
-              <div class="version">
-                Spring 2024
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -286,7 +281,7 @@ error in the solution.</p></li>
 <p>Fourth-order Runge-Kutta consists of 4 stages and a final update, illustrated below:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-0">
+<label class="sd-tab-label" for="sd-tab-item-0">
 Stage 1</label><div class="sd-tab-content docutils">
 <p>The advance begins by estimating the derivatives (righthand side or
 slope) at time <span class="math notranslate nohighlight">\(t^n\)</span>.  We’ll call this <span class="math notranslate nohighlight">\({\bf k}_1\)</span>.</p>
@@ -294,11 +289,12 @@ slope) at time <span class="math notranslate nohighlight">\(t^n\)</span>.  We’
 \[{\bf k}_1 = {\bf f}(t^n, {\bf y}^n)\]</div>
 </p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/rk4_k1.png"><img alt="_images/rk4_k1.png" src="_images/rk4_k1.png" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/rk4_k1.png"><img alt="_images/rk4_k1.png" src="_images/rk4_k1.png" style="width: 90%;" />
+</a>
 </figure>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-1">
+<label class="sd-tab-label" for="sd-tab-item-1">
 Stage 2</label><div class="sd-tab-content docutils">
 <p>We then follow the slope <span class="math notranslate nohighlight">\({\bf k}_1\)</span> to the midpoint in time,
 <span class="math notranslate nohighlight">\(t^{n+1/2}\)</span> and evaluate the slope there.  We call the new slope <span class="math notranslate nohighlight">\({\bf
@@ -307,11 +303,12 @@ k}_2\)</span>.</p>
 \[{\bf k}_2 = {\bf f}(t^n + \tau/2, {\bf y}^n + (\tau/2) {\bf k}_1)\]</div>
 </p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/rk4_k2.png"><img alt="_images/rk4_k2.png" src="_images/rk4_k2.png" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/rk4_k2.png"><img alt="_images/rk4_k2.png" src="_images/rk4_k2.png" style="width: 90%;" />
+</a>
 </figure>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-2">
+<label class="sd-tab-label" for="sd-tab-item-2">
 Stage 3</label><div class="sd-tab-content docutils">
 <p>We then go back to the start, but this time follow the new slope,
 <span class="math notranslate nohighlight">\({\bf k}_2\)</span> to the midpoint in time, <span class="math notranslate nohighlight">\(t^{n+1/2}\)</span>.  We again evaluate
@@ -320,11 +317,12 @@ the slope here, and call it <span class="math notranslate nohighlight">\({\bf k}
 \[{\bf k}_3 = {\bf f}(t^n + \tau/2, {\bf y}^n + (\tau/2) {\bf k}_2)\]</div>
 </p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/rk4_k3.png"><img alt="_images/rk4_k3.png" src="_images/rk4_k3.png" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/rk4_k3.png"><img alt="_images/rk4_k3.png" src="_images/rk4_k3.png" style="width: 90%;" />
+</a>
 </figure>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-3">
+<label class="sd-tab-label" for="sd-tab-item-3">
 Stage 4</label><div class="sd-tab-content docutils">
 <p>Finally, we go back to the start and follow <span class="math notranslate nohighlight">\({\bf k}_3\)</span> for the full
 timestep, to <span class="math notranslate nohighlight">\(t^{n+1}\)</span> and evaluate the slope there, calling it <span class="math notranslate nohighlight">\({\bf
@@ -333,11 +331,12 @@ k}_4\)</span>.</p>
 \[{\bf k}_4 = {\bf f}(t^n + \tau, {\bf y}^n + \tau {\bf k}_3)\]</div>
 </p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/rk4_k4.png"><img alt="_images/rk4_k4.png" src="_images/rk4_k4.png" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/rk4_k4.png"><img alt="_images/rk4_k4.png" src="_images/rk4_k4.png" style="width: 90%;" />
+</a>
 </figure>
 </div>
 <input id="sd-tab-item-4" name="sd-tab-set-0" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-4">
+<label class="sd-tab-label" for="sd-tab-item-4">
 Final update</label><div class="sd-tab-content docutils">
 <p>We then get the updated solution using a linear combination of the 4
 slopes:</p>
@@ -345,7 +344,8 @@ slopes:</p>
 \[{\bf y}^{n+1} = {\bf y}^n + \frac{\tau}{6} ({\bf k}_1 + 2 {\bf k}_2 + 2 {\bf k}_3 + {\bf k}_4)\]</div>
 </p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/rk4_final.png"><img alt="_images/rk4_final.png" src="_images/rk4_final.png" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/rk4_final.png"><img alt="_images/rk4_final.png" src="_images/rk4_final.png" style="width: 90%;" />
+</a>
 </figure>
 <p>Note the similarity of RK4 to Simpson’s rule for integration.</p>
 </div>
@@ -366,7 +366,8 @@ is the <a class="reference external" href="https://en.wikipedia.org/wiki/Dormand
 <p>We’ll do the first method here, as it is the simplest.  Consider
 integrating a function <span class="math notranslate nohighlight">\(y(t)\)</span> through some timestep <span class="math notranslate nohighlight">\(\tau\)</span>:</p>
 <figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/adaptive_timestep.png"><img alt="_images/adaptive_timestep.png" src="_images/adaptive_timestep.png" style="width: 90%;" /></a>
+<a class="reference internal image-reference" href="_images/adaptive_timestep.png"><img alt="_images/adaptive_timestep.png" src="_images/adaptive_timestep.png" style="width: 90%;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 14 </span><span class="caption-text">Adaptive timestep comparing <span class="math notranslate nohighlight">\(\tau/2\)</span> steps to a single <span class="math notranslate nohighlight">\(\tau\)</span> step.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
@@ -439,11 +440,7 @@ error with the timestep, <span class="math notranslate nohighlight">\(\tau\)</sp
 <p><a class="reference download internal" download="" href="_downloads/7067e04f21db1dc38bcfe25de90ca0d0/ode_integrator.H"><code class="xref download docutils literal notranslate"><span class="pre">ode_integrator.H</span></code></a></p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<code class="docutils literal notranslate"><span class="pre">ode_integrator.H</span></code><div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text"><code class="docutils literal notranslate"><span class="pre">ode_integrator.H</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-number">Listing 117 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">ode_integrator.H</span></code></span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef ODE_INTEGRATOR_H</span>
@@ -833,7 +830,8 @@ that we will return, but instead our return looks like:</p>
 <p>Here’s a plot of the output, showing the points computed during the solution.  Notice that
 at perihelion they are much more closely spaced than at aphelion.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="_images/orbit_adaptive.png"><img alt="_images/orbit_adaptive.png" src="_images/orbit_adaptive.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="_images/orbit_adaptive.png"><img alt="_images/orbit_adaptive.png" src="_images/orbit_adaptive.png" style="width: 80%;" />
+</a>
 </figure>
 <div class="admonition-try-it admonition">
 <p class="admonition-title">try it…</p>
