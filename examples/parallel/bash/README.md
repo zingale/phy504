@@ -1,5 +1,5 @@
 by default, this will look for files with the prefix plt*, and
-then do the anaylsis on them -- currently the analysis is just
+then do the analysis on them -- currently the analysis is just
 'echo'
 
 

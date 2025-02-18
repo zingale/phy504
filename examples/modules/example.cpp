@@ -1,6 +1,6 @@
 module;
 
-// includes must be in the "global fragment" and preced the main
+// includes must be in the "global fragment" and precede the main
 // purview that's why we add the `module;` above.
 
 #include <cmath>

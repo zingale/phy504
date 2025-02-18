@@ -14,7 +14,7 @@ int main() {
 
     // test subtraction
 
-    std::cout << "testing subraction" << std::endl;
+    std::cout << "testing subtraction" << std::endl;
 
     assert(v1 - v2 == Vector2d(3, -3));
 

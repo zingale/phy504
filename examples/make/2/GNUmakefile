@@ -35,6 +35,6 @@ clean:
 
 # PHONY tells make that clean is not a real file, so it will ensure
 # that if you type "make clean" this is always executed.  This is only
-# a problem if, somehow, you create an actualy file named "clean" in
+# a problem if, somehow, you create an actually file named "clean" in
 # your directory -- then make will think that clean is up to date.
 .PHONY: clean

@@ -98,7 +98,7 @@ There is another more classic type of loop in C++ that takes the form:
 
 .. code:: c++
 
-   for (start; end; incremement) {
+   for (start; end; increment) {
        // do stuff
    }
 

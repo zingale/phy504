@@ -16,7 +16,7 @@ int main() {
 
     std::cout << v1 + v2 << std::endl;
 
-    // create a new vector from subracting our two vectors
+    // create a new vector from subtracting our two vectors
 
     auto v3 = v1 - v2;
     std::cout << v3 << std::endl;
