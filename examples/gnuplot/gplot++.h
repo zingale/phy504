@@ -161,10 +161,10 @@ public:
   };
 
   enum class TerminalMode {
-	MONO,
-	ANSI,
-	ANSI256,
-	ANSIRGB,
+        MONO,
+        ANSI,
+        ANSI256,
+        ANSIRGB,
   };
 
   Gnuplot(const char *executable_name = "gnuplot", bool persist = true)
@@ -265,50 +265,50 @@ public:
    * `Gnuplot::show()` exactly N times.
    */
   bool redirect_to_animated_gif(const std::string &filename,
-								const std::string &size = "800,600",
-								int delay_ms = 50,
-								bool loop = true) {
-	std::stringstream os;
+                                                                const std::string &size = "800,600",
+                                                                int delay_ms = 50,
+                                                                bool loop = true) {
+        std::stringstream os;
 
-	// Unfortunately, Gnuplot requires the delay to be expressed in units of 1/100 s
-	// instead of the more common unit 1/1000 s, so we need to divide by 10.
-	// We do not support a fixed number of repetitions: either you loop infinitely
-	// or play the animation just once
-	os << "set terminal gif animate delay " << delay_ms / 10 << " loop " << (loop ? 0 : 1) << "\n"
-	   << "set output '" << filename << "'\n";
-	return sendcommand(os);
+        // Unfortunately, Gnuplot requires the delay to be expressed in units of 1/100 s
+        // instead of the more common unit 1/1000 s, so we need to divide by 10.
+        // We do not support a fixed number of repetitions: either you loop infinitely
+        // or play the animation just once
+        os << "set terminal gif animate delay " << delay_ms / 10 << " loop " << (loop ? 0 : 1) << "\n"
+           << "set output '" << filename << "'\n";
+        return sendcommand(os);
   }
 
   /* Send the plot to the terminal or to a text file */
   bool redirect_to_dumb(const std::string &filename = "",
                         unsigned int width = 80,
-						unsigned int height = 50,
-						TerminalMode mode = TerminalMode::MONO) {
+                                                unsigned int height = 50,
+                                                TerminalMode mode = TerminalMode::MONO) {
     std::stringstream os;
 
-	os << "set terminal dumb size " << width << " " << height;
+        os << "set terminal dumb size " << width << " " << height;
 
-	switch(mode) {
-	case TerminalMode::MONO: os << "mono"; break;
-	case TerminalMode::ANSI: os << "ansi"; break;
-	case TerminalMode::ANSI256: os << "ansi256"; break;
-	case TerminalMode::ANSIRGB: os << "ansirgb"; break;
-	default: os << "mono";
-	}
+        switch(mode) {
+        case TerminalMode::MONO: os << "mono"; break;
+        case TerminalMode::ANSI: os << "ansi"; break;
+        case TerminalMode::ANSI256: os << "ansi256"; break;
+        case TerminalMode::ANSIRGB: os << "ansirgb"; break;
+        default: os << "mono";
+        }
 
-	os << "\n";
+        os << "\n";
 
-	if (! filename.empty()) {
-	  os << "set output '" << filename << "'\n";
-	}
+        if (! filename.empty()) {
+          os << "set output '" << filename << "'\n";
+        }
 
     return sendcommand(os);
   }
 
   bool set_title(const std::string &title) {
-	std::stringstream os;
-	os << "set title '" << escape_quotes(title) << "'";
-	return sendcommand(os);
+        std::stringstream os;
+        os << "set title '" << escape_quotes(title) << "'";
+        return sendcommand(os);
   }
 
   /* Set the label on the X axis */
@@ -506,28 +506,28 @@ public:
 
     std::vector<size_t> bins{};
 
-  	// Check if all the elements are the same
-  	if (min_iter != max_iter) {
-  	  min = *min_iter;
-  	  max = *max_iter;
-  	  binwidth = (max - min) / nbins;
+        // Check if all the elements are the same
+        if (min_iter != max_iter) {
+          min = *min_iter;
+          max = *max_iter;
+          binwidth = (max - min) / nbins;
 
-  	  bins.resize(nbins);
-  	  for (const auto &val : values) {
-    		int index = static_cast<int>((val - min) / binwidth);
-    		if (index >= int(nbins))
-    		  --index;
+          bins.resize(nbins);
+          for (const auto &val : values) {
+                int index = static_cast<int>((val - min) / binwidth);
+                if (index >= int(nbins))
+                  --index;
 
-    		bins.at(index)++;
-  	  }
-  	} else {
-  	  // Just one bin…
+                bins.at(index)++;
+          }
+        } else {
+          // Just one bin…
 
-  	  min = max = *min_iter;
-  	  binwidth = 1.0;
-  	  nbins = 1;
-  	  bins.push_back(static_cast<double>(values.size()));
-  	}
+          min = max = *min_iter;
+          binwidth = 1.0;
+          nbins = 1;
+          bins.push_back(static_cast<double>(values.size()));
+        }
 
     std::stringstream of;
     for (size_t i{}; i < nbins; ++i) {
