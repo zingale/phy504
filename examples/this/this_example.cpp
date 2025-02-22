@@ -16,7 +16,7 @@ public:
 
     std::string get_data() {return data;}
 
-    // function that returns a reference -- just for demostration
+    // function that returns a reference -- just for demonstration
 
     Example& get_ref() {return *this;}
 

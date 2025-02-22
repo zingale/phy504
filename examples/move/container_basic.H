@@ -24,7 +24,7 @@ public:
         : _size(0), _data(nullptr)
     {std::cout << "in default constructor" << std::endl;}
 
-    // parameteric constructor
+    // parametric constructor
 
     Container(int size)
         : _size(size)

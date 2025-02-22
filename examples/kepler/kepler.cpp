@@ -25,18 +25,6 @@ int main() {
     double P{};
 
     if (solve_for_a) {
-        std::cout << "enter semi-major axis (a): ";
-        std::cin >> a;
-
-        if (a < 0.0) {
-            std::cout << "error: a must be positive" << std::endl;
-            return -1;
-        }
-
-        P = std::pow(a, 1.5);
-        std::cout << "period, P = " << P << std::endl;
-
-    } else {
         std::cout << "enter period (P): ";
         std::cin >> P;
 
@@ -47,6 +35,18 @@ int main() {
 
         a = std::pow(P, 2.0/3.0);
         std::cout << "semi-major axis, a = " << a << std::endl;
+
+    } else {
+        std::cout << "enter semi-major axis (a): ";
+        std::cin >> a;
+
+        if (a < 0.0) {
+            std::cout << "error: a must be positive" << std::endl;
+            return -1;
+        }
+
+        P = std::pow(a, 1.5);
+        std::cout << "period, P = " << P << std::endl;
 
     }
 }

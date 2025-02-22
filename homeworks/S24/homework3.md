@@ -53,7 +53,7 @@ https://zingale.github.io/phy504/inclass-rk2-orbit.html
       It would be helpful to have your `write_history()` routine
       use different filenames for each timestep so you can compare.
 
-   c. In class, we implmented Runge-Kutta 2nd order (RK2).  This
+   c. In class, we implemented Runge-Kutta 2nd order (RK2).  This
       is here:
 
       https://zingale.github.io/phy504/inclass-rk2-orbit.html

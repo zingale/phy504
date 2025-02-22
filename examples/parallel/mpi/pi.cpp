@@ -46,7 +46,7 @@ int main() {
 
     sum *= dx;
 
-    // now reduce the sum accross all processors, only processor 0 will get the result
+    // now reduce the sum across all processors, only processor 0 will get the result
 
     double sum_global{0};
     MPI_Reduce(&sum, &sum_global, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
