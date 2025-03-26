@@ -20,7 +20,11 @@ int main() {
     }
 
     for (auto w : std::views::split(s, " "sv) |
-                  std::views::transform([] (auto rng) {return std::string_view(rng);})) {
+             std::views::transform([] (auto rng) {return std::string_view(rng);})) {
         std::cout << w << std::endl;
+    }
+
+    for (auto w : std::views::split(s, ' ')) {
+        std::cout << std::string_view(w.begin(), w.end()) << std::endl;
     }
 }
