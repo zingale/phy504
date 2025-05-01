@@ -7,7 +7,7 @@ SOURCEOBJS := $(SOURCEFILES:.cpp=.o)
 ALL: main
 
 %.o : %.cpp
-	g++ -std=c++20 -fmodules-ts -c $<
+	g++ -std=c++20 -fmodules-ts -c $< -x c++-system-header 
 
 system_headers:
 	g++ -std=c++20 -fmodules-ts -x c++-system-header iostream
