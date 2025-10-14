@@ -10,7 +10,7 @@ Computers essentially do 2 things:
 
 Computers are very good at repeating the same task over and over again.
 
-Our code is to learn how to write programs to automate operations on files (via the Unix shell)
+Our goal is to learn how to write programs to automate operations on files (via the Unix shell)
 and manage data / do numerical calculations (via C++).
 
 Limitations
