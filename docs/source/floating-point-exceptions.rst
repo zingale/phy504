@@ -161,10 +161,10 @@ To build this, we need to load an extra library.  For GCC 12 or 13, we can do:
 
 .. prompt:: bash
 
-   g++ -g -std=c++23 -o undefined_stactrace undefined_stacktrace.cpp -lstdc++_libbacktrace
+   g++ -g -std=c++23 -o undefined_stacktrace undefined_stacktrace.cpp -lstdc++_libbacktrace
 
 For GCC 14, we would do:
 
 .. prompt:: bash
 
-   g++ -g -std=c++23 -o undefined_stactrace undefined_stacktrace.cpp -lstdc++exp
+   g++ -g -std=c++23 -o undefined_stacktrace undefined_stacktrace.cpp -lstdc++exp
