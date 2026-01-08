@@ -45,7 +45,7 @@ Here's a simple example:
 Sort Example
 ============
 
-Lambdas make it easy to provide simply functions as arguments
+Lambdas make it easy to provide simple functions as arguments
 to other functions (like we did with ``std::sort()`` previously).
 Here's an implementation of that using a lambda function:
 
