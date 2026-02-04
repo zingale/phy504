@@ -1,67 +1,163 @@
 
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trivially Parallel + BASH &mdash; PHY 504 Spring 2024 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=851f9797" />
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Trivially Parallel + BASH &#8212; PHY 504 Spring 2024 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=4a8d213b"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'trivially-parallel';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="Spring 2024" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=60df5cae"></script>
-      <script src="_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="_static/copybutton.js?v=f281be69"></script>
-      <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
-</head>
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            PHY 504
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
-<ul>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">PHY 504</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro &amp; Logistics</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="topics.html">Topics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="computing.html">Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hello_world.html">Hello, World</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The UNIX Shell</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="why_command_line.html">Why Use the Command Line?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell.html">Navigating the Filesystem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-2.html">Create Files and Directories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-3.html">Redirection and Pipes</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Git and Version Control</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-setup.html">Dotfiles and the Mathlab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">A Git Walkthrough</a></li>
@@ -70,15 +166,15 @@
 <li class="toctree-l1"><a class="reference internal" href="github.html">github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pull-requests.html">Pull Requests</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Shell Scripting</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="shell-looping.html">Looping on the Command Line</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shell-scripts.html">Shell Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="permissions.html">File Permissions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finding.html">Find and Grep</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Programming</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="book.html">C++ Textbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Computer Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development-tools.html">Software Development Tools</a></li>
@@ -88,8 +184,8 @@
 <li class="toctree-l1"><a class="reference internal" href="editors.html">Editors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first_project.html">A First C++ Project</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">C++ Basics</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cxx-datatypes.html">C++ Datatypes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-vectors.html">Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-more-vectors.html">More Vectors</a></li>
@@ -105,8 +201,8 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-maps.html">Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-io.html">File I/O</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Functions</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions.html">Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-example.html">More Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-orbit-example.html">Example: Planetary Orbit</a></li>
@@ -114,15 +210,15 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-lambdas.html">Lambda Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-functions-planets.html">Example: Sorting Planets</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Elements of Software Engineering</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="compiler-flags.html">Making the Compiler Do the Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multiple-files.html">Working with Multiple Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make.html">Makefiles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-split-orbit.html">In-Class Example: Splitting Up Our Orbit Code</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classes</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cxx-classes-intro.html">Introduction to Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="object-oriented.html">Object-Oriented Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inclass-class-example.html">In-Class Example: A Simple Grid</a></li>
@@ -130,8 +226,8 @@
 <li class="toctree-l1"><a class="reference internal" href="inclass-orbit-class.html">In-Class Example: Orbit Integrator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contiguous_array.html">Example: Multidimensional Contiguous Array</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Some Random Bits...</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cxx-mdspan.html">Preview: C++23 mdspan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-enumerate-zip.html">Preview: C++23 enumerate and zip</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-enum.html">enum</a></li>
@@ -143,8 +239,8 @@
 <li class="toctree-l1"><a class="reference internal" href="floating-point.html">Floating Point</a></li>
 <li class="toctree-l1"><a class="reference internal" href="floating-point-exceptions.html">Floating Point Exceptions</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-unit-tests.html">Unit Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github-ci.html">Continuous integration and github</a></li>
@@ -153,8 +249,8 @@
 <li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clang-tidy.html">clang-tidy</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Digging Deeper into C++ Classes</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="inheritance-and-access.html">Inheritance and Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="this-class.html"><code class="docutils literal notranslate"><span class="pre">this</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="copy_and_assignment.html">Copy, Assignment, and Destructors</a></li>
@@ -164,31 +260,31 @@
 <li class="toctree-l1"><a class="reference internal" href="cxx-allocating.html">Allocating Memory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-simple-container.html">Example: A Simple Container</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Documenting Code</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documenting Code</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="html-css.html">HTML + CSS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="github-pages.html">Github Pages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="doxygen.html">Doxygen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx-doxygen.html">Sphinx + Doxygen</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Templates</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Templates</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="templates-intro.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-template-array.html">Example: Templated Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templates-more.html">More On Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-constexpr.html"><code class="docutils literal notranslate"><span class="pre">constexpr</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="functionals.html">Function Objects</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Some Numerical Algorithms</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="roots.html">Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monte-carlo.html">Monte Carlo Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adaptive_rk4.html">Adaptive Runge-Kutta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="poisson-relax.html">Poisson Equation and Relaxation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parallel Programming</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="parallel-intro.html">Introduction to Parallel Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-intro.html">OpenMP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openmp-relax.html">OpenMP Poisson Relaxation</a></li>
@@ -197,22 +293,22 @@
 <li class="toctree-l1"><a class="reference internal" href="mpi-sendrecv.html">MPI Send and Receive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mpi-advect.html">MPI Linear Advection Equation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Calling C++ from Python</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Calling C++ from Python</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cxx-python.html">pybind11</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-sum.html">Passing a NumPy Array into C++</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-vectorize.html">Vectoring a C++ Function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-python-array.html">Returning an Array to Python</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">To Be Continued...</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="didnt_cover.html">Stuff We Didn’t Cover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx20.html">Coming in C++20</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx23.html">Coming in C++23</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cxx-glossary.html">Some C++ programming terms</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Homework</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="homework/homework1.html">Homework 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework/homework2.html">Homework 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework/homework3.html">Homework 3</a></li>
@@ -221,37 +317,184 @@
 <li class="toctree-l1"><a class="reference internal" href="homework/homework6.html">Homework 6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework/homework7.html">Homework 7</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Project</span></p>
-<ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="project.html">Final Project</a></li>
 </ul>
 
-        </div>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
       </div>
-    </nav>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PHY 504</a>
-      </nav>
+<div class="sbt-scroll-pixel-helper"></div>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Trivially Parallel + BASH</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/trivially-parallel.rst.txt" rel="nofollow"> View page source</a>
-      </li>
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zingale/phy504" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zingale/phy504/blob/main/docs/source/trivially-parallel.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zingale/phy504/issues/new?title=Issue%20on%20page%20%2Ftrivially-parallel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Trivially Parallel + BASH</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternatives">Alternatives</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="trivially-parallel-bash">
-<h1>Trivially Parallel + BASH<a class="headerlink" href="#trivially-parallel-bash" title="Link to this heading"></a></h1>
+<h1>Trivially Parallel + BASH<a class="headerlink" href="#trivially-parallel-bash" title="Link to this heading">#</a></h1>
 <p>Sometimes we have to run an analysis tool on a large number of files,
 but each analysis is completely independent of the others.  This is a
 <em>trivially parallel</em> application.</p>
@@ -269,7 +512,7 @@ CPUs and starts up jobs as resources become free.</p>
 </ul>
 <p>Here’s an implementation:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">parallel.sh</span></code></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># run a bunch of single-processor analysis jobs in parallel.  Lock</span>
@@ -368,39 +611,94 @@ tool on them (for this simple example, it is just <code class="docutils literal 
 control the number of processors that are used at the top of the
 script.</p>
 <section id="alternatives">
-<h2>Alternatives<a class="headerlink" href="#alternatives" title="Link to this heading"></a></h2>
+<h2>Alternatives<a class="headerlink" href="#alternatives" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.gnu.org/software/parallel/">GNU parallel</a> is a similar
 tool that can be used for trivially parallel jobs.</p>
 </section>
 </section>
 
 
-           </div>
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternatives">Alternatives</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
           </div>
-          <footer>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Michael Zingale
+</p>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2022-2024, Michael Zingale.</p>
   </div>
+  
+  <div class="footer-item">
+    
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+  <p class="copyright">
+    
+      © Copyright 2022-2024, Michael Zingale.
+      <br/>
+    
+  </p>
 
-</footer>
-        </div>
-      </div>
-    </section>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>  
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
 
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-</body>
+  <footer class="bd-footer">
+  </footer>
+  </body>
 </html>
