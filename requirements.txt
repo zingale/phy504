@@ -1,5 +1,5 @@
 Sphinx
-sphinx_rtd_theme
+git+https://github.com/executablebooks/sphinx-book-theme.git
 sphinxcontrib_bibtex
 numpydoc
 more_itertools
