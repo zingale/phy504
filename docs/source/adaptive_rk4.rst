@@ -291,12 +291,10 @@ counterclockwise orbit.  They are:
 
 .. math::
 
-   \begin{align*}
-     x &= a (1 - e) \\
-     y &= 0 \\
-     u &= 0 \\
-     v &= \sqrt{\frac{GM}{a} \frac{1+e}{1-e}}
-   \end{align*}
+   x &= a (1 - e) \\
+   y &= 0 \\
+   u &= 0 \\
+   v &= \sqrt{\frac{GM}{a} \frac{1+e}{1-e}}
 
 
 .. literalinclude:: ../../examples/numerical_algorithms/adaptive_rk4/test_orbit.cpp
@@ -339,11 +337,9 @@ This system appears as:
 
 .. math::
 
-   \begin{align*}
-     \frac{dx}{dt} &= \sigma (y - x) \\
-     \frac{dy}{dt} &= x (\rho - z) - y \\
-     \frac{dz}{dt} &= xy - \beta z
-   \end{align*}
+   \frac{dx}{dt} &= \sigma (y - x) \\
+   \frac{dy}{dt} &= x (\rho - z) - y \\
+   \frac{dz}{dt} &= xy - \beta z
 
 and is a simple model for convection.  Here, $x$ is a measure of the rate of convection,
 $y$ is related to the horizontal temperature variation, and $z$ is related to the vertical
