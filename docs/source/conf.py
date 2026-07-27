@@ -20,11 +20,8 @@
 import os
 import re
 import sys
-import shlex
-import subprocess
 
 sys.path.insert(0, os.path.abspath('../../'))
-
 
 
 # -- General configuration ------------------------------------------------
@@ -136,9 +133,9 @@ numfig = True
 #
 html_theme = 'sphinx_book_theme'
 
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
+# Theme options are theme-specific and customize the look and feel of
+# a theme further.  For a list of options available for each theme,
+# see the documentation.
 #
 html_theme_options = {
     "repository_url": "https://github.com/zingale/phy504",
@@ -150,8 +147,8 @@ html_theme_options = {
     "logo": {
         "text": "PHY 504",
     },
-    "use_download_button": False
-}
+    "use_download_button": False,
+    "navbar_persistent": []}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

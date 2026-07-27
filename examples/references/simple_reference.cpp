@@ -6,3 +6,7 @@ int main() {
     int &x_ref = x;
 
     x_ref++;
+
+    std::cout << "x is now " << x << std::endl;
+
+}
